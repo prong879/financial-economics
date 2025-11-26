@@ -161,6 +161,7 @@
   {
     % 修改目录层级
     tocdepth = 0,
+    secnumdepth = 3,
     chapter = 
       {
         numbering   = false,
@@ -538,9 +539,21 @@
     labelsep    = 2pt,
   }
 
+\setlist[itemize]
+  {
+    itemsep     = 0ex,
+    topsep      = 0pt,
+  }
+
+\setlist[enumerate]
+  {
+    itemsep     = 0ex,
+    topsep      = 0pt,
+  }
+
 \setlist[enumerate, 1]
   {
-    labelindent = \parindent,
+    labelindent = 0pt,
     labelsep    = 4pt,
     leftmargin  = *,
     % label       = { \arabic * .}
@@ -550,7 +563,7 @@
 \setlist[enumerate, 2]
   {
     % labelindent = *,
-    leftmargin  = 2em, 
+    leftmargin  = 1.5em, 
     widest      = 0,
     itemindent  = 0em,
     labelsep    = 0pt,
@@ -792,6 +805,22 @@
         aftername = { 、 } ,
         beforeskip = 2ex plus 1ex minus .5ex,
         afterskip = 1ex plus .2ex minus 1ex
+      },
+    subsection =
+      {
+        format    = \heiti \normalsize ,
+        number    = \arabic { subsection } ,
+        aftername = { .~ } ,
+        beforeskip = 0.75ex plus 0.2ex minus .1ex,
+        afterskip = 0.2ex plus .1ex,
+      },
+    subsubsection =
+      {
+        format    = \heiti \normalsize ,
+        number    = \arabic { subsection } . \arabic { subsubsection } ,
+        aftername = { ~ } ,
+        beforeskip = 0.5ex plus .1ex minus .1ex,
+        afterskip = 0.1ex plus .1ex
       }
   }
 
