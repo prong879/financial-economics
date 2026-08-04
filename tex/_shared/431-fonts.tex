@@ -1,0 +1,25 @@
+% 项目统一中文字体：避免依赖某台电脑上的 STSong/STHeiti 等系统字体。
+\setCJKmainfont{SourceHanSerifCN-Regular.ttf}[
+    Path = fonts/,
+    BoldFont = SourceHanSerifCN-Bold.ttf,
+    ItalicFont = AR-PL-KaitiM-GB.ttf,
+    BoldItalicFont = AR-PL-KaitiM-GB.ttf,
+    BoldItalicFeatures = {FakeBold = 2},
+]
+\setCJKsansfont{SourceHanSansCN-Regular.ttf}[
+    Path = fonts/,
+    BoldFont = SourceHanSansCN-Bold.ttf,
+]
+\setCJKmonofont{SourceHanSansCN-Regular.ttf}[
+    Path = fonts/,
+]
+
+% fontset=none 时 CTeX 不创建这些常用字体族命令，显式补齐。
+\setCJKfamilyfont{zhsong}{SourceHanSerifCN-Regular.ttf}[Path = fonts/]
+\setCJKfamilyfont{zhhei}{SourceHanSansCN-Bold.ttf}[Path = fonts/]
+\setCJKfamilyfont{zhkai}{AR-PL-KaitiM-GB.ttf}[Path = fonts/]
+\setCJKfamilyfont{zhfs}{SourceHanSerifCN-Regular.ttf}[Path = fonts/]
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+\providecommand{\kaishu}{\CJKfamily{zhkai}}
+\providecommand{\fangsong}{\CJKfamily{zhfs}}
