@@ -419,8 +419,10 @@
           }
         \clearpage
       }
-    % 修复 section 的超链接跳转问题
-    \int_gincr:N \c@chapter
+    % 修复后续 section 的超链接跳转，并为紧随其后的 \label
+    % 建立正确的章编号与超链接锚点。
+    \IfBooleanF {#1}
+      { \refstepcounter { chapter } }
   }
 
 % 纸张和页面布局
