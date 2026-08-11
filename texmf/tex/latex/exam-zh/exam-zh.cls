@@ -539,6 +539,7 @@
 \setlist
   {
     labelsep    = 2pt,
+    after       = \vspace{2pt},
   }
 
 \setlist[itemize]
