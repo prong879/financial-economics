@@ -50,11 +50,11 @@
 
 % 列表全局设置
 \setlist{nosep}
-% 列表内部保持正文节奏；整个列表块与上下内容各保留半行间距。
+% 列表内部保持正文节奏；整个列表块与上下内容各保留 0.3 行间距。
 \setlist[itemize]{
     leftmargin=*, labelsep=0.5em,
     itemsep=0pt, parsep=0pt,
-    topsep=0.5\baselineskip, partopsep=0pt,
+    topsep=0.3\baselineskip, partopsep=0pt,
     after={}
 }
 \setlist[itemize,1]{label=$\bullet$}
@@ -63,7 +63,7 @@
 \setlist[enumerate]{
     leftmargin=*, labelsep=0.5em,
     itemsep=0pt, parsep=0pt,
-    topsep=0.5\baselineskip, partopsep=0pt,
+    topsep=0.3\baselineskip, partopsep=0pt,
     after={}
 }
 \setlist[description]{leftmargin=\parindent, labelindent=0pt}
