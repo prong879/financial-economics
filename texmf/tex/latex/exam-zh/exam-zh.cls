@@ -546,12 +546,23 @@
   {
     itemsep     = 0ex,
     topsep      = 0pt,
+    after       = \addvspace{0.5\baselineskip},
+  }
+
+% 一级无序列表的正文起点与一级有序列表保持一致；
+% 标记仍为项目符号，仅为编号预留相同的标签宽度。
+\setlist[itemize, 1]
+  {
+    labelindent = 0pt,
+    labelsep    = 4pt,
+    leftmargin  = 15.17172pt,
   }
 
 \setlist[enumerate]
   {
     itemsep     = 0ex,
     topsep      = 0pt,
+    after       = \addvspace{0.5\baselineskip},
   }
 
 \setlist[enumerate, 1]
