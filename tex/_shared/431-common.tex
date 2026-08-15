@@ -1,0 +1,185 @@
+% 431 项目统一文档主题。
+% 各根入口应先声明 \documentclass{exam-zh}，再输入本文件。
+
+\input{tex/_shared/431-fonts.tex}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+
+\tikzset{
+    mindmap_root/.style={rectangle, rounded corners, draw=black, fill=gray!10, thick, align=center, minimum height=0.8cm, font=\bfseries\small},
+    mindmap_level1/.style={rectangle, rounded corners, draw=blue!60, fill=blue!5, thin, align=center, minimum height=0.6cm, font=\small},
+    mindmap_level2/.style={rectangle, draw=none, fill=none, align=center, font=\footnotesize, text width=3cm},
+    arrow/.style={->, >=stealth, thick, gray}
+}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{makecell}
+\usepackage{extarrows}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{perpage}
+\usepackage{scalerel}
+\usepackage{stackengine}
+\MakePerPage{footnote}
+\stackMath
+\tcbuselibrary{breakable}
+\tcbset{breakable}
+
+% 适用于较长估计变量名的宽帽号。
+\newcommand{\reallywidehat}[1]{%
+  \savestack{\tmpbox}{\stretchto{%
+    \scaleto{%
+      \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}{%
+        \rule[-\textheight/2]{1ex}{\textheight}%
+      }%
+    }{\textheight}%
+  }{0.5ex}}%
+  \stackon[1pt]{#1}{\tmpbox}%
+}
+
+% 列表全局设置
+\setlist{nosep}
+% 列表内部保持正文节奏；整个列表块与上下内容各保留半行间距。
+\setlist[itemize]{
+    leftmargin=*, labelsep=0.5em,
+    itemsep=0pt, parsep=0pt,
+    topsep=0.5\baselineskip, partopsep=0pt,
+    after={}
+}
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=\small$\bullet$}
+\setlist[itemize,3]{label=\scriptsize$\bullet$}
+\setlist[enumerate]{
+    leftmargin=*, labelsep=0.5em,
+    itemsep=0pt, parsep=0pt,
+    topsep=0.5\baselineskip, partopsep=0pt,
+    after={}
+}
+\setlist[description]{leftmargin=\parindent, labelindent=0pt}
+
+% 章节公共样式。需要每节另起一页的资料在入口中单独覆盖 section/break。
+\IfFileExists{ctex.sty}{
+    \ctexset{
+        section = {
+            format = \Large\bfseries\raggedright,
+            beforeskip = 1.5ex plus 0.5ex minus 0.2ex,
+            afterskip = 1.5ex plus 0.2ex,
+        },
+        subsection = {
+            format = \large\bfseries\raggedright,
+            beforeskip = 1.0ex plus 0.5ex minus 0.2ex,
+            afterskip = 1.0ex plus 0.2ex,
+        },
+        subsubsection = {
+            format = \normalsize\bfseries\raggedright,
+            beforeskip = 0.5ex plus 0.5ex minus 0.2ex,
+            afterskip = 0.5ex plus 0.2ex,
+        },
+        paragraph = {
+            runin = false,
+            number = \arabic{paragraph}.,
+            format = \normalsize\bfseries\raggedright,
+            indent = 2em,
+            beforeskip = 0.5ex plus 0.3ex minus 0.1ex,
+            afterskip = 0.3ex plus 0.2ex,
+        }
+    }
+}{}
+
+% 按 chapter 计数器自动生成“第 X 讲”。
+% exam-zh 在 \chapter 完成时推进 chapter，因此标题使用当前值加一。
+\ExplSyntaxOn
+\NewDocumentCommand{\lecture}{m}
+  {
+    \exp_args:Nx \chapter
+      {第\zhnumber{\int_eval:n {\value{chapter} + 1}}讲：\exp_not:n {#1}}
+  }
+\ExplSyntaxOff
+
+% 431 资料通用的 exam-zh 设置；可选参数为居中页眉，必选参数为右侧页眉。
+\newcommand{\SetupFourThreeOneDocument}[2][]{
+    \examsetup{
+        page={
+            size = a4paper,
+            show-head = true,
+            head-content = {
+                \fancyhf{}
+                \fancyhead[C]{#1}
+                \fancyhead[EL]{\leftmark}
+                \fancyhead[OR]{#2}
+            },
+            foot-content = {\hfill 第;页 / 共;页 \hfill}
+        },
+        style/student-version-cleanaux = true,
+        fillin/type = paren,
+        question = {
+            show-points = auto,
+            show-answer = true,
+        },
+        problem = {
+            points-separate-par = false,
+        },
+        paren = {
+            text-color = blue,
+            show-paren = true,
+            show-answer = true,
+        },
+        solution = {
+            show-solution = show-stay,
+            label-indentation = true,
+            text-color = blue,
+            blank-type = hide,
+        },
+    }
+
+    \ExamPrintAnswerSet{
+        question/show-answer = false,
+        paren/show-answer = false,
+        solution/show-solution = hide,
+        paren/text-color = black,
+        solution/text-color = black,
+    }
+}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\headrulewidth}{1pt}
+
+\newcommand{\true}{$\checkmark$}
+\newcommand{\false}{$\times$}
+
+\usepackage{hyperref}
+\usepackage{tocloft}
+
+\renewcommand{\contentsname}{\hspace*{\fill}目录\hspace*{\fill}}
+\setlength{\cftbeforetoctitleskip}{2em}
+\setlength{\cftaftertoctitleskip}{2em}
+\setlength{\cftchapindent}{0em}
+\setlength{\cftsecindent}{2.0em}
+\setlength{\cftsecnumwidth}{2em}
+\setlength{\cftsubsecindent}{4.0em}
+\setlength{\cftsubsecnumwidth}{2.0em}
+\setlength{\cftsubsubsecindent}{6.0em}
+\setlength{\cftsubsubsecnumwidth}{2.0em}
+
+\setlength{\intextsep}{1em}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    urlcolor = blue,
+    citecolor = blue,
+    pdfborder = {0 0 0},
+}
+
+\newcommand{\kref}[1]{\ref{#1} \textsuperscript{(p.\pageref{#1})}}
