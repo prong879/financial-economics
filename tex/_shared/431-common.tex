@@ -34,7 +34,12 @@
 \MakePerPage{footnote}
 \stackMath
 \tcbuselibrary{breakable}
-\tcbset{breakable}
+% 普通 tcolorbox 的首段按正文首行缩进；\parindent 由正文模板统一控制（当前为两字符）。
+\tcbset{
+    breakable,
+    parbox=false,
+    before upper=\indent
+}
 
 % 适用于较长估计变量名的宽帽号。
 \newcommand{\reallywidehat}[1]{%
