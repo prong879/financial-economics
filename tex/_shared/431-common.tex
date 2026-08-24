@@ -13,6 +13,7 @@
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{positioning}
+\input{tex/_shared/431-cover.tex}
 
 \tikzset{
     mindmap_root/.style={rectangle, rounded corners, draw=black, fill=gray!10, thick, align=center, minimum height=0.8cm, font=\bfseries\small},
@@ -38,7 +39,13 @@
 \tcbset{
     breakable,
     parbox=false,
-    before upper=\indent
+    before upper=\indent,
+    uestc exam/.style={
+        colback=yellow!6,
+        colframe=orange!55!black,
+        colbacktitle=orange!55!black,
+        coltitle=white
+    }
 }
 
 % 适用于较长估计变量名的宽帽号。
@@ -155,6 +162,23 @@
         paren/text-color = black,
         solution/text-color = black,
     }
+}
+
+% 431 系列资料的前置页统一使用隐藏的罗马页码，避免与目录页的
+% PDF 页面锚点重复。封面和封面背面通常使用 empty 页面样式，
+% 因而这些页码只用于内部计数，不会印在页面上。
+\NewDocumentCommand{\FourThreeOneFrontMatter}{}{%
+    \pagenumbering{roman}%
+}
+
+% 目录统一从阿拉伯数字第 1 页开始。星号形式先用 \cleardoublepage，
+% 适用于需要保留封面背面空白、让目录从右页开始的双面成品；
+% 非星号形式使用 \clearpage。
+\NewDocumentCommand{\MakeFourThreeOneContents}{s O{3}}{%
+    \IfBooleanTF{#1}{\cleardoublepage}{\clearpage}%
+    \pagenumbering{arabic}%
+    \setcounter{tocdepth}{#2}%
+    \tableofcontents
 }
 
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}

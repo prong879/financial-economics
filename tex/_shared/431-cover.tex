@@ -1,0 +1,103 @@
+% 431 系列讲义共用封面。
+% 由 tex/_shared/431-common.tex 载入；各根文档用 \MakeFourThreeOneCover 调用。
+%
+% 参数依次为：
+%   #1  左上英文眉题，如 431 FINANCE / THEORY HANDBOOK
+%   #2  中文主标题，如 431 理论讲义
+%   #3  中文副标题
+%   #4  金色标语
+%   #5  左下作者
+%   #6  右下英文关键词
+%
+% 作图原点在页面中心。坐标单位为 cm（TikZ 默认）。
+% 纸面约从 (-10.5,-14.85) 到 (10.5,14.85)（A4）。
+
+% 皮纹纸打印版使用纸张本色和纯黑前景；透明度仅用于区分视觉层级。
+\definecolor{covernavy}{HTML}{FFFFFF}
+\definecolor{coverink}{HTML}{000000}
+\definecolor{coverteal}{HTML}{000000}
+\definecolor{covergold}{HTML}{000000}
+\definecolor{covercurvered}{HTML}{B3261E}
+\definecolor{covercurvegold}{HTML}{B98232}
+
+\NewDocumentCommand{\MakeFourThreeOneCover}{m m m m m m}{%
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \null % 占住标题页垂直盒子，避免 overlay 图画在空页上错位
+        \begin{tikzpicture}[remember picture, overlay]
+            % 铺满整页底色
+            \fill[covernavy]
+                (current page.south west) rectangle (current page.north east);
+            \begin{scope}[shift={(current page.center)}]
+                % 右侧图案整体左移，避免过度贴近裁切边缘。
+                \begin{scope}[xshift=-1.2cm]
+                    % 低对比度网格，与曲线叠加，暗示数据、风险和收益。
+                    \foreach \x in {2,3.4,...,9} {
+                        \draw[coverink, opacity=0.09, line width=0.35pt]
+                            (\x,-11.2) -- (\x,5.7);
+                    }
+                    \foreach \y in {-11.2,-9.8,...,5.7} {
+                        \draw[coverink, opacity=0.09, line width=0.35pt]
+                            (2,\y) -- (9.4,\y);
+                    }
+                    % 主曲线（偏下、波动更大）
+                    \draw[covercurvered, opacity=0.88, line width=2pt]
+                        plot[smooth] coordinates {
+                            (2.2,-8.7) (3.2,-7.9) (4.2,-8.2) (5.1,-5.9)
+                            (6.1,-6.5) (7.0,-3.7) (8.0,-4.1) (9.1,-1.2)
+                        };
+                    % 次曲线（偏上，以较细线宽区分）
+                    \draw[covercurvegold, opacity=0.82, line width=1.5pt]
+                        plot[smooth] coordinates {
+                            (2.2,-6.7) (3.4,-6.2) (4.5,-4.9) (5.7,-5.1)
+                            (6.8,-2.8) (7.8,-1.9) (9.0,1.1)
+                        };
+                    % 主曲线上的数据点
+                    \foreach \x/\y in {2.2/-8.7,5.1/-5.9,7.0/-3.7,9.1/-1.2}
+                        \fill[covercurvered] (\x,\y) circle (2.5pt);
+                \end{scope}
+
+                % 左上：英文眉题 + 金色短横线
+                \node[anchor=west, text=covercurvegold]
+                    at (-8.4,11)
+                    {\color{covercurvegold}\sffamily\bfseries\fontsize{12}{15}\selectfont #1};
+                \draw[covercurvegold, line width=2.2pt]
+                    (-8.4,10.25) -- (-5.4,10.25);
+
+                % 中左：中文主标题（思源宋体粗体，项目 fonts/ 目录）
+                \node[anchor=west, align=left, text=covercurvered]
+                    at (-8.4,8)
+                    {\color{covercurvered}
+                     \fontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+                     \CJKfontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+                     \fontsize{62}{62}\selectfont #2};
+                % 主标题下方：副标题、标语
+                \node[anchor=west, text=coverink, opacity=0.84]
+                    at (-8.35,3.5)
+                    {\color{covercurvegold}
+                     \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+                     \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+                     \fontsize{16}{22}\selectfont #3};
+                \node[anchor=west, text=covergold]
+                    at (-8.35,2.35)
+                    {\color{covercurvegold}
+                     \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+                     \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+                     \fontsize{9.5}{13}\selectfont #4};
+
+                % 页脚：左作者、右关键词
+                \node[anchor=west, text=coverink, opacity=0.80]
+                    at (-8.35,-11.65)
+                    {\sffamily\small #5};
+                \node[anchor=east, text=coverink, opacity=0.48]
+                    at (8.15,-11.65)
+                    {\sffamily\scriptsize #6};
+
+                % 右上竖排半透明 431 水印。
+                \node[text=coverink, opacity=0.055, rotate=90]
+                    at (6.9,8.8)
+                    {\sffamily\bfseries\fontsize{70}{74}\selectfont 431};
+            \end{scope}
+        \end{tikzpicture}
+    \end{titlepage}
+}
