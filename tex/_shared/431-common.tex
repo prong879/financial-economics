@@ -34,19 +34,76 @@
 \usepackage{stackengine}
 \MakePerPage{footnote}
 \stackMath
-\tcbuselibrary{breakable}
+\tcbuselibrary{breakable,skins}
 % 普通 tcolorbox 的首段按正文首行缩进；\parindent 由正文模板统一控制（当前为两字符）。
 \tcbset{
     breakable,
     parbox=false,
     before upper=\indent,
+    four three one box/.style={
+        enhanced,
+        breakable,
+        parbox=false,
+        boxrule=0.4pt,
+        leftrule=1.4pt,
+        arc=2pt,
+        left=7pt,
+        right=7pt,
+        top=5pt,
+        bottom=5pt,
+        before skip=.5em plus .2em minus .1em,
+        after skip=.5em plus .2em minus .1em,
+        before upper=\indent,
+        fonttitle=\bfseries
+    },
+    knowledge/.style={
+        four three one box,
+        colback=blue!2!white,
+        colframe=blue!55!black,
+        colbacktitle=blue!8!white,
+        coltitle=blue!60!black
+    },
+    warning/.style={
+        four three one box,
+        colback=red!2!white,
+        colframe=red!60!black,
+        colbacktitle=red!8!white,
+        coltitle=red!65!black
+    },
+    example/.style={
+        four three one box,
+        colback=teal!2!white,
+        colframe=teal!55!black,
+        colbacktitle=teal!8!white,
+        coltitle=teal!60!black
+    },
+    practice/.style={
+        four three one box,
+        colback=violet!2!white,
+        colframe=violet!55!black,
+        colbacktitle=violet!8!white,
+        coltitle=violet!60!black
+    },
+    summary/.style={
+        four three one box,
+        colback=black!1!white,
+        colframe=black!45,
+        colbacktitle=black!7!white,
+        coltitle=black!70
+    },
     uestc exam/.style={
-        colback=yellow!6,
-        colframe=orange!55!black,
-        colbacktitle=orange!55!black,
-        coltitle=white
+        four three one box,
+        boxrule=0.35pt,
+        leftrule=2pt,
+        colback=covercurvegold!2!white,
+        colframe=covercurvegold,
+        colbacktitle=covercurvegold!10!white,
+        coltitle=covercurvered!90!black
     }
 }
+
+% 计量精选版等资料中的无标题知识前置框；可通过可选参数补充 title 等设置。
+\newtcolorbox{knowledge}[1][]{knowledge,#1}
 
 % 适用于较长估计变量名的宽帽号。
 \newcommand{\reallywidehat}[1]{%

@@ -20,6 +20,103 @@
 \definecolor{covercurvered}{HTML}{B3261E}
 \definecolor{covercurvegold}{HTML}{B98232}
 
+% 印刷展开封面的尺寸：A4 封底 + 可调书脊 + A4 正封面，四周各留 3 mm 出血。
+\newlength{\FourThreeOneSpineWidth}
+\newlength{\FourThreeOnePrintCoverWidth}
+\newlength{\FourThreeOneSpineCenterX}
+\newlength{\FourThreeOneFrontCenterX}
+
+\NewDocumentCommand{\SetupFourThreeOnePrintCover}{m}{%
+    \setlength{\FourThreeOneSpineWidth}{#1}%
+    \setlength{\FourThreeOnePrintCoverWidth}{426mm}%
+    \addtolength{\FourThreeOnePrintCoverWidth}{\FourThreeOneSpineWidth}%
+    \setlength{\FourThreeOneSpineCenterX}{213mm}%
+    \addtolength{\FourThreeOneSpineCenterX}{0.5\FourThreeOneSpineWidth}%
+    \setlength{\FourThreeOneFrontCenterX}{318mm}%
+    \addtolength{\FourThreeOneFrontCenterX}{\FourThreeOneSpineWidth}%
+    % exam-zh 会在导言区末尾重设 A4；把展开纸型安排在它之后执行。
+    \AtEndPreamble{%
+        \geometry{
+            paperwidth=\FourThreeOnePrintCoverWidth,
+            paperheight=303mm,
+            margin=0pt,
+            noheadfoot
+        }%
+    }%
+}
+
+% 正封面图形本体。调用者负责把坐标原点移到正封面的 A4 页面中心。
+\NewDocumentCommand{\FourThreeOneCoverArtwork}{m m m m m m}{%
+    % 右侧图案整体左移，避免过度贴近裁切边缘。
+    \begin{scope}[xshift=-1.2cm]
+        % 低对比度网格，与曲线叠加，暗示数据、风险和收益。
+        \foreach \x in {2,3.4,...,9} {
+            \draw[coverink, opacity=0.09, line width=0.35pt]
+                (\x,-11.2) -- (\x,5.7);
+        }
+        \foreach \y in {-11.2,-9.8,...,5.7} {
+            \draw[coverink, opacity=0.09, line width=0.35pt]
+                (2,\y) -- (9.4,\y);
+        }
+        % 主曲线（偏下、波动更大）
+        \draw[covercurvered, opacity=0.88, line width=2pt]
+            plot[smooth] coordinates {
+                (2.2,-8.7) (3.2,-7.9) (4.2,-8.2) (5.1,-5.9)
+                (6.1,-6.5) (7.0,-3.7) (8.0,-4.1) (9.1,-1.2)
+            };
+        % 次曲线（偏上，以较细线宽区分）
+        \draw[covercurvegold, opacity=0.82, line width=1.5pt]
+            plot[smooth] coordinates {
+                (2.2,-6.7) (3.4,-6.2) (4.5,-4.9) (5.7,-5.1)
+                (6.8,-2.8) (7.8,-1.9) (9.0,1.1)
+            };
+        % 主曲线上的数据点
+        \foreach \x/\y in {2.2/-8.7,5.1/-5.9,7.0/-3.7,9.1/-1.2}
+            \fill[covercurvered] (\x,\y) circle (2.5pt);
+    \end{scope}
+
+    % 左上：英文眉题 + 金色短横线
+    \node[anchor=west, text=covercurvegold]
+        at (-8.4,11)
+        {\color{covercurvegold}\sffamily\bfseries\fontsize{12}{15}\selectfont #1};
+    \draw[covercurvegold, line width=2.2pt]
+        (-8.4,10.25) -- (-5.4,10.25);
+
+    % 中左：中文主标题（思源宋体粗体，项目 fonts/ 目录）
+    \node[anchor=west, align=left, text=covercurvered]
+        at (-8.4,8)
+        {\color{covercurvered}
+         \fontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+         \CJKfontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+         \fontsize{62}{62}\selectfont #2};
+    % 主标题下方：副标题、标语
+    \node[anchor=west, text=coverink, opacity=0.84]
+        at (-8.35,3.5)
+        {\color{covercurvegold}
+         \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+         \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+         \fontsize{16}{22}\selectfont #3};
+    \node[anchor=west, text=covergold]
+        at (-8.35,2.35)
+        {\color{covercurvegold}
+         \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+         \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
+         \fontsize{9.5}{13}\selectfont #4};
+
+    % 页脚：左作者、右关键词
+    \node[anchor=west, text=coverink, opacity=0.80]
+        at (-8.35,-11.65)
+        {\sffamily\small #5};
+    \node[anchor=east, text=coverink, opacity=0.48]
+        at (8.15,-11.65)
+        {\sffamily\scriptsize #6};
+
+    % 右上竖排半透明 431 水印。
+    \node[text=coverink, opacity=0.055, rotate=90]
+        at (6.9,8.8)
+        {\sffamily\bfseries\fontsize{70}{74}\selectfont 431};
+}
+
 \NewDocumentCommand{\MakeFourThreeOneCover}{m m m m m m}{%
     \begin{titlepage}
         \thispagestyle{empty}
@@ -29,75 +126,70 @@
             \fill[covernavy]
                 (current page.south west) rectangle (current page.north east);
             \begin{scope}[shift={(current page.center)}]
-                % 右侧图案整体左移，避免过度贴近裁切边缘。
-                \begin{scope}[xshift=-1.2cm]
-                    % 低对比度网格，与曲线叠加，暗示数据、风险和收益。
-                    \foreach \x in {2,3.4,...,9} {
-                        \draw[coverink, opacity=0.09, line width=0.35pt]
-                            (\x,-11.2) -- (\x,5.7);
-                    }
-                    \foreach \y in {-11.2,-9.8,...,5.7} {
-                        \draw[coverink, opacity=0.09, line width=0.35pt]
-                            (2,\y) -- (9.4,\y);
-                    }
-                    % 主曲线（偏下、波动更大）
-                    \draw[covercurvered, opacity=0.88, line width=2pt]
-                        plot[smooth] coordinates {
-                            (2.2,-8.7) (3.2,-7.9) (4.2,-8.2) (5.1,-5.9)
-                            (6.1,-6.5) (7.0,-3.7) (8.0,-4.1) (9.1,-1.2)
-                        };
-                    % 次曲线（偏上，以较细线宽区分）
-                    \draw[covercurvegold, opacity=0.82, line width=1.5pt]
-                        plot[smooth] coordinates {
-                            (2.2,-6.7) (3.4,-6.2) (4.5,-4.9) (5.7,-5.1)
-                            (6.8,-2.8) (7.8,-1.9) (9.0,1.1)
-                        };
-                    % 主曲线上的数据点
-                    \foreach \x/\y in {2.2/-8.7,5.1/-5.9,7.0/-3.7,9.1/-1.2}
-                        \fill[covercurvered] (\x,\y) circle (2.5pt);
-                \end{scope}
-
-                % 左上：英文眉题 + 金色短横线
-                \node[anchor=west, text=covercurvegold]
-                    at (-8.4,11)
-                    {\color{covercurvegold}\sffamily\bfseries\fontsize{12}{15}\selectfont #1};
-                \draw[covercurvegold, line width=2.2pt]
-                    (-8.4,10.25) -- (-5.4,10.25);
-
-                % 中左：中文主标题（思源宋体粗体，项目 fonts/ 目录）
-                \node[anchor=west, align=left, text=covercurvered]
-                    at (-8.4,8)
-                    {\color{covercurvered}
-                     \fontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
-                     \CJKfontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
-                     \fontsize{62}{62}\selectfont #2};
-                % 主标题下方：副标题、标语
-                \node[anchor=west, text=coverink, opacity=0.84]
-                    at (-8.35,3.5)
-                    {\color{covercurvegold}
-                     \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
-                     \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
-                     \fontsize{16}{22}\selectfont #3};
-                \node[anchor=west, text=covergold]
-                    at (-8.35,2.35)
-                    {\color{covercurvegold}
-                     \fontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
-                     \CJKfontspec{SourceHanSerifCN-Medium.ttf}[Path=fonts/]
-                     \fontsize{9.5}{13}\selectfont #4};
-
-                % 页脚：左作者、右关键词
-                \node[anchor=west, text=coverink, opacity=0.80]
-                    at (-8.35,-11.65)
-                    {\sffamily\small #5};
-                \node[anchor=east, text=coverink, opacity=0.48]
-                    at (8.15,-11.65)
-                    {\sffamily\scriptsize #6};
-
-                % 右上竖排半透明 431 水印。
-                \node[text=coverink, opacity=0.055, rotate=90]
-                    at (6.9,8.8)
-                    {\sffamily\bfseries\fontsize{70}{74}\selectfont 431};
+                \FourThreeOneCoverArtwork{#1}{#2}{#3}{#4}{#5}{#6}
             \end{scope}
         \end{tikzpicture}
     \end{titlepage}
+}
+
+% 单页印刷展开版：从左至右依次为封底、书脊、正封面。
+% 必须在导言区先调用 \SetupFourThreeOnePrintCover{<书脊宽度>}。
+\NewDocumentCommand{\MakeFourThreeOnePrintCover}{m m m m m m}{%
+    \thispagestyle{empty}
+    \null
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[covernavy]
+            (current page.south west) rectangle (current page.north east);
+
+        % 封底：保留较多留白，只延续品牌眉题、双线和作者信息。
+        \begin{scope}[
+            shift={(current page.south west)},
+            xshift=108mm,
+            yshift=151.5mm
+        ]
+            \clip (-10.5,-14.85) rectangle (10.5,14.85);
+            \node[anchor=west, text=covercurvegold]
+                at (-8.4,11)
+                {\color{covercurvegold}\sffamily\bfseries\fontsize{12}{15}\selectfont #1};
+            \draw[covercurvegold, line width=2.2pt]
+                (-8.4,10.25) -- (-5.4,10.25);
+            \node[text=coverink, opacity=0.035]
+                at (0,0)
+                {\sffamily\bfseries\fontsize{126}{130}\selectfont 431};
+            \node[anchor=west, text=coverink, opacity=0.80]
+                at (-8.35,-11.65)
+                {\sffamily\small #5};
+        \end{scope}
+
+        % 书脊：中文主标题自上而下阅读；金线标记书脊的左右边界。
+        \begin{scope}[
+            shift={(current page.south west)},
+            xshift=\FourThreeOneSpineCenterX,
+            yshift=151.5mm
+        ]
+            \draw[covercurvegold, opacity=0.55, line width=0.5pt]
+                (-0.5\FourThreeOneSpineWidth,-14.85)
+                -- (-0.5\FourThreeOneSpineWidth,14.85);
+            \draw[covercurvegold, opacity=0.55, line width=0.5pt]
+                (0.5\FourThreeOneSpineWidth,-14.85)
+                -- (0.5\FourThreeOneSpineWidth,14.85);
+            \node[text=covercurvered, rotate=-90]
+                at (0,8.2)
+                {\color{covercurvered}
+                 \fontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+                 \CJKfontspec{SourceHanSerifCN-Bold.ttf}[Path=fonts/]
+                 \fontsize{17}{20}\selectfont #2};
+        \end{scope}
+
+        % 正封面：复用电子版封面图形，避免两套设计发生漂移。
+        \begin{scope}[
+            shift={(current page.south west)},
+            xshift=\FourThreeOneFrontCenterX,
+            yshift=151.5mm
+        ]
+            \clip (-10.5,-14.85) rectangle (10.5,14.85);
+            \FourThreeOneCoverArtwork{#1}{#2}{#3}{#4}{#5}{#6}
+        \end{scope}
+    \end{tikzpicture}
+    \clearpage
 }
