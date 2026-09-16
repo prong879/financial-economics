@@ -46,7 +46,7 @@
 \problemno{6.3**} 如果 $a\succeq b$ 意味着对于 $\forall\,\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，那么称偏好关系 $\succ$ 是弱凸的（weakly convex）。这与第 2 章中的强凸性有所不同。假设偏好关系是连续的并且有练习 6.1 给出的期望效用函数表示（因而 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续函数）。证明此时强凸性包含弱凸性。
 \end{problem}
 \begin{solution}
-当 $\alpha=0$ 或 1 时，$\alpha a+(1-\alpha)b\succeq b$ 显然成立；当 $a\succ b$，$\alpha\in(0,1)$ 时，由强凸性有 $\alpha a+(1-\alpha)b\succ b$；现在证明如果 $\alpha\in(0,1)$，$a\sim b$，那么 $\alpha a+(1-\alpha)b\succeq b$。不妨假设效用函数是递增的，另外假设 $\epsilon>0$ 为任意正实数，令 $a'=a+[\epsilon;0;0;\ldots;0]\succ b$，由强凸性有 $\alpha a'+(1-\alpha)b\succ b$，即
+当 $\alpha=0$ 或 1 时，$\alpha a+(1-\alpha)b\succeq b$ 显然成立；当 $a\succ b$，$\alpha\in(0,1)$ 时，由强凸性有 $\alpha a+(1-\alpha)b\succ b$；现在证明如果 $\alpha\in(0,1)$，$a\sim b$，那么 $\alpha a+(1-\alpha)b\succeq b$。不妨假设效用函数是递增的，另外假设 $\epsilon>0$ 为任意正实数，令 $a'=a+\begin{bmatrix}\epsilon \\ 0 \\ 0 \\ \ldots \\ 0\end{bmatrix}\succ b$，由强凸性有 $\alpha a'+(1-\alpha)b\succ b$，即
 \[
     u_{0}(\alpha c_{0}^{a}+(1-\alpha)c_{0}^{b}+\alpha\epsilon)+\sum\pi_{\omega}u_{1}(\alpha c_{1\omega}^{a}+(1-\alpha)c_{1\omega}^{b})>u_{0}(c_{0}^{b})+\sum\pi_{\omega}u_{1}(c_{1\omega}^{b})
 \]

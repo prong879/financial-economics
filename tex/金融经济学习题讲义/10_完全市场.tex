@@ -8,7 +8,7 @@
 \[
     u_{k}(c_{k,0})+\pi_{a}u_{k}(c_{k,a})+\pi_{b}u_{k}(c_{k,b}),\quad k=1,\dots,K.
 \]
-参与者 $k$ 的禀赋是 $[e_{k,0};e_{k,a};e_{k,b}]$。整个经济的总禀赋是 $[C_{0};C_{a};C_{b}]$，其中 $C_{s}=\sum_{k}e_{k,s}$，$s=0,a,b$。假设 $C_{a}>C_{b}$。假设市场上交易的 Arrow--Debreu 状态或有要求权的集合是完全的。令 $\phi_{a}$ 和 $\phi_{b}$ 分别是状态 $a$ 和状态 $b$ 的状态价格。
+参与者 $k$ 的禀赋是 $\begin{bmatrix}e_{k,0} \\ e_{k,a} \\ e_{k,b}\end{bmatrix}$。整个经济的总禀赋是 $\begin{bmatrix}C_{0} \\ C_{a} \\ C_{b}\end{bmatrix}$，其中 $C_{s}=\sum_{k}e_{k,s}$，$s=0,a,b$。假设 $C_{a}>C_{b}$。假设市场上交易的 Arrow--Debreu 状态或有要求权的集合是完全的。令 $\phi_{a}$ 和 $\phi_{b}$ 分别是状态 $a$ 和状态 $b$ 的状态价格。
 \begin{enumerate}[label=(\alph*)]
     \item 定义这个经济的均衡。简要讨论均衡的存在性和唯一性。
     \item 令代表性参与者的（间接）期望效用函数为
@@ -27,7 +27,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 这个经济的均衡是存在状态价格 $[\phi_{a};\phi_{b}]$，使得
+    \item 这个经济的均衡是存在状态价格 $\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$，使得
     \begin{enumerate}[label=（\arabic*）]
         \item 给定状态价格和自己的禀赋，每个参与者都最优化地选择自己的消费；
         \item 市场出清：$\sum c_{k,0}=C_{0}$，$\sum c_{k,a}=C_{a}$，$\sum c_{k,b}=C_{b}$。由于市场是完全的，而参与者的效用函数是严格凹的，因而市场均衡是存在且唯一的。
@@ -225,7 +225,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 不失一般性，假设 $dC\le K\le uC$，期权的支付为 $[uC-K;0]$，用复制的方法可以求得期权的价格为 $\dfrac{\rho\pi}{u}(uC-K)$；
+    \item 不失一般性，假设 $dC\le K\le uC$，期权的支付为 $\begin{bmatrix}uC-K \\ 0\end{bmatrix}$，用复制的方法可以求得期权的价格为 $\dfrac{\rho\pi}{u}(uC-K)$；
     \item 而用 CCAPM 定价，期权的价格为
     \[
         \pi\frac{\rho C}{uC}[uC-K]_{+}+(1-\pi)\frac{\rho C}{dC}[dC-K]_{+}=\frac{\rho\pi}{u}(uC-K)
@@ -271,7 +271,7 @@
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
     \item 有 2 个可能状态，而支付独立的状态数目恰为 2，因此证券市场是完全的；
-    \item 假设状态价格为 $[\phi_{a};\phi_{b}]$；考虑参与者 $k$，他的优化问题是
+    \item 假设状态价格为 $\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$；考虑参与者 $k$，他的优化问题是
     \[
         \begin{aligned}
             &\max_{c_{k,0},\,c_{k,1a},\,c_{k,1b}}\ -e^{-\alpha c_{k,0}}-\rho\bigl[\pi e^{-\alpha c_{k,1a}}+(1-\pi)e^{-\alpha c_{k,1b}}\bigr]\\

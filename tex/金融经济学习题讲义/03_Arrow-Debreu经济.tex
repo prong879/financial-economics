@@ -40,7 +40,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item Arrow-Debreu 证券的支付向量是 $X_{a}=[1;0]$，$X_{b}=[0,1]$；
+    \item Arrow-Debreu 证券的支付向量是 $X_{a}=\begin{bmatrix}1 \\ 0\end{bmatrix}$，$X_{b}=\begin{bmatrix}0 \\ 1\end{bmatrix}$；
     \item $2X_{a}+X_{b}$；
     \item 参与者的金融财富是 $w=2\phi_{a}+\phi_{b}$，他的预算集是 $\{c\in\mathrm{R}_{+}^{3}:c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}=w\}$；
     \item 由于不考虑非负约束，参与者的优化问题就变成了
@@ -64,7 +64,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{3.2} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $[100;1]$。他的偏好可以表示成如下形式：
+\problemno{3.2} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
 \[
     U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
 \]
@@ -99,7 +99,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{3.3*} 继续考虑练习 3.2 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $[1;100]$。
+\problemno{3.3*} 继续考虑练习 3.2 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $\begin{bmatrix}1 \\ 100\end{bmatrix}$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解参与者 2 的最优消费/储蓄选择。
     \item 比较参与者 1 和 2 的最优消费/储蓄选择。

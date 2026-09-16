@@ -120,7 +120,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{9.6*} 证券市场由一只无风险债券和 $N$ 只风险证券组成。无风险证券的收益率为 $r_{F}$ 而风险证券的收益率向量为 $\tilde{r}=[\tilde{r}_{1};\ldots;\tilde{r}_{N}]$。另外，$E[\tilde{r}]=\bar{r}=[\bar{r}_{1};\ldots;\bar{r}_{N}]$ 且 $E[(\tilde{r}-\bar{r})(\tilde{r}-\bar{r})^{\top}]=\Sigma$（$\Sigma$ 是风险证券收益率的协方差阵）。考虑一个财富为 $w$ 的参与者的投资问题。假设他具有二次效用函数 $u(\tilde{w})=E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。
+\problemno{9.6*} 证券市场由一只无风险债券和 $N$ 只风险证券组成。无风险证券的收益率为 $r_{F}$ 而风险证券的收益率向量为 $\tilde{r}=\begin{bmatrix}\tilde{r}_{1} \\ \ldots \\ \tilde{r}_{N}\end{bmatrix}$。另外，$E[\tilde{r}]=\bar{r}=\begin{bmatrix}\bar{r}_{1} \\ \ldots \\ \bar{r}_{N}\end{bmatrix}$ 且 $E[(\tilde{r}-\bar{r})(\tilde{r}-\bar{r})^{\top}]=\Sigma$（$\Sigma$ 是风险证券收益率的协方差阵）。考虑一个财富为 $w$ 的参与者的投资问题。假设他具有二次效用函数 $u(\tilde{w})=E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解他的最优投资组合。
     \item 证明对于具有二次效用函数的参与者，两基金货币分离成立。
@@ -128,7 +128,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设参与者的持有组合中风险资产的权重为 $x=[x_{1};x_{2};\ldots;x_{N}]$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \item 假设参与者的持有组合中风险资产的权重为 $x=\begin{bmatrix}x_{1} \\ x_{2} \\ \ldots \\ x_{N}\end{bmatrix}$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
     \[
         \max_{x}E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]
     \]
@@ -151,7 +151,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设参与者的持有组合中风险资产的权重为 $x=[x_{1};x_{2};\ldots;x_{N}]$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \item 假设参与者的持有组合中风险资产的权重为 $x=\begin{bmatrix}x_{1} \\ x_{2} \\ \ldots \\ x_{N}\end{bmatrix}$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
     \[
         \max_{x}E\bigl[-e^{-a\tilde{w}}\bigr]
     \]

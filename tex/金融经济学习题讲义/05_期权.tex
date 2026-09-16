@@ -15,7 +15,7 @@
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
     \item $u+\delta>1+r_{F}>d+\delta$；
-    \item 令状态价格向量为 $\phi=[\phi_{a};\phi_{b}]$，那么有
+    \item 令状态价格向量为 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$，那么有
     \[
         \begin{aligned}
             \phi_{a}+\phi_{b}&=\frac{1}{1+r_{F}}\\
@@ -59,7 +59,7 @@
     X_{b}=\begin{bmatrix}0\\1\\1\end{bmatrix},\quad
     X_{c}=\begin{bmatrix}1/2\\1\\1/2\end{bmatrix}.
 \]
-这些证券的 0 期均衡价格是 $S_{c}=S_{b}=S_{c}=1$。令 $\phi=[\phi_{1};\phi_{2};\phi_{3}]$ 为状态价格向量。[这与前一章练习 4.1 定义的经济一样。]考虑一份标的资产证券为 $a$、执行价格为 $1/2$ 的欧式买权。它的支付是什么？你能确定它的价格吗？
+这些证券的 0 期均衡价格是 $S_{c}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。[这与前一章练习 4.1 定义的经济一样。]考虑一份标的资产证券为 $a$、执行价格为 $1/2$ 的欧式买权。它的支付是什么？你能确定它的价格吗？
 \end{problem}
 \begin{solution}
 它的支付是 $\begin{bmatrix}1/2\\1/2\\0\end{bmatrix}$，因为它的支付恰为证券 $a$ 的一半，因而它的价格也是一半即 $\tfrac12$。
@@ -160,7 +160,7 @@
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
     \item 期权的 2 期支付是 $\begin{bmatrix}0\\4.4\\4.4\\7.6\end{bmatrix}$；在 1 期，当股价为 12 时，期权价格为 $\dfrac{5}{22}\times 4.4=1$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 4.4+\dfrac{5}{22}\times 7.6=4.73$；因而期权的 0 期价格为 $\dfrac{15}{22}\times 1+\dfrac{5}{22}\times 4.73=1.76$。
-    \item 期权的 2 期支付是 $\begin{bmatrix}0\\4.4\\4.4\\7.6\end{bmatrix}$；在 1 期如果不提前执行，当股价为 12 时，期权价格为 $\dfrac{5}{22}\times 4.4=1$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 4.4+\dfrac{5}{22}\times 7.6=4.73$；而如果在 1 期提前执行，那么期权的支付分别为 2 和 6，因而参与者会提前执行，期权在 1 期的支付为 $[2;6]$；如果在 0 期不提前执行，期权的价格为 $\dfrac{15}{22}\times 2+\dfrac{5}{22}\times 6=2.73$，而如果在 0 期提前执行，参与者的收益是 4，因此参与者在 0 期就执行期权，期权在 0 期的价格是 4。
+    \item 期权的 2 期支付是 $\begin{bmatrix}0\\4.4\\4.4\\7.6\end{bmatrix}$；在 1 期如果不提前执行，当股价为 12 时，期权价格为 $\dfrac{5}{22}\times 4.4=1$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 4.4+\dfrac{5}{22}\times 7.6=4.73$；而如果在 1 期提前执行，那么期权的支付分别为 2 和 6，因而参与者会提前执行，期权在 1 期的支付为 $\begin{bmatrix}2 \\ 6\end{bmatrix}$；如果在 0 期不提前执行，期权的价格为 $\dfrac{15}{22}\times 2+\dfrac{5}{22}\times 6=2.73$，而如果在 0 期提前执行，参与者的收益是 4，因此参与者在 0 期就执行期权，期权在 0 期的价格是 4。
 \end{enumerate}
 \end{solution}
 
@@ -232,7 +232,7 @@
 \begin{enumerate}[label=(\alph*)]
     \item 期权在 2 期的支付是
     \[
-        \begin{bmatrix}u^{2}S\\uS\\S\end{bmatrix};
+        \begin{bmatrix}u^{2}S\\uS\\S\end{bmatrix}
     \]
     \item 0 期价格为 $\phi_{u}^{2}u^{2}S+\phi_{u}\phi_{d}(u+1)S+\phi_{d}^{2}S$；
     \item 在 1 期，当股价为 $uS$ 时，

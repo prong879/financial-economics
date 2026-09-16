@@ -52,7 +52,7 @@
 其中 $\tilde{f}_{1}$ 和 $\tilde{f}_{2}$ 是两个均值为 0、方差为 1 的因子。$r_{F}$ 是无风险利率。为消除套利机会，$a$、$b$ 以及 $r_{F}$ 应该满足什么条件？
 \end{problem}
 \begin{solution}
-构造一个组合，组合权重为 $[x_{1};x_{2};1-x_{1}-x_{2}]$，那么组合的收益率为
+构造一个组合，组合权重为 $\begin{bmatrix}x_{1} \\ x_{2} \\ 1-x_{1}-x_{2}\end{bmatrix}$，那么组合的收益率为
 \[
     \begin{aligned}
         \tilde{r}_{p}&=\bigl[(a_{A}-a_{C})x_{1}+(a_{B}-a_{C})x_{2}\bigr]+\bigl[(b_{A,1}-b_{C,1})x_{1}+(b_{B,1}-b_{C,1})x_{2}\bigr]\tilde{f}_{1}\\
@@ -67,7 +67,7 @@
         (a_{A}-a_{C})x_{1}+(a_{B}-a_{C})x_{2}&=r_{F}
     \end{aligned}
 \]
-也就是说，若 $x\in\{y\in\mathrm{R}^{2}:y\perp[b_{A,1}-b_{C,1};b_{B,1}-b_{C,1}],\,y\perp[b_{A,2}-b_{C,2};b_{B,2}-b_{C,2}]\}$，那么 $x^{\mathrm{T}}[a_{A}-a_{C};a_{B}-a_{C}]=r_{F}$。
+也就是说，若 $x\in\{y\in\mathrm{R}^{2}:y\perp\begin{bmatrix}b_{A,1}-b_{C,1} \\ b_{B,1}-b_{C,1}\end{bmatrix},\,y\perp\begin{bmatrix}b_{A,2}-b_{C,2} \\ b_{B,2}-b_{C,2}\end{bmatrix}\}$，那么 $x^{\mathrm{T}}\begin{bmatrix}a_{A}-a_{C} \\ a_{B}-a_{C}\end{bmatrix}=r_{F}$。
 \end{solution}
 
 \begin{problem}
@@ -75,7 +75,7 @@
 \[
     \tilde{r}_{n}=\bar{r}_{n}+b_{n}\tilde{f}+\tilde{u}_{n},\quad n=1,2,\ldots
 \]
-其中 $\tilde{f}=[\tilde{f}_{1};\ldots;\tilde{f}_{K}]$ 是因子向量，$b_{n}=[b_{n,1};\ldots;b_{n,K}]$ 资产 $n$ 的因子载荷向量，而 $\forall\,n,n'$，$\mathrm{E}[\tilde{f}]=0$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{f}^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$，其中 $I$ 是单位阵。考虑另外一组因子 $\tilde{f}'$，它们是 $\tilde{f}$ 的线性变换：
+其中 $\tilde{f}=\begin{bmatrix}\tilde{f}_{1} \\ \ldots \\ \tilde{f}_{K}\end{bmatrix}$ 是因子向量，$b_{n}=\begin{bmatrix}b_{n,1} \\ \ldots \\ b_{n,K}\end{bmatrix}$ 资产 $n$ 的因子载荷向量，而 $\forall\,n,n'$，$\mathrm{E}[\tilde{f}]=0$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{f}^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$，其中 $I$ 是单位阵。考虑另外一组因子 $\tilde{f}'$，它们是 $\tilde{f}$ 的线性变换：
 \[
     \tilde{f}'=\mathrm{A}\tilde{f}
 \]
@@ -113,7 +113,7 @@
 \[
     \bar{r}_{n}-r_{F}=\lambda^{\mathrm{T}}b_{n}
 \]
-其中 $\lambda=[\lambda_{1};\lambda_{2};\ldots;\lambda_{K}]$ 是因子风险溢价向量。证明存在一个等价的因子模型，它的因子向量为 $\tilde{f}^{*}$ 而对应的因子风险溢价向量为 $\lambda^{*}=[\lambda_{1}^{*};0;\ldots;0]$，即只有第一个因子有风险溢价而其它因子虽然代表了不可分散风险，却没有风险溢价。
+其中 $\lambda=\begin{bmatrix}\lambda_{1} \\ \lambda_{2} \\ \ldots \\ \lambda_{K}\end{bmatrix}$ 是因子风险溢价向量。证明存在一个等价的因子模型，它的因子向量为 $\tilde{f}^{*}$ 而对应的因子风险溢价向量为 $\lambda^{*}=\begin{bmatrix}\lambda_{1}^{*} \\ 0 \\ \ldots \\ 0\end{bmatrix}$，即只有第一个因子有风险溢价而其它因子虽然代表了不可分散风险，却没有风险溢价。
 \end{problem}
 \begin{solution}
 考虑这样的正交阵：$A=\bigl[\frac{1}{\sqrt{\lambda^{\mathrm{T}}\lambda}}\lambda,\,U\bigr]$，其中
@@ -126,7 +126,7 @@
         0&i\neq j
     \end{cases}
 \]
-可以验证：$AA^{\mathrm{T}}=I$，即 $A$ 是正交阵，且 $A^{\mathrm{T}}\lambda=[\sqrt{\lambda^{\mathrm{T}}\lambda};\,0;\,0;\,\cdots;\,0]$，那么
+可以验证：$AA^{\mathrm{T}}=I$，即 $A$ 是正交阵，且 $A^{\mathrm{T}}\lambda=\begin{bmatrix}\sqrt{\lambda^{\mathrm{T}}\lambda} \\ \,0 \\ \,0 \\ \,\cdots \\ \,0\end{bmatrix}$，那么
 \[
     \begin{aligned}
         \tilde{r}_{n}&=\bar{r}_{n}+b_{n}^{\mathrm{T}}AA^{\mathrm{T}}\tilde{f}+\tilde{u}_{n}\\
@@ -134,5 +134,5 @@
         &=\bar{r}_{n}+b_{n}^{*\,\mathrm{T}}\tilde{f}^{*}+\tilde{u}_{n}
     \end{aligned}
 \]
-是一个等价表述。并且 $\bar{r}_{n}-r_{F}=\lambda^{*\,\mathrm{T}}b_{n}^{*}$，其中，$\lambda^{*}=A^{\mathrm{T}}\lambda=[\sqrt{\lambda^{\mathrm{T}}\lambda};\,0;\,0;\,\cdots;\,0]$。
+是一个等价表述。并且 $\bar{r}_{n}-r_{F}=\lambda^{*\,\mathrm{T}}b_{n}^{*}$，其中，$\lambda^{*}=A^{\mathrm{T}}\lambda=\begin{bmatrix}\sqrt{\lambda^{\mathrm{T}}\lambda} \\ \,0 \\ \,0 \\ \,\cdots \\ \,0\end{bmatrix}$。
 \end{solution}

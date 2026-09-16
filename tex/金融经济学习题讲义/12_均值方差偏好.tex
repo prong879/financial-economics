@@ -4,7 +4,7 @@
 \chapter{在均值-方差偏好下的投资组合选择}
 
 \begin{problem}
-\problemno{12.1} 令交易证券的价格向量为 $p$、总收益率向量为 $\tilde{x}=[\tilde{x}_{1};\dots;\tilde{x}_{N}]$。假设 $\tilde{x}=\iota+\tilde{r}$ 服从均值为 $\iota+\bar{r}$、协方差阵为 $\Sigma$ 的正态分布。对于初始财富为 $w$ 的参与者，他的 1 期财富是 $\tilde{w}=wz^{\top}\tilde{x}$，其中 $z$ 是他的权重向量（$\iota^{\top}z=1$）。假设参与者的绝对风险厌恶系数恒为 $a$。
+\problemno{12.1} 令交易证券的价格向量为 $p$、总收益率向量为 $\tilde{x}=\begin{bmatrix}\tilde{x}_{1} \\ \dots \\ \tilde{x}_{N}\end{bmatrix}$。假设 $\tilde{x}=\iota+\tilde{r}$ 服从均值为 $\iota+\bar{r}$、协方差阵为 $\Sigma$ 的正态分布。对于初始财富为 $w$ 的参与者，他的 1 期财富是 $\tilde{w}=wz^{\top}\tilde{x}$，其中 $z$ 是他的权重向量（$\iota^{\top}z=1$）。假设参与者的绝对风险厌恶系数恒为 $a$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算他的间接效用函数
     \[
@@ -45,12 +45,12 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 设组合权重为 $z=[z_{1};1-z_{1}]$，那么组合收益率为 $\tilde{r}_{p}=z_{1}\tilde{r}_{1}+(1-z_{1})\tilde{r}_{2}$，组合的波动率为 $\sigma_{p}^{2}=z_{1}^{2}\sigma_{1}^{2}+2z_{1}(1-z_{1})\rho\sigma_{1}\sigma_{2}+(1-z_{1})^{2}\sigma_{2}^{2}$，可以求得当 $z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小。并且，
+    \item 设组合权重为 $z=\begin{bmatrix}z_{1} \\ 1-z_{1}\end{bmatrix}$，那么组合收益率为 $\tilde{r}_{p}=z_{1}\tilde{r}_{1}+(1-z_{1})\tilde{r}_{2}$，组合的波动率为 $\sigma_{p}^{2}=z_{1}^{2}\sigma_{1}^{2}+2z_{1}(1-z_{1})\rho\sigma_{1}\sigma_{2}+(1-z_{1})^{2}\sigma_{2}^{2}$，可以求得当 $z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小。并且，
     \[
         \sigma_{p}^{2}=\sigma_{2}^{2}-\frac{(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})^{2}}{\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2}}=\sigma_{1}^{2}-\frac{(\sigma_{1}^{2}-\rho\sigma_{1}\sigma_{2})^{2}}{\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2}}<\sigma_{1}^{2}\,(\sigma_{2}^{2})
     \]
     因而，分散化可以降低风险；
-    \item 当组合权重为 $z=[z_{1};1-z_{1}]$，$z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小；
+    \item 当组合权重为 $z=\begin{bmatrix}z_{1} \\ 1-z_{1}\end{bmatrix}$，$z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小；
     \item 当 $\rho=1$ 时，$\sigma_{p}^{2}=(\sigma_{1}z_{1}+\sigma_{2}(1-z_{1}))^{2}\in[\min(\sigma_{1}^{2},\sigma_{2}^{2}),\,\max(\sigma_{1}^{2},\sigma_{2}^{2})]$，$z_{1}\in[0,1]$，即分散化不能降低风险。
     \item 当 $\sigma_{1}=\sigma_{2}$ 时，$z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})=\tfrac12$，即无论 $\rho$ 多少，等权重组合的风险最小。
 \end{enumerate}
@@ -66,7 +66,7 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设组合权重为 $z=[z_{1};z_{2};\dots;z_{N}]$，那么组合的方差为
+    \item 假设组合权重为 $z=\begin{bmatrix}z_{1} \\ z_{2} \\ \dots \\ z_{N}\end{bmatrix}$，那么组合的方差为
     \[
         \sigma_{p}^{2}=\mathrm{Var}(z_{1}\tilde{r}_{1}+z_{2}\tilde{r}_{2}+\dots+z_{N}\tilde{r}_{N})=\sigma^{2}\sum_{i}z_{i}^{2}+c\sum_{i\ne j}z_{i}z_{j}
     \]
@@ -80,7 +80,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{12.4} 考虑风险证券 1 和 2，它们的收益率为 $\tilde{r}_{1}$ 和 $\tilde{r}_{2}$。它们的期望收益率和协方差阵分别为 $\bar{r}_{1}$，$\bar{r}_{2}$，以及 $\Sigma=[[\sigma_{1}^{2};\sigma_{12}],[\sigma_{12};\sigma_{2}^{2}]]$。
+\problemno{12.4} 考虑风险证券 1 和 2，它们的收益率为 $\tilde{r}_{1}$ 和 $\tilde{r}_{2}$。它们的期望收益率和协方差阵分别为 $\bar{r}_{1}$，$\bar{r}_{2}$，以及 $\Sigma=\begin{bmatrix}\sigma_{1}^{2} & \sigma_{12} \\ \sigma_{12} & \sigma_{2}^{2}\end{bmatrix}$。
 \begin{enumerate}[label=(\alph*)]
     \item 推导由这两只证券构成的均值--方差有效前沿。
     \item 证明这两只证券都在前沿上。

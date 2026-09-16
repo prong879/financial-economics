@@ -4,10 +4,10 @@
 \chapter{不完全市场中的资源配置和资产定价}
 
 \begin{problem}
-\problemno{11.1*} 经济有两期 $t=0,1$。有两个参与者，1 和 2，他们都有定义于消费路径上的对数效用函数 $c=(c_{0},c_{1})$：$u(c)=\log c_{0}+\log c_{1}$。在 $t=1$ 期有三个等概率的可能状态，$\omega_{1}$，$\omega_{2}$ 以及 $\omega_{3}$。在 $t=0$ 期的总禀赋是 1 而 $t=1$ 期的总禀赋是 $[1;1;2]$。有两只交易证券，一只是无风险债券，在 $t=1$ 期的所有状态下都支付 1 单位的消费品。另外一只是股票，它的 $t=1$ 期支付和总禀赋完全一样，即它的支付向量是 $[1;1;2]$。
+\problemno{11.1*} 经济有两期 $t=0,1$。有两个参与者，1 和 2，他们都有定义于消费路径上的对数效用函数 $c=(c_{0},c_{1})$：$u(c)=\log c_{0}+\log c_{1}$。在 $t=1$ 期有三个等概率的可能状态，$\omega_{1}$，$\omega_{2}$ 以及 $\omega_{3}$。在 $t=0$ 期的总禀赋是 1 而 $t=1$ 期的总禀赋是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。有两只交易证券，一只是无风险债券，在 $t=1$ 期的所有状态下都支付 1 单位的消费品。另外一只是股票，它的 $t=1$ 期支付和总禀赋完全一样，即它的支付向量是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。
 \begin{enumerate}[label=(\alph*)]
-    \item 假设参与者 1 和 2 的禀赋分别为 $[0.4;[0.4;0.4;0.8]]$ 和 $[0.6;[0.6;0.6;1.2]]$。求解均衡利率和均衡股价。均衡配置是 Pareto 最优的吗？解释原因。
-    \item 假设参与者 $a$ 和 $b$ 的禀赋分别为 $[0.5;[1;0;1]]$ 和 $[0.5;[0;1;1]]$。导出求解均衡的一阶条件和市场出清条件。在不解出均衡的情况下，讨论均衡配置是否是 Pareto 最优的。解释原因。
+    \item 假设参与者 1 和 2 的禀赋分别为 $\begin{bmatrix}0.4\\0.4\\0.4\\0.8\end{bmatrix}$ 和 $\begin{bmatrix}0.6\\0.6\\0.6\\1.2\end{bmatrix}$。求解均衡利率和均衡股价。均衡配置是 Pareto 最优的吗？解释原因。
+    \item 假设参与者 $a$ 和 $b$ 的禀赋分别为 $\begin{bmatrix}0.5\\1\\0\\1\end{bmatrix}$ 和 $\begin{bmatrix}0.5\\0\\1\\1\end{bmatrix}$。导出求解均衡的一阶条件和市场出清条件。在不解出均衡的情况下，讨论均衡配置是否是 Pareto 最优的。解释原因。
 \end{enumerate}
 \end{problem}
 \begin{solution}
@@ -250,8 +250,8 @@
     \item 这个经济的均衡条件是存在债券价格 $B$ 和股票价格 $S$，使得
     \[
         \begin{aligned}
-            [\theta_{1,1}^{*};\theta_{1,2}^{*}]&=\operatorname{Argmax}_{\{\theta_{1,1},\theta_{1,2}\}}\bigl[-e^{-\alpha(x_{0}-\theta_{1,1}B-\theta_{1,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{1,1}+\theta_{1,2}\tilde{x})}\bigr]\bigr]\\
-            [\theta_{2,1}^{*};\theta_{2,2}^{*}]&=\operatorname{Argmax}_{\{\theta_{2,1},\theta_{2,2}\}}\bigl[-e^{-\alpha(S-\theta_{2,1}B-\theta_{2,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{2,1}+\theta_{2,2}\tilde{x})}\bigr]\bigr]\\
+            \begin{bmatrix}\theta_{1,1}^{*} \\ \theta_{1,2}^{*}\end{bmatrix}&=\operatorname{Argmax}_{\{\theta_{1,1},\theta_{1,2}\}}\bigl[-e^{-\alpha(x_{0}-\theta_{1,1}B-\theta_{1,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{1,1}+\theta_{1,2}\tilde{x})}\bigr]\bigr]\\
+            \begin{bmatrix}\theta_{2,1}^{*} \\ \theta_{2,2}^{*}\end{bmatrix}&=\operatorname{Argmax}_{\{\theta_{2,1},\theta_{2,2}\}}\bigl[-e^{-\alpha(S-\theta_{2,1}B-\theta_{2,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{2,1}+\theta_{2,2}\tilde{x})}\bigr]\bigr]\\
             \theta_{1,1}^{*}+\theta_{2,1}^{*}=0;&\quad\theta_{1,2}^{*}+\theta_{2,2}^{*}=1
         \end{aligned}
     \]
@@ -325,4 +325,4 @@
     \item 因为第五题中的均衡是 Pareto 最优的，因而边际效用之比相等，$c_{1}=c_{2}$，即参与者对期权的定价是一致的，因而他们不会交易期权，引入期权不会改变第 5 题中的均衡配置。
     \item 由前面的分析可得 $c=c_{1}=c_{2}$。
 \end{enumerate}
-\end{solution}
+\end{solution}]
