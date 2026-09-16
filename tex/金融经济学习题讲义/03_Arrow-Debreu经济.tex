@@ -1,0 +1,231 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 8–12（印刷页 7–11）
+
+\chapter{Arrow-Debreu 经济}
+
+\begin{problem}
+\problemno{3.1*} 考虑如下经济，在 1 期有两个可能状态 $a$ 和 $b$：
+\begin{center}
+\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
+    \draw[thick] (-0.15,-1) -- (-0.15,1);
+    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
+    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
+    \node[anchor=west] at (1.0,0.55) {$a$};
+    \node[anchor=west] at (1.0,-0.55) {$b$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item 描述所有 Arrow-Debreu 证券的支付向量。记这些证券的价格向量为 $\phi$。
+    \item 考虑一个拥有如下禀赋的参与者：
+    \begin{center}
+    \begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
+        \node[anchor=east] at (-0.55,0) {$0$};
+        \draw[thick] (-0.15,-1) -- (-0.15,1);
+        \draw[thick] (-0.15,0.55) -- (0.85,0.55);
+        \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
+        \node[anchor=west] at (1.0,0.55) {$2$};
+        \node[anchor=west] at (1.0,-0.55) {$1$};
+    \end{tikzpicture}
+    \end{center}
+    把他的禀赋表示成 Arrow-Debreu 证券的组合。
+    \item 计算他的金融财富。写出他的预算集。
+    \item 假设参与者的效用函数如下：
+    \[
+        U(c_{0},c_{1a},c_{1b})=-e^{-c_{0}}-\tfrac12\bigl(e^{-c_{1a}}+e^{-c_{1b}}\bigr).
+    \]
+    不考虑消费的非负约束，写出他的优化问题。求解他的最优消费选择。
+    \item 讨论他的消费如何依赖于 Arrow-Debreu 证券的价格向量 $\phi$。
+    \item 证明在某些价格下，他（在某些时期/状态下）的消费可能是负的。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item Arrow-Debreu 证券的支付向量是 $X_{a}=[1;0]$，$X_{b}=[0,1]$；
+    \item $2X_{a}+X_{b}$；
+    \item 参与者的金融财富是 $w=2\phi_{a}+\phi_{b}$，他的预算集是 $\{c\in\mathrm{R}_{+}^{3}:c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}=w\}$；
+    \item 由于不考虑非负约束，参与者的优化问题就变成了
+    \[
+        \begin{aligned}
+            \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\bigl\{-e^{-c_{0}}-\tfrac12\bigl(e^{-c_{1a}}+e^{-c_{1b}}\bigr)\bigr\}\\
+            \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}=w=2\phi_{a}+\phi_{b}
+        \end{aligned}
+    \]
+    得到最优消费为
+    \[
+        \begin{aligned}
+            c_{0}^{*}&=\frac{2\phi_{a}+\phi_{b}+\phi_{a}\log(2\phi_{a})+\phi_{b}\log(2\phi_{b})}{1+\phi_{a}+\phi_{b}}\\
+            c_{1a}^{*}&=\frac{2\phi_{a}+\phi_{b}+\phi_{b}\log(2\phi_{b})-\log(2\phi_{a})-\phi_{b}\log(2\phi_{a})}{1+\phi_{a}+\phi_{b}}\\
+            c_{1b}^{*}&=\frac{2\phi_{a}+\phi_{b}+\phi_{a}\log(2\phi_{a})-\log(2\phi_{b})-\phi_{a}\log(2\phi_{b})}{1+\phi_{a}+\phi_{b}}
+        \end{aligned}
+    \]
+    可以用 $c^{*}$ 对 $\phi_{a}$、$\phi_{b}$ 的导数的符号来确定状态价格变化对最终消费的影响。一般来说，状态价格变化对消费有两种效应：财富效应和价格效应。比如说，当状态价格 $\phi_{a}$ 上升时，对消费 $c_{1a}^{*}$ 有正的财富效应和负的价格效应，总的效应是不确定的，有可能为正也有可能为负；而 $\phi_{a}$ 上升对消费 $c_{0}^{*}$、$c_{1b}^{*}$ 均有的正的财富效应和正的价格效应，因而 $c_{0}^{*}$、$c_{1b}^{*}$ 均会增加；
+    \item 当 $\phi_{a}=\phi_{b}=0.1$ 时，$c_{0}^{*}=-0.0182<0$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{3.2} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $[100;1]$。他的偏好可以表示成如下形式：
+\[
+    U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
+\]
+有一只可交易证券，它的 0 期价格为 1、1 期支付为 $1+r_{F}$。这里，$r_{F}$ 是利率。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设利率 $r_{F}$ 是给定的，导出参与者对证券的需求。
+    \item 假设参与者 1 是经济中的唯一参与者。描述市场出清条件。
+    \item 求解均衡利率。
+    \item 均衡利率如何依赖于偏好参数 $\rho$？解释所得到的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 先不考虑消费的非负性，求解参与者的证券需求。此时参与者的优化问题变成了
+    \[
+        \max_{\theta}\bigl\{\log(100-\theta)+\rho\log\bigl(1+\theta(1+r_{F})\bigr)\bigr\}
+    \]
+    我们可以求得参与者的证券需求是
+    \[
+        \theta^{*}=\frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}
+    \]
+    最优消费为
+    \[
+        c_{0}^{*}=\frac{100(1+r_{F})+1}{(1+\rho)(1+r_{F})},\quad
+        c_{1}^{*}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{1+\rho}
+    \]
+    由于最优消费都是非负的，因此上面的求解过程没有问题。
+    \item 由于市场上只有一个参与者，因而市场出清条件是 $\theta^{*}=0$；
+    \item 由上面的市场出清条件，我们可以求得均衡利率为 $r_{F}=\dfrac{1}{100\rho}-1$；
+    \item $r_{F}$ 随着偏好系数的增加而减小。这是因为偏好系数增大，未来消费带来的边际效用相对增加，从而人们对能将财富在 0 期、1 期之间进行转换的证券需求增加，证券价格上升，利率下降。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{3.3*} 继续考虑练习 3.2 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $[1;100]$。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解参与者 2 的最优消费/储蓄选择。
+    \item 比较参与者 1 和 2 的最优消费/储蓄选择。
+    \item 求解有两个参与者时的市场均衡。
+    \item 计算均衡利率。它与前一情形（经济中只有参与者 1）下的均衡利率有何不同？
+    \item 证明均衡配置是 Pareto 最优的。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 先不考虑消费非负的约束，参与者 2 的优化问题就变成了
+    \[
+        \max_{\theta}\bigl\{\log(1-\theta)+\rho\log\bigl(100+\theta(1+r_{F})\bigr)\bigr\}
+    \]
+    可以求得参与者的证券需求是
+    \[
+        \theta^{*}=\frac{\rho(1+r_{F})-100}{(1+\rho)(1+r_{F})}
+    \]
+    最优消费为
+    \[
+        c_{0}^{*}=\frac{(1+r_{F})+100}{(1+\rho)(1+r_{F})},\quad
+        c_{1}^{*}=\frac{\rho\bigl((1+r_{F})+100\bigr)}{1+\rho}
+    \]
+    由于最优消费都是非负的，因此上面的求解过程没有问题。
+    \item 两人的最优消费/储蓄选择形式上是完全一样的，差别在于两人的禀赋不一样；
+    \item 此时的市场出清条件是
+    \[
+        \frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}+\frac{\rho(1+r_{F})-100}{(1+\rho)(1+r_{F})}=0
+    \]
+    \item 通过市场出清条件可以求得均衡利率是 $r_{F}=\dfrac{1}{\rho}-1$，这是因为经济中的总禀赋不一样，导致均衡利率也不一样；
+    \item 对于参与者 1 来说，边际效用之比是
+    \[
+        \frac{\bigl(\rho\log(c_{1}^{*})\bigr)'}{\bigl(\log(c_{0}^{*})\bigr)'}=\rho\frac{c_{0}^{*}}{c_{1}^{*}}=\rho\frac{1}{1+r_{F}}
+    \]
+    同样可以算得参与者 2 的边际效用之比也是 $\rho\dfrac{1}{1+r_{F}}$，因而均衡配置是 Pareto 最优的。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{3.4*} 在 1 期，经济有三个等可能的状态 $a$、$b$ 和 $c$。在证券市场上交易的 Arrow-Debreu 证券集合是完全的。经济中有两个参与者，参与者 1 和 2。他们的禀赋如下：
+\begin{center}
+\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
+    \node[anchor=east] at (-0.7,0) {$e_{1}:100$};
+    \draw[thick] (0,-1.6) -- (0,1.6);
+    \draw[thick] (0,1.1) -- (0.85,1.1);
+    \draw[thick] (0,0) -- (0.85,0);
+    \draw[thick] (0,-1.1) -- (0.85,-1.1);
+    \node[anchor=west] at (1.0,1.1) {$0$};
+    \node[anchor=west] at (1.0,0) {$0$};
+    \node[anchor=west] at (1.0,-1.1) {$0$};
+\end{tikzpicture}
+\qquad
+\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
+    \node[anchor=east] at (-0.55,0) {$e_{2}:0$};
+    \draw[thick] (0,-1.6) -- (0,1.6);
+    \draw[thick] (0,1.1) -- (0.85,1.1);
+    \draw[thick] (0,0) -- (0.85,0);
+    \draw[thick] (0,-1.1) -- (0.85,-1.1);
+    \node[anchor=west] at (1.0,1.1) {$200$};
+    \node[anchor=west] at (1.0,0) {$100$};
+    \node[anchor=west] at (1.0,-1.1) {$50$};
+\end{tikzpicture}
+\end{center}
+他们的偏好相同，形式如下：
+\[
+    U(c)=-\frac{1}{c_{0}}-\frac13\Bigl(\frac{1}{c_{1a}}+\frac{1}{c_{1b}}+\frac{1}{c_{1c}}\Bigr).
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 求解每一参与者的最优消费/投资选择。
+    \item 求解均衡状态价格。
+    \item 证明对两个参与者的消费都有禀赋越高、消费越高的性质。
+    \item 证明每一参与者的消费在总消费中所占的份额 $c_{k,1\omega}/e_{1\omega}$ 在所有状态下都是一样的，其中 $k=1,2$，而 $e_{1\omega}$ 是在状态 $\omega=a,b,c$ 下的 1 期总消费/禀赋。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 求解最优消费选择时，先不考虑消费非负的约束。对于参与者 1，它的优化问题是：
+    \[
+        \begin{aligned}
+            \max_{\{c_{0},c_{1}\}}\ &\Bigl\{-\frac{1}{c_{0}}-\frac13\Bigl(\frac{1}{c_{1a}}+\frac{1}{c_{1b}}+\frac{1}{c_{1c}}\Bigr)\Bigr\}\\
+            \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}+\phi_{c}c_{1c}=100
+        \end{aligned}
+    \]
+    求解得参与者 1 的最优消费选择为
+    \[
+        \begin{aligned}
+            c_{0}^{*}&=\frac{100}{1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}}\\
+            c_{1a}^{*}&=\frac{100}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
+            c_{1b}^{*}&=\frac{100}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
+            c_{1c}^{*}&=\frac{100}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}
+        \end{aligned}
+    \]
+    类似地，可以求得参与者 2 的最优消费选择为
+    \[
+        \begin{aligned}
+            c_{0}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}}\\
+            c_{1a}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
+            c_{1b}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
+            c_{1c}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}
+        \end{aligned}
+    \]
+    因为最优消费都是非负的，因而上面的求解过程是没有问题的；
+    \item 市场出清条件是
+    \[
+        \begin{aligned}
+            &\frac{100}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=200\\
+            &\frac{100}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=100\\
+            &\frac{100}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=50
+        \end{aligned}
+    \]
+    解上述方程组可以求得状态价格为
+    \[
+        \begin{aligned}
+            \phi_{a}&=\frac{1}{12}\\
+            \phi_{b}&=\frac{1}{3}\\
+            \phi_{c}&=\frac{4}{3}
+        \end{aligned}
+    \]
+    \item $\phi_{a}<\phi_{b}<\phi_{c}$，对于参与者 1、2 都有 $c_{1a}^{*}>c_{1b}^{*}>c_{1c}^{*}$，即总禀赋越高、消费越高；
+    \item 因为对于消费者 1、2 都有
+    \[
+        \begin{aligned}
+            \frac{c_{1a}^{*}}{c_{1b}^{*}}&=\sqrt{\frac{\phi_{b}}{\phi_{a}}}=2=\frac{200}{100}\\
+            \frac{c_{1a}^{*}}{c_{1c}^{*}}&=\sqrt{\frac{\phi_{c}}{\phi_{a}}}=4=\frac{200}{50}
+        \end{aligned}
+    \]
+    因此，每一参与者的消费在总消费中所占的份额在所有状态下都是相等的。
+\end{enumerate}
+\end{solution}

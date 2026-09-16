@@ -1,0 +1,260 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 62–67（印刷页 61–66）
+
+\chapter{在均值-方差偏好下的投资组合选择}
+
+\begin{problem}
+\problemno{12.1} 令交易证券的价格向量为 $p$、总收益率向量为 $\tilde{x}=[\tilde{x}_{1};\dots;\tilde{x}_{N}]$。假设 $\tilde{x}=\iota+\tilde{r}$ 服从均值为 $\iota+\bar{r}$、协方差阵为 $\Sigma$ 的正态分布。对于初始财富为 $w$ 的参与者，他的 1 期财富是 $\tilde{w}=wz^{\top}\tilde{x}$，其中 $z$ 是他的权重向量（$\iota^{\top}z=1$）。假设参与者的绝对风险厌恶系数恒为 $a$。
+\begin{enumerate}[label=(\alph*)]
+    \item 计算他的间接效用函数
+    \[
+        v=\mathrm{E}[u(\tilde{w})]
+    \]
+    其中 $u$ 是他的直接效用函数。
+    \item 证明间接效用函数具有均值--方差表示，即它可以表示成 $\bar{w}=\mathrm{E}[\tilde{w}]$ 和 $\sigma_{w}^{2}=\mathrm{Var}[\tilde{w}]$ 的函数，即 $v(\bar{w},\sigma_{w})$。
+    \item 证明均值方差效用函数 $v(\bar{w},\sigma_{w})$ 满足如下条件：$\partial_{1}v>0$，$\partial_{2}v<0$ 且 $\partial_{11}^{2}v<0$，$\partial_{22}^{2}v<0$ 且 $v$ 是凹的。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+不妨假设效用函数为 $u(w)=-e^{-aw}$，那么 $v=\mathrm{E}[u(\tilde{w})]=\mathrm{E}[-e^{-a\tilde{w}}]$。因为 $\tilde{w}$ 是正态分布的，因而
+\[
+    v=-e^{-a\mathrm{E}\tilde{w}+\frac12 a^{2}\mathrm{Var}\tilde{w}}=-e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}=v(\bar{w},\sigma_{w})
+\]
+即间接效用函数具有均值方差表示，对 $v$ 求导可得
+\[
+    \begin{aligned}
+        \partial_{1}v&=e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}a>0\\
+        \partial_{2}v&=-e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}a^{2}\sigma_{w}<0\\
+        \partial_{11}v&=e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}(-a^{2})<0\\
+        \partial_{22}v&=-e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}(a^{4}\sigma_{w}^{2}+a^{2})<0\\
+        \partial_{12}v&=e^{-a\bar{w}+\frac12 a^{2}\sigma_{w}^{2}}a^{3}\sigma_{w},\qquad
+        \partial_{11}v\,\partial_{22}v-(\partial_{12}v)^{2}=v^{2}(\bar{w},\sigma_{w})a^{2}>0
+    \end{aligned}
+\]
+因而，$v$ 还是凹的。
+\end{solution}
+
+\begin{problem}
+\problemno{12.2} 考虑证券 1 和 2，它们的收益率分别是 $\tilde{r}_{1}$ 和 $\tilde{r}_{2}$。它们的波动率分别是 $\sigma_{1}$ 和 $\sigma_{2}$，并且它们的相关系数是 $\rho$。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设 $\rho\ne 1$。用波动率度量风险，证明分散化即用证券形成组合可以降低风险。（也就是说，总是存在波动率小于两只单个证券的波动率的组合。）
+    \item 找出收益率具有最小波动率的组合。
+    \item 证明当 $\rho=1$ 时，分散化不能降低风险。
+    \item 假设 $\sigma_{1}=\sigma_{2}$。证明无论 $\rho$ 的值是多少，等权重组合的风险是最小的。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 设组合权重为 $z=[z_{1};1-z_{1}]$，那么组合收益率为 $\tilde{r}_{p}=z_{1}\tilde{r}_{1}+(1-z_{1})\tilde{r}_{2}$，组合的波动率为 $\sigma_{p}^{2}=z_{1}^{2}\sigma_{1}^{2}+2z_{1}(1-z_{1})\rho\sigma_{1}\sigma_{2}+(1-z_{1})^{2}\sigma_{2}^{2}$，可以求得当 $z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小。并且，
+    \[
+        \sigma_{p}^{2}=\sigma_{2}^{2}-\frac{(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})^{2}}{\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2}}=\sigma_{1}^{2}-\frac{(\sigma_{1}^{2}-\rho\sigma_{1}\sigma_{2})^{2}}{\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2}}<\sigma_{1}^{2}\,(\sigma_{2}^{2})
+    \]
+    因而，分散化可以降低风险；
+    \item 当组合权重为 $z=[z_{1};1-z_{1}]$，$z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})$ 时，组合的波动率最小；
+    \item 当 $\rho=1$ 时，$\sigma_{p}^{2}=(\sigma_{1}z_{1}+\sigma_{2}(1-z_{1}))^{2}\in[\min(\sigma_{1}^{2},\sigma_{2}^{2}),\,\max(\sigma_{1}^{2},\sigma_{2}^{2})]$，$z_{1}\in[0,1]$，即分散化不能降低风险。
+    \item 当 $\sigma_{1}=\sigma_{2}$ 时，$z_{1}=(\sigma_{2}^{2}-\rho\sigma_{1}\sigma_{2})/(\sigma_{1}^{2}-2\rho\sigma_{1}\sigma_{2}+\sigma_{2}^{2})=\tfrac12$，即无论 $\rho$ 多少，等权重组合的风险最小。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{12.3*} 假设市场上有 $N$ 只证券，它们收益率波动率均为 $\sigma$，而协方差为 $c=\mathrm{Cov}[\tilde{r}_{i},\tilde{r}_{j}]$，$\forall\, i,j=1,\dots,N$ 且 $i\ne j$。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明由 $N$ 只证券组成的等权组合的收益率具有最小波动率。
+    \item 证明当 $N\to\infty$ 时等权重组合的方差趋近于 $c$。这和单个证券的波动率 $\sigma$ 无关。
+    \item 解释上面得到的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设组合权重为 $z=[z_{1};z_{2};\dots;z_{N}]$，那么组合的方差为
+    \[
+        \sigma_{p}^{2}=\mathrm{Var}(z_{1}\tilde{r}_{1}+z_{2}\tilde{r}_{2}+\dots+z_{N}\tilde{r}_{N})=\sigma^{2}\sum_{i}z_{i}^{2}+c\sum_{i\ne j}z_{i}z_{j}
+    \]
+    可以求解得使 $\sigma_{p}^{2}$ 最小的权重为
+    \[
+        z_{i}=\frac{1}{N},\quad\forall i
+    \]
+    \item 把 $z_{i}=\dfrac{1}{N}$ 代入组合方差可得 $\sigma_{p}^{2}=\dfrac{1}{N}\sigma^{2}+\bigl(1-\dfrac{1}{N}\bigr)c\to c$，$N\to\infty$；
+    \item 当 $N\to\infty$ 时，证券间不相关的风险都被分散掉了，只剩下了其中相关的部分，因而最终的组合风险只与协方差项有关。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{12.4} 考虑风险证券 1 和 2，它们的收益率为 $\tilde{r}_{1}$ 和 $\tilde{r}_{2}$。它们的期望收益率和协方差阵分别为 $\bar{r}_{1}$，$\bar{r}_{2}$，以及 $\Sigma=[[\sigma_{1}^{2};\sigma_{12}],[\sigma_{12};\sigma_{2}^{2}]]$。
+\begin{enumerate}[label=(\alph*)]
+    \item 推导由这两只证券构成的均值--方差有效前沿。
+    \item 证明这两只证券都在前沿上。
+    \item 考虑如下三种特别形式的前沿：$\rho_{12}=-1,\,0,\,1$，其中 $\rho_{12}$ 是两只证券收益率之间的相关系数。在 $\bar{r}$--$\sigma$ 平面画出这三种情形下的组合前沿。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 为简便起见，假设 $\bar{r}_{1}\ne\bar{r}_{2}$；给定组合的期望收益率 $\bar{r}_{p}$ 有 $z\bar{r}_{1}+(1-z)\bar{r}_{2}=\bar{r}_{p}$，因而 $z=\dfrac{\bar{r}_{p}-\bar{r}_{2}}{\bar{r}_{1}-\bar{r}_{2}}$，此时，组合的波动率为
+    \[
+        \begin{aligned}
+            \sigma_{p}^{2}&=\frac{1}{(\bar{r}_{1}-\bar{r}_{2})^{2}}\bigl[(\sigma_{1}^{2}+\sigma_{2}^{2}-2\sigma_{12})\bar{r}_{p}^{2}-(2\sigma_{1}^{2}\bar{r}_{2}+2\sigma_{2}^{2}\bar{r}_{1}-2(\bar{r}_{1}+\bar{r}_{2})\sigma_{12})\bar{r}_{p}\\
+            &\qquad+(\sigma_{1}^{2}\bar{r}_{2}^{2}+\sigma_{2}^{2}\bar{r}_{1}^{2}-2\bar{r}_{1}\bar{r}_{2}\sigma_{12})\bigr]
+        \end{aligned}
+    \]
+    $(\bar{r}_{p},\sigma_{p})$ 即为均值--方差前沿组合；
+    \item 当 $\bar{r}_{p}=\bar{r}_{1}$ 时，前沿组合即为证券 1；当 $\bar{r}_{p}=\bar{r}_{2}$ 时，前沿组合即为证券 2；
+    \item 当 $\rho_{12}=-1$ 时
+    \[
+        \sigma_{p}=\left|\frac{(\sigma_{1}+\sigma_{2})\bar{r}_{p}-(\sigma_{1}\bar{r}_{2}+\sigma_{2}\bar{r}_{1})}{\bar{r}_{1}-\bar{r}_{2}}\right|
+    \]
+    当 $\rho_{12}=1$ 时
+    \[
+        \sigma_{p}=\left|\frac{(\sigma_{1}-\sigma_{2})\bar{r}_{p}-(\sigma_{1}\bar{r}_{2}+\sigma_{2}\bar{r}_{1})}{\bar{r}_{1}-\bar{r}_{2}}\right|
+    \]
+    在这两种情形下，前沿组合由两条起点一直的射线构成。当 $\rho_{12}=0$ 时，
+    \[
+        \sigma_{p}^{2}=\frac{1}{(\bar{r}_{1}-\bar{r}_{2})^{2}}\bigl[(\sigma_{1}^{2}+\sigma_{2}^{2}-2\sigma_{12})\bar{r}_{p}^{2}-(2\sigma_{1}^{2}\bar{r}_{2}+2\sigma_{2}^{2}\bar{r}_{1})\bar{r}_{p}+(\sigma_{1}^{2}\bar{r}_{2}^{2}+\sigma_{2}^{2}\bar{r}_{1}^{2})\bigr]
+    \]
+    此时的前沿组合是 $\bar{r}$--$\sigma$ 平面中的一条抛物线。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{12.5} 令市场上风险证券的收益率向量为 $\tilde{r}$，它的均值为 $\bar{r}$，它的协方差阵为 $\Sigma$，$\Sigma$ 是正定的，而 $\iota$ 为同阶的元素全为 1 的向量。另外，令 $a=\iota^{\top}\Sigma^{-1}\bar{r}$，$b=\bar{r}^{\top}\Sigma^{-1}\bar{r}$，$c=\iota^{\top}\Sigma^{-1}\iota$ 且 $d=bc-a^{2}$。证明 $d=0$ 等价于 $\bar{r}=(b/a)\iota$，即所有风险证券具有相同的期望收益 $(b/a)$。
+\end{problem}
+\begin{solution}
+当 $d=0$ 时，$bd=(a\bar{r}-b\iota)^{\top}\Sigma^{-1}(a\bar{r}-b\iota)=0$，因为 $\Sigma$，$\Sigma^{-1}$ 都是正定的，因而 $a\bar{r}-b\iota=0$，$\bar{r}=\dfrac{b}{a}\iota$，即所有风险证券具有相同的期望收益 $\dfrac{b}{a}$。
+\end{solution}
+
+\begin{problem}
+\problemno{12.6} 证明最小方差组合（MVP）的期望收益率为 $a/c$，这里的 $a$ 和 $c$ 由练习 12.5 给定。
+\end{problem}
+\begin{solution}
+我们知道最小方差组合的期望收益率为 $r_{\mathrm{MVP}}=-\dfrac{(z_{1}-z_{0})^{\top}\Sigma^{-1}z_{0}}{(z_{1}-z_{0})^{\top}\Sigma^{-1}(z_{1}-z_{0})}$，$z_{0}$，$z_{1}$ 由正文 2.3 节定义，把 $z_{0}$，$z_{1}$ 代入得
+\[
+    \begin{aligned}
+        r_{\mathrm{MVP}}
+        &=-\frac{d^{-2}(c\Sigma^{-1}\bar{r}-a\Sigma^{-1}\iota)^{\top}\Sigma(b\Sigma^{-1}\iota-a\Sigma^{-1}\bar{r})}{d^{-2}(c\Sigma^{-1}\bar{r}-a\Sigma^{-1}\iota)^{\top}\Sigma(c\Sigma^{-1}\bar{r}-a\Sigma^{-1}\iota)}\\
+        &=-\frac{a(a^{2}-bc)}{c(bc-a^{2})}=\frac{a}{c}
+    \end{aligned}
+\]
+\end{solution}
+
+\begin{problem}
+\problemno{12.7} 考虑 $\bar{r}=(b/a)\iota$ 的特殊情形。导出均值--方差前沿。在 $\bar{r}$--$\sigma$ 平面上画出这个组合前沿。
+\end{problem}
+\begin{solution}
+当期望收益率都相等时，所有组合的期望收益率都是常数，因而均值--方差前沿组合退化成为一点即最小方差组合，此时的方差为 $\sigma_{\mathrm{MVP}}^{2}=\dfrac{1}{\iota^{\top}\Sigma^{-1}\iota}$，对应的组合权重为 $z_{\mathrm{MVP}}=\dfrac{\Sigma^{-1}\iota}{\iota^{\top}\Sigma^{-1}\iota}$。
+\end{solution}
+
+\begin{problem}
+\problemno{12.8**} 令证券收益率向量为 $\tilde{r}$，它的均值为 $\bar{r}$、协方差阵为 $\Sigma$。在 $\bar{r}$--$\sigma$ 平面上，任一组合 $p$ 由一点 $(\bar{r}_{p},\sigma_{p})$ 给定。令所有可能组合的集合为 $A=\{(\bar{r}_{p},\sigma_{p}),\forall\, p\}$。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明 $A$ 是闭集。
+    \item 证明 $A$ 是凸集。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设有一序列 $\bigl\{(r_{p}^{(n)},\sigma_{p}^{(n)})\bigr\}_{1}^{\infty}$，其极限为 $(r_{p},\sigma_{p})$。那么存在 $\theta^{(n)}\in S^{N-1}=\{\theta\in\mathrm{R}^{N}:\theta^{\top}\iota=1\}$ 使得
+    \[
+        \theta^{(n)\top}\bar{r}=r_{p}^{(n)},\qquad\theta^{(n)\top}\Sigma\theta^{(n)}=\sigma_{p}^{(n)2}
+    \]
+    显然，$\theta^{(n)}$ 是 $S^{N-1}$ 中的有界序列，存在收敛子列 $\{\theta^{(k_{n})}\}_{1}^{\infty}$，记其极限为 $\theta\in S^{N-1}$，那么
+    \[
+        \begin{aligned}
+            \theta^{\top}\bar{r}&=\lim_{n}\theta^{(k_{n})\top}\bar{r}=\lim_{n}r_{p}^{(k_{n})}=r_{p}\\
+            \theta^{\top}\Sigma\theta&=\lim_{n}\theta^{(k_{n})\top}\Sigma\theta^{(k_{n})}=\lim_{n}\sigma_{p}^{(k_{n})2}=\sigma_{p}^{2}
+        \end{aligned}
+    \]
+    因而 $(r_{p},\sigma_{p})\in A$，$A$ 是闭集；
+    \item 对于 $(r_{1},\sigma_{1})$，$(r_{2},\sigma_{2})$，我们可以按照以下的规则选择相应的权重向量 $\theta$。
+    \[
+        \begin{aligned}
+            \theta_{1},\,\theta_{2}&\in S^{N-1}\\
+            \theta_{1}^{\top}\bar{r}&=r_{1},\quad\theta_{1}^{\top}\Sigma\theta_{1}=\sigma_{1}^{2}\\
+            \theta_{2}^{\top}\bar{r}&=r_{2},\quad\theta_{2}^{\top}\Sigma\theta_{2}=\sigma_{2}^{2}\\
+            \theta_{1}^{\top}\Sigma\theta_{2}&=\sigma_{1}\sigma_{2}
+        \end{aligned}
+    \]
+    那么，对于任意的 $\alpha\in[0,1]$，$\bigl(\alpha r_{1}+(1-\alpha)r_{2},\alpha\sigma_{1}+(1-\alpha)\sigma_{2}\bigr)$ 对应的权重向量是 $\alpha\theta_{1}+(1-\alpha)\theta_{2}$，因此 $\alpha r_{1}+(1-\alpha)r_{2}$，$\alpha\sigma_{1}+(1-\alpha)\sigma_{2}\in A$，$A$ 是凸集。
+\end{enumerate}
+Notes：凸性的命题不一定成立，比如当 $N=2$ 时，$A$ 是 $\bar{r}$--$\sigma$ 平面中的一条抛物线，显然不是凸的。
+\end{solution}
+
+\begin{problem}
+\problemno{12.9**} 令 $p$ 为 MVF 组合，$zcp$ 是与 $p$ 的协方差为零的 MVF。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明对任意证券 $i$，我们有
+    \[
+        \tilde{r}_{i}=\alpha+\beta_{i,zcp}\tilde{r}_{zcp}+\beta_{i,p}\tilde{r}_{p}+\tilde{u}_{i}
+    \]
+    其中 $\mathrm{Cov}[\tilde{r}_{zcp},\tilde{u}_{i}]=0$，$\mathrm{Cov}[\tilde{r}_{p},\tilde{u}_{i}]=0$，$\mathrm{E}[\tilde{u}_{i}]=0$，$\beta_{i,zcp}=\mathrm{Cov}[\tilde{r}_{i},\tilde{r}_{zcp}]/\mathrm{Var}[\tilde{r}_{zcp}]$ 且 $\beta_{i,p}=\mathrm{Cov}[\tilde{r}_{i},\tilde{r}_{p}]/\mathrm{Var}[\tilde{r}_{p}]$。
+    \item 证明 $\beta_{i,zcp}=1-\beta_{i,p}$。
+    \item 证明 $\alpha=0$ 及 $\bar{r}_{i}=(1-\beta_{i,p})\bar{r}_{zcp}+\beta_{i,p}\bar{r}_{p}$。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 令 $\tilde{r}_{i}=\alpha+\beta_{i,1}\tilde{r}_{zcp}+\beta_{i,2}\tilde{r}_{p}+\tilde{u}_{i}$，由
+    \[
+        \mathrm{Cov}(\tilde{u}_{i},\tilde{r}_{p})=\mathrm{Cov}(\tilde{r}_{i}-\alpha-\beta_{i,1}\tilde{r}_{zcp}-\beta_{i,2}\tilde{r}_{p},\tilde{r}_{p})=0
+    \]
+    可得 $\beta_{i,2}=\beta_{i,p}$；同样地有 $\beta_{i,1}=\beta_{i,zcp}$，由 $\mathrm{E}\tilde{u}_{i}=0$ 可以得到 $\alpha=\bar{r}_{i}-\beta_{i,p}\bar{r}_{p}-\beta_{i,zcp}\bar{r}_{zcp}$；
+    \item 由文中 (12.6) 式有
+    \[
+        \begin{aligned}
+            \bar{r}_{i}-\bar{r}_{zcp}&=\beta_{i,p}(\bar{r}_{p}-\bar{r}_{zcp})\\
+            \bar{r}_{i}-\bar{r}_{p}&=\beta_{i,zcp}(\bar{r}_{zcp}-\bar{r}_{p})
+        \end{aligned}
+    \]
+    两式相减可以得到 $\beta_{i,p}+\beta_{i,zcp}=1$；
+    \item 另外，由 (12.6) 式有
+    \[
+        \bar{r}_{i}=\bar{r}_{zcp}+\beta_{i,p}(\bar{r}_{p}-\bar{r}_{zcp})=\beta_{i,p}\bar{r}_{p}+(1-\beta_{i,p})\bar{r}_{zcp}
+    \]
+    因此 $\alpha=0$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{12.10} 证明 MVE 组合的凸组合（即权重非负的组合）仍然是 MVE 组合。
+\end{problem}
+\begin{solution}
+首先，我们知道 MVE 组合的组合是 MVF 组合；另外，由于是凸组合，因而所得 MVF 组合在均值--方差前沿的上半部，即为 MVE 组合。
+\end{solution}
+
+\begin{problem}
+\problemno{12.11} 当存在一只收益率为 $r_{F}$ 的无风险债券时，记 $\bar{\eta}=\bar{r}-r_{F}\iota$ 是风险证券的超额收益向量。证明 $\bar{\eta}^{\top}\Sigma^{-1}\bar{\eta}=0$ 等价于 $\bar{r}=r_{F}\iota$。
+\end{problem}
+\begin{solution}
+因为 $\Sigma^{-1}$ 是正定的，
+\[
+    \bar{\eta}^{\top}\Sigma^{-1}\bar{\eta}=0\Leftrightarrow\bar{\eta}=\bar{r}-r_{F}\iota=0\Leftrightarrow\bar{r}=r_{F}\iota
+\]
+\end{solution}
+
+\begin{problem}
+\problemno{12.12} 当存在无风险证券时，切点组合的期望超额收益为正等价于 $\bar{r}_{\mathrm{mvp}}-r_{F}>0$，即最小方差组合的期望收益为正。
+\end{problem}
+\begin{solution}
+当切点组合的期望收益率为正时，
+\[
+    \begin{aligned}
+        \iota^{\top}\Sigma^{-1}\bar{\eta}>0
+        &\Leftrightarrow\iota^{\top}\Sigma^{-1}(\bar{r}-r_{F}\iota)=\iota^{\top}\Sigma^{-1}\bar{r}-r_{F}\iota^{\top}\Sigma^{-1}\iota=\iota^{\top}\Sigma^{-1}\iota\Bigl(\frac{\iota^{\top}\Sigma^{-1}\bar{r}}{\iota^{\top}\Sigma^{-1}\iota}-r_{F}\Bigr)\\
+        &=\iota^{\top}\Sigma^{-1}\iota\Bigl(\frac{a}{c}-r_{F}\Bigr)=\iota^{\top}\Sigma^{-1}\iota(\bar{r}_{\mathrm{mvp}}-r_{F})>0\\
+        &\Leftrightarrow\bar{r}_{\mathrm{mvp}}-r_{F}>0.
+    \end{aligned}
+\]
+\end{solution}
+
+\begin{problem}
+\problemno{12.13*} 当存在无风险证券时，证明切点组合的 Sharpe 比最大。
+\end{problem}
+\begin{solution}
+考虑任意组合 Sharpe 比的平方
+\[
+    \frac{z^{\top}\bar{r}+(1-z^{\top}\iota)r_{F}-r_{F}}{z^{\top}\Sigma z}=\frac{z^{\top}\bar{\eta}}{z^{\top}\Sigma z}
+\]
+其中 $z$ 是风险组合的权重，最大化的一阶条件是
+\[
+    \bar{\eta}\,z^{\top}\Sigma z=z\,\bar{\eta}^{\top}\Sigma z
+\]
+可以验证 $z_{T}=\dfrac{1}{\iota^{\top}\Sigma^{-1}\bar{\eta}}\Sigma^{-1}\bar{\eta}$ 即为其解，因而切点组合的 Sharpe 比最大。
+\end{solution}

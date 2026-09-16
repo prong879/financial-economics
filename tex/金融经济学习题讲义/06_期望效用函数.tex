@@ -1,0 +1,65 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 26–27（印刷页 25–26）
+
+\chapter{期望效用函数}
+
+\begin{problem}
+\problemno{6.1} 证明如下形式的期望效用函数：
+\[
+    U(c)=u_{0}(c_{0})+\sum_{\omega\in\Omega}\pi_{\omega}u_{1}(c_{1\omega})
+\]
+满足独立性公理。
+\end{problem}
+\begin{solution}
+假设 $c$ 和 $c'$ 在状态 $\omega'$ 有相同的消费路径 $x=[c_{0},c_{x}]$，且 $c\succeq c'$，那么有
+\[
+    \begin{aligned}
+        U(c)
+        &=u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})+\pi_{\omega'}u_{1}(c_{x})\\
+        &\ge u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')+\pi_{\omega'}u_{1}(c_{x})=U(c')
+    \end{aligned}
+\]
+\[
+    \Leftrightarrow\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})\ge\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')
+\]
+现在把消费路径换成 $y=[c_{0},c_{y}]$，那么我们有
+\[
+    \begin{aligned}
+        U(c)
+        &=u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})+\pi_{\omega'}u_{1}(c_{y})\\
+        &\ge u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')+\pi_{\omega'}u_{1}(c_{y})=U(c')
+    \end{aligned}
+\]
+即 $c\succeq c'$ 仍然成立，故 $U(c)$ 满足独立性公理。
+\end{solution}
+
+\begin{problem}
+\problemno{6.2*} 对于由练习 6.1 给出的效用函数表示的偏好，证明连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
+\end{problem}
+\begin{solution}
+我们只证明 $u_{0}(\cdot)$ 是连续的，$u_{1}(\cdot)$ 的连续性可以类似证明。
+
+假设序列 $\{x_{n}\}_{n=1}^{\infty}$ 的极限是 $x$，且 $u_{0}(x_{n})\ge(\le)\,u_{0}(c_{0})$，那么我们只须证明 $u_{0}(x)\ge(\le)\,u_{0}(c_{0})$。令 $c$ 为 0 期消费为 $c_{0}$、1 期各状态消费均为 $y>0$ 的消费计划，而 $c_{n}'$ 为 0 期消费为 $x_{n}$、1 期各状态消费均为 $y$ 的消费计划，$c'$ 为 0 期消费为 $x$、1 期各状态消费均为 $y$ 的消费计划。由假设我们有 $c_{n}'\in\{a\in\mathrm{C}:a\succeq(\preceq)c\}$，由效用函数的连续性我们有 $c'$ 也是 $c_{n}'$ 的极限，因而 $c'\in\{a\in\mathrm{C}:a\succeq(\preceq)c\}$，因而 $u_{0}(x)\ge(\le)\,u_{0}(c_{0})$，$u_{0}(\cdot)$ 是连续的。
+\end{solution}
+
+\begin{problem}
+\problemno{6.3**} 如果 $a\succeq b$ 意味着对于 $\forall\,\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，那么称偏好关系 $\succ$ 是弱凸的（weakly convex）。这与第 2 章中的强凸性有所不同。假设偏好关系是连续的并且有练习 6.1 给出的期望效用函数表示（因而 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续函数）。证明此时强凸性包含弱凸性。
+\end{problem}
+\begin{solution}
+当 $\alpha=0$ 或 1 时，$\alpha a+(1-\alpha)b\succeq b$ 显然成立；当 $a\succ b$，$\alpha\in(0,1)$ 时，由强凸性有 $\alpha a+(1-\alpha)b\succ b$；现在证明如果 $\alpha\in(0,1)$，$a\sim b$，那么 $\alpha a+(1-\alpha)b\succeq b$。不妨假设效用函数是递增的，另外假设 $\epsilon>0$ 为任意正实数，令 $a'=a+[\epsilon;0;0;\ldots;0]\succ b$，由强凸性有 $\alpha a'+(1-\alpha)b\succ b$，即
+\[
+    u_{0}(\alpha c_{0}^{a}+(1-\alpha)c_{0}^{b}+\alpha\epsilon)+\sum\pi_{\omega}u_{1}(\alpha c_{1\omega}^{a}+(1-\alpha)c_{1\omega}^{b})>u_{0}(c_{0}^{b})+\sum\pi_{\omega}u_{1}(c_{1\omega}^{b})
+\]
+由于 $\epsilon$ 是任意实数，并且 $u_{0}$ 是连续函数，因此
+\[
+    u_{0}(\alpha c_{0}^{a}+(1-\alpha)c_{0}^{b})+\sum\pi_{\omega}u_{1}(\alpha c_{1\omega}^{a}+(1-\alpha)c_{1\omega}^{b})\ge u_{0}(c_{0}^{b})+\sum\pi_{\omega}u_{1}(c_{1\omega}^{b})
+\]
+即 $\alpha a+(1-\alpha)b\succeq b$ 成立，命题得证。
+\end{solution}
+
+\begin{problem}
+\problemno{6.4**} 假设定义在随机支付上的效用函数具有练习 6.1 中的形式，其中 $\Omega$ 是任意的状态空间而 $P$ 是相应的概率测度。如果它还满足弱凸性，那么 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是凹的。
+\end{problem}
+\begin{solution}
+只能证明 $\{c\in\mathrm{C}:c\succeq b\}$ 是凸的，即 $u$ 是拟凹的，不能证明是凹的。
+\end{solution}

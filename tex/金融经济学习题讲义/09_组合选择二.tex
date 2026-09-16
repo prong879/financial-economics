@@ -1,0 +1,210 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 38–42（印刷页 37–41）
+
+\chapter{组合选择（二）}
+
+\begin{problem}
+\problemno{9.1} 假设有四个等概率的可能状态。状态空间是 $\Omega=\{\omega_{1},\cdots,\omega_{4}\}$。考虑风险资产 $A$ 和 $B$，它们的收益率如下：
+\begin{center}
+\begin{tabular}{c|cccc}
+    & $\omega_{1}$ & $\omega_{2}$ & $\omega_{3}$ & $\omega_{4}$ \\
+    \hline
+    $\tilde{r}_{A}$ & 0.5 & 0.5 & 0.7 & 0.7 \\
+    $\tilde{r}_{B}$ & 0.9 & 0.8 & 0.4 & 0.3
+\end{tabular}
+\end{center}
+在随机占优的意义上，你能为它们排序吗？
+\end{problem}
+\begin{solution}
+\[
+    F_{A}(x)=\begin{cases}
+        0 & 0\le x<0.5\\
+        0.5 & 0.5\le x<0.7\\
+        1 & 0.7\le x
+    \end{cases}
+\]
+\[
+    F_{B}(x)=\begin{cases}
+        0 & 0\le x<0.3\\
+        0.25 & 0.3\le x<0.4\\
+        0.5 & 0.4\le x<0.8\\
+        0.75 & 0.8\le x<0.9\\
+        1 & 0.9\le x
+    \end{cases}
+\]
+\[
+    S(y)=\int_{0}^{y}\bigl(F_{A}(x)-F_{B}(x)\bigr)\,dx=\begin{cases}
+        0 & 0\le y<0.3\\
+        -0.25(y-0.3) & 0.3\le y<0.4\\
+        -0.025-0.5(y-0.4) & 0.4\le y<0.5\\
+        -0.075 & 0.5\le y<0.7\\
+        -0.075+0.5(y-0.7) & 0.7\le y<0.8\\
+        -0.025+0.25(y-0.8) & 0.8\le y<0.9\\
+        0 & 0.9\le y
+    \end{cases}
+\]
+可以验证 $S(y)\le 0$，$y\in[0,1]$；且 $E[x_{A}]=E[x_{B}]$，因此 $A\succeq_{\mathrm{SSD}}B$。
+\end{solution}
+
+\begin{problem}
+\problemno{9.2*} 两只风险资产的收益率分别为 $\tilde{r}_{A}$ 和 $\tilde{r}_{B}$。考虑一个投资者，他的初始财富为 $w=1$、效用函数为 $u(\cdot)$，其中 $u'(\cdot)>0$ 且 $u''(\cdot)<0$。他最大化期望效用 $E[u(\tilde{w})]$。令他的最优组合为 $[a,1-a]$。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设 $\tilde{r}_{A}=\tilde{x}$，$\tilde{r}_{B}=\tilde{x}+\tilde{e}$，其中 $\tilde{e}$ 和 $\tilde{x}$ 互相独立且 $E[\tilde{e}]=0$。
+    \begin{itemize}
+        \item $\tilde{r}_{A}$ 是否二阶随机占优于 $\tilde{r}_{B}$？
+        \item 对于投资者的最优投资组合 $a$，你能得到什么样的结论？
+    \end{itemize}
+    \item 假设 $\tilde{r}_{A}=\tilde{x}$，$\tilde{r}_{B}=\tilde{y}+\tilde{e}$，$\tilde{x}$、$\tilde{y}$、$\tilde{e}$ 互相独立，$\tilde{x}\sim_{d}\tilde{y}$ 且 $E[\tilde{e}]=0$。
+    \begin{itemize}
+        \item $\tilde{r}_{A}$ 是否二阶随机占优于 $\tilde{r}_{B}$？
+        \item 证明投资者在资产 $A$ 上的投资额要大于他资产 $B$ 上的投资额，即 $a>1/2$。
+    \end{itemize}
+    \item 解释上面两种情形下结论之间的差异。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 根据定义可以判断出
+    \[
+        A\succeq_{\mathrm{SSD}}B
+    \]
+    \[
+        \begin{aligned}
+            E[u(\tilde{w})]
+            &=E\bigl[u\bigl(\tilde{x}+(1-a)\tilde{e}\bigr)\bigr]\\
+            &=E\bigl[E\bigl[u\bigl(\tilde{x}+(1-a)\tilde{e}\bigr)\bigm|\tilde{x}\bigr]\bigr]\\
+            &\le E\bigl[u\bigl(E\bigl[\tilde{x}+(1-a)\tilde{e}\bigm|\tilde{x}\bigr]\bigr)\bigr]\\
+            &=E\bigl[u(\tilde{x})\bigr]\\
+            &=E\bigl[u(\tilde{r}_{A})\bigr]
+        \end{aligned}
+    \]
+    当 $a=1$ 时等式成立，因此 $a=1$。
+
+    \item 因为 $\tilde{x}$，$\tilde{y}$ 是独立同分布的，因而 $\tilde{r}_{B}\sim_{d}\tilde{r}_{A}+\tilde{e}$，且 $E[\tilde{e}\mid\tilde{r}_{A}]=0$，故 $A\succeq_{\mathrm{SSD}}B$。令 $V(a)=E\bigl[u\bigl(a\tilde{x}+(1-a)\tilde{y}+(1-a)\tilde{e}\bigr)\bigr]$，那么
+    \[
+        \begin{aligned}
+            V'(a)&=E\bigl[u'\bigl(a\tilde{x}+(1-a)\tilde{y}+(1-a)\tilde{e}\bigr)(\tilde{x}-\tilde{y}-\tilde{e})\bigr]\\
+            V''(a)&=E\bigl[u''\bigl(a\tilde{x}+(1-a)\tilde{y}+(1-a)\tilde{e}\bigr)(\tilde{x}-\tilde{y}-\tilde{e})^{2}\bigr]\\
+            V'\bigl(\tfrac12\bigr)&=E\bigl[u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr)(\tilde{x}-\tilde{y}-\tilde{e})\bigr]\\
+            &=E\bigl[E\bigl[u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr)(\tilde{x}-\tilde{y}-\tilde{e})\bigm|\tilde{x}+\tilde{y}\bigr]\bigr]\\
+            &=E\bigl[u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr)E[\tilde{x}-\tilde{y}\mid\tilde{x}+\tilde{y}]-E\bigl[u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr)\tilde{e}\bigm|\tilde{x}+\tilde{y}\bigr]\bigr]\\
+            &=-E\bigl[u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr)\tilde{e}\bigr]\\
+            &=-\operatorname{Cov}\bigl(u'\bigl(\tfrac12\tilde{x}+\tfrac12\tilde{y}+\tfrac12\tilde{e}\bigr),\tilde{e}\bigr)>0
+        \end{aligned}
+    \]
+    故，$a^{*}>\frac12$，同样的方法可以验证 $a^{*}<1$。
+
+    \item 因为在第一种情形下，$\tilde{r}_{B}$ 只是比 $\tilde{r}_{A}$ 多一个噪音项 $\tilde{e}$，引入 $\tilde{r}_{B}$ 的效果是增加了收益中的噪音，因此 $a=1$；而在第二种情形下，因为 $\tilde{x}$，$\tilde{y}$ 是独立同分布的，引入 $\tilde{r}_{B}$ 可以分散风险，但由于 $\tilde{r}_{B}$ 比 $\tilde{r}_{A}$ 多一个噪音项，因此 $1>a^{*}>\frac12$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{9.3} 证券市场最初由 $N$ 只证券构成。证明：当把另外 $M$ 只证券添加到市场中去时，如果投资者的最优投资组合中包含新证券，那么他的福利（即他的期望效用）会增加（也就是说，更多选择总是好的）。
+\end{problem}
+\begin{solution}
+因为在添加了新证券以后，投资者总是可以选择原来的最优组合，只有当他的效用增加时他才会选择新的证券去构成新的组合。
+\end{solution}
+
+\begin{problem}
+\problemno{9.4} 假设有 $N$ 只证券，它们的供给都是无限的、收益率为 $\tilde{r}_{i}$，$i=1,\cdots,N$。经济中的参与者都是不满足的、风险中性的且具有正的禀赋。市场不允许卖空。在什么条件下 $K$ 基金分离成立（$K<N$）？
+\end{problem}
+\begin{solution}
+当且仅当期望收益率最大的证券数等于 $K$ 时，$K$ 基金分离定理成立。
+\end{solution}
+
+\begin{problem}
+\problemno{9.5} 假设在市场上有 $N$ 只证券，它们的收益率是独立同分布的。证明单基金分离成立。
+\end{problem}
+\begin{solution}
+对于任意的投资者，所有证券的等权重都是最优的，因而单基金分离成立。
+\end{solution}
+
+\begin{problem}
+\problemno{9.6*} 证券市场由一只无风险债券和 $N$ 只风险证券组成。无风险证券的收益率为 $r_{F}$ 而风险证券的收益率向量为 $\tilde{r}=[\tilde{r}_{1};\ldots;\tilde{r}_{N}]$。另外，$E[\tilde{r}]=\bar{r}=[\bar{r}_{1};\ldots;\bar{r}_{N}]$ 且 $E[(\tilde{r}-\bar{r})(\tilde{r}-\bar{r})^{\top}]=\Sigma$（$\Sigma$ 是风险证券收益率的协方差阵）。考虑一个财富为 $w$ 的参与者的投资问题。假设他具有二次效用函数 $u(\tilde{w})=E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解他的最优投资组合。
+    \item 证明对于具有二次效用函数的参与者，两基金货币分离成立。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设参与者的持有组合中风险资产的权重为 $x=[x_{1};x_{2};\ldots;x_{N}]$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \[
+        \max_{x}E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]
+    \]
+    可以解得
+    \[
+        x=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
+    \]
+    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。
+
+    \item 因为投资者持有的风险组合的权重之比恒为常数，因而对于所有的投资者来说，风险组合是相同的，只是投资于风险组合的总金额不一样而已；另外，投资者还持有无风险资产，因此两基金分离成立。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{9.7*} 考虑练习 9.6 中描述的市场。另外，我们假设风险收益率是联合正态分布的且参与者的绝对风险厌恶系数恒为 $a$。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解他的最优投资组合。
+    \item 证明对于具有常数绝对风险厌恶的参与者，两基金货币分离成立。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设参与者的持有组合中风险资产的权重为 $x=[x_{1};x_{2};\ldots;x_{N}]$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \[
+        \max_{x}E\bigl[-e^{-a\tilde{w}}\bigr]
+    \]
+    可以解得
+    \[
+        x=\frac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)
+    \]
+    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。
+
+    \item 因为投资者持有的风险组合的权重之比恒为常数，因而对于所有的投资者来说，风险组合是相同的，只是投资于风险组合的总金额不一样而已；另外，投资者还持有无风险资产，因此两基金分离成立。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{9.8*} 继续练习 9.7 中的问题。
+\begin{enumerate}[label=(\alph*)]
+    \item 计算在最优投资组合下参与者的期望效用。
+    \item 假设现在有 $M$ 支新风险证券加入到证券市场中。（现有 $N$ 只证券的收益率不能生成新证券的收益率。）所有风险证券的收益率都是联合正态分布的。证明，如果参与者的最优投资组合中含有新的证券，无论 $M$ 只新证券的收益率分布如何，参与者的福利总是增加。
+    \item 当引入新证券后，计算他的福利增加的确定性等价值。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 由第七题我们知道最优组合的风险资产权重为 $x=\dfrac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)$，因而期望效用为
+    \[
+        \begin{aligned}
+            E[u(\tilde{w})]
+            &=-e^{-aE\tilde{w}+\frac12 a^{2}\operatorname{Var}\tilde{w}}\\
+            &=-e^{-aw(1+r_{F})+x^{\top}(\bar{r}-r_{F}\iota)+\frac12 a^{2}w^{2}x^{\top}\Sigma x}\\
+            &=-e^{-aw(1+r_{F})-\frac12(\bar{r}-r_{F}\iota)^{\top}\Sigma^{-1}(\bar{r}-r_{F}\iota)}
+        \end{aligned}
+    \]
+
+    \item 由第三题可以得到此结论；
+
+    \item 假设原来的风险资产的收益率和协方差矩阵分布为 $\bar{r}_{\mathrm{old}}$，$\Sigma_{\mathrm{old}}$，加入新证券的风险资产的收益率和协方差矩阵分布为 $\bar{r}_{\mathrm{new}}$，$\Sigma_{\mathrm{new}}$，那么福利增加的确定性等价值为
+    \[
+        \tfrac12(\bar{r}_{\mathrm{new}}-r_{F}\iota)^{\top}\Sigma_{\mathrm{new}}^{-1}(\bar{r}_{\mathrm{new}}-r_{F}\iota)-\tfrac12(\bar{r}_{\mathrm{old}}-r_{F}\iota)^{\top}\Sigma_{\mathrm{old}}^{-1}(\bar{r}_{\mathrm{old}}-r_{F}\iota)
+    \]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{9.9*} 在练习 9.7 中，假设只有一只新证券（即 $M=1$），它的收益率是 $\tilde{r}_{N+1}$。令 $\bar{r}_{N+1}$ 为它的预期收益率、$\sigma_{N+1}$ 为收益率波动率而 $\sigma_{\cdot,N+1}$ 为它与 $N$ 只原有证券之间的协方差向量。另外，证券 $N+1$ 上的最优组合权重记作 $z_{N+1}$。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设 $\bar{r}_{N+1}-r_{F}>(<)\,0$。我们能得到结论 $z_{N+1}>(<)\,0$ 吗？给出解释。
+    \item 假设 $\bar{r}_{N+1}<\bar{r}_{n}$ 且 $\sigma_{N+1}>\sigma_{n}$，$\forall\,n=1,\ldots,N$。也就是说，其它所有证券在收益率和方差上都优于证券 $N+1$。这是否意味着 $z_{N+1}=0$ 即最优组合不应含有证券 $N+1$？给出解释。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 由第七题的结论我们知道 $z_{N+1}=(\Sigma^{-1})_{N+1}(\bar{r}-r_{F}\iota)$。其中 $(\Sigma^{-1})_{N+1}$ 表示 $\Sigma^{-1}$ 的第 $N+1$ 行。在构造组合的时候，一方面我们需要考虑资产对组合收益的影响，另一方面我们还得考虑资产对组合风险的影响，如果 $\bar{r}_{N+1}-r_{F}>(<)\,0$，那么买入（卖出）证券 $N+1$ 会增加组合的收益，但同时可能会提高组合的风险，因而总体效应是不确定的，即不能得出 $z_{N+1}>(<)\,0$ 的结论。
+
+    \item 单个资产的权重不但与自身的收益率、标准差有关，还与其它的资产的收益率以及它与其它资产的相关性有关，如果资产 $N+1$ 与其它资产是负（正）相关的，那么 $z_{N+1}$ 有可能大于（小于）0。
+\end{enumerate}
+\end{solution}

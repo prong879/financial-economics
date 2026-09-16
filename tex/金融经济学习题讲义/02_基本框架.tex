@@ -1,0 +1,201 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 2–6（印刷页 1–5）
+
+\chapter{基本框架}
+
+\begin{problem}
+\problemno{2.1} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
+\end{problem}
+\begin{solution}
+假设 $U(c)$ 表示的偏好关系为 $\succeq$，那么 $\forall\, c_{1},\,c_{2}\in\mathrm{R}_{+}^{N}$ 有
+\[
+    U(c_{1})\ge U(c_{2})\Leftrightarrow c_{1}\succeq c_{2}
+\]
+而 $f(\cdot)$ 是正单调函数，因而
+\[
+    V(c_{1})=f(U(c_{1}))\ge f(U(c_{2}))=V(c_{2})\Leftrightarrow U(c_{1})\ge U(c_{2})
+\]
+因此 $V(c_{1})\ge V(c_{2})\Leftrightarrow c_{1}\succeq c_{2}$，即 $V(c)$ 表示的偏好也是 $\succeq$。
+\end{solution}
+
+\begin{problem}
+\problemno{2.2*} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
+\begin{center}
+\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
+    \draw[thick] (-0.15,-1) -- (-0.15,1);
+    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
+    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
+    \node[anchor=west] at (1.0,0.55) {$a$};
+    \node[anchor=west] at (1.0,-0.55) {$b$};
+\end{tikzpicture}
+\end{center}
+考虑定义在消费计划 $c=[c_{0};c_{1a};c_{1b}]$ 上的效用函数：
+\[
+    \begin{aligned}
+        U(c) &= \log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
+        U(c) &= \tfrac{1}{1-\gamma}c_{0}^{1-\gamma}+\tfrac12\Bigl(\tfrac{1}{1-\gamma}c_{1a}^{1-\gamma}+\tfrac{1}{1-\gamma}c_{1b}^{1-\gamma}\Bigr)\\
+        U(c) &= -e^{-ac_{0}}-\tfrac12\bigl(e^{-ac_{1a}}+e^{-ac_{1b}}\bigr)
+    \end{aligned}
+\]
+证明它们满足：不满足性、连续性和凸性。
+\end{problem}
+\begin{solution}
+在这里只证明第一个效用函数，可以类似地证明第二、第三个效用函数的性质。
+
+\begin{enumerate}[label=(\alph*)]
+    \item 先证明不满足性。假设 $c\ge c'$，那么有
+    \[
+        c_{0}\ge c_{0}',\quad c_{1a}\ge c_{1a}',\quad c_{1b}\ge c_{1b}'
+    \]
+    而 $\log(\cdot)$ 是单调增函数，因此有
+    \[
+        \log(c_{0})\ge\log(c_{0}'),\quad \log(c_{1a})\ge\log(c_{1a}'),\quad \log(c_{1b})\ge\log(c_{1b}')
+    \]
+    因而 $U(c)\ge U(c')$，即 $c\succeq c'$。
+
+    \item 现在证明连续性。令 $\{c^{(n)}\}_{1}^{\infty}$ 为 $\mathrm{R}^{3}$ 中一个序列，且 $\lim_{n\to\infty}c^{(n)}=c$。对于 $\forall\,\varepsilon>0$，$\exists\,\delta$，当 $|c_{i}'-c_{i}|\le\delta$ 时我们有 $|\log(c_{i}')-\log(c_{i})|<\tfrac{\varepsilon}{3}$，$i=0,1a,1b$；对于 $\delta$，$\exists N$ 使得当 $n\ge N$ 时，
+    \[
+        \lVert c^{(n)}-c\rVert=\sqrt{(c_{0}-c_{0}^{(n)})^{2}+(c_{1a}-c_{1a}^{(n)})^{2}+(c_{1b}-c_{1b}^{(n)})^{2}}<\delta
+    \]
+    因而 $|U(c^{(n)})-U(c)|<\varepsilon$，故 $\lim_{c^{(n)}\to c}U(c^{(n)})=U(c)$。
+
+    \item 最后证明凸性。假设 $U(C)>U(C')$，那么
+    \[
+        \log(c_{0})+\tfrac12\log(c_{1a})+\tfrac12\log(c_{1b})>\log(c_{0}')+\tfrac12\log(c_{1a}')+\tfrac12\log(c_{1b}')
+    \]
+    对于 $\forall\,\alpha\in(0,1)$，
+    \[
+        \begin{aligned}
+            U(\alpha C'+(1-\alpha)C)
+            &=\log(\alpha c_{0}'+(1-\alpha)c_{0})+\tfrac12\log(\alpha c_{1a}'+(1-\alpha)c_{1a})+\tfrac12\log(\alpha c_{1b}'+(1-\alpha)c_{1b})\\
+            &\ge\alpha\bigl(\log(c_{0}')+\tfrac12\log(c_{1a}')+\tfrac12\log(c_{1b}')\bigr)+(1-\alpha)\bigl(\log(c_{0})+\tfrac12\log(c_{1a})+\tfrac12\log(c_{1b})\bigr)\\
+            &=\alpha U(C')+(1-\alpha)U(C)>U(C')
+        \end{aligned}
+    \]
+    故凸性成立。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{2.3} $U(c)=c-\tfrac12 a c^{2}$ 是一可能的效用函数，其中 $c\in\mathrm{R}_{+}$，$a$ 是非负的系数。$U(c)$ 具有不满足性吗？如果不是，那么 $a$ 取什么值和/或 $c$ 在什么范围内时 $U(c)$ 具有不满足性？
+\end{problem}
+\begin{solution}
+不一定。比如当 $a=1$ 时，$U(\tfrac12)=\tfrac38<U(1)=\tfrac12>U(3)=-1.5$。$U(c)$ 不具有不满足性。当 $a=0$ 时，$U(c)=c$ 具有不满足性；当 $a>0$ 时，当 $c\in[0,\tfrac{1}{a}]$ 时 $U(c)$ 具有不满足性。
+\end{solution}
+
+\begin{problem}
+\problemno{2.4} 考虑一个经济，它在 1 期有三个可能状态：$a$，$b$ 和 $c$：
+\begin{center}
+\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
+    \draw[thick] (0,-1.6) -- (0,1.6);
+    \draw[thick] (0,1.1) -- (0.85,1.1);
+    \draw[thick] (0,0) -- (0.85,0);
+    \draw[thick] (0,-1.1) -- (0.85,-1.1);
+    \node[anchor=west] at (1.0,1.1) {$a$};
+    \node[anchor=west] at (1.0,0) {$b$};
+    \node[anchor=west] at (1.0,-1.1) {$c$};
+\end{tikzpicture}
+\end{center}
+证券市场包括证券 1 和 2，它们具有如下的支付向量：$X_{1}=[1;1;1]$ 以及 $X_{2}=[1;2;3]$。它们的价格分别为 $S_{1}$ 和 $S_{2}$。
+\begin{enumerate}[label=(\alph*)]
+    \item 描述这个经济的支付空间。
+    \item 写出这个经济的市场结构矩阵 $X$。
+    \item 考虑含有 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的组合。写出这个组合的支付向量。这个组合的价格是多少？
+    \item 假设这个市场中总共有 $K$ 个参与者。每个参与者的禀赋是 1 单位的证券 1 和 2 单位的证券 2。这时的市场组合是什么？市场组合的支付向量是什么？市场组合的总价值是多少？
+    \item 写出市场化支付的集合。
+    \item 如果市场不允许卖空。市场化支付的集合是什么？
+    \item 现在引入新的证券 3，它的支付向量为 $X_{3}=[0;0;1]$。写出新的市场结构矩阵。在这个市场结构下，市场化支付集合是什么？
+\end{enumerate}
+\end{problem}
+\begin{solution}
+记两只交易证券的支付向量分别为 $X_{1}=[1;1;1]$，$X_{2}=[1;2;3]$。
+\begin{enumerate}[label=(\alph*)]
+    \item 这个经济的支付空间是 $\mathrm{R}^{3}$；
+    \item 市场结构矩阵为
+    \[
+        X=\begin{bmatrix}1&1\\1&2\\1&3\end{bmatrix}=[X_{1},\,X_{2}];
+    \]
+    \item 组合的支付向量为 $\theta_{1}X_{1}+\theta_{2}X_{2}=[\theta_{1}+\theta_{2};\,\theta_{1}+2\theta_{2};\,\theta_{1}+3\theta_{2}]$，组合的价格是 $\theta_{1}S_{1}+\theta_{2}S_{2}$；
+    \item 市场组合是 $K$ 单位的证券 1 和 $2K$ 单位的证券 2，组合的支付向量为 $[3K;5K;7K]$，组合的总价值是 $KS_{1}+2KS_{2}$；
+    \item 市场化的支付集合是 $M=\{Y\in\mathrm{R}^{2}:Y=\theta_{1}X_{1}+\theta_{2}X_{2},\,\theta_{1},\,\theta_{2}\in\mathrm{R}\}$；
+    \item 这时的市场化支付集合是 $M_{+}=\{Y\in\mathrm{R}^{2}:Y=\theta_{1}X_{1}+\theta_{2}X_{2},\,\theta_{1},\,\theta_{2}\in\mathrm{R}_{+}\}$；
+    \item 新的市场结构矩阵为
+    \[
+        X=\begin{bmatrix}1&1&0\\1&2&0\\1&3&1\end{bmatrix}=[X_{1},\,X_{2},\,X_{3}],
+    \]
+    此时的市场化支付集合为 $M=\{Y\in\mathrm{R}^{3}:Y=\theta_{1}X_{1}+\theta_{2}X_{2}+\theta_{3}X_{3},\,\theta_{1},\,\theta_{2},\,\theta_{3}\in\mathrm{R}\}$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{2.5} 在练习 2.4 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
+\end{problem}
+\begin{solution}
+参与者的预算集是 $\{C\in\mathrm{R}_{+}^{3}:C=\alpha_{1}X_{1}+\alpha_{2}X_{2}$，其中 $\alpha_{1}S_{1}+\alpha_{2}S_{2}\le\theta_{1}S_{1}+\theta_{2}S_{2}\}$。
+\end{solution}
+
+\begin{problem}
+\problemno{2.6} 在上面的练习中引入练习 2.4 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
+\end{problem}
+\begin{solution}
+此时参与者的预算集变成了 $\{C\in\mathrm{R}_{+}^{3}:C=\alpha_{1}X_{1}+\alpha_{2}X_{2}+\alpha_{3}X_{3}$，其中 $\alpha_{1}S_{1}+\alpha_{2}S_{2}+\alpha_{3}S_{3}\le\theta_{1}S_{1}+\theta_{2}S_{2}+\theta_{3}S_{3}\}$。
+\end{solution}
+
+\begin{problem}
+\problemno{2.7*} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $[100;1]$。他的偏好可以表示成如下形式：
+\[
+    U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
+\]
+系数 $\rho$ 为反映参与者在当前消费和未来消费之间相对偏好的参数。有一只证券，它的 0 期价格为 1、1 期支付为 $1+r_{F}$。这里，$r_{F}$ 是利率。
+\begin{enumerate}[label=(\alph*)]
+    \item 如果这个参与者不能在市场上进行交易，那么他的消费计划以及相应的效用 $U^{a}$ 是什么？
+    \item 现在假设他可以在市场上进行交易。
+    \begin{itemize}
+        \item 他的预算集是什么？以当前消费为单位，他的总财富 $w$ 是多少？
+        \item 写出参与者的优化问题。令 $c_{0}$ 为参与者的当前（即 0 期）最优消费，$s$ 为最优储蓄以及 $U^{b}$ 为在最优策略下得到的效用。求解他的最优消费/储蓄选择以及相应的效用。把 $U^{b}$ 表示成财富 $w$、利率 $r_{F}$ 和偏好系数 $\rho$ 的函数。
+        \item 讨论参与者的最优选择如何依赖于利率 $r_{F}$ 和偏好系数 $\rho$。给出解释。
+    \end{itemize}
+    \item 证明 $U^{b}\ge U^{a}$。
+    \item 令 $g$ 为参与者由于能够在证券市场上交易而获得的益处。它的定义为
+    \[
+        U^{b}(w-g)=U^{a}.
+    \]
+    计算 $g$。讨论 $g$ 如何依赖于 $\rho$？$g$ 如何依赖于 $r_{F}$？给出解释。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 如果不能交易，那么参与者只能消费自己的初始禀赋，即
+    \[
+        c_{0}=100,\quad c_{1}=1,\quad U^{a}=\log(100)+\rho\log(1)=\log(100)
+    \]
+    \item 参与者的预算集是 $\{C\in\mathrm{R}_{+}^{2}:c_{0}=100-S,\,c_{1}=1+S(1+r_{F}),\,S\in\mathrm{R}\}$，如果以当前消费为单位，他的总财富是 $w=100+\dfrac{1}{1+r_{F}}$。参与者的优化问题就是
+    \[
+        \max_{S}\ \log(100-S)+\rho\log\bigl(1+S(1+r_{F})\bigr)
+    \]
+    我们求得最优储蓄
+    \[
+        S=\frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}
+    \]
+    最优消费为
+    \[
+        c_{0}=\frac{100(1+r_{F})+1}{(1+\rho)(1+r_{F})}=\frac{1}{1+\rho}w,\qquad
+        c_{1}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{(1+\rho)(1+r_{F})}=\frac{\rho(1+r_{F})}{1+\rho}w
+    \]
+    因而相应的效用为
+    \[
+        U^{b}=\log\Bigl(\frac{w}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}w\Bigr)
+    \]
+    我们可以看到，$c_{0}$（$c_{1}$）随着 $r_{F}$，$\rho$ 的上升而下降（上升），当 $r_{F}$ 上升时，储蓄的收益率增加，因而参与者会减少当前的消费以增加储蓄，同时也就增加了 1 期消费了；当 $\rho$ 上升时，1 期消费带来效用的权重增加，因此参与者会减少 0 期消费以增加 1 期消费。
+    \item 如果选择 $S=0$，那么我们就得到了 $U^{a}$，而我们选择最优的 $S$ 以最大化效用函数而得到的是 $U^{b}$，因此，$U^{b}\ge U^{a}$；
+    \item 由
+    \[
+        U^{b}(w-g)=\log\Bigl(\frac{w-g}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}(w-g)\Bigr)
+    \]
+    我们可以得到
+    \[
+        g=w-\rho^{-\frac{\rho}{1+\rho}}(1+r_{F})^{-\frac{\rho}{1+\rho}}100^{\frac{1}{1+\rho}}(1+\rho)
+    \]
+    $g$ 随着 $\rho$、$r_{F}$ 的增加而增加。$g$ 表示的是参与者能够在证券市场上交易而获得的益处，参与者是为了在当前消费和未来消费之间进行消费转移而进行交易的，如果他进行消费转移的动力越大，那么他从交易中获得益处越大，而 $\rho$、$r_{F}$ 增加时，参与者都希望增加未来消费，他进行消费转移的动力也增大，因而 $g$ 增加。
+\end{enumerate}
+\end{solution}
