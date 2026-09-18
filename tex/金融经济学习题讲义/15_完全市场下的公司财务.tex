@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 80–86（印刷页 79–85）
 
-\chapter{完全市场下的公司财务}
+\zhchapter{完全市场下的公司财务}
 
 \begin{problem}
 \problemno{15.1*} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi_{a}$ 和 $\pi_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
@@ -40,8 +40,8 @@
             \pi_{a}\frac{\lambda_{a}I^{\alpha-1}\alpha-(1+r_{F})}{\lambda_{a}I^{\alpha}-(c_{0}+I)(1+r_{F})}+\pi_{b}\frac{\lambda_{b}I^{\alpha-1}\alpha-(1+r_{F})}{\lambda_{b}I^{\alpha}-(c_{0}+I)(1+r_{F})}&=0
         \end{aligned}
     \]
-    由此可以求得最优的消费和投资选择 $c_{0}^{*}$，$I^{*}$，另外参与者须在 0 期卖空 $(c_{0}^{*}+I^{*})$ 单位的无风险债券；
-    \item $I^{*}$ 随着 $r_{F}$ 的增加而减少。因为 $r_{F}$ 增加，生产成本增加，因而投资减少；
+    第一式是消费 Euler：$1/c_{0}=(1+r_{F})E[1/\tilde{c}_{1}]$。第二式说：用 1 期边际效用加权后，边际产出 $\alpha\lambda_{\omega}I^{\alpha-1}$ 的期望等于 $1+r_{F}$。两式联立决定最优 $c_{0}^{*}$、$I^{*}$（一般无更简的显式解）。另外参与者须在 0 期卖空 $(c_{0}^{*}+I^{*})$ 单位的无风险债券；
+    \item 由生产一阶条件，边际效用加权的 $E[\mathrm{MPK}]$ 必须等于 $1+r_{F}$。$\alpha<1$ 时 MPK 随 $I$ 递减，故 $r_{F}$ 上升迫使 $I^{*}$ 下降：借款为生产融资的成本提高。
     \item 把求得的 $c_{0}^{*}$，$I^{*}$ 代入 $(*)$ 式即可求得期望效用，记作 $EU_{1}$。
 \end{enumerate}
 \end{solution}
@@ -93,7 +93,15 @@
         \end{aligned}
     \]
     因为当 $I=0$ 时，$w=0$，因而在参与者选择最优生产投入时，$w>0$；
-    \item 求解 (c) 中的优化问题我们可以得到
+    \item     完全市场下生产与消费分离。把财富约束写成 $c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=SI^{\alpha}-I$。拉格朗日函数为
+    \[
+        \mathcal{L}=\log c_{0}+\pi_{a}\log c_{a}+\pi_{b}\log c_{b}+\lambda\bigl(SI^{\alpha}-I-c_{0}-\phi_{a}c_{a}-\phi_{b}c_{b}\bigr)
+    \]
+    对 $I$ 的一阶条件即 NPV 法则
+    \[
+        \alpha SI^{\alpha-1}=1\implies I^{*}=(\alpha S)^{\frac{1}{1-\alpha}}
+    \]
+    消费侧一阶条件：$1/c_{0}=\lambda$，$\pi_{\omega}/c_{\omega}=\lambda\phi_{\omega}$。代入预算并注意 $\pi_{a}+\pi_{b}=1$，得 $c_{0}^{*}=w^{*}/2$，$c_{\omega}^{*}=\pi_{\omega}w^{*}/(2\phi_{\omega})$，其中 $w^{*}=SI^{*\alpha}-I^{*}$。再用 $c_{a}$、$c_{b}$ 反解股票头寸，得到
     \[
         I^{*}=(\alpha S)^{\frac{1}{1-\alpha}},\quad w^{*}=SI^{*\alpha}-I^{*},\quad c_{0}^{*}=\tfrac12 w^{*},\quad\theta_{S}^{*}=\frac{\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}}{\lambda_{a}-\lambda_{b}}w^{*}-I^{*\alpha}
     \]
@@ -129,16 +137,15 @@
     \[
         \begin{aligned}
             \max_{\theta_{B},\,\theta_{S}}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
-            \text{s.t.}\;&c_{a}=\theta_{B}(1+r_{F})+\lambda_{a}\theta_{S}\\
+            \text{s.t.}\;&c_{0}=e_{0}-\theta_{B}-S\theta_{S}\\
+            &c_{a}=\theta_{B}(1+r_{F})+\lambda_{a}\theta_{S}\\
             &c_{b}=\theta_{B}(1+r_{F})+\lambda_{b}\theta_{S}
         \end{aligned}
     \]
-    可以求得
+    完全市场下与练习 15.2 同一拉格朗日，Euler 给出 $c_{0}^{*}=e_{0}/2$，$c_{\omega}^{*}=\pi_{\omega}e_{0}/(2\phi_{\omega})$。由 1 期支付反解头寸：
     \[
-        \begin{aligned}
-            \theta_{B}^{*}&=\frac{\pi_{a}}{2\phi_{a}}\frac{\lambda_{a}}{\lambda_{a}-\lambda_{b}}\Bigl(\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}\Bigr)e_{0}\\
-            \theta_{S}^{*}&=\frac{1}{\lambda_{a}-\lambda_{b}}\Bigl(\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}\Bigr)e_{0}
-        \end{aligned}
+        \theta_{S}^{*}=\frac{c_{a}^{*}-c_{b}^{*}}{\lambda_{a}-\lambda_{b}}=\frac{1}{\lambda_{a}-\lambda_{b}}\Bigl(\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}\Bigr)e_{0},\qquad
+        \theta_{B}^{*}=\frac{c_{a}^{*}-\lambda_{a}\theta_{S}^{*}}{1+r_{F}}
     \]
     \item 市场出清条件是
     \[
@@ -189,7 +196,11 @@
     \[
         \max_{I}\ \log(e_{0}-I)+\pi_{a}\log(\lambda_{a}I^{\alpha})+\pi_{b}\log(\lambda_{b}I^{\alpha})
     \]
-    可以求得最优的生产投入为 $I^{*}=\frac{\alpha e_{0}}{1+\alpha}$，因而最优的 0 期消费为 $c_{0}^{*}=\frac{e_{0}}{1+\alpha}$；
+    目标函数等于 $\log(e_{0}-I)+\alpha\log I+$ 常数。一阶条件
+    \[
+        -\frac{1}{e_{0}-I}+\frac{\alpha}{I}=0
+    \]
+    即 $I=\alpha(e_{0}-I)$，故 $I^{*}=\dfrac{\alpha e_{0}}{1+\alpha}$，$c_{0}^{*}=\dfrac{e_{0}}{1+\alpha}$。1 期总消费为 $C_{\omega}^{*}=\lambda_{\omega}(I^{*})^{\alpha}$；
     \item 状态价格为
     \[
         \begin{aligned}

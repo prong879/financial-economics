@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 54–61（印刷页 53–60）
 
-\chapter{不完全市场中的资源配置和资产定价}
+\zhchapter{不完全市场中的资源配置和资产定价}
 
 \begin{problem}
 \problemno{11.1*} 经济有两期 $t=0,1$。有两个参与者，1 和 2，他们都有定义于消费路径上的对数效用函数 $c=(c_{0},c_{1})$：$u(c)=\log c_{0}+\log c_{1}$。在 $t=1$ 期有三个等概率的可能状态，$\omega_{1}$，$\omega_{2}$ 以及 $\omega_{3}$。在 $t=0$ 期的总禀赋是 1 而 $t=1$ 期的总禀赋是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。有两只交易证券，一只是无风险债券，在 $t=1$ 期的所有状态下都支付 1 单位的消费品。另外一只是股票，它的 $t=1$ 期支付和总禀赋完全一样，即它的支付向量是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。
@@ -103,7 +103,11 @@
         &\quad\text{s.t.}\quad \tilde{w}_{k}=(w_{k}-P_{1}\theta_{k,1}-P_{2}\theta_{k,2})(1+r_{F})+\tilde{r}_{1}\theta_{k,1}+\tilde{r}_{2}\theta_{k,2}
     \end{aligned}
 \]
-其中 $P_{1}$，$P_{2}$ 分别是企业 1、2 的价格。由于资产的支付是联合正态的，因而 $\tilde{w}_{k}$ 也是正态的，可以求得
+其中 $P_{1}$，$P_{2}$ 分别是企业 1、2 的价格。支付联合正态则 $\tilde{w}_{k}$ 正态，与练习 9.7 相同：最大化 $E[\tilde{w}_{k}]-\dfrac{a_{k}}{2}\operatorname{Var}(\tilde{w}_{k})$。记超额支付 $\mu_{i}=\bar{r}_{i}-P_{i}(1+r_{F})$，$\mu=\begin{bmatrix}\mu_{1}\\\mu_{2}\end{bmatrix}$，协方差阵 $\Sigma=\begin{bmatrix}\sigma_{1}^{2}&\rho\sigma_{1}\sigma_{2}\\\rho\sigma_{1}\sigma_{2}&\sigma_{2}^{2}\end{bmatrix}$。一阶条件 $\mu=a_{k}\Sigma\theta_{k}$ 给出 $\theta_{k}=\dfrac{1}{a_{k}}\Sigma^{-1}\mu$。展开
+\[
+    \Sigma^{-1}=\frac{1}{1-\rho^{2}}\begin{bmatrix}1/\sigma_{1}^{2}&-\rho/(\sigma_{1}\sigma_{2})\\-\rho/(\sigma_{1}\sigma_{2})&1/\sigma_{2}^{2}\end{bmatrix}
+\]
+即
 \[
     \begin{aligned}
         \theta_{k,1}&=\frac{1}{a_{k}(1-\rho^{2})}\Bigl[\frac{\bar{r}_{1}-P_{1}(1+r_{F})}{\sigma_{1}^{2}}-\frac{\rho}{\sigma_{1}\sigma_{2}}\bigl(\bar{r}_{2}-P_{2}(1+r_{F})\bigr)\Bigr]\\

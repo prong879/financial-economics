@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 2–6（印刷页 1–5）
 
-\chapter{基本框架}
+\zhchapter{基本框架}
 
 \begin{problem}
 \problemno{2.1} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
@@ -21,13 +21,7 @@
 \begin{problem}
 \problemno{2.2*} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
 \begin{center}
-\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.15,-1) -- (-0.15,1);
-    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
-    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
-    \node[anchor=west] at (1.0,0.55) {$a$};
-    \node[anchor=west] at (1.0,-0.55) {$b$};
-\end{tikzpicture}
+\WJEventTree{a,b}
 \end{center}
 考虑定义在消费计划 $c=\begin{bmatrix}c_{0} \\ c_{1a} \\ c_{1b}\end{bmatrix}$ 上的效用函数：
 \[
@@ -86,15 +80,7 @@
 \begin{problem}
 \problemno{2.4} 考虑一个经济，它在 1 期有三个可能状态：$a$，$b$ 和 $c$：
 \begin{center}
-\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
-    \draw[thick] (0,-1.6) -- (0,1.6);
-    \draw[thick] (0,1.1) -- (0.85,1.1);
-    \draw[thick] (0,0) -- (0.85,0);
-    \draw[thick] (0,-1.1) -- (0.85,-1.1);
-    \node[anchor=west] at (1.0,1.1) {$a$};
-    \node[anchor=west] at (1.0,0) {$b$};
-    \node[anchor=west] at (1.0,-1.1) {$c$};
-\end{tikzpicture}
+\WJEventTree{a,b,c}
 \end{center}
 证券市场包括证券 1 和 2，它们具有如下的支付向量：$X_{1}=\begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix}$ 以及 $X_{2}=\begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix}$。它们的价格分别为 $S_{1}$ 和 $S_{2}$。
 \begin{enumerate}[label=(\alph*)]
@@ -169,30 +155,50 @@
     \[
         c_{0}=100,\quad c_{1}=1,\quad U^{a}=\log(100)+\rho\log(1)=\log(100)
     \]
-    \item 参与者的预算集是 $\{C\in\mathrm{R}_{+}^{2}:c_{0}=100-S,\,c_{1}=1+S(1+r_{F}),\,S\in\mathrm{R}\}$，如果以当前消费为单位，他的总财富是 $w=100+\dfrac{1}{1+r_{F}}$。参与者的优化问题就是
+    \item 参与者的预算集是 $\{C\in\mathrm{R}_{+}^{2}:c_{0}=100-S,\,c_{1}=1+S(1+r_{F}),\,S\in\mathrm{R}\}$，如果以当前消费为单位，他的总财富是 $w=100+\dfrac{1}{1+r_{F}}$。    参与者的优化问题就是
     \[
         \max_{S}\ \log(100-S)+\rho\log\bigl(1+S(1+r_{F})\bigr)
     \]
-    我们求得最优储蓄
+    对 $S$ 求导得到一阶条件（Euler 方程）
+    \[
+        \frac{1}{100-S}=\rho\frac{1+r_{F}}{1+S(1+r_{F})}
+    \]
+    即 $\rho(1+r_{F})(100-S)=1+S(1+r_{F})$。整理得
+    \[
+        \bigl[100\rho(1+r_{F})-1\bigr]=S(1+\rho)(1+r_{F})
+    \]
+    因而最优储蓄
     \[
         S=\frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}
     \]
-    最优消费为
+    代回预算约束，并用 $w=100+\dfrac{1}{1+r_{F}}$，得到最优消费
     \[
         c_{0}=\frac{100(1+r_{F})+1}{(1+\rho)(1+r_{F})}=\frac{1}{1+\rho}w,\qquad
-        c_{1}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{(1+\rho)(1+r_{F})}=\frac{\rho(1+r_{F})}{1+\rho}w
+        c_{1}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{1+\rho}=\frac{\rho(1+r_{F})}{1+\rho}w
     \]
-    因而相应的效用为
+    这正是对数效用下的支出份额：现期花掉财富的 $\dfrac{1}{1+\rho}$，余下按利率滚到 1 期。相应的效用为
     \[
         U^{b}=\log\Bigl(\frac{w}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}w\Bigr)
     \]
     我们可以看到，$c_{0}$（$c_{1}$）随着 $r_{F}$，$\rho$ 的上升而下降（上升），当 $r_{F}$ 上升时，储蓄的收益率增加，因而参与者会减少当前的消费以增加储蓄，同时也就增加了 1 期消费了；当 $\rho$ 上升时，1 期消费带来效用的权重增加，因此参与者会减少 0 期消费以增加 1 期消费。
     \item 如果选择 $S=0$，那么我们就得到了 $U^{a}$，而我们选择最优的 $S$ 以最大化效用函数而得到的是 $U^{b}$，因此，$U^{b}\ge U^{a}$；
-    \item 由
+    \item 由定义 $U^{b}(w-g)=U^{a}=\log 100$，即
     \[
-        U^{b}(w-g)=\log\Bigl(\frac{w-g}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}(w-g)\Bigr)
+        \log\Bigl(\frac{w-g}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}(w-g)\Bigr)=\log 100
     \]
-    我们可以得到
+    左边可写成
+    \[
+        (1+\rho)\log(w-g)+\rho\log\bigl(\rho(1+r_{F})\bigr)-(1+\rho)\log(1+\rho)
+    \]
+    两边取指数后整理
+    \[
+        (w-g)^{1+\rho}\frac{\bigl[\rho(1+r_{F})\bigr]^{\rho}}{(1+\rho)^{1+\rho}}=100
+    \]
+    解出
+    \[
+        w-g=\rho^{-\frac{\rho}{1+\rho}}(1+r_{F})^{-\frac{\rho}{1+\rho}}100^{\frac{1}{1+\rho}}(1+\rho)
+    \]
+    因此
     \[
         g=w-\rho^{-\frac{\rho}{1+\rho}}(1+r_{F})^{-\frac{\rho}{1+\rho}}100^{\frac{1}{1+\rho}}(1+\rho)
     \]

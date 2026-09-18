@@ -166,13 +166,18 @@
     }
 }{}
 
-% 按 chapter 计数器自动生成“第 X 讲”。
-% exam-zh 在 \chapter 完成时推进 chapter，因此标题使用当前值加一。
+% 按 chapter 计数器自动生成“第 X 讲 / 第 X 章”。
+% exam-zh 关闭了 ctex 章编号，并在 \chapter 完成后推进计数器，因此标题使用当前值加一。
 \ExplSyntaxOn
 \NewDocumentCommand{\lecture}{m}
   {
     \exp_args:Nx \chapter
       {第\zhnumber{\int_eval:n {\value{chapter} + 1}}讲：\exp_not:n {#1}}
+  }
+\NewDocumentCommand{\zhchapter}{m}
+  {
+    \exp_args:Nx \chapter
+      {第\zhnumber{\int_eval:n {\value{chapter} + 1}}章\exp_not:n {~#1}}
   }
 \ExplSyntaxOff
 

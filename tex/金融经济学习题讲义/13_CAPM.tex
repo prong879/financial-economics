@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 68–75（印刷页 67–74）
 
-\chapter{资本资产定价模型（CAPM）}
+\zhchapter{资本资产定价模型（CAPM）}
 
 \begin{problem}
 \problemno{13.1*} 如下的经济有两个时期，0 和 1：
@@ -31,12 +31,23 @@
             \text{s.t.}\;&\tilde{w}_{k}=w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S-\theta_{k}^{\mathrm{T}}S+\theta_{k}^{\mathrm{T}}\tilde{v}+y_{k}(\iota^{\mathrm{T}}\tilde{v}+\tilde{\varepsilon})
         \end{aligned}
     \]
-    求得
+    CARA 且 $\tilde{v}$、$\tilde{\varepsilon}$ 正态，最大化 $E[-e^{-\tilde{w}_{k}}]$ 等价于最大化 $E[\tilde{w}_{k}]-\tfrac12\operatorname{Var}(\tilde{w}_{k})$。记常数项 $A_{k}=w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S$，则
+    \[
+        \begin{aligned}
+            E[\tilde{w}_{k}]&=A_{k}+\theta_{k}^{\mathrm{T}}(\bar{v}-S)+y_{k}\iota^{\mathrm{T}}\bar{v}\\
+            \operatorname{Var}(\tilde{w}_{k})&=(\theta_{k}+y_{k}\iota)^{\mathrm{T}}\Sigma(\theta_{k}+y_{k}\iota)+y_{k}^{2}\sigma^{2}
+        \end{aligned}
+    \]
+    对 $\theta_{k}$ 求导：$-(\bar{v}-S)+\Sigma(\theta_{k}+y_{k}\iota)=0$，解得
     \[
         \theta_{k}^{*}=\Sigma^{-1}(\bar{v}-S)-y_{k}\iota
     \]
 
-    \item 市场出清条件是 $\sum\theta_{k}^{*}=\iota$，从而求得股价为
+    \item 市场出清 $\sum_{k}\theta_{k}^{*}=\iota$ 给出
+    \[
+        K\Sigma^{-1}(\bar{v}-S)-\Bigl(\sum_{k}y_{k}\Bigr)\iota=\iota
+    \]
+    即 $\bar{v}-S=\dfrac{1}{K}\bigl(\sum_{k}y_{k}+1\bigr)\Sigma\iota$，因而股价为
     \[
         S=\bar{v}-\frac{1}{K}\Bigl(\sum y_{k}+1\Bigr)\Sigma\iota
     \]

@@ -27,6 +27,47 @@
 
 \newcommand{\problemno}[1]{\textbf{#1}\quad}
 
+% 王江教材式事件树：0 期节点水平接到分叉，竖线只连接各分枝、不出头。
+\makeatletter
+\newif\ifWJ@tree@stem
+\pgfkeys{
+    /WJ tree/.is family,
+    /WJ tree/left/.initial={},
+    /WJ tree/stem/.code=\WJ@tree@stemtrue,
+}
+\NewDocumentCommand{\WJEventTree}{O{} m}{%
+    \begingroup
+    \WJ@tree@stemfalse
+    \pgfqkeys{/WJ tree}{#1}%
+    \begin{tikzpicture}[x=1em,y=1em,baseline=(current bounding box.center)]
+        \def\WJ@n{0}%
+        \foreach \WJ@lab [count=\WJ@i] in {#2} {\xdef\WJ@n{\WJ@i}}%
+        \pgfmathsetmacro{\WJ@dy}{1.35}%
+        \pgfmathsetmacro{\WJ@ymax}{\WJ@dy*(\WJ@n-1)/2}%
+        \pgfmathsetmacro{\WJ@tk}{0.7}%
+        \draw[line width=0.4pt,line cap=butt,line join=miter]
+            (0,\WJ@ymax) -- (0,-\WJ@ymax);
+        \foreach \WJ@lab [count=\WJ@i] in {#2} {%
+            \pgfmathsetmacro{\WJ@y}{\WJ@ymax-\WJ@dy*(\WJ@i-1)}%
+            \draw[line width=0.4pt,line cap=butt,line join=miter]
+                (0,\WJ@y) -- (\WJ@tk,\WJ@y);
+            \node[anchor=base west,inner sep=0.28em,yshift=0.05em]
+                at (\WJ@tk,\WJ@y) {$\WJ@lab$};
+        }%
+        \pgfkeysgetvalue{/WJ tree/left}\WJ@left
+        \ifx\WJ@left\empty\else
+            \WJ@tree@stemtrue
+            \node[anchor=east,inner sep=0.22em] at (-0.85,0) {\WJ@left};
+        \fi
+        \ifWJ@tree@stem
+            \draw[line width=0.4pt,line cap=butt]
+                (-0.85,0) -- (0,0);
+        \fi
+    \end{tikzpicture}%
+    \endgroup
+}
+\makeatother
+
 \begin{document}
 
 \FourThreeOneFrontMatter

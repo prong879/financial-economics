@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 44–53（印刷页 43–52）
 
-\chapter{完全市场中的资源配置与资产价格}
+\zhchapter{完全市场中的资源配置与资产价格}
 
 \begin{problem}
 \problemno{10.1*} 考虑一个两期（$t=0,\,1$）、两个状态（$\omega=a,\,b$），存在 $K$ 个参与者的经济。状态 $a$ 发生的概率为 $\pi_{a}$ 而状态 $b$ 发生的概率为 $\pi_{b}$。所有参与者都是不满足的且严格风险厌恶的。他们期望效用有如下形式：
@@ -104,22 +104,10 @@
 \begin{center}
 \begin{tabular}{@{}c@{\hspace{2.5em}}c@{}}
 证券 1：
-\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.15,-1) -- (-0.15,1);
-    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
-    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
-    \node[anchor=west] at (1.0,0.55) {$1$};
-    \node[anchor=west] at (1.0,-0.55) {$1$};
-\end{tikzpicture}
+\WJEventTree{1,1}
 &
 证券 2：
-\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.15,-1) -- (-0.15,1);
-    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
-    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
-    \node[anchor=west] at (1.0,0.55) {$uC$};
-    \node[anchor=west] at (1.0,-0.55) {$dC$};
-\end{tikzpicture}
+\WJEventTree{uC,dC}
 \end{tabular}
 \end{center}
 其中 $C>0$ 且 $0<d<u$。因此，证券 1 是无风险债券而证券 2 是风险证券，我们可以称它为股票。经济中有参与者 $k=1,\dots,K$。参与者 $k$ 的禀赋是 $s_{k}C$ 单位的当期消费、0 单位的证券 1 和 $s_{k}$ 单位的证券 2，其中 $s_{k}>0$ 且 $\sum_{k}s_{k}=1$。所有参与者具有如下的期望效用函数：
@@ -144,7 +132,21 @@
             &\quad\text{s.t.}\quad c_{k,0}+\phi_{a}c_{k,1a}+\phi_{b}c_{k,1b}=S_{k}C(1+\phi_{a}u+\phi_{b}d)
         \end{aligned}
     \]
-    可以求得
+    记财富 $w_{k}=S_{k}C(1+\phi_{a}u+\phi_{b}d)$。拉格朗日函数为
+    \[
+        \mathcal{L}=\log c_{k,0}+\rho\bigl[\pi\log c_{k,1a}+(1-\pi)\log c_{k,1b}\bigr]+\lambda\bigl(w_{k}-c_{k,0}-\phi_{a}c_{k,1a}-\phi_{b}c_{k,1b}\bigr)
+    \]
+    一阶条件（Euler 方程）为
+    \[
+        \frac{1}{c_{k,0}}=\lambda,\qquad
+        \frac{\rho\pi}{c_{k,1a}}=\lambda\phi_{a},\qquad
+        \frac{\rho(1-\pi)}{c_{k,1b}}=\lambda\phi_{b}
+    \]
+    因而 $c_{k,1a}=\rho\pi/(\lambda\phi_{a})$，$c_{k,1b}=\rho(1-\pi)/(\lambda\phi_{b})$。代入预算
+    \[
+        \frac{1}{\lambda}+\frac{\rho\pi}{\lambda}+\frac{\rho(1-\pi)}{\lambda}=w_{k}\implies c_{k,0}=\frac{w_{k}}{1+\rho}
+    \]
+    得到
     \[
         \begin{aligned}
             c_{k,0}&=\frac{S_{k}C(1+\phi_{a}u+\phi_{b}d)}{1+\rho}\\
@@ -239,22 +241,10 @@
 \begin{center}
 \begin{tabular}{@{}c@{\hspace{2.5em}}c@{}}
 证券 1：
-\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.15,-1) -- (-0.15,1);
-    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
-    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
-    \node[anchor=west] at (1.0,0.55) {$1$};
-    \node[anchor=west] at (1.0,-0.55) {$1$};
-\end{tikzpicture}
+\WJEventTree{1,1}
 &
 证券 2：
-\begin{tikzpicture}[x=1.15em,y=1.15em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.15,-1) -- (-0.15,1);
-    \draw[thick] (-0.15,0.55) -- (0.85,0.55);
-    \draw[thick] (-0.15,-0.55) -- (0.85,-0.55);
-    \node[anchor=west] at (1.0,0.55) {$C_{1a}$};
-    \node[anchor=west] at (1.0,-0.55) {$C_{1b}$};
-\end{tikzpicture}
+\WJEventTree{C_{1a},C_{1b}}
 \end{tabular}
 \end{center}
 其中 $C>0$ 且 $0<d<u$。因此，证券 1 是无风险债券而证券 2 是风险证券，我们可以称它为股票。经济中有参与者 $k=1,\dots,K$。参与者 $k$ 的禀赋是 $s_{k}C_{0}$ 单位的当期消费、0 单位的证券 1 和 $s_{k}$ 单位的证券 2，其中 $s_{k}>0$ 且 $\sum_{k}s_{k}=1$。所有参与者具有如下的期望效用函数：
@@ -278,7 +268,17 @@
             &\quad\text{s.t.}\quad c_{k,0}+\phi_{a}c_{k,1a}+\phi_{b}c_{k,1b}=s_{k}C_{0}+\phi_{a}s_{k}C_{1a}+\phi_{b}s_{k}C_{1b}
         \end{aligned}
     \]
-    令 $W=C_{0}+\phi_{a}C_{1a}+\phi_{b}C_{1b}$ 为经济中的总财富。求解优化问题可得参与者的消费选择为
+    令 $w_{k}=s_{k}W$、$W=C_{0}+\phi_{a}C_{1a}+\phi_{b}C_{1b}$ 为经济中的总财富。拉格朗日函数为
+    \[
+        \mathcal{L}=-e^{-\alpha c_{k,0}}-\rho\bigl[\pi e^{-\alpha c_{k,1a}}+(1-\pi)e^{-\alpha c_{k,1b}}\bigr]+\lambda\bigl(w_{k}-c_{k,0}-\phi_{a}c_{k,1a}-\phi_{b}c_{k,1b}\bigr)
+    \]
+    一阶条件
+    \[
+        \alpha e^{-\alpha c_{k,0}}=\lambda,\qquad
+        \rho\pi\alpha e^{-\alpha c_{k,1a}}=\lambda\phi_{a},\qquad
+        \rho(1-\pi)\alpha e^{-\alpha c_{k,1b}}=\lambda\phi_{b}
+    \]
+    给出 $c_{k,0}=\dfrac{1}{\alpha}\log(\alpha/\lambda)$，$c_{k,1a}=\dfrac{1}{\alpha}\log(\rho\pi\alpha/(\lambda\phi_{a}))$，$c_{k,1b}=\dfrac{1}{\alpha}\log(\rho(1-\pi)\alpha/(\lambda\phi_{b}))$。代入预算并记 $\beta=\log\alpha+\phi_{a}\log\dfrac{\rho\pi\alpha}{\phi_{a}}+\phi_{b}\log\dfrac{\rho(1-\pi)\alpha}{\phi_{b}}$，得参与者的消费选择为
     \[
         \begin{aligned}
             c_{k,0}&=\frac{1}{\alpha}\log\alpha-\frac{\beta-\alpha s_{k}W}{\alpha(1+\phi_{a}+\phi_{b})}\\
@@ -286,7 +286,6 @@
             c_{k,1b}&=\frac{1}{\alpha}\log\frac{\rho(1-\pi)\alpha}{\phi_{b}}-\frac{\beta-\alpha s_{k}W}{\alpha(1+\phi_{a}+\phi_{b})}
         \end{aligned}
     \]
-    其中，$\beta=\log\alpha+\phi_{a}\log\dfrac{\rho\pi\alpha}{\phi_{a}}+\phi_{b}\log\dfrac{\rho(1-\pi)\alpha}{\phi_{b}}$；
     \item 市场出清条件是
     \[
         \begin{aligned}

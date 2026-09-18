@@ -1,13 +1,17 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 32–36（印刷页 31–35）
 
-\chapter{组合选择（一）}
+\zhchapter{组合选择（一）}
 
 \begin{problem}
 \problemno{8.1} 假设有 $N$ 项资产，收益率为 $\tilde{r}_{i}$，$i=1,\cdots,N$，它们是独立同分布的。对于一个具有不满足性和凹性效用函数的投资者，计算他的最优投资组合。
 \end{problem}
 \begin{solution}
-最优组合是所有风险资产的等权重组合。
+设组合权重 $\theta=(\theta_{1},\ldots,\theta_{N})$，$\sum_{i}\theta_{i}=1$，期末财富 $\tilde{w}=w\sum_{i}\theta_{i}\tilde{r}_{i}$。最大化 $E\bigl[u(\tilde{w})\bigr]$ 的一阶条件是：对任意 $j,k$，
+\[
+    E\bigl[u'(\tilde{w})(\tilde{r}_{j}-\tilde{r}_{k})\bigr]=0
+\]
+由于 $\{\tilde{r}_{i}\}$ 独立同分布，目标函数对 $\theta$ 对称；严格凹效用下最优解唯一，故必有 $\theta_{i}=1/N$。即最优组合是所有风险资产的等权重组合。
 \end{solution}
 
 \begin{problem}
@@ -28,9 +32,13 @@
     \]
     参与者的优化问题是
     \[
-        \max_{x}E\Bigl[w\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)-\tfrac12 aw^{2}\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)^{2}\Bigr]
+        \max_{x}E\Bigl[\tilde{w}-\tfrac12 a\tilde{w}^{2}\Bigr]
     \]
-    解得
+    记 $\mu=\bar{r}-r_{F}$。则 $E[\tilde{w}]=w(1+r_{F}+x\mu)$，$E[\tilde{w}^{2}]=w^{2}\bigl[(1+r_{F}+x\mu)^{2}+x^{2}\sigma^{2}\bigr]$。对 $x$ 求导，一阶条件为
+    \[
+        w\mu-aw^{2}\bigl[(1+r_{F}+x\mu)\mu+x\sigma^{2}\bigr]=0
+    \]
+    即 $\mu\bigl[1-aw(1+r_{F})\bigr]=aw\bigl(\mu^{2}+\sigma^{2}\bigr)x$，解得
     \[
         x=\frac{(\bar{r}-r_{F})\bigl(1-aw(1+r_{F})\bigr)}{aw\bigl(\sigma^{2}+(\bar{r}-r_{F})^{2}\bigr)}
     \]
@@ -58,14 +66,23 @@
     \]
     参与者的优化问题是
     \[
-        \max_{x}E\bigl[-e^{-aw(1+r_{F}+x(\tilde{r}-r_{F}))}\bigr]
+        \max_{x}E\bigl[-e^{-a\tilde{w}}\bigr]
     \]
-    解得
+    因 $\tilde{r}$ 正态，$\tilde{w}$ 亦正态。对正态随机变量有
     \[
-        x=\frac{(\bar{r}-r_{F})\bigl(1-aw(1+r_{F})\bigr)}{aw\bigl(\sigma^{2}+(\bar{r}-r_{F})^{2}\bigr)}
+        E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
     \]
+    其中 $E[\tilde{w}]=w\bigl(1+r_{F}+x(\bar{r}-r_{F})\bigr)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{2}\sigma^{2}$。最大化上式等价于最大化确定性等价 $E[\tilde{w}]-\dfrac{a}{2}\operatorname{Var}(\tilde{w})$。对 $x$ 的一阶条件为
+    \[
+        w(\bar{r}-r_{F})-a\,w^{2}x\sigma^{2}=0
+    \]
+    因而最优权重（CARA 下风险资产的金额 $wx$ 与财富无关）为
+    \[
+        x=\frac{\bar{r}-r_{F}}{aw\sigma^{2}}
+    \]
+    （初稿把练习 8.2 二次效用的闭式抄到了本题；CARA$+$正态应对均值--方差确定性等价求导，而不是 $E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。）
 
-    \item $x$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 的增加而减小。股票的期望收益率增加使得股票的需求增加，而无风险收益率增加使得债券的需求增加；$\sigma^{2}$ 增大，股票的风险变大，对股票的需求变小；最后，$a$ 增大表明参与者更加厌恶风险，因而对股票的需求减小。
+    \item $x$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 以及财富 $w$ 的增加而减小。超额收益上升提高股票需求；$\sigma^{2}$ 或绝对风险厌恶 $a$ 增大则降低股票需求。与二次效用不同：CARA 下风险资产金额 $wx=(\bar{r}-r_{F})/(a\sigma^{2})$ 不随 $w$ 变化，故权重 $x$ 随财富下降。
 \end{enumerate}
 \end{solution}
 

@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 20–25（印刷页 19–24）
 
-\chapter{期权：一个套利定价的例子}
+\zhchapter{期权：一个套利定价的例子}
 
 \begin{problem}
 \problemno{5.1} 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi$ 和 $1-\pi$。存在一只收益率为 $r_{F}$ 的无风险证券。还存在一只风险证券，它的现时价格为 $S$，在 1 期支付红利 $\delta S$。它在 1 期的除权价（即红利后的价格）在状态 $a$ 下是 $(1+r_{F}+u)S$、在状态 $b$ 下是 $(1+r_{F}-d)S$。
@@ -250,51 +250,15 @@
 \begin{problem}
 \problemno{5.10} 经济在 1 期有 3 个状态。状态一指数证券在三个状态下的支付分别为 1，2，3：
 \begin{center}
-\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.85,0) -- (0,0);
-    \draw[thick] (0,-1.6) -- (0,1.6);
-    \draw[thick] (0,1.1) -- (0.85,1.1);
-    \draw[thick] (0,0) -- (0.85,0);
-    \draw[thick] (0,-1.1) -- (0.85,-1.1);
-    \node[anchor=west] at (1.0,1.1) {$1$};
-    \node[anchor=west] at (1.0,0) {$2$};
-    \node[anchor=west] at (1.0,-1.1) {$3$};
-\end{tikzpicture}
+\WJEventTree[stem]{1,2,3}
 \end{center}
 并有两只以指数证券为标的资产、执行价格分别为 1 和 2 的看涨期权。用指数证券和上述期权复制如下支付：
 \begin{center}
-\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.85,0) -- (0,0);
-    \draw[thick] (0,-1.6) -- (0,1.6);
-    \draw[thick] (0,1.1) -- (0.85,1.1);
-    \draw[thick] (0,0) -- (0.85,0);
-    \draw[thick] (0,-1.1) -- (0.85,-1.1);
-    \node[anchor=west] at (1.0,1.1) {$1$};
-    \node[anchor=west] at (1.0,0) {$1$};
-    \node[anchor=west] at (1.0,-1.1) {$1$};
-\end{tikzpicture}
+\WJEventTree[stem]{1,1,1}
 \qquad
-\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.85,0) -- (0,0);
-    \draw[thick] (0,-1.6) -- (0,1.6);
-    \draw[thick] (0,1.1) -- (0.85,1.1);
-    \draw[thick] (0,0) -- (0.85,0);
-    \draw[thick] (0,-1.1) -- (0.85,-1.1);
-    \node[anchor=west] at (1.0,1.1) {$3$};
-    \node[anchor=west] at (1.0,0) {$2$};
-    \node[anchor=west] at (1.0,-1.1) {$1$};
-\end{tikzpicture}
+\WJEventTree[stem]{3,2,1}
 \qquad
-\begin{tikzpicture}[x=1.15em,y=1.2em,baseline=(current bounding box.center)]
-    \draw[thick] (-0.85,0) -- (0,0);
-    \draw[thick] (0,-1.6) -- (0,1.6);
-    \draw[thick] (0,1.1) -- (0.85,1.1);
-    \draw[thick] (0,0) -- (0.85,0);
-    \draw[thick] (0,-1.1) -- (0.85,-1.1);
-    \node[anchor=west] at (1.0,1.1) {$1$};
-    \node[anchor=west] at (1.0,0) {$0$};
-    \node[anchor=west] at (1.0,-1.1) {$0$};
-\end{tikzpicture}
+\WJEventTree[stem]{1,0,0}
 \end{center}
 \end{problem}
 \begin{solution}

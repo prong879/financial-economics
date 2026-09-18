@@ -1,7 +1,7 @@
 % !TeX root = ../../金融经济学习题讲义.tex
 % 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 38–42（印刷页 37–41）
 
-\chapter{组合选择（二）}
+\zhchapter{组合选择（二）}
 
 \begin{problem}
 \problemno{9.1} 假设有四个等概率的可能状态。状态空间是 $\Omega=\{\omega_{1},\cdots,\omega_{4}\}$。考虑风险资产 $A$ 和 $B$，它们的收益率如下：
@@ -116,7 +116,7 @@
 \problemno{9.5} 假设在市场上有 $N$ 只证券，它们的收益率是独立同分布的。证明单基金分离成立。
 \end{problem}
 \begin{solution}
-对于任意的投资者，所有证券的等权重都是最优的，因而单基金分离成立。
+由练习 8.1：收益率独立同分布时，严格凹效用下最优组合必为等权重。所有投资者持有同一风险基金，故单基金分离成立。
 \end{solution}
 
 \begin{problem}
@@ -128,15 +128,23 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设参与者的持有组合中风险资产的权重为 $x=\begin{bmatrix}x_{1} \\ x_{2} \\ \ldots \\ x_{N}\end{bmatrix}$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \item 令风险资产权重为 $x$，并把期末财富写成与练习 8.2 相同的形式
     \[
-        \max_{x}E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]
+        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr)
     \]
-    可以解得
+    记 $\mu=\bar{r}-r_{F}\iota$。则 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，且
+    \[
+        E[\tilde{w}^{2}]=w^{2}\bigl[(1+r_{F}+x^{\top}\mu)^{2}+x^{\top}\Sigma x\bigr]
+    \]
+    对 $x$ 求导，一阶条件为
+    \[
+        w\mu-aw^{2}\bigl[(1+r_{F}+x^{\top}\mu)\mu+\Sigma x\bigr]=0
+    \]
+    即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得
     \[
         x=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
     \]
-    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。
+    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。风险组合中各资产的相对权重由 $(\mu\mu^{\top}+\Sigma)^{-1}\mu$ 决定，与财富、风险厌恶的水平只差一个共同标量。
 
     \item 因为投资者持有的风险组合的权重之比恒为常数，因而对于所有的投资者来说，风险组合是相同的，只是投资于风险组合的总金额不一样而已；另外，投资者还持有无风险资产，因此两基金分离成立。
 \end{enumerate}
@@ -151,15 +159,23 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设参与者的持有组合中风险资产的权重为 $x=\begin{bmatrix}x_{1} \\ x_{2} \\ \ldots \\ x_{N}\end{bmatrix}$，那么参与者的 1 期财富为 $\tilde{w}=w(1+r_{F})+\sum_{i}x_{i}(\tilde{r}_{i}-r_{F})$，而他的优化问题是
+    \item 仍令风险资产权重为 $x$，
     \[
-        \max_{x}E\bigl[-e^{-a\tilde{w}}\bigr]
+        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr)
     \]
-    可以解得
+    $\tilde{r}$ 联合正态则 $\tilde{w}$ 正态。与练习 8.3 相同，
+    \[
+        E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
+    \]
+    其中 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{\top}\Sigma x$，$\mu=\bar{r}-r_{F}\iota$。对 $x$ 的一阶条件为
+    \[
+        w\mu-aw^{2}\Sigma x=0
+    \]
+    因而
     \[
         x=\frac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)
     \]
-    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。
+    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。相对权重由 $\Sigma^{-1}\mu$ 决定，与 $a$、$w$ 无关。
 
     \item 因为投资者持有的风险组合的权重之比恒为常数，因而对于所有的投资者来说，风险组合是相同的，只是投资于风险组合的总金额不一样而已；另外，投资者还持有无风险资产，因此两基金分离成立。
 \end{enumerate}
@@ -179,9 +195,9 @@
     \[
         \begin{aligned}
             E[u(\tilde{w})]
-            &=-e^{-aE\tilde{w}+\frac12 a^{2}\operatorname{Var}\tilde{w}}\\
-            &=-e^{-aw(1+r_{F})+x^{\top}(\bar{r}-r_{F}\iota)+\frac12 a^{2}w^{2}x^{\top}\Sigma x}\\
-            &=-e^{-aw(1+r_{F})-\frac12(\bar{r}-r_{F}\iota)^{\top}\Sigma^{-1}(\bar{r}-r_{F}\iota)}
+            &=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)\\
+            &=-\exp\Bigl(-aw(1+r_{F})-aw\,x^{\top}(\bar{r}-r_{F}\iota)+\tfrac12 a^{2}w^{2}x^{\top}\Sigma x\Bigr)\\
+            &=-\exp\Bigl(-aw(1+r_{F})-\tfrac12(\bar{r}-r_{F}\iota)^{\top}\Sigma^{-1}(\bar{r}-r_{F}\iota)\Bigr)
         \end{aligned}
     \]
 
