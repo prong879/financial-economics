@@ -3,6 +3,513 @@
 
 \zhchapter{基本框架}
 
+\begin{tcolorbox}[knowledge,title=2.1 经济环境]
+\begin{enumerate}
+
+\item 形式上可以用一棵状态树来表示上面描述的经济环境。用 $\omega$ 标识状态，假设总共有 $\Omega$ 个状态，那么表示所有状态可能性的集合 $\Omega$ 称为\textbf{状态空间}。记状态发生的概率为 $p(\omega)$，所有状态发生的概率为 $P=\{p_{\omega}, \omega\in\Omega\}$。
+
+\item 假设在经济中只有一种不可储存的商品可以用作消费和生产。
+\item 形式上可以用一种状态出来描述上面说的经济环境：
+\begin{center}
+\WJEventTree[left={$\Omega$},stem]{
+    \omega=1 \text{，概率为 }p_1,
+    \omega=2 \text{，概率为 }p_2,
+    \vdots,
+    \omega=\Omega \text{，概率为 }p_{\Omega}
+}
+\end{center}
+\item 未来两种状态（好状态和坏状态），发生概率相等，用产出水平来描述状态：
+\begin{center}
+    \WJEventTree[left={$\Omega$},stem]{
+        \omega=200 \text{，好状态$\omega$=1，概率为 1/2},
+        \omega=50 \text{，坏状态$\omega$=2，概率为 1/2}
+    }
+    \end{center}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[knowledge,title=2.2 经济参与者]
+    把经济参与者描述为：为自己切身利益而行动的个体。一个参与者的经济特征包括：
+    \begin{enumerate}
+        \item 他控制的经济资源（任何有经济价值，可以用于满足经济需求的东西，可以是有形 or 无形的）。参与者的经济资源包括
+        \begin{itemize}
+            \item 所占有的实物商品/资本品
+            \item 信息
+            \item 生产技术
+        \end{itemize}
+        \item 他的经济需求。
+    \end{enumerate}
+
+\tcbline
+
+参与者的经济资源：
+\begin{enumerate}
+    \item 禀赋：即参与者初始占有的资源，是他与生俱来的商品、资本品。给定两个时期，且第二时期有多个状态，那么他的禀赋可表示为：
+    \[
+    e_k=\begin{bmatrix}e_{k,0} \\ e_{k,1}\end{bmatrix}
+    =\begin{bmatrix}e_{k,0} \\ \begin{bmatrix}e_{k,11} \\ e_{k,12}\end{bmatrix}
+    \end{bmatrix}
+    \quad k=1,\cdots,K
+    \]
+
+    在数学上，可以把参与者的禀赋看成是 $1+\Omega$ 维实空间 $\mathrm{R}^{1+\Omega}$ 中的一个元素，且假设参与者的禀赋非负，那么禀赋 $e_k \in \mathrm{R}^{1+\Omega}_{+}$。
+\begin{tcolorbox}[warning,title=向量的“大于”]
+    对于向量 $a=\begin{bmatrix}a_1 \\ a_2 \\ \vdots \\ a_n\end{bmatrix}$，有以下定义：
+    \begin{enumerate}
+        \item $a \ge 0$，即 a 的所有分量都非负，即 $a_i \ge 0, i=1,\cdots,n$。
+        \item $a > 0$，即 a 的所有分量都非负，且至少有一个分量严格大于 0，即 $\exists i \in \{1,\cdots,n\}$ 使得 $a_i > 0$。
+        \item $a \gg 0$，即 a 的所有分量都严格大于零，即 $a_i > 0, i \in \{1,\cdots,n\}$。
+    \end{enumerate}
+\end{tcolorbox}
+    \item 信息：信息具备经济价值。参与者的信息可以分为两种类型：公开信息和私有信息。如果参与者仍然拥有私有信息，信息就是不对称的。信息不对称会导致很多问题，例如道德风险和逆向选择。但在本书中，将假设经济者对于经济，特别是其未来状态发生的可能性，拥有相同的信息。
+    \item 生产技术：指可以把商品转化为更多商品，或者把现在的商品转化为未来的商品。在本书中，假设所有参与者不拥有任何生产技术。
+\end{enumerate}
+
+\tcbline
+
+参与者的经济需求：
+参与者的经济需求基于他的不同时期和未来不同状态下的消费。对于参与者 k，记他在第零期的消费是$c_{k,0}$，第一期的消费是 $c_{k,\omega}$，其中 $\omega \in \Omega$。消费的完整表述是：
+\[
+c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
+\begin{bmatrix}c_{k,0} \\ \begin{bmatrix}c_{k,11} \\ \vdots \\ c_{k,1\omega} \\ \vdots \\ c_{k,1\Omega}\end{bmatrix}
+\end{bmatrix} \quad k=1,\cdots,K
+\]
+
+
+\begin{enumerate}
+\item 消费集：消费者可能的消费选择叫做消费计划 $c=\begin{bmatrix}
+    c_0 \\ c_1
+\end{bmatrix}$。所有消费计划的集合叫做消费集 $C$。和禀赋一样，消费计划属于 $\mathrm{R}^{1+\Omega}$ 中的一个元素，且假设消费计划非负，那么消费计划 $c \in \mathrm{R}^{1+\Omega}_{+}$，消费集就是 $C=\mathrm{R}^{1+\Omega}_{+}$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.1} 设 A 是 $R_n$ 的一个集合，对于 $\forall a,b \in A$ 和 $\alpha \in [0,1]$，如果 $a\alpha+(1-\alpha)b$ 也在A 中，则称集合 A 是凸的（convex）。
+
+\textbf{定义 2.2} 对于 $R^n$的集合 A，如果其中任意序列 $a_i(i=1,\cdots,\infty)$ 有极限，且极限也在 A 中，则称集合 A 是闭的（closed）。
+
+\textbf{假设 1} 消费集 $C=\mathrm{R}^{1+\Omega}_{+}$ 是 $\mathrm{R}^{1+\Omega}$ 中的一个闭凸子集。
+\end{tcolorbox}
+
+\item 偏好：偏好是参与者对所有可能性计划的排序这样的排序定义了他的经济需求。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.3} 偏好是C 上的一个二元关系，表示为 $\succeq$，且满足以下三个条件：
+\begin{itemize}
+    \item 完备性：对于 $\forall a,b \in C$，有 $a\succeq b$ 或 $b\succeq a$。
+    \item 传递性：对于 $\forall a,b,c \in C$，如果 $a\succeq b$ 且 $b\succeq c$，则 $a\succeq c$。
+    \item 自反性：对于 $\forall a \in C$，有 $a\succeq a$。
+\end{itemize}
+\end{tcolorbox}
+
+\item 偏好的基本假设：\textcolor{red}{\textbf{参与者喜多厌少}：如果两个消费计划 a 和 b 之间，在所有时期和状态下，a 都不比 b 提供的消费少，且在有些状态下提供更多的消费，那么 a 优于 b。}
+    \begin{tcolorbox}[knowledge]
+        \textcolor{red}{\textbf{公理 1 不满足性：}} 如果 $a>b$，那么 $a\succeq b$。
+
+        \textbf{公理 2 连续性：} $\forall c \in C$，集合 $\{a\in C: a\succeq c\}$ 和 $\{b\in C: b\preceq c\}$ 都是闭集。
+
+        \textbf{公理 3 凸性：} $\forall a,b \in C$ 以及 $\alpha \in [0,1]$，如果 $a \succeq b$ ，那么有 $\alpha a+(1-\alpha)b\succeq b$ 。
+    \end{tcolorbox}
+
+    \item 效用函数：从消费计划到实数的映射叫做效用函数。
+    
+    \begin{tcolorbox}[knowledge]
+        \textbf{定义 2.4} 对应于偏好关系的效用函数 U 是从 C 到 R 的函数，使得 $\forall a,b \in C$，当且仅当 $a\succeq b$ 时，有 $U(a) \ge U(b)$。
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[knowledge]
+        \textbf{定理 2.1} 对于一个在闭凸消费集 C 上，有定义 2.3 定义的（完备性、传递性和自反性）、满足公理 2 的偏好（连续性），存在一个连续的效用函数 U 使得 $\forall a,b \in C, a\succeq b$，当且仅当 $U(a) \ge U(b)$。
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[example,breakable]
+        \begin{question}
+            \textbf{例 2.3}\quad 在例 2.1 中描述的「Lucas 树」经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
+            \[
+                U(c_0,c_{1a},c_{1b})=\log c_0+\tfrac12(\log c_{1a}+\log c_{1b})
+            \]
+            在如下三个消费计划中，他将会选择哪一个？
+            \begin{center}
+            \begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
+                \textbf{计划 A} & \textbf{计划 B} & \textbf{计划 C} \\[0.35em]
+                \WJEventTree[left={$1$},stem]{1,1} &
+                \WJEventTree[left={$\tfrac12$},stem]{\tfrac32,\tfrac32} &
+                \WJEventTree[left={$1$},stem]{\tfrac32,\tfrac12}
+            \end{tabular}
+            \end{center}
+        \end{question}
+
+        \begin{solution}
+            对于 A、B 和 C，效用函数给出的相应的效用值分别为 $0$、$-0.49$ 和 $-0.14$。显然，参与者对三个消费计划的排序是 $A>C>B$，因此他会选择 A。
+        \end{solution}
+
+        \begin{question}
+            \textbf{例 2.4}\quad 让我们考虑同一经济中的另外一个参与者，他的效用函数是
+            \[
+                V(c_0,c_{1a},c_{1b})=c_0\sqrt{c_{1a}c_{1b}}
+            \]
+            他对上面三个消费计划的排序是什么？
+        \end{question}
+        \begin{solution}
+            \[
+                \begin{aligned}
+                    V_A &= 1\cdot\sqrt{1\cdot 1}=1,\\
+                    V_B &= \tfrac12\cdot\sqrt{\tfrac32\cdot\tfrac32}=\tfrac34,\\
+                    V_C &= 1\cdot\sqrt{\tfrac32\cdot\tfrac12}=\tfrac{\sqrt3}{2}.
+                \end{aligned}
+            \]
+            因此 $V_A>V_C>V_B$，参与者对三个消费计划的排序仍是 $A>C>B$。
+        \end{solution}
+    \end{tcolorbox}
+\end{enumerate}
+
+上面的例子说明了如下的结论：从定理 2.1 中得到的效用函数只是\textbf{序数的}（ordinal），即它只给出了消费计划的排序。效用函数的任意正单调变换不会改变这种排序。效用函数的实际数值并不重要。
+
+利用效用函数作为偏好的一种表述形式，我们可以把偏好的三个基本假设重新表示如下：
+\begin{enumerate}
+    \item \textbf{不满足性：}如果 $a\ge b$，那么 $U(a)\ge U(b)$。
+    \item \textbf{连续性：}$\lim_{a_n \to a}U(a_n)=U(a)$。
+    \item \textbf{凸性：}如果 $U(a)>U(b)$ 且 $\alpha\in(0,1)$，那么 $U(\alpha a+(1-\alpha)b)>U(b)$。
+\end{enumerate}
+
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[knowledge,title=2.3 证券市场]
+资源的配置是通过金融市场中的交易来完成的，市场允许参与者在不同时期和状态上配置资源。
+
+\tcbline
+
+\begin{enumerate}
+    \item \textbf{证券及其支付：}在我们所要构建的简单框架中，金融市场由一组\textbf{证券}（security）构成。一只证券即是一份\textbf{金融要求权}（financial claim），它在 1 期给其所有者带来\textbf{支付}（payoff）；支付的数量一般依赖于当时的经济状态。令 $x_\omega$ 为证券在状态 $\omega$ 时的支付，其中 $\omega\in\Omega$，则一只证券由它在各个可能状态下的支付 $\{x_\omega,\,\omega=1,\dots,\Omega\}$ 来定义。形式上可用一棵\textbf{支付树}表示：
+    \begin{center}
+    \WJEventTree[left={$0$},stem]{x_1,x_2,\vdots,x_\Omega}
+    \end{center}
+    定义 $\mathrm{R}^{\Omega}$ 为\textbf{支付空间}（payoff space），即所有可能支付的集合；其中的向量
+    \[
+        x=\begin{bmatrix}x_1 \\ x_2 \\ \vdots \\ x_\Omega\end{bmatrix}
+    \]
+    就定义了一只证券。在定义证券时，我们未考虑任何在 0 期的可能支付；到期以前（在我们的框架中就是 0 期）证券产生的支付通常叫做\textbf{股利}（dividend）。
+    
+    在 Lucas 树例子中，把代表树的所有权的证券叫做\textbf{股票}（stock），它代表对实物资产（树）所产生的支付的要求权；这样的证券也叫做\textbf{金融资产}（financial asset）或\textbf{资产}，其支付来自\textbf{标的}（underlying）实物资产。
+
+    \textbf{无风险债券}（riskless bond）是这样一种证券，它在所有状态下的支付都相等；若各状态下的支付均为 $1$，则其支付向量为 $\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}$。
+    
+    \textbf{风险证券}（如股票）的支付则随状态变化，例如支付向量为 $\begin{bmatrix}x_1 \\ \vdots \\ x_\Omega\end{bmatrix}$。
+    
+    金融证券具有三个基本特征：
+    \begin{enumerate}
+        \item 支付只依赖于未来的经济状况；
+        \item 支付是外生给定的，不受参与者行为的影响；
+        \item 状态集合及其概率分布是所有参与者的共同知识。
+    \end{enumerate}
+
+    \item \textbf{市场结构：}假设市场上有 $N$ 只可交易证券，用 $n=1,\dots,N$ 来标识。记第 $n$ 只证券的支付向量为
+    \[
+        X_n=\begin{bmatrix}x_{1,n} \\ x_{2,n} \\ \vdots \\ x_{\Omega,n}\end{bmatrix},
+    \]
+    把所有证券的支付向量并排，就得到 $\Omega\times N$ 的\textbf{市场结构矩阵}（也称支付矩阵）
+    \[
+        X\equiv[X_{\cdot,1},\,\cdots\,X_{\cdot,n},\,\cdots\,X_{\cdot,N}]=
+        \begin{bmatrix}
+            x_{1,1}   & x_{1,2}   & \cdots & x_{1,N}   \\
+            \vdots    & \vdots    & \ddots & \vdots    \\
+            x_{\omega,1}   & x_{\omega,2}   & \cdots & x_{\omega,N}   \\
+            \vdots    & \vdots    & \ddots & \vdots    \\
+            x_{\Omega,1} & x_{\Omega,2} & \cdots & x_{\Omega,N}
+        \end{bmatrix}\equiv
+        \begin{bmatrix}
+            X_{1,\cdot} \\ \vdots \\ X_{\omega,\cdot} \\ \vdots \\ X_{N,\cdot}
+        \end{bmatrix}
+    \]
+    矩阵 $X$ 的每一列是一只证券在各状态下的支付（列向量），每一行是一个状态下各证券的支付（行向量）。通常有 $\Omega>N$。
+
+    \item \textbf{证券组合：}对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则\textbf{组合}由向量$\theta=\begin{bmatrix}\theta_1 \\ \theta_2 \\ \vdots \\ \theta_N\end{bmatrix}$ 定义；该组合在 1 期的支付向量为 $X\theta$。对每个参与者 $k$，记其交易前的\textbf{初始证券组合}为$\bar{\theta}_k=\begin{bmatrix}\bar{\theta}_{k,1} \\ \bar{\theta}_{k,2} \\ \vdots \\ \bar{\theta}_{k,N}\end{bmatrix}$，所有参与者初始证券组合之和称为\textbf{市场组合}（market portfolio）$\theta_M$，即
+    \[
+        \theta_M=\sum_{k=1}^{K}\bar{\theta}_k,
+    \]
+    它表示市场上所有可交易证券的总供给。
+
+    \item \textbf{市场化：}若支付 $x\in\mathrm{R}^{\Omega}$ 能由某交易组合复制出来，即存在 $\theta\in\mathrm{R}^{N}$ 使得 $X\theta=x$（有解），则称 $x$ 是\textbf{市场化的}（marketed）。所有市场化支付的集合为
+    \[
+        M=\{X\theta:\,\theta\in\mathrm{R}^{N}\}.
+    \]
+    一般地，$M$ 是支付空间 $\mathrm{R}^{\Omega}$ 的一个子空间，其维数不超过 $N$。
+
+    \item \textbf{交易过程：}交易可以通过\textbf{集中化交易}（centralized exchange）或\textbf{柜台交易}（over-the-counter，OTC）完成；具体的交易安排称为\textbf{市场微观结构}（market micro-structure）。记 $S=\begin{bmatrix}S_1 \\ S_2 \\ \vdots \\ S_N\end{bmatrix}$ 为 0 期各交易证券的价格向量，$\theta_k(S)=\begin{bmatrix}\theta_{k,1}(S) \\ \vdots \\ \theta_{k,N}(S)\end{bmatrix}$ 为参与者 $k$ 在价格 $S$ 下对证券的（净）需求。使各证券总需求等于总供给的价格 $S$ 称为\textbf{市场出清价格}。若记初始组合为 $\bar{\theta}_k$，则总持有量出清为 $\sum_{k=1}^{K}\theta_k(S)=\sum_{k=1}^{K}\bar{\theta}_k$；在均衡分析中常设 $\bar{\theta}_k=0$（或将初始组合并入禀赋），此时净需求出清即 $\sum_{k=1}^{K}\theta_k(S)=0$。
+
+    交易成本、头寸限制（如卖空约束）、个体交易对价格的影响以及税收等，都会妨碍交易，统称为\textbf{市场摩擦}。\textbf{无摩擦市场}满足以下假设：
+    \begin{enumerate}
+        \item 参与者可无成本地进入或退出证券市场；
+        \item 没有交易成本；
+        \item 对参与者的证券持有没有限制（允许卖空）；
+        \item 单个参与者的交易不影响市场价格（价格接受者）；
+        \item 没有税收。
+    \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=2.4 基本经济模型,breakable]
+现在我们已经对将要分析的经济的基本模型有了完整的描述。在作进一步的讨论和分析以前，先作一个总结。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.5}\quad 一个\textbf{经济}定义如下：
+\begin{enumerate}
+    \item 有两个时期 $0$ 和 $1$；在 1 期有 $\Omega$ 个可能状态，对这些状态有概率测度 $P$。经济中只有一种不可储存的商品。
+    \item 经济中有 $K$ 个参与者（$k=1,\dots,K$）：
+    \begin{enumerate}[label=(\alph*)]
+        \item 每一参与者对未来状态发生的可能性都有\textbf{相同的信息}，由 $P$ 描述；
+        \item 每一参与者具有\textbf{禀赋} $e_k\in\mathrm{R}^{1+\Omega}_{+}$；
+        \item 每一参与者有定义于 $C=\mathrm{R}^{1+\Omega}_{+}$ 上、且满足公理 1$\sim$公理 3 的偏好（不满足性、连续性、凸性）。
+    \end{enumerate}
+    \item 有一个市场结构为 $X$ 的\textbf{无摩擦证券市场}。
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.6}\quad 在上面定义的经济中，如果所有参与者的 1 期禀赋都可表示为其初始证券组合的支付，即对每个 $k$ 有 
+\[
+e_{k,1}=X\bar{\theta}_k
+\]
+则我们称之为\textbf{证券市场经济}（security-market economy）。
+\end{tcolorbox}
+
+为简化起见，在以后的讨论中有时会局限于证券市场经济的情形。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=2.5 市场均衡,breakable]
+在证券市场中，资源配置通过以下两方面的相互作用来实现：
+\begin{enumerate}
+    \item 给定证券及其未来支付与当前价格，每个参与者选择最优证券持有量；
+    \item 所有参与者的总需求影响证券价格；当需求等于供给时达到\textbf{均衡}（equilibrium），此时各参与者都选择了最优证券需求且市场出清。
+\end{enumerate}
+
+\tcbline
+
+\begin{enumerate}
+    \item \textbf{参与者各自优化：}记 $\theta=\begin{bmatrix}\theta_1 \\ \vdots \\ \theta_N\end{bmatrix}$ 为\textbf{净购买}的证券组合（相对初始持有量的交易量），$\theta_n>0$ 为\textbf{多头}，$\theta_n<0$ 为\textbf{空头}。该组合在 0 期的市场价值（成本）为 $S^{\mathsf T}\theta$。对禀赋为 $e_k$ 的参与者，净购买 $\theta_k$ 后消费计划 $c_k=\begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}$ 为
+    \[
+        c_{k,0}=\underbrace{e_{k,0}-S^{\mathsf T}\theta_k}_{\text{第零期禀赋减去购买证券的支出}},\qquad
+        c_{k,1}=\underbrace{e_{k,1}+X\theta_k}_{\text{第 1 期禀赋加上证券在第一期的支付}}.
+    \]
+    其中 $-S^{\mathsf T}\theta_k$ 为 0 期储蓄（为正）或借贷（为负）。所有可达消费计划的集合称为\textbf{预算集}
+    \[
+        B(e_k,\{X,S\})=\Bigl\{c\ge 0\;\Big|\;
+        c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\;
+        c_{k,1}=e_{k,1}+X\theta_k,\;
+        \theta_k\in\mathrm{R}^{N}\Bigr\}.
+    \]
+    参与者选择 $\theta_k$ 以最大化效用：
+    \[
+    \begin{aligned}
+        &\max_{\theta_k} U_k(c_k) \\
+        &\text{s.t.}\quad
+        c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\;
+        c_{k,1}=e_{k,1}+X\theta_k,\;
+        c_{k,0},\,c_{k,1}\ge 0
+    \end{aligned}
+    \]
+    等价地，
+    \[
+        \max_{c_k\in B(e_k,\{X,S\})} U_k(c_k).
+    \]
+    该问题的解给出参与者 $k$ 对证券的\textbf{需求函数} $\theta_k(e_k,S)$，它依赖于价格向量 $S$ 与禀赋 $e_k$。
+
+    \item \textbf{市场出清：}在价格向量 $S$ 下，记参与者 $k$ 的证券需求为 $\theta_k(e_k,S)$（即上面的净购买量）。已知，参与者的禀赋是 $(e_0,e_1)$ 和初始组合 $\bar{\theta}$，那么可以定义等价的总禀赋（即，将初始证券的形式，从第零期的持有 $\bar{\theta}_k$，转换为第 1 期的支付 $X\bar{\theta}_k$）
+    \[
+        e_k^T = 
+        \begin{bmatrix} e_{k,0} \\ e_{k,1} + X\bar{\theta}_k\end{bmatrix}
+    \]
+    如此转化后：
+    \begin{itemize}
+        \item 对于参与者的禀赋，我们把$e^T$当做他的总禀赋，初始证券持有量 $\bar\theta_k=0$，他选择的任意证券需求就变成了初始组合之外的额外持有量 $\theta_k$
+        \item 对于后续优化问题里的$\theta_k$，就表示在第零期市场上净买卖的量。
+    \end{itemize}
+
+
+    
+    如此一来，\textbf{证券市场出清}要求有人净买 $\theta_k>0$，就要有人净卖 $\theta_k<0$。对所有参与者加总：净买入之和必须为 0，否则多出来的份额没人卖、或少掉的份额没人接，即净需求为零：
+    \[
+        \underbrace{\sum_{k=1}^{K}\theta_k(e_k,S)=0}_{\text{证券市场出清条件}}.
+    \]
+    满足该条件的 $S$ 即为\textbf{均衡价格}。由 $c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k(e_k,S)$，对 $k$ 求和得
+    \[
+        \underbrace{\underbrace{\sum_{k=1}^{K}c_{k,0}}_{\text{0 期商品总需求}}
+        =\sum_{k=1}^{K}e_{k,0}-S^{\mathsf T}\Bigl(\sum_{k=1}^{K}\theta_k(e_k,S)\Bigr)
+        =\underbrace{\sum_{k=1}^{K}e_{k,0}}_{\text{0 期总供给}}}_{\text{第0期商品市场的出清}}
+    \]
+    左边是第0 期商品的总需求，右边是第0期的总供给，表示的是第0期商品市场的出清。同理，对每个状态 $\omega=1,\dots,\Omega$ 有
+    \[
+        \sum_{k=1}^{K}c_{k,\omega}=\sum_{k=1}^{K}e_{k,\omega},
+    \]
+    即\textbf{商品市场出清}。合起来得到 \textbf{Walras 法则}（这表明，实物资源没有凭空产生或消失，只是通过交易被重新分配）：
+    \[
+        \sum_{k=1}^{K}c_k=\sum_{k=1}^{K}e_k.
+    \]
+    
+
+    求均衡时，\textbf{首先}对任意价格 $S$ 解出各参与者的最优证券组合 $\theta_k(e_k,S)$，\textbf{第二}用市场出清条件解出均衡价格 $S$。形式上，
+    \[
+        S=S\bigl(P;\,\{U_k,\,e_k,\,k=1,\dots,K\};\,X\bigr),
+    \]
+    即证券价格取决于经济面临的风险 $P$、参与者的偏好 $U_k$ 与禀赋 $e_k$ 以及市场结构 $X$ 等\textbf{基本面}（fundamentals）或\textbf{本源}（primitives）：经济面临的风险，经济中参与者的偏好和禀赋以及证券市场的结构。
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=2.6 最优性,breakable]
+通过证券市场进行的资源配置是否已是\textbf{最好的可能配置}？参与者各自选择最优消费计划，并不意味着社会资源配置一定最优；若市场不完备，结果可能是\textbf{次优的}。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.7}\quad 配置 $\{c_k,\,\forall k\}$ \textbf{Pareto 占优于}配置 $\{c_k',\,\forall k\}$，如果
+\[
+    \forall k,\quad U_k(c_k)\ge U_k(c_k'),
+\]
+且至少对一个参与者严格不等式成立。
+
+这就是说，对比两套分配结果，如果新配置帕累托占优于旧配置，说明：新配置对所有参与者的效用都至少不比原来差，且至少对一个参与者的效用严格提高，且这种“好”不以“损人”为前提，这是一种\textbf{更具效率}的体现。
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.8}\quad 给定经济的总供给 $\{e_k,\,\forall k\}$，配置 $\{c_k,\,\forall k\}$ 是\textbf{可行的}（feasible），如果
+\[
+    \underbrace{\sum_{k=1}^{K}c_k=\sum_{k=1}^{K}e_k}_{\text{说明所有状态下所有人的消费之和等于总禀赋之和，没有闲置}}.
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 2.9}\quad 若配置 $\{c_k,\,\forall k\}$ 可行，且不存在其他可行配置 Pareto 占优于它，则该配置是\textbf{Pareto 最优的}（Pareto optimal）。Pareto 最优即在不牺牲其他参与者福利、也不使用更多资源的前提下，无法改进任一参与者的福利（某人福利的提高，必定以损害他人的利益为前提）。给定偏好后，通常只有可行配置的一个子集是最优的。
+\end{tcolorbox}
+
+Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市场使参与者达到 Pareto 最优配置，则称该市场为\textbf{有效市场}（efficient market）。
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[example,title=例题：帕累托最优]
+    \begin{question}
+        \textbf{例 2.5}\quad 考虑一个两期、1 期有两种状态 $a$、$b$ 的经济。经济总禀赋：
+        \begin{center}
+        \WJEventTree[left={$100$},stem]{400,25}
+        \end{center}
+        有两个参与者，效用函数均为 $u(c_0,c_{1a},c_{1b})=\sqrt{c_0}+\tfrac12(\sqrt{c_{1a}}+\sqrt{c_{1b}})$（$c=\begin{bmatrix}c_0 \\ c_{1a} \\ c_{1b}\end{bmatrix}$）。树中每个节点括号内为 $(c_{1,\cdot},\,c_{2,\cdot})$：该节点上参与者 1、2 的消费量（不是整段消费计划列向量）。考虑三种配置：
+        \begin{center}
+        \begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
+            \textbf{配置 A} & \textbf{配置 B} & \textbf{配置 C} \\[0.35em]
+            \WJEventTree[left={$(100,0)$},stem]{ {(0,400)}, {(0,25)} } &
+            \WJEventTree[left={$(50,50)$},stem]{ {(200,200)}, {(\tfrac{25}{2},\tfrac{25}{2})} } &
+            \WJEventTree[left={$(100,0)$},stem]{ {(400,0)}, {(25,0)} }
+        \end{tabular}
+        \end{center}
+        配置 A 中参与者 1 在 0 期消费全部、参与者 2 在 1 期消费全部；B 为两参与者在各期、各状态均分；C 中参与者 1 始终消费全部。哪种配置是 Pareto 最优的？（完整消费计划 $c_1$、$c_2$ 见解答。）
+    \end{question}
+    \begin{solution}
+        与前文及习题 2.2 相同，参与者 $i$ 的\textbf{消费计划}是 $\mathrm{R}^{3}_{+}$ 中的列向量（两状态记为 $a,b$）：
+        \[
+            c_i=\begin{bmatrix}c_{i,0} \\ c_{i,1a} \\ c_{i,1b}\end{bmatrix},
+            \qquad U_i(c_i)=\sqrt{c_{i,0}}+\tfrac12\bigl(\sqrt{c_{i,1a}}+\sqrt{c_{i,1b}}\bigr).
+        \]
+        题中事件树每个节点上的 $(\cdot,\cdot)$ 只是该节点上\textbf{参与者 1、2 的消费量}；整段计划仍用上面的 $c_1$、$c_2$ 表示。
+
+        \textbf{可行性:}三个配置合起来在每一日期—状态下满足 $c_{1,\cdot}+c_{2,\cdot}$ 等于总禀赋（0 期 $100$，状态 $a$ 为 $400$，状态 $b$ 为 $25$），故 A、B、C 均为可行配置。
+
+        \textbf{各配置的效用：}
+        \begin{itemize}
+            \item \textbf{配置 A：}
+            \[
+                c_1=\begin{bmatrix}100 \\ 0 \\ 0\end{bmatrix},\qquad
+                c_2=\begin{bmatrix}0 \\ 400 \\ 25\end{bmatrix}.
+            \]
+            \[
+                \begin{aligned}
+                    U_1(c_1) &= \sqrt{100}+\tfrac12(0+0)=10,\qquad 
+                    U_2(c_2) &= 0+\tfrac12(\sqrt{400}+\sqrt{25})
+                    =\tfrac12(20+5)=12.5.
+                \end{aligned}
+            \]
+            效用对为 $(U_1,U_2)=(10,\,12.5)$。
+
+            \item \textbf{配置 B}（均分）：$c_1=c_2=
+            \begin{bmatrix}50 \\ 200 \\ \tfrac{25}{2}\end{bmatrix}$。
+            \[
+                U_1(c_1)=U_2(c_2)=\sqrt{50}+\tfrac12\Bigl(\sqrt{200}+\sqrt{\tfrac{25}{2}}\Bigr)
+                \approx 7.071+8.839=15.91.
+            \]
+            效用对为 $(15.91,\,15.91)$。
+
+            \item \textbf{配置 C：}
+            \[
+                c_1=\begin{bmatrix}100 \\ 400 \\ 25\end{bmatrix},\qquad
+                c_2=\begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}.
+            \]
+            \[
+                \begin{aligned}
+                    U_1(c_1) = \sqrt{100}+\tfrac12(\sqrt{400}+\sqrt{25})=10+12.5=22.5, \quad
+                    U_2(c_2) = 0.
+                \end{aligned}
+            \]
+            效用对为 $(22.5,\,0)$。
+        \end{itemize}
+
+        \textbf{Pareto 占优与 Pareto 最优。}
+        \begin{itemize}
+            \item 比较 A 与 B：$U_1(B)=15.91>10=U_1(A)$ 且 $U_2(B)=15.91>12.5=U_2(A)$，两人都严格更好，故\textbf{配置 B Pareto 占优于配置 A}。因此 A \textbf{不是} Pareto 最优。
+
+            \item 比较 B 与 C：$U_1(C)=22.5>U_1(B)$，但 $U_2(C)=0<U_2(B)$，有人变差，故 C 不 Pareto 占优 B，B 也不 Pareto 占优 C。
+
+            \item \textbf{配置 B 是 Pareto 最优的}：不存在其他可行配置在不让参与者 2 变差的前提下再提高参与者 1 的效用（反之亦然）；B 与 C 只是在两人之间做了不同的福利权衡。
+
+            \item \textbf{配置 C 是 Pareto 最优的}：若要提高参与者 2 的效用（必须给 2 正的消费），只能从参与者 1 已占用的 $100$、$400$、$25$ 中让出，从而必使 $U_1$ 下降，无法在不损害 1 的情况下改进 2。
+        \end{itemize}
+
+        
+    \end{solution}
+
+    \begin{tcolorbox}[warning,title=注意]
+        \textbf{结论：}A 非 Pareto 最优；\textbf{B 与 C 都是} Pareto 最优配置（同一总禀赋下不同的有效分配）。可以看出：
+        \begin{itemize}
+            \item 在同一可行集（同一总禀赋、满足 $\sum_k c_k=\sum_k e_k$）里，Pareto 最优配置往往不止一个。
+            \item 更能看到，帕累托最优仅考虑了“效率”，但没考虑“公平”，例如配置 C 中参与者 2 的效用为0，但仍属于帕累托最优。
+        \end{itemize}
+        \end{tcolorbox}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[knowledge,title=2.7 本章小结,breakable]
+本章完成了在市场经济中通过资源配置分析所使用的基本框架的构建。资源配置是通过证券市场完成的：交易证券的价格引导参与者通过交易达到他们希望的配置，而交易又最终决定了证券的市场价格。证券价格在引导个体参与者和平衡整个经济方面都起着关键作用。因此，我们关注证券价格如何决定，这也称为\textbf{资产定价}（asset pricing）。
+
+\begin{enumerate}
+    \item 从金融的角度看，一个经济的结构包括三个方面：（1）它所处的\textbf{自然环境}；（2）\textbf{经济的参与者}；（3）\textbf{金融市场}。
+
+    \item \textbf{外部环境}包括两个要素：\textbf{时间}和\textbf{风险}。为刻画时间，假设有 0 和 1 两个时期；为刻画风险，假设 1 期有 $\Omega$ 个可能状态，用概率测度 $P$ 描述。经济中只有一种不可储存的商品。
+
+    \item 经济中有 $K$ 个\textbf{参与者}。每个参与者的经济特征包括其经济资源和经济需求。具体假设为：
+    \begin{enumerate}[label=(\alph*)]
+        \item 每个参与者 $k$ 具有禀赋 $e_k\in\mathrm{R}^{1+\Omega}_{+}$；
+        \item 每个参与者对未来状态发生的可能性拥有相同的信息，完全由概率测度 $P$ 描述；
+        \item 尽管参与者给定其禀赋和信息后可能拥有生产技术，这里先假设他们不拥有任何生产技术；
+        \item 每个参与者在 $C=\mathrm{R}^{1+\Omega}_{+}$ 上具有偏好，且满足不满足性、连续性和凸性公理；
+        \item 给定这些偏好关系，可用效用函数来描述。
+    \end{enumerate}
+
+    \item \textbf{金融市场}由一组证券构成：
+    \begin{enumerate}[label=(\alph*)]
+        \item 它们的支付只依赖于未来实际的经济状态；
+        \item 它们的支付是外生给定的，且不受经济参与者行为的影响；
+        \item 参与者知道且一致认同证券支付的概率分布；
+        \item 市场结构为 $X$，且市场中无摩擦。
+    \end{enumerate}
+
+    \item \textbf{市场均衡}必须满足两个条件：
+    \begin{enumerate}[label=(\alph*)]
+        \item 每个参与者各自最优化其证券需求量；
+        \item \textbf{市场出清}，即交易证券的总需求等于总供给，此时商品市场也是出清的。
+    \end{enumerate}
+
+    \item 如果配置 $\{c_k,\,\forall k\}$ 是可行的，且不存在另外的可行配置 Pareto 占优于它，则该配置是 \textbf{Pareto 最优的}。如果证券市场允许参与者达到 Pareto 最优配置，就称它为\textbf{有效市场}。
+\end{enumerate}
+\end{tcolorbox}
+
+
 \begin{problem}
 \problemno{2.1} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
 \end{problem}
