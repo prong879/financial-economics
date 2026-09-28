@@ -13,7 +13,7 @@
 \]
 \begin{enumerate}[label=(\alph*)]
     \item 证明市场是完全的。
-    \item 证明状态价格向量存在且唯一。并给出它的值。
+    \item 假设五只证券的 0 期价格分别为 $1$，$2.5$，$1.5$，$0.75$，$0.25$。证明状态价格向量存在且唯一，并给出它的值。
     \item 证明市场上存在冗余证券。
     \item 选择一组足以保证市场完全的复合证券。把每一只 Arrow-Debreu 证券都表示成这些证券的组合。称这些组合为状态或有组合。
     \item 用状态或有组合把任一由五只交易证券组成的组合表示出来。
@@ -95,14 +95,13 @@
     X_{b}=\begin{bmatrix}0\\1\\1\end{bmatrix},\quad
     X_{c}=\begin{bmatrix}1/2\\1\\1/2\end{bmatrix}.
 \]
-这些证券的 0 期均衡价格为：$S_{c}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。
+这些证券的 0 期均衡价格为：$S_{a}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。
 \begin{enumerate}[label=(\alph*)]
     \item 证明 $\begin{bmatrix}2 \\ -1 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量，因为它给出了三支现有证券的价格。
     \item “资产定价基本定理”指出状态价格必须是非负的。在一个两期经济里，对于证券市场这意味着什么？并给出其解释。
     \item 上面的例子是这个原理的反例吗？为什么？
     \item 证明 $\begin{bmatrix}1/2 \\ 1/2 \\ 1/2\end{bmatrix}$ 是另外一个可能的状态价格向量。在这种情况下，所有状态价格都是正的。
     \item 解释为什么存在多个可能的状态价格向量，它们对已有证券都给出相同的价格。
-    \item 考虑一个标的资产为证券 $a$、执行价格为 $1/2$ 的欧式买权。这份期权的支付是多少？你能为它定价吗？
 \end{enumerate}
 \end{problem}
 \begin{solution}
@@ -111,7 +110,7 @@
     \[
         2\times 1+(-1)\times 1=1,\quad (-1)\times 1+2\times 1=1,\quad 2\times\tfrac12+(-1)\times 1+2\times\tfrac12=1
     \]
-    因而 $\begin{bmatrix}2 \\ -\tfrac12 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量；
+    因而 $\begin{bmatrix}2 \\ -1 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量；
     \item 状态价格向量的非负性意味着不存在套利机会；
     \item 不是。因而它只是可能的状态价格之一，并不一定是真实的状态价格；
     \item 因为
@@ -155,7 +154,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{4.8} 考虑练习 4.1 定义的市场。假设证券 1，2，5 的价格是 1，2，$1/2$。
+\problemno{4.8} 考虑练习 4.1 定义的市场。假设证券 1，2，4，5 的价格分别是 $0.8$，$2$，$0.6$，$0.2$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算状态价格和利率。
     \item 构建等价鞅测度。
@@ -163,21 +162,28 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
+记练习 4.1 中五只证券的支付列向量为 $X_{1},\ldots,X_{5}$。状态价格 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3} \\ \phi_{4}\end{bmatrix}$ 满足 $S_{n}=\phi^{\mathsf T}X_{n}$，即
+\[
+    S_{1}=\phi^{\mathsf T}X_{1},\quad S_{2}=\phi^{\mathsf T}X_{2},\quad S_{4}=\phi^{\mathsf T}X_{4},\quad S_{5}=\phi^{\mathsf T}X_{5}.
+\]
 \begin{enumerate}[label=(\alph*)]
-    \item 假设状态价格向量为 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3} \\ \phi_{4}\end{bmatrix}$，那么有：
+    \item 代入 $S_{1}=0.8$，$S_{2}=2$，$S_{4}=0.6$，$S_{5}=0.2$ 得
     \[
         \begin{aligned}
-            \phi_{1}+\phi_{2}+\phi_{3}+\phi_{4}&=0.8\\
-            \phi_{1}+2\phi_{2}+3\phi_{3}+4\phi_{4}&=2\\
-            \phi_{2}+2\phi_{3}+3\phi_{4}&=1.2\\
-            \phi_{4}&=0.2
+            \phi_{1}+\phi_{2}+\phi_{3}+\phi_{4}&=0.8,\\
+            \phi_{1}+2\phi_{2}+3\phi_{3}+4\phi_{4}&=2,\\
+            \phi_{3}+2\phi_{4}&=0.6,\\
+            \phi_{4}&=0.2.
         \end{aligned}
     \]
-    求解上述方程组可以得到唯一的解为 $\phi=\begin{bmatrix}0.2 \\ 0.2 \\ 0.2 \\ 0.2\end{bmatrix}$。因此，证券 4 的价格为 $0.6$，而利率为 $r_{F}=\dfrac{1}{\phi_{1}+\phi_{2}+\phi_{3}+\phi_{4}}-1=0.25$；
-    \item 等价鞅测度为 $Q=\begin{bmatrix}0.25 \\ 0.25 \\ 0.25 \\ 0.25\end{bmatrix}$；
-    \item 对于证券 1，$\dfrac{\mathrm{E}^{Q}[X_{1}]}{1+r_{F}}=\dfrac{1}{1+0.25}=0.8$，正好就是它的价格；类似可以证明其它证券的价格也有鞅性质。
+    由后两式 $\phi_{3}=0.2$；前两式相减得 $\phi_{2}=0.2$，$\phi_{1}=0.2$。故
+    \[
+        \phi=\begin{bmatrix}0.2 \\ 0.2 \\ 0.2 \\ 0.2\end{bmatrix},\qquad
+        S_{3}=\phi^{\mathsf T}X_{3}=1.2.
+    \]
+    无风险利率 $r_{F}=\bigl(\sum_{i}\phi_{i}\bigr)^{-1}-1=0.25$。
+    \item 等价鞅测度 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$，即 $Q=\begin{bmatrix}0.25 \\ 0.25 \\ 0.25 \\ 0.25\end{bmatrix}$。
+    \item 对每只证券 $n$，$\mathrm{E}^{Q}[X_{n}]/(1+r_{F})=\phi^{\mathsf T}X_{n}=S_{n}$。例如证券 1：$\mathrm{E}^{Q}[X_{1}]=1$，故 $1/(1.25)=0.8=S_{1}$；证券 3、4 同理可验证 $1.2$ 与 $0.6$。
 \end{enumerate}
-
-Notes：证券价格不完全，现在改为证券 1，2，3，5 的价格分别为 0.8，2，1.2，0.2。
 \end{solution}
 

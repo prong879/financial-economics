@@ -56,9 +56,16 @@
 \end{solution}
 
 \begin{problem}
-\problemno{6.4**} 假设定义在随机支付上的效用函数具有练习 6.1 中的形式，其中 $\Omega$ 是任意的状态空间而 $P$ 是相应的概率测度。如果它还满足弱凸性，那么 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是凹的。
+\problemno{6.4**} 假设定义在随机支付上的效用函数具有练习 6.1 中的形式，其中 $\Omega$ 是任意的状态空间而 $P$ 是相应的概率测度，并且偏好满足弱凸性。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是拟凹的。
+    \item 它们是否必为凹的？若否，给出反例。
+\end{enumerate}
 \end{problem}
 \begin{solution}
-只能证明 $\{c\in\mathrm{C}:c\succeq b\}$ 是凸的，即 $u$ 是拟凹的，不能证明是凹的。
+\begin{enumerate}[label=(\alph*)]
+    \item 只证 $u_{1}$，$u_{0}$ 同样。任取 $x,y$ 与 $\lambda\in[0,1]$，并取定 $c_{0}$ 以及 $1$ 期除某一状态 $\omega$ 外的消费。令 $a$ 在状态 $\omega$ 的消费为 $x$、$b$ 在状态 $\omega$ 的消费为 $y$，其余消费与 $a$ 相同。若 $u_{1}(x)\ge u_{1}(y)$，则 $U(a)\ge U(b)$，弱凸性给出 $U(\lambda a+(1-\lambda)b)\ge U(b)$，即 $u_{1}(\lambda x+(1-\lambda)y)\ge u_{1}(y)$。故 $u_{1}$ 拟凹。
+    \item 不必凹。取 $u_{1}\equiv 0$、$u_{0}(c)=c^{3}$（$c\ge 0$），概率任意。此时 $U$ 只依赖于 $c_{0}$ 且对 $c_{0}$ 严格递增，故 $U(a)\ge U(b)$ 意味着 $a$ 的 $0$ 期消费不低于 $b$，其凸组合亦然，弱凸性成立。但 $u_{0}(c)=c^{3}$ 在 $[0,\infty)$ 上是凸的，不是凹的。
+\end{enumerate}
 \end{solution}
 

@@ -160,7 +160,7 @@
 \problemno{12.8**} 令证券收益率向量为 $\tilde{r}$，它的均值为 $\bar{r}$、协方差阵为 $\Sigma$。在 $\bar{r}$--$\sigma$ 平面上，任一组合 $p$ 由一点 $(\bar{r}_{p},\sigma_{p})$ 给定。令所有可能组合的集合为 $A=\{(\bar{r}_{p},\sigma_{p}),\forall\, p\}$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明 $A$ 是闭集。
-    \item 证明 $A$ 是凸集。
+    \item $A$ 一定是凸集吗？若否，给出反例。
 \end{enumerate}
 \end{problem}
 \begin{solution}
@@ -177,18 +177,8 @@
         \end{aligned}
     \]
     因而 $(r_{p},\sigma_{p})\in A$，$A$ 是闭集；
-    \item 对于 $(r_{1},\sigma_{1})$，$(r_{2},\sigma_{2})$，我们可以按照以下的规则选择相应的权重向量 $\theta$。
-    \[
-        \begin{aligned}
-            \theta_{1},\,\theta_{2}&\in S^{N-1}\\
-            \theta_{1}^{\top}\bar{r}&=r_{1},\quad\theta_{1}^{\top}\Sigma\theta_{1}=\sigma_{1}^{2}\\
-            \theta_{2}^{\top}\bar{r}&=r_{2},\quad\theta_{2}^{\top}\Sigma\theta_{2}=\sigma_{2}^{2}\\
-            \theta_{1}^{\top}\Sigma\theta_{2}&=\sigma_{1}\sigma_{2}
-        \end{aligned}
-    \]
-    那么，对于任意的 $\alpha\in[0,1]$，$\bigl(\alpha r_{1}+(1-\alpha)r_{2},\alpha\sigma_{1}+(1-\alpha)\sigma_{2}\bigr)$ 对应的权重向量是 $\alpha\theta_{1}+(1-\alpha)\theta_{2}$，因此 $\alpha r_{1}+(1-\alpha)r_{2}$，$\alpha\sigma_{1}+(1-\alpha)\sigma_{2}\in A$，$A$ 是凸集。
+    \item 不一定。当 $N=2$ 且两只证券的期望收益不同、收益率不完全相关时，卖空下的组合在 $\bar{r}$--$\sigma$ 平面上只扫出均值--方差前沿，即一条双曲线。双曲线不是凸集：取前沿上期望收益不同的两点，连接它们的线段会落到前沿左侧，对应的 $(\bar{r},\sigma)$ 不可由任何组合达到。
 \end{enumerate}
-Notes：凸性的命题不一定成立，比如当 $N=2$ 时，$A$ 是 $\bar{r}$--$\sigma$ 平面中的一条抛物线，显然不是凸的。
 \end{solution}
 
 \begin{problem}
