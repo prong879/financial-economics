@@ -3,37 +3,82 @@
 \begin{problem}
 \problemno{9.1} 什么是同质信念？为什么要强调同质信念？
 \end{problem}
+\begin{solution}
+同质信念是指所有投资者对各资产未来收益的概率分布、期望和协方差有相同判断。它使所有人面对同一个均值—方差机会集，从而共同选择同一个切点风险组合；个人差异只体现在无风险资产与该组合之间的配置比例。没有同质信念，市场组合未必就是每个人的切点组合，标准 CAPM 的分离结论会失效。
+\end{solution}
 \begin{problem}
 \problemno{9.2} 我们将假设分为关于主观的假设和关于客观的假设，请问两部分假设各自与此前哪些章节的内容相关？
 \end{problem}
+\begin{solution}
+主观假设涉及投资者的偏好、风险厌恶、期望效用和均值—方差选择，对应前面的效用函数、风险厌恶和投资组合理论；客观假设涉及资产支付、市场结构、交易制度、无风险借贷和市场出清，对应 Arrow--Debreu 经济、无套利定价和市场均衡部分。
+\end{solution}
 \begin{problem}
 \problemno{9.3} 为什么说 CAPM 是一般均衡定价？
 \end{problem}
+\begin{solution}
+CAPM 不是对单个投资者的局部最优条件，而是把所有投资者的最优组合、资产供给和市场出清同时联立。均衡中每个人持有无风险资产和同一个市场组合，价格调整使总需求等于资产总供给，最终得到 $E(R_i)=R_f+\beta_i[E(R_M)-R_f]$，所以它是一般均衡定价关系。
+\end{solution}
 \begin{problem}
 \problemno{9.4} 什么是分离定理？分离定理中的“分离”是指什么与什么的分离？该定理在实践中所隐含的意义是什么？
 \end{problem}
+\begin{solution}
+分离定理指出，在均值—方差条件下，所有投资者都持有同一个切点风险组合，只在无风险资产与该组合之间选择不同权重。“分离”是生产（或风险组合的确定）与个人消费偏好的分离：先确定共同风险组合，再由风险厌恶决定配置比例。实践中可由专业机构提供市场组合，个人只需按风险承受能力调整无风险资产比例。
+\end{solution}
 \begin{problem}
 \problemno{9.5} 什么是资本市场线(CML)？其含义是什么。
 \end{problem}
+\begin{solution}
+CML 是均值—标准差图中从无风险点 $(R_f,0)$ 出发、与风险资产有效前沿相切的直线：
+\[
+E(R_p)=R_f+\frac{E(R_M)-R_f}{\sigma_M}\sigma_p.
+\]
+它只适用于有效的有效组合，斜率是单位总风险的风险溢价，即市场组合的夏普比率。
+\end{solution}
 \begin{problem}
 \problemno{9.6} 什么是证券市场线(SML)？CML、SML 以及证券特征线彼此有何区别？
 \end{problem}
+\begin{solution}
+SML 为 $E(R_i)=R_f+\beta_i[E(R_M)-R_f]$，横轴是系统性风险 $\beta$，适用于单个证券和任意组合。CML 横轴是总风险标准差，只描述有效组合。证券特征线是时间序列回归 $R_{it}-R_{ft}=\alpha_i+\beta_i(R_{Mt}-R_{ft})+\varepsilon_{it}$，用于估计单个证券的贝塔和特质误差，并非均衡定价线。
+\end{solution}
 \begin{problem}
 \problemno{9.7} 什么是零贝塔 CAPM？
 \end{problem}
+\begin{solution}
+当不存在可按无风险利率无限借贷的资产时，可用与市场组合协方差为零的零贝塔组合替代无风险资产。零贝塔 CAPM 写为 $E(R_i)=E(R_Z)+\beta_i[E(R_M)-E(R_Z)]$，其中 $\operatorname{Cov}(R_Z,R_M)=0$，截距是零贝塔组合的期望收益。
+\end{solution}
 \begin{problem}
 \problemno{9.8} 简单列举资本资产定价模型实证的经典方法。
 \end{problem}
+\begin{solution}
+经典方法包括：时间序列回归检验证券特征线和零截距限制；横截面回归检验平均收益与贝塔的线性关系及市场风险溢价；Fama--MacBeth 两步回归；按贝塔排序形成组合后比较组合收益；以及联合检验市场组合代理、贝塔稳定性和残差风险是否定价。
+\end{solution}
 \begin{problem}
 \problemno{9.9} 在 BJS 实证分析中计算各股票的贝塔值 $\beta_i$ 采用的是对 $(R_{it}-R_{ft})$ 的回归，那么与利用贝塔公式计算的贝塔值有何异同？
 \end{problem}
+\begin{solution}
+回归斜率为
+\[
+\hat\beta_i=\frac{\operatorname{Cov}(R_i-R_f,R_M-R_f)}{\operatorname{Var}(R_M-R_f)}。
+\]
+若无风险收益在样本期为常数，这与协方差定义的贝塔公式完全相同；若无风险收益随时间变化，回归使用超额收益能消除共同的无风险利率变化，而直接用原始收益计算的协方差可能不同。回归还提供标准误和显著性检验。
+\end{solution}
 \begin{problem}
 \problemno{9.10} 什么是金融异象？金融异象对金融理论的发展有何作用？
 \end{problem}
+\begin{solution}
+金融异象是不能由标准 CAPM 的贝塔—收益关系充分解释的系统性经验规律，如规模效应、价值效应、动量效应和低波动效应。它们促使研究者检验市场组合代理、风险因子和投资者理性假设，发展多因子模型、行为金融和条件资产定价模型；异象本身并不自动证明存在无风险套利，因为交易成本、风险暴露和数据挖掘也可能解释表面偏离。
+\end{solution}
 
 \begin{problem}
 \problemno{9.11} 如果市场上无风险利率为 $5\%$，市场投资组合的收益率为 $15\%$，标准差为 $20\%$，则期望收益率为 $20\%$ 的证券其贝塔系数为多少？其标准差是多少？它与市场投资组合的相关系数是多少？如果另外一个股票的期望收益率为 $25\%$，方差为 $52\%$，则该股票的系统性风险和非系统性风险各是多少？
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由 SML，$0.20=0.05+\beta(0.15-0.05)$，故 $\beta=1.5$。
+\item 若该证券位于资本市场线，其标准差为 $\beta\sigma_M=1.5\times0.20=0.30$，并与市场完全正相关，相关系数为 $1$。仅由 SML 本身不能推出标准差；这里使用其为有效组合的条件。
+\item 另一股票的 $\beta=(0.25-0.05)/0.10=2$。市场方差为 $0.20^2=0.04$，系统性方差为 $\beta^2\sigma_M^2=4\times0.04=0.16$；总方差为 $0.52$，故非系统性方差为 $0.52-0.16=0.36$。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{9.12} 资产 $X$ 与 $Y$ 的期望收益和协方差矩阵为
 \[
@@ -47,6 +92,21 @@
     \item 给出证券市场线的方程。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 市场组合为 $(1/2,1/2)$。资产 $X,Y$ 与市场组合的协方差分别为 $0.005$ 和 $0.0032$。令零贝塔组合权重为 $(z,1-z)$，则 $0.005z+0.0032(1-z)=0$，得 $z=-16/9$，所以其期望收益为 $0.2(-16/9)+0.1(25/9)=-7/90$。
+\item 全局最小方差权重为
+\[
+w_X=\frac{0.0064}{0.01+0.0064}=\frac{16}{41},\qquad w_Y=\frac{25}{41}.
+\]
+\item 零贝塔组合的协方差为零是相对于市场组合而言；与全局最小方差组合的协方差为 $w_{\rm GMV}^{\mathsf T}Vw_Z=7/1792\approx0.00391$。
+\item 零贝塔 CAPM 的证券市场线为
+\[
+E(R_i)=-\frac7{90}+\beta_i\left(\frac{3}{20}+\frac7{90}\right),
+\]
+其中 $\beta_i=\operatorname{Cov}(R_i,R_M)/\operatorname{Var}(R_M)$。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{9.13} 假设均值-方差机会集由两个资产 A 和 B 构成，其期望收益和方差-协方差矩阵为
 \[
@@ -60,6 +120,19 @@
     \item 对每一个投资者，求其零贝塔组合及证券市场线方程。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item $\operatorname{Cov}(R_A,R_M)=0.5(0.008+0.1)=0.054$，$\operatorname{Var}(R_M)=0.25(0.008+2\times0.1+0.0025)=0.052625$，故 $\beta_A\approx1.026$。
+\item 两位投资者面对同一有效前沿，因此零贝塔组合相同；风险厌恶只改变他们选择的有效组合，不改变由市场机会集确定的 SML。资产 A 的要求收益率为 $R_f+\beta_A(E R_M-R_f)$，给定无风险收益率后两人相同。
+\item 对任意投资者，零贝塔组合由解 $w_Z^{\mathsf T}Vw_M=0$ 且 $\mathbf1^{\mathsf T}w_Z=1$ 得到，SML 为 $E(R_i)=E(R_Z)+\beta_i[E(R_M)-E(R_Z)]$。因此两人的 SML 相同，差异只体现在沿该线选择的组合。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{9.14} 某证券的市价为 \num{40} 元，该证券的期望收益率等于 $13\%$，无风险利率等于 $7\%$，市场风险溢价(市场投资组合期望收益率与无风险利率之差)为 $8\%$。如果该证券在未来的支付保持不变，但它与市场投资组合的协方差变为原来的两倍，则证券的价格应该为多少？
 \end{problem}
+\begin{solution}
+原来的贝塔为 $\beta=(0.13-0.07)/0.08=0.75$。协方差加倍而市场方差不变，新的贝塔为 $1.5$，故新的期望收益率为 $0.07+1.5\times0.08=0.19$。未来支付不变时，价格与贴现率满足 $P\propto1/(1+R)$；原价格为 $40$、原收益率为 $13\%$，故未来支付的价值为 $40(1.13)$，新价格为
+\[
+P'=\frac{40(1.13)}{1.19}\approx37.98\text{ 元}。
+\]
+\end{solution}

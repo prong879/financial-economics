@@ -3,21 +3,39 @@
 \begin{problem}
 \problemno{12.1} 随机贴现因子定价模型(SDF)为什么也叫基于消费的资产定价模型？
 \end{problem}
+\begin{solution}
+投资者最优条件为 $u'(c_0)=E[u'(c_1)X]$ 的形式，因此随机贴现因子可写成 $m=\beta u'(c_1)/u'(c_0)$。它是消费增长和边际效用的函数，所以 SDF 在采用该特定形式时也称基于消费的资产定价模型。
+\end{solution}
 \begin{problem}
 \problemno{12.2} 本章的随机贴现因子与上一章的随机贴现因子是否相同？
 \end{problem}
+\begin{solution}
+二者在定价关系 $P=E[mX]$ 上相同，但来源和表示可能不同。上一章的状态价格密度由均衡状态价格定义；本章把它表示为消费边际效用比。均衡时二者必须相等，非均衡时任一满足所有资产定价方程的 SDF 都可作为定价核。
+\end{solution}
 \begin{problem}
 \problemno{12.3} 为什么说 SDF 模型具有普适性？
 \end{problem}
+\begin{solution}
+只要资产支付可交易且无套利，就存在一个随机变量 $m$ 使所有资产满足 $P_i=E[mX_i]$。该表示不要求市场完全，也不要求指定效用、因子数目或市场组合；不同模型只是对 $m$ 施加不同结构。因此 SDF 是统一表达资产定价的普适框架。
+\end{solution}
 \begin{problem}
 \problemno{12.4} 基于 SDF 的模型与 CAPM 的联系与区别是什么？
 \end{problem}
+\begin{solution}
+CAPM 是 SDF 模型的特例：若 $m=a+bR_M$，则由 $E[mR_i]=1$ 可推出收益只与市场贝塔有关。SDF 允许 $m$ 依赖消费增长、多个因子或非线性状态变量，适用于更一般的市场；CAPM 则额外要求均值—方差偏好、同质信念和市场组合均衡。
+\end{solution}
 \begin{problem}
 \problemno{12.5} 什么是股权溢价之谜？
 \end{problem}
+\begin{solution}
+股权溢价之谜是指历史数据中的股票相对无风险资产平均超额收益很高，而代表性消费者消费增长的波动较小。标准消费 CAPM 若要解释该溢价，需要极高的相对风险厌恶系数，远高于通常经验和实验估计。
+\end{solution}
 \begin{problem}
 \problemno{12.6} 什么是无风险利率之谜？
 \end{problem}
+\begin{solution}
+无风险利率之谜是指历史无风险利率很低且波动有限，而标准消费模型在合理风险厌恶和消费增长参数下通常预测出较高的无风险利率。模型同时解释高股权溢价和低无风险利率存在困难。
+\end{solution}
 
 \begin{problem}
 \problemno{12.7} 两时点单期情形下假设期末有 $S$ 种状态，则基于消费的定价模型表明任何资产的价格 $P_i$ 和期末的支付 $X_i$ 满足
@@ -26,6 +44,13 @@
 \]
 如果经济中一个投资者的效用函数为 $u(c_0,c_1)$，$\omega\in\Omega$ 为均衡状态下的消费水平，试用投资者的均衡消费水平表示状态价格。
 \end{problem}
+\begin{solution}
+在均衡消费状态 $\omega$ 下，状态 $s$ 的边际效用为 $u_{c_1}(c_1(\omega_s))$，期初边际效用为 $u_{c_0}(c_0)$。由最优条件，状态价格为
+\[
+q_s=\pi_s\frac{u_{c_1}(c_1(\omega_s))}{u_{c_0}(c_0)}
+\]
+（若效用含时间折现因子 $\beta$，右侧再乘 $\beta$）。故 $m_s=q_s/\pi_s=u_{c_1}(c_1(\omega_s))/u_{c_0}(c_0)$，代回即可得到 $P_i=E[mX_i]$。
+\end{solution}
 \begin{problem}
 \problemno{12.8} 假设期末有两种状态，市场上有两种证券：一个是无风险证券，其相对收益为 $1.05$；另一个是风险证券，其期初价格为 $6$，期末支付向量为 $(10,5)$。
 \begin{enumerate}[label=(\alph*)]
@@ -33,9 +58,18 @@
     \item 若期末两状态等概率发生，计算两个状态所对应的随机贴现因子。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 设状态价格为 $q_1,q_2$。无风险证券价格取 1，故 $1.05(q_1+q_2)=1$；风险证券给出 $10q_1+5q_2=6$。解得 $q_1=26/105,q_2=74/105$。总状态价格为 $20/21$，风险中性概率为 $(0.26,0.74)$。
+\item 等概率下 $m_s=q_s/(1/2)=2q_s$，所以 $m_1=52/105$、$m_2=148/105$。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{12.9} 两时点、两状态单期情形下，一份期权合约在期末状态 1 下的支付为 $3$，状态 2 下的支付为 $0$，0 期市场价格为 $1$。一份相同标的资产的远期合约在状态 1 下的支付为 $3$，状态 2 下的支付为 $-2$。试求无风险利率及两状态的风险中性概率。
 \end{problem}
+\begin{solution}
+期权价格给出 $3q_1=1$，故 $q_1=1/3$。远期合约初始价格为零，故 $3q_1-2q_2=0$，得 $q_2=1/2$。总状态价格为 $5/6=1/(1+r_f)$，所以 $r_f=20\%$；风险中性概率为 $q/(q_1+q_2)=(2/5,3/5)$。
+\end{solution}
 \begin{problem}
 \problemno{12.10} 假如随机贴现因子定价关系与 CAPM 都成立，其中 CAPM 模型表述为 $E[R_i]=R_f+\beta_i\gamma$，随机贴现因子表述为 $m=a+bR_m$，$R_m$ 是市场投资组合的收益，其方差记为 $\sigma_m^2$。
 \begin{enumerate}[label=(\alph*)]
@@ -44,6 +78,13 @@
     \item 利用 (2) 中的结果证明 $\gamma=E[R_m]-R_f$。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+由 $E[m(R_i-R_f)]=0$ 且 $m=a+bR_m$，有 $E[mR_i]-R_fE[m]=0$。利用 $\operatorname{Cov}(R_i,R_m)=\beta_i\sigma_m^2$，可得
+\[
+\gamma=b\sigma_m^2.
+\]
+无风险资产条件 $E[mR_f]=1$ 给出 $a+bE[R_m]=1/R_f$；同时 $E[m]=a+bE[R_m]=1/R_f$。结合 $\gamma=E[R_m]-R_f$ 得 $b=(E[R_m]-R_f)/\sigma_m^2$、$a=1/R_f-bE[R_m]$，从而证明 CAPM 风险溢价等于市场超额收益。
+\end{solution}
 \begin{problem}
 \problemno{12.11} 假设存在 $N$ 个风险资产，其期望收益向量为 $\mu$，协方差矩阵为 $\Sigma$。记 $\mu_m=E[m]$ 和 $\sigma_m^2$ 分别为贴现因子的均值和方差。
 \begin{enumerate}[label=(\alph*)]
@@ -54,3 +95,13 @@
     \]
 \end{enumerate}
 \end{problem}
+\begin{solution}
+由 $E[R]=\mu$、$\operatorname{Cov}(R)=\Sigma$，直接计算
+\[
+E[m_0R]=\mu_m\mu+(1-\mu_m\mu)^{\mathsf T}\Sigma^{-1}E[(R-\mu)R]=1，
+\]
+因为 $E[(R-\mu)R]=\Sigma$。故 $m_0$ 是定价核。又由柯西—施瓦兹不等式，任一定价核的方差不小于其在收益空间投影的方差；投影正是 $m_0$，所以
+\[
+\operatorname{var}(m)\ge(1-\mu_m\mu)^{\mathsf T}\Sigma^{-1}(1-\mu_m\mu)。
+\]
+\end{solution}

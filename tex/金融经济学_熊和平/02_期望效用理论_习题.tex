@@ -3,27 +3,51 @@
 \begin{problem}
 \problemno{2.1} 什么是不确定性？什么是可量化的不确定性？什么是不可量化的不确定性？
 \end{problem}
+\begin{solution}
+不确定性是结果不能在决策时确定的情形。若能为各结果指定客观或主观概率，就是可量化不确定性（风险）；若无法合理指定概率，就是不可量化不确定性（模糊性）。
+\end{solution}
 \begin{problem}
 \problemno{2.2} 为什么可以用彩票代替不确定性选择对象？
 \end{problem}
+\begin{solution}
+彩票把每种结果及其概率明确列出，因此把复杂的不确定选择转化为对概率分布的比较。在期望效用公理成立时，任何不确定对象都可由与其结果—概率分布相同的彩票代表。
+\end{solution}
 \begin{problem}
 \problemno{2.3} 什么是公理化体系？期望效用理论包含哪些公理？各个公理的具体含义是什么？
 \end{problem}
+\begin{solution}
+公理化体系用一组行为公理刻画偏好，并由此推出表示定理。期望效用理论的核心公理包括完备性与传递性（偏好排序一致）、连续性（中间彩票可使偏好无差异）和独立性（共同混合不改变排序）；在这些条件下偏好可表示为 $U(L)=\sum_i\pi_i u(x_i)$。
+\end{solution}
 \begin{problem}
 \problemno{2.4} 什么是效用函数？什么是期望效用函数？
 \end{problem}
+\begin{solution}
+效用函数把消费或结果映射为实数，并保持偏好排序：$x\succeq y\Leftrightarrow u(x)\ge u(y)$。期望效用函数把各结果效用按概率加权：$U(L)=\sum_i\pi_i u(x_i)$。
+\end{solution}
 \begin{problem}
 \problemno{2.5} 阿莱斯悖论挑战了期望效用理论的什么公理？
 \end{problem}
+\begin{solution}
+阿莱斯悖论主要挑战独立性公理：受试者在两组选择中的共同结果相同，却因概率结构改变而改变偏好，违反共同概率混合应保持排序的要求。
+\end{solution}
 \begin{problem}
 \problemno{2.6} 举例说明期望效用理论有哪些拓展。
 \end{problem}
+\begin{solution}
+常见拓展包括累积前景理论（对概率作决策权重并以参考点定义收益损失）、秩依概率模型（按结果排序后加权）、模糊厌恶模型（对概率分布本身不确定）和非期望效用的加权效用模型。
+\end{solution}
 \begin{problem}
 \problemno{2.7} 假设有两个彩票 $L$ 与 $L'$，以及效用函数 $V$ 与 $W$。若 $V(L)>V(L')$，是否必有 $W(L)>W(L')$？换言之，什么条件下 $W(L)=\sum_i \pi_i Q_i$ 也是(与 $V$ 表示相同偏好的)期望效用函数？% 原书 p.2 末题干截断，p.3 起为续问，待补扫核对完整设问。
 \end{problem}
+\begin{solution}
+不一定。只有当 $W$ 与 $V$ 表示相同偏好时，才有 $W=f(V)$，其中 $f$ 为严格递增函数；若二者都是期望效用表示，则在相同结果空间和概率下，通常要求 $w(x)=a v(x)+b$ 且 $a>0$，于是 $W(L)=aV(L)+b$（或按归一化常数作等价变换），从而 $V(L)>V(L')\Leftrightarrow W(L)>W(L')$。
+\end{solution}
 \begin{problem}
 \problemno{2.8} 资产 $A$ 具有确定性支付 \num{1500} 元；资产 $B$ 以 $0.8$ 的概率支付 \num{2000} 元、以 $0.2$ 的概率支付 \num{0} 元；资产 $C$ 以概率 $0.75$ 支付 \num{100} 元、以概率 $0.25$ 支付 \num{0} 元；资产 $D$ 以概率 $0.2$ 支付 \num{2000} 元、以概率 $0.8$ 支付 \num{0} 元。在期望效用框架下比较上述资产(按原书要求完成相应选择或排序)。
 \end{problem}
+\begin{solution}
+仅凭支付和概率不能给出唯一排序，必须知道结果效用函数。期望支付分别为 $1500,1600,75,400$，但风险厌恶者可能偏好确定的 $A$ 胜过 $B$；风险中性时按期望支付排序为 $B>A>D>C$。
+\end{solution}
 \begin{problem}
 \problemno{2.9} 若你具有对数效用函数，当前财富水平是 \num{5000} 元：
 \begin{enumerate}[label=(\alph*)]
@@ -31,6 +55,9 @@
     \item 若在 (a) 中进行了投机而且亏损 \num{1000} 元，你的财富变为 \num{4000} 元。面对 (a) 中的保险是再次投机还是购买保险？
 \end{enumerate}
 \end{problem}
+\begin{solution}
+(a) 保险后的确定财富为 $5000-125=4875$。投机的期望对数效用为 $\frac12\ln6000+\frac12\ln4000=\frac12\ln(24\,000\,000)>\ln4875$，故选择投机。(b) 亏损后财富为 $4000$，再次投机的期望效用为 $\frac12\ln5000+\frac12\ln3000$，而买保险为 $\ln3875$；前者更大，仍选择投机。
+\end{solution}
 \begin{problem}
 \problemno{2.10} 考虑下面的四种彩票：
 \[
@@ -42,3 +69,6 @@
     \item 若投资者在 $L_A$ 与 $L_B$ 之间选择 $L_A$，在 $L_C$ 与 $L_D$ 之间选择 $L_D$，那么该投资者的偏好是否与冯·诺依曼-摩根斯坦的期望效用理论一致？为什么？
 \end{enumerate}
 \end{problem}
+\begin{solution}
+(a) 选择 $L_C$ 而非 $L_A$ 意味着在相同的中奖额下偏好更低中奖概率，违反不满足性，因而不符合期望效用理论。(b) 期望效用下 $L_A\succ L_B$ 意味 $\pi u(x)>(\pi')u(y)$；乘以 $\alpha$ 后应有 $L_C\succ L_D$，但题设选择 $L_D$，违反独立性公理，故不一致。
+\end{solution}

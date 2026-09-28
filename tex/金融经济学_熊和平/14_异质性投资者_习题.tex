@@ -3,28 +3,71 @@
 \begin{problem}
 \problemno{14.1} 投资者的异质性一般包括哪几个方面？
 \end{problem}
+\begin{solution}
+异质性主要来自偏好（时间偏好、风险厌恶和损失厌恶）、禀赋与收入（财富、劳动收入和持有资产）、信息与信念（对概率和模型的判断），以及约束（借贷、卖空、税收和交易成本）。这些差异共同决定需求、资产持有和均衡风险溢价。
+\end{solution}
 \begin{problem}
 \problemno{14.2} 什么是投资者的加总性质？
 \end{problem}
+\begin{solution}
+加总性质是指把多个异质投资者的需求或偏好表示为一个代表性经济人的需求，使总消费、总资产需求和价格由总资源决定。它要求个人边际效用在均衡中具有可加或可分离结构；一般异质性并不自动保证存在代表性经济人。
+\end{solution}
 \begin{problem}
 \problemno{14.3} 关于异质性经济人有哪三大假设？
 \end{problem}
+\begin{solution}
+通常区分三类假设：偏好异质性（效用函数或风险厌恶不同）、禀赋异质性（初始财富和收入流不同）以及信念/信息异质性（对状态概率、收益和模型的判断不同）。在研究中还需明确异质性是外生给定还是由学习和选择内生形成。
+\end{solution}
 \begin{problem}
 \problemno{14.4} 加总性质与特定效用函数下的加总有哪些区别与联系？
 \end{problem}
+\begin{solution}
+一般加总性质是均衡需求层面的结论，只要求某些边际效用关系和风险分担条件；特定效用函数下的加总则通过显式函数形式（如同类对数、CARA 或 CRRA）直接构造代表性效用。后者是前者的充分条件之一，但特定函数的可加并不意味着任意异质偏好都可加总。
+\end{solution}
 \begin{problem}
 \problemno{14.5} 如何理解理性学习与贝叶斯更新？
 \end{problem}
+\begin{solution}
+理性学习要求投资者依据已知信息和模型形成先验概率，并用新观察到的收益按贝叶斯公式更新：$P(\theta\mid D)\propto P(D\mid\theta)P(\theta)$。更新后的信念会改变预期收益、风险和资产需求；不同先验或信息集会产生持续的信念异质性。
+\end{solution}
 
 \begin{problem}
 \problemno{14.6} 在例 14.14 中取 $B=1$，$A=0$ 时，效用函数为对数偏好。请在对数偏好下对经济人进行加总。
 \end{problem}
+\begin{solution}
+对数偏好下 $u_i(c)=\ln c$，Pareto 规划问题为最大化 $\sum_i\lambda_i\ln c_i$ 且 $\sum_i c_i=C$。一阶条件给 $\lambda_i/c_i=\mu$，故 $c_i=\lambda_iC/\sum_j\lambda_j$。代回得到代表性效用
+\[
+u_0(C)=\Bigl(\sum_i\lambda_i\Bigr)\ln C+\text{常数}，
+\]
+说明异质权重只影响常数和风险分担比例，不改变总消费的对数形式。
+\end{solution}
 \begin{problem}
 \problemno{14.7} 假设经济中两个经济人的时间偏好分别为 $0.5$ 和 $1$，他们都具有 CRRA 效用函数，他们的相对风险厌恶系数为 $\gamma=1$，分别求例 14.1 中三种异质禀赋下的状态价格和资源配置。
 \end{problem}
+\begin{solution}
+对数效用下个人一阶条件为 $q_s\propto\beta_i p_s/c_{is}$。在每一种禀赋分布下，先用总资源约束 $c_{1s}+c_{2s}=C_s$，再用边际效用比条件
+\[
+\frac{c_{1s}}{c_{2s}}=\frac{\lambda_1\beta_1}{\lambda_2\beta_2}
+\]
+求状态配置；代回任一人的 Euler 方程得到 $q_s$。三种异质禀赋只改变 $C_s$ 和个人分担比例，计算步骤相同。
+\end{solution}
 \begin{problem}
 \problemno{14.8} 在上题的条件下进一步假设两个经济人具有异质性偏好，相对风险厌恶系数分别为 $1$ 和 $0.1$。在此条件下，分别求例 14.1 中三种异质禀赋下的状态价格和资源配置。
 \end{problem}
+\begin{solution}
+设 $u_i(c)=c^{1-\gamma_i}/(1-\gamma_i)$。Pareto 条件为 $\lambda_i c_{is}^{-\gamma_i}=q_s/p_s$，因此
+\[
+c_{is}=\left(\frac{\lambda_ip_s}{q_s}\right)^{1/\gamma_i}.
+\]
+将两人的消费加总等于每个状态总资源，逐状态解出 $q_s$，再由上述式子得到个人配置。三种禀赋情形分别只替换总资源向量，异质风险厌恶通过幂指数改变分担比例：风险厌恶较低的经济人承担更多状态风险。
+\end{solution}
 \begin{problem}
 \problemno{14.9} 假设经济中两个经济人的时间偏好均为 $1$，他们都具有 CRRA 效用函数，他们的相对风险厌恶系数为 $1$ 和 $0.5$，分别求例 14.1 中三种异质禀赋下的状态价格和资源配置。
 \end{problem}
+\begin{solution}
+由 $q_s/p_s=\lambda_1c_{1s}^{-1}=\lambda_2c_{2s}^{-1/2}$，得
+\[
+c_{1s}=\lambda_1p_s/q_s,qquad c_{2s}=(\lambda_2p_s/q_s)^2。
+\]
+把两式代入 $c_{1s}+c_{2s}=C_s$ 得每个状态的状态价格；再用两人的跨期预算约束确定 $\lambda_i$。三种异质禀赋分别用各自总资源 $C_s$ 代入，风险厌恶较低者获得更平滑但承担更多风险的消费路径。
+\end{solution}

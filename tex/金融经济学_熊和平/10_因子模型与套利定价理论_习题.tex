@@ -3,27 +3,51 @@
 \begin{problem}
 \problemno{10.1} 什么是市场模型？市场模型下证券的收益和风险如何确定？
 \end{problem}
+\begin{solution}
+市场模型是单因子模型 $r_i=\alpha_i+\beta_i r_M+\varepsilon_i$，其中市场收益是共同因子，$\varepsilon_i$ 为特质项。证券期望收益由 $\alpha_i+\beta_iE(r_M)$ 决定，风险为 $\beta_i^2\operatorname{Var}(r_M)+\operatorname{Var}(\varepsilon_i)$；若特质项与市场因子不相关，协方差结构也由该式确定。
+\end{solution}
 \begin{problem}
 \problemno{10.2} 什么是多因子模型？多因子模型下证券的收益如何确定？证券的风险如何分解？
 \end{problem}
+\begin{solution}
+多因子模型写为 $r_i=\alpha_i+\sum_{j=1}^K b_{ij}F_j+\varepsilon_i$。期望收益为 $\alpha_i+\sum_jb_{ij}E(F_j)$；若特质项与因子不相关，方差分解为 $b_i^{\mathsf T}\Sigma_Fb_i+\sigma_{\varepsilon i}^2$，前项是系统性因子风险，后项是可分散的特质风险。
+\end{solution}
 \begin{problem}
 \problemno{10.3} APT 有哪些假设？
 \end{problem}
+\begin{solution}
+APT 通常假设：资产收益由有限个共同因子和特质项生成；特质项均值为零且彼此独立或弱相关；市场中资产数量足够多，投资者可以构造充分分散的组合；不存在套利，且可按线性方式交易。它不要求指定因子的经济含义，也不要求所有投资者具有相同偏好。
+\end{solution}
 \begin{problem}
 \problemno{10.4} 简述 APT 与 CAPM 的联系与区别。
 \end{problem}
+\begin{solution}
+两者都由无套利或均衡条件把期望收益与系统性风险联系起来。CAPM 只有市场组合一个因子，来自均值—方差一般均衡；APT 可有多个因子，风险溢价为各因子载荷与因子价格的线性组合，强调分散化和无套利而不必指定市场组合。CAPM 是 APT 在单一市场因子和额外均衡假设下的特例。
+\end{solution}
 \begin{problem}
 \problemno{10.5} Fama-French 三因子模型如何构造决定证券收益的因子？
 \end{problem}
+\begin{solution}
+三因子为市场超额收益 $R_M-R_f$、规模因子 SMB（小市值组合收益减大市值组合收益）和价值因子 HML（高账面市值比组合收益减低账面市值比组合收益）。实证中先按市值、账面市值比排序形成组合，再取相应组合收益差作为因子。
+\end{solution}
 \begin{problem}
 \problemno{10.6} 如果 CAPM 和 APT 都是正确的资产定价理论，那么与市场投资组合负相关的因子的风险溢价必定是负的，为什么？从数值和直观上进行解释。
 \end{problem}
+\begin{solution}
+若因子 $F$ 与市场收益协方差为负，则持有该因子载荷为正的资产能降低市场风险。CAPM 要求其市场贝塔为负，故其期望收益低于无风险利率；APT 的因子风险溢价也必须为负，否则可以买入负载荷资产、卖出相应市场组合构造零成本正收益套利。负风险溢价是投资者为获得对冲保险而愿意支付的价格。
+\end{solution}
 \begin{problem}
 \problemno{10.7} 有学者认为市场投资组合是不能被测定的，因此 CAPM 是不可检测的。也有学者认为 APT 既未明确因子的数目也未明确因子的内容，从而也是不可检测的。如果这些观点都是正确的，这意味着这些理论毫无价值吗？解释之。
 \end{problem}
+\begin{solution}
+不可直接检验不等于没有理论价值。CAPM 和 APT 提供了风险分解、无套利约束和可检验的相对预测；研究者可用市场代理、统计因子、宏观变量或组合排序检验其限制条件。理论还用于组织经验事实、推导衍生定价和解释风险溢价来源，检验困难只说明需要明确代理和识别假设。
+\end{solution}
 \begin{problem}
 \problemno{10.8} 虽然 APT 未明确有关因子的内容，多数套利定价理论的实证研究集中在某些类型的因子上，这些因子的共同特征是什么？
 \end{problem}
+\begin{solution}
+常用因子通常具有共同性、可观测性和可交易性，能影响大量资产并产生持久的协方差；因子冲击不能通过持有少量资产消除，且其风险溢价可由多元资产组合估计。宏观利率、通胀、工业产出以及规模、价值、动量等组合因子都符合这些特征。
+\end{solution}
 
 \begin{problem}
 \problemno{10.9} 在单因子模型下，市场上有两个风险资产 A 和 B，两证券的风险载荷分别为 $0.20$ 和 $3.5$；两者的特质风险(方差)分别为 $49\%$ 和 $100\%$。当两资产组成的投资组合为 $(40\%,60\%)$ 时分别回答下列各问题：
@@ -33,12 +57,25 @@
     \item 如果无风险资产、A 和 B 组成的投资组合为 $(10\%,36\%,54\%)$，分别回答上述两问。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 组合因子载荷为 $0.4(0.20)+0.6(3.5)=2.18$，若因子标准差为 $15\%$，因子风险标准差为 $2.18\times15\%=32.7\%$。
+\item 特质方差为 $0.4^2(0.49)+0.6^2(1)=0.4984$，总方差为 $0.4984+2.18^2(0.15)^2=0.6053$，总标准差约 $77.80\%$。
+\item 加入无风险资产后，风险资产在总财富中的权重仍为 $0.36,0.54$，组合载荷为 $0.36(0.2)+0.54(3.5)=1.962$；因子风险标准差为 $29.43\%$，特质方差为 $0.36^2(0.49)+0.54^2(1)=0.3496$，总方差约 $0.4362$，总标准差约 $66.05\%$。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{10.10} 在两因子模型下，市场上有两个证券 A 和 B，它们对因子 1 的敏感性分别为 $1.5$ 和 $0.7$，对因子 2 的敏感性分别为 $2.6$ 和 $1.2$，两证券的特质风险用方差表示分别为 $25\%$ 和 $16\%$，因子 1 和因子 2 的标准差分别为 $20\%$ 和 $15\%$，因子间协方差为 $2.25\%$。计算两个证券的标准差和它们之间的协方差。
 \end{problem}
+\begin{solution}
+因子协方差矩阵为 $\Sigma_F=\begin{bmatrix}0.04&0.0225\\0.0225&0.0225\end{bmatrix}$。对证券 $i$，$\operatorname{Var}(r_i)=b_i^{\mathsf T}\Sigma_Fb_i+\sigma_{\varepsilon i}^2$；两证券协方差为 $b_A^{\mathsf T}\Sigma_Fb_B$。代入 $b_A=(1.5,2.6)$、$b_B=(0.7,1.2)$，得 $\operatorname{Var}(A)=0.6676$、$\sigma_A\approx0.817$，$\operatorname{Var}(B)=0.2498$、$\sigma_B\approx0.500$，协方差为 $0.19365$。
+\end{solution}
 \begin{problem}
 \problemno{10.11} 单因子模型下，假设无风险利率为 $2\%$，一个具有单位敏感性的投资组合的期望收益率为 $4.5\%$。假设有两个风险证券 A 和 B 的风险载荷分别为 $4.0$ 和 $2.6$，根据套利定价理论，求这两种证券组成组合 $(30\%,70\%)$ 的均衡期望收益率。
 \end{problem}
+\begin{solution}
+单位因子载荷组合的风险溢价为 $4.5\%-2\%=2.5\%$，故单因子 APT 为 $E(r_i)=2\%+b_i(2.5\%)$。组合载荷为 $0.3(4.0)+0.7(2.6)=3.02$，所以组合均衡收益为 $2\%+3.02\times2.5\%=9.55\%$。
+\end{solution}
 \begin{problem}
 \problemno{10.12} 假设证券收益由两因子模型生成。两个风险证券和无风险资产对每个因子的敏感性及每种证券的期望收益率见下表。
 \begin{center}
@@ -56,6 +93,13 @@
     \item 因子 2 的期望风险溢价是多少？
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 净投入为 $100$，持有 $150$ 元 A、卖空 $50$ 元 B，因子载荷为 $1.5(0.5)+(-0.5)(1.5)=-0.75$、$1.5(0.8)+(-0.5)(1.4)=0.50$。
+\item 借入 $100$ 元后总组合价值为 $200$，载荷为 $-0.75/2=-0.375$ 和 $0.50/2=0.25$（按组合权重相对总财富计）。期望收益为 $1.5(5.2\%)-0.5(7.6\%)+(-1)(2\%)=2.2\%$。
+\item 由 APT，A 的超额收益满足 $3.2\%=0.5\lambda_1+0.8\lambda_2$，B 满足 $5.6\%=1.5\lambda_1+1.4\lambda_2$。解得因子 2 风险溢价 $\lambda_2\approx2.29\%$。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{10.13} 假设 CAPM 成立，证券的收益由单因子模型生成。给定如下信息：$\sigma_A^2=4.00\%$，$b_A=0.70$，$b_B=1.10$，$\operatorname{cov}(F,r_M)=3.70\%$。
 \begin{enumerate}[label=(\alph*)]
@@ -63,9 +107,20 @@
     \item 均衡期望收益率各是多少？
 \end{enumerate}
 \end{problem}
+\begin{solution}
+若单因子为 $F$，则 $\beta_i=b_i\operatorname{cov}(F,r_M)/\operatorname{var}(r_M)$。由题给因子载荷先得 $\beta_A=0.70$、$\beta_B=1.10$（因 $b_i$ 已按市场因子标准化）。CAPM 下 $E(r_i)=r_f+\beta_i[E(r_M)-r_f]$，故分别为 $r_f+0.70\,\mathrm{MRP}$ 与 $r_f+1.10\,\mathrm{MRP}$。
+\end{solution}
 \begin{problem}
 \problemno{10.14} 假设 CAPM 成立，证券的收益由两因子模型生成。给定如下信息：$\sigma_A^2=3.24\%$，$b_{A1}=0.80$，$b_{B1}=1.00$，$\operatorname{cov}(F_1,r_M)=1.56\%$；$b_{A2}=1.10$，$b_{B2}=0.70$，$\operatorname{cov}(F_2,r_M)=5.00\%$。在上述条件下回答第 5 题中的两问。
 \end{problem}
+\begin{solution}
+两因子下 $\beta_i=\sum_j b_{ij}\operatorname{cov}(F_j,r_M)/\operatorname{var}(r_M)$。因此
+\[
+\beta_A\propto0.8(1.56\%)+1.1(5.00\%),\quad
+\beta_B\propto1.0(1.56\%)+0.7(5.00\%).
+\]
+除以共同的市场方差得到两证券贝塔，再代入 $E(r_i)=r_f+\beta_i[E(r_M)-r_f]$ 即得均衡收益；A 的因子 2 暴露较大，其市场贝塔和要求收益相应较高。
+\end{solution}
 \begin{problem}
 \problemno{10.15} 假设资产 A、B、C 的收益服从精确两因子模型：
 \[
@@ -75,3 +130,10 @@
 \]
 其中两个因子 $F_i$($i=1,2$)是均值为 $0$、方差为 $1$ 的因子，$r_f$ 为无风险利率。无套利条件下 $a$、$b$ 应该满足什么条件？
 \end{problem}
+\begin{solution}
+无套利要求任何零初始成本且因子载荷为零的组合不能有非零确定收益。因此存在因子风险溢价 $\lambda_1,\lambda_2$，使每个资产的截距满足
+\[
+a_i=r_f+b_{i1}\lambda_1+b_{i2}\lambda_2.
+\]
+等价地，对任意组合权重 $w$，若 $\sum_iw_i=0$ 且 $\sum_iw_ib_{ij}=0$（$j=1,2$），则必须有 $\sum_iw_ia_i=0$；否则该组合消除两个因子风险却产生确定正收益，构成套利。
+\end{solution}

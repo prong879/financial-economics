@@ -3,21 +3,52 @@
 \begin{problem}
 \problemno{1.1} 金融经济学是从哪几个方面来描述经济环境的？
 \end{problem}
+\begin{solution}
+金融经济学通常从四个方面描述经济环境：\textbf{时间结构}（期初、期末及多期时点）、\textbf{不确定性}（可能状态及其概率）、\textbf{资源禀赋}（各期各状态可用的消费品或生产要素）以及\textbf{交易技术与市场结构}（可交易证券、支付向量、价格和交易限制）。这些要素共同确定经济人的可行消费集合和均衡条件。
+\end{solution}
+
 \begin{problem}
 \problemno{1.2} 什么是纯交换经济？什么是生产性经济？两者的区别和联系是什么？
 \end{problem}
+\begin{solution}
+纯交换经济中，资源总量由经济人的初始禀赋给定，经济人只能通过交易重新配置既有资源；不存在把投入转化为产出的生产技术。生产性经济在此基础上加入生产集合或生产函数，资源还可以通过生产在不同商品、时点和状态之间转化。两者都研究偏好、禀赋（或技术）、市场和均衡；纯交换经济可视为生产集合退化为“只能保有原有资源”的特殊生产性经济。
+\end{solution}
+
 \begin{problem}
 \problemno{1.3} 金融经济学从哪些方面描述经济人？
 \end{problem}
+\begin{solution}
+对经济人的描述至少包括三项：第一，偏好关系或效用函数，用来表示对不同消费计划的排序；第二，禀赋，说明各期各状态初始拥有的消费品和证券；第三，决策约束，包括预算约束、可行集、交易制度和不能卖空等市场限制。给定这些信息，经济人的问题是在预算集内选择使效用最大的消费—投资计划。
+\end{solution}
+
 \begin{problem}
 \problemno{1.4} 什么叫市场结构？
 \end{problem}
+\begin{solution}
+市场结构是证券支付与价格的完整描述。设期末有 $S$ 个状态、市场有 $N$ 支证券，证券 $j$ 的支付向量为 $X_j\in\mathbb{R}^{S}$、期初价格为 $p_j$，则支付矩阵
+\[
+ X=[X_1,\ldots,X_N]\in\mathbb{R}^{S\times N},\qquad p=(p_1,\ldots,p_N)^{\mathsf T}
+\]
+与交易限制共同构成市场结构。组合 $\theta$ 的支付和价格分别为 $X\theta$ 与 $p^{\mathsf T}\theta$。
+\end{solution}
+
 \begin{problem}
 \problemno{1.5} 什么是投资组合？投资组合一般有哪几种描述方式。
 \end{problem}
+\begin{solution}
+投资组合是投资者持有的各项证券数量的向量，记为 $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$。常用三种方式描述：\textbf{数量描述} $\theta$；\textbf{支付描述} $X\theta$，即各状态下的期末支付；\textbf{价值描述} $p^{\mathsf T}\theta$，即期初购买价值。允许卖空时数量可为任意实数，禁止卖空时要求 $\theta_j\ge0$。
+\end{solution}
+
 \begin{problem}
 \problemno{1.6} 什么是一般均衡分析方法？一般均衡分析方法一般包括哪几步？
 \end{problem}
+\begin{solution}
+一般均衡分析同时考虑所有市场和所有经济人的相互作用，而不是孤立分析某一个市场。通常分四步：\textbf{(1)} 给定偏好、禀赋、技术和市场结构，确定经济人的优化问题；\textbf{(2)} 在给定价格下求各经济人的需求和供给；\textbf{(3)} 写出每个市场的出清条件；\textbf{(4)} 联立优化条件与市场出清条件，求均衡价格、配置和交易，并检验可行性及最优性。
+\end{solution}
+
 \begin{problem}
 \problemno{1.7} 什么是无套利分析法？请简述该方法的基本原理。
 \end{problem}
+\begin{solution}
+套利是零期净投入不为正、而期末每个状态支付非负且至少一个状态严格为正的交易策略。无套利分析法的核心是：若两个组合在所有状态具有相同支付，它们必须具有相同价格（一价律）；否则买入便宜组合、卖出昂贵组合即可构造套利。实际运用中先列出支付矩阵和价格，寻找复制组合或价格不一致，再由无套利条件得到证券价格、状态价格或价格上下界。
+\end{solution}

@@ -3,15 +3,27 @@
 \begin{problem}
 \problemno{4.1} 什么是 Arrow-Debreu 证券市场？为什么要讨论 Arrow-Debreu 证券？
 \end{problem}
+\begin{solution}
+Arrow--Debreu 证券只在某一状态支付一个单位、其他状态支付零。它把任意不确定支付分解为状态支付，便于研究完全市场、状态价格和风险分担。
+\end{solution}
 \begin{problem}
 \problemno{4.2} Arrow-Debreu 证券与现实生活中的什么金融产品类似？
 \end{problem}
+\begin{solution}
+它类似于按状态支付的保险合同、数字期权和状态索取权。
+\end{solution}
 \begin{problem}
 \problemno{4.3} 金融文献中在分析问题时经常假设市场是完全的，试说明完全市场的优点是什么？
 \end{problem}
+\begin{solution}
+完全市场可以复制任意状态支付，因而风险能够按状态交易和分担；无套利时状态价格唯一，资产定价和均衡配置可由线性方程直接求出。
+\end{solution}
 \begin{problem}
 \problemno{4.4} Arrow-Debreu 证券市场的一般均衡分析分哪几步进行？
 \end{problem}
+\begin{solution}
+先写经济人的效用最大化和预算约束，再由一阶条件求状态商品需求，最后结合各状态资源约束出清，联立求状态价格和均衡配置。
+\end{solution}
 
 \begin{problem}
 \problemno{4.5} 考虑三状态经济中有三个证券，价格分别为 \num{5} 元、\num{5} 元和 \num{6} 元，期末的支付矩阵为
@@ -27,6 +39,13 @@
     \item 计算三个不同的状态证券价格。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+记三个状态证券为 $A_1,A_2,A_3$。三个证券分别为 $10A_1+10A_2+10A_3$、$20A_1+10A_2+5A_3$ 和 $30A_1+10A_2+5A_3$。令状态价格为 $q_1,q_2,q_3$，由一价律有
+\[
+10q_1+10q_2+10q_3=5,\quad20q_1+10q_2+5q_3=5,\quad30q_1+10q_2+5q_3=6.
+\]
+相减得 $q_1=0.1$、$q_3=0.2$，代回得 $q_2=0.2$。
+\end{solution}
 \begin{problem}
 \problemno{4.6} 给定下列支付矩阵，问 $k$ 为何值时市场是完全的：
 \[
@@ -37,6 +56,13 @@
     \end{bmatrix}.
 \]
 \end{problem}
+\begin{solution}
+市场完全当且仅当 $\det X\ne0$。直接计算
+\[
+\det X=3(7k-5)-2(7-10)+3(1-2k)=15k-6。
+\]
+因此当 $k\ne2/5$ 时市场完全；$k=2/5$ 时市场不完全。
+\end{solution}
 \begin{problem}
 \problemno{4.7} 市场上有三个证券，其价格和期末支付分别为
 \[
@@ -54,6 +80,18 @@
     \item 确定以第一个证券为标的、执行价格为 $2$ 的看涨期权价格。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 解 $X^{\mathsf T}q=S$ 得
+\[
+q=\left(\frac{52}{29},-\frac{96}{29},\frac{158}{29}\right)^{\mathsf T}。
+\]
+由于第二个状态价格为负，严格正状态价格不存在，故市场存在套利。
+\item 状态价格如上；负分量正是套利证据。
+\item 消费计划 $(1,0,3)$ 的线性定价为 $q^{\mathsf T}(1,0,3)=522/29$，但由于市场有套利，该价格不具有无套利唯一性。
+\item 看涨支付为 $(2,0,0)$，形式上的状态价格值为 $2q_1=104/29$；因市场本身有套利，不能称为无套利价格。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{4.8} 假定市场上有两种证券：证券 1 和证券 2，价格分别为 \num{13} 元和 \num{10} 元，两种证券期末的支付如下：
 \begin{center}
@@ -66,11 +104,21 @@
 \end{center}
 假设经济人的效用函数为 $U(w_1,w_2)=w_1 w_2$，其中 $w_1,w_2$ 分别为期末不同状态下的财富水平。该经济人初始财富水平为 \num{420} 元。为了最大化效用，在期初构造投资组合时分别购买多少证券 1 和证券 2？
 \end{problem}
+\begin{solution}
+设购买 $\theta_1,\theta_2$ 单位证券，预算约束为 $13\theta_1+10\theta_2=420$。两状态财富为 $w_1=11\theta_1+2\theta_2$、$w_2=20\theta_2$。代入 $\theta_1=(420-10\theta_2)/13$，得
+\[
+U(\theta_2)=\frac{20\theta_2(4620-84\theta_2)}{13}。
+\]
+一阶条件给 $4620-168\theta_2=0$，故 $\theta_2=27.5$、$\theta_1=145/13\approx11.154$；二阶导数为负，且两者均为正，故这是最优组合。
+\end{solution}
 \begin{problem}
-\problemno{4.9} 假若期末只有一个状态发生，即期末是确定性的。一个消费者的两期消费的效用函数为 $u(c_0,c_1)=c_0 c_1^{1/2}$，其中 $c_0,c_1$ 分别为期初和期末的消费；该消费者的收入流为 $y_0=\num{2000}$ 元，$y_1=\num{1296}$ 元，且市场利率为 $8\%$。求该消费者的最优消费计划。
+\problemno{4.9} 假若期末只有一个状态发生，即期末是确定性的。（与王江版 2.7 的确定性跨期消费选择题方法相近。）一个消费者的两期消费的效用函数为 $u(c_0,c_1)=c_0 c_1^{1/2}$，其中 $c_0,c_1$ 分别为期初和期末的消费；该消费者的收入流为 $y_0=\num{2000}$ 元，$y_1=\num{1296}$ 元，且市场利率为 $8\%$。求该消费者的最优消费计划。
 \end{problem}
+\begin{solution}
+跨期预算约束为 $c_0+c_1/1.08=2000+1296/1.08=3200$。对 $u=c_0c_1^{1/2}$，一阶条件为 $\frac{\partial u/\partial c_0}{\partial u/\partial c_1}=2c_1/c_0=1.08$，即 $c_1=0.54c_0$。代入预算约束得 $c_0=3200/1.5=6400/3$、$c_1=1152$。
+\end{solution}
 \begin{problem}
-\problemno{4.10} 继续考虑期末确定情形，经济人 1 在 0 期的禀赋为 $100$ 而在 1 期的禀赋为 $1$，其效用函数为 $u(c_0,c_1)=\ln c_0+\rho\ln c_1$；市场上只有一个无风险证券，无风险利率为 $r_f$。
+\problemno{4.10} 继续考虑期末确定情形，经济人 1 在 0 期的禀赋为 $100$ 而在 1 期的禀赋为 $1$，其效用函数为 $u(c_0,c_1)=\ln c_0+\rho\ln c_1$；市场上只有一个无风险证券，无风险利率为 $r_f$。（与王江版 2.7 的对数效用跨期消费推导相近。）
 \begin{enumerate}[label=(\alph*)]
     \item 若 $\rho=0.5$，求经济人的投资需求；
     \item 若经济人 1 是唯一的参与者，请描述市场出清条件；
@@ -78,6 +126,15 @@
     \item 求均衡利率与时间偏好率 $\rho$ 的关系。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+记 $R=1+r_f$，总财富为 $w=100+1/R$。
+\begin{enumerate}[label=(\alph*)]
+\item 最优条件为 $c_1=\rho R c_0$，故 $c_0=w/(1+\rho)$、$c_1=\rho Rw/(1+\rho)$。投资需求为 $\theta=(c_1-1)/R$。
+\item 唯一参与者时，证券净供给为零，故其交易后仍持有总禀赋，市场出清要求 $c_0=100$、$c_1=1$。
+\item 由最优条件 $1=\rho R\cdot100$，得 $R=1/(100\rho)$，即 $r_f=1/(100\rho)-1$。
+\item 均衡利率随 $\rho$ 单调下降：经济人越重视未来消费（$\rho$ 越大），均衡利率越低。
+\end{enumerate}
+\end{solution}
 \begin{problem}
 \problemno{4.11} 在第 4 题的基础上加入经济人 2，其效用函数与经济人 1 相同，禀赋为 $(1,100)$，即期初禀赋为 $1$，期末禀赋为 $100$。
 \begin{enumerate}[label=(\alph*)]
@@ -85,6 +142,13 @@
     \item 求新的经济下的均衡利率，并比较单个经济人参与的经济下的均衡利率。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+令 $R=1+r_f$，经济人 2 的财富为 $w_2=1+100/R$。其最优条件仍为 $c_{12}=\rho R c_{02}$，故
+\[
+c_{02}=\frac{w_2}{1+\rho},\qquad c_{12}=\frac{\rho Rw_2}{1+\rho},\qquad \theta_2=\frac{c_{12}-100}{R}.
+\]
+两人合计禀赋为 $(101,101)$，市场出清要求总消费分别为 $101$ 和 $101$。代入两人的需求并求解得 $R=1/\rho$，即 $r_f=1/\rho-1$。与只有经济人 1 时的 $r_f=1/(100\rho)-1$ 相比，新增经济人改变了供求规模，均衡利率显著提高。
+\end{solution}
 \begin{problem}
 \problemno{4.12} 假设期末有三种等可能的状态 $a$、$b$ 和 $c$ 发生，市场是完全的，有两个经济人。经济人 1 的禀赋是 $100$ 个单位期初的消费品；经济人 2 的禀赋为期末的消费品，三个状态下分别为 $200$、$100$ 和 $50$。他们的效用函数相同，均为
 \[
@@ -96,3 +160,17 @@
     \item 分析每个经济人的总消费与各自禀赋的关系。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+记状态价格为 $q_a,q_b,q_c$。社会总资源为期初 $100$、期末各状态 $(200,100,50)$。由于两人的效用函数相同且权重相同，Pareto 最优配置使两人在每一时点、每一状态的消费相等：
+\[
+c_{01}=c_{02}=50,\qquad (c_{1a},c_{2a})=(100,100),
+\]
+\[
+(c_{1b},c_{2b})=(50,50),\qquad (c_{1c},c_{2c})=(25,25).
+\]
+一阶条件为 $q_s\propto 1/c_{is}^{2}$。以期初消费品为计价单位并利用 $\sum_s q_s c_{is}$ 的预算约束，可得状态价格比例
+\[
+q_a:q_b:q_c=1:4:16.
+\]
+总消费在每个状态都等于总禀赋的一半，因此每个人的消费与其禀赋无关，而由风险分担和相同偏好决定；禀赋只通过预算约束和财富转移影响其持有的证券组合。
+\end{solution}
