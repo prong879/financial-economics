@@ -3,6 +3,102 @@
 
 \zhchapter{套利和资产定价}
 
+第 3 章在 Arrow--Debreu 市场结构下讨论均衡与效率；本章回到第 2 章的一般支付矩阵 $X$，讨论\textbf{证券价格的基本性质}、\textbf{定价原理}、\textbf{无套利}与\textbf{资产定价基本定理}。
+
+\begin{tcolorbox}[knowledge,title=4.1 一般市场结构]
+多数可交易证券在多个状态下都有正支付，称为\textbf{复合证券}（相对只在单一状态付 1 的阿罗证券而言）。设 1 期有 $\Omega$ 个状态，市场上有 $N$ 只证券（$n=1,\dots,N$），第 $n$ 只证券的支付向量为 $X_n=\begin{bmatrix}x_{1,n} \\ \vdots \\ x_{\Omega,n}\end{bmatrix}$，\textbf{市场结构矩阵}为（与第 2.3 节一致，行为状态、列为证券）：
+\[
+    X=[X_{\cdot,1},\,\cdots,\,X_{\cdot,N}]=
+    \begin{bmatrix}
+        x_{1,1}   & \cdots & x_{1,N}   \\
+        \vdots    & \ddots & \vdots    \\
+        x_{\omega,1} & \cdots & x_{\omega,N} \\
+        \vdots    & \ddots & \vdots    \\
+        x_{\Omega,1} & \cdots & x_{\Omega,N}
+    \end{bmatrix}.
+\]
+
+\tcbline
+
+\textbf{A.\ 冗余证券}\quad 若证券 $j$ 的支付列 $x_j$ 可由其余证券的\textbf{复制组合}（replicating portfolio）线性表出，即存在 $\theta_{\setminus j}$ 使得
+\[
+    x_j=X_{\setminus j}\theta_{\setminus j},
+\]
+则称 $j$ 为\textbf{冗余证券}。冗余证券不增加可达的 1 期支付集合；在无摩擦时，市场结构 $X$ 与删去第 $j$ 列后的 $X_{\setminus j}$ 在资源配置意义上\textbf{等价}，均衡与分配分析中常可忽略冗余列。\textcolor{red}{\textbf{更精确的说法：}}存在或去掉某证券\textbf{不改变均衡配置}时，该证券才是冗余的。存在\textbf{市场摩擦}时，用其他证券复制 $x_j$ 可能额外花费，表观冗余的证券在交易中仍可能不可替代。
+
+\tcbline
+
+\textbf{B.\ 证券市场的等价描述}\quad 无摩擦时，可用\textbf{线性无关}的 $N$ 只证券描述市场，$\mathrm{rank}(X)=N$（通常设 $N\le\Omega$）。任取 $N$ 个线性无关的组合向量 $\theta_1,\dots,\theta_N$，令 $H=[\theta_1,\cdots,\theta_N]$（$N\times N$ 可逆），则新支付矩阵 $X_\theta=XH$ 与原市场\textbf{等价}：原证券列空间不变，$X=X_\theta H^{-1}$，每只原证券都可由新组合复制。
+
+\tcbline
+
+\textbf{C.\ 生成（span）与完全市场}\quad 记 $\mathbf{1}_\omega$ 为第 $\omega$ 分量为 1、其余为 0 的列向量（状态 $\omega$ 阿罗证券的支付）。若 $\mathrm{rank}(X)=\Omega$ 且 $N\ge\Omega$，则对每一 $\omega$ 存在组合 $\theta_\omega$ 使 $X\theta_\omega=\mathbf{1}_\omega$。当 $X$ 为 $\Omega\times\Omega$ 可逆方阵时，解唯一：
+\[
+    \theta_\omega=X^{-1}\mathbf{1}_\omega.
+\]
+此时称不确定性由证券\textbf{生成}（span）；市场与第 3 章完全阿罗市场等价。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.1}\quad 无摩擦时，证券市场\textbf{完全}当且仅当线性无关证券只数等于状态数（可取 $N=\Omega$ 且 $\mathrm{rank}(X)=\Omega$，此时 $X$ 可逆）。这与定义 3.2、\textcolor{red}{\textbf{行满秩}}判据一致。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=4.2 套利]
+记交易证券的 0 期价格向量为 $S=\begin{bmatrix}S_1 \\ \vdots \\ S_N\end{bmatrix}$。组合 $\theta=\begin{bmatrix}\theta_1 \\ \vdots \\ \theta_N\end{bmatrix}$ 的 0 期成本为 $S^{\mathsf T}\theta$，1 期支付为 $X\theta$。从支付 $X$ 到价格 $S$ 的映射称为\textbf{资产定价关系}（资产定价模型）。若 $X\theta\ge 0$，称该组合在 1 期满足\textbf{有限责任}。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 4.1}\quad 组合 $\theta$ 构成\textbf{套利机会}，若同时满足：
+\begin{enumerate}
+    \item $S^{\mathsf T}\theta\le 0$（0 期净支出非正）；
+    \item $X\theta\ge 0$（1 期各状态支付非负）；
+    \item 上述两式中\textbf{至少有一个严格不等式}成立（0 期严格收入或某状态严格正支付）。
+\end{enumerate}
+等价地，扩展支付向量 $\begin{bmatrix}-S^{\mathsf T}\theta \\ X\theta\end{bmatrix}$ 非负且至少一分量严格为正。
+\end{tcolorbox}
+
+常分为三类（记严格不等方向与教材一致）：
+\begin{itemize}
+    \item \textbf{第 1 类：}$S^{\mathsf T}\theta<0$ 且 $X\theta=0$——0 期白捡钱、未来无负债；
+    \item \textbf{第 2 类：}$S^{\mathsf T}\theta=0$ 且 $X\theta>0$——\textbf{套利组合}（零成本、未来严格正支付）；
+    \item \textbf{第 3 类：}$S^{\mathsf T}\theta<0$ 且 $X\theta>0$——0 期收入为正且未来仍为正。
+\end{itemize}
+
+\begin{tcolorbox}[example]
+\textbf{例 4.1}\quad $S^{\mathsf T}=[1,\,1,\,2]$，
+$X=\begin{bmatrix}1&0&2\\1&2&0\\1&2&0\end{bmatrix}$（三证券在各状态下的支付）。组合 $\theta_1=[2;\,-1;\,-1]$：$S^{\mathsf T}\theta_1=-1$，$X\theta_1=0$，为\textbf{第 1 类套利}。经济直觉：支付 $[2;2;2]$ 可由 2 单位证券 1 以成本 $2$ 复制，也可由 1 单位 $B$ 加 1 单位 $C$ 以成本 $3$ 复制——同支付不同价。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=4.3 无套利原理]
+套利机会只依赖公开的支付 $X$ 与价格 $S$，不依赖私人信息或对状态概率的主观信念。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.2}\quad 市场均衡中\textbf{不存在}套利机会。
+\end{tcolorbox}
+
+\textbf{直观：}若存在套利 $\theta$，在\textbf{不满足性}下参与者可无限放大该组合，得到严格更优的消费，与均衡最优矛盾。\textbf{前提：}至少一名参与者不满足；市场\textbf{无摩擦}（无成本、无限制、价格接受者等，见第 2.3 节）。均衡 $\Rightarrow$ 无套利是\textbf{必要}条件；无套利 $\not\Rightarrow$ 均衡（还需出清与偏好等）。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 4.2}\quad 证券市场上不存在套利机会，称为满足\textbf{无套利原理}（no-arbitrage principle）。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=4.4 资产定价基本定理（开端）]
+将证券（或组合）的 1 期支付 $x\in\mathrm{R}^{\Omega}$ 映射为 0 期价格 $S$，记\textbf{定价算子}（估值算子）$V$：
+\[
+    S=V(x).
+    \tag{4.1}
+\]
+对列向量 $x$ 为某只证券支付时，$S_n=V(X_n)$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.3（一价定律）}\quad 若两只证券（或组合）未来支付相同，$x_1=x_2$，则 0 期价格必相同：$V(x_1)=V(x_2)$。
+\end{tcolorbox}
+
+无套利蕴含一价定律；反之一般不成立。进一步可证：\textbf{无套利}等价于存在\textbf{状态价格}（或正线性定价泛函）使 $S=X^{\mathsf T}\phi$（完全市场时 $\phi$ 唯一，不完全市场时 $\phi$ 可能不唯一甚至某些分量可为负，见练习 4.5）。鞅测度表述见练习 4.8。
+\end{tcolorbox}
+
+
 \begin{problem}
 \problemno{4.1} 经济在 1 期有 4 个可能状态。在市场中有 5 只可交易证券，它们的支付矩阵 $X$ 如下：
 \[

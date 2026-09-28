@@ -3,106 +3,387 @@
 
 \zhchapter{Arrow-Debreu 经济}
 
-\begin{problem}
-\problemno{例 3.3} 考虑“Lucas 树经济”，1 期有两个概率相等的状态 $a$ 和 $b$。假设 1 期的两个可能状态的状态价格分别为 $\phi_{a}$ 和 $\phi_{b}$。考虑一个参与者，他的禀赋为 $(e_{0};e_{1a};e_{1b})$。他具有如下对数形式的效用函数：
-\[
-    U(c_{0},c_{1a},c_{1b})=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})
-\]
-他的最优消费/组合选择是什么？
-\end{problem}
-\begin{solution}
-给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
-\[
-    \begin{aligned}
-        \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
-        \mathrm{s.t.}\quad &w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})=0\\
-        &c_{0},c_{1a},c_{1b}\ge 0
-    \end{aligned}
-\]
-拉格朗日函数为
-\[
-    \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})\bigr)-\mu_{0}c_{0}-\mu_{a}c_{1a}-\mu_{b}c_{1b}
-\]
-其一阶条件为
-\[
-    \begin{aligned}
-        \frac{1}{c_{0}}&=\lambda+\mu_{0}\\
-        \tfrac12\bigl(1/c_{1a}\bigr)&=\lambda\phi_{a}+\mu_{a}\\
-        \tfrac12\bigl(1/c_{1b}\bigr)&=\lambda\phi_{b}+\mu_{b}\\
-        c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}&=w\\
-        \mu_{i}c_{i}&=0,\quad i=0,a,b
-    \end{aligned}
-\]
-对数效用在 $c=0$ 处边际效用为无穷大，因而最优消费在每一时期每一状态都严格为正（当然，假设 $\phi\gg 0$，即所有状态价格严格为正）。也就是说，最优消费总是在 $\mathrm{R}^{1+\Omega}$ 的内部而不是边界上，因而非负性约束从不起限制作用。在这种情况下，我们可以在一阶条件中去掉这些约束（以及对应的乘子）而直接求解最优。因此，$\mu_{i}=0$（$i=0,a,b$）。对于 $c$ 我们立即得到如下解：
-\[
-    c_{0}=\frac{1}{\lambda},\qquad
-    c_{1a}=\frac{1}{\lambda}\frac{1}{2\phi_{a}},\qquad
-    c_{1b}=\frac{1}{\lambda}\frac{1}{2\phi_{b}}
-\]
-把 $c$ 的解代入预算约束，我们可以得到 $\lambda$ 的解：
-\[
-    \frac{1}{\lambda}+\frac{1}{2\lambda}+\frac{1}{2\lambda}=w\qquad\Rightarrow\qquad\lambda=\frac{2}{w}
-\]
-最后，我们有
-\[
-    c_{0}=\frac12 w,\qquad
-    c_{1a}=\frac14\frac{w}{\phi_{a}},\qquad
-    c_{1b}=\frac14\frac{w}{\phi_{b}}
-\]
-可以看出，参与者把一半财富用作现在的消费，把另外一半财富作为未来的消费。某一状态下的消费与对应的状态价格负相关。这个结果很直观。状态价格高的状态下的消费更昂贵。结果，参与者在这些状态下选择较低的消费。
-\end{solution}
 
-\begin{problem}
-\problemno{例 3.4} 考虑一个经济，在 1 期有两个概率相等的状态 $a$ 和 $b$。经济中有参与者 1 和 2，他们具有的禀赋分别为：
-\begin{center}
-\WJEventTree[left={$e_{1}{:}100$}]{0,0}
-\qquad
-\WJEventTree[left={$e_{2}{:}0$}]{200,50}
-\end{center}
-两个参与者都具有如下形式的对数效用函数：
-\[
-    U(c)=\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})
-\]
-\end{problem}
-\begin{solution}
-在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
+本章运用第 2 章的框架分析\textcolor{red}{\textbf{参与者如何选择投资组合、证券价格如何影响这些选择以及市场如何决定这些价格}}。这一简单的市场结构也是理解资源配置效率的基准。
 
-现在我们开始分析这个经济的均衡。从给定交易证券价格下参与者的最优化问题开始。记 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$ 为状态价格（向量），即两个状态或有证券的价格。我们可以定义每个参与者的财富为 $w=\hat{\phi}^{\top}e$，这里 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$，而 $e$ 是他的禀赋。这时，最优化问题变成了：
+\begin{tcolorbox}[knowledge,title=3.1 Arrow-Debreu 证券市场]
+下面引入一类最简单的证券：它们只在 1 期支付，且支付是已实现状态的函数。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 3.1}\quad 状态 $\omega$ \textbf{或有要求权}（state-$\omega$ contingent claim）就是当状态为 $\omega$ 时支付为 $1$、而在其他状态下支付为 $0$ 的证券。
+\end{tcolorbox}
+
+因此，状态 $\omega$ 或有要求权具有如下支付分布（$x_{\omega'}$ 为状态 $\omega'$ 下的支付）：
+\[
+    x_{\omega'}=
+    \begin{cases}
+        1, & \omega'=\omega,\\
+        0, & \omega'\neq\omega,
+    \end{cases}
+    \qquad\text{即}\qquad
+    x(\omega')=\mathbf{1}_{\omega}(\omega'),
+\]
+其中 $\mathbf{1}_{\omega}(\cdot)$ 为示性函数：当 $\omega'=\omega$ 时取 $1$，否则取 $0$。
+
+\begin{tcolorbox}[example]
+\textbf{例 3.1}\quad 在例 2.1 的 Lucas 树经济中，1 期有两个可能状态，因而有两个或有要求权，其支付向量分别为
+\[
+    \text{状态 $a$ 或有要求权：}\begin{bmatrix}1 \\ 0\end{bmatrix},\qquad
+    \text{状态 $b$ 或有要求权：}\begin{bmatrix}0 \\ 1\end{bmatrix}.
+\]
+\end{tcolorbox}
+
+对每个状态都可以定义一个相应的或有要求权，共有 $\Omega$ 个。这些或有要求权称为\textbf{Arrow-Debreu 证券}；由它们的完全集合构成的证券市场称为\textbf{Arrow-Debreu 证券市场}。若按状态排列证券，支付矩阵（市场结构）为单位阵：
+\[
+    X^{A\text{-}D}=
+    \begin{bmatrix}
+        1 & \cdots & 0 & \cdots & 0 \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        0 & \cdots & 1 & \cdots & 0 \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        0 & \cdots & 0 & \cdots & 1
+    \end{bmatrix}
+    =I.
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=3.2 状态价格]
+记 $\phi_{\omega}$ 为 0 期购买、在状态 $\omega$ 才支付 $1$ 单位消费品的状态 $\omega$ 或有要求权的价格（以 0 期消费品计量）。\textcolor{red}{\textbf{因为状态 $\omega$ 或有要求权在 1 期只有当状态为 $\omega$ 时才支付 $1$ 单位的消费品}}，$\phi_{\omega}$ 也称为\textbf{状态价格}（state price）。所有状态价格组成向量
+\[
+    \phi=\begin{bmatrix}\phi_1 \\ \vdots \\ \phi_{\omega} \\ \vdots \\ \phi_{\Omega}\end{bmatrix}.
+\]
+在无套利（没有免费的午餐）下，状态价格严格为正：
+\[
+    \phi\gg 0.
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=3.3 市场的完全性]
+在 Arrow-Debreu 市场中，1 期的消费计划可写成 $x=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\omega} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$。持有状态证券组合 $\theta=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\omega} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$ 即可复制该消费计划：
 \[
     \begin{aligned}
-        \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
-        \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=w
+        \underbrace{X\theta}_{\substack{\text{组合在 1 期各状态下的总支付}\\\text{（一般：任意证券组合的收益）}}}
+        =\underbrace{X^{A\text{-}D}\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}}_{\substack{\theta\text{：状态 }\omega\text{ 阿罗证券持有 }c_{1\omega}\text{ 份}\\\text{研究阿罗市场，此处 }X=X^{A\text{-}D}}}
+        =\underbrace{\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}}_{X^{A\text{-}D}=I\text{，故状态 }\omega\text{ 下收入 }c_{1\omega}}
+        =\underbrace{x}_{\text{欲实现的 1 期消费计划}}.
     \end{aligned}
 \]
-由例 3.3，我们知道解为
+该组合在 0 期的成本为
 \[
-    c_{k,0}=\tfrac12 w_{k},\qquad
-    c_{k,a}=\tfrac14\frac{w_{k}}{\phi_{a}},\qquad
-    c_{k,b}=\tfrac14\frac{w_{k}}{\phi_{b}},\qquad k=1,2
+    \underbrace{\phi^{\mathsf T}\theta}_{\text{复制该计划在 0 期支付的总成本}}
+    =\underbrace{\sum_{\omega\in\Omega}\phi_{\omega}c_{1\omega}}_{\text{各状态消费 }\times\text{ 对应状态价格}}.
 \]
-这里 $w_{1}=100$ 而 $w_{2}=200\phi_{a}+50\phi_{b}$。
 
-0 期商品市场出清给出
+是否\textbf{完全}，取决于市场能否以\textbf{有限成本}为任意\textbf{有限消费计划}\textbf{融资}。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 3.2}\quad 如果市场中的任一有限消费计划都可以通过有限成本的可交易证券的组合来融资，那么我们就称这个证券市场是\textbf{完全的}（complete）。即，任给消费计划 $c=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$，存在证券组合 $\theta=\begin{bmatrix}\theta_1 \\ \vdots \\ \theta_{\Omega}\end{bmatrix}$ 使得 $X\theta=c$ 有解。
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[example]
+\textbf{例 3.2}\quad 在 Lucas 树经济中，若市场上只有一只无风险债券，其支付为 $\begin{bmatrix}1 \\ 1\end{bmatrix}$。参与者若想要消费计划 $\begin{bmatrix}2 \\ 1\end{bmatrix}$（在状态 $a$ 消费 $2$、在状态 $b$ 消费 $1$），无法仅靠该债券实现，市场\textbf{不完备}。
+\end{tcolorbox}
+
+
+\begin{enumerate}
+    \item 在完全市场中，任意消费计划 $x=[c_{11},\dots,c_{1\Omega}]$ 都是状态证券的线性组合；投资者可通过买卖状态证券在不同状态间调整消费。
+    \item 完全市场中，消费者有最高的灵活度，可以实现最优的风险配置。
+    \item 所有的完备市场都是等价的，对一个完备市场的结论可以应用到其他完备市场。
+    \item 完备市场处理起来更轻松。
+    \item \textbf{金融创新}的价值之一，正是通过增加可交易证券使市场更完全，从而更好地实现风险分担与效率。
+\end{enumerate}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=3.4 参与者的优化]
+考虑单个参与者的效用优化问题。在 Arrow-Debreu 市场中，设参与者禀赋为 $e$、效用函数为 $U$。若 1 期禀赋以状态证券组合 $\bar{\theta}=\begin{bmatrix}e_{11} \\ \vdots \\ e_{1\Omega}\end{bmatrix}$ 持有（初始持有），则 1 期禀赋的支付为
 \[
-    c_{1,0}+c_{2,0}=\tfrac12(w_{1}+w_{2})=100
+    X^{A\text{-}D}\bar{\theta}=\bar{\theta}=e_1=
+    \begin{bmatrix}e_{11} \\ \vdots \\ e_{1\Omega}\end{bmatrix}.
 \]
-即 $w_{1}+w_{2}=200$。代入两人财富，
+
+上式$\bar{\theta}$也称\textbf{复制组合}（replication portfolio）。复制消费计划 $c_1$ 的组合 $\bar{\theta}$ 在 0 期的市场价值为 $\phi^{\mathsf T}\bar{\theta}=\begin{bmatrix}
+    \phi_1 & \cdots & \phi_{\omega} & \cdots & \phi_{\Omega}
+\end{bmatrix}\begin{bmatrix}e_{11} \\ \vdots \\ e_{1\Omega}\end{bmatrix}$。因此，参与者的\textbf{金融财富}（简称\textbf{财富}）$w$ 是其禀赋在 0 期的市场价值（初始禀赋+持有状态证券在第零期的价值）：
 \[
-    100+200\phi_{a}+50\phi_{b}=200\qquad\Rightarrow\qquad 4\phi_{a}+\phi_{b}=2
+    w=e_0+\phi^{\mathsf T}e_1.
+    \tag{3.2}
 \]
-状态 $a$ 出清给出
+
+参与者可以把自己的初始禀赋换为等值的现金，从而通过消费（现在的消费$c_0$+购买证券$\theta$获得未来的消费 $c_1=\bar{\theta}$），实现自己效用的最优化。优化过程要满足\textbf{预算约束}：消费总成本不超过财富，
 \[
-    \frac{w_{1}+w_{2}}{4\phi_{a}}=200\qquad\Rightarrow\qquad w_{1}+w_{2}=800\phi_{a}
+    c_0+\phi^{\mathsf T}c_1\le w=e_0+\phi^{\mathsf T}e_1.
+    \tag{3.3}
 \]
-与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。状态 $b$ 出清 $\dfrac{w_{1}+w_{2}}{4\phi_{b}}=50$ 自动成立。此时 $w_{1}=w_{2}=100$，最优消费为
+
+记扩展价格向量 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$（0 期消费品价格为 $1$，即计价物），则预算约束可写为 $\hat{\phi}^{\mathsf T}c\le\hat{\phi}^{\mathsf T}e$，或 $\hat{\phi}^{\mathsf T}(e-c)\ge 0$。
+
+参与者的优化问题为（在预算内最大化效用，且消费非负）
+\begin{align}
+    \max_{c\in C}\ &U(c) \tag{3.4}\\
+    \mathrm{s.t.}\quad &\hat{\phi}^{\mathsf T}(e-c)\ge 0, \notag\\
+    &c\ge 0. \notag
+\end{align}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 3.1}\quad 设 $C=\mathrm{R}^{1+\Omega}_{+}$，$U(\cdot)$ 在 $C$ 上连续，则问题 (3.4) 有解。
+\end{tcolorbox}
+
+\textbf{不满足公理}意味着边际效用恒为正。记 $\partial_0 U$ 为 0 期消费的边际效用，$\partial_{\omega}U$ 为状态 $\omega$ 下 1 期消费的边际效用，则
 \[
-    \begin{aligned}
-        c_{1,0}=c_{2,0}&=50\\
-        c_{1,a}=c_{2,a}&=100\\
-        c_{1,b}=c_{2,b}&=25
-    \end{aligned}
+    \partial_0 U>0,\qquad \partial_{\omega}U>0,\quad\forall\omega\in\Omega,
+    \tag{3.5}
 \]
-\end{solution}
+边际效用向量为 $DU=\begin{bmatrix}\partial_0 U \\ \partial_1 U \\ \vdots \\ \partial_{\Omega}U\end{bmatrix}$，不满足性即 $DU\gg 0$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 3.2}\quad 设 $DU\gg 0$。则 (3.4) （参与者的效用优化问题，在预算内最大化效用，且消费非负）的解满足：存在 $\lambda>0$、$\mu_i\ge 0$（$i=0,1,\dots,\Omega$）使得
+\begin{align}
+    \partial_i U&=\lambda\phi_i+\mu_i,\quad i=0,1,\dots,\Omega\quad(\phi_0=1),\tag{3.6a}\\
+    \hat{\phi}^{\mathsf T}(e-c)&=0,\tag{3.6b}\\
+    \mu_i c_i&=0,\quad i=0,1,\dots,\Omega.\tag{3.6c}
+\end{align}
+
+
+定理 3.2 说的是：在问题 (3.4)（预算约束 $+$ 消费非负）下，若不满足性成立（$DU\gg 0$），则最优消费满足 KKT 条件 (3.6a)–(3.6c)（不等式约束下的一阶必要条件；偏好与可行集凸时亦为充分条件）。含义简述如下：
+\begin{itemize}
+    \item \textbf{(3.6a)} \textbf{边际效用定价：}$\partial_i U=\lambda\phi_i+\mu_i$。内点（$c_i>0$）时 $\mu_i=0$，边际效用与扩展价格成比例；若某期/某状态消费为 $0$，则 $\mu_i\ge 0$ 表示非负约束在起作用。
+    \item \textbf{(3.6b)} \textbf{预算紧绑：}按 $\hat{\phi}$ 计价时花光财富，$\hat{\phi}^{\mathsf T}c=\hat{\phi}^{\mathsf T}e$（在 $DU\gg 0$ 下不会故意少花）。
+    \item \textbf{(3.6c)} \textbf{互补松弛：}$\mu_i c_i=0$。要么该分量消费为正、对应乘子为零；要么消费为零、允许 $\mu_i>0$（角点解）。
+\end{itemize}
+\end{tcolorbox}
+
+对问题 (3.4) 构造拉格朗日函数（$\lambda$ 为预算约束 $\hat{\phi}^{\mathsf T}(e-c)\ge 0$ 的乘子，$\mu_i$ 为 $c_i\ge 0$ 的乘子）：
+\[
+    \mathcal{L}
+    =U(c)+\lambda\,\hat{\phi}^{\mathsf T}(e-c)-\sum_{i=0}^{\Omega}\mu_i c_i.
+\]
+对 $c_i$ 求偏导并令其为零，即得 (3.6a)；与 (3.6b)、(3.6c) 联立即为定理 3.2。对参与者 $k$ 将 $U,c,e$ 换为 $U_k,c_k,e_k$ 即可。
+
+对参与者 $k$，\textbf{内点解}（$c_k\gg 0$，故 $\mu_i=0$）时由 (3.6a) 可写成 $DU_k(c_k)=\lambda_k\hat{\phi}$，即
+\begin{align}
+    \underbrace{\frac{\partial U_k(c_k)}{\partial c_k(0)}=\lambda_k}_{\substack{\text{对第 0 期消费求偏导}\\(\phi_0=1)}},
+    &\quad
+    \underbrace{\frac{\partial U_k(c_k)}{\partial c_k(\omega)}=\lambda_k\phi_{\omega}}_{\substack{\text{对第 1 期各状态消费求偏导}}},\quad
+    \forall\omega\in\Omega. \tag{3.7}
+\end{align}
+
+等价地，\textbf{跨期边际替代率}等于状态价格：
+\[
+\begin{aligned}
+&\underbrace{\frac{\partial_{\omega}U_k(c_k)}{\partial_0 U_k(c_k)}}_{\text{跨期边际替代率}}=\phi_{\omega}\\ 
+\Rightarrow \quad &\underbrace{\partial_{\omega}U_k(c_k)}_{\text{每一单位第0期消费的边际效用}}=\underbrace{\frac{1}{\phi_{\omega}}\partial_0 U_k(c_k)}_{\text{用第 0 期1单位效用，能换来 $1/\phi_{\omega}$ 单位第1期的边际效用}}.
+\end{aligned}
+\tag{3.8}
+\]
+
+这说明，你愿意用多少 0 期消费去换 1 期状态 $\omega$ 下的 1 单位消费，在最优时正好等于市场价格 $\phi_{\omega}$。对于参与者来说，在达到最优的时候，在不同时期和状态间转移消费是无差异的。之，如果这种转移是有差异的，那就说明参与者还可以通过这种转移进一步增加取得的效用，说明原本并不是最优。
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[example]
+    \begin{problem}
+        \problemno{例 3.3} 考虑“Lucas 树经济”，1 期有两个概率相等的状态 $a$ 和 $b$。假设 1 期的两个可能状态的状态价格分别为 $\phi_{a}$ 和 $\phi_{b}$。考虑一个参与者，他的禀赋为 $(e_{0};e_{1a};e_{1b})$。他具有如下对数形式的效用函数：
+        \[
+            U(c_{0},c_{1a},c_{1b})=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})
+        \]
+        他的最优消费/组合选择是什么？
+        \end{problem}
+        \begin{solution}
+        给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
+        \[
+            \begin{aligned}
+                \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
+                \mathrm{s.t.}\quad &w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})=0\\
+                &c_{0},c_{1a},c_{1b}\ge 0
+            \end{aligned}
+        \]
+        拉格朗日函数为
+        \[
+            \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})\bigr)-\mu_{0}c_{0}-\mu_{a}c_{1a}-\mu_{b}c_{1b}
+        \]
+        其一阶条件为
+        \[
+            \begin{aligned}
+                \frac{1}{c_{0}}&=\lambda+\mu_{0}\\
+                \tfrac12\bigl(1/c_{1a}\bigr)&=\lambda\phi_{a}+\mu_{a}\\
+                \tfrac12\bigl(1/c_{1b}\bigr)&=\lambda\phi_{b}+\mu_{b}\\
+                c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}&=w\\
+                \mu_{i}c_{i}&=0,\quad i=0,a,b
+            \end{aligned}
+        \]
+        对数效用在 $c=0$ 处边际效用为无穷大，因而最优消费在每一时期每一状态都严格为正（当然，假设 $\phi\gg 0$，即所有状态价格严格为正）。也就是说，最优消费总是在 $\mathrm{R}^{1+\Omega}$ 的内部而不是边界上，因而非负性约束从不起限制作用。在这种情况下，我们可以在一阶条件中去掉这些约束（以及对应的乘子）而直接求解最优。因此，$\mu_{i}=0$（$i=0,a,b$）。对于 $c$ 我们立即得到如下解：
+        \[
+            c_{0}=\frac{1}{\lambda},\qquad
+            c_{1a}=\frac{1}{\lambda}\frac{1}{2\phi_{a}},\qquad
+            c_{1b}=\frac{1}{\lambda}\frac{1}{2\phi_{b}}
+        \]
+        把 $c$ 的解代入预算约束，我们可以得到 $\lambda$ 的解：
+        \[
+            \frac{1}{\lambda}+\frac{1}{2\lambda}+\frac{1}{2\lambda}=w\qquad\Rightarrow\qquad\lambda=\frac{2}{w}
+        \]
+        最后，我们有
+        \[
+            c_{0}=\frac12 w,\qquad
+            c_{1a}=\frac14\frac{w}{\phi_{a}},\qquad
+            c_{1b}=\frac14\frac{w}{\phi_{b}}
+        \]
+        可以看出，参与者把一半财富用作现在的消费，把另外一半财富作为未来的消费。某一状态下的消费与对应的状态价格负相关。这个结果很直观。状态价格高的状态下的消费更昂贵。结果，参与者在这些状态下选择较低的消费。
+        \end{solution}
+经济含义：一半财富用于 0 期消费，一半用于 1 期；状态价格越高，该状态下消费越低。\textbf{拉格朗日推导见后文「例 3.3」。}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=3.5 市场均衡]
+给定状态价格，Arrow-Debreu 经济中的\textbf{均衡}是一组状态价格 $\{\phi_{\omega},\,\omega\in\Omega\}$，使得：
+\begin{enumerate}
+    \item \textbf{给定价格，每个参与者最优化：}对参与者 $k$，
+    \[
+        c_k(e_k,\phi)=\operatorname*{Argmax}\,U_k(c_k)
+    \]
+    满足 $c_{k,0}+\phi^{\mathsf T}c_{k,1}=e_{k,0}+\phi^{\mathsf T}e_{k,1}$ 且 $c_k\ge 0$；
+    \item \textbf{证券市场出清}（商品市场出清）：
+    \[
+        \sum_{k=1}^{K}c_{k,0}(e_k,\phi)=\sum_{k=1}^{K}e_{k,0},\qquad
+        \sum_{k=1}^{K}c_{k,1}(e_k,\phi)=\sum_{k=1}^{K}e_{k,1}.
+    \]
+\end{enumerate}
+由 Walras 法则，若 $m-1$ 个市场出清，则第 $m$ 个市场也出清。
+
+\begin{tcolorbox}[knowledge,title=瓦尔拉斯均衡]
+\textbf{瓦尔拉斯均衡}（Walrasian equilibrium，竞争均衡）指一组价格与配置，使得：
+\begin{enumerate}
+    \item 每个参与者在给定价格下最大化效用（或厂商最大化利润），且为\textbf{价格接受者}；
+    \item 每个市场（每种商品）上\textbf{总需求等于总供给}（市场出清）。
+\end{enumerate}
+在本章中，商品是 $1+\Omega$ 种\textbf{或有商品}：0 期消费品（计价物，价格 $1$）与 1 期各状态 $\omega$ 下的消费品（价格 $\phi_\omega$，即状态 $\omega$ 阿罗证券的价格）。上文两条均衡条件正是瓦尔拉斯均衡在 Arrow-Debreu 证券市场经济中的写法，故也称\textbf{Arrow-Debreu 均衡}。第 2.5 节中的 Walras 法则说明：在标准预算下，$1+\Omega$ 个商品市场里若 $1+\Omega-1$ 个已出清，则剩余一个自动出清；实物总禀赋 $\sum_k e_k$ 仅被重新分配，不会凭空增减。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 3.3}\quad 对定义 2.5 （两期、$\Omega$ 状态、单一不可储存商品、$K$ 名同质信息参与者、禀赋与满足公理 1–3 的偏好（不满足性、连续性、凸性）、无摩擦证券市场 $X$）中的经济，Arrow-Debreu 证券市场存在均衡。
+\end{tcolorbox}
+
+均衡时所有人面对相同价格，因而在任一状态 $\omega$ 上\textcolor{red}{\textbf{相对边际效用都相等}}：
+\[
+    \frac{\partial_{\omega}U_k(c_k)}{\partial_0 U_k(c_k)}
+    =\phi_{\omega}
+    =\frac{\partial_{\omega}U_{k'}(c_{k'})}{\partial_0 U_{k'}(c_{k'})},
+    \quad\forall k,k',\,\omega\in\Omega.
+    \tag{3.9}
+\]
+$\phi_{\omega}$ 可理解为：为在状态 $\omega$ 多获得 1 单位 1 期消费，0 期须放弃的消费量——市场上关于跨期、跨状态资源配置的\textbf{共识价格}。
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[example]
+    \begin{problem}
+        \problemno{例 3.4} 考虑一个经济，在 1 期有两个概率相等的状态 $a$ 和 $b$。经济中有参与者 1 和 2，他们具有的禀赋分别为：
+        \begin{center}
+        \WJEventTree[left={$e_{1}{:}100$}]{0,0}
+        \qquad
+        \WJEventTree[left={$e_{2}{:}0$}]{200,50}
+        \end{center}
+        两个参与者都具有如下形式的对数效用函数：
+        \[
+            U(c)=\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})
+        \]
+        \end{problem}
+        \begin{solution}
+        在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
+        
+        现在我们开始分析这个经济的均衡。从给定交易证券价格下参与者的最优化问题开始。记 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$ 为状态价格（向量），即两个状态或有证券的价格。我们可以定义每个参与者的财富为 $w=\hat{\phi}^{\top}e$，这里 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$，而 $e$ 是他的禀赋。这时，最优化问题变成了：
+        \[
+            \begin{aligned}
+                \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
+                \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=w
+            \end{aligned}
+        \]
+        由例 3.3，我们知道解为
+        \[
+            c_{k,0}=\tfrac12 w_{k},\qquad
+            c_{k,a}=\tfrac14\frac{w_{k}}{\phi_{a}},\qquad
+            c_{k,b}=\tfrac14\frac{w_{k}}{\phi_{b}},\qquad k=1,2
+        \]
+        在状态价格 $\phi_{a},\phi_{b}$ 下，参与者按禀赋市值计的财富为 $w_{k}=e_{k,0}+\phi_{a}e_{k,a}+\phi_{b}e_{k,b}$（0 期消费品价格为 $1$）。代入禀赋 $(100;0,0)$ 与 $(0;200,50)$：
+        \[
+            w_{1}=100+0\cdot\phi_{a}+0\cdot\phi_{b}=100,\qquad
+            w_{2}=0+200\phi_{a}+50\phi_{b}=200\phi_{a}+50\phi_{b}.
+        \]
+
+        \textbf{0 期商品市场出清}（两人 0 期消费之和等于经济 0 期总禀赋 $100$）。由例 3.3，$c_{k,0}=\tfrac12 w_{k}$，故
+        \[
+            c_{1,0}+c_{2,0}=\tfrac12 w_{1}+\tfrac12 w_{2}=\tfrac12(w_{1}+w_{2})=100
+            \quad\Longrightarrow\quad w_{1}+w_{2}=200.
+        \]
+        把 $w_{1},w_{2}$ 代入 $w_{1}+w_{2}=200$：
+        \[
+            100+(200\phi_{a}+50\phi_{b})=200.
+        \]
+        移项得 $200\phi_{a}+50\phi_{b}=100$；两边同除以 $50$，得到与状态价格有关的第一个方程
+        \[
+            4\phi_{a}+\phi_{b}=2.
+        \]
+
+        \textbf{1 期·状态 $a$ 商品市场出清}（状态 $a$ 下总消费 $200$）。由 $c_{k,a}=\tfrac14 w_{k}/\phi_{a}$，
+        \[
+            c_{1,a}+c_{2,a}=\tfrac{w_{1}}{4\phi_{a}}+\tfrac{w_{2}}{4\phi_{a}}
+            =\frac{w_{1}+w_{2}}{4\phi_{a}}=200
+            \quad\Longrightarrow\quad w_{1}+w_{2}=800\phi_{a}.
+        \]
+        与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。状态 $b$ 出清 $\dfrac{w_{1}+w_{2}}{4\phi_{b}}=50$ 自动成立。此时 $w_{1}=w_{2}=100$，最优消费为
+        \[
+            \begin{aligned}
+                c_{1,0}=c_{2,0}&=50\\
+                c_{1,a}=c_{2,a}&=100\\
+                c_{1,b}=c_{2,b}&=25
+            \end{aligned}
+        \]
+        \end{solution}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[knowledge,title=3.5 市场均衡（续）]
+可行配置满足 $\sum_{k=1}^{K}c_k=\sum_{k=1}^{K}e_k$。对均衡配置，将各参与者预算约束在 $\hat{\phi}$ 下加总，得到
+\[
+    \sum_{k=1}^{K}\hat{\phi}^{\mathsf T}c_k=\sum_{k=1}^{K}\hat{\phi}^{\mathsf T}e_k.
+    \tag{3.10}
+\]
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 3.4}\quad 对存在 Arrow-Debreu 证券市场的经济（定义 2.5），均衡达到的资源配置是\textbf{Pareto 最优的}。
+\end{tcolorbox}
+
+定理 3.4 即\textbf{福利经济学第一定理}：完全、无摩擦的证券市场使参与者达到\textcolor{red}{\textbf{资源在不同时期和不同状态下的 Pareto 最优配置}}，为证券市场的资源配置效率提供了理论基础（亚当·斯密“看不见的手”的现代表述）。
+
+\begin{tcolorbox}[knowledge,title=福利经济学两大定理]
+\textbf{第一定理}（定理 3.4）：在完全、无摩擦的竞争市场中，任一均衡配置都是 Pareto 最优的。
+
+\textbf{第二定理}（福利经济学第二定理）：在消费集凸、偏好凸（满足公理 3）且市场完全（如 Arrow-Debreu 市场）等条件下，\textbf{任一} Pareto 最优配置都可以成为某个竞争均衡的配置——只需在交易开始前对禀赋作适当的\textbf{一次性总付转移}（lump-sum redistribution），使参与者的初始禀赋变为 $e_k'$，再令他们在状态价格 $\phi$ 下自由交易即可达到该配置。
+
+第二定理的含义：在一定条件下，\textbf{效率}问题与\textbf{分配}问题可以分开处理——先确定有效的总资源配置，再通过不扭曲价格信号的转移支付来实现合意的福利分配。（现实中转移支付往往受信息、政治与再分配成本限制，故第二定理更多是规范基准。）
+\end{tcolorbox}
+
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=本章小结]
+\begin{enumerate}
+    \item 状态 $\omega$ 或有要求权在状态 $\omega$ 支付 $1$、其他状态支付 $0$；由全部状态或有证券构成的市场为 Arrow-Debreu 证券市场。
+    \item 任一有限消费计划可用有限成本证券组合融资时，市场完全；Arrow-Debreu 市场是完全市场。
+    \item 均衡存在，且各参与者最优化、市场出清；均衡时相对边际效用（跨期边际替代率）相等。
+    \item \textbf{福利经济学第一定理：}Arrow-Debreu 均衡配置 Pareto 最优。
+    \item \textbf{福利经济学第二定理：}在凸性与完全市场下，任一 Pareto 最优配置可通过一次性总付转移与市场交易实现。
+\end{enumerate}
+\end{tcolorbox}
+
+
+
+
+
+
 
 \begin{problem}
 \problemno{3.1*} 考虑如下经济，在 1 期有两个可能状态 $a$ 和 $b$：

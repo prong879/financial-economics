@@ -120,7 +120,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
         \textbf{定理 2.1} 对于一个在闭凸消费集 C 上，有定义 2.3 定义的（完备性、传递性和自反性）、满足公理 2 的偏好（连续性），存在一个连续的效用函数 U 使得 $\forall a,b \in C, a\succeq b$，当且仅当 $U(a) \ge U(b)$。
     \end{tcolorbox}
 
-    \begin{tcolorbox}[example,breakable]
+    \begin{tcolorbox}[example]
         \begin{question}
             \textbf{例 2.3}\quad 在例 2.1 中描述的「Lucas 树」经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
             \[
@@ -248,7 +248,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 \end{enumerate}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=2.4 基本经济模型,breakable]
+\begin{tcolorbox}[knowledge,title=2.4 基本经济模型]
 现在我们已经对将要分析的经济的基本模型有了完整的描述。在作进一步的讨论和分析以前，先作一个总结。
 
 \begin{tcolorbox}[knowledge]
@@ -276,7 +276,7 @@ e_{k,1}=X\bar{\theta}_k
 为简化起见，在以后的讨论中有时会局限于证券市场经济的情形。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=2.5 市场均衡,breakable]
+\begin{tcolorbox}[knowledge,title=2.5 市场均衡]
 在证券市场中，资源配置通过以下两方面的相互作用来实现：
 \begin{enumerate}
     \item 给定证券及其未来支付与当前价格，每个参与者选择最优证券持有量；
@@ -355,7 +355,7 @@ e_{k,1}=X\bar{\theta}_k
 \end{enumerate}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=2.6 最优性,breakable]
+\begin{tcolorbox}[knowledge,title=2.6 最优性]
 通过证券市场进行的资源配置是否已是\textbf{最好的可能配置}？参与者各自选择最优消费计划，并不意味着社会资源配置一定最优；若市场不完备，结果可能是\textbf{次优的}。
 
 \begin{tcolorbox}[knowledge]
@@ -474,7 +474,7 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
 \end{tcolorbox}
 
 
-\begin{tcolorbox}[knowledge,title=2.7 本章小结,breakable]
+\begin{tcolorbox}[knowledge,title=2.7 本章小结]
 本章完成了在市场经济中通过资源配置分析所使用的基本框架的构建。资源配置是通过证券市场完成的：交易证券的价格引导参与者通过交易达到他们希望的配置，而交易又最终决定了证券的市场价格。证券价格在引导个体参与者和平衡整个经济方面都起着关键作用。因此，我们关注证券价格如何决定，这也称为\textbf{资产定价}（asset pricing）。
 
 \begin{enumerate}
@@ -601,22 +601,59 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
 \end{enumerate}
 \end{problem}
 \begin{solution}
-记两只交易证券的支付向量分别为 $X_{1}=\begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix}$，$X_{2}=\begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix}$。
+三个状态 $a,b,c$ 对应 $\Omega=3$。记
+\[
+    X_1=\begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix},\quad
+    X_2=\begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix},\quad
+    \theta=\begin{bmatrix}\theta_1 \\ \theta_2\end{bmatrix}.
+\]
+组合在 1 期的支付向量为 $X_1\theta_1+X_2\theta_2$，也可写成矩阵乘积 $X\theta$，其中 $X=[X_1,\,X_2]$。
+
 \begin{enumerate}[label=(\alph*)]
-    \item 这个经济的支付空间是 $\mathrm{R}^{3}$；
-    \item 市场结构矩阵为
+    \item \textbf{支付空间}：所有可能在三个状态下实现的支付向量的集合，即 $\mathrm{R}^{\Omega}=\mathrm{R}^{3}$（每个分量对应状态 $a,b,c$ 下的支付）。
+
+    \item \textbf{市场结构矩阵}：两列分别为两只证券的支付向量，
     \[
-        X=\begin{bmatrix}1&1\\1&2\\1&3\end{bmatrix}=[X_{1},\,X_{2}];
+        X=\begin{bmatrix}1&1\\1&2\\1&3\end{bmatrix}=[X_1,\,X_2].
     \]
-    \item 组合的支付向量为 $\theta_{1}X_{1}+\theta_{2}X_{2}=\begin{bmatrix}\theta_{1}+\theta_{2} \\ \,\theta_{1}+2\theta_{2} \\ \,\theta_{1}+3\theta_{2}\end{bmatrix}$，组合的价格是 $\theta_{1}S_{1}+\theta_{2}S_{2}$；
-    \item 市场组合是 $K$ 单位的证券 1 和 $2K$ 单位的证券 2，组合的支付向量为 $\begin{bmatrix}3K \\ 5K \\ 7K\end{bmatrix}$，组合的总价值是 $KS_{1}+2KS_{2}$；
-    \item 市场化的支付集合是 $M=\{Y\in\mathrm{R}^{2}:Y=\theta_{1}X_{1}+\theta_{2}X_{2},\,\theta_{1},\,\theta_{2}\in\mathrm{R}\}$；
-    \item 这时的市场化支付集合是 $M_{+}=\{Y\in\mathrm{R}^{2}:Y=\theta_{1}X_{1}+\theta_{2}X_{2},\,\theta_{1},\,\theta_{2}\in\mathrm{R}_{+}\}$；
-    \item 新的市场结构矩阵为
+
+    \item \textbf{组合支付与价格：}持有 $(\theta_1,\theta_2)$ 时，
     \[
-        X=\begin{bmatrix}1&1&0\\1&2&0\\1&3&1\end{bmatrix}=[X_{1},\,X_{2},\,X_{3}],
+        X\theta=\theta_1 X_1+\theta_2 X_2=
+        \begin{bmatrix}\theta_1+\theta_2 \\ \theta_1+2\theta_2 \\ \theta_1+3\theta_2\end{bmatrix}.
     \]
-    此时的市场化支付集合为 $M=\{Y\in\mathrm{R}^{3}:Y=\theta_{1}X_{1}+\theta_{2}X_{2}+\theta_{3}X_{3},\,\theta_{1},\,\theta_{2},\,\theta_{3}\in\mathrm{R}\}$。
+    0 期购买成本（组合价格）为 $\theta_1 S_1+\theta_2 S_2$。
+
+    \item \textbf{市场组合：}$K$ 个参与者每人禀赋为 $1$ 单位证券 1、$2$ 单位证券 2，加总得市场组合
+    \[
+        \theta_M=\begin{bmatrix}K \\ 2K\end{bmatrix}.
+    \]
+    其支付向量为
+    \[
+        X\theta_M=K X_1+2K X_2=
+        \begin{bmatrix}3K \\ 5K \\ 7K\end{bmatrix}.
+    \]
+    总价值为 $K S_1+2K S_2$。
+
+    \item \textbf{市场化支付（允许卖空）：}能由证券组合复制的 1 期支付集合为
+    \[
+        M=\bigl\{Y\in\mathrm{R}^{3}: Y=X\theta,\;\theta_1,\theta_2\in\mathrm{R}\bigr\},
+    \]
+    即 $X_1,X_2$ 张成的二维子空间（只有两只证券，维度 $\le 2$）。
+
+    \item \textbf{禁止卖空：}仅允许 $\theta_1,\theta_2\ge 0$，为 $X_1,X_2$ 的\textbf{非负}线性组合：
+    \[
+        M_{+}=\bigl\{Y\in\mathrm{R}^{3}: Y=\theta_1 X_1+\theta_2 X_2,\;\theta_1,\theta_2\in\mathrm{R}_{+}\bigr\}.
+    \]
+
+    \item \textbf{加入证券 3：}$X_3=\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}$ 仅在状态 $c$ 支付 $1$，市场结构变为
+    \[
+        X=\begin{bmatrix}1&1&0\\1&2&0\\1&3&1\end{bmatrix}=[X_1,\,X_2,\,X_3].
+    \]
+    三列线性无关，可表示任意 $Y\in\mathrm{R}^{3}$，故（允许卖空时）
+    \[
+        M=\bigl\{Y\in\mathrm{R}^{3}: Y=\theta_1 X_1+\theta_2 X_2+\theta_3 X_3,\;\theta_1,\theta_2,\theta_3\in\mathrm{R}\bigr\}=\mathrm{R}^{3}.
+    \]
 \end{enumerate}
 \end{solution}
 
@@ -657,58 +694,76 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
 \end{enumerate}
 \end{problem}
 \begin{solution}
+禀赋 $e_0=100$、$e_1=1$。无风险证券：0 期价格 $1$，1 期支付 $1+r_F$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额；$S<0$ 表示借贷）。
+
 \begin{enumerate}[label=(\alph*)]
-    \item 如果不能交易，那么参与者只能消费自己的初始禀赋，即
+    \item \textbf{不能交易（自给自足）：}只能消费禀赋，
     \[
-        c_{0}=100,\quad c_{1}=1,\quad U^{a}=\log(100)+\rho\log(1)=\log(100)
+        c_0=100,\qquad c_1=1,\qquad
+        U^{a}=\log(100)+\rho\log(1)=\log 100.
     \]
-    \item 参与者的预算集是 $\{C\in\mathrm{R}_{+}^{2}:c_{0}=100-S,\,c_{1}=1+S(1+r_{F}),\,S\in\mathrm{R}\}$，如果以当前消费为单位，他的总财富是 $w=100+\dfrac{1}{1+r_{F}}$。    参与者的优化问题就是
+
+    \item \textbf{可以交易。}
+    \begin{itemize}
+        \item \textbf{预算集与财富 $w$。}买卖证券等价于在两期之间转移消费：0 期少消费 $S$ 用于储蓄，1 期增加 $S(1+r_F)$。故
+        \[
+            c_0=100-S,\qquad c_1=1+S(1+r_F),\qquad S\in\mathrm{R}.
+        \]
+        以 0 期消费为计价单位，把 1 期禀赋折现到 0 期（用市场利率 $r_F$）：
+        \[
+            w=100+\frac{1}{1+r_F}.
+        \]
+        这是参与者按市价出售全部禀赋后可在 0 期支配的\textbf{总财富}（现值）。任意满足上述两式的 $(c_0,c_1)$ 都在预算集内。
+
+        \item \textbf{优化问题。}在预算集上最大化对数效用：
+        \[
+            \max_{S\in\mathrm{R}}\ \log(100-S)+\rho\log\bigl(1+S(1+r_F)\bigr).
+        \]
+        一阶条件（边际效用替代率 = 跨期相对价格）：
+        \[
+            \underbrace{\frac{1}{100-S}}_{\text{0 期边际效用}}
+            =\rho\underbrace{\frac{1+r_F}{1+S(1+r_F)}}_{\text{1 期边际效用}\times\text{价格比}}.
+        \]
+        整理得 $\bigl[1+S(1+r_F)\bigr]=\rho(1+r_F)(100-S)$，即
+        \[
+            1+S(1+r_F)(1+\rho)=100\rho(1+r_F),
+            \qquad
+            S=\frac{100\rho(1+r_F)-1}{(1+\rho)(1+r_F)}.
+        \]
+        代回预算约束，并用 $w=100+1/(1+r_F)=\dfrac{100(1+r_F)+1}{1+r_F}$，得
+        \[
+            c_0=\frac{100(1+r_F)+1}{(1+\rho)(1+r_F)}=\frac{w}{1+\rho},\qquad
+            c_1=\frac{\rho\bigl[100(1+r_F)+1\bigr]}{1+\rho}=\frac{\rho(1+r_F)}{1+\rho}\,w.
+        \]
+        即现期消费占财富 $\dfrac{1}{1+\rho}$，1 期消费占 $\dfrac{\rho(1+r_F)}{1+\rho}$（对数效用下的固定支出份额）。最优效用
+        \[
+            U^{b}=\log\Bigl(\frac{w}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_F)}{1+\rho}\,w\Bigr).
+        \]
+
+        \item \textbf{比较静态。}$c_0=\dfrac{w}{1+\rho}$ 随 $r_F$、$\rho$ 上升而下降（$w$ 对 $r_F$ 略降，$1+\rho$ 对 $\rho$ 升）；$c_1=\dfrac{\rho(1+r_F)}{1+\rho}w$ 随 $r_F$、$\rho$ 上升而上升。直觉：$r_F$ 升高提高储蓄回报，$\rho$ 升高加重未来消费权重，都会促使\textbf{少消费于 0 期、多留于 1 期}。
+    \end{itemize}
+
+    \item \textbf{$U^{b}\ge U^{a}$。}不能交易时等价于强制 $S=0$，得到 $U^{a}$；能交易时在更大可行集上求最大值，最优值 $U^{b}$ 至少不低于 $S=0$，故 $U^{b}\ge U^{a}$。
+
+    \item \textbf{交易益处 $g$。}定义 $U^{b}(w-g)=U^{a}$：$w-g$ 是「与交易后最优效用相同、但用一条 0 期财富数字表示」的\textbf{确定性等价财富}；$g=w-(w-g)$ 即为因能交易而多出来的等价 0 期资源。
+
+    将 $U^{a}=\log 100$ 与上式 $U^{b}$ 联立，记 $w-g=\hat w$，则
     \[
-        \max_{S}\ \log(100-S)+\rho\log\bigl(1+S(1+r_{F})\bigr)
+        (1+\rho)\log\hat w+\rho\log\bigl(\rho(1+r_F)\bigr)-(1+\rho)\log(1+\rho)=\log 100.
     \]
-    对 $S$ 求导得到一阶条件（Euler 方程）
+    取指数并整理：
     \[
-        \frac{1}{100-S}=\rho\frac{1+r_{F}}{1+S(1+r_{F})}
+        \hat w^{1+\rho}\,\frac{\bigl[\rho(1+r_F)\bigr]^{\rho}}{(1+\rho)^{1+\rho}}=100
+        \quad\Rightarrow\quad
+        \hat w=\rho^{-\frac{\rho}{1+\rho}}(1+r_F)^{-\frac{\rho}{1+\rho}}
+        100^{\frac{1}{1+\rho}}(1+\rho).
     \]
-    即 $\rho(1+r_{F})(100-S)=1+S(1+r_{F})$。整理得
+    故
     \[
-        \bigl[100\rho(1+r_{F})-1\bigr]=S(1+\rho)(1+r_{F})
+        g=w-\hat w
+        =w-\rho^{-\frac{\rho}{1+\rho}}(1+r_F)^{-\frac{\rho}{1+\rho}}
+        100^{\frac{1}{1+\rho}}(1+\rho).
     \]
-    因而最优储蓄
-    \[
-        S=\frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}
-    \]
-    代回预算约束，并用 $w=100+\dfrac{1}{1+r_{F}}$，得到最优消费
-    \[
-        c_{0}=\frac{100(1+r_{F})+1}{(1+\rho)(1+r_{F})}=\frac{1}{1+\rho}w,\qquad
-        c_{1}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{1+\rho}=\frac{\rho(1+r_{F})}{1+\rho}w
-    \]
-    这正是对数效用下的支出份额：现期花掉财富的 $\dfrac{1}{1+\rho}$，余下按利率滚到 1 期。相应的效用为
-    \[
-        U^{b}=\log\Bigl(\frac{w}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}w\Bigr)
-    \]
-    我们可以看到，$c_{0}$（$c_{1}$）随着 $r_{F}$，$\rho$ 的上升而下降（上升），当 $r_{F}$ 上升时，储蓄的收益率增加，因而参与者会减少当前的消费以增加储蓄，同时也就增加了 1 期消费了；当 $\rho$ 上升时，1 期消费带来效用的权重增加，因此参与者会减少 0 期消费以增加 1 期消费。
-    \item 如果选择 $S=0$，那么我们就得到了 $U^{a}$，而我们选择最优的 $S$ 以最大化效用函数而得到的是 $U^{b}$，因此，$U^{b}\ge U^{a}$；
-    \item 由定义 $U^{b}(w-g)=U^{a}=\log 100$，即
-    \[
-        \log\Bigl(\frac{w-g}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_{F})}{1+\rho}(w-g)\Bigr)=\log 100
-    \]
-    左边可写成
-    \[
-        (1+\rho)\log(w-g)+\rho\log\bigl(\rho(1+r_{F})\bigr)-(1+\rho)\log(1+\rho)
-    \]
-    两边取指数后整理
-    \[
-        (w-g)^{1+\rho}\frac{\bigl[\rho(1+r_{F})\bigr]^{\rho}}{(1+\rho)^{1+\rho}}=100
-    \]
-    解出
-    \[
-        w-g=\rho^{-\frac{\rho}{1+\rho}}(1+r_{F})^{-\frac{\rho}{1+\rho}}100^{\frac{1}{1+\rho}}(1+\rho)
-    \]
-    因此
-    \[
-        g=w-\rho^{-\frac{\rho}{1+\rho}}(1+r_{F})^{-\frac{\rho}{1+\rho}}100^{\frac{1}{1+\rho}}(1+\rho)
-    \]
-    $g$ 随着 $\rho$、$r_{F}$ 的增加而增加。$g$ 表示的是参与者能够在证券市场上交易而获得的益处，参与者是为了在当前消费和未来消费之间进行消费转移而进行交易的，如果他进行消费转移的动力越大，那么他从交易中获得益处越大，而 $\rho$、$r_{F}$ 增加时，参与者都希望增加未来消费，他进行消费转移的动力也增大，因而 $g$ 增加。
+    $g$ 随 $\rho$、$r_F$ 增加而增加：二者都提高「把消费从 0 期转到 1 期」的动机，能在市场上做跨期配置带来的等价收益更大。
 \end{enumerate}
 \end{solution}
