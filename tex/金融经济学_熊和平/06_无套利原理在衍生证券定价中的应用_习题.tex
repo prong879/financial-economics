@@ -1,0 +1,55 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+
+\xhpthoughts
+\begin{problem}
+\problemno{1} 什么是衍生证券？衍生证券通常包括哪些种类？
+\end{problem}
+\begin{problem}
+\problemno{2} 什么是积木分析法？它是如何体现无套利思想的？
+\end{problem}
+\begin{problem}
+\problemno{3} 如何确定期权的价值？什么是内在价值？什么是时间价值？
+\end{problem}
+\begin{problem}
+\problemno{4} 什么是状态指数化证券？为什么利用它能够使市场完全化？如何使市场完全化？
+\end{problem}
+\begin{problem}
+\problemno{5} 以二叉树模型为例，说明期权定价有哪些核心思想。
+\end{problem}
+\begin{problem}
+\problemno{6} 分别说明美式期权在支付红利和不支付红利两种情形下是否提前执行，说明理由。
+\end{problem}
+\begin{problem}
+\problemno{7} 以期权价格的上下界为例说明这些等量关系和不等量关系成立的前提条件。
+\end{problem}
+
+\xhpexercises
+\begin{problem}
+\problemno{1} 证明期权性质 1 至性质 6。
+\end{problem}
+\begin{problem}
+\problemno{2} 假设 $c_1$、$c_2$ 和 $c_3$ 分别表示执行价格分别为 $X_1$、$X_2$ 和 $X_3$ 的欧式看涨期权的价格，其中 $X_1<X_2<X_3$，并且 $X_3-X_2=X_2-X_1$。三个期权的标的资产相同、到期日相同。证明：$2c_2\le c_1+c_3$。
+\end{problem}
+\begin{problem}
+\problemno{3} 蝶形看涨价差是由标的资产相同、到期日相同而执行价格不相同的欧式看涨期权形成的期权组合：（1）买入一份执行价格为 $K-\delta$ 的看涨期权和一份执行价格为 $K+\delta$ 的看涨期权；（2）卖出 $2$ 份执行价格为 $K$ 的看涨期权。请画出蝶形价差的损益图，并证明当 $K$ 给定而 $\delta$ 不同时，$\delta$ 越大，蝶形价差的价格越高。
+\end{problem}
+\begin{problem}
+\problemno{4} 考虑一个二叉树模型，股票 A 的期初价格为 \num{10} 元，上涨和下跌等概率，且 $u=20\%$，$d=-20\%$，以 A 为标的欧式看涨期权，无风险利率为 $10\%$。
+\begin{enumerate}[label=(\arabic*)]
+    \item 画出股票 A 和执行价格为 \num{9} 元的欧式看涨期权的二叉树图形，计算期权在期初的价格；
+    \item 假如得到新的利好消息：股票上涨的概率大于 $0.5$，股票期初价格仍为 \num{10} 元。请问你愿意购买看涨期权还是看跌期权？为什么？
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\problemno{5} 在第 4 题的基础上考虑三时点两期的二叉树模型，上涨和下跌率保持不变，无风险利率也不变。
+\begin{enumerate}[label=(\arabic*)]
+    \item 画出标的股票和欧式看涨期权的二叉树图形，并计算各节点的期权价格；
+    \item 若期权为美式看涨期权，画出看涨期权的二叉树图形，计算各节点的期权价格。
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\problemno{6} 同样考虑三时点（0、1、2 时点）两期二叉树模型，标的资产期初价格为 $S_0=4$ 元，$u=2$，$d=1/2$，无风险利率为 $25\%$。以该股票为标的资产的亚式看涨期权，期权最终价值为 $c=\max\bigl[(S_1+S_2)/2-5,0\bigr]$，即执行价格为 \num{5} 元，以股票在时点 1 和 2 处的价格 $S_1$、$S_2$ 的算术平均值来结算。请计算期权的期初无套利价格。
+\end{problem}
+\begin{problem}
+\problemno{7} 假定期末有 $4$ 个不同的状态发生，假设股票 A 的支付向量为 $(1,2,3,4)^{\mathrm{T}}$，请你以股票 A 为基础构造欧式看涨期权使市场完全化。用记号表示期权和股票的价格，用这些符号表示出状态价格。
+\end{problem}

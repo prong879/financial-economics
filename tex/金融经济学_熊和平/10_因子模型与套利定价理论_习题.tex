@@ -1,0 +1,79 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+
+\xhpthoughts
+\begin{problem}
+\problemno{1} 什么是市场模型？市场模型下证券的收益和风险如何确定？
+\end{problem}
+\begin{problem}
+\problemno{2} 什么是多因子模型？多因子模型下证券的收益如何确定？证券的风险如何分解？
+\end{problem}
+\begin{problem}
+\problemno{3} APT 有哪些假设？
+\end{problem}
+\begin{problem}
+\problemno{4} 简述 APT 与 CAPM 的联系与区别。
+\end{problem}
+\begin{problem}
+\problemno{5} Fama-French 三因子模型如何构造决定证券收益的因子？
+\end{problem}
+\begin{problem}
+\problemno{6} 如果 CAPM 和 APT 都是正确的资产定价理论，那么与市场投资组合负相关的因子的风险溢价必定是负的，为什么？从数值和直观上进行解释。
+\end{problem}
+\begin{problem}
+\problemno{7} 有学者认为市场投资组合是不能被测定的，因此 CAPM 是不可检测的。也有学者认为 APT 既未明确因子的数目也未明确因子的内容，从而也是不可检测的。如果这些观点都是正确的，这意味着这些理论毫无价值吗？解释之。
+\end{problem}
+\begin{problem}
+\problemno{8} 虽然 APT 未明确有关因子的内容，多数套利定价理论的实证研究集中在某些类型的因子上，这些因子的共同特征是什么？
+\end{problem}
+
+\xhpexercises
+\begin{problem}
+\problemno{1} 在单因子模型下，市场上有两个风险资产 A 和 B，两证券的风险载荷分别为 $0.20$ 和 $3.5$；两者的特质风险（方差）分别为 $49\%$ 和 $100\%$。当两资产组成的投资组合为 $(40\%,60\%)$ 时分别回答下列各问题：
+\begin{enumerate}[label=(\arabic*)]
+    \item 如果单因子的标准差为 $15\%$，则投资组合的因子风险是多少？
+    \item 组合的非因子风险和组合的总风险各是多少？
+    \item 如果无风险资产、A 和 B 组成的投资组合为 $(10\%,36\%,54\%)$，分别回答上述两问。
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\problemno{2} 在两因子模型下，市场上有两个证券 A 和 B，它们对因子 1 的敏感性分别为 $1.5$ 和 $0.7$，对因子 2 的敏感性分别为 $2.6$ 和 $1.2$，两证券的特质风险用方差表示分别为 $25\%$ 和 $16\%$，因子 1 和因子 2 的标准差分别为 $20\%$ 和 $15\%$，因子间协方差为 $2.25\%$。计算两个证券的标准差和它们之间的协方差。
+\end{problem}
+\begin{problem}
+\problemno{3} 单因子模型下，假设无风险利率为 $2\%$，一个具有单位敏感性的投资组合的期望收益率为 $4.5\%$。假设有两个风险证券 A 和 B 的风险载荷分别为 $4.0$ 和 $2.6$，根据套利定价理论，求这两种证券组成组合 $(30\%,70\%)$ 的均衡期望收益率。
+\end{problem}
+\begin{problem}
+\problemno{4} 假设证券收益由两因子模型生成。两个风险证券和无风险资产对每个因子的敏感性及每种证券的期望收益率见下表。
+\begin{center}
+\begin{tabular}{cccc}
+    证券 & $b_{i1}$ & $b_{i2}$ & 期望收益率（\%）\\
+    \hline
+    A & 0.50 & 0.80 & 5.2\\
+    B & 1.50 & 1.40 & 7.6\\
+    C & 0.00 & 0.00 & 2\\
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\arabic*)]
+    \item 如果你有 \num{100} 元用于投资，卖空 \num{50} 元证券 B 买入 \num{150} 元证券 A，你的投资组合对两个因子的敏感性是多少？
+    \item 如果你以无风险利率借入 \num{100} 元，并将该资金与原来的钱合并按 (1) 中的比例投资于资产 A 和 B，则该组合对两个因子的敏感性各为多少？求该组合的期望收益率。
+    \item 因子 2 的期望风险溢价是多少？
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\problemno{5} 假设 CAPM 成立，证券的收益由单因子模型生成。给定如下信息：$\sigma_A^2=4.00\%$，$b_A=0.70$，$b_B=1.10$，$\operatorname{cov}(F,r_M)=3.70\%$。
+\begin{enumerate}[label=(\arabic*)]
+    \item 计算证券 A 和 B 的贝塔系数；
+    \item 均衡期望收益率各是多少？
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\problemno{6} 假设 CAPM 成立，证券的收益由两因子模型生成。给定如下信息：$\sigma_A^2=3.24\%$，$b_{A1}=0.80$，$b_{B1}=1.00$，$\operatorname{cov}(F_1,r_M)=1.56\%$；$b_{A2}=1.10$，$b_{B2}=0.70$，$\operatorname{cov}(F_2,r_M)=5.00\%$。在上述条件下回答第 5 题中的两问。
+\end{problem}
+\begin{problem}
+\problemno{7} 假设资产 A、B、C 的收益服从精确两因子模型：
+\[
+    r_A=a_A+b_{A1}F_1+b_{A2}F_2,\quad
+    r_B=a_B+b_{B1}F_1+b_{B2}F_2,\quad
+    r_C=a_C+b_{C1}F_1+b_{C2}F_2,
+\]
+其中两个因子 $F_i$（$i=1,2$）是均值为 $0$、方差为 $1$ 的因子，$r_f$ 为无风险利率。无套利条件下 $a$、$b$ 应该满足什么条件？
+\end{problem}
