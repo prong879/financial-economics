@@ -1,0 +1,354 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 13_CAPM 课后习题（由章节文件拆分）
+
+\begin{problem}
+\problemno{13.1*} 如下的经济有两个时期，0 和 1：
+\begin{itemize}
+    \item 有 $N$ 只风险证券（股票）和一只无风险证券。
+    \item 无风险利率为 0。
+    \item 风险证券的 1 期支付向量为 $\tilde{v}$，$\tilde{v}$ 是均值为 $\bar{v}$、协方差阵为 $\Sigma$ 的 $N$ 维正态随机变量。假设 $\Sigma$ 是正定的。
+    \item 股票市场组合的 1 期支付为 $\tilde{m}=\iota^{\mathrm{T}}\tilde{v}$，其中 $\iota$ 是元素全为 1 的 $(N\times 1)$ 列向量。
+    \item 经济中有 $K$ 个投资者，所有投资者都具有相同的 CARA 偏好：$u(w)=-e^{-w}$。
+    \item 每一投资者的禀赋是 $\bar{\theta}_{k}$ 股股票，$k=1,\cdots,K$。（注意 $\bar{\theta}_{k}$ 是由股票份额组成的列向量）且 $\sum_{k}\bar{\theta}_{k}=\iota$。
+    \item 每一投资者在 1 期也有劳动收入 $y_{k}(\tilde{m}+\tilde{\varepsilon})$，其中 $\tilde{\varepsilon}$ 服从均值为 0、方差为 $\sigma^{2}$ 的正态分布，而 $y_{k}$ 是给定的。
+\end{itemize}
+假设 $\tilde{\varepsilon}$ 和 $\tilde{v}$ 不相关。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解投资者（在给定价格向量下）的股票需求函数。
+    \item 求解均衡股票价格。
+    \item 证明 CAPM 成立。
+    \item 均衡配置是 Pareto 最优吗？为什么？证明答案。如果 $\tilde{\varepsilon}=0$，则答案如何变化？[提示：在 Pareto 最优配置当中，投资者的相对边际效用在任何状态下都是相等的。]
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设股票价格向量为 $S$，参与者持有的股票头寸为 $\theta_{k}$，那么参与者 $k$ 的优化问题是
+    \[
+        \begin{aligned}
+            \max_{\theta_{k}}\;&\mathrm{E}[-e^{-\tilde{w}_{k}}]\\
+            \text{s.t.}\;&\tilde{w}_{k}=w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S-\theta_{k}^{\mathrm{T}}S+\theta_{k}^{\mathrm{T}}\tilde{v}+y_{k}(\iota^{\mathrm{T}}\tilde{v}+\tilde{\varepsilon})
+        \end{aligned}
+    \]
+    CARA 且 $\tilde{v}$、$\tilde{\varepsilon}$ 正态，最大化 $E[-e^{-\tilde{w}_{k}}]$ 等价于最大化 $E[\tilde{w}_{k}]-\tfrac12\operatorname{Var}(\tilde{w}_{k})$。记常数项 $A_{k}=w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S$，则
+    \[
+        \begin{aligned}
+            E[\tilde{w}_{k}]&=A_{k}+\theta_{k}^{\mathrm{T}}(\bar{v}-S)+y_{k}\iota^{\mathrm{T}}\bar{v}\\
+            \operatorname{Var}(\tilde{w}_{k})&=(\theta_{k}+y_{k}\iota)^{\mathrm{T}}\Sigma(\theta_{k}+y_{k}\iota)+y_{k}^{2}\sigma^{2}
+        \end{aligned}
+    \]
+    对 $\theta_{k}$ 求导：$-(\bar{v}-S)+\Sigma(\theta_{k}+y_{k}\iota)=0$，解得
+    \[
+        \theta_{k}^{*}=\Sigma^{-1}(\bar{v}-S)-y_{k}\iota
+    \]
+
+    \item 市场出清 $\sum_{k}\theta_{k}^{*}=\iota$ 给出
+    \[
+        K\Sigma^{-1}(\bar{v}-S)-\Bigl(\sum_{k}y_{k}\Bigr)\iota=\iota
+    \]
+    即 $\bar{v}-S=\dfrac{1}{K}\bigl(\sum_{k}y_{k}+1\bigr)\Sigma\iota$，因而股价为
+    \[
+        S=\bar{v}-\frac{1}{K}\Bigl(\sum y_{k}+1\Bigr)\Sigma\iota
+    \]
+
+    \item 因为
+    \[
+        \begin{aligned}
+            \frac{\bar{r}_{i}}{\beta_{i}\bar{r}_{m}}
+            &=\Bigl(\frac{\bar{v}_{i}}{S_{i}}-1\Bigr)\Big/\Biggl[\frac{\operatorname{Cov}(\tilde{v}_{i},\,\iota^{\mathrm{T}}\tilde{v})(\iota^{\mathrm{T}}S)}{\operatorname{Var}(\iota^{\mathrm{T}}\tilde{v})S_{i}}\Bigl(\frac{\iota^{\mathrm{T}}\bar{v}}{\iota^{\mathrm{T}}S}-1\Bigr)\Biggr]\\
+            &=(\bar{v}_{i}-S_{i})\big/\bigl[\operatorname{Cov}(\tilde{v}_{i},\,\iota^{\mathrm{T}}\tilde{v})(\iota^{\mathrm{T}}\bar{v}-\iota^{\mathrm{T}}S)\bigr]\\
+            &=\frac{1}{K}\Bigl(\sum y_{k}+1\Bigr)(\Sigma\iota)_{i}\Big/\frac{(\Sigma\iota)_{i}\bigl(\tfrac{1}{K}(\sum y_{k}+1)(\iota^{\mathrm{T}}\Sigma\iota)\bigr)}{\iota^{\mathrm{T}}\Sigma\iota}\\
+            &=1
+        \end{aligned}
+    \]
+    即 $\bar{r}_{i}=\beta_{i}\bar{r}_{m}$，因而 CAPM 成立；
+
+    \item 对于参与者 $k$ 来说，1 期边际效用为：
+    \[
+        e^{-\tilde{w}_{k}}=e^{-w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S+(\Sigma^{-1}(\bar{v}-S))^{\mathrm{T}}(\bar{v}-S)+y_{k}\tilde{\varepsilon}}
+    \]
+    除非 $y_{k}$ 全部相等，否则边际效用之比（1 期边际效用除以 0 期边际效用）是不会相等的，因而均衡配置不是 Pareto 最优的；如果 $\tilde{\varepsilon}=0$，那么参与者的边际效用之比最多相差一个常数，但是在均衡条件下，他们对股票的定价是相同的，因而边际效用之比相等，均衡配置是 Pareto 最优的。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{13.2**} 在练习 13.1 定义的经济中，现在假设 $\tilde{\varepsilon}$ 与 $\tilde{v}$ 相关。令 $\operatorname{Cov}[\tilde{v},\tilde{\varepsilon}]=c$，这里 $c$ 是一 $(N\times 1)$ 维向量。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解投资者的股票需求函数。是否得到两基金分离？证明答案。如果两基金分离不成立，能否得到 $K$ 基金分离？$K$ 应为多少？
+    \item 求解均衡股票价格。
+    \item CAPM 成立吗？解释它为什么成立或不成立。列出导致不同股票的期望收益不同的原因并做出解释。
+    \item 讨论均衡配置的 Pareto 最优性。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 用和第 1 题类似的方法可以求得参与者 $k$ 的股票需求函数为
+    \[
+        \theta_{k}=\Sigma^{-1}(\bar{v}-S)-y_{k}(\iota+c)
+    \]
+    此时两基金分离不成立，但是三基金分离成立：一是组合头寸向量为 $\Sigma^{-1}(\bar{v}-S)$ 的股票组合，另一是组合头寸向量为 $\iota+c$ 的股票组合，最后是无风险债券；
+
+    \item 类似地，可以求得均衡股价为
+    \[
+        S=\bar{v}-\frac{1}{K}\Biggl[\Bigl(\sum y_{k}+1\Bigr)\Sigma\iota+\sum y_{k}\Sigma c\Biggr]
+    \]
+
+    \item 考虑
+    \[
+        \begin{aligned}
+            \frac{\bar{r}_{i}}{\beta_{i}\bar{r}_{m}}
+            &=\Bigl(\frac{\bar{v}_{i}}{S_{i}}-1\Bigr)\Big/\Biggl[\frac{\operatorname{Cov}(\tilde{v}_{i},\,\iota^{\mathrm{T}}\tilde{v})(\iota^{\mathrm{T}}S)}{\operatorname{Var}(\iota^{\mathrm{T}}\tilde{v})S_{i}}\Bigl(\frac{\iota^{\mathrm{T}}\bar{v}}{\iota^{\mathrm{T}}S}-1\Bigr)\Biggr]\\
+            &=(\bar{v}_{i}-S_{i})\big/\bigl[\operatorname{Cov}(\tilde{v}_{i},\,\iota^{\mathrm{T}}\tilde{v})(\iota^{\mathrm{T}}\bar{v}-\iota^{\mathrm{T}}S)\bigr]\\
+            &=\frac{1}{K}\Biggl(\Bigl(\sum y_{k}+1\Bigr)(\Sigma\iota)+\sum y_{k}\Sigma c\Biggr)_{i}\Big/\frac{(\Sigma\iota)_{i}\bigl(\tfrac{1}{K}\bigl\{(\sum y_{k}+1)(\iota^{\mathrm{T}}\Sigma\iota)+\sum y_{k}\Sigma c\bigr\}\bigr)}{\iota^{\mathrm{T}}\Sigma\iota}\\
+            &\ne 1
+        \end{aligned}
+    \]
+    因而 CAPM 成立；这是因为需要用股票来对冲与股票相关的其它风险。股票 $i$ 的期望收益率为
+    \[
+        \bar{r}_{i}=\frac{\bar{v}_{i}}{S_{i}}-1=\frac{1}{1-\frac{1}{K\bar{v}_{i}}\bigl((\sum y_{k}+1)(\Sigma\iota)+\sum y_{k}\Sigma c\bigr)_{i}}-1
+    \]
+    因而导致股票期望收益率不同的因素有：
+    \begin{itemize}
+        \item 期望支付；
+        \item 与其它股票的相关性以及自身的风险（方差）；
+        \item 与收入中的风险 $\tilde{\varepsilon}$ 的相关性。
+    \end{itemize}
+
+    \item 考虑参与者 $k$ 的 1 期边际效用：
+    \[
+        e^{-\tilde{w}_{k}}=e^{-w_{k}+\bar{\theta}_{k}^{\mathrm{T}}S+(\Sigma^{-1}(\bar{v}-S))^{\mathrm{T}}(\bar{v}-S)+y_{k}(\tilde{\varepsilon}-c^{\mathrm{T}}\tilde{v})}
+    \]
+    除非 $\tilde{\varepsilon}=c^{\mathrm{T}}\tilde{v}$ 或者 $y_{k}$ 全部相等，否则边际效用之比（1 期边际效用除以 0 期边际效用）是不会相等的，均衡配置也不是 Pareto 最优的。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{13.3**} 考虑一个由两个国家（$a$ 和 $b$）组成的、两个时期（0 和 1）的经济。这两个国家使用相同的货币。
+\begin{itemize}
+    \item 两个国家中的无风险资产是一样的，无风险利率为 $r_{F}$。
+    \item 国家 $a$ 中有 $N$ 只风险证券，国家 $b$ 中也有 $N$ 只风险证券。$\tilde{v}_{a}=\bar{v}+\tilde{z}_{a}$、$\tilde{v}_{b}=\bar{v}+\tilde{z}_{b}$ 分别是 $a$-资产、$b$-资产的 1 期支付。假设 $\bar{v}\sim N(0,\sigma_{w}^{2}I)$，这里 $I$ 是 $N\times N$ 单位阵，$\tilde{v}_{k}\sim N(\bar{v},\Sigma_{k})$，$k=a,b$，且 $\bar{v}$、$\tilde{z}_{a}$ 和 $\tilde{z}_{b}$ 是独立的。
+    \item 每一风险资产的总供给都为 1。
+    \item 国家 $a$ 有 $K_{a}$ 个投资者而国家 $b$ 有 $K_{b}$ 个投资者。所有投资都具有风险厌恶系数为 $\alpha$、依赖于 1 期财富的 CARA 效用函数。
+\end{itemize}
+令 $p_{a}$ 和 $p_{b}$ 为国家 $a$ 和国家 $b$ 的资产价格向量。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设投资者可以持有两个国家的资产。计算国家 $a$ 和国家 $b$ 的投资者的资产需求。
+    \item 计算均衡价格。
+    \item 计算所有资产的均衡风险溢价。
+    \item 证明国际化的 CAPM 成立，即
+    \[
+        \bar{r}-r_{F}=\beta(\bar{r}_{wm}-r_{F}),\quad(\bar{r}=\mathrm{E}[\tilde{r}]),
+    \]
+    其中 $\beta$ 是相对于世界市场组合的 beta 值，世界市场组合是由国家 $a$ 和国家 $b$ 的市场组合构成的等权重组合（也即两国所有资产的组合）。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 考虑国家 $a$ 中的参与者 $k$，他的优化问题是
+    \[
+        \begin{aligned}
+            \max_{\theta_{k,a},\,\theta_{k,b}}\;&\mathrm{E}[-e^{-\alpha\tilde{w}_{k}}]\\
+            \text{s.t.}\;&\tilde{w}_{k}=(w_{k}-\theta_{k,a}P_{a}-\theta_{k,b}P_{b})(1+r_{F})+\theta_{k,a}^{\mathrm{T}}\tilde{v}_{a}+\theta_{k,b}^{\mathrm{T}}\tilde{v}_{b}
+        \end{aligned}
+    \]
+    求得最优的股票需求量为
+    \[
+        \begin{aligned}
+            \theta_{k,a}&=\frac{1}{\alpha}\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{a}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
+            &\quad\times\bigl(\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))+\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))\bigr)\\
+            \theta_{k,b}&=\frac{1}{\alpha}\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{b}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
+            &\quad\times\bigl(\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))+\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))\bigr)
+        \end{aligned}
+    \]
+    类似地可以求得国家 $b$ 中参与者 $k$ 的需求函数有
+    \[
+        \theta_{k,a}'=\theta_{k,a},\qquad\theta_{k,b}'=\theta_{k,b}
+    \]
+
+    \item 市场出清条件是
+    \[
+        \begin{aligned}
+            \sum\theta_{k,a}+\sum\theta_{k,a}'&=\iota\\
+            \sum\theta_{k,b}+\sum\theta_{k,b}'&=\iota
+        \end{aligned}
+    \]
+    因而可以求得均衡股价为
+    \[
+        \begin{aligned}
+            P_{a}(1+r_{F})&=\bar{v}-\frac{\alpha}{K}\sigma_{w}^{2}\iota-\frac{\alpha}{2K}\Sigma_{a}\iota\\
+            P_{b}(1+r_{F})&=\bar{v}-\frac{\alpha}{K}\sigma_{w}^{2}\iota-\frac{\alpha}{2K}\Sigma_{b}\iota
+        \end{aligned}
+    \]
+
+    \item 国家 $a$ 中资产 $k$ 的风险溢价为
+    \[
+        \bar{r}_{k}-r_{F}=\frac{\bar{v}_{k}}{P_{a,k}}-(1+r_{F})=\frac{\frac{\alpha}{2K}(2\sigma_{w}^{2}\iota+\Sigma_{a}\iota)_{k}(1+r_{F})}{\bar{v}_{k}-\frac{\alpha}{2K}(2\sigma_{w}^{2}\iota+\Sigma_{a}\iota)_{k}}
+    \]
+    同样地，对于国家 $b$ 中资产 $i$ 有
+    \[
+        \bar{r}_{i}-r_{F}=\frac{\bar{v}_{i}}{P_{b,i}}-(1+r_{F})=\frac{\frac{\alpha}{2K}(2\sigma_{w}^{2}\iota+\Sigma_{a}\iota)_{i}(1+r_{F})}{\bar{v}_{i}-\frac{\alpha}{2K}(2\sigma_{w}^{2}\iota+\Sigma_{a}\iota)_{i}}
+    \]
+
+    \item 对于国家 $a$ 中的资产 $k$，
+    \[
+        \begin{aligned}
+            \beta_{k}&=\operatorname{Cov}\Bigl(\frac{\tilde{v}_{k}}{P_{a,k}}-1,\,\frac{\iota^{\mathrm{T}}(\tilde{v}_{a}+\tilde{v}_{b})}{\iota^{\mathrm{T}}(P_{a}+P_{b})}-1\Bigr)\Big/\operatorname{Var}\Bigl(\frac{\iota^{\mathrm{T}}(\tilde{v}_{a}+\tilde{v}_{b})}{\iota^{\mathrm{T}}(P_{a}+P_{b})}\Bigr)\\
+            &=\frac{(2\sigma_{w}^{2}\iota+\Sigma_{a}\iota)_{k}(\iota^{\mathrm{T}}(P_{a}+P_{b}))}{\iota^{\mathrm{T}}(4\sigma_{w}^{2}I+\Sigma_{a}+\Sigma_{b})\iota}\\
+            \bar{r}_{wm}&=\frac{\tfrac12\iota^{\mathrm{T}}(\tilde{v}_{a}+\tilde{v}_{b})}{\iota^{\mathrm{T}}(P_{a}+P_{b})}\\
+            \bar{r}_{wm}-r_{F}&=\frac{\frac{\alpha}{2K}\iota^{\mathrm{T}}(4\sigma_{w}^{2}I+\Sigma_{a}+\Sigma_{b})\iota}{\iota^{\mathrm{T}}(P_{a}+P_{b})}
+        \end{aligned}
+    \]
+    因此，$\bar{r}_{k}-r_{F}=\beta_{k}(\bar{r}_{wm}-r_{F})$，可以验证对于国家 $b$ 中的资产此式也成立，因而国际化的 CAPM 成立。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{13.4**} 继续考虑练习 13.3 所描述的经济。假设国家 $a$ 中的投资者可以持有国家 $b$ 的资产而国家 $b$ 中的投资者不能持有国家 $a$ 的资产。
+\begin{enumerate}[label=(\alph*)]
+    \item 重复 (a)--(c) 中的计算。
+    \item 现在证明
+    \[
+        \bar{r}-r_{F}=\gamma_{a}(\bar{r}_{a}-r_{F})+\gamma_{b}(\bar{r}_{b}-r_{F}).
+    \]
+    其中 $\bar{r}_{a}$ 和 $\bar{r}_{b}$ 分别是国家 $a$ 和 $b$ 的市场组合的期望收益。计算 $\gamma_{a}$ 和 $\gamma_{b}$ 并讨论所得到的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+略
+\end{solution}
+
+\begin{problem}
+\problemno{13.5*} 考虑如下的具有两个时期 0 和 1 的 Arrow--Debreu 经济：
+\begin{itemize}
+    \item 单一的消费品（也作为计量单位）。
+    \item 经济在 $t=1$ 期的状态为 $\omega\in\Omega=\{1,\cdots,\Omega\}$。
+    \item $\pi_{\omega}>0$ 是状态 $\omega$，$\omega\in\Omega$ 的概率。
+    \item 证券市场上存在 Arrow--Debreu 状态或有证券的完全集合。令 $\phi_{\omega}$ 为状态 $\omega$ 或有要求权（只在状态 $\omega$ 下支付 1 单位消费品）的价格。
+    \item 总禀赋是 $\{e_{\omega}:\omega\in\Omega\}$，假设 $e_{\omega}>0$，$\forall\,\omega\in\Omega$。
+\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item 写出 $\phi_{\omega}$，$\omega\in\Omega$ 的无套利条件。
+    \item 一个状态或有要求权的组合是 $w=\begin{bmatrix}w_{1} \\ \cdots \\ w_{\omega} \\ \cdots \\ w_{\Omega}\end{bmatrix}$，其中 $w_{\omega}$ 是投资于状态 $\omega$ 状态或有要求权的份额，$\sum_{\omega}w_{\omega}=1$。
+    \begin{itemize}
+        \item 计算组合收益率的均值和方差。
+        \item 计算两个组合 $w$ 和 $w'$ 之间的协方差。
+    \end{itemize}
+    \item 考虑如下的两个组合 $w^{a}$ 和 $w^{b}$
+    \[
+        \forall\,\omega\in\Omega:\quad w_{\omega}^{a}=\frac{\phi_{\omega}}{\sum_{\omega}\phi_{\omega}},\quad w_{\omega}^{b}=\frac{\phi_{\omega}q_{\omega}}{\sum_{\omega}\phi_{\omega}q_{\omega}}
+    \]
+    其中 $q_{\omega}=\phi_{\omega}/\pi_{\omega}$。
+    \begin{itemize}
+        \item 验证 $w^{a}$ 是 $t=0$ 期价格为 1 的无风险组合。
+        \item 证明所有的前沿组合都是组合 $w^{a}$ 和 $w^{b}$ 的凸组合。
+    \end{itemize}
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 无套利的条件是 $\phi_{\omega}>0$，$\sum\phi_{\omega}\le 1$；
+    \item
+    \begin{itemize}
+        \item 收益率 $\tilde{r}(\omega)=\frac{w_{\omega}}{\phi_{\omega}}-1$，因而收益率的期望值是 $\bar{r}=\sum\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}-1$，方差是 $\operatorname{Var}(\tilde{r})=\sum\pi_{\omega}\bigl(\frac{w_{\omega}}{\phi_{\omega}}\bigr)^{2}-\bigl(\sum\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}\bigr)^{2}$
+        \item
+        \[
+            \operatorname{Cov}(\tilde{r},\,\tilde{r}')=\sum\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}\frac{w_{\omega}'}{\phi_{\omega}}-\sum\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}\sum\pi_{\omega}\frac{w_{\omega}'}{\phi_{\omega}}
+        \]
+    \end{itemize}
+    \item
+    \begin{itemize}
+        \item $w^{a}$ 的 1 期支付为 $\frac{w_{\omega}^{a}}{\phi_{\omega}}=\frac{1}{\phi_{0}}$ 是一常数；而它的价格为 1，即它是 0 期价格为 1 的无风险组合。
+        \item 考虑下面的优化问题
+        \[
+            \begin{aligned}
+                \max_{w_{\omega}}\;&\frac12\sum\pi_{\omega}\Bigl(\frac{w_{\omega}}{\phi_{\omega}}\Bigr)^{2}\\
+                \text{s.t.}\;&\sum\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}-1=\bar{r}_{p}\\
+                &\sum w_{\omega}=1
+            \end{aligned}
+        \]
+        构造 Lagrangian 函数
+        \[
+            \mathcal{L}=\frac12\sum\pi_{\omega}\Bigl(\frac{w_{\omega}}{\phi_{\omega}}\Bigr)^{2}+\lambda_{r}\Bigl(\bar{r}_{p}+1-\pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}}\Bigr)+\lambda_{1}\Bigl(1-\sum w_{\omega}\Bigr)
+        \]
+        一阶条件为
+        \[
+            \pi_{\omega}\frac{w_{\omega}}{\phi_{\omega}^{2}}=\lambda_{r}\frac{w_{\omega}}{\phi_{\omega}}+\lambda_{1}
+        \]
+        \[
+            \begin{aligned}
+                \Rightarrow w_{\omega}&=\lambda_{r}\phi_{\omega}+\lambda_{1}\phi_{\omega}q_{\omega}\\
+                &=\frac{(1+\bar{r}_{p})\sum\phi_{\omega}-1}{\sum\phi_{\omega}q_{\omega}-(\sum\phi_{\omega})^{2}}\phi_{\omega}q_{\omega}+\frac{\sum\phi_{\omega}-(1+\bar{r}_{p})\sum\phi_{\omega}q_{\omega}}{\sum\phi_{\omega}q_{\omega}-(\sum\phi_{\omega})^{2}}\phi_{\omega}\\
+                &=\delta\frac{\phi_{\omega}q_{\omega}}{\sum\phi_{\omega}q_{\omega}}+(1-\delta)\frac{\phi_{\omega}}{\sum\phi_{\omega}}
+            \end{aligned}
+        \]
+        其中，
+        \[
+            \delta=\frac{((1+\bar{r}_{p})\sum\phi_{\omega}-1)\sum\phi_{\omega}q_{\omega}}{\sum\phi_{\omega}q_{\omega}-(\sum\phi_{\omega})^{2}}
+        \]
+        因为约束都起限制作用，因而 $\lambda_{r}>0$，$\lambda_{1}>0$，因而任意前沿组合都是 $w^{a}$，$w^{b}$ 的凸组合。
+    \end{itemize}
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{13.6**} 继续考虑练习 13.5 中的经济。
+\begin{enumerate}[label=(\alph*)]
+    \item 令 $u(\cdot)$ 为代表性参与者的效用函数。证明为使 CAPM 成立 $u(\cdot)$ 必须具有平方函数的形式。
+    \item 假设所有的资产都可由 CAPM 定价。证明一份在状态 $\omega$（$\omega\in\Omega$）下支付 $x_{\omega}$ 单位消费品的证券价格由下式给出
+    \[
+        p_{x}=\alpha\mathrm{E}[\tilde{x}]-\beta\operatorname{Cov}[\tilde{x},\tilde{e}].
+    \]
+    其中 $\alpha$ 和 $\beta$ 是两个和 $x$ 无关的常数。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 对于支付为 $\tilde{x}$ 的资产而言，其价格为 $P_{x}=\mathrm{E}\bigl[\frac{u'(\tilde{e})}{u'(e_{0})}\tilde{x}\bigr]=\operatorname{Cov}\bigl(\frac{u'(\tilde{e})}{u'(e_{0})},\,\tilde{x}\bigr)+\frac{\bar{x}}{1+r_{F}}$，如果 CAPM 成立，那么有
+    \[
+        \begin{aligned}
+            \frac{\bar{x}}{P_{x}}-(1+r_{F})&=\frac{\operatorname{Cov}(\tilde{x},\,\tilde{e})P_{e}}{P_{x}\operatorname{Var}(\tilde{e})}\Bigl(\frac{\bar{e}}{P_{e}}-(1+r_{F})\Bigr)\\
+            \bar{x}-P_{x}(1+r_{F})&=\frac{\operatorname{Cov}(\tilde{x},\,\tilde{e})}{\operatorname{Var}(\tilde{e})}\bigl(\bar{e}-P_{e}(1+r_{F})\bigr)
+        \end{aligned}
+    \]
+    因而对于任意的 $\tilde{x}$ 都有
+    \[
+        \operatorname{Cov}\Biggl(\tilde{x},\,\frac{\bar{e}-P_{e}(1+r_{F})}{\operatorname{Var}(\tilde{e})}\tilde{e}+\frac{u'(\tilde{e})(1+r_{F})}{u'(e_{0})}\Biggr)=0
+    \]
+    由此可得 $u'(\tilde{e})$ 是 $\tilde{e}$ 的线性函数，$u$ 是二次函数；
+
+    \item 由上面的
+    \[
+        \bar{x}-P_{x}(1+r_{F})=\frac{\operatorname{Cov}(\tilde{x},\,\tilde{e})}{\operatorname{Var}(\tilde{e})}\bigl(\bar{e}-P_{e}(1+r_{F})\bigr)
+    \]
+    可得，
+    \[
+        \begin{aligned}
+            P_{x}&=\frac{1}{1+r_{F}}\bar{x}-\frac{\bar{e}-P_{e}(1+r_{F})}{(1+r_{F})\operatorname{Var}(\tilde{e})}\operatorname{Cov}(\tilde{x},\,\tilde{e})\\
+            &=\alpha\bar{x}-\beta\operatorname{Cov}(\tilde{x},\,\tilde{e})
+        \end{aligned}
+    \]
+    其中，$\alpha=\frac{1}{1+r_{F}}$，$\beta=\frac{\bar{e}-P_{e}(1+r_{F})}{(1+r_{F})\operatorname{Var}(\tilde{e})}$ 是两个与 $\tilde{x}$ 无关的常数。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{13.7*} 考虑练习 13 中的经济。假设只有两个可能状态 $a$ 和 $b$，$e_{b}>e_{a}$。称支付总禀赋的证券为股票。考虑一份以股票为标的资产、执行价格为 $K\in(e_{a},e_{b})$ 的看涨期权。
+\begin{enumerate}[label=(\alph*)]
+    \item 能用 CAPM（代表性参与者具有一般形式的 $u(\cdot)$）为期权定价吗？解释所得的结论。
+    \item 能把上面的结论推广到多余两个状态的情形吗？给出解释。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 如果 1 期只有两个状态，并且 $e_{a}>e_{b}$，那么可由
+    \[
+        \bar{e}=\phi_{a}e_{a}+\phi_{b}e_{b},\quad\sigma_{e}^{2}=\phi_{a}(e_{a}-\bar{e})^{2}+\phi_{b}(e_{b}-\bar{e})^{2}
+    \]
+    求得 $e_{a}=e_{a}(\bar{e},\,\sigma_{e}^{2})$，$e_{b}=e_{b}(\bar{e},\,\sigma_{e}^{2})$，因此，
+    \[
+        \mathrm{E}[u(\tilde{e})]=\phi_{a}u(e_{a})+\phi_{b}u(e_{b})=v(\bar{e},\,\sigma_{e}^{2})
+    \]
+    即代表性参与者具有均值一方差偏好，按照正文中的结论，我们可以知道 CAPM 成立，因此可以用 CAPM 为期权定价；
+    \item 如果状态数大于 2，我们不能用均值、方差表示出各个状态的禀赋，代表性参与者不一定具有均值方差偏好（如果效用函数是二次函数则具有均值一方差偏好），CAPM 不一定成立。
+\end{enumerate}
+\end{solution}
+

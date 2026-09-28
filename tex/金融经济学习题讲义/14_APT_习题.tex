@@ -1,0 +1,137 @@
+% !TeX root = ../../金融经济学习题讲义.tex
+% 14_APT 课后习题（由章节文件拆分）
+
+\begin{problem}
+\problemno{14.1} 市场上有无穷多的证券。它们的收益率由单因子模型给定：
+\[
+    \tilde{r}_{n}=\bar{r}_{n}+b_{n}\tilde{f}+\tilde{u}_{n},\quad n=1,2,\ldots
+\]
+这里 $\mathrm{E}[\tilde{f}]=0$；$\forall\,n,n'$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$；$\operatorname{Var}[\tilde{u}_{n}]\le\sigma^{2}$；以及 $\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$。一个组合由 $\{w_{1},w_{2},\ldots\}$ 给定。如当 $N$ 很大时，
+\[
+    \sum_{n}^{N}w_{n}^{2}\simeq O(N^{-1})
+\]
+则称它是充分分散的，其中 $N$ 代表组合中绝对权重最大的股票数目而 $O(\cdot)$ 表示同阶或更高阶。
+\begin{enumerate}[label=(\alph*)]
+    \item 计算充分分散组合的方差。
+    \item 证明它不受单个证券的特殊风险的影响。
+    \item 更一般地讨论什么因素决定了充分分散组合的风险，这里风险的度量是收益率的方差。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 组合收益率为
+    \[
+        \tilde{r}_{p}=\sum w_{n}\tilde{r}_{n}=\sum w_{n}\bar{r}_{n}+\Bigl(\sum w_{n}b_{n}\Bigr)\tilde{f}+\sum w_{n}\tilde{u}_{n}
+    \]
+    组合风险为
+    \[
+        \operatorname{Var}(\tilde{r}_{p})=\Bigl(\sum w_{n}b_{n}\Bigr)^{2}\sigma_{f}^{2}+\sum w_{n}^{2}\operatorname{Var}(\tilde{u}_{n})
+    \]
+    因为组合是充分分散的，故
+    \[
+        \sum w_{n}^{2}\operatorname{Var}(\tilde{u}_{n})\le\sigma^{2}\sum w_{n}^{2}\to 0,\quad N\to\infty
+    \]
+    因此
+    \[
+        \operatorname{Var}(\tilde{r}_{p})=\Bigl(\sum w_{n}b_{n}\Bigr)^{2}\sigma_{f}^{2}
+    \]
+    \item $\operatorname{Var}(\tilde{r}_{p})$ 中没有 $\operatorname{Var}(\tilde{u}_{n})$ 项，即组合风险不受特殊风险的影响；
+    \item 影响充分分散组合的风险有两个：一是因子的风险，另一个是组合的载荷。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{14.2} 假设资产 $A$、$B$、$C$ 的收益服从精确两因子模型：
+\begin{align}
+    r_{A}&=a_{A}+b_{A,1}\tilde{f}_{1}+b_{A,2}\tilde{f}_{2}\tag{14.1}\\
+    r_{B}&=a_{B}+b_{B,1}\tilde{f}_{1}+b_{B,2}\tilde{f}_{2}\tag{14.2}\\
+    r_{C}&=a_{C}+b_{C,1}\tilde{f}_{1}+b_{C,2}\tilde{f}_{2}\tag{14.3}
+\end{align}
+其中 $\tilde{f}_{1}$ 和 $\tilde{f}_{2}$ 是两个均值为 0、方差为 1 的因子。$r_{F}$ 是无风险利率。为消除套利机会，$a$、$b$ 以及 $r_{F}$ 应该满足什么条件？
+\end{problem}
+\begin{solution}
+构造一个组合，组合权重为 $\begin{bmatrix}x_{1} \\ x_{2} \\ 1-x_{1}-x_{2}\end{bmatrix}$，那么组合的收益率为
+\[
+    \begin{aligned}
+        \tilde{r}_{p}&=\bigl[(a_{A}-a_{C})x_{1}+(a_{B}-a_{C})x_{2}\bigr]+\bigl[(b_{A,1}-b_{C,1})x_{1}+(b_{B,1}-b_{C,1})x_{2}\bigr]\tilde{f}_{1}\\
+        &\quad+\bigl[(b_{A,2}-b_{C,2})x_{1}+(b_{B,2}-b_{C,2})x_{2}\bigr]\tilde{f}_{2}
+    \end{aligned}
+\]
+如果不存在套利机会，那么
+\[
+    \begin{aligned}
+        (b_{A,1}-b_{C,1})x_{1}+(b_{B,1}-b_{C,1})x_{2}&=0\\
+        (b_{A,2}-b_{C,2})x_{1}+(b_{B,2}-b_{C,2})x_{2}&=0\\
+        (a_{A}-a_{C})x_{1}+(a_{B}-a_{C})x_{2}&=r_{F}
+    \end{aligned}
+\]
+也就是说，若 $x\in\{y\in\mathrm{R}^{2}:y\perp\begin{bmatrix}b_{A,1}-b_{C,1} \\ b_{B,1}-b_{C,1}\end{bmatrix},\,y\perp\begin{bmatrix}b_{A,2}-b_{C,2} \\ b_{B,2}-b_{C,2}\end{bmatrix}\}$，那么 $x^{\mathrm{T}}\begin{bmatrix}a_{A}-a_{C} \\ a_{B}-a_{C}\end{bmatrix}=r_{F}$。
+\end{solution}
+
+\begin{problem}
+\problemno{14.3} 考虑一个有无穷多资产和 $K$ 个因子的因子模型：
+\[
+    \tilde{r}_{n}=\bar{r}_{n}+b_{n}\tilde{f}+\tilde{u}_{n},\quad n=1,2,\ldots
+\]
+其中 $\tilde{f}=\begin{bmatrix}\tilde{f}_{1} \\ \ldots \\ \tilde{f}_{K}\end{bmatrix}$ 是因子向量，$b_{n}=\begin{bmatrix}b_{n,1} \\ \ldots \\ b_{n,K}\end{bmatrix}$ 资产 $n$ 的因子载荷向量，而 $\forall\,n,n'$，$\mathrm{E}[\tilde{f}]=0$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{f}^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$，其中 $I$ 是单位阵。考虑另外一组因子 $\tilde{f}'$，它们是 $\tilde{f}$ 的线性变换：
+\[
+    \tilde{f}'=\mathrm{A}\tilde{f}
+\]
+这里 $\mathrm{A}$ 是一个 $(K\times K)$ 的矩阵。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明存在 $\tilde{f}'$ 使得
+    \[
+        \tilde{r}_{n}=\bar{r}_{n}+b_{n}\tilde{f}'+\tilde{u}_{n},\quad n=1,2,\ldots
+    \]
+    其中 $\mathrm{E}[\tilde{f}']=0$，$\mathrm{E}[\tilde{f}'\tilde{f}'^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}'\tilde{u}_{n}]=0$，$\forall\,n$。因此，因子模型不是唯一的。
+    \item 证明因子模型有许多因子不同但却等价的表述形式。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 若 $A$ 为正交阵（即 $A^{\mathrm{T}}A=I$），那么
+    \[
+        \begin{aligned}
+            \tilde{r}_{n}&=\bar{r}_{n}+b_{n}^{\mathrm{T}}\tilde{f}+\tilde{u}_{n}\\
+            &=\bar{r}_{n}+b_{n}^{\mathrm{T}}A^{\mathrm{T}}A\tilde{f}+\tilde{u}_{n}\\
+            &=\bar{r}_{n}+(Ab_{n})^{\mathrm{T}}(A\tilde{f})+\tilde{u}_{n}\\
+            &=\bar{r}_{n}+b_{n}'^{\mathrm{T}}\tilde{f}'+\tilde{u}_{n}
+        \end{aligned}
+    \]
+    可以验证：
+    \[
+        \mathrm{E}[\tilde{f}']=0,\quad\mathrm{E}[\tilde{f}'\tilde{f}'^{\mathrm{T}}]=I,\quad\mathrm{E}[\tilde{f}'\tilde{u}_{n}]=0
+    \]
+    \item 因为 $K$ 阶正交阵有很多，因而等价的表述形式也有很多。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{14.4*} 给定练习 14.3 描述的因子模型，APT 要求
+\[
+    \bar{r}_{n}-r_{F}=\lambda^{\mathrm{T}}b_{n}
+\]
+其中 $\lambda=\begin{bmatrix}\lambda_{1} \\ \lambda_{2} \\ \ldots \\ \lambda_{K}\end{bmatrix}$ 是因子风险溢价向量。证明存在一个等价的因子模型，它的因子向量为 $\tilde{f}^{*}$ 而对应的因子风险溢价向量为 $\lambda^{*}=\begin{bmatrix}\lambda_{1}^{*} \\ 0 \\ \ldots \\ 0\end{bmatrix}$，即只有第一个因子有风险溢价而其它因子虽然代表了不可分散风险，却没有风险溢价。
+\end{problem}
+\begin{solution}
+考虑这样的正交阵：$A=\bigl[\frac{1}{\sqrt{\lambda^{\mathrm{T}}\lambda}}\lambda,\,U\bigr]$，其中
+\[
+    U=[U_{1},\,U_{2},\,\cdots,\,U_{K-1}],\quad U_{i}^{\mathrm{T}}U_{j}=\delta_{ij},\quad U_{i}^{\mathrm{T}}\lambda=0
+\]
+\[
+    \delta_{ij}=\begin{cases}
+        1&i=j\\
+        0&i\neq j
+    \end{cases}
+\]
+可以验证：$AA^{\mathrm{T}}=I$，即 $A$ 是正交阵，且 $A^{\mathrm{T}}\lambda=\begin{bmatrix}\sqrt{\lambda^{\mathrm{T}}\lambda} \\ \,0 \\ \,0 \\ \,\cdots \\ \,0\end{bmatrix}$，那么
+\[
+    \begin{aligned}
+        \tilde{r}_{n}&=\bar{r}_{n}+b_{n}^{\mathrm{T}}AA^{\mathrm{T}}\tilde{f}+\tilde{u}_{n}\\
+        &=\bar{r}_{n}+(A^{\mathrm{T}}b_{n})^{\mathrm{T}}(A^{\mathrm{T}}\tilde{f})+\tilde{u}_{n}\\
+        &=\bar{r}_{n}+b_{n}^{*\,\mathrm{T}}\tilde{f}^{*}+\tilde{u}_{n}
+    \end{aligned}
+\]
+是一个等价表述。并且 $\bar{r}_{n}-r_{F}=\lambda^{*\,\mathrm{T}}b_{n}^{*}$，其中，$\lambda^{*}=A^{\mathrm{T}}\lambda=\begin{bmatrix}\sqrt{\lambda^{\mathrm{T}}\lambda} \\ \,0 \\ \,0 \\ \,\cdots \\ \,0\end{bmatrix}$。
+\end{solution}
+

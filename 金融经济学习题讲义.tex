@@ -10,10 +10,28 @@
 \tcbset{breakable}
 \usetikzlibrary{intersections}
 
-\SetupFourThreeOneDocument{金融经济学习题讲义（王江）}
+% 完整版：latexmk 默认，或 -usepretex -pretex='\\def\\WJHandoutKnowledge{}'
+% 仅习题：-usepretex -pretex='\\def\\WJExercisesOnly{}' -jobname=金融经济学习题讲义_exercises_only
+\ifdefined\WJExercisesOnly
+\else
+  \ifdefined\WJHandoutKnowledge
+  \else
+    \def\WJHandoutKnowledge{}
+  \fi
+\fi
+
+\ifdefined\WJExercisesOnly
+  \SetupFourThreeOneDocument{金融经济学习题讲义（王江·习题）}
+\else
+  \SetupFourThreeOneDocument{金融经济学习题讲义（王江）}
+\fi
 
 \title{金融经济学习题}
-\subject{王江《金融经济学》习题解答}
+\ifdefined\WJExercisesOnly
+  \subject{王江《金融经济学》课后习题}
+\else
+  \subject{王江《金融经济学》讲义及习题解答}
+\fi
 \author{Bilibili@园丁小区詹姆斯}
 
 % 原书题号含星号（如 2.2*），不用 exam-zh 自动序号。
@@ -76,8 +94,8 @@
 \else
 \MakeFourThreeOneCover
     {431 FINANCE \quad/\quad FINANCIAL ECONOMICS}
-    {金融经济学习题讲义}
-    {王江《金融经济学》习题解答}
+    {\ifdefined\WJExercisesOnly 金融经济学习题（仅习题）\else 金融经济学习题讲义\fi}
+    {\ifdefined\WJExercisesOnly 王江《金融经济学》课后习题\else 王江《金融经济学》讲义及习题解答\fi}
     {从偏好与状态价格出发，完成资产定价的推演}
     {Bilibili@园丁小区詹姆斯}
     {PREFERENCE \quad EQUILIBRIUM \quad PRICING}
