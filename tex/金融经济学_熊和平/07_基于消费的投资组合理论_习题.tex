@@ -1,32 +1,30 @@
 % !TeX root = ../../金融经济学_熊和平_习题.tex
 
-\xhpthoughts
 \begin{problem}
-\problemno{1} 我们在分析消费-组合问题时为什么要转化为纯组合问题？这样对经济人的优化问题的求解是否产生影响？
+\problemno{7.1} 我们在分析消费-组合问题时为什么要转化为纯组合问题？这样对经济人的优化问题的求解是否产生影响？
 \end{problem}
 \begin{problem}
-\problemno{2} 在分析小风险情形后为什么还要讨论 CARA 偏好下的情形？
+\problemno{7.2} 在分析小风险情形后为什么还要讨论 CARA 偏好下的情形？
 \end{problem}
 \begin{problem}
-\problemno{3} CARA 偏好下一般能够得出显式解，为什么我们通常不假设 CARA 偏好？
+\problemno{7.3} CARA 偏好下一般能够得出显式解，为什么我们通常不假设 CARA 偏好？
 \end{problem}
 \begin{problem}
-\problemno{4} HARA 偏好下的组合问题与 CARA 和 CRRA 偏好下的组合问题有何异同？
+\problemno{7.4} HARA 偏好下的组合问题与 CARA 和 CRRA 偏好下的组合问题有何异同？
 \end{problem}
 \begin{problem}
-\problemno{5} 两资产情形下的组合问题的结论哪些能够推广到多资产情形？
+\problemno{7.5} 两资产情形下的组合问题的结论哪些能够推广到多资产情形？
 \end{problem}
 
-\xhpexercises
 \begin{problem}
-\problemno{1} 两资产情形下（一个风险资产和一个无风险资产），假设经济人具有对数效用函数，并且风险资产的收益率以等概率取无风险利率的 $4$ 倍和负的无风险利率。求投资者对风险资产的投资在其初始财富中所占的比例 $A/W_0$。
+\problemno{7.6} 两资产情形下(一个风险资产和一个无风险资产)，假设经济人具有对数效用函数，并且风险资产的收益率以等概率取无风险利率的 $4$ 倍和负的无风险利率。求投资者对风险资产的投资在其初始财富中所占的比例 $A/W_0$。
 \end{problem}
 \begin{problem}
-\problemno{2} 假设投资者具有 CARA 偏好，绝对风险厌恶系数 $a>0$。投资者的期末财富服从正态分布，则投资者的确定性等价财富水平是多少？
+\problemno{7.7} 假设投资者具有 CARA 偏好，绝对风险厌恶系数 $a>0$。投资者的期末财富服从正态分布，则投资者的确定性等价财富水平是多少？
 \end{problem}
 \begin{problem}
-\problemno{3} 同第 1 题一样，考虑两资产情形：无风险资产收益率为 $r_f$，风险资产收益率为 $\tilde{r}$，其均值和方差分别为 $\bar{r}$ 和 $\sigma^2$：
-\begin{enumerate}[label=(\arabic*)]
+\problemno{7.8} 同第 1 题一样，考虑两资产情形：无风险资产收益率为 $r_f$，风险资产收益率为 $\tilde{r}$，其均值和方差分别为 $\bar{r}$ 和 $\sigma^2$：
+\begin{enumerate}[label=(\alph*)]
     \item 在二次效用假设下求最优投资组合；并讨论最优组合与无风险利率 $r_f$、风险利率的期望值 $\bar{r}$ 以及方差 $\sigma^2$、偏好系数 $a$ 的关系，给出其经济学解释。此时效用函数为
     \[
         U=E\bigl[\tilde{W}_1-\tfrac12 a\tilde{W}_1^2\bigr].
@@ -38,17 +36,17 @@
 \end{enumerate}
 \end{problem}
 \begin{problem}
-\problemno{4} 证明定理 7.8。
+\problemno{7.9} 证明定理 7.8。
 \end{problem}
 \begin{problem}
-\problemno{5} 两资产情形下期末财富为 $W=w+a\tilde{x}$（如公式 (7.3) 所示），$R(w)$ 为相对风险厌恶系数，$a(w)$ 为最优投资选择，即
+\problemno{7.10} 两资产情形下期末财富为 $W=w+a\tilde{x}$(如公式 (7.3) 所示)，$R(w)$ 为相对风险厌恶系数，$a(w)$ 为最优投资选择，即
 \[
     a(w)=\operatorname*{argmax}_{a} E\bigl[u(w+a\tilde{x})\bigr],
 \]
 满足条件 $w>0$，$E[\tilde{x}]>0$，$u'(\cdot)>0$，$u''(\cdot)\le 0$。证明以下命题：
-\begin{enumerate}[label=(\arabic*)]
+\begin{enumerate}[label=(\alph*)]
     \item 若 $\lambda>1$，且对于给定的效用函数 $u$ 有 $R'(w)\ge 0$。定义 $u_1(w)\equiv u(\lambda w)$，$u_2(w)=u(w)$，证明 $R_1(w)\ge R_2(w)$。
     \item 给定以上结论，我们有 $a_1(w)\le a_2(w)$，其中 $a_1(w)$、$a_2(w)$ 分别是 $u_1(\cdot)$、$u_2(\cdot)$ 对应的最优投资选择。
-    \item 定义 $\hat{a}(w)=a(w)/w$，则对于 $w_1\le w_2$ 有 $\hat{a}(w_1)\ge \hat{a}(w_2)$（提示：令 $\lambda=w_2/w_1$）。
+    \item 定义 $\hat{a}(w)=a(w)/w$，则对于 $w_1\le w_2$ 有 $\hat{a}(w_1)\ge \hat{a}(w_2)$(提示：令 $\lambda=w_2/w_1$)。
 \end{enumerate}
 \end{problem}

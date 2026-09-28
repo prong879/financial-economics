@@ -1,54 +1,52 @@
 % !TeX root = ../../金融经济学_熊和平_习题.tex
 
-\xhpthoughts
 \begin{problem}
-\problemno{1} 随机贴现因子定价模型（SDF）为什么也叫基于消费的资产定价模型？
+\problemno{12.1} 随机贴现因子定价模型(SDF)为什么也叫基于消费的资产定价模型？
 \end{problem}
 \begin{problem}
-\problemno{2} 本章的随机贴现因子与上一章的随机贴现因子是否相同？
+\problemno{12.2} 本章的随机贴现因子与上一章的随机贴现因子是否相同？
 \end{problem}
 \begin{problem}
-\problemno{3} 为什么说 SDF 模型具有普适性？
+\problemno{12.3} 为什么说 SDF 模型具有普适性？
 \end{problem}
 \begin{problem}
-\problemno{4} 基于 SDF 的模型与 CAPM 的联系与区别是什么？
+\problemno{12.4} 基于 SDF 的模型与 CAPM 的联系与区别是什么？
 \end{problem}
 \begin{problem}
-\problemno{5} 什么是股权溢价之谜？
+\problemno{12.5} 什么是股权溢价之谜？
 \end{problem}
 \begin{problem}
-\problemno{6} 什么是无风险利率之谜？
+\problemno{12.6} 什么是无风险利率之谜？
 \end{problem}
 
-\xhpexercises
 \begin{problem}
-\problemno{1} 两时点单期情形下假设期末有 $S$ 种状态，则基于消费的定价模型表明任何资产的价格 $P_i$ 和期末的支付 $X_i$ 满足
+\problemno{12.7} 两时点单期情形下假设期末有 $S$ 种状态，则基于消费的定价模型表明任何资产的价格 $P_i$ 和期末的支付 $X_i$ 满足
 \[
     P_i=\sum_{s=1}^{S}\pi_s m_s X_{is}=E[mX_i].
 \]
 如果经济中一个投资者的效用函数为 $u(c_0,c_1)$，$\omega\in\Omega$ 为均衡状态下的消费水平，试用投资者的均衡消费水平表示状态价格。
 \end{problem}
 \begin{problem}
-\problemno{2} 假设期末有两种状态，市场上有两种证券：一个是无风险证券，其相对收益为 $1.05$；另一个是风险证券，其期初价格为 $6$，期末支付向量为 $(10,5)$。
-\begin{enumerate}[label=(\arabic*)]
+\problemno{12.8} 假设期末有两种状态，市场上有两种证券：一个是无风险证券，其相对收益为 $1.05$；另一个是风险证券，其期初价格为 $6$，期末支付向量为 $(10,5)$。
+\begin{enumerate}[label=(\alph*)]
     \item 计算两个状态价格和各状态的风险中性概率；
     \item 若期末两状态等概率发生，计算两个状态所对应的随机贴现因子。
 \end{enumerate}
 \end{problem}
 \begin{problem}
-\problemno{3} 两时点、两状态单期情形下，一份期权合约在期末状态 1 下的支付为 $3$，状态 2 下的支付为 $0$，0 期市场价格为 $1$。一份相同标的资产的远期合约在状态 1 下的支付为 $3$，状态 2 下的支付为 $-2$。试求无风险利率及两状态的风险中性概率。
+\problemno{12.9} 两时点、两状态单期情形下，一份期权合约在期末状态 1 下的支付为 $3$，状态 2 下的支付为 $0$，0 期市场价格为 $1$。一份相同标的资产的远期合约在状态 1 下的支付为 $3$，状态 2 下的支付为 $-2$。试求无风险利率及两状态的风险中性概率。
 \end{problem}
 \begin{problem}
-\problemno{4} 假如随机贴现因子定价关系与 CAPM 都成立，其中 CAPM 模型表述为 $E[R_i]=R_f+\beta_i\gamma$，随机贴现因子表述为 $m=a+bR_m$，$R_m$ 是市场投资组合的收益，其方差记为 $\sigma_m^2$。
-\begin{enumerate}[label=(\arabic*)]
-    \item 将 $\gamma$ 表示为 $a$、$b$、$E[R_m]$ 和 $\sigma_m^2$ 的函数（可从 $E[m(R_i-R_f)]=0$ 入手）；
-    \item 将 $a$ 和 $b$ 表示为 $R_f$、$E[R_m]$ 和 $\sigma_m^2$ 的函数形式（可从 $E[mR_f]=1$ 入手）；
+\problemno{12.10} 假如随机贴现因子定价关系与 CAPM 都成立，其中 CAPM 模型表述为 $E[R_i]=R_f+\beta_i\gamma$，随机贴现因子表述为 $m=a+bR_m$，$R_m$ 是市场投资组合的收益，其方差记为 $\sigma_m^2$。
+\begin{enumerate}[label=(\alph*)]
+    \item 将 $\gamma$ 表示为 $a$、$b$、$E[R_m]$ 和 $\sigma_m^2$ 的函数(可从 $E[m(R_i-R_f)]=0$ 入手)；
+    \item 将 $a$ 和 $b$ 表示为 $R_f$、$E[R_m]$ 和 $\sigma_m^2$ 的函数形式(可从 $E[mR_f]=1$ 入手)；
     \item 利用 (2) 中的结果证明 $\gamma=E[R_m]-R_f$。
 \end{enumerate}
 \end{problem}
 \begin{problem}
-\problemno{5} 假设存在 $N$ 个风险资产，其期望收益向量为 $\mu$，协方差矩阵为 $\Sigma$。记 $\mu_m=E[m]$ 和 $\sigma_m^2$ 分别为贴现因子的均值和方差。
-\begin{enumerate}[label=(\arabic*)]
+\problemno{12.11} 假设存在 $N$ 个风险资产，其期望收益向量为 $\mu$，协方差矩阵为 $\Sigma$。记 $\mu_m=E[m]$ 和 $\sigma_m^2$ 分别为贴现因子的均值和方差。
+\begin{enumerate}[label=(\alph*)]
     \item 定义 $m_0=\mu_m+(1-\mu_m\mu)^{\mathrm{T}}\Sigma^{-1}(R-\mu)$，其中 $1$ 为 $N$ 维单位向量，$R$ 为 $N$ 个资产的收益向量。请证明：$1=E[m_0 R]$，即 $m_0$ 也是一个贴现因子。
     \item 利用柯西-施瓦兹不等式证明
     \[

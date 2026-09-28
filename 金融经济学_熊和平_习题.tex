@@ -24,10 +24,13 @@
 }
 
 \newcommand{\problemno}[1]{\textbf{#1}\quad}
-\newcommand{\xhpthoughts}{\subsection*{思考题}}
-\newcommand{\xhpexercises}{\subsection*{练习题}}
-\newcommand{\xhpconcepts}{\subsection*{重要概念}}
-\newcommand{\xhpsummary}{\subsection*{本章小结}}
+
+% 重要概念：与王江知识框一致，用条目列表而非逗号段。
+\newcommand{\xhpconceptitems}[1]{%
+\begin{tcolorbox}[knowledge,title=重要概念]
+\begin{enumerate}[nosep]#1\end{enumerate}
+\end{tcolorbox}}
+
 \begin{document}
 
 \FourThreeOneFrontMatter
@@ -66,6 +69,8 @@
 \input{tex/金融经济学_熊和平/13_生产性经济与资源配置.tex}
 \input{tex/金融经济学_熊和平/14_异质性投资者.tex}
 \input{tex/金融经济学_熊和平/15_家庭金融.tex}
+
+\appendix
 \input{tex/金融经济学_熊和平/A_附录_布朗运动及其简单描述.tex}
 
 \end{document}
