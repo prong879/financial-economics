@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Split 金融经济学习题讲义 chapter files into chapter shell + _习题.tex."""
+"""Split 金融经济学_王江 chapter files into chapter shell + _习题.tex."""
 
 from __future__ import annotations
 
 import re
 from pathlib import Path
 
-CHAPTER_DIR = Path(__file__).resolve().parents[2] / "tex/金融经济学习题讲义"
+CHAPTER_DIR = Path(__file__).resolve().parents[2] / "tex/金融经济学_王江"
 
 CHAPTERS = [
     "02_基本框架.tex",
@@ -95,10 +95,10 @@ def split_chapter(path: Path) -> None:
     stem = path.stem
     exercise_name = f"{stem}_习题.tex"
     exercise_path = path.parent / exercise_name
-    input_line = f"\\input{{tex/金融经济学习题讲义/{exercise_name}}}\n"
+    input_line = f"\\input{{tex/金融经济学_王江/{exercise_name}}}\n"
 
     exercise_header = (
-        f"% !TeX root = ../../金融经济学习题讲义.tex\n"
+        f"% !TeX root = ../../金融经济学_王江_讲义及习题.tex\n"
         f"% {stem} 课后习题（由章节文件拆分）\n\n"
     )
     exercise_path.write_text(exercise_header + "".join(exercise_lines), encoding="utf-8")

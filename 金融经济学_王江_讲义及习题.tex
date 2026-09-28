@@ -11,7 +11,7 @@
 \usetikzlibrary{intersections}
 
 % 完整版：latexmk 默认，或 -usepretex -pretex='\\def\\WJHandoutKnowledge{}'
-% 仅习题：-usepretex -pretex='\\def\\WJExercisesOnly{}' -jobname=金融经济学习题讲义_exercises_only
+% 仅习题：-usepretex -pretex='\\def\\WJExercisesOnly{}' -jobname=金融经济学_王江_exercises_only
 \ifdefined\WJExercisesOnly
 \else
   \ifdefined\WJHandoutKnowledge
@@ -21,12 +21,12 @@
 \fi
 
 \ifdefined\WJExercisesOnly
-  \SetupFourThreeOneDocument{金融经济学习题讲义（王江·习题）}
+  \SetupFourThreeOneDocument{金融经济学·王江·习题}
 \else
-  \SetupFourThreeOneDocument{金融经济学习题讲义（王江）}
+  \SetupFourThreeOneDocument{金融经济学·王江·讲义及习题}
 \fi
 
-\title{金融经济学习题}
+\title{金融经济学}
 \ifdefined\WJExercisesOnly
   \subject{王江《金融经济学》课后习题}
 \else
@@ -94,7 +94,7 @@
 \else
 \MakeFourThreeOneCover
     {431 FINANCE \quad/\quad FINANCIAL ECONOMICS}
-    {\ifdefined\WJExercisesOnly 金融经济学习题（仅习题）\else 金融经济学习题讲义\fi}
+    {\ifdefined\WJExercisesOnly 金融经济学·王江·习题\else 金融经济学·王江·讲义及习题\fi}
     {\ifdefined\WJExercisesOnly 王江《金融经济学》课后习题\else 王江《金融经济学》讲义及习题解答\fi}
     {从偏好与状态价格出发，完成资产定价的推演}
     {Bilibili@园丁小区詹姆斯}
@@ -110,19 +110,19 @@
 
 % 原书解答从第 2 章开始，无第 1 章习题。
 \setcounter{chapter}{1}
-\input{tex/金融经济学习题讲义/02_基本框架.tex}
-\input{tex/金融经济学习题讲义/03_Arrow-Debreu经济.tex}
-\input{tex/金融经济学习题讲义/04_套利和资产定价.tex}
-\input{tex/金融经济学习题讲义/05_期权.tex}
-\input{tex/金融经济学习题讲义/06_期望效用函数.tex}
-\input{tex/金融经济学习题讲义/07_风险厌恶.tex}
-\input{tex/金融经济学习题讲义/08_组合选择一.tex}
-\input{tex/金融经济学习题讲义/09_组合选择二.tex}
-\input{tex/金融经济学习题讲义/10_完全市场.tex}
-\input{tex/金融经济学习题讲义/11_不完全市场.tex}
-\input{tex/金融经济学习题讲义/12_均值方差偏好.tex}
-\input{tex/金融经济学习题讲义/13_CAPM.tex}
-\input{tex/金融经济学习题讲义/14_APT.tex}
-\input{tex/金融经济学习题讲义/15_完全市场下的公司财务.tex}
+\input{tex/金融经济学_王江/02_基本框架.tex}
+\input{tex/金融经济学_王江/03_Arrow-Debreu经济.tex}
+\input{tex/金融经济学_王江/04_套利和资产定价.tex}
+\input{tex/金融经济学_王江/05_期权.tex}
+\input{tex/金融经济学_王江/06_期望效用函数.tex}
+\input{tex/金融经济学_王江/07_风险厌恶.tex}
+\input{tex/金融经济学_王江/08_组合选择一.tex}
+\input{tex/金融经济学_王江/09_组合选择二.tex}
+\input{tex/金融经济学_王江/10_完全市场.tex}
+\input{tex/金融经济学_王江/11_不完全市场.tex}
+\input{tex/金融经济学_王江/12_均值方差偏好.tex}
+\input{tex/金融经济学_王江/13_CAPM.tex}
+\input{tex/金融经济学_王江/14_APT.tex}
+\input{tex/金融经济学_王江/15_完全市场下的公司财务.tex}
 
 \end{document}
