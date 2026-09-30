@@ -41,12 +41,7 @@ T_0(C)=\sum_iT_i(f_i(C))。
 状态价格密度是把某状态单位支付折算为当前价格的随机变量。若状态 $s$ 的客观概率为 $p_s$、状态价格为 $q_s$，则状态价格密度为 $m_s=q_s/p_s$。任一资产价格均可写为 $P=E[mX]$；它把状态价格向量与随机贴现因子统一起来。
 \end{solution}
 \begin{problem}
-\problemno{11.7} 假设市场是完全的，在 1 期经济有 $3$ 个等可能的状态 $a$、$b$ 和 $c$；经济中有两个参与者 1 和 2，他们的禀赋分别为
-\[
-    e_1=\begin{bmatrix}100\\0\\0\end{bmatrix},\qquad
-    e_2=\begin{bmatrix}0\\100\\50\end{bmatrix}.
-\]
-他们的时间偏好都为 $1$，而且都具有 CRRA 效用函数，参与者 1 的相对风险厌恶系数为 $1$，参与者 2 的相对风险厌恶系数为 $2$。
+\problemno{11.7} 假设市场是完全的，在 1 期经济有 $3$ 个等可能的状态 $a$、$b$ 和 $c$；经济中有两个参与者 1 和 2。参与者 1 在 0 期拥有 $100$ 单位消费品、在 1 期各状态下禀赋均为 $0$；参与者 2 在 0 期禀赋为 $0$，在 1 期状态 $a,b,c$ 下的禀赋分别为 $200$、$100$、$50$。他们的时间偏好都为 $1$，而且都具有 CRRA 效用函数，参与者 1 的相对风险厌恶系数为 $1$，参与者 2 的相对风险厌恶系数为 $2$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解每一参与者的最优消费计划；
     \item 求解均衡状态价格；
@@ -54,48 +49,43 @@ T_0(C)=\sum_iT_i(f_i(C))。
 \end{enumerate}
 \end{problem}
 \begin{solution}
-当风险证券支付改为 $(C_\alpha,C_b)$ 时，只需将 11.11 的支付矩阵第二列替换，完全性条件变为 $C_\alpha\ne C_b$，状态价格和二叉树风险中性概率由新的两支付重新解出。若效用改为 CARA，个人一阶条件为 $e^{-ac_{i0}}$ 与状态边际效用的比例关系；Pareto 风险分担下绝对风险容忍为常数，因而每个人承担总风险的固定金额比例。代表性经济人的效用仍为 CARA，SDF 为 $m\propto e^{-aC_1}$，两证券和期权均满足 $P=E[mX]$，期权价格由其两状态支付代入即可。
-\end{solution}
-\begin{solution}
-由 Pareto 一阶条件，$\lambda_i u_i'(f_i(C))$ 在经济人之间相等。对总资源 $C$ 求导并使用隐函数定理，得
-\[
-f_i'(C)=\frac{T_i(f_i(C))}{\sum_kT_k(f_k(C))}。
-\]
-因此 $f_i'$ 为常数当且仅当各人的风险容忍在最优分配上相等；这正是风险分担规则线性的充要条件。
-\end{solution}
-\begin{solution}
 \begin{enumerate}[label=(\alph*)]
-\item 设状态价格为 $q_s$，个人 $i$ 的 CRRA 参数为 $\gamma_i$。一阶条件为 $p_sc_{is}^{-\gamma_i}=\mu_iq_s$，故 $c_{is}=(p_s/\mu_iq_s)^{1/\gamma_i}$，再用个人财富预算确定 $\mu_i$。
-\item 市场出清要求 $c_{1s}+c_{2s}=e_{1s}+e_{2s}$，总资源为 $(100,100,50)$。将两人的需求代入三项资源约束并结合预算约束即可解出正状态价格；相对价格满足 $q_s\propto p_s/[\lambda_1c_{1s}^{-1}+\lambda_2c_{2s}^{-2}]$。
-\item 支付向量 $(200,100,50)^{\mathsf T}$ 的均衡价格为 $P=200q_a+100q_b+50q_c$。
+\item 设状态价格为 $q_s$，$p_s=1/3$。CRRA 一阶条件 $p_s c_{is}^{-\gamma_i}=\mu_i q_s$，故 $c_{is}\propto (p_s/q_s)^{1/\gamma_i}$；结合各人在 0、1 期的预算约束确定 $\mu_i$ 与消费路径。
+\item 市场出清要求 $c_{1s}+c_{2s}=(200,100,50)$（1 期总禀赋）。将需求代入资源约束可解出正的状态价格 $q_a,q_b,q_c$。
+\item 该股票在 1 期的支付恰为总禀赋向量，故均衡价格 $P=200q_a+100q_b+50q_c$（亦等于按状态价格贴现的支付现值）。
 \end{enumerate}
 \end{solution}
 \begin{problem}
-\problemno{11.8} 给定 Pareto 最优配置及其最优风险分担规则 $f_i$，令 $T_i(z)=-u_i'(z)/u_i''(z)$ 为经济人 $i$ 的风险容忍函数。
+\problemno{11.8} 给定 Pareto 最优配置及其最优风险分担规则 $f_i$，令 $T_i(z)=-u_i'(z)/u_i''(z)$ 为经济人 $i$ 的风险容忍函数，他在 $z$ 下的谨慎系数记为 $\sigma_i(z)=T_i'(z)$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明
     \[
         f_i'(z)=\frac{T_i(f_i(z))}{\sum_k T_k(f_k(z))}.
     \]
-    \item $f_i$ 为线性的充要条件是：$T_i(f_i(z))=T_k(f_k(z))$，$\forall i,k,\forall z$。
+    \item $f_i$ 为线性的充要条件是：$\sigma_i(f_i(z))=\sigma_k(f_k(z))$，$\forall i,k,\forall z$。
 \end{enumerate}
 \end{problem}
 \begin{solution}
-由定义 $u_0(C)=\sum_i\lambda_i u_i(f_i(C))$。每个 $u_i$ 单调递增且凹，且 $f_i$ 是最优风险分担规则，故 $u_0'(C)=\lambda_i u_i'(f_i(C))>0$；二阶导数由风险容忍公式为 $u_0''(C)=-u_0'(C)/T_0(C)<0$，所以 $u_0$ 严格递增且凹。对任一总消费过程，先按 $f_i$ 分配可使加权个人效用之和达到最大，因此 $u_0(C_0)+E[u_0(C_1)]$ 正好表示代表性经济人的跨期效用。
+\begin{enumerate}[label=(\alph*)]
+\item 由 Pareto 一阶条件 $\lambda_i u_i'(f_i(C))$ 在经济人之间相等。对总资源 $C$ 求导并用隐函数定理即得所示公式。
+\item 对 (a) 式关于 $z$ 求导，$f_i'$ 为常数当且仅当各 $T_i(f_i)/\sum_k T_k(f_k)$ 的导数为零，等价于在最优分担点上谨慎系数 $\sigma_i(f_i(z))$ 处处相同。
+\end{enumerate}
 \end{solution}
 \begin{problem}
-\problemno{11.9} 对给定权重 $\lambda_i$，设 $f_i$ 为经济人 $i$ 的 Pareto 最优风险分担规则。定义
-\[
-    u_0(z)=\sum_i \lambda_i u_i(f_i(z)).
-\]
-证明：
+\problemno{11.9} 对给定权重 $\lambda_i$，设 $f_{i0}$、$f_i$ 分别为经济人 $i$ 在 0 期与 1 期的 Pareto 最优风险分担规则。定义 $u_0$、$u_1$ 满足 $u_0'(z)=\lambda_i u_{i0}'(f_{i0}(z))$ 与 $u_1'(z)=\lambda_i u_i'(f_i(z))$。证明：
 \begin{enumerate}[label=(\alph*)]
-    \item $u_0$ 是严格单调递增且凹的；
-    \item $u_0(C_0)+E[u_0(C_1)]$ 可表示代表性经济人的效用(在适当权重下)。
+    \item $u_0$ 与 $u_1$ 均严格单调递增且凹；
+    \item $u_0(C_0)+E[u_1(C_1)]$ 是代表性经济人的效用函数。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由构造，$u_j'(z)=\lambda_i u_{ij}'(f_{ij}(z))>0$；再用风险容忍加总公式得 $u_j''(z)<0$，故 $u_j$ 严格递增且凹。
+\item 在 Pareto 权重下，先按 $f_{i0},f_i$ 分配总消费可使加权个人效用之和最大，因而 $u_0(C_0)+E[u_1(C_1)]$ 刻画代表性经济人的跨期偏好。
+\end{enumerate}
+\end{solution}
 \begin{problem}
-\problemno{11.10} 证明：如果每个经济人是绝对风险厌恶递减的(DARA)，那么代表性经济人也是绝对风险厌恶递减的。
+\problemno{11.10} 证明：如果每个经济人是绝对风险厌恶递减的（DARA），那么代表性经济人也是绝对风险厌恶递减的。
 \end{problem}
 \begin{solution}
 由 $T_0(C)=\sum_iT_i(f_i(C))$ 及 $f_i'(C)\ge0$，每个 DARA 经济人的风险容忍 $T_i$ 随财富增加而增加。因此
@@ -105,9 +95,9 @@ T_0'(C)=\sum_iT_i'(f_i(C))f_i'(C)\ge0。
 代表性经济人的风险容忍递增，等价于 $A_0(C)=1/T_0(C)$ 递减，所以代表性经济人也是 DARA。
 \end{solution}
 \begin{problem}
-\problemno{11.11} 两时点单期情形下，假设期末有两个状态 $\alpha$ 和 $b$，它们发生的概率分别为 $\pi$ 和 $1-\pi$。市场上有两只证券：证券 1 为无风险证券，证券 2 为风险证券，支付向量为 $(uC,dC)$，其中 $C>0$，$0<d<u$。经济中有 $K$ 个经济人，经济人 $k$ 的禀赋是 0 期 $s_k$ 个单位的消费品和 $s_k$ 单位的证券 2，其中 $s_k>0$ 且 $\sum_k s_k=1$。所有经济人的效用函数为
+\problemno{11.11} 两时点单期情形下，假设期末有两个状态 $a$ 和 $b$，它们发生的概率分别为 $\pi$ 和 $1-\pi$。市场上有两只交易的证券 1 和 2：证券 1 为无风险证券，证券 2 为风险证券（股票），支付向量为 $(uC,dC)$，其中 $C>0$，$0<d<u$。经济中有 $K$ 个经济人，经济人 $k$ 的禀赋是 0 期 $s_k$ 个单位的消费品和 $s_k$ 单位的证券 2，其中 $s_k>0$ 且 $\sum_k s_k=1$。所有经济人的效用函数为
 \[
-    U(c)=\ln c_{k,0}+\rho\bigl[\pi\ln c_{k,\alpha}+(1-\pi)\ln c_{k,b}\bigr],\qquad \rho>0.
+    U_k(c_k)=\ln c_{k,0}+\rho\bigl[\pi\ln c_{k,a}+(1-\pi)\ln c_{k,b}\bigr],\qquad \rho>0.
 \]
 \begin{enumerate}[label=(\alph*)]
     \item 证明证券市场是完全的；
@@ -118,7 +108,7 @@ T_0'(C)=\sum_iT_i'(f_i(C))f_i'(C)\ge0。
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
 \item 支付矩阵为 $\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式 $C(d-u)\ne0$，故两证券张成两个状态，市场完全。
-\item 令证券 1 持有量为 $b_k$、证券 2 持有量为 $\theta_k$。预算约束为 $c_{k0}+q_1b_k+q_2\theta_k=s_kq_2$，状态消费为 $c_{k\alpha}=b_k+uC\theta_k$、$c_{kb}=b_k+dC\theta_k$。对数效用的一阶条件给出 $c_{k\alpha}/c_{kb}$ 等于状态价格调整后的概率比，代入预算约束即可得到最优 $b_k,\theta_k$。
+\item 令证券 1 持有量为 $b_k$、证券 2 持有量为 $\theta_k$。预算约束为 $c_{k0}+q_1b_k+q_2\theta_k=s_kq_2$，状态消费为 $c_{k,a}=b_k+uC\theta_k$、$c_{k,b}=b_k+dC\theta_k$。对数效用的一阶条件给出 $c_{k,a}/c_{k,b}$ 等于状态价格调整后的概率比，代入预算约束即可得到最优 $b_k,\theta_k$。
 \item 市场出清为 $\sum_kb_k=0$（无风险证券净供给为零）、$\sum_k\theta_k=1$（风险证券总供给为一），以及两状态消费分别等于总支付 $uC,dC$。联立出清条件和一阶条件得到两证券均衡价格，且状态价格严格为正。
 \end{enumerate}
 \end{solution}
@@ -136,7 +126,7 @@ T_0'(C)=\sum_iT_i'(f_i(C))f_i'(C)\ge0。
     \item 证明代表性经济人的偏好与禀赋在各经济人中的分布无关；
     \item 用基于消费的 CAPM 给两证券定价；
     \item 计算风险资产的股权溢价；
-    \item 利率和股票形成的股权风险溢价依赖于什么？解释它们对当前消费水平、消费增长率的期望值 $E[C_1/C_0]$ 和波动率 $\operatorname{var}(C_1/C_0)$ 以及时间偏好率 $\rho$ 的依赖性；
+    \item 利率和股票形成的股权风险溢价依赖于什么？解释它们对原生经济变量——当前消费水平、消费增长率的期望值 $E[C_1/C_0]$ 和波动率 $\operatorname{var}(C_1/C_0)$ 以及时间偏好率 $\rho$ 的依赖性；
     \item 求以证券 2 为标的资产、执行价格为 $K$ 的看涨期权的价格，并证明基于消费的 CAPM 也适用于期权。
 \end{enumerate}
 \end{problem}
@@ -152,9 +142,15 @@ T_0'(C)=\sum_iT_i'(f_i(C))f_i'(C)\ge0。
 \end{enumerate}
 \end{solution}
 \begin{problem}
-\problemno{11.14} 修改第 11.11 题和第 11.13 题中的两个条件并再次求解第 11.11--11.13 题中各小问：
+\problemno{11.14} 修改第 11.11 题和第 11.13 题中的两个条件并再次求解第 11.13 题中 (1)--(7)：
 \begin{enumerate}[label=(\alph*)]
-    \item 风险资产的支付向量修改为 $(C_\alpha,C_b)$；
+    \item 风险资产的支付向量修改为 $(C_a,C_b)$；
     \item 效用函数修改为 CARA 偏好，即 $u(z)=-e^{-az}$。
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 将 11.11 中股票支付改为 $(C_a,C_b)$ 且 $C_a\ne C_b$，支付矩阵仍满秩，市场仍完全；状态价格与风险中性概率由新支付重新解出，11.13 中基于消费的定价公式形式不变。
+\item CARA 下个人边际效用为 $e^{-a c}$，Pareto 分担下绝对风险容忍为常数，每人承担总风险的固定金额比例；代表性经济人亦为 CARA，SDF 与 $e^{-aC_1}$ 成比例。两证券与看涨期权仍满足 $P=E[mX]$，按新偏好与支付联立 11.11--11.13 各小问即可。
+\end{enumerate}
+\end{solution}

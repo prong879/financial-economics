@@ -1,49 +1,54 @@
 % !TeX root = ../../金融经济学_熊和平_习题.tex
 
 \begin{problem}
-\problemno{10.1} 什么是市场模型？它与单因子模型有什么区别？
+\problemno{10.1} 什么是市场模型？市场模型下证券的收益和风险如何确定？
 \end{problem}
 \begin{solution}
-市场模型是单因子模型在实证中的特例，通常取市场超额收益为唯一因子：$r_i=\alpha_i+\beta_i r_M+\varepsilon_i$。它与一般单因子模型在形式上相同，区别在于“市场因子”有明确经济含义且载荷 $\beta_i$ 可解释为市场贝塔；更一般的单因子模型因子可以是任意可观测变量。
+市场模型是取市场收益为唯一因子的单因子模型：$r_i=\alpha_i+\beta_i r_M+\varepsilon_i$，$\varepsilon_i$ 为特质项。期望收益 $E(r_i)=\alpha_i+\beta_i E(r_M)$；总风险可分解为系统性部分 $\beta_i^2\sigma_M^2$ 与特质风险 $\sigma_{\varepsilon_i}^2$，协方差 $\operatorname{Cov}(r_i,r_j)=\beta_i\beta_j\sigma_M^2$（特质项不相关时）。
 \end{solution}
 \begin{problem}
-\problemno{10.2} 什么是多因子模型？
+\problemno{10.2} 什么是多因子模型？多因子模型下证券的收益如何确定？证券的风险如何分解？
 \end{problem}
 \begin{solution}
 多因子模型将收益写为 $r_i=\alpha_i+\sum_{j=1}^K b_{ij}F_j+\varepsilon_i$，用多个共同因子解释证券收益的协动部分，其余为可分散的特质风险。期望收益为 $\alpha_i+\sum_j b_{ij}E(F_j)$，方差在因子不相关时可分解为因子风险与特质风险之和。
 \end{solution}
 \begin{problem}
-\problemno{10.3} APT 有哪些基本假设？
+\problemno{10.3} APT 有哪些假设？
 \end{problem}
 \begin{solution}
 APT 通常假设：资产收益由有限个共同因子和特质项生成；特质项均值为零且彼此独立或弱相关；市场中资产数量足够多，投资者可以构造充分分散的组合；不存在套利，且可按线性方式交易。它不要求指定因子的经济含义，也不要求所有投资者具有相同偏好。
 \end{solution}
 \begin{problem}
-\problemno{10.4} 简述 APT 与 CAPM 的主要区别与联系。
+\problemno{10.4} 简述 APT 与 CAPM 的联系与区别。
 \end{problem}
 \begin{solution}
 两者都由无套利或均衡条件把期望收益与系统性风险联系起来。CAPM 只有市场组合一个因子，来自均值—方差一般均衡；APT 可有多个因子，风险溢价为各因子载荷与因子价格的线性组合，强调分散化和无套利而不必指定市场组合。CAPM 是 APT 在单一市场因子和额外均衡假设下的特例。
 \end{solution}
 \begin{problem}
-\problemno{10.5} Fama-French 三因子模型包括哪三个因子？
+\problemno{10.5} Fama-French 三因子模型如何构造决定证券收益的因子？（正文中按市值与账面市值比将股票分为 $S/B$、$H/M/L$ 两组，形成 $2\times3$ 投资组合；规模因子与价值因子常定义为式 (10.61)--(10.62)：
+\[
+    \mathrm{SMB}=\tfrac13(R_{\mathrm{SH}}+R_{\mathrm{SM}}+R_{\mathrm{SL}})-\tfrac13(R_{\mathrm{BH}}+R_{\mathrm{BM}}+R_{\mathrm{BL}}),\quad
+    \mathrm{HML}=\tfrac12(R_{\mathrm{SH}}+R_{\mathrm{BH}})-\tfrac12(R_{\mathrm{SL}}+R_{\mathrm{BL}}).
+\]
+）
 \end{problem}
 \begin{solution}
-市场超额收益因子 $R_M-R_f$、规模因子 SMB(小市值减大市值组合收益)和价值因子 HML(高账面市值比减低账面市值比组合收益)。实证中按市值与账面市值比排序构造组合，再取相应多空组合收益作为因子实现。
+在市场因子 $R_M-R_f$ 之外，用题中所给 SMB、HML 构造方式得到两个可交易因子组合；个股收益对市场超额收益、SMB、HML 回归得到因子载荷，期望收益由因子风险溢价线性解释（三因子模型）。
 \end{solution}
 \begin{problem}
-\problemno{10.6} 如果 CAPM 成立，资产的期望收益率只取决于市场因子的风险溢价，为什么还需要多因子模型？
+\problemno{10.6} 如果 CAPM 和 APT 都是正确的资产定价理论，那么与市场投资组合负相关的因子的风险溢价必定是负的，为什么？从数值和直观上进行解释。
 \end{problem}
 \begin{solution}
-CAPM 在理论上用单一市场因子刻画均衡，但实证中市场贝塔往往无法充分解释截面收益差异(规模、价值、动量等异象)。多因子模型在保持线性因子结构的同时引入额外风险来源，提高拟合与预测能力，并为 APT 式无套利检验提供经验因子；它是对 CAPM 的扩展而非否定 CAPM 的均衡逻辑。
+在 APT 中 $E(r_i)=r_f+\sum_j b_{ij}\lambda_j$。若某因子与市场组合负相关，则在市场上涨时该因子倾向于下跌，持有正载荷的资产需要额外补偿，故其风险价格 $\lambda_j$ 为负：投资者愿意接受较低期望收益以换取与市场反向的“保险”。数值上，若 $\operatorname{Cov}(F_j,R_M)<0$ 且 $\lambda_j>0$，则高 $b_{ij}$ 资产要求过高收益，可构造套利；均衡要求 $\lambda_j$ 与协方差符号一致，故负相关因子溢价为负。
 \end{solution}
 \begin{problem}
-\problemno{10.7} 有学者认为，APT 只是 CAPM 的一种特例；也有学者认为 APT 是比 CAPM 更广义的模型。谈谈如果你认为这些观点都是正确的，你会如何理解？
+\problemno{10.7} 有学者认为市场投资组合是不能被测定的，因此 CAPM 是不可检测的。也有学者认为 APT 既未明确因子的数目也未明确因子的内容，从而也是不可检测的。如果这些观点都是正确的，这意味着这些理论毫无价值吗？解释之。
 \end{problem}
 \begin{solution}
-在单因子且因子取市场组合、并加上均值—方差均衡与同质信念时，APT 与 CAPM 给出相同的线性定价关系，故 APT 可视为 CAPM 的特例。另一方面，APT 不要求指定市场组合、允许多个因子且主要依赖无套利，假设更弱、适用范围更广。两种说法分别强调“因子数与均衡假设”和“定价逻辑强弱”，在正确识别因子与风险溢价的前提下可以同时成立。
+不可完全检验并不等于没有价值。CAPM 仍给出可操作的近似定价基准（市场贝塔与风险溢价），并指导资产组合与绩效评估；APT 提供无套利线性定价框架，推动多因子实证与风险分解。检验困难意味着结论带有模型设定与代理变量误差，但理论约束了可接受的风险—收益关系，并启发因子搜寻与资产定价模型的修正。
 \end{solution}
 \begin{problem}
-\problemno{10.8} 虽然 APT 没有明确指出共同因子应该是哪些类型的因子，但是实证研究中往往集中于某些因子，试简述这些因子通常具有什么特征？
+\problemno{10.8} 虽然 APT 未明确有关因子的内容，多数套利定价理论的实证研究集中在某些类型的因子上，这些因子的共同特征是什么？
 \end{problem}
 \begin{solution}
 实证常用因子通常具有共同性、可观测性和可交易性，能影响大量资产并产生持久的协方差；因子冲击不能通过持有少量资产完全消除，且其风险溢价可由多元资产组合估计。宏观变量以及规模、价值、动量等排序组合因子都符合这些特征。
@@ -101,25 +106,26 @@ CAPM 在理论上用单一市场因子刻画均衡，但实证中市场贝塔往
 \end{enumerate}
 \end{solution}
 \begin{problem}
-\problemno{10.13} 假设 CAPM 成立，证券的收益由单因子模型生成。给定如下信息：$\sigma_A^2=4.00\%$，$b_A=0.70$，$b_B=1.10$，$\operatorname{cov}(F,r_M)=3.70\%$。
+\problemno{10.13} 假设 CAPM 成立，证券的收益由单因子模型生成。给定如下信息：$\sigma_M^2=4.00\%$，$b_A=0.70$，$b_B=1.10$，$\operatorname{cov}(F,r_M)=3.70\%$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算证券 A 和 B 的贝塔系数；
-    \item 均衡期望收益率各是多少？
+    \item 如果无风险利率为 $2\%$，市场投资组合的期望收益率为 $6\%$，证券 A 和 B 的均衡期望收益率各是多少？
 \end{enumerate}
 \end{problem}
 \begin{solution}
-若单因子为 $F$，则 $\beta_i=b_i\operatorname{cov}(F,r_M)/\operatorname{var}(r_M)$。由题给因子载荷先得 $\beta_A=0.70$、$\beta_B=1.10$（因 $b_i$ 已按市场因子标准化）。CAPM 下 $E(r_i)=r_f+\beta_i[E(r_M)-r_f]$，故分别为 $r_f+0.70\,\mathrm{MRP}$ 与 $r_f+1.10\,\mathrm{MRP}$。
+\begin{enumerate}[label=(\alph*)]
+\item $\beta_i=b_i\operatorname{cov}(F,r_M)/\sigma_M^2$，故 $\beta_A=0.70\times0.037/0.04\approx0.648$，$\beta_B=1.10\times0.037/0.04\approx1.018$。
+\item 市场风险溢价为 $4\%$，$E(r_A)=2\%+0.648\times4\%\approx4.59\%$，$E(r_B)=2\%+1.018\times4\%\approx6.07\%$。
+\end{enumerate}
 \end{solution}
 \begin{problem}
-\problemno{10.14} 假设 CAPM 成立，证券的收益由两因子模型生成。给定如下信息：$\sigma_A^2=3.24\%$，$b_{A1}=0.80$，$b_{B1}=1.00$，$\operatorname{cov}(F_1,r_M)=1.56\%$；$b_{A2}=1.10$，$b_{B2}=0.70$，$\operatorname{cov}(F_2,r_M)=5.00\%$。在上述条件下回答第 10.13 题中的两问。
+\problemno{10.14} 假设 CAPM 成立，证券的收益由两因子模型生成。给定如下信息：$\sigma_M^2=3.24\%$，$b_{A1}=0.80$，$b_{B1}=1.00$，$\operatorname{cov}(F_1,r_M)=1.56\%$；$b_{A2}=1.10$，$b_{B2}=0.70$，$\operatorname{cov}(F_2,r_M)=5.00\%$。在上述条件下回答第 10.13 题中的两问。
 \end{problem}
 \begin{solution}
-两因子下 $\beta_i=\sum_j b_{ij}\operatorname{cov}(F_j,r_M)/\operatorname{var}(r_M)$。因此
-\[
-\beta_A\propto0.8(1.56\%)+1.1(5.00\%),\quad
-\beta_B\propto1.0(1.56\%)+0.7(5.00\%).
-\]
-除以共同的市场方差得到两证券贝塔，再代入 $E(r_i)=r_f+\beta_i[E(r_M)-r_f]$ 即得均衡收益；A 的因子 2 暴露较大，其市场贝塔和要求收益相应较高。
+\begin{enumerate}[label=(\alph*)]
+\item $\beta_i=\bigl[b_{i1}\operatorname{cov}(F_1,r_M)+b_{i2}\operatorname{cov}(F_2,r_M)\bigr]/\sigma_M^2$，得 $\beta_A\approx2.08$，$\beta_B\approx1.56$。
+\item 仍取 $r_f=2\%$、$E(r_M)=6\%$，$E(r_A)\approx2\%+2.08\times4\%\approx10.3\%$，$E(r_B)\approx2\%+1.56\times4\%\approx8.2\%$。
+\end{enumerate}
 \end{solution}
 \begin{problem}
 \problemno{10.15} 假设资产 A、B、C 的收益服从精确两因子模型：

@@ -53,14 +53,18 @@ SML 为 $E(R_i)=R_f+\beta_i[E(R_M)-R_f]$，横轴是系统性风险 $\beta$，�
 经典方法包括：时间序列回归检验证券特征线和零截距限制；横截面回归检验平均收益与贝塔的线性关系及市场风险溢价；Fama--MacBeth 两步回归；按贝塔排序形成组合后比较组合收益；以及联合检验市场组合代理、贝塔稳定性和残差风险是否定价。
 \end{solution}
 \begin{problem}
-\problemno{9.9} 在 BJS 实证分析中计算各股票的贝塔值 $\beta_i$ 采用的是对 $(R_{it}-R_{ft})$ 的回归，那么与利用贝塔公式计算的贝塔值有何异同？
+\problemno{9.9} 在 BJS 实证分析中计算各股票的贝塔值 $\beta_i$ 采用的是对式 (9.21)
+\[
+    R_{it}-R_{ft}=\alpha_i+\beta_i(R_{Mt}-R_{ft})+\varepsilon_{it}
+\]
+的回归，那么与利用贝塔公式计算的贝塔值有何异同？
 \end{problem}
 \begin{solution}
-回归斜率为
+式 (9.21) 即证券特征线的时间序列回归 $R_{it}-R_{ft}=\alpha_i+\beta_i(R_{Mt}-R_{ft})+\varepsilon_{it}$，回归斜率
 \[
-\hat\beta_i=\frac{\operatorname{Cov}(R_i-R_f,R_M-R_f)}{\operatorname{Var}(R_M-R_f)}。
+\hat\beta_i=\frac{\widehat{\operatorname{Cov}}(R_i-R_f,R_M-R_f)}{\widehat{\operatorname{Var}}(R_M-R_f)}。
 \]
-若无风险收益在样本期为常数，这与协方差定义的贝塔公式完全相同；若无风险收益随时间变化，回归使用超额收益能消除共同的无风险利率变化，而直接用原始收益计算的协方差可能不同。回归还提供标准误和显著性检验。
+与贝塔定义 $\beta_i=\operatorname{Cov}(R_i,R_M)/\operatorname{Var}(R_M)$ 在总体意义上等价（常用超额收益形式）；样本回归给出的是其估计量，并附带标准误与显著性检验。若用原始收益直接算协方差，在 $R_f$ 随时间变化时与回归结果可能不一致。
 \end{solution}
 \begin{problem}
 \problemno{9.10} 什么是金融异象？金融异象对金融理论的发展有何作用？
@@ -111,20 +115,20 @@ E(R_i)=-\frac7{90}+\beta_i\left(\frac{3}{20}+\frac7{90}\right),
 \problemno{9.13} 假设均值-方差机会集由两个资产 A 和 B 构成，其期望收益和方差-协方差矩阵为
 \[
     ER=\begin{bmatrix}30\%\\20\%\end{bmatrix},\qquad
-    V=\begin{bmatrix}0.008&0.1\\0.1&0.0025\end{bmatrix}.
+    V=\begin{bmatrix}0.0081&0\\0&0.0025\end{bmatrix}.
 \]
-设市场投资组合为 $\omega_M=(0.5,0.5)^{\mathrm{T}}$。
 \begin{enumerate}[label=(\alph*)]
-    \item 在此市场组合下，资产 A 的贝塔值是多少？
-    \item 若存在两个投资者，他们认定的均值-方差有效前沿相同但风险厌恶不同，他们对资产 A 要求的收益率是否相同？各是多少？
-    \item 对每一个投资者，求其零贝塔组合及证券市场线方程。
+    \item 假设投资者 I 选择的“市场投资组合”为 $(0.75,0.25)$，投资者 J 选择不同的“市场投资组合”为 $(0.5,0.5)$，在此背景下每个投资者计算的资产 A 的贝塔值是多少？
+    \item 在此条件下两投资者对资产 A 要求的收益率各是多少？
+    \item 对于每一个投资者，计算他们认定的零贝塔组合和证券市场线的方程。
 \end{enumerate}
 \end{problem}
 \begin{solution}
+记 $R_M^{(k)}=w_A^{(k)}R_A+w_B^{(k)}R_B$，$\beta_A^{(k)}=\operatorname{Cov}(R_A,R_M^{(k)})/\operatorname{Var}(R_M^{(k)})$。
 \begin{enumerate}[label=(\alph*)]
-\item $\operatorname{Cov}(R_A,R_M)=0.5(0.008+0.1)=0.054$，$\operatorname{Var}(R_M)=0.25(0.008+2\times0.1+0.0025)=0.052625$，故 $\beta_A\approx1.026$。
-\item 两位投资者面对同一有效前沿，因此零贝塔组合相同；风险厌恶只改变他们选择的有效组合，不改变由市场机会集确定的 SML。资产 A 的要求收益率为 $R_f+\beta_A(E R_M-R_f)$，给定无风险收益率后两人相同。
-\item 对任意投资者，零贝塔组合由解 $w_Z^{\mathsf T}Vw_M=0$ 且 $\mathbf1^{\mathsf T}w_Z=1$ 得到，SML 为 $E(R_i)=E(R_Z)+\beta_i[E(R_M)-E(R_Z)]$。因此两人的 SML 相同，差异只体现在沿该线选择的组合。
+\item 投资者 I：$E(R_M)=0.75\times30\%+0.25\times20\%=27.5\%$，$\operatorname{Var}(R_M)=0.75^2\times0.0081+0.25^2\times0.0025=0.0047125$，$\operatorname{Cov}(R_A,R_M)=0.75\times0.0081=0.006075$，故 $\beta_A^{(I)}=0.006075/0.0047125\approx1.29$。投资者 J：$E(R_M)=25\%$，$\operatorname{Var}(R_M)=0.00265$，$\operatorname{Cov}(R_A,R_M)=0.00405$，故 $\beta_A^{(J)}=0.00405/0.00265\approx1.53$。
+\item 在各自以所选组合为“市场”的 CAPM 下，$E(R_A)=R_f+\beta_A^{(k)}[E(R_M^{(k)})-R_f]$。故 I 要求 $R_f+1.29\times(27.5\%-R_f)$，J 要求 $R_f+1.53\times(25\%-R_f)$；两式一般不等，说明“市场组合”认定不同会得到不同的定价线（除非 $R_f$ 取特殊值使两者同时等于 $30\%$）。
+\item 零贝塔组合 $w_Z$ 满足 $\mathbf1^{\mathsf T}w_Z=1$ 且 $\operatorname{Cov}(R_Z,R_M^{(k)})=w_Z^{\mathsf T}Vw_M^{(k)}=0$。I 得 $w_Z^{(I)}\approx(-0.115,\,1.115)^{\mathsf T}$，$E(R_Z^{(I)})\approx18.85\%$，SML 为 $E(R)=18.85\%+\beta\,(27.5\%-18.85\%)$。J 得 $w_Z^{(J)}\approx(-0.446,\,1.446)^{\mathsf T}$，$E(R_Z^{(J)})\approx15.54\%$，SML 为 $E(R)=15.54\%+\beta\,(25\%-15.54\%)$。
 \end{enumerate}
 \end{solution}
 \begin{problem}

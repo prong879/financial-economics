@@ -13,7 +13,7 @@
 小风险展开只保留均值和方差项，结论是局部近似。CARA 偏好下指数效用的所有高阶项可以由正态分布的矩母函数精确求和，因而能得到任意风险规模下的显式解。这既检验小风险近似的方向，也说明绝对风险厌恶如何影响投资额。
 \end{solution}
 \begin{problem}
-\problemno{7.3} CARA 偏好下一般能够得出显式解，为什么我们通常不假设 CARA 偏好？
+\problemno{7.3} CARA 偏好下一般能够得出显示解，为什么我们通常不假设 CARA 偏好？
 \end{problem}
 \begin{solution}
 CARA 意味绝对风险厌恶与财富无关，因而财富增加时投资者对固定金额风险的态度不变，并可能导致风险资产投资额与财富无关、投资比例随财富下降。该性质与现实中相对风险厌恶和生命周期投资行为不完全一致，所以 CARA 多用于理论推导而非一般经验分析。
@@ -72,16 +72,16 @@ CE=\mu-\frac a2\sigma^2。
 \end{enumerate}
 \end{problem}
 \begin{solution}
-令 $a$ 为投向风险资产的金额，期末财富为 $W_0(1+r_f)+a(\tilde r-r_f)$。
+令 $\theta$ 为投向风险资产的金额，期末财富为 $W_0(1+r_f)+\theta(\tilde r-r_f)$。
 \begin{enumerate}[label=(\alph*)]
-\item 二次效用下，忽略与 $a$ 无关的项，目标函数为 $a(\bar r-r_f)-\frac12 a_0a^2\sigma^2$，故
+\item 二次效用下，忽略与 $\theta$ 无关的项，目标函数为 $\theta(\bar r-r_f)-\frac12 a\theta^2\sigma^2$，故
 \[
-a^*=\frac{\bar r-r_f}{a_0\sigma^2}.
+\theta^*=\frac{\bar r-r_f}{a\sigma^2}.
 \]
 风险溢价越大投资越多，方差或风险厌恶系数越大投资越少。
-\item 若风险资产收益正态，CARA 情形的确定性等价同样为均值减 $a_0$ 倍方差的一半，最大化得到
+\item 若风险资产收益正态，CARA 情形的确定性等价同样为均值减 $\frac12 a$ 倍方差的一半，最大化得到
 \[
-a^*=\frac{\bar r-r_f}{a_0\sigma^2}.
+\theta^*=\frac{\bar r-r_f}{a\sigma^2}.
 \]
 因此在正态条件下二次效用和 CARA 给出相同的均值—方差组合规则。
 \end{enumerate}
@@ -93,7 +93,7 @@ a^*=\frac{\bar r-r_f}{a_0\sigma^2}.
 最优组合满足一阶条件 $E[u'(w+a\tilde x)\tilde x]=0$。对该等式关于财富求导，并用 $R(w)=-wu''(w)/u'(w)$，可得最优投资对财富的导数与相对风险厌恶系数相联系；整理后即得定理 7.8 所述的财富效应和投资比例单调性。
 \end{solution}
 \begin{problem}
-\problemno{7.10} 两资产情形下期末财富为 $W=w+a\tilde{x}$(如公式 (7.3) 所示)，$R(w)$ 为相对风险厌恶系数，$a(w)$ 为最优投资选择，即
+\problemno{7.10} 两资产情形下期末财富由式 (7.3) $W=w+a\tilde{x}$ 给出，$R(w)$ 为相对风险厌恶系数，$a(w)$ 为最优投资选择，即
 \[
     a(w)=\operatorname*{argmax}_{a} E\bigl[u(w+a\tilde{x})\bigr],
 \]

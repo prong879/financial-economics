@@ -38,18 +38,18 @@ CAPM 是 SDF 模型的特例：若 $m=a+bR_M$，则由 $E[mR_i]=1$ 可推出收�
 \end{solution}
 
 \begin{problem}
-\problemno{12.7} 两时点单期情形下假设期末有 $S$ 种状态，则基于消费的定价模型表明任何资产的价格 $P_i$ 和期末的支付 $X_i$ 满足
+\problemno{12.7} 两时点单期情形下假设期末有 $S$ 种状态，则基于消费的定价模型表明任何资产的价格 $P_i$ 和期末的支付 $X_{i\omega}$ 满足
 \[
-    P_i=\sum_{s=1}^{S}\pi_s m_s X_{is}=E[mX_i].
+    P_i=\sum_{\omega=1}^{S}\pi_\omega m_\omega X_{i\omega}=E[mX_i].
 \]
-如果经济中一个投资者的效用函数为 $u(c_0,c_1)$，$\omega\in\Omega$ 为均衡状态下的消费水平，试用投资者的均衡消费水平表示状态价格。
+如果经济中一个投资者的效用函数为 $u(c_0^*,c_\omega^*)$，$\omega\in\Omega$ 为均衡状态下的消费水平，试用投资者的均衡消费水平表示状态价格。
 \end{problem}
 \begin{solution}
-在均衡消费状态 $\omega$ 下，状态 $s$ 的边际效用为 $u_{c_1}(c_1(\omega_s))$，期初边际效用为 $u_{c_0}(c_0)$。由最优条件，状态价格为
+在均衡消费 $(c_0^*,c_\omega^*)$ 下，状态 $\omega$ 的边际效用为 $u_{c_\omega}(c_\omega^*)$，期初为 $u_{c_0}(c_0^*)$。由最优条件，状态价格为
 \[
-q_s=\pi_s\frac{u_{c_1}(c_1(\omega_s))}{u_{c_0}(c_0)}
+q_\omega=\pi_\omega\frac{u_{c_\omega}(c_\omega^*)}{u_{c_0}(c_0^*)}
 \]
-（若效用含时间折现因子 $\beta$，右侧再乘 $\beta$）。故 $m_s=q_s/\pi_s=u_{c_1}(c_1(\omega_s))/u_{c_0}(c_0)$，代回即可得到 $P_i=E[mX_i]$。
+（若效用含时间折现因子 $\beta$，右侧再乘 $\beta$）。故 $m_\omega=q_\omega/\pi_\omega=u_{c_\omega}(c_\omega^*)/u_{c_0}(c_0^*)$，代回即得 $P_i=E[mX_i]$。
 \end{solution}
 \begin{problem}
 \problemno{12.8} 假设期末有两种状态，市场上有两种证券：一个是无风险证券，其相对收益为 $1.05$；另一个是风险证券，其期初价格为 $6$，期末支付向量为 $(10,5)$。
@@ -74,7 +74,7 @@ q_s=\pi_s\frac{u_{c_1}(c_1(\omega_s))}{u_{c_0}(c_0)}
 \problemno{12.10} 假如随机贴现因子定价关系与 CAPM 都成立，其中 CAPM 模型表述为 $E[R_i]=R_f+\beta_i\gamma$，随机贴现因子表述为 $m=a+bR_m$，$R_m$ 是市场投资组合的收益，其方差记为 $\sigma_m^2$。
 \begin{enumerate}[label=(\alph*)]
     \item 将 $\gamma$ 表示为 $a$、$b$、$E[R_m]$ 和 $\sigma_m^2$ 的函数(可从 $E[m(R_i-R_f)]=0$ 入手)；
-    \item 将 $a$ 和 $b$ 表示为 $R_f$、$E[R_m]$ 和 $\sigma_m^2$ 的函数形式(可从 $E[mR_f]=1$ 入手)；
+    \item 将 $a$ 和 $b$ 表示为 $R_f$、$E[R_m]$ 和 $\sigma_m^2$ 的函数形式(可从 $E[m R_f]=1$ 入手)；
     \item 利用 (2) 中的结果证明 $\gamma=E[R_m]-R_f$。
 \end{enumerate}
 \end{problem}
@@ -88,20 +88,20 @@ q_s=\pi_s\frac{u_{c_1}(c_1(\omega_s))}{u_{c_0}(c_0)}
 \begin{problem}
 \problemno{12.11} 假设存在 $N$ 个风险资产，其期望收益向量为 $\mu$，协方差矩阵为 $\Sigma$。记 $\mu_m=E[m]$ 和 $\sigma_m^2$ 分别为贴现因子的均值和方差。
 \begin{enumerate}[label=(\alph*)]
-    \item 定义 $m_0=\mu_m+(1-\mu_m\mu)^{\mathrm{T}}\Sigma^{-1}(R-\mu)$，其中 $1$ 为 $N$ 维单位向量，$R$ 为 $N$ 个资产的收益向量。请证明：$1=E[m_0 R]$，即 $m_0$ 也是一个贴现因子。
+    \item 定义 $m_0=\mu_m+(\mathbf{1}_N-\mu_m\mu)^{\mathrm{T}}\Sigma^{-1}(R-\mu)$，其中 $\mathbf{1}_N$ 为 $N$ 维单位向量，$R$ 为 $N$ 个资产的收益向量。请证明：$\mathbf{1}_N=E[m_0 R]$，即 $m_0$ 也是一个贴现因子。
     \item 利用柯西-施瓦兹不等式证明
     \[
-        \sigma_m^2\ge \operatorname{var}[m]=(1-\mu_m\mu)^{\mathrm{T}}\Sigma^{-1}(1-\mu_m\mu).
+        \sigma_m^2\ge \operatorname{var}[m_0]=(\mathbf{1}_N-\mu_m\mu)^{\mathrm{T}}\Sigma^{-1}(\mathbf{1}_N-\mu_m\mu).
     \]
 \end{enumerate}
 \end{problem}
 \begin{solution}
 由 $E[R]=\mu$、$\operatorname{Cov}(R)=\Sigma$，直接计算
 \[
-E[m_0R]=\mu_m\mu+(1-\mu_m\mu)^{\mathsf T}\Sigma^{-1}E[(R-\mu)R]=1，
+E[m_0R]=\mu_m\mu+(\mathbf{1}_N-\mu_m\mu)^{\mathsf T}\Sigma^{-1}E[(R-\mu)R]=\mathbf{1}_N，
 \]
 因为 $E[(R-\mu)R]=\Sigma$。故 $m_0$ 是定价核。又由柯西—施瓦兹不等式，任一定价核的方差不小于其在收益空间投影的方差；投影正是 $m_0$，所以
 \[
-\operatorname{var}(m)\ge(1-\mu_m\mu)^{\mathsf T}\Sigma^{-1}(1-\mu_m\mu)。
+\operatorname{var}(m)\ge(\mathbf{1}_N-\mu_m\mu)^{\mathsf T}\Sigma^{-1}(\mathbf{1}_N-\mu_m\mu)=\operatorname{var}(m_0)。
 \]
 \end{solution}

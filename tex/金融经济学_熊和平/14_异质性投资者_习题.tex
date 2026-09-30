@@ -16,7 +16,7 @@
 \problemno{14.3} 关于异质性经济人有哪三大假设？
 \end{problem}
 \begin{solution}
-通常区分三类假设：偏好异质性（效用函数或风险厌恶不同）、禀赋异质性（初始财富和收入流不同）以及信念/信息异质性（对状态概率、收益和模型的判断不同）。在研究中还需明确异质性是外生给定还是由学习和选择内生形成。
+教材归纳的三大假设是：\textbf{市场平衡假设}——众多异质投资者在交易中相互制衡，市场加总后近似代表性经济人；\textbf{市场选择假设}——“错误”类型在竞争中被淘汰，理性者主导定价；\textbf{市场学习假设}——投资者利用信息按贝叶斯等方式更新信念，使预期逐步修正。三类假设分别强调加总、选择与学习机制。
 \end{solution}
 \begin{problem}
 \problemno{14.4} 加总性质与特定效用函数下的加总有哪些区别与联系？
@@ -32,7 +32,14 @@
 \end{solution}
 
 \begin{problem}
-\problemno{14.6} 在(14.14)中取 $B=1$，$A=0$ 时，效用函数为对数偏好。请在对数偏好下对经济人进行加总。
+\problemno{14.6} 在式 (14.14) 给出的 HARA 类效用
+\[
+    u_k(z)=\begin{cases}
+        \dfrac{1}{B-1}(A_k+Bz)^{1-1/B}, & B\neq 1,\\[6pt]
+        \ln(A_k+Bz), & B=1,
+    \end{cases}
+\]
+中取 $B=1$、$A=0$（即 $A_k=0$），效用函数为对数偏好 $u_k(z)=\ln z$。请在对数偏好下对经济人进行加总。
 \end{problem}
 \begin{solution}
 对数偏好下 $u_i(c)=\ln c$，Pareto 规划问题为最大化 $\sum_i\lambda_i\ln c_i$ 且 $\sum_i c_i=C$。一阶条件给 $\lambda_i/c_i=\mu$，故 $c_i=\lambda_iC/\sum_j\lambda_j$。代回得到代表性效用
@@ -67,7 +74,7 @@ c_{is}=\left(\frac{\lambda_ip_s}{q_s}\right)^{1/\gamma_i}.
 \begin{solution}
 由 $q_s/p_s=\lambda_1c_{1s}^{-1}=\lambda_2c_{2s}^{-1/2}$，得
 \[
-c_{1s}=\lambda_1p_s/q_s,qquad c_{2s}=(\lambda_2p_s/q_s)^2。
+c_{1s}=\lambda_1p_s/q_s,\qquad c_{2s}=(\lambda_2p_s/q_s)^2。
 \]
 把两式代入 $c_{1s}+c_{2s}=C_s$ 得每个状态的状态价格；再用两人的跨期预算约束确定 $\lambda_i$。三种异质禀赋分别用各自总资源 $C_s$ 代入，风险厌恶较低者获得更平滑但承担更多风险的消费路径。
 \end{solution}
