@@ -1,0 +1,97 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+% 源：113071.pdf p.12（印张 293）
+
+\begin{problem}
+\problemno{13.1} 在纯交换经济基础上，有哪些资源配置的一般拓展路径？
+\end{problem}
+\begin{solution}
+常见拓展包括：加入储蓄或储存以连接不同时点；加入生产技术把期初投入转化为期末产出；加入多个消费品和生产要素；加入不确定状态和状态证券；以及允许多个人通过市场交易进行风险分担。这些拓展分别扩大可行集、改变资源约束或增加跨期和跨状态配置渠道。
+\end{solution}
+\begin{problem}
+\problemno{13.2} 储蓄或储存一般可以给消费可行集带来怎样的影响？
+\end{problem}
+\begin{solution}
+储存把期初消费品转移到期末，若一单位储蓄产生 $R$ 单位期末消费，则预算约束由 $c_0\le e_0$ 扩展为 $c_0+c_1/R\le e_0$（有状态时对各状态分别写支付）。因此可行集增加了跨期平滑的点；若 $R<1$，转移有损耗，边界斜率相应变小。
+\end{solution}
+\begin{problem}
+\problemno{13.3} 生产技术通常如何影响资源配置？
+\end{problem}
+\begin{solution}
+生产技术把投资 $I$ 映射为状态产出 $f_{1,s}(I)$，可行集由 $c_0+I\le e_0$ 和 $c_{1s}\le e_{1s}+f_{1,s}(I)$ 决定。边际产出决定跨期和跨状态转换的机会成本；技术改善或边际产出提高会扩大可行集并提高最优投资，状态间生产率差异还会创造风险和保险需求。
+\end{solution}
+\begin{problem}
+\problemno{13.4} 简单说明纯交换经济与生产性经济的区别与联系。
+\end{problem}
+\begin{solution}
+纯交换经济的资源总量固定，只能通过交易重新分配；生产性经济允许投入经生产技术转化为产出。前者可视为生产集合退化为原禀赋集合的特殊情形，二者都用偏好、禀赋、预算约束和市场出清刻画均衡。
+\end{solution}
+
+\begin{problem}
+\problemno{13.5} 经济中有 1 个经济人，他具有对数效用函数。期末有等概率的两个状态：状态 $a$ 和状态 $b$。经济人的初始禀赋为期初 \num{200} 个消费品，但他可以通过储存将消费品跨时转移。
+\begin{enumerate}[label=(\alph*)]
+    \item 当利率为 $1.05\%$ 时，分别确定时间偏好率为 $1$ 和 $0.5$ 时的最优资源配置；
+    \item 当利率为 $-5\%$ 时，分别确定时间偏好率为 $1$ 和 $0.5$ 时的最优资源配置；
+    \item 进一步如果该经济人期末也有禀赋，分别为 $a$ 状态下 \num{100} 个消费品、$b$ 状态下 \num{50} 个消费品，分别求解 (1)(2) 中的问题。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+记储存量为 $s$，$R=1+r$，则 $c_0=200-s$、$c_{1a}=c_{1b}=Rs$。对数效用 $\ln c_0+\rho E\ln c_1$ 的一阶条件为 $s=200\rho/(1+\rho)$，故 $c_0=200/(1+\rho)$、$c_{1a}=c_{1b}=200R\rho/(1+\rho)$。将 $R=1.0105$ 或 $R=0.95$ 分别代入即可得到两种利率下、$\rho=1$ 和 $0.5$ 的配置。若期末禀赋为 $(100,50)$，则 $c_{1a}=100+Rs$、$c_{1b}=50+Rs$，最优 $s$ 由
+\[
+-\frac1{200-s}+\frac\rho2\left(\frac R{100+Rs}+\frac R{50+Rs}\right)=0
+\]
+确定；代入相应 $R,\rho$ 可求数值解，消费由上述两式给出。
+\end{solution}
+\begin{problem}
+\problemno{13.6} 经济中有 1 个经济人，他具有对数效用函数。期末有等概率的两个状态：状态 $a$ 和状态 $b$。经济人的初始禀赋为期初 \num{200} 个消费品，他可以利用如下生产技术进行资源跨时转移：
+\[
+    y_1=f_{1,\omega}(I)=
+    \begin{cases}
+        \sqrt{I}, & \omega=a,\\
+        2\sqrt{I}, & \omega=b.
+    \end{cases}
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 求最优投资数量；
+    \item 求状态价格和最优消费计划。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 设投资 $I$，则 $c_0=200-I$，期末消费为 $c_{1a}=\sqrt I$、$c_{1b}=2\sqrt I$。最大化 $\ln(200-I)+\frac12[\ln\sqrt I+\ln(2\sqrt I)]$，一阶条件为 $-1/(200-I)+1/(2I)=0$，得 $I=200/3$。
+\item 状态价格与边际效用满足 $q_s\propto p_s/c_{1s}$，故 $q_a:q_b=2:1$。最优消费为 $c_0=400/3$、$c_{1a}=\sqrt{200/3}$、$c_{1b}=2\sqrt{200/3}$。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{13.7} 经济中有 1 个经济人，他具有对数效用函数。期末两个状态 $a$ 和 $b$ 的概率分别为 $\pi_a$ 和 $\pi_b$。经济人的初始禀赋为期初 \num{200} 个消费品，他可以利用如下生产技术进行资源跨时转移：
+\[
+    y_1=f_{1,\omega}(I)=
+    \begin{cases}
+        \lambda_a I, & \omega=a,\\
+        \lambda_b I, & \omega=b.
+    \end{cases}
+\]
+证券市场上存在无风险债券，其利率为 $r_f$。
+\begin{enumerate}[label=(\alph*)]
+    \item 给出经济人的最优决策，包括投资决策和消费决策；
+    \item 求解他的最优投资数量和消费计划；
+    \item 分析最优投资与利率的关系；
+    \item 假设该经济人没有任何商品禀赋，回答上述 (1) 至 (3) 问。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+设投资 $I$，债券回报为 $R=1+r_f$。有 $c_0=200-I$、$c_{1s}=\lambda_sI$（若可交易债券，也可将其作为跨期价格约束）。最优投资满足
+\[
+\frac1{200-I}=\frac{\rho}{I}
+\]
+在技术收益已按状态价格加权且线性时，故 $I=200\rho/(1+\rho)$；消费为 $c_{1a}=\lambda_aI,c_{1b}=\lambda_bI$。利率越高，债券替代生产投资的回报越高，最优生产投资通常下降；没有期初禀赋时需有外部融资或初始投资禀赋，否则 $I=0$ 是可行解且不能产生期末消费。
+\end{solution}
+\begin{problem}
+\problemno{13.8} 在第 13.7 题的背景下引进经济人 2，经济人 1 只有生产技术禀赋，经济人 2 的禀赋是期初 \num{200} 个消费品：
+\begin{enumerate}[label=(\alph*)]
+    \item 求两个人的最优消费计划和状态价格；
+    \item 求经济人 1 的最优投资。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+经济人 1 选择投资 $I$，经济人 2 通过购买证券分享其期末产出。完全市场下两人的边际效用定价条件为 $q_s=\lambda_i p_su_i'(c_{is})$，市场出清为各状态消费总和等于生产总产出、期初消费总和等于 $200-I$。先由这些条件求状态价格，再将经济人 1 的一阶条件 $\sum_sp_sq_s f'_{1,s}(I)u_1'(c_{1s})=u_1'(c_{10})$ 代入，即可得到其最优投资；经济人 2 的消费由剩余资源约束确定。
+\end{solution}

@@ -1,0 +1,193 @@
+% !TeX root = ../../金融经济学_王江_讲义及习题.tex
+% 07_风险厌恶 课后习题（由章节文件拆分）
+
+\begin{problem}
+\problemno{7.1**} 令 $R(w)\equiv -wu''(w)/u'(w)$ 而
+\[
+    a(w)=\operatorname{ArgMax}E\bigl[u(w+a\tilde{r})\bigr]
+\]
+为相对于效用函数 $u(\cdot)$ 的最优投资选择。假设 $w>0$、$u'(\cdot)>0$、$u''(\cdot)\le 0$ 且 $E[\tilde{r}]>0$。证明以下命题：
+\begin{enumerate}[label=(\alph*)]
+    \item 如果 $\lambda>1$，给定效用函数 $u(\cdot)$ 且 $R'(w)\ge 0$。定义
+    \[
+        u_{1}(w)\equiv u(\lambda w),\qquad u_{2}\equiv u(w).
+    \]
+    那么，$R_{1}(w)\ge R_{2}(w)$。
+    \item 给定以上结论，我们有 $a_{1}(w)\le a_{2}(w)$，其中 $a_{1}(w)$ 和 $a_{2}(w)$ 分别是相对于 $u_{1}$ 和 $u_{2}$ 的最优投资选择。
+    \item 定义 $\widehat{a}(w)\equiv a(w)/w$。那么，对于 $w_{1}\le w_{2}$ 有 $\widehat{a}(w_{1})\ge\widehat{a}(w_{2})$。（提示：令 $\lambda=w_{2}/w_{1}$。）
+\end{enumerate}
+最后一个结论说的是，对于具有单调递增的相对风险厌恶的投资者，他在风险资产上的投资额占他财富的比例随着财富的增加而减少。
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \[
+        u_{1}'(w)=\lambda u'(\lambda w),\qquad u_{1}''(w)=\lambda^{2}u''(\lambda w)
+    \]
+    由此以及 $R'(w)\ge 0$ 可得
+    \[
+        R_{1}(w)=\frac{wu_{1}''(w)}{u_{1}'(w)}=\frac{\lambda^{2}wu''(\lambda w)}{\lambda u'(\lambda w)}=\frac{\lambda wu''(\lambda w)}{u'(\lambda w)}=R(\lambda w)\ge R(w)=R_{2}(w);
+    \]
+
+    \item 参与者优化的一阶条件是 $E\bigl[U'\bigl(\lambda(W+a\tilde{r})\bigr)\lambda\tilde{r}\bigr]=0$，因为 $E[\tilde{r}]>0$，从而有 $a>0$。一阶条件的两边对 $\lambda$ 求导得：
+    \[
+        E\bigl[u''(w+\lambda a\tilde{r})(w+a\tilde{r}+\lambda a'\tilde{r})\tilde{r}\bigr]=0
+    \]
+    \[
+        \begin{aligned}
+            &\Rightarrow\lambda^{2}a'E\bigl[-u''(\tilde{w})\tilde{r}^{2}\bigr]=E\bigl[u''(\tilde{w})\tilde{w}\tilde{r}\bigr]=E\bigl[-u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\\
+            &\Rightarrow\operatorname{sign}(a')=-\operatorname{sign}\bigl(E\bigl[u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\bigr)
+        \end{aligned}
+    \]
+    因为
+    \[
+        E\bigl[u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\ge E\bigl[u'(\tilde{w})R(w)\tilde{r}\bigr]=R(w)E\bigl[u'(\tilde{w})\tilde{r}\bigr]=0
+    \]
+    最后一个等式是因为一阶条件；因此 $a'\le 0$；
+    \[
+        \begin{aligned}
+            &\Rightarrow a(\lambda w)\le a(w),\ \lambda>1\\
+            &\Rightarrow a_{1}(w)\le a_{2}(w)
+        \end{aligned}
+    \]
+
+    \item 令 $\lambda=\dfrac{w_{2}}{w_{1}}$，令 $u_{1}(w)=u(\lambda w)$，$u_{2}(w)=u(w)$，那么由 (a) 和 (b) 有 $\dfrac{a(w_{2})}{\lambda}\le a(w_{1})$，即 $\widehat{a}(w_{1})\ge\widehat{a}(w_{2})$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{7.2} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为常数 $a$。现在他必须承担风险 $\tilde{g}$，$\tilde{g}$ 是一公平赌博（即，他的财富变成 $w+\tilde{g}$）。当 $\tilde{g}$ 具有如下分布时计算确定性等价：
+\begin{enumerate}[label=(\alph*)]
+    \item 取值为 $-b$ 和 $b$ 的二项分布；
+    \item 区间 $[-c,c]$ 上的均匀分布；
+    \item 均值为 0、标准差为 $\sigma$ 的正态分布。
+    \item 讨论在以上情形下，确定性等价如何依赖于初始财富 $w$。从中你能得到什么结论？并解释你的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+为简便起见，假设效用函数为 $U(w)=-e^{-aw}$，
+\begin{enumerate}[label=(\alph*)]
+    \item 由定义有
+    \[
+        \begin{aligned}
+            U(\pi_{1}+w)
+            &=-e^{-a(w+\pi_{1})}=E\bigl[U(w+\tilde{g})\bigr]=\tfrac12 U(w+b)+\tfrac12 U(w-b)\\
+            &=-\tfrac12 e^{-a(w+b)}-\tfrac12 e^{-a(w-b)}\\
+            \Rightarrow\pi_{1}&=-\frac{1}{a}\log\bigl(\tfrac12 e^{-ab}+\tfrac12 e^{ab}\bigr)
+        \end{aligned}
+    \]
+
+    \item 由定义有
+    \[
+        \begin{aligned}
+            U(w+\pi_{2})
+            &=-e^{-a(w+\pi_{2})}=E\bigl[U(w+\tilde{g})\bigr]=\frac{1}{2c}\int_{-c}^{c}-e^{-a(w+x)}\,dx\\
+            &=-\frac{1}{2ac}e^{-aw}(e^{ac}-e^{-ac})\\
+            \Rightarrow\pi_{2}&=-\frac{1}{a}\log\Bigl(\frac{e^{ac}-e^{-ac}}{2ac}\Bigr)
+        \end{aligned}
+    \]
+
+    \item 由定义有
+    \[
+        \begin{aligned}
+            U(w+\pi_{3})
+            &=-e^{-a(w+\pi_{3})}=E\bigl[U(w+\tilde{g})\bigr]\\
+            &=\int_{-\infty}^{\infty}-e^{-a(w+x)}\frac{1}{\sqrt{2\pi\sigma}}\exp\Bigl(-\frac{x^{2}}{2\sigma^{2}}\Bigr)dx\\
+            &=-e^{-aw+\frac{a^{2}\sigma^{2}}{2}}\\
+            \Rightarrow\pi_{3}&=-\frac{a\sigma^{2}}{2}
+        \end{aligned}
+    \]
+
+    \item 在以上各种情形下，确定性等价都不依赖于初始财富 $w$，也就是说，参与者对待公平赌博的态度与财富无关。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{7.3} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为 1。现在他必须承担与他的财富成比例的风险 $w\tilde{g}$，$w\tilde{g}$ 是一公平赌博。当 $\tilde{g}$ 具有如下分布时，计算确定性等价占初始财富的比例——即相对确定性等价：
+\begin{enumerate}[label=(\alph*)]
+    \item 取值为 $-b$ 和 $b$ 的二项分布，其中 $0<b<1$；
+    \item 区间 $[-c,c]$ 上的均匀分布，其中 $0<c<1$；
+    \item 讨论在以上情形下，相对确定性等价如何依赖于初始财富 $w$。从中你能得到什么结论？并解释你的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+为简便起见，假设效用函数为 $U(w)=\log(w)$，
+\begin{enumerate}[label=(\alph*)]
+    \item 由定义有
+    \[
+        \begin{aligned}
+            U(w\pi_{1}+w)&=\log(w+w\pi_{1})=E\bigl[U(w+w\tilde{g})\bigr]\\
+            &=\tfrac12 U(w+b)+\tfrac12 U(w-b)=\log w+\tfrac12\log(1-b^{2})\\
+            \Rightarrow\pi_{1}&=\sqrt{1-b^{2}}-1
+        \end{aligned}
+    \]
+
+    \item 由定义有
+    \[
+        \begin{aligned}
+            U(w+w\pi_{2})
+            &=\log(w+w\pi_{2})=E\bigl[U(w+w\tilde{g})\bigr]=\frac{1}{2c}\int_{-c}^{c}\log(w+wx)\,dx\\
+            &=\log w+\frac{1}{2c}\int_{-c}^{c}\log(1+x)\,dx\\
+            \Rightarrow\pi_{2}&=\exp\Bigl(\frac{1}{2c}\int_{-c}^{c}\log(1+x)\,dx\Bigr)-1
+        \end{aligned}
+    \]
+
+    \item 在以上各种情形下，确定性等价都不依赖于初始财富 $w$，也就是说，参与者对待与初始财富成比例的公平赌博的态度与初始财富无关。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{7.4} 参与者的初始财富为 $w$ 且相对风险厌恶系数为 2。现在他要承担风险 $\tilde{g}$，$\tilde{g}$ 是有两个可能取值 $-b$ 和 $b$ 的公平赌博，$0<b<w$。我们能用两种方式定义风险溢价：
+\begin{itemize}
+    \item $E[u(w+\tilde{g})]=u(w-\pi)$；
+    \item $E[u(w+\tilde{g}+\pi)]=u(w)$。
+\end{itemize}
+用这两种定义计算风险溢价。它们相等吗？解释所得到的结论。
+\end{problem}
+\begin{solution}
+不妨设 $U(w)=w^{\frac12}$，
+
+第一种定义：
+\[
+    \begin{aligned}
+        \sqrt{w-\pi_{1}}&=\tfrac12\sqrt{w+b}+\tfrac12\sqrt{w-b}\\
+        \Rightarrow\pi_{1}&=\tfrac12\bigl(w-\sqrt{w^{2}-b^{2}}\bigr)
+    \end{aligned}
+\]
+
+第二种定义：
+\[
+    \begin{aligned}
+        \sqrt{w+\pi_{2}+\tilde{g}}&=\tfrac12\sqrt{w+b+\pi_{2}}+\tfrac12\sqrt{w-b+\pi_{2}}\\
+        \Rightarrow\pi_{2}&=\frac{b^{2}}{4w}
+    \end{aligned}
+\]
+
+两种定义所得的结果不一样，$\pi_{1}>\pi_{2}$，这是因为定义中的初始财富不一样，而效用函数的绝对风险厌恶系数又不是常数，因此得到的风险溢价不一样。
+\end{solution}
+
+\begin{problem}
+\problemno{7.5*} 参与者的初始财富为 $w$ 且是严格风险厌恶的。$\tilde{g}_{1}$ 和 $\tilde{g}_{2}$ 是两个独立的公平赌博，具有相同的、定义于 $\{-b,b\}$ 上的二项分布，其中 $0<b<w/2$。
+\begin{enumerate}[label=(\alph*)]
+    \item 假设他必须承担风险 $\tilde{g}_{1}$，即他的财富变成 $w+\tilde{g}_{1}$。在这种情况下，他的期望效用记为 $V_{1}=E[u(w+\tilde{g}_{1})]$。证明风险使得他的情况恶化，即 $V_{1}<u(w)$。
+    \item 现在假设他必须承担的是分散化的风险 $\tilde{g}=\frac12(\tilde{g}_{1}+\tilde{g}_{2})$。记这种情形下的期望效用为 $V_{2}=E[u(w+\tilde{g})]$。$V_{2}$ 是否总是高于 $V_{1}$？
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 因为参与者是严格风险厌恶的，因而效用函数 $u(\cdot)$ 是严格凹的，
+    \[
+        V_{1}=E[u(w+\tilde{g}_{1})]=\tfrac12 u(w+b)+\tfrac12 u(w-b)<u(w)
+    \]
+
+    \item
+    \[
+        \begin{aligned}
+            V_{2}
+            &=E[u(w+\tilde{g})]=\tfrac14 u(w+b)+\tfrac12 u(w)+\tfrac14 u(w-b)\\
+            &>\tfrac14 u(w+b)+\tfrac12\bigl(\tfrac12 u(w+b)+\tfrac12 u(w-b)\bigr)+\tfrac14 u(w-b)=V_{1}
+        \end{aligned}
+    \]
+\end{enumerate}
+\end{solution}
+

@@ -1,0 +1,210 @@
+% !TeX root = ../../金融经济学_王江_讲义及习题.tex
+% 08_组合选择一 课后习题（由章节文件拆分）
+
+\begin{problem}
+\problemno{8.1} 假设有 $N$ 项资产，收益率为 $\tilde{r}_{i}$，$i=1,\cdots,N$，它们是独立同分布的。对于一个具有不满足性和凹性效用函数的投资者，计算他的最优投资组合。
+\end{problem}
+\begin{solution}
+设组合权重 $\theta=(\theta_{1},\ldots,\theta_{N})$，$\sum_{i}\theta_{i}=1$，期末财富 $\tilde{w}=w\sum_{i}\theta_{i}\tilde{r}_{i}$。最大化 $E\bigl[u(\tilde{w})\bigr]$ 的一阶条件是：对任意 $j,k$，
+\[
+    E\bigl[u'(\tilde{w})(\tilde{r}_{j}-\tilde{r}_{k})\bigr]=0
+\]
+由于 $\{\tilde{r}_{i}\}$ 独立同分布，目标函数对 $\theta$ 对称；严格凹效用下最优解唯一，故必有 $\theta_{i}=1/N$。即最优组合是所有风险资产的等权重组合。
+\end{solution}
+
+\begin{problem}
+\problemno{8.2*} 假设你必须将 $w$ 投资于两只证券：一只无风险债券和一只风险证券。无风险债券的收益率确定为 $r_{F}$。风险证券的收益率为 $\tilde{r}$，它的均值为 $\bar{r}$ 而方差为 $\sigma^{2}$。假设你的目标就是最大化你的二次效用函数的期望值：
+\[
+    E\Bigl[\tilde{w}-\tfrac12 a\tilde{w}^{2}\Bigr].
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 求解最优组合。
+    \item 讨论最优组合如何依赖于股票和债券的期望收益率 $r_{F}$ 和 $\bar{r}$，股票收益率的波动率 $\sigma$，以及偏好系数 $a$。为这些依赖关系提供经济解释。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设投资于股票的资产比例为 $x$，那么有
+    \[
+        \tilde{w}=w\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)
+    \]
+    参与者的优化问题是
+    \[
+        \max_{x}E\Bigl[\tilde{w}-\tfrac12 a\tilde{w}^{2}\Bigr]
+    \]
+    记 $\mu=\bar{r}-r_{F}$。则 $E[\tilde{w}]=w(1+r_{F}+x\mu)$，$E[\tilde{w}^{2}]=w^{2}\bigl[(1+r_{F}+x\mu)^{2}+x^{2}\sigma^{2}\bigr]$。对 $x$ 求导，一阶条件为
+    \[
+        w\mu-aw^{2}\bigl[(1+r_{F}+x\mu)\mu+x\sigma^{2}\bigr]=0
+    \]
+    即 $\mu\bigl[1-aw(1+r_{F})\bigr]=aw\bigl(\mu^{2}+\sigma^{2}\bigr)x$，解得
+    \[
+        x=\frac{(\bar{r}-r_{F})\bigl(1-aw(1+r_{F})\bigr)}{aw\bigl(\sigma^{2}+(\bar{r}-r_{F})^{2}\bigr)}
+    \]
+
+    \item $x$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 的增加而减小。股票的期望收益率增加使得股票的需求增加，而无风险收益率增加使得债券的需求增加；$\sigma^{2}$ 增大，股票的风险变大，对股票的需求变小；最后，$a$ 增大表明参与者更加厌恶风险，因而对股票的需求减小。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{8.3*} 考虑与练习 8.2 一样的问题。不过现在假设效用函数具有常数绝对风险厌恶系数：
+\[
+    E\bigl[-e^{-a\tilde{w}}\bigr].
+\]
+另外，假设股票收益率 $\tilde{r}$ 是正态分布的。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解最优投资组合。
+    \item 讨论最优组合如何依赖于股票和债券的期望收益率 $r_{F}$ 和 $\bar{r}$，股票收益率的波动率 $\sigma$，以及偏好系数 $a$。为这些依赖性提供经济解释。[如果需要的话，你可以添加其它条件。]
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设投资于股票的资产比例为 $x$，那么有
+    \[
+        \tilde{w}=w\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)
+    \]
+    参与者的优化问题是
+    \[
+        \max_{x}E\bigl[-e^{-a\tilde{w}}\bigr]
+    \]
+    因 $\tilde{r}$ 正态，$\tilde{w}$ 亦正态。对正态随机变量有
+    \[
+        E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
+    \]
+    其中 $E[\tilde{w}]=w\bigl(1+r_{F}+x(\bar{r}-r_{F})\bigr)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{2}\sigma^{2}$。最大化上式等价于最大化确定性等价 $E[\tilde{w}]-\dfrac{a}{2}\operatorname{Var}(\tilde{w})$。对 $x$ 的一阶条件为
+    \[
+        w(\bar{r}-r_{F})-a\,w^{2}x\sigma^{2}=0
+    \]
+    因而最优权重（CARA 下风险资产的金额 $wx$ 与财富无关）为
+    \[
+        x=\frac{\bar{r}-r_{F}}{aw\sigma^{2}}
+    \]
+    \item $x$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 以及财富 $w$ 的增加而减小。超额收益上升提高股票需求；$\sigma^{2}$ 或绝对风险厌恶 $a$ 增大则降低股票需求。与二次效用不同：CARA 下风险资产金额 $wx=(\bar{r}-r_{F})/(a\sigma^{2})$ 不随 $w$ 变化，故权重 $x$ 随财富下降。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{8.4**} 赋予投资者初始金融财富 $w$ 以及 $\lambda$ 份不可交易收入 $\tilde{y}$，其中 $\lambda\ge 0$ 且 $E[\tilde{y}]=0$。他可以交易一只无风险证券和一只风险证券。无风险证券的收益率为 0 而风险证券的收益率 $\tilde{r}$ 的均值为 $\bar{r}$。他具有不满足性且是风险厌恶的。他的绝对风险厌恶系数随着他的财富增加而减少。令 $a$ 为风险证券上的投资额。他的期望效用函数为：
+\[
+    \max E\bigl[u(w+a\tilde{r}+\lambda\tilde{y})\bigr].
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 当 $\lambda=0$ 时，风险资产的最优头寸 $a_{0}^{*}$ 如何随着 $w$ 变化而变化？
+    \item 假设 $\tilde{y}$ 和 $\tilde{r}$ 是独立的。当 $\lambda>0$ 时，记风险资产的最优头寸为 $a_{\lambda}^{*}$。$a_{\lambda}^{*}$ 是大于还是小于 $a_{0}^{*}$？
+    \item 假设 $\tilde{y}=c(\tilde{r}-\bar{r})+\tilde{\varepsilon}$ 以及 $E[\tilde{\varepsilon}\mid\tilde{r}]=0$。因此，如果 $c\neq 0$，$\tilde{y}$ 和 $\tilde{r}$ 是相关的。当 $\lambda$ 极小时，他持有的股票头寸如何随着 $w$ 变化而变化？解释所得到的结论。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 当 $\lambda=0$ 时，优化的一阶条件是
+    \[
+        E\bigl[u'(w+a_{0}^{*}\tilde{r})\tilde{r}\bigr]=0
+    \]
+    两边对 $w$ 求导可得
+    \[
+        \frac{da_{0}^{*}}{dw}=\frac{E[u''(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
+    \]
+    又
+    \[
+        \begin{aligned}
+            E[u''(\tilde{w})\tilde{r}]
+            &=-E[u'(\tilde{w})R(\tilde{w})\tilde{r}]\\
+            &\ge -E[u'(\tilde{w})R(w)\tilde{r}]\\
+            &=-R(w)E[u'(\tilde{w})\tilde{r}]\\
+            &=0
+        \end{aligned}
+    \]
+    故 $\dfrac{da_{0}^{*}}{dw}\ge 0$，即最优头寸随着 $w$ 的增加而增加；
+
+    \item 参与者优化的一阶条件是
+    \[
+        E\bigl[u'(w+a_{\lambda}^{*}\tilde{r}+\lambda\tilde{y})\tilde{r}\bigr]=0
+    \]
+    两边对 $\lambda$ 求导可得
+    \[
+        \frac{da_{\lambda}^{*}}{d\lambda}=\frac{E[u''(\tilde{w})\tilde{r}\tilde{y}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
+    \]
+    记 $K(w+a_{\lambda}^{*}\tilde{r})=E[-R(\tilde{w})\tilde{y}\mid\tilde{r}]$，可以证明 $K(\cdot)>0$，$K'(\cdot)>0$，因此
+    \[
+        E[u''(\tilde{w})\tilde{r}\tilde{y}]=E[-R(\tilde{w})u'(\tilde{w})\tilde{r}\tilde{y}]=E\bigl[K(w+a_{\lambda}^{*}\tilde{r})u'(\tilde{w})\tilde{r}\bigr]\ge K(w)E[u'(\tilde{w})\tilde{r}]=0
+    \]
+    最后一个等式是因为一阶条件，因此，$\dfrac{da_{\lambda}^{*}}{d\lambda}\ge 0$，故 $a_{\lambda}^{*}\ge a_{0}^{*}$；
+
+    \item 由 (a) 有
+    \[
+        \frac{da_{0}^{*}}{dw}=\frac{E[u''(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}=\frac{-E[u'(\tilde{w})R(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
+    \]
+    而
+    \[
+        E[u'(\tilde{w})R(\tilde{w})\tilde{r}]=E\bigl[R(w+a\tilde{r})u'(\tilde{w})\tilde{r}\bigr]+\lambda E\bigl[R'(w+a\tilde{r})u'(\tilde{w})\tilde{r}\tilde{y}\bigr]+o(\lambda^{2})
+    \]
+    由 (a) 知道 $E\bigl[R(w+a\tilde{r})u'(\tilde{w})\tilde{r}\bigr]\le 0$，另外 $\lambda$ 又极小，因此
+    \[
+        E[u'(\tilde{w})R(\tilde{w})\tilde{r}]\le 0,\qquad \frac{da^{*}}{dw}\ge 0
+    \]
+    即最优头寸随着初始财富 $w$ 的增加而增加。这是因为 $\lambda$ 极小，因而不可交易收入不会改变 (a) 中的结论。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{8.5**} 假设你是对冲基金中交易政府债的交易员。你有 $w$ 的现金额度。
+\begin{itemize}
+    \item 在 0 期，当美联储拍卖新债券时，你可以提交报价而买入政府债。在 1 期，你可以在二级市场上以价格 $\tilde{v}$ 再把它们卖掉，其中 $\tilde{v}=\bar{v}+\tilde{\varepsilon}$，$\bar{v}>0$ 且 $E[\tilde{\varepsilon}]=0$。假设无风险收益率为零。
+    \item 你购买债券的报价是 $p$。你购买到的数量 $x(p)$ 是 $p$ 的递增函数且 $x(0)=0$。选择 $p$ 以最大化你的期望效用函数：
+    \[
+        V(p)=E[u(\tilde{w})],\qquad \tilde{w}=w+x(p)(\bar{v}+\tilde{\varepsilon}-p).
+    \]
+    假设你是不满足的且严格风险厌恶的。为简单起见，假设 $V(p)$ 是严格凹的。
+\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item 写出关于最优报价 $p^{*}$ 的一阶条件。
+    \item 证明 $0<p^{*}<\bar{v}$。
+    \item 对于两个绝对风险厌恶系数分别为 $A_{1}(w)$ 和 $A_{2}(w)$ 的交易员，如果 $\forall\,w$，$A_{1}(w)\ge A_{2}(w)$，那么 $p_{1}^{*}\le p_{2}^{*}$，其中 $p_{i}^{*}$ 是交易员 $i$ 的最优报价，$i=1,2$。
+    \item 假设 $u(\cdot)$ 是绝对风险厌恶递减的。证明初始财富 $w$ 的增加使得 $p^{*}$ 也增加。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 一阶条件是
+    \[
+        V'(p^{*})=E\bigl[u'(\tilde{w})\bigl(x'(p^{*})(\bar{v}+\tilde{\varepsilon}-p^{*})-x(p^{*})\bigr)\bigr]=0
+    \]
+
+    \item
+    \[
+        \begin{aligned}
+            V'(0)&=E\bigl[u'(w)\bigl(x'(0)(\bar{v}+\tilde{\varepsilon})\bigr)\bigr]=u'(w)x'(0)\bar{v}>0\\
+            V(\bar{v})&=E\bigl[u(w+x(\bar{v})\tilde{\varepsilon})\bigr]<u(w)=V(0)
+        \end{aligned}
+    \]
+    又因为 $V(p)$ 是凹的，故 $0<p^{*}<\bar{v}$；
+
+    \item 由定理 (7.4) 可知，存在 $f'>0$，$f''<0$ 使得 $u_{1}=f(u_{2})$。参与者的优化问题的一阶条件为：
+    \[
+        E\bigl[u_{2}'(\tilde{w}_{2})\bigl(x'(p_{2})(\bar{v}+\tilde{\varepsilon}-p_{2})-x(p_{2})\bigr)\bigr]=0
+    \]
+    考虑
+    \[
+        V_{1}'(p_{2})=E\bigl[f'(u_{2}(\tilde{w}_{2}))u_{2}'(\tilde{w}_{2})\bigl(x'(p_{2})(\bar{v}+\tilde{\varepsilon}-p_{2})-x(p_{2})\bigr)\bigr]
+    \]
+    令 $\tilde{r}=x'(p_{2})(\bar{v}+\tilde{\varepsilon}-p_{2})-x(p_{2})$，那么 $\tilde{w}_{2}$ 是 $\tilde{r}$ 的增函数，又 $f'(u_{2}(\tilde{w}_{2}))>0$ 且是 $\tilde{w}_{2}$ 的减函数，因此，$V_{1}'(p_{2})\le 0$，另外 $V(p)$ 是凹函数，因此 $p_{1}^{*}\le p_{2}^{*}$。
+
+    \item 假设 $w_{1}>w_{0}$，当 $w=w_{0}$ 时优化问题的一阶条件为
+    \[
+        E\bigl[u'\bigl(w_{0}+x(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})\bigr)\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]=0
+    \]
+    等式两边对 $w_{0}$ 求导可得
+    \[
+        \begin{aligned}
+            &E\bigl[u''(\tilde{w}_{0})\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\\
+            &=E\bigl[-R(\tilde{w}_{0})u'(\tilde{w}_{0})\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\\
+            &\ge 0
+        \end{aligned}
+    \]
+    因此，
+    \[
+        E\bigl[u'\bigl(w_{1}+x(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})\bigr)\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\ge 0
+    \]
+    而 $V(p)$ 又是凹的，因此 $p_{1}\ge p_{0}$，即初始财富增加报价也会增加。
+\end{enumerate}
+\end{solution}
+

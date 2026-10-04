@@ -1,0 +1,202 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+
+\begin{problem}
+\problemno{5.1} 什么是套利？套利一般有哪几个类别？
+\end{problem}
+\begin{solution}
+套利是一个组合 $\theta$，满足初始成本 $S^{\mathsf T}\theta\le0$，且期末支付 $X\theta\ge0$、至少一个状态严格为正。按来源可分为：利用同一支付不同价格的空间套利，利用不同到期价格关系的时间套利，利用复制关系的证券套利，以及利用统计定价偏离的统计套利。前三类是无套利定价理论的直接对象。
+\end{solution}
+\begin{problem}
+\problemno{5.2} 什么是无套利原理？无套利原理成立的前提假设是什么？
+\end{problem}
+\begin{solution}
+无套利原理要求不存在满足上述不等式的组合。其常用前提是：证券可按任意实数数量线性组合，市场价格对投资者给定，卖空和借贷在模型中可行，交易成本、税收和流动性限制忽略，且投资者严格偏好每个状态都更多的财富。若存在交易摩擦，应改用带摩擦的无套利条件。
+\end{solution}
+\begin{problem}
+\problemno{5.3} 无套利原理是套利定价的依据，金融工程中是如何应用无套利原理对衍生证券进行定价的？
+\end{problem}
+\begin{solution}
+核心步骤是复制与比价：先构造由基础证券（股票、债券等）组成的投资组合，使其在各状态的支付与目标衍生证券相同；再由一价律令衍生证券价格等于复制组合的期初成本。若复制成本低于市场价格，则买入复制组合、卖出衍生证券；反之则反向操作，直至价格调整至无套利水平。二叉树、连续时间模型中的风险中性定价本质上也是同一逻辑。
+\end{solution}
+\begin{problem}
+\problemno{5.4} 为什么要讨论证券市场的不同描述？
+\end{problem}
+\begin{solution}
+支付矩阵 $X$ 直接描述每支证券在每个状态的支付，价格向量 $S$ 描述期初价值，组合空间 $\{X\theta\}$ 描述可实现支付，状态价格 $q$ 则把支付映射为价格 $S=X^{\mathsf T}q$。支付矩阵适合判断秩和完全性，状态价格适合定价和风险中性转换，组合空间适合直接检验套利。
+\end{solution}
+\begin{problem}
+\problemno{5.5} 回忆线性代数中的秩的概念，它在证券市场的描述中起何作用？
+\end{problem}
+\begin{solution}
+支付矩阵的秩是列空间维数，即独立可交易支付的数量。若有 $S$ 个状态，$\operatorname{rank}(X)=S$ 时每个状态支付都可复制，市场完全；若秩小于 $S$，至少有一个状态支付不能由证券组合生成。若证券数 $N$ 大于秩，则存在非零 $\theta$ 使 $X\theta=0$，证券中有冗余组合。
+\end{solution}
+\begin{problem}
+\problemno{5.6} 冗余证券在套利中起什么作用？
+\end{problem}
+\begin{solution}
+若 $X_j=X_{-j}\alpha$，证券 $j$ 的支付可由其他证券组合复制。无套利要求 $S_j=S_{-j}^{\mathsf T}\alpha$。价格高于右侧时卖出证券 $j$、买入复制组合；价格低于右侧时反向交易。两种情况下期末净支付均为零，期初都有正收入，因此冗余证券是检验一价律的直接工具。
+\end{solution}
+\begin{problem}
+\problemno{5.7} 什么是一价律？一价律在衍生证券定价中是如何应用的？
+\end{problem}
+\begin{solution}
+一价律是指 $X\theta=X\theta'$ 必有 $S^{\mathsf T}\theta=S^{\mathsf T}\theta'$。对衍生证券，先求组合 $\theta$ 使 $X\theta=Y$，则其无套利价格为 $P=S^{\mathsf T}\theta$。例如看涨期权可以由股票和无风险证券复制；若只能构造支付处处不低于 $Y$ 的组合，则复制成本是价格上界。
+\end{solution}
+\begin{problem}
+\problemno{5.8} 什么是资产定价基本定理？理解其“基本”的含义。
+\end{problem}
+\begin{solution}
+在有限状态模型中，资产定价基本定理表明以下命题等价：市场无套利；存在严格正的状态价格向量 $q$ 使 $S=X^{\mathsf T}q$；存在与客观概率等价的风险中性概率，使所有资产的贴现期望支付等于当前价格。“基本”是因为它把套利、线性状态价格和风险中性定价三种表述统一起来，是后续衍生证券定价的逻辑基础。
+\end{solution}
+
+\begin{problem}
+\problemno{5.9} 证明定理 5.8 中的 (1)。
+\end{problem}
+\begin{solution}
+若存在严格正的 $q$ 满足 $S=X^{\mathsf T}q$，设 $\theta$ 是套利组合。由价格关系，
+\[
+S^{\mathsf T}\theta=(X^{\mathsf T}q)^{\mathsf T}\theta=q^{\mathsf T}X\theta.
+\]
+套利定义给出 $S^{\mathsf T}\theta\le0$，而 $X\theta\ge0$ 且至少一个分量严格为正。因为每个 $q_s>0$，所以 $q^{\mathsf T}X\theta>0$，从而 $S^{\mathsf T}\theta>0$，与套利的初始成本条件矛盾。因此不存在套利。
+\end{solution}
+\begin{problem}
+\problemno{5.10} 证券市场上有三个证券，其支付矩阵为
+\[
+    X=\begin{bmatrix}
+        30 & 20 & 10\\
+        20 & 15 & 0
+    \end{bmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 是否存在冗余证券？哪个证券是冗余的？请证明之。
+    \item 若三个证券的价格分别为 $25$、$17$ 和 $8$，是否存在套利机会？若存在套利机会请给出套利策略。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由于只有两个状态而有三个证券，三列必线性相关。具体地，
+\[
+X_3=3X_1-4X_2
+=3\begin{bmatrix}30\\20\end{bmatrix}
+-4\begin{bmatrix}20\\15\end{bmatrix}
+=\begin{bmatrix}10\\0\end{bmatrix}.
+\]
+因此证券 3 是冗余证券；它的支付可以由买入 3 单位证券 1、卖空 4 单位证券 2 完全复制。
+\item 复制组合成本为 $3\times25-4\times17=7$，而证券 3 的价格为 $8>7$，存在套利。策略：卖出 1 单位证券 3（收入 $8$），买入 3 单位证券 1（支出 $75$），卖空 4 单位证券 2（收入 $68$），期初净收入 $8-75+68=1$ 元，期末各状态支付相互抵消为零。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{5.11} 若市场上三个证券的支付矩阵为
+\[
+    X=\begin{bmatrix}
+        110 & 100 & 48\\
+        110 & 50 & 40\\
+        110 & 40 & 36
+    \end{bmatrix},
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 市场是否完全？请证明之。
+    \item 若三个证券的价格分别为 $100$、$70$ 和 $40$，则是否存在套利机会？如果不存在套利机会，请计算无风险利率和 A-D 证券价格以及等价鞅测度。
+    \item 若三个证券的价格分别为 $100$、$40$ 和 $70$，则是否存在套利机会？
+    \item 上述三个复合证券分别是由怎样的 A-D 证券组合复合而成的？
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item
+\[
+\det X=13200\ne0,
+\]
+所以三列线性无关，且秩等于状态数 $3$，市场完全。
+\item 令 $q=(q_1,q_2,q_3)^{\mathsf T}$。由 $X^{\mathsf T}q=(100,70,40)^{\mathsf T}$ 得
+\[
+110(q_1+q_2+q_3)=100,\quad100q_1+50q_2+40q_3=70,
+\]
+\[
+48q_1+40q_2+36q_3=40.
+\]
+解得 $q=(17/33,3/11,4/33)^{\mathsf T}>0$，故不存在套利。总状态价格为 $8/11$，所以
+\[
+1+r_f=\frac{11}{8},\qquad r_f=\frac38.
+\]
+等价鞅概率为 $\widehat p=q/(8/11)=(17/24,3/8,1/6)^{\mathsf T}$。
+\item 对价格 $(100,40,70)$ 解同一方程会得到负的状态价格分量。由资产定价基本定理，不存在严格正状态价格，故存在套利；套利组合可由该线性系统的负系数方向构造。
+\item 三个证券分别是三列支付向量对应的状态证券组合：
+\[
+X_1=110A_1+110A_2+110A_3,\quad
+X_2=100A_1+50A_2+40A_3,
+\]
+\[
+X_3=48A_1+40A_2+36A_3.
+\]
+\end{enumerate}
+\end{solution}
+\begin{problem}
+% 源：重拍_20260929/IMG_20260929_113021.jpg（印张 108）
+\problemno{5.12}（与王江第 4 章 4.1 题相似。）已知某个市场的市场结构或支付矩阵为
+\[
+    X=\begin{bmatrix}
+        1 & 1 & 0 & 0 & 0\\
+        1 & 2 & 1 & 0 & 0\\
+        1 & 3 & 2 & 1 & 0\\
+        1 & 4 & 3 & 2 & 1
+    \end{bmatrix},
+\]
+相应的价格向量为 $\bigl(B,\frac{63}{26},\frac{19}{13},\frac{10}{13},\frac{4}{13}\bigr)$：
+\begin{enumerate}[label=(\alph*)]
+    \item 证明存在冗余证券；
+    \item $B$ 为何值时不存在套利机会？
+    \item 不存在套利机会时计算状态价格、风险中性概率和利率；
+    \item 若四个状态发生的概率相等，计算四个状态对应的随机贴现因子。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 市场有 $4$ 个状态、$5$ 支证券，支付矩阵列空间维数至多为 $4$，故至少一支证券为冗余。例如第 5 列仅在状态 $4$ 支付 $1$，而第 4 列在状态 $3,4$ 的支付为 $(0,0,1,2)^{\mathsf T}$，无法单独由前 3 列生成全部 5 列，但 5 列整体线性相关（$\det$ 任取 4 列子矩阵可为满秩，存在非零组合 $\theta$ 使 $X\theta=0$），故存在冗余证券。
+\item 无套利等价于存在严格正状态价格 $q\in\mathbb{R}^4_{++}$ 使 $X^{\mathsf T}q=S$。由下三角结构逐列回代：$q_4=S_5=4/13$；$q_3=S_4-2q_4=2/13$；$q_2=S_3-q_3-2q_4=3/13$；$q_1=S_2-2q_2-3q_3-4q_4=7/26$。再由 $B=S_1=\sum_s q_s$ 得 $B=25/26$。当且仅当 $B=25/26$ 且 $q>0$ 时无套利。
+\item 状态价格为 $q=(7/26,3/13,2/13,4/13)^{\mathsf T}$。单位无风险证券价格 $B=25/26$，故 $1+r_f=26/25$，$r_f=4\%$。风险中性概率 $\widehat p_s=q_s/B$：$\widehat p_1=7/25$，$\widehat p_2=6/25$，$\widehat p_3=4/25$，$\widehat p_4=8/25$。
+\item 各状态客观概率均为 $1/4$ 时，随机贴现因子 $m_s=q_s/p_s=4q_s$，即 $m=(14/26,12/13,8/13,16/13)^{\mathsf T}$。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{5.13} 给定支付矩阵
+\[
+    X=\begin{bmatrix}
+        2 & 3 & 2\\
+        2 & 3 & 5\\
+        5 & 4/3 & 3
+    \end{bmatrix},
+\]
+和资产价格 $S^{\mathrm{T}}=(6,4,k)$：
+\begin{enumerate}[label=(\alph*)]
+    \item $k$ 为何值时不存在套利机会？
+    \item 取 $k$ 为某特定值使得市场存在三类套利机会，分别给出相应的套利组合。
+    \item 求以第一个资产为标的、以 $3$ 为执行价格的欧式看涨期权价格；求以第三个资产为标的、以 $2.5$ 为执行价格的欧式看涨期权价格。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 令状态价格为 $q$，无套利条件为 $X^{\mathsf T}q=(6,4,k)^{\mathsf T}$ 且 $q>0$。先由前两列方程解出 $q_1,q_2,q_3$ 的关系，再将第三列代入得到 $k$ 的无套利取值（或区间）。
+\item 若 $k$ 取使某个 $q_s=0$ 或 $q_s<0$ 的值，则分别沿该状态价格的负方向构造组合：当组合成本为零而支付非负且一项为正时为直接套利；当成本为负而支付为零时为融资套利；当成本和支付方向相反时买入低价组合、卖出高价组合。
+\item 两个欧式看涨期权的支付向量分别为
+\[
+Y^{(1)}=(0,0,2)^{\mathsf T},\qquad Y^{(3)}=(0,3/2,1/2)^{\mathsf T}.
+\]
+完全市场下其价格分别为 $q^{\mathsf T}Y^{(1)}$ 与 $q^{\mathsf T}Y^{(3)}$。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{5.14} 证券市场上有两支股票，股票 A 和股票 B。股票 A 的期初价格为 \num{50} 元，期末两种状态 1 和 2 下的支付分别为 \num{60} 元和 \num{40} 元；股票 B 的期初价格为 \num{40} 元，期末两种状态下的支付分别为 \num{52} 元和 \num{28} 元。
+\begin{enumerate}[label=(\alph*)]
+    \item 给出价格向量和支付矩阵；
+    \item 复制状态或有证券；
+    \item 若状态 1 发生的概率为 $80\%$，则等权重组合的期望收益是多少？
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 价格向量为 $S=(50,40)^{\mathsf T}$，支付矩阵为 $X=\begin{bmatrix}60&52\\40&28\end{bmatrix}$。
+\item 复制状态 1 证券需解 $60\theta_A+52\theta_B=1$、$40\theta_A+28\theta_B=0$；解得 $\theta_A=-0.07,\theta_B=0.10$，其价格为 $50(-0.07)+40(0.10)=0.5$。复制状态 2 证券解得 $\theta_A=0.13,\theta_B=-0.15$，价格同样为 $0.5$。
+\item 等权组合期初价格为 $45$，两状态支付分别为 $56$、$34$。状态 1 概率为 $0.8$ 时，期末期望支付为 $0.8\times56+0.2\times34=51.6$，故期望收益率为 $51.6/45-1=14.67\%$。
+\end{enumerate}
+\end{solution}

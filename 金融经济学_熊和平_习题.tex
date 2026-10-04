@@ -1,0 +1,76 @@
+% !TeX encoding = UTF-8
+
+\documentclass[fontset=none]{exam-zh}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\input{tex/_shared/431-common.tex}
+\usepackage[group-separator={,}]{siunitx}
+
+\tcbuselibrary{breakable}
+\tcbset{breakable}
+
+\SetupFourThreeOneDocument{金融经济学·熊和平·章末习题}
+
+\title{金融经济学}
+\subject{熊和平《金融经济学》本章小结与章末习题}
+\author{Bilibili@园丁小区詹姆斯}
+
+\examsetup{
+    problem = {
+        label = {},
+        label-align = left,
+        show-points = false,
+    }
+}
+
+\newcommand{\problemno}[1]{\textbf{#1}\quad}
+
+% 重要概念：与王江知识框一致，用条目列表而非逗号段。
+\newcommand{\xhpconceptitems}[1]{%
+\begin{tcolorbox}[knowledge,title=重要概念]
+\begin{enumerate}[nosep]#1\end{enumerate}
+\end{tcolorbox}}
+
+\begin{document}
+
+\FourThreeOneFrontMatter
+
+\ifdefined\FourThreeOnePrintInterior
+\else
+\MakeFourThreeOneCover
+    {431 FINANCE \quad/\quad FINANCIAL ECONOMICS}
+    {金融经济学·熊和平·章末习题}
+    {熊和平《金融经济学》本章小结与章末习题}
+    {按教材章序整理本章小结、思考题与练习题（含参考解答）}
+    {Bilibili@园丁小区詹姆斯}
+    {PREFERENCE \quad EQUILIBRIUM \quad PRICING}
+
+\null
+\thispagestyle{empty}
+\fi
+
+\MakeFourThreeOneContents[2]
+
+\cleardoublepage
+
+\setcounter{chapter}{0}
+\input{tex/金融经济学_熊和平/01_基本框架及分析模式.tex}
+\input{tex/金融经济学_熊和平/02_期望效用理论.tex}
+\input{tex/金融经济学_熊和平/03_风险厌恶及典型的效用函数.tex}
+\input{tex/金融经济学_熊和平/04_Arrow-Debreu经济.tex}
+\input{tex/金融经济学_熊和平/05_套利定价的理论基础.tex}
+\input{tex/金融经济学_熊和平/06_无套利原理在衍生证券定价中的应用.tex}
+\input{tex/金融经济学_熊和平/07_基于消费的投资组合理论.tex}
+\input{tex/金融经济学_熊和平/08_马科维茨投资组合理论.tex}
+\input{tex/金融经济学_熊和平/09_资本资产定价模型.tex}
+\input{tex/金融经济学_熊和平/10_因子模型与套利定价理论.tex}
+\input{tex/金融经济学_熊和平/11_完全市场下的资源配置与资产定价.tex}
+\input{tex/金融经济学_熊和平/12_基于消费的资产定价模型.tex}
+\input{tex/金融经济学_熊和平/13_生产性经济与资源配置.tex}
+\input{tex/金融经济学_熊和平/14_异质性投资者.tex}
+\input{tex/金融经济学_熊和平/15_家庭金融.tex}
+
+\appendix
+\input{tex/金融经济学_熊和平/A_附录_布朗运动及其简单描述.tex}
+
+\end{document}

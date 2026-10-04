@@ -1,0 +1,106 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+
+\begin{problem}
+\problemno{8.1} 什么是相对收益？什么是收益率？两者之间有何关系？
+\end{problem}
+\begin{solution}
+相对收益是期末支付与期初价格之比，记为 $R_i=S_{i1}/S_{i0}$；收益率是相对收益减去 1，即 $r_i=R_i-1=(S_{i1}-S_{i0})/S_{i0}$。相对收益包含本金，收益率只表示本金的百分比变化。
+\end{solution}
+\begin{problem}
+\problemno{8.2} 如何计算投资组合的收益率？
+\end{problem}
+\begin{solution}
+若组合权重为 $w_i$ 且 $\sum_iw_i=1$，则组合相对收益为 $R_p=\sum_iw_iR_i$，收益率为 $r_p=\sum_iw_ir_i$。权重按期初市值计算；若有现金流，应把分红和利息计入期末支付。
+\end{solution}
+\begin{problem}
+\problemno{8.3} 什么是均值-方差标准？什么条件下该标准成立？
+\end{problem}
+\begin{solution}
+均值—方差标准只用 $E(r_p)$ 和 $\operatorname{Var}(r_p)$ 比较组合：在期望收益相同的组合中选方差小者，在方差相同的组合中选期望收益大者。它在收益联合正态（或更一般的椭圆分布）时对所有二次或凹效用投资者成立；小风险二阶近似下也可作为近似标准。
+\end{solution}
+\begin{problem}
+\problemno{8.4} 两风险资产情形下，什么时候组合前沿为曲线？什么情形下组合前沿是折线？
+\end{problem}
+\begin{solution}
+若两资产收益不完全相关，协方差矩阵正定，组合方差关于权重是严格凸二次函数，前沿为平滑曲线。若相关系数为 $1$ 或 $-1$，一个资产可由另一个线性复制，风险—收益边界退化为由直线段组成的折线；允许卖空时还可能出现一条直线。
+\end{solution}
+\begin{problem}
+\problemno{8.5} 什么是系统性风险？什么是非系统性风险？其中哪一种风险可以被分散化？如何分散？
+\end{problem}
+\begin{solution}
+系统性风险由宏观因素和共同因子引起，影响大多数资产，不能通过简单分散消除；非系统性风险是单个企业或行业特有的，可通过持有相关性较低的大量资产分散。因子模型中总风险可写为因子风险与特质风险之和，组合扩大后特质风险趋近于零。
+\end{solution}
+\begin{problem}
+\problemno{8.6} 在 $N$ 个风险资产中引入无风险资产后，对投资组合的可行集和有效前沿有何影响？
+\end{problem}
+\begin{solution}
+无风险资产收益为 $r_f$、方差为零。任一风险组合与无风险资产的混合都位于均值—标准差图上的直线 $E(r)=r_f+\frac{E(r_p)-r_f}{\sigma_p}\sigma$。有效前沿变为从无风险点出发、与原风险资产有效边界相切的资本配置线；允许借贷时直线可延伸到切点两侧。
+\end{solution}
+
+\begin{problem}
+\problemno{8.7}（与王江第 8 章 8.1 题相似。）假设 $N$ 个风险资产，收益率为 $\tilde{r}_i$($i=1,2,\ldots,N$)，它们是独立同分布的。对于一个具有不满足性和凹性效用函数的投资者，计算他的最优投资组合，并求均值-方差标准下的最优组合。
+\end{problem}
+\begin{solution}
+独立同分布意味着每个资产的期望收益相同、方差相同且协方差为零。对称性和凹性使最优组合给每个资产相同权重 $w_i=1/N$；否则把权重从低边际效用资产转向高边际效用资产可提高效用。均值—方差标准下，组合期望收益不依赖权重，而方差为 $\sigma^2\sum_iw_i^2$，在 $\sum_iw_i=1$ 下由 Cauchy 不等式在 $w_i=1/N$ 处最小，方差为 $\sigma^2/N$。
+\end{solution}
+\begin{problem}
+\problemno{8.8} 已知市场上有三个证券，其协方差矩阵为
+\[
+    V=\begin{bmatrix}
+        24 & -10 & 9\\
+        -10 & 75 & 3\\
+        9 & 3 & 12
+    \end{bmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 计算等权重投资组合的方差。
+    \item 计算如下两个投资组合的方差：组合 1：$(0.1,0.8,0.1)^{\mathrm{T}}$；组合 2：$(1.25,-0.1,-0.15)^{\mathrm{T}}$。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 等权重 $w=(1/3,1/3,1/3)^{\mathsf T}$，组合方差为 $w^{\mathsf T}Vw=115/9\approx12.778$。
+\item 对 $w_1=(0.1,0.8,0.1)^{\mathsf T}$，$w_1^{\mathsf T}Vw_1=47.42$；对 $w_2=(1.25,-0.1,-0.15)^{\mathsf T}$，$w_2^{\mathsf T}Vw_2=37.735$。负权重表示卖空相应证券。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{8.9} 假设市场上有两项资产。资产 1 收益率的期望值为 $0.3$，方差为 $5.9$；资产 2 收益率的期望值为 $0.08$，方差为 $0.05$；两资产的协方差为 $-0.01$。
+\begin{enumerate}[label=(\alph*)]
+    \item 求由上述两个资产形成的可行集；
+    \item 求最小方差集的组合向量。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+设资产 1 权重为 $w$，资产 2 权重为 $1-w$。可行集参数式为
+\[
+\mu(w)=0.08+0.22w,\quad \sigma^2(w)=5.9w^2+0.05(1-w)^2-0.02w(1-w).
+\]
+最小方差权重由 $w^*=\frac{\sigma_2^2-\sigma_{12}}{\sigma_1^2+\sigma_2^2-2\sigma_{12}}=\frac{0.06}{5.97}\approx0.01005$，故组合向量约为 $(0.01005,0.98995)^{\mathsf T}$。
+\end{solution}
+\begin{problem}
+\problemno{8.10} 三种资产的期望收益率向量和协方差矩阵为
+\[
+    ER=\begin{bmatrix}10.1\%\\7.8\%\\5\%\end{bmatrix},\qquad
+    V=\begin{bmatrix}
+        2.1 & 0.6 & 0\\
+        0.6 & 0.9 & 0\\
+        0 & 0 & 0
+    \end{bmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item 三种资产中哪一个是无风险资产？为什么？
+    \item 计算组合 $(0.5,0.5,0)$ 和组合 $(0.4,0.4,0.2)$ 的期望收益和标准差。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 第三个资产方差为零，因此它是无风险资产；其收益率为 $5\%$。
+\item 组合 $(0.5,0.5,0)$ 的期望收益为 $8.95\%$，方差为 $0.25(2.1+0.9+2\times0.6)=1.05$，标准差为 $\sqrt{1.05}\approx1.025$（按题中百分比单位）。组合 $(0.4,0.4,0.2)$ 的期望收益为 $8.12\%$，方差为 $0.16(2.1+0.9+1.2)=0.672$，标准差约为 $0.820$。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{8.11} 证明定理 8.6，定理 8.7 和性质 8.2。
+\end{problem}
+\begin{solution}
+组合方差为 $\sigma_p^2=w^{\mathsf T}Vw$，在 $\mathbf1^{\mathsf T}w=1$ 下使用拉格朗日乘子，一阶条件 $2Vw-\lambda\mathbf1=0$ 给出 $w\propto V^{-1}\mathbf1$，这证明最小方差组合的表达式。加入期望收益约束 $\mu^{\mathsf T}w=\bar\mu$ 后，解线性方程组得到均值—方差有效前沿；消去权重得到关于 $\bar\mu$ 的二次方程，故前沿为双曲线。若加入无风险资产，所有组合位于无风险点与切点组合的直线上，这就是资本配置线性质。
+\end{solution}

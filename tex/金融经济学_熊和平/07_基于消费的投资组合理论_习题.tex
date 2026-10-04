@@ -1,0 +1,117 @@
+% !TeX root = ../../金融经济学_熊和平_习题.tex
+
+\begin{problem}
+\problemno{7.1} 我们在分析消费-组合问题时为什么要转化为纯组合问题？这样对经济人的优化问题的求解是否产生影响？
+\end{problem}
+\begin{solution}
+给定期初财富和组合，期末消费由组合支付唯一决定，因此可以先把预算约束代入效用函数，将选择变量缩减为证券持有量，得到纯组合问题。该变换只是消去由预算约束确定的消费变量；可行集合和每个组合对应的消费计划没有改变，所以最优解和最大效用不受影响。
+\end{solution}
+\begin{problem}
+\problemno{7.2} 在分析小风险情形后为什么还要讨论 CARA 偏好下的情形？
+\end{problem}
+\begin{solution}
+小风险展开只保留均值和方差项，结论是局部近似。CARA 偏好下指数效用的所有高阶项可以由正态分布的矩母函数精确求和，因而能得到任意风险规模下的显式解。这既检验小风险近似的方向，也说明绝对风险厌恶如何影响投资额。
+\end{solution}
+\begin{problem}
+\problemno{7.3} CARA 偏好下一般能够得出显示解，为什么我们通常不假设 CARA 偏好？
+\end{problem}
+\begin{solution}
+CARA 意味绝对风险厌恶与财富无关，因而财富增加时投资者对固定金额风险的态度不变，并可能导致风险资产投资额与财富无关、投资比例随财富下降。该性质与现实中相对风险厌恶和生命周期投资行为不完全一致，所以 CARA 多用于理论推导而非一般经验分析。
+\end{solution}
+\begin{problem}
+\problemno{7.4} HARA 偏好下的组合问题与 CARA 和 CRRA 偏好下的组合问题有何异同？
+\end{problem}
+\begin{solution}
+HARA 是更一般的效用族，CARA 和 CRRA 都是其特例。三者的一阶条件都为 $E[u'(W)x]=0$；差别在于风险厌恶系数的财富变化不同。CARA 给出投资额而非投资比例的稳定性，CRRA 通常给出财富成比例的投资额，HARA 则允许二者之间更灵活的财富效应。
+\end{solution}
+\begin{problem}
+\problemno{7.5} 两资产情形下的组合问题的结论哪些能够推广到多资产情形？
+\end{problem}
+\begin{solution}
+边际条件、风险厌恶决定风险承担规模、无风险资产与切点组合分离等结论可推广。多资产时标量方差变为协方差矩阵，最优条件为 $E[u'(W)R]=0$ 的向量形式；只有在均值—方差或椭圆分布条件下，简单的两资产闭式比例才保持。
+\end{solution}
+
+\begin{problem}
+\problemno{7.6} 两资产情形下(一个风险资产和一个无风险资产)，假设经济人具有对数效用函数，并且风险资产的收益率以等概率取无风险利率的 $4$ 倍和负的无风险利率。求投资者对风险资产的投资在其初始财富中所占的比例 $A/W_0$。
+\end{problem}
+\begin{solution}
+令风险资产投资额为 $A$，无风险资产投资额为 $W_0-A$。两状态期末财富分别为 $W_0(1+r_f)+3Ar_f$ 和 $W_0(1+r_f)-2Ar_f$。最大化两状态对数效用，一阶条件为
+\[
+\frac{3r_f}{W_0(1+r_f)+3Ar_f}-\frac{2r_f}{W_0(1+r_f)-2Ar_f}=0。
+\]
+整理得 $3[W_0(1+r_f)-2Ar_f]=2[W_0(1+r_f)+3Ar_f]$，所以
+\[
+\frac{A}{W_0}=\frac{1+r_f}{12r_f}。
+\]
+\end{solution}
+\begin{problem}
+\problemno{7.7} 假设投资者具有 CARA 偏好，绝对风险厌恶系数 $a>0$。投资者的期末财富服从正态分布，则投资者的确定性等价财富水平是多少？
+\end{problem}
+\begin{solution}
+若 $W\sim N(\mu,\sigma^2)$，则
+\[
+E[-e^{-aW}]=-e^{-a\mu+a^2\sigma^2/2}.
+\]
+令 $-e^{-aCE}$ 等于该期望效用，得到
+\[
+CE=\mu-\frac a2\sigma^2。
+\]
+因此确定性等价等于期望财富减去绝对风险厌恶系数乘方差的一半。
+\end{solution}
+\begin{problem}
+\problemno{7.8}（与王江第 8 章 8.2 题相似。）同第 7.6 题一样，考虑两资产情形：无风险资产收益率为 $r_f$，风险资产收益率为 $\tilde{r}$，其均值和方差分别为 $\bar{r}$ 和 $\sigma^2$：
+\begin{enumerate}[label=(\alph*)]
+    \item 在二次效用假设下求最优投资组合；并讨论最优组合与无风险利率 $r_f$、风险利率的期望值 $\bar{r}$ 以及方差 $\sigma^2$、偏好系数 $a$ 的关系，给出其经济学解释。此时效用函数为
+    \[
+        U=E\bigl[\tilde{W}_1-\tfrac12 a\tilde{W}_1^2\bigr].
+    \]
+    \item 在 CARA 偏好下重复 (1) 中的计算和分析。此时效用函数为
+    \[
+        U=E\bigl[-e^{-a\tilde{W}_1}\bigr].
+    \]
+\end{enumerate}
+\end{problem}
+\begin{solution}
+令 $\theta$ 为投向风险资产的金额，期末财富为 $W_0(1+r_f)+\theta(\tilde r-r_f)$。
+\begin{enumerate}[label=(\alph*)]
+\item 二次效用下，忽略与 $\theta$ 无关的项，目标函数为 $\theta(\bar r-r_f)-\frac12 a\theta^2\sigma^2$，故
+\[
+\theta^*=\frac{\bar r-r_f}{a\sigma^2}.
+\]
+风险溢价越大投资越多，方差或风险厌恶系数越大投资越少。
+\item 若风险资产收益正态，CARA 情形的确定性等价同样为均值减 $\frac12 a$ 倍方差的一半，最大化得到
+\[
+\theta^*=\frac{\bar r-r_f}{a\sigma^2}.
+\]
+因此在正态条件下二次效用和 CARA 给出相同的均值—方差组合规则。
+\end{enumerate}
+\end{solution}
+\begin{problem}
+\problemno{7.9} 证明定理 7.8。
+\end{problem}
+\begin{solution}
+最优组合满足一阶条件 $E[u'(w+a\tilde x)\tilde x]=0$。对该等式关于财富求导，并用 $R(w)=-wu''(w)/u'(w)$，可得最优投资对财富的导数与相对风险厌恶系数相联系；整理后即得定理 7.8 所述的财富效应和投资比例单调性。
+\end{solution}
+\begin{problem}
+\problemno{7.10} 两资产情形下期末财富由式 (7.3) $W=w+a\tilde{x}$ 给出，$R(w)$ 为相对风险厌恶系数，$a(w)$ 为最优投资选择，即
+\[
+    a(w)=\operatorname*{argmax}_{a} E\bigl[u(w+a\tilde{x})\bigr],
+\]
+满足条件 $w>0$，$E[\tilde{x}]>0$，$u'(\cdot)>0$，$u''(\cdot)\le 0$。证明以下命题：
+\begin{enumerate}[label=(\alph*)]
+    \item 若 $\lambda>1$，且对于给定的效用函数 $u$ 有 $R'(w)\ge 0$。定义 $u_1(w)\equiv u(\lambda w)$，$u_2(w)=u(w)$，证明 $R_1(w)\ge R_2(w)$。
+    \item 给定以上结论，我们有 $a_1(w)\le a_2(w)$，其中 $a_1(w)$、$a_2(w)$ 分别是 $u_1(\cdot)$、$u_2(\cdot)$ 对应的最优投资选择。
+    \item 定义 $\hat{a}(w)=a(w)/w$，则对于 $w_1\le w_2$ 有 $\hat{a}(w_1)\ge \hat{a}(w_2)$(提示：令 $\lambda=w_2/w_1$)。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item $u_1(w)=u(\lambda w)$ 给出 $u_1'=\lambda u'(\lambda w)$、$u_1''=\lambda^2u''(\lambda w)$，故
+\[
+R_1(w)=-\frac{wu_1''(w)}{u_1'(w)}=\lambda w\,A(\lambda w)=R(\lambda w).
+\]
+若 $R'(w)\ge0$ 且 $\lambda>1$，则 $R_1(w)=R(\lambda w)\ge R(w)=R_2(w)$。
+\item 风险厌恶更强的效用函数对同一风险的最优风险投资更少。由两者一阶条件和严格凹性，若 $a_1>a_2$，则在 $a_1$ 处的边际效用条件方向相反，产生矛盾，故 $a_1(w)\le a_2(w)$。
+\item 令 $\lambda=w_2/w_1\ge1$。由 (b) 得 $a(\lambda w_1)\le a(w_1)$，除以 $w_2=\lambda w_1$ 得 $a(w_2)/w_2\le a(w_1)/w_1$，即 $\hat a(w_1)\ge\hat a(w_2)$。
+\end{enumerate}
+\end{solution}

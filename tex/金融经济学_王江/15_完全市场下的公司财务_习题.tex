@@ -1,0 +1,274 @@
+% !TeX root = ../../金融经济学_王江_讲义及习题.tex
+% 15_完全市场下的公司财务 课后习题（由章节文件拆分）
+
+\begin{problem}
+\problemno{15.1*} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi_{a}$ 和 $\pi_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
+\[
+    Y=\begin{cases}
+        \lambda_{a}I^{\alpha},&\text{状态 }a\\
+        \lambda_{b}I^{\alpha},&\text{状态 }b
+    \end{cases}
+\]
+其中 $0<\lambda_{b}<\lambda_{a}<1$ 且 $0<\alpha<1$。假设参与者 1 拥有这项技术但却没有任何其它资产。他具有如下形式的效用函数：
+\[
+    \log(c_{0})+\pi_{a}\log c_{1a}+\pi_{b}\log c_{1b}.
+\]
+证券市场上只存在无风险债券，它的利率为 $r_{F}$。
+\begin{enumerate}[label=(\alph*)]
+    \item 写出参与者 1 的优化问题。
+    \item 求解他的最优生产、消费和投资选择。
+    \item 说明他的生产决策如何依赖于利率。并给出解释。
+    \item 计算在最优选择下他的期望效用。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设参与者的 0 期消费为 $c_{0}$、投资为 $I$，那么参与者的优化问题是
+    \[
+        \begin{aligned}
+            \max_{c_{0},\,I}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\qquad(*)\\
+            \text{s.t.}\;&c_{a}=\lambda_{a}I^{\alpha}-(c_{0}+I)(1+r_{F})\\
+            &c_{b}=\lambda_{b}I^{\alpha}-(c_{0}+I)(1+r_{F})
+        \end{aligned}
+    \]
+    \item 上述优化问题的一阶条件是
+    \[
+        \begin{aligned}
+            \frac{1}{c_{0}}+\pi_{a}\frac{-(1+r_{F})}{\lambda_{a}I^{\alpha}-(c_{0}+I)(1+r_{F})}+\pi_{b}\frac{-(1+r_{F})}{\lambda_{b}I^{\alpha}-(c_{0}+I)(1+r_{F})}&=0\\
+            \pi_{a}\frac{\lambda_{a}I^{\alpha-1}\alpha-(1+r_{F})}{\lambda_{a}I^{\alpha}-(c_{0}+I)(1+r_{F})}+\pi_{b}\frac{\lambda_{b}I^{\alpha-1}\alpha-(1+r_{F})}{\lambda_{b}I^{\alpha}-(c_{0}+I)(1+r_{F})}&=0
+        \end{aligned}
+    \]
+    第一式是消费 Euler：$1/c_{0}=(1+r_{F})E[1/\tilde{c}_{1}]$。第二式说：用 1 期边际效用加权后，边际产出 $\alpha\lambda_{\omega}I^{\alpha-1}$ 的期望等于 $1+r_{F}$。两式联立决定最优 $c_{0}^{*}$、$I^{*}$（一般无更简的显式解）。另外参与者须在 0 期卖空 $(c_{0}^{*}+I^{*})$ 单位的无风险债券；
+    \item 由生产一阶条件，边际效用加权的 $E[\mathrm{MPK}]$ 必须等于 $1+r_{F}$。$\alpha<1$ 时 MPK 随 $I$ 递减，故 $r_{F}$ 上升迫使 $I^{*}$ 下降：借款为生产融资的成本提高。
+    \item 把求得的 $c_{0}^{*}$，$I^{*}$ 代入 $(*)$ 式即可求得期望效用，记作 $EU_{1}$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{15.2*} 在练习 15.1 描述的经济中，现在假设证券市场还包括一只证券，它在状态 $a$ 支付 $\lambda_{a}$、在状态 $b$ 支付 $\lambda_{b}$ 而它的价格为 $S$。
+\begin{enumerate}[label=(\alph*)]
+    \item 证明现在证券市场是完全的。
+    \item 用 $r_{F}$ 和 $S$ 表示状态价格。
+    \item 描述参与者 1 的优化问题。
+    \item 计算他的总财富。证明它总是正的。
+    \item 求解他的最优生产、消费和投资选择。
+    \item 用 NPV 法则解释他的投资选择。
+    \item 他的生产技术的 NPV 是多少？这个如何随着状态价格的改变而改变？解释所得到的结论。
+    \item 计算引入风险证券参与者 1 得到的期望效用的增加值，用 0 期财富的确定性等价表示。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 两个状态，两只支付独立的证券，因而证券市场是完全的；
+    \item 由
+    \[
+        \begin{aligned}
+            \frac{1}{1+r_{F}}&=\phi_{a}+\phi_{b}\\
+            S&=\phi_{a}\lambda_{a}+\phi_{b}\lambda_{b}
+        \end{aligned}
+    \]
+    可以求得状态价格为
+    \[
+        \begin{aligned}
+            \phi_{a}&=\frac{S(1+r_{F})-\lambda_{b}}{(\lambda_{a}-\lambda_{b})(1+r_{F})}\\
+            \phi_{b}&=\frac{\lambda_{a}-S(1+r_{F})}{(\lambda_{a}-\lambda_{b})(1+r_{F})}
+        \end{aligned}
+    \]
+    \item 假设参与者的 0 期消费为 $c_{0}$、股票头寸为 $\theta_{S}$、生产投入为 $I$，那么他的优化问题是
+    \[
+        \begin{aligned}
+            \max_{c_{0},\,\theta_{S},\,I}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
+            \text{s.t.}\;&c_{a}=\lambda_{a}I^{\alpha}+\theta_{S}\lambda_{a}-(\theta_{S}S+c_{0}+I)(1+r_{F})\\
+            &c_{b}=\lambda_{b}I^{\alpha}+\theta_{S}\lambda_{b}-(\theta_{S}S+c_{0}+I)(1+r_{F})
+        \end{aligned}
+    \]
+    \item 参与者的总财富为
+    \[
+        \begin{aligned}
+            w&=c_{0}+\phi_{a}\bigl(\lambda_{a}I^{\alpha}+\theta_{S}\lambda_{a}-(\theta_{S}S+c_{0}+I)(1+r_{F})\bigr)\\
+            &\quad+\phi_{b}\bigl(\lambda_{b}I^{\alpha}+\theta_{S}\lambda_{b}-(\theta_{S}S+c_{0}+I)(1+r_{F})\bigr)\\
+            &=SI^{\alpha}-I
+        \end{aligned}
+    \]
+    因为当 $I=0$ 时，$w=0$，因而在参与者选择最优生产投入时，$w>0$；
+    \item     完全市场下生产与消费分离。把财富约束写成 $c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=SI^{\alpha}-I$。拉格朗日函数为
+    \[
+        \mathcal{L}=\log c_{0}+\pi_{a}\log c_{a}+\pi_{b}\log c_{b}+\lambda\bigl(SI^{\alpha}-I-c_{0}-\phi_{a}c_{a}-\phi_{b}c_{b}\bigr)
+    \]
+    对 $I$ 的一阶条件即 NPV 法则
+    \[
+        \alpha SI^{\alpha-1}=1\implies I^{*}=(\alpha S)^{\frac{1}{1-\alpha}}
+    \]
+    消费侧一阶条件：$1/c_{0}=\lambda$，$\pi_{\omega}/c_{\omega}=\lambda\phi_{\omega}$。代入预算并注意 $\pi_{a}+\pi_{b}=1$，得 $c_{0}^{*}=w^{*}/2$，$c_{\omega}^{*}=\pi_{\omega}w^{*}/(2\phi_{\omega})$，其中 $w^{*}=SI^{*\alpha}-I^{*}$。再用 $c_{a}$、$c_{b}$ 反解股票头寸，得到
+    \[
+        I^{*}=(\alpha S)^{\frac{1}{1-\alpha}},\quad w^{*}=SI^{*\alpha}-I^{*},\quad c_{0}^{*}=\tfrac12 w^{*},\quad\theta_{S}^{*}=\frac{\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}}{\lambda_{a}-\lambda_{b}}w^{*}-I^{*\alpha}
+    \]
+    另外，参与者须在 0 期卖空 $\theta_{S}^{*}S+c_{0}^{*}+I^{*}$ 单位的无风险债券；
+    \item
+    \[
+        NPV=(\phi_{a}\lambda_{a}I^{\alpha}+\phi_{b}\lambda_{b}I^{\alpha})-I=SI^{\alpha}-I
+    \]
+    最优的生产投入应是 $(NPV)'=0$，即 $I=(\alpha S)^{\frac{1}{1-\alpha}}$，恰是上面所求得的最优生产投入；
+    \item 代入计算得
+    \[
+        \begin{aligned}
+            NPV^{*}&=S(\alpha S)^{\frac{\alpha}{1-\alpha}}-(\alpha S)^{\frac{1}{1-\alpha}}\\
+            &=(\alpha^{\frac{\alpha}{1-\alpha}}-\alpha^{\frac{1}{1-\alpha}})(\phi_{a}\lambda_{a}+\phi_{b}\lambda_{b})^{\frac{1}{1-\alpha}}
+        \end{aligned}
+    \]
+    由此可以看到，NPV 会随着状态价格的上升而增加：一方面是在相同生产投入条件下产出的净现值增加；另外，根据 NPV 法则，参与者会增加生产投入，这也会使得 NPV 增加；
+    \item 在最优选择下，我们可计算得期望效用为 $EU_{2}$。在第 1 题中，0 期禀赋为 0 时计算得到的期望效用是 $EU_{1}$，我们可以通过 $EU_{1}(\Delta w)=EU_{2}$ 求效用增加值的确定性等价 $\Delta w$。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{15.3**} 考虑练习 15.1 描述的经济。现在假设经济中除了那里描述的参与者 1 以外还有一个参与者 2。参与者 2 没有生产技术，但经济赋予了他 $e_{0}$ 单位的 0 期消费。他的效用函数和参与者 1 的一样。证券市场和练习 15.2 中的一样。
+\begin{enumerate}[label=(\alph*)]
+    \item 求解两个参与者在给定状态价格下的最优生产、消费和投资选择。
+    \item 求解均衡状态价格、总消费和消费配置。
+    \item 证明均衡配置是 Pareto 最优的。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 在第 2 题中已经求解了参与者 1 的最优化问题，现在考虑参与者 2 的最优化问题（假设他持有的无风险债券、股票的头寸分别为 $\theta_{B}$，$\theta_{S}$）
+    \[
+        \begin{aligned}
+            \max_{\theta_{B},\,\theta_{S}}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
+            \text{s.t.}\;&c_{0}=e_{0}-\theta_{B}-S\theta_{S}\\
+            &c_{a}=\theta_{B}(1+r_{F})+\lambda_{a}\theta_{S}\\
+            &c_{b}=\theta_{B}(1+r_{F})+\lambda_{b}\theta_{S}
+        \end{aligned}
+    \]
+    完全市场下与练习 15.2 同一拉格朗日，Euler 给出 $c_{0}^{*}=e_{0}/2$，$c_{\omega}^{*}=\pi_{\omega}e_{0}/(2\phi_{\omega})$。由 1 期支付反解头寸：
+    \[
+        \theta_{S}^{*}=\frac{c_{a}^{*}-c_{b}^{*}}{\lambda_{a}-\lambda_{b}}=\frac{1}{\lambda_{a}-\lambda_{b}}\Bigl(\frac{\pi_{a}}{2\phi_{a}}-\frac{\pi_{b}}{2\phi_{b}}\Bigr)e_{0},\qquad
+        \theta_{B}^{*}=\frac{c_{a}^{*}-\lambda_{a}\theta_{S}^{*}}{1+r_{F}}
+    \]
+    \item 市场出清条件是
+    \[
+        \begin{aligned}
+            \theta_{1,S}^{*}S+c_{1,0}^{*}+I^{*}&=\theta_{2,b}^{*}\\
+            \theta_{1,S}^{*}+\theta_{2,S}^{*}&=0
+        \end{aligned}
+    \]
+    再加上 $\frac{1}{1+r_{F}}=\phi_{a}+\phi_{b}$，$S=\phi_{a}\lambda_{a}+\phi_{b}\lambda_{b}$ 可以求得均衡状态价格为
+    \[
+        \begin{aligned}
+            \phi_{a}&=\frac{\pi_{a}e_{0}^{1-\alpha}}{\lambda_{a}\alpha^{\alpha}(1+\alpha)^{1-\alpha}}\\
+            \phi_{b}&=\frac{\pi_{b}e_{0}^{1-\alpha}}{\lambda_{b}\alpha^{\alpha}(1+\alpha)^{1-\alpha}}
+        \end{aligned}
+    \]
+    最优的生产投入为 $I^{*}=\frac{\alpha e_{0}}{1+\alpha}$，最优消费为
+    \[
+        \begin{aligned}
+            c_{1,0}^{*}&=\frac{1-\alpha}{2(1+\alpha)}e_{0},\quad c_{2,0}^{*}=\tfrac12 e_{0},\quad C_{0}^{*}=\frac{1}{1+\alpha}e_{0}\\
+            c_{1,a}^{*}&=\frac{\pi_{a}}{2\phi_{a}}\frac{1-\alpha}{1+\alpha}e_{0},\quad c_{2,a}^{*}=\frac{\pi_{a}}{2\phi_{a}}e_{0},\quad C_{a}^{*}=\lambda_{a}\Bigl(\frac{\alpha e_{0}}{1+\alpha}\Bigr)^{\alpha}\\
+            c_{1,b}^{*}&=\frac{\pi_{b}}{2\phi_{b}}\frac{1-\alpha}{1+\alpha}e_{0},\quad c_{2,b}^{*}=\frac{\pi_{b}}{2\phi_{b}}e_{0},\quad C_{b}^{*}=\lambda_{b}\Bigl(\frac{\alpha e_{0}}{1+\alpha}\Bigr)^{\alpha}
+        \end{aligned}
+    \]
+    \item 考虑两个参与者的边际效用之比：
+    \[
+        \begin{aligned}
+            \frac{\pi_{a}c_{1,0}^{*}}{c_{1,a}^{*}}&=\phi_{a}=\frac{\pi_{a}c_{2,0}^{*}}{c_{2,a}^{*}}\\
+            \frac{\pi_{b}c_{1,0}^{*}}{c_{1,b}^{*}}&=\phi_{b}=\frac{\pi_{b}c_{2,0}^{*}}{c_{2,b}^{*}}
+        \end{aligned}
+    \]
+    因而均衡配置是 Pareto 最优的。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{15.4**} 考虑练习 15.3 中的经济。
+\begin{enumerate}[label=(\alph*)]
+    \item 构建代表性参与者。
+    \item 通过求解代表性参与者的优化问题而得到均衡配置。
+    \item 用代表性参与者的边际效用计算状态价格。
+    \item 讨论 $\lambda_{b}$、$\lambda_{a}$ 以及 $\alpha$ 如何影响状态价格和均衡配置。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 我们知道，对于对数形式的效用函数，代表性参与者的效用函数也是对数形式的，且与财富在参与者之间的分布无关；
+    \item 对于代表性参与者，他的优化问题是
+    \[
+        \max_{I}\ \log(e_{0}-I)+\pi_{a}\log(\lambda_{a}I^{\alpha})+\pi_{b}\log(\lambda_{b}I^{\alpha})
+    \]
+    目标函数等于 $\log(e_{0}-I)+\alpha\log I+$ 常数。一阶条件
+    \[
+        -\frac{1}{e_{0}-I}+\frac{\alpha}{I}=0
+    \]
+    即 $I=\alpha(e_{0}-I)$，故 $I^{*}=\dfrac{\alpha e_{0}}{1+\alpha}$，$c_{0}^{*}=\dfrac{e_{0}}{1+\alpha}$。1 期总消费为 $C_{\omega}^{*}=\lambda_{\omega}(I^{*})^{\alpha}$；
+    \item 状态价格为
+    \[
+        \begin{aligned}
+            \phi_{a}&=\frac{\pi_{a}C_{0}}{C_{a}}=\pi_{a}\frac{\frac{e_{0}}{1+\alpha}}{\lambda_{a}\bigl(\frac{\alpha e_{0}}{1+\alpha}\bigr)^{\alpha}}=\frac{\pi_{a}e_{0}^{1-\alpha}}{\lambda_{a}\alpha^{\alpha}(1+\alpha)^{1-\alpha}}\\
+            \phi_{b}&=\frac{\pi_{b}e_{0}^{1-\alpha}}{\lambda_{b}\alpha^{\alpha}(1+\alpha)^{1-\alpha}}
+        \end{aligned}
+    \]
+    \item 均衡配置只受到 $\alpha$ 的影响，$\alpha$ 增大，相同生产投入的产出增加，因而参与者会减少当前消费，增加生产投入；当 $\alpha$ 增大时，状态价格均变小，而当 $\lambda_{a}$，$\lambda_{b}$ 增加时，相应状态的状态价格变小，因而 $\alpha$，$\lambda_{a}$，$\lambda_{b}$ 增加会增加产出，因而状态价格变小。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{15.5**} 与练习 15.2 中的经济一样。在这里我们不假设有一组给定的可交易证券，而是假设拥有生产技术的参与者 1 可以成立一个公司、而公司可以到市场上发行债券和股票，但没有其它可交易的证券。一单位（无风险）公司债在 1 期有 1 单位支付，而一股股票在 1 期有 $\hat{\lambda}I^{\alpha}$ 单位支付，在状态 $a$ 和 $b$ 下 $\hat{\lambda}=\lambda_{a}$，$\lambda_{b}$，$I$ 是公司的生产投资。
+\begin{enumerate}[label=(\alph*)]
+    \item 给定利率 $r_{F}$ 和股价 $S$，求解参与者 1 的优化问题，即最优的投资额、在市场发行的债券和股票的数量以及他的消费。
+    \item 在这种情况下，有无最优负债水平？这和 Modigliani--Miller 定理是否一致？解释原因。
+    \item 求解市场均衡，特别地，求解均衡利率、股价、生产水平、发行的债券和股票的数量以及两个参与者的消费配置。
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item 假设参与者的投资额为 $I$，在市场上发行的债券和股票分别为 $\theta_{B}$，$\theta_{S}$，那么他的优化问题是
+    \[
+        \begin{aligned}
+            \max_{\theta_{B},\,\theta_{S},\,I}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
+            \text{s.t.}\;&c_{0}=\theta_{B}+S\theta_{S}-I\\
+            &c_{a}=\lambda_{a}I^{\alpha}(1-\theta_{S})-\theta_{B}(1+r_{F})\\
+            &c_{b}=\lambda_{b}I^{\alpha}(1-\theta_{S})-\theta_{B}(1+r_{F})
+        \end{aligned}
+    \]
+    一阶条件为
+    \[
+        \begin{aligned}
+            \frac{1}{c_{0}}+\pi_{a}\frac{-(1+r_{F})}{c_{a}}+\pi_{b}\frac{-(1+r_{F})}{c_{b}}&=0\\
+            \frac{S}{c_{0}}-\frac{\pi_{a}\lambda_{a}I^{\alpha}}{c_{a}}-\frac{\pi_{b}\lambda_{b}I^{\alpha}}{c_{b}}&=0\\
+            \frac{1}{c_{0}}-\frac{\pi_{a}\lambda_{a}\alpha I^{\alpha-1}(1-\theta_{S})}{c_{a}}+\frac{\pi_{b}\lambda_{b}\alpha I^{\alpha-1}(1-\theta_{S})}{c_{b}}&=0
+        \end{aligned}
+    \]
+    由上述方程组可以解得最优的 $\theta_{B}^{*}$，$\theta_{S}^{*}$，$I^{*}$。
+    \item 给定 $r_{F}$，$S$，参与者的债券和股票的最优发行量是定值，与 MM 定理不一致，这是因为此时的证券市场是不完全的。
+    \item 对于参与者 2 来说，他的最优化问题是
+    \[
+        \begin{aligned}
+            \max_{\theta_{B}',\,\theta_{S}'}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
+            \text{s.t.}\;&c_{0}=e_{0}-\theta_{B}'-S\theta_{S}'\\
+            &c_{a}=\lambda_{a}I^{\alpha}\theta_{S}'+\theta_{B}'(1+r_{F})\\
+            &c_{b}=\lambda_{b}I^{\alpha}\theta_{S}'+\theta_{B}'(1+r_{F})
+        \end{aligned}
+    \]
+    求解出最优的 $\theta_{B}'^{*}$，$\theta_{S}'^{*}$ 以后，再加上市场出清条件
+    \[
+        \theta_{B}^{*}=\theta_{B}'^{*},\quad\theta_{S}^{*}=\theta_{S}'^{*}
+    \]
+    就可以求解出均衡利率、均衡股价，从而可以得到均衡的生产水平、债券和股票的发行量、以及消费配置。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\problemno{15.6*} 在 15.5 现在假设市场上存在一只无风险证券可供参与者交易。Modigliani--Miller 定理成立，即公司的融资决策不影响它的投资决策和均衡配置。解释这种情形和上述情形之间的差别。
+\end{problem}
+\begin{solution}
+如果市场上有无风险证券可以交易，假设参与者 1 购买的债券数量为 $\theta_{B}'$，那么他的优化问题就变成了
+\[
+    \begin{aligned}
+        \max_{\theta_{B},\,\theta_{B}',\,\theta_{S},\,I}\;&\log c_{0}+\pi_{a}\log(c_{a})+\pi_{b}\log(c_{b})\\
+        \text{s.t.}\;&c_{0}=\theta_{B}+\theta_{B}'+S\theta_{S}-I\\
+        &c_{a}=\lambda_{a}I^{\alpha}(1-\theta_{S})-(\theta_{B}+\theta_{B}')(1+r_{F})\\
+        &c_{b}=\lambda_{b}I^{\alpha}(1-\theta_{S})-(\theta_{B}+\theta_{B}')(1+r_{F})
+    \end{aligned}
+\]
+这时我们只能得到 $\theta_{B}+\theta_{B}'$ 的值，而不能确定债券的发行量，因而公司债券发行量的大小（融资决策）不影响公司的投资决策和均衡配置。这是因为公司除了发行债券外，还可以到市场上买卖无风险债券，可以通过调整无风险债券的头寸来补充公司债券发行量的增减，因此债券的发行量不再影响到公司的投资决策以及消费配置，
+\end{solution}
+
