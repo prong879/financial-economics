@@ -1,0 +1,334 @@
+{
+  "source_repository": "https://github.com/prong879/dk431",
+  "source_commit": "543dd4a1f7ccc70b7b7dae3db1d8539513ebd042",
+  "files": [
+    {
+      "path": "金融经济学_王江_讲义及习题.tex",
+      "sha256": "039134939aa9fadac3f438bab49167457d96f0710640e72ad7e9703b17d82949"
+    },
+    {
+      "path": "金融经济学_熊和平_习题.tex",
+      "sha256": "6d83dc2656c09ef992e1c62adcfb0f0932a12b5167cd8d076e97e50867691ee4"
+    },
+    {
+      "path": ".latexmkrc",
+      "sha256": "f614e51ad9a511e55cbb428e4cceeb9a6454f4eacb1c572b55e2aa267e4cae36"
+    },
+    {
+      "path": "tex/金融经济学_王江/15_完全市场下的公司财务_习题.tex",
+      "sha256": "e32c358495cbab3138ed114e9f368dbb3bffa62ad83a3600982baf6e11e89107"
+    },
+    {
+      "path": "tex/金融经济学_王江/04_套利和资产定价.tex",
+      "sha256": "85decbcb3b94d097f4d2d95a1b396f34865083340b3878e268401dc067b05961"
+    },
+    {
+      "path": "tex/金融经济学_王江/04_套利和资产定价_习题.tex",
+      "sha256": "ef15498b7f6bcbb03c46d5c84899e12c178459b9256df56908dee9aea054ddd3"
+    },
+    {
+      "path": "tex/金融经济学_王江/13_CAPM_习题.tex",
+      "sha256": "5549d18fee04114320e9074929d4d980fe8ee212090e27525437497709adeb5c"
+    },
+    {
+      "path": "tex/金融经济学_王江/10_完全市场_习题.tex",
+      "sha256": "36e0593d0c88bffd6fe6b8cf5a9936225caff0043b6bdf0178997b4518b0466b"
+    },
+    {
+      "path": "tex/金融经济学_王江/12_均值方差偏好.tex",
+      "sha256": "b78aaae41c12af1629ac5fb61b36c4a41d956284a84ca3f28491390a234abfc9"
+    },
+    {
+      "path": "tex/金融经济学_王江/14_APT_习题.tex",
+      "sha256": "00bd72689ad34c3ce021cb9fd8039633df565c28b3fb4c5f5ce67067d2e6d511"
+    },
+    {
+      "path": "tex/金融经济学_王江/11_不完全市场.tex",
+      "sha256": "764713b1b5ce57d76d39758d21624905492b411c6066e7f67ba3accd9cf912db"
+    },
+    {
+      "path": "tex/金融经济学_王江/02_基本框架.tex",
+      "sha256": "846a5bc81c5f6823afb3b7e3e64be42a1640b007575825a8d238aeb721151c1c"
+    },
+    {
+      "path": "tex/金融经济学_王江/13_CAPM.tex",
+      "sha256": "c21e142fbc40e38cf1542cfe9251beb924ce56d1137b3485e87c6b5929a1bf0e"
+    },
+    {
+      "path": "tex/金融经济学_王江/03_Arrow-Debreu经济_习题.tex",
+      "sha256": "3aa50def4cc7188d65bc9119463b555dc4b52f03e1cbb3c32496d8356808ce5f"
+    },
+    {
+      "path": "tex/金融经济学_王江/10_完全市场.tex",
+      "sha256": "079c2318c0a8c1483f6b26f399bca62e6c9f8e3a28365f4c4912966c6deac658"
+    },
+    {
+      "path": "tex/金融经济学_王江/03_Arrow-Debreu经济.tex",
+      "sha256": "5076b69bede95ed2c3b61d541975273e2e240fbfcfa195c0d26c7b19b1c7c463"
+    },
+    {
+      "path": "tex/金融经济学_王江/08_组合选择一_习题.tex",
+      "sha256": "5ac806d4eb4910e12733e0c1d4c6f5e2cceae86b6cd9c72d6de43babc8d6cb09"
+    },
+    {
+      "path": "tex/金融经济学_王江/15_完全市场下的公司财务.tex",
+      "sha256": "ba84143b734e2d6f773d8bd4ed7030aa6bb7bc36d19aea73e457695f7220a7bb"
+    },
+    {
+      "path": "tex/金融经济学_王江/05_期权_习题.tex",
+      "sha256": "bf3993d6cf1641070a13a5baa7de26a448c914196fedf3c38e18a0faed7d1481"
+    },
+    {
+      "path": "tex/金融经济学_王江/02_基本框架_习题.tex",
+      "sha256": "fc7fb18e4ca04e02e93d607b476da180c04d08bae1c29de216ce8c20a88d7e10"
+    },
+    {
+      "path": "tex/金融经济学_王江/12_均值方差偏好_习题.tex",
+      "sha256": "fb2f2d899af91a6bc717fda0fe1e1a0db0e7ae6992e3286f506baec96cbcb13c"
+    },
+    {
+      "path": "tex/金融经济学_王江/11_不完全市场_习题.tex",
+      "sha256": "28acba9379781e191483231ec396b8f56cbb3d0da7da9a567a59245baa828a4a"
+    },
+    {
+      "path": "tex/金融经济学_王江/08_组合选择一.tex",
+      "sha256": "2dff53af963378b031c20119bd967765eb6216b1f1f680d052399c3c0a7698ce"
+    },
+    {
+      "path": "tex/金融经济学_王江/07_风险厌恶_习题.tex",
+      "sha256": "298eb67b5d1f790ff0228dcbdda90495029723e1c0583e998d831705fbf2354e"
+    },
+    {
+      "path": "tex/金融经济学_王江/07_风险厌恶.tex",
+      "sha256": "45fd02daf5b9dd9d520533eae9aded274f6c137a7e940723dfa4e4f4698cdbb2"
+    },
+    {
+      "path": "tex/金融经济学_王江/14_APT.tex",
+      "sha256": "04c44b4bf720409dcc2c98ad9bf32eab528d53dfb9d3ba9460d04957ec1f1d4a"
+    },
+    {
+      "path": "tex/金融经济学_王江/06_期望效用函数.tex",
+      "sha256": "8dd2d21011106454399a8ccff3edffff3996e32124998e7d89f6a457c95c7700"
+    },
+    {
+      "path": "tex/金融经济学_王江/09_组合选择二.tex",
+      "sha256": "fb40d32fd9863d637a1d00c4d1c1ed3533caf0fd9f0b28b375c45850588d225a"
+    },
+    {
+      "path": "tex/金融经济学_王江/06_期望效用函数_习题.tex",
+      "sha256": "cf40e5678da40fb8f62412bf1b2869dba3e3c02e9496d4b23d25e7ad4e3c3580"
+    },
+    {
+      "path": "tex/金融经济学_王江/05_期权.tex",
+      "sha256": "4836e64551fcff5301166eafa69e2f2247577ad32d8703bd5f2019179ea1d454"
+    },
+    {
+      "path": "tex/金融经济学_王江/09_组合选择二_习题.tex",
+      "sha256": "c38d24f25d813b4c6e1fd636016655fb43ff908be04c96f1341108e150bc8356"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/A_附录_布朗运动及其简单描述.tex",
+      "sha256": "af4d3a9d7854520b0c4e5b2a12d887e94c65b92c95b1527b8fef59b8cb5d01b4"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/13_生产性经济与资源配置.tex",
+      "sha256": "003af5879687b48b189b8361425eaa1f0dca4ef1013b35d919f10da79e0d0e50"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/11_完全市场下的资源配置与资产定价_习题.tex",
+      "sha256": "07a3f0c6f77ef881648a8790e7766832d4ab9468c414c809c7fbfa906f6e5489"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/07_基于消费的投资组合理论.tex",
+      "sha256": "ff5c6a32800d7413f8297629e6738a4d670094d359131c6cc900ab3a170c5f2e"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/03_风险厌恶及典型的效用函数.tex",
+      "sha256": "893ae43c9f0d7f0e8e28f6befd368992c02fb025521af536aff3a6bbe832dc42"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/02_期望效用理论.tex",
+      "sha256": "4ae8c0b39d7a6488166f49f664ca98ca1ce972008f15ad1d00885d97eae6594f"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/01_基本框架及分析模式_习题.tex",
+      "sha256": "7d2f9d90b86464119809bc44bbee2a05c144fdb6bcd416d65b10d5d78d3b4708"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/02_期望效用理论_习题.tex",
+      "sha256": "4457ea7cd8e39ab7852a88a4e1a04014b2472a3fdd0cd0a9722452ceb62c0208"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/12_基于消费的资产定价模型.tex",
+      "sha256": "f75404902fd9975838ad175873fc1b57a7831c9e8a25679a4d0aa3d2945f042f"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/08_马科维茨投资组合理论.tex",
+      "sha256": "6f51cd7fadabae221dcff4ec265724528f48a5df6f666180259f8195e1c19731"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/06_无套利原理在衍生证券定价中的应用.tex",
+      "sha256": "4e5f58cb98947e1960580ee9eb4012db0828b6775a60ed046b605c2f7b67cc26"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/06_无套利原理在衍生证券定价中的应用_习题.tex",
+      "sha256": "2c43488ea2aa85f51a0ea1b59c1ef6bec0e994b7bd403c65e20becdd7c7abbae"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/13_生产性经济与资源配置_习题.tex",
+      "sha256": "7ffefcca31fbc43907ed65b07fcda271f39c4ee0c50dfe66be6bf4820c0369e8"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/08_马科维茨投资组合理论_习题.tex",
+      "sha256": "4c3c1301886767b4946647524b67b026b6aadcd245f255b9d6d01c28520cbe2a"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/14_异质性投资者.tex",
+      "sha256": "d548357fc262edce6f11d080309410c0f9e2ace90d4bde958e74df23f3066712"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/11_完全市场下的资源配置与资产定价.tex",
+      "sha256": "c6f1006f030dcb1be7941e1eb55996221eb1c4fc960300df7428be61b9781887"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/05_套利定价的理论基础.tex",
+      "sha256": "453302e49b3c3fc729d1a9ac069fefbbbdb42e1c6dcfbb67487c8d0b6a4cac6d"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/10_因子模型与套利定价理论.tex",
+      "sha256": "50e6d2e550be13cff7fe54257af73d7ce8c9f7c9306cb573cd1df2ca328e9986"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/03_风险厌恶及典型的效用函数_习题.tex",
+      "sha256": "325a11c81ae1c6ce2b58f54dd280c6f1d0b149a4a33c73e2b4a733a2d4f3905e"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/04_Arrow-Debreu经济_习题.tex",
+      "sha256": "11d388242a549bb0b212564269851fddf129fcb23d6eeda7d282fabaae018b73"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/05_套利定价的理论基础_习题.tex",
+      "sha256": "7ff0d4599d3a3349e70d981936f0145c6f389560bb0d917e6b8aa8dcea349d8f"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/15_家庭金融_习题.tex",
+      "sha256": "93caf14ae300b79242b7da2c8a8dd405f5415ba0b3b3c521990293c999d4bdad"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/10_因子模型与套利定价理论_习题.tex",
+      "sha256": "0ff03ccb9113f56184a9a5b56ad2a16e00e4956622bbc1f7de831a0a49fdd64e"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/04_Arrow-Debreu经济.tex",
+      "sha256": "bbac899d8a9722d9cbf848779b52435ecbb35414c8736ca9d02f18baa1c4d468"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/09_资本资产定价模型.tex",
+      "sha256": "662eaa5802a73a34e417073977fe33545954d890feff266aaf32972af952f342"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/09_资本资产定价模型_习题.tex",
+      "sha256": "8ed526a05c5a2ef89bb555920207c8ff110ad486b5713b8af0bce6364cee0d16"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/15_家庭金融.tex",
+      "sha256": "19f4f243755b61f8f0ad2f50efadea1cacbed50affb4e0a87dbc03b0485b5d7a"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/07_基于消费的投资组合理论_习题.tex",
+      "sha256": "084557f82000772fff8c8cdd2d5248d2648be748da7c6a33fc36d97a770f8329"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/14_异质性投资者_习题.tex",
+      "sha256": "ece59490bbbe9ebf3526f12ef55613fee5abc85abed98413b58ec0be55df266b"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/12_基于消费的资产定价模型_习题.tex",
+      "sha256": "3bf48f4757fb7095bd77e1689f9bac2526234f2e054feff36661a8ae47ef0d94"
+    },
+    {
+      "path": "tex/金融经济学_熊和平/01_基本框架及分析模式.tex",
+      "sha256": "161221054caab9e99e51510f24ed6f82a22b688bc85fd4485e843175d998698f"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-choices.sty",
+      "sha256": "219318bf37e29400bf8c14a1db4653be007b1b9234a44ffc79b38eaeba0840cc"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-textfigure.sty",
+      "sha256": "64b1671e86b8db2f8e9a8d43e41fd8676b13cf5502d2e22efb537e6d3085e9bc"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-chinese-english.sty",
+      "sha256": "9158258f9a2a1dc58370a153a72cc1bbd909cabdf1edc2c7a786fd1e7690c031"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-symbols.sty",
+      "sha256": "1d1585baf062c7c496ca22c9e16854641a27eb051302a900b5406ca3492a6932"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-question.sty",
+      "sha256": "11ffef30dc53445e298b4196fd322c1f1d7337b8155cf58492fe99dc17c2e720"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-math.sty",
+      "sha256": "79b37dd3f188403e813f1165c44920c0d7d171bb4062f53bf0523694d5c230b0"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh-font.sty",
+      "sha256": "0cc62bc5d19f76d0e2aded07141912b0f09b879e1c586a79725b255dae04a30b"
+    },
+    {
+      "path": "texmf/tex/latex/exam-zh/exam-zh.cls",
+      "sha256": "ae9bb1fcadf405f658ce4657a78375ea253c59fec77cc35a2dcc5816dbdf9baf"
+    },
+    {
+      "path": "tex/_shared/431-common.tex",
+      "sha256": "4c915783ae0bc54ae865c1e97fbaf98cd03db70ea14c46de1282704d99ee3c63"
+    },
+    {
+      "path": "tex/_shared/431-fonts.tex",
+      "sha256": "80a98db5d7ab54d347291ff1d4039fc6349487efd6091cd177dcd300afa0f199"
+    },
+    {
+      "path": "tex/_shared/431-cover.tex",
+      "sha256": "2ed79d6130ae100e2894b37f66294633f9e1cf45afe94790b087f09d3d07f963"
+    },
+    {
+      "path": "fonts/SourceHanSerifCN-Regular.ttf",
+      "sha256": "f31323f60e4101846f26bde87f2b983432bd06889292586c2e5f72a579b7c509"
+    },
+    {
+      "path": "fonts/SourceHanSerifCN-Bold.ttf",
+      "sha256": "7500a5e61d3fd7f266dcaf197db8308d3998a249a044981c0b621bbaf79e8720"
+    },
+    {
+      "path": "fonts/SourceHanSerifCN-Medium.ttf",
+      "sha256": "f4cfda5d5c0b28734e8c4ab0d80d0b0189248de3ca52f295a421afa3f23ccd79"
+    },
+    {
+      "path": "fonts/SourceHanSansCN-Regular.ttf",
+      "sha256": "f5a90b6167c9411b41cae473225f907bf34118424c3a6e8711769760006d64c5"
+    },
+    {
+      "path": "fonts/SourceHanSansCN-Bold.ttf",
+      "sha256": "c73a7a2727d220304ce347682f074fb928c0b9dc5d36fd099f59bc0b7ed5c07a"
+    },
+    {
+      "path": "fonts/AR-PL-KaitiM-GB.ttf",
+      "sha256": "61519fb9bdda4a1a3aa02a12cbb76c2ef897ce879775d7ea2265d0a65fe54d16"
+    },
+    {
+      "path": "tools/latex/build-dual.sh",
+      "sha256": "cee39903be07b657285ec2e9acc406dc7239e042b955b14897893ebcc4048835"
+    },
+    {
+      "path": "tools/latex/split_wj_handout_exercises.py",
+      "sha256": "bf4018f690872439d510bebfbdb40dd1c6dc349eb3dafaf69c47c718d26edc90"
+    },
+    {
+      "path": "tools/latex/renumber_xhp_exercises.py",
+      "sha256": "b87c3e0a75fe51898c8616d979a5f47f8c0a88701e8e7395ee17943b9fecbe27"
+    }
+  ]
+}
