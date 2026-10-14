@@ -124,7 +124,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 
     \begin{tcolorbox}[example]
         \begin{question}
-            \textbf{例 2.3}\quad 在例 2.1 中描述的「Lucas 树」经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
+            \textbf{例 2.3}\quad 在例 2.1 中描述的 Lucas 树经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
             \[
                 U(c_0,c_{1a},c_{1b})=\log c_0+\tfrac12(\log c_{1a}+\log c_{1b})
             \]
@@ -171,6 +171,64 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
     \item \textbf{连续性：}$\lim_{a_n \to a}U(a_n)=U(a)$。
     \item \textbf{凸性：}如果 $U(a)>U(b)$ 且 $\alpha\in(0,1)$，那么 $U(\alpha a+(1-\alpha)b)>U(b)$。
 \end{enumerate}
+
+本章习题里反复出现的是下面几种效用函数$u(x)$的形式。两状态等概率时，跨期效用写成
+\[
+    U(c)=u(c_0)+\tfrac12\bigl(u(c_{1a})+u(c_{1b})\bigr).
+\]
+
+表中只记函数形状，以及它如何对应不满足性和凸性。绝对风险厌恶、相对风险厌恶以及 CARA、CRRA 的比较留到第 6、7 章。
+
+{\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}llX@{}}
+\toprule
+名称 & 效用函数 $u(x)$ & 要点 \\
+\midrule
+对数 & $\log x$ & $x>0$。严格递增、严格凹。幂效用在 $\gamma\to 1$ 时的极限。 \\
+幂 & $\dfrac{x^{1-\gamma}}{1-\gamma}$ & $\gamma>0$、$\gamma\neq 1$，$x>0$。严格递增、严格凹。平方根效用即 $\gamma=\tfrac12$。常相对风险厌恶（CRRA）。 \\
+负指数 & $-e^{-ax}$ & $a>0$。严格递增、严格凹。常绝对风险厌恶（CARA）。 \\
+二次 & $x-\tfrac12 a x^{2}$ & $a=0$ 时线性，处处递增；$a>0$ 时仅当 $x<1/a$ 边际效用为正，不满足性只在此范围内成立。 \\
+\bottomrule
+\end{tabularx}}
+
+下图只示意形状，纵轴各自平移和缩放。幂效用取 $\gamma=2$，负指数与二次取 $a=1$。二次图中的虚线是边际效用降为零的位置 $x=1/a$。
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}cccc@{}}
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (0.22,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0.32:2.15, samples=50, smooth] plot (\x,{0.95+0.62*ln(\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (0.22,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0.34:2.15, samples=50, smooth] plot (\x,{1.42-0.40/\x});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (0,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0:2.15, samples=40, smooth] plot (\x,{1.32-1.12*exp(-\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (0,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0:2, samples=40, smooth] plot ({1.05*\x},{2.4*(\x-0.5*\x*\x)});
+    \draw[dashed, black!45] (1.05,0) -- (1.05,1.2);
+    \node[below, inner sep=1pt] at (1.05,0) {$1/a$};
+\end{tikzpicture}
+\\[0.15em]
+对数 $\log x$ & 幂 $\dfrac{x^{1-\gamma}}{1-\gamma}$ & 负指数 $-e^{-ax}$ & 二次 $x-\tfrac12 ax^{2}$
+\end{tabular}
+\end{center}
 
 \end{tcolorbox}
 
@@ -508,6 +566,17 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
     \end{enumerate}
 
     \item 如果配置 $\{c_k,\,\forall k\}$ 是可行的，且不存在另外的可行配置 Pareto 占优于它，则该配置是 \textbf{Pareto 最优的}。如果证券市场允许参与者达到 Pareto 最优配置，就称它为\textbf{有效市场}。
+
+    \item \textbf{对数效用下的支出份额。}设 \(U=\log c_0+\rho\log c_1\)，两期且 1 期只有一个状态，只有收益率为 \(r_F\) 的无风险证券。以 0 期消费计价的财富为 \(w=e_0+e_1/(1+r_F)\)。最优消费满足
+    \[
+        c_1^{*}=\rho(1+r_F)\,c_0^{*},
+    \]
+    因而 0 期消费占财富的份额只由 \(\rho\) 决定：
+    \[
+        c_0^{*}=\frac{w}{1+\rho},\qquad
+        c_1^{*}=\frac{\rho(1+r_F)}{1+\rho}\,w.
+    \]
+    \(c_0^{*}/w=1/(1+\rho)\) 不随 \(r_F\) 改变；利率只通过 \(w\) 里未来禀赋的现值影响 \(c_0^{*}\)。这是对数效用（相对风险厌恶为 1）的结论。幂效用在 \(\gamma\neq 1\) 时，以及负指数效用，都没有这个与财富水平无关的份额。
 \end{enumerate}
 \end{tcolorbox}
 \fi

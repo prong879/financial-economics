@@ -69,8 +69,25 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 反证法。如果 $r_{ia}<r_{ib}$，那么从银行 $i$ 借入 1 块钱并存入银行 $i$，那么在 0 期支付为 0 而 1 期支付为 $r_{ib}r_{ia}>0$，参与者可获得第 2 类套利。因此，$r_{ia}\ge r_{ib}$；
-    \item $r_{1a}>r_{2b}$，$r_{1b}<r_{2a}$。
+    \item 设 $r_{ia}<r_{ib}$。从银行 $i$ 借入 $1$ 并存入该银行：0 期收到贷款 $1$、支付存款 $1$，净现金流为 $0$；1 期收回 $1+r_{ib}$、偿还 $1+r_{ia}$，净现金流为
+    \[
+        (1+r_{ib})-(1+r_{ia})=r_{ib}-r_{ia}>0.
+    \]
+    这是第 2 类套利。因此无套利要求 $r_{ia}\ge r_{ib}$。
+    \item 无套利当且仅当最高存款利率不超过最低贷款利率：
+    \[
+        \max(r_{1b},r_{2b})\le\min(r_{1a},r_{2a}),
+    \]
+    即 $r_{1a}\ge r_{1b}$、$r_{2a}\ge r_{2b}$、$r_{1a}\ge r_{2b}$、$r_{2a}\ge r_{1b}$。
+
+    若 $r_{1a}<r_{2b}$，从银行 1 借入 $1$ 并存入银行 2，0 期净现金流为 $0$，1 期净现金流为 $r_{2b}-r_{1a}>0$。若 $r_{2a}<r_{1b}$，从银行 2 借入并存入银行 1，1 期净现金流为 $r_{1b}-r_{2a}>0$。本行的情形已由 (a) 给出。
+
+    反过来，设上述四个不等式成立，记 $r_{b}^{*}=\max(r_{1b},r_{2b})$、$r_{a}^{*}=\min(r_{1a},r_{2a})$，则 $r_{b}^{*}\le r_{a}^{*}$。以 $\theta_{i}\ge 0$ 表示在银行 $i$ 的借款、$\delta_{i}\ge 0$ 表示存款。0 期净流入为 $\sum\theta_{i}-\sum\delta_{i}$，1 期净流入为
+    \[
+        \sum_{i}\delta_{i}(1+r_{ib})-\sum_{i}\theta_{i}(1+r_{ia})
+        \le(1+r_{b}^{*})\sum\delta_{i}-(1+r_{a}^{*})\sum\theta_{i}.
+    \]
+    若 0 期净流入为 $0$，则 $\sum\theta_{i}=\sum\delta_{i}$，1 期净流入不超过 $(r_{b}^{*}-r_{a}^{*})\sum\delta_{i}\le 0$。若 0 期净流入为正，则 $\sum\theta_{i}>\sum\delta_{i}$，1 期净流入严格为负。因此不存在套利。
 \end{enumerate}
 \end{solution}
 
@@ -183,7 +200,20 @@
     \]
     无风险利率 $r_{F}=\bigl(\sum_{i}\phi_{i}\bigr)^{-1}-1=0.25$。
     \item 等价鞅测度 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$，即 $Q=\begin{bmatrix}0.25 \\ 0.25 \\ 0.25 \\ 0.25\end{bmatrix}$。
-    \item 对每只证券 $n$，$\mathrm{E}^{Q}[X_{n}]/(1+r_{F})=\phi^{\mathsf T}X_{n}=S_{n}$。例如证券 1：$\mathrm{E}^{Q}[X_{1}]=1$，故 $1/(1.25)=0.8=S_{1}$；证券 3、4 同理可验证 $1.2$ 与 $0.6$。
+    \item 由 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$ 与 $1+r_{F}=1/\sum_{j}\phi_{j}$，
+    \[
+        \frac{\mathrm{E}^{Q}[X_{n}]}{1+r_{F}}=\phi^{\mathsf T}X_{n}.
+    \]
+    证券 $1$、$2$、$4$、$5$ 的价格正是用来解出 $\phi$ 的，故 $\phi^{\mathsf T}X_{n}=S_{n}$。证券 $3$ 的价格取为 $S_{3}=\phi^{\mathsf T}X_{3}$。在 $Q_{i}=1/4$、$1+r_{F}=5/4$ 下，
+    \[
+        \begin{aligned}
+            \frac{\mathrm{E}^{Q}[X_{1}]}{1+r_{F}}&=\frac{(1+1+1+1)/4}{5/4}=0.8=S_{1},\\
+            \frac{\mathrm{E}^{Q}[X_{2}]}{1+r_{F}}&=\frac{(1+2+3+4)/4}{5/4}=2=S_{2},\\
+            \frac{\mathrm{E}^{Q}[X_{3}]}{1+r_{F}}&=\frac{(0+1+2+3)/4}{5/4}=1.2=S_{3},\\
+            \frac{\mathrm{E}^{Q}[X_{4}]}{1+r_{F}}&=\frac{(0+0+1+2)/4}{5/4}=0.6=S_{4},\\
+            \frac{\mathrm{E}^{Q}[X_{5}]}{1+r_{F}}&=\frac{(0+0+0+1)/4}{5/4}=0.2=S_{5}.
+        \end{aligned}
+    \]
 \end{enumerate}
 \end{solution}
 

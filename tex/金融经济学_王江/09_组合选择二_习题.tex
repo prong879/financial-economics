@@ -138,9 +138,9 @@
     \[
         w\mu-aw^{2}\bigl[(1+r_{F}+x^{\top}\mu)\mu+\Sigma x\bigr]=0
     \]
-    即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得
+    即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得最优权重
     \[
-        x=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
+        x^{*}=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
     \]
     其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。风险组合中各资产的相对权重由 $(\mu\mu^{\top}+\Sigma)^{-1}\mu$ 决定，与财富、风险厌恶的水平只差一个共同标量。
 
@@ -169,9 +169,9 @@
     \[
         w\mu-aw^{2}\Sigma x=0
     \]
-    因而
+    因而最优权重为
     \[
-        x=\frac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)
+        x^{*}=\frac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)
     \]
     其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。相对权重由 $\Sigma^{-1}\mu$ 决定，与 $a$、$w$ 无关。
 
@@ -189,12 +189,12 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 由第七题我们知道最优组合的风险资产权重为 $x=\dfrac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)$，因而期望效用为
+    \item 由第七题我们知道最优组合的风险资产权重为 $x^{*}=\dfrac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)$，因而期望效用为
     \[
         \begin{aligned}
             E[u(\tilde{w})]
             &=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)\\
-            &=-\exp\Bigl(-aw(1+r_{F})-aw\,x^{\top}(\bar{r}-r_{F}\iota)+\tfrac12 a^{2}w^{2}x^{\top}\Sigma x\Bigr)\\
+            &=-\exp\Bigl(-aw(1+r_{F})-aw\,{x^{*}}^{\top}(\bar{r}-r_{F}\iota)+\tfrac12 a^{2}w^{2}{x^{*}}^{\top}\Sigma x^{*}\Bigr)\\
             &=-\exp\Bigl(-aw(1+r_{F})-\tfrac12(\bar{r}-r_{F}\iota)^{\top}\Sigma^{-1}(\bar{r}-r_{F}\iota)\Bigr)
         \end{aligned}
     \]

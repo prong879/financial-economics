@@ -153,22 +153,22 @@
     求得最优的股票需求量为
     \[
         \begin{aligned}
-            \theta_{k,a}&=\frac{1}{\alpha}\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{a}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
+            \theta_{k,a}^{*}&=\frac{1}{\alpha}\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{a}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
             &\quad\times\bigl(\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))+\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))\bigr)\\
-            \theta_{k,b}&=\frac{1}{\alpha}\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{b}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
+            \theta_{k,b}^{*}&=\frac{1}{\alpha}\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))-\frac{\sigma_{w}^{2}}{\alpha}\Sigma_{b}^{-1}(\sigma_{w}^{2}(\Sigma_{a}^{-1}+\Sigma_{b}^{-1})+I)^{-1}\\
             &\quad\times\bigl(\Sigma_{a}^{-1}(\bar{v}-P_{a}(1+r_{F}))+\Sigma_{b}^{-1}(\bar{v}-P_{b}(1+r_{F}))\bigr)
         \end{aligned}
     \]
     类似地可以求得国家 $b$ 中参与者 $k$ 的需求函数有
     \[
-        \theta_{k,a}'=\theta_{k,a},\qquad\theta_{k,b}'=\theta_{k,b}
+        \theta_{k,a}'^{*}=\theta_{k,a}^{*},\qquad\theta_{k,b}'^{*}=\theta_{k,b}^{*}
     \]
 
     \item 市场出清条件是
     \[
         \begin{aligned}
-            \sum\theta_{k,a}+\sum\theta_{k,a}'&=\iota\\
-            \sum\theta_{k,b}+\sum\theta_{k,b}'&=\iota
+            \sum\theta_{k,a}^{*}+\sum\theta_{k,a}'^{*}&=\iota\\
+            \sum\theta_{k,b}^{*}+\sum\theta_{k,b}'^{*}&=\iota
         \end{aligned}
     \]
     因而可以求得均衡股价为

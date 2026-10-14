@@ -1,9 +1,347 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 20–25（印刷页 19–24）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 67–81
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 20–25（印刷页 19–24）
 
 \zhchapter{期权：一个套利定价的例子}
 
 \ifdefined\WJHandoutKnowledge
+
+第 4 章给出无套利与资产定价基本定理的一般形式。本章把它们用到\textbf{期权}上：先只靠无套利得到价格的上下界与平价关系，再在完全市场（尤其是二叉树）中得到精确价格；最后说明期权本身也可以把市场完全化。
+
+\begin{tcolorbox}[knowledge,title=5.1 期权]
+记标的证券（下文统称股票，也可以是任意证券）在 1 期的支付为 $\tilde{X}$，0 期价格为 $S$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 5.1}\quad \textbf{欧式看涨期权}（European call）赋予买方在到期日、以执行价格 $K$ 从期权出售者处买入 1 单位标的证券的权利。\textbf{欧式看跌期权}（European put）则是以执行价格 $K$ 卖出 1 单位标的证券的权利。
+
+在本书的两期框架里只有一个到期日，就是 1 期。$K$ 称为\textbf{执行价格}（exercise price）。因为是权利而不是义务，只有支付为正时才会执行。记欧式看涨、看跌在 1 期的支付为 $\tilde{c}$、$\tilde{p}$，则
+\[
+    \tilde{c}=[\tilde{X}-K]_{+},\qquad \tilde{p}=[K-\tilde{X}]_{+},
+    \tag{5.1}
+\]
+其中 $[x]_{+}=\max\{0,x\}$。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 5.2}\quad 执行价格为 $K$、到期日为 $t$ 的\textbf{美式看涨（看跌）期权}赋予买方在到期日及此前任一日期，以价格 $K$ 买入（卖出）1 单位标的证券的权利。
+\end{tcolorbox}
+
+$S-K$ 称为看涨期权的\textbf{内在价值}（intrinsic value），看跌期权的内在价值是 $K-S$。内在价值大于、等于、小于 $0$ 时，分别称为\textbf{实值}（in the money）、\textbf{平值}（at the money）、\textbf{虚值}（out of the money）。
+
+期权是买方与出售者（\textbf{期权立权人}，option writer）之间的零和合约：买方得到的正支付恰为出售者的付出，净供给恒为 $0$。支付又完全由标的证券的价格决定。满足这两条的证券称为\textbf{衍生证券}（derivative security）。
+
+记 $c(S,K)$、$p(S,K)$ 为欧式看涨、看跌的 0 期价格，$C(S,K)$、$P(S,K)$ 为相应的美式价格。定价分两步：无套利给出基本性质与上下界；完全市场给出精确公式。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=5.2 期权价格的性质和界]
+欧式期权的支付只在到期日发生，价格由支付决定。影响价格的因素主要有：标的证券的价格与支付、合同条款（执行价格；本书只有一个到期日）、以及决定货币时间价值的利率。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 5.1}\quad $c(S,K)$ 与 $p(S,K)$ 非负。
+
+支付非负，再由无套利即得。
+
+\textbf{定理 5.2}\quad $c(S,K)$ 对 $K$ 非增，$p(S,K)$ 对 $K$ 非减。
+
+对 $K_1>K_2$，$[\tilde{X}-K_1]_{+}\le[\tilde{X}-K_2]_{+}$，无套利（定价算子单调）给出 $c(S,K_1)\le c(S,K_2)$。看跌类似。
+
+\textbf{定理 5.3}\quad $c(S,K)$ 与 $p(S,K)$ 是 $K$ 的凸函数。
+
+$[\,\cdot\,]_{+}$ 对 $K$ 凸：对 $\alpha\in(0,1)$，
+\[
+    [\tilde{X}-(\alpha K_1+(1-\alpha)K_2)]_{+}
+    \le\alpha[\tilde{X}-K_1]_{+}+(1-\alpha)[\tilde{X}-K_2]_{+}.
+\]
+定价算子线性且单调，故 $c(S,K)$ 对 $K$ 凸。$[K-\tilde{X}]_{+}$ 同样。
+
+\textbf{定理 5.4}\quad 设 $\theta\ge 0$ 为 $N$ 只证券的组合，价格向量 $S=\begin{bmatrix}S_1\\\vdots\\S_N\end{bmatrix}\gg 0$，执行价格向量 $K=\begin{bmatrix}K_1\\\vdots\\K_N\end{bmatrix}\gg 0$。则
+\[
+    c(S^{\mathsf T}\theta,\,K^{\mathsf T}\theta)\le\sum_{i=1}^{N}\theta_i\,c(S_i,K_i),
+    \qquad
+    p(S^{\mathsf T}\theta,\,K^{\mathsf T}\theta)\le\sum_{i=1}^{N}\theta_i\,p(S_i,K_i).
+\]
+以组合为标的的期权，不比“各证券期权按同样权重组成的组合”更贵。证明来自支付的凸性：
+\[
+    [(\tilde{X}-K)^{\mathsf T}\theta]_{+}
+    \le\sum_{i=1}^{N}\theta_i[\tilde{X}_i-K_i]_{+}.
+\]
+
+\textbf{定理 5.5}\quad $S\ge c(S,K)$。
+
+$\tilde{X}\ge[\tilde{X}-K]_{+}$，无套利即得。
+
+\textbf{定理 5.6}\quad 若存在收益率为 $r_F$ 的无风险证券，则
+\[
+    c(S,K)\ge\Bigl[S-\frac{K}{1+r_F}\Bigr]_{+}.
+\]
+买入 1 股、卖出面值 $K$（现值为 $K/(1+r_F)$）的无风险证券，现值为 $S-K/(1+r_F)$，1 期支付为 $\tilde{X}-K$。而 $[\tilde{X}-K]_{+}\ge\tilde{X}-K$，故 $c(S,K)\ge S-K/(1+r_F)$。再与 $c\ge 0$ 合并即得。
+\end{tcolorbox}
+
+欧式看涨的上下界因此是
+\[
+    \Bigl[S-\frac{K}{1+r_F}\Bigr]_{+}\le c(S,K)\le S.
+    \tag{5.2}
+\]
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 5.7（看涨—看跌平价）}\quad 若存在收益率为 $r_F$ 的无风险证券，则
+\[
+    c(S,K)+\frac{K}{1+r_F}=p(S,K)+S.
+    \tag{5.3}
+\]
+\end{tcolorbox}
+
+比较两个组合：（1）1 份执行价为 $K$ 的看涨，加上面值为 $K$ 的无风险证券（现值为 $K/(1+r_F)$）；（2）1 份执行价为 $K$ 的看跌，加上 1 股股票。
+\[
+\begin{array}{c|cc}
+ & \tilde{X}\le K & \tilde{X}>K \\ \hline
+\text{组合 1} & [\tilde{X}-K]_{+}+K=K & [\tilde{X}-K]_{+}+K=\tilde{X} \\
+\text{组合 2} & [K-\tilde{X}]_{+}+\tilde{X}=K & [K-\tilde{X}]_{+}+\tilde{X}=\tilde{X}
+\end{array}
+\]
+1 期支付相同，0 期成本必相同，即 (5.3)。看跌的界可由平价从看涨的界推出。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=5.3 美式期权以及提前执行]
+\textbf{提前执行}（early exercise）是权利不是义务。持有至到期时，美式期权与相应欧式期权支付相同；既然可以等到更优时再执行，美式价格不会低于欧式价格：
+\[
+    C(S,K)\ge c(S,K),\qquad P(S,K)\ge p(S,K).
+    \tag{5.4}
+\]
+若提前执行以正概率发生，则不等式严格。是否提前执行，与标的在到期前是否支付\textbf{股利}有关。此前默认证券只在 1 期有支付；0 期的支付就是股利。
+
+\begin{tcolorbox}[example]
+\begin{question}
+\textbf{例 5.1}\quad 0 期股价为 $100$ 的股票支付股利 $100$（如同清算：资产变现 $100$ 并全部作为股利付出）。除息后股价降为 $0$。以此股票为标的、执行价格为 $80$ 的欧式看涨与相应美式看涨，价格分别是多少？提前执行是否最优？
+\end{question}
+\begin{solution}
+1 期股价为 $0$，欧式看涨支付为 $0$，故其价格为 $0$。美式看涨可以在股利发放前执行：支付 $80$ 买入股票，立刻得到股利 $100$，净得 $20$。提前执行严格优于持有至到期，美式看涨价值为 $20$。
+\end{solution}
+\end{tcolorbox}
+
+因此，分析提前执行时必须把股利考虑进去。先看无股利，再看有股利。
+
+\tcbline
+
+\textbf{A.\ 无股利时的提前执行}
+
+无股利时，美式看涨\textbf{不会}提前执行。立即执行只得到 $S-K$，而
+\[
+    S-K\le S-\frac{K}{1+r_F}
+    \le\Bigl[S-\frac{K}{1+r_F}\Bigr]_{+}
+    \le c(S,K)\le C(S,K).
+\]
+提前执行的所得不超过把同一期权当作欧式期权卖掉的价值；且当 $r_F>0$ 时，在 $S>K$ 的状态下第一个不等式严格，提前执行是次优的。因而
+\[
+    C(S,K)=c(S,K).
+\]
+代价来自两处：一是货币的时间价值——行权策略“到期无论股价如何都执行”得到 $\tilde{X}-K$，现值 $S-K/(1+r_F)$，已优于现在就付出 $K$；二是到期可以不执行，$[\tilde{X}-K]_{+}$ 优于 $\tilde{X}-K$。
+
+无股利的美式看跌则可能提前执行。提前执行放弃的是“支付可以更高时不执行”的权利，得到的是现在就收到 $K$、而不是以后才收到。由平价，
+\[
+    P(S,K)
+    =\max\Bigl[K-S,\;p(S,K)\Bigr]
+    =\max\Bigl[K-S,\;\frac{K}{1+r_F}-S+c(S,K)\Bigr].
+\]
+当 $K-S>K/(1+r_F)-S+c(S,K)$，即
+\[
+    \frac{r_F}{1+r_F}K>c(S,K)
+\]
+时，提前执行最优。看跌深度实值（$K\gg S$，从而看涨几乎无价值）时，这个不等式成立。
+
+\tcbline
+
+\textbf{B.\ 有股利时的提前执行}
+
+设股票在 $0$ 期还支付股利 $D$，记 $S$ 为\textbf{除息价}。美式看涨在 $0$ 期可以：（1）支付 $K$ 执行并拿到股利，得到 $S+D-K$；或（2）持有至 1 期。最优策略下
+\[
+    C(S,D,K)=\max\bigl[S+D-K,\;c(S,K)\bigr].
+\]
+看跌相应为
+\[
+    P(S,D,K)=\max\bigl[K-S-D,\;p(S,K)\bigr].
+\]
+由 (5.4)，$C(S,D,K)\ge c(S,K)$、$P(S,D,K)\ge p(S,K)$。因此对美式期权，\textcolor{red}{\textbf{股利促使持有者提前执行看涨、推迟执行看跌}}。
+
+有股利时平价也要改。比较：（1）1 份执行价为 $K$ 的看涨，加上现值为 $K/(1+r_F)+D$ 的无风险证券；（2）1 份执行价为 $K$ 的看跌，加上 1 股股票（$0$ 期得到股利 $D$，并按无风险利率持有至 1 期）。
+\[
+\begin{array}{c|cc}
+ & \tilde{X}\le K & \tilde{X}>K \\ \hline
+\text{组合 1} & K+D(1+r_F) & \tilde{X}+D(1+r_F) \\
+\text{组合 2} & K+D(1+r_F) & \tilde{X}+D(1+r_F)
+\end{array}
+\]
+支付相同，故
+\[
+    c(S,K)+\frac{K}{1+r_F}+D=S+p(S,K).
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=5.4 完全市场中的期权定价]
+若证券市场完全，状态价格 $\phi\gg 0$ 唯一。记 $S_\omega$ 为标的在状态 $\omega$ 的支付，则
+\[
+    c(S,K)
+    =\sum_{\omega}\phi_{\omega}[S_{\omega}-K]_{+}
+    =\frac{1}{1+r_F}\,\mathrm{E}^{Q}[\tilde{S}-K]_{+},
+\]
+其中 $Q$ 为风险中性测度。要得到更具体的公式，需要对股价过程再加假设。
+
+\tcbline
+
+\textbf{二叉树。}股价现值为 $S$。下一期以概率 $p$ 变为 $uS$、以概率 $1-p$ 变为 $dS$，设 $u>d$：
+\begin{center}
+\WJEventTree[left={$S$},stem]{uS\text{，概率 }p, dS\text{，概率 }1-p}
+\end{center}
+另有无风险证券，1 期支付 $1$，价格 $B=1/(1+r_F)$，利率为 $r_F$。
+
+无套利要求 $d<1+r_F<u$。反证：若 $d\ge 1+r_F$，买入 1 股（支出 $S$），同时卖出 $S(1+r_F)$ 份无风险证券（收入恰为 $S$），0 期净支出为 $0$。1 期上涨时支付 $[u-(1+r_F)]S>0$，下跌时 $[d-(1+r_F)]S\ge 0$，构成套利。故 $d<1+r_F$；同理 $u>1+r_F$。
+
+两个状态、股票与债券的支付线性无关，市场完全，状态价格唯一。$\phi=\begin{bmatrix}\phi_u\\\phi_d\end{bmatrix}\gg 0$ 满足
+\[
+    S=\phi_u\,uS+\phi_d\,dS,\qquad B=\phi_u+\phi_d,
+\]
+解得
+\[
+    \phi_u=\frac{1}{1+r_F}\frac{1+r_F-d}{u-d},
+    \qquad
+    \phi_d=\frac{1}{1+r_F}\frac{u-(1+r_F)}{u-d}.
+\]
+欧式看涨价格为
+\[
+    c=\phi_u[uS-K]_{+}+\phi_d[dS-K]_{+}.
+    \tag{5.5}
+\]
+
+\tcbline
+
+\textbf{复制。}只有两个状态时，股票和债券使任何其他证券成为冗余证券，其价格等于复制组合的价格。到期支付
+\[
+    c_u=[uS-K]_{+},\qquad c_d=[dS-K]_{+}.
+\]
+持有 $\theta_S$ 股与 $\theta_B$ 份面值 $1$ 的债券，使两个状态下的支付分别等于 $c_u$、$c_d$：
+\[
+    \theta_S\,uS+\theta_B=c_u,\qquad \theta_S\,dS+\theta_B=c_d.
+\]
+解为
+\[
+    \theta_S=\frac{c_u-c_d}{(u-d)S},
+    \qquad
+    \theta_B=\frac{uc_d-dc_u}{u-d}.
+\]
+$\theta_S$ 称为\textbf{对冲比}（hedge ratio，期权的 $\delta$）。组合在 0 期的价值为 $v=\theta_S S+\theta_B/(1+r_F)$。无套利要求 $c=v$，代回即得 (5.5)。
+
+\tcbline
+
+\textbf{风险中性概率。}定义等价鞅测度
+\[
+    q=\frac{\phi_u}{\phi_u+\phi_d}=\frac{1+r_F-d}{u-d},
+    \qquad
+    1-q=\frac{\phi_d}{\phi_u+\phi_d}=\frac{u-(1+r_F)}{u-d}.
+\]
+则
+\[
+    c=\frac{1}{1+r_F}\bigl[qc_u+(1-q)c_d\bigr]
+    =\frac{\mathrm{E}^{Q}[c_1]}{1+r_F}.
+\]
+记 $\hat{c}\equiv c/B$、$\hat{S}\equiv S/B$（用无风险债券价格把价格规范化）。在 $Q$ 下 $\hat{c}$ 与 $\hat{S}$ 是鞅：$\hat{c}_t=\mathrm{E}^{Q}[\hat{c}_{t+1}]$，$\hat{S}_t=\mathrm{E}^{Q}[\hat{S}_{t+1}]$。这就是\textbf{二叉树期权定价模型}（binomial model）：完全市场里，期权价格由股票和债券的价格经无套利唯一决定，不需要真实概率 $p$。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=5.5 期权与市场完全化]
+完全市场中期权是冗余证券，价格由原生证券复制。若期权不是冗余的，引入期权可以扩大可生成的支付，甚至把市场完全化。
+
+\tcbline
+
+\textbf{A.\ 蝴蝶头寸}\quad 同一标的、同一到期日、执行价格不同的欧式看涨可以拼出特定支付。\textbf{蝴蝶头寸}（butterfly）为：买入 1 份执行价 $K-\delta$ 的看涨，卖出 2 份执行价 $K$ 的看涨，买入 1 份执行价 $K+\delta$ 的看涨。1 期支付为
+\[
+    [\tilde{S}-(K-\delta)]_{+}-2[\tilde{S}-K]_{+}+[\tilde{S}-(K+\delta)]_{+}
+    =
+    \begin{cases}
+        0, & \tilde{S}\le K-\delta,\\
+        \tilde{S}-(K-\delta), & K-\delta<\tilde{S}\le K,\\
+        -\tilde{S}+(K+\delta), & K<\tilde{S}<K+\delta,\\
+        0, & \tilde{S}\ge K+\delta.
+    \end{cases}
+\]
+只有 $\tilde{S}\in(K-\delta,\,K+\delta)$ 时支付非零，形状与状态或有证券类似。
+
+\tcbline
+
+\textbf{B.\ 用期权完全化市场}\quad 若一只证券（或组合）的支付 $\{X_\omega:\omega\in\Omega\}$ 满足 $\omega\neq\omega'$ 时 $X_\omega\neq X_{\omega'}$，称为具有\textbf{状态分离}（state separating）的支付，该证券称为\textbf{状态指数证券}（state-index security）。不妨按支付从小到大编号：$X_1<X_2<\cdots<X_\Omega$。
+
+以它为标的、执行价格为 $X_\omega$ 的欧式看涨，支付为
+\[
+    [\tilde{X}-X_\omega]_{+}
+    =\bigl[0,\ldots,0,\,X_{\omega+1}-X_\omega,\,\ldots,\,X_\Omega-X_\omega\bigr]^{\mathsf T}.
+\]
+下面 $\Omega$ 只证券的支付矩阵满秩，因而市场完全：1 份状态指数证券，加上执行价格分别为 $X_1,\ldots,X_{\Omega-1}$ 的 $\Omega-1$ 份欧式看涨，
+\[
+    X=
+    \begin{bmatrix}
+        X_1 & 0 & 0 & \cdots & 0 \\
+        X_2 & X_2-X_1 & 0 & \cdots & 0 \\
+        X_3 & X_3-X_1 & X_3-X_2 & \cdots & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        X_\Omega & X_\Omega-X_1 & X_\Omega-X_2 & \cdots & X_\Omega-X_{\Omega-1}
+    \end{bmatrix}.
+\]
+
+取一个方便计算的例子：状态 $\omega=1,\ldots,\Omega$ 下指数证券支付为 $\delta,2\delta,\ldots,\Omega\delta$。执行价格为 $0,\delta,2\delta,\ldots,(\Omega-1)\delta$ 的看涨（执行价 $0$ 就是标的本身）的支付矩阵为下三角满秩阵
+\[
+    X=
+    \begin{bmatrix}
+        \delta & 0 & \cdots & 0 \\
+        2\delta & \delta & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \Omega\delta & (\Omega-1)\delta & \cdots & \delta
+    \end{bmatrix}.
+\]
+执行价为 $n\delta$ 的看涨记为 $X_{\cdot,n}$。蝴蝶头寸“买入执行价 $0$、卖出 2 份执行价 $\delta$、买入执行价 $2\delta$”的支付为
+\[
+    X_p=(X_{\cdot,0}-X_{\cdot,1})-(X_{\cdot,1}-X_{\cdot,2})
+    =[\delta,\delta,\ldots,\delta]^{\mathsf T}-[0,\delta,\ldots,\delta]^{\mathsf T}
+    =[\delta,0,\ldots,0]^{\mathsf T},
+\]
+即 $\delta$ 份状态 $1$ 的或有证券。一般地，执行价 $(i-1)\delta$、$i\delta$、$(i+1)\delta$ 的蝴蝶头寸只在状态 $i$ 支付 $\delta$。因此这组期权可以复制任意状态或有要求权。
+
+记 $\phi_i$ 为状态 $i$ 的状态价格，$K_i=i\delta$。由蝴蝶头寸的价格，
+\[
+    \phi_i
+    =\frac{1}{\delta}\Bigl\{\bigl[c(K_{i-1})-c(K_i)\bigr]-\bigl[c(K_i)-c(K_{i+1})\bigr]\Bigr\}
+    =\frac{c(K_{i-1})-2c(K_i)+c(K_{i+1})}{\delta}.
+\]
+支付为 $\{X_{\omega_i}\}$ 的资产价格为 $S=\sum_i\phi_i X_{\omega_i}$，也即
+\[
+    S=\sum_i\frac{c(K_{i+1})-2c(K_i)+c(K_{i-1})}{\delta^{2}}\,X_{\omega_i}\,\delta.
+\]
+状态与 $K_i$ 一一对应，支付可写成 $K$ 的函数 $X(K)$。指数证券连续分布且 $c$ 二阶可导时，取 $\delta=\mathrm{d}K$，二阶差商趋于 $\partial^{2}c/\partial K^{2}$，
+\[
+    S=\int_{0}^{\infty}\frac{\partial^{2}c(K)}{\partial K^{2}}X(K)\,\mathrm{d}K.
+\]
+这是 Breeden--Litzenberger 公式。定义风险中性密度
+\[
+    q(K)
+    =\frac{\partial^{2}c(K)/\partial K^{2}}{\displaystyle\int_{0}^{\infty}\partial^{2}c(K)/\partial K^{2}\,\mathrm{d}K}.
+\]
+无风险债券价格为
+\[
+    B=\int_{0}^{\infty}\frac{\partial^{2}c(K)}{\partial K^{2}}\,\mathrm{d}K=\frac{1}{1+r_F},
+\]
+故规范化价格是鞅：
+\[
+    \frac{S}{B}=\int_{0}^{\infty}q(K)\,X(K)\,\mathrm{d}K.
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=本章小结]
+\begin{enumerate}
+    \item 欧式看涨（看跌）是在到期日以执行价格 $K$ 买入（卖出）标的的权利，支付为 $[\tilde{X}-K]_{+}$（$[K-\tilde{X}]_{+}$）。美式期权允许到期日前执行。
+    \item 无套利给出欧式看涨的界 $\bigl[S-K/(1+r_F)\bigr]_{+}\le c(S,K)\le S$。
+    \item 看涨—看跌平价：$c(S,K)+K/(1+r_F)=p(S,K)+S$。有股利 $D$（$S$ 为除息价）时改为 $c+K/(1+r_F)+D=S+p$。
+    \item 美式价格不低于欧式价格。无股利时美式看涨不会提前执行，$C=c$；美式看跌在深度实值时可能提前执行。股利促使提前执行看涨、推迟执行看跌。
+    \item 市场完全时，期权由状态价格定价。二叉树中 $d<1+r_F<u$，股票与债券唯一决定状态价格、对冲比和风险中性概率 $q=(1+r_F-d)/(u-d)$，真实概率 $p$ 不进入价格。
+    \item 期权不是冗余证券时，状态指数证券上不同执行价的看涨（蝴蝶头寸）可以复制阿罗证券，从而把市场完全化；连续情形下状态价格密度由看涨价格对执行价的二阶导数给出。
+\end{enumerate}
+\end{tcolorbox}
 \fi
 
 \input{tex/金融经济学_王江/05_期权_习题.tex}
