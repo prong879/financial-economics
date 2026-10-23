@@ -1,5 +1,6 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 14–18（印刷页 13–17）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 49–62
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 14–18（印刷页 13–17）
 
 \zhchapter{套利和资产定价}
 
@@ -60,14 +61,26 @@
 
 常分为三类（记严格不等方向与教材一致）：
 \begin{itemize}
-    \item \textbf{第 1 类：}$S^{\mathsf T}\theta<0$ 且 $X\theta=0$——0 期白捡钱、未来无负债；
-    \item \textbf{第 2 类：}$S^{\mathsf T}\theta=0$ 且 $X\theta>0$——\textbf{套利组合}（零成本、未来严格正支付）；
-    \item \textbf{第 3 类：}$S^{\mathsf T}\theta<0$ 且 $X\theta>0$——0 期收入为正且未来仍为正。
+    \item \textbf{第 1 类套利：}$S^{\mathsf T}\theta<0$ 且 $X\theta=0$——0 期白捡钱、未来无负债；
+    \item \textbf{第 2 类套利：}$S^{\mathsf T}\theta=0$ 且 $X\theta>0$——\textbf{套利组合}（零成本、未来严格正支付）；
+    \item \textbf{第 3 类套利：}$S^{\mathsf T}\theta<0$ 且 $X\theta>0$——0 期收入为正且未来仍为正。
 \end{itemize}
 
 \begin{tcolorbox}[example]
-\textbf{例 4.1}\quad $S^{\mathsf T}=[1,\,1,\,2]$，
-$X=\begin{bmatrix}1&0&2\\1&2&0\\1&2&0\end{bmatrix}$（三证券在各状态下的支付）。组合 $\theta_1=[2;\,-1;\,-1]$：$S^{\mathsf T}\theta_1=-1$，$X\theta_1=0$，为\textbf{第 1 类套利}。经济直觉：支付 $[2;2;2]$ 可由 2 单位证券 1 以成本 $2$ 复制，也可由 1 单位 $B$ 加 1 单位 $C$ 以成本 $3$ 复制——同支付不同价。
+\textbf{例 4.1}\quad 三只证券的价格写在树的根上，支付写在各枝：
+\begin{center}
+\begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
+\textbf{A} & \textbf{B} & \textbf{C} \\[0.35em]
+\WJEventTree[left={$1$},stem]{1,1,1} &
+\WJEventTree[left={$1$},stem]{0,2,2} &
+\WJEventTree[left={$2$},stem]{2,0,0}
+\end{tabular}
+\end{center}
+即 $S^{\mathsf T}=[1,\,1,\,2]$，$X=\begin{bmatrix}1&0&2\\1&2&0\\1&2&0\end{bmatrix}$。
+
+组合 $\theta_1=[2;\,-1;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $B$ 和 $1$ 单位 $C$。$S^{\mathsf T}\theta_1=-1$，$X\theta_1=0$，为\textbf{第 1 类套利}。支付 $[2;2;2]$ 可由 $2$ 单位 $A$ 以成本 $2$ 复制，也可由 $1$ 单位 $B$ 加 $1$ 单位 $C$ 以成本 $3$ 复制——同支付不同价。
+
+组合 $\theta_2=[2;\,0;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $C$。$S^{\mathsf T}\theta_2=0$，$X\theta_2=[0;\,2;\,2]>0$，为\textbf{第 2 类套利}。
 \end{tcolorbox}
 \end{tcolorbox}
 
@@ -85,19 +98,179 @@ $X=\begin{bmatrix}1&0&2\\1&2&0\\1&2&0\end{bmatrix}$（三证券在各状态下�
 \end{tcolorbox}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=4.4 资产定价基本定理（开端）]
-将证券（或组合）的 1 期支付 $x\in\mathrm{R}^{\Omega}$ 映射为 0 期价格 $S$，记\textbf{定价算子}（估值算子）$V$：
+\begin{tcolorbox}[knowledge,title=4.4 资产定价基本定理]
+资产定价关系是从支付 $x$ 到价格的映射。记\textbf{定价算子}（估值算子）$V$：
 \[
     S=V(x).
     \tag{4.1}
 \]
-对列向量 $x$ 为某只证券支付时，$S_n=V(X_n)$。
+第 $n$ 只证券的价格即 $S_n=V(X_n)$。无套利把 $V$ 收成正的线性泛函。
 
 \begin{tcolorbox}[knowledge]
-\textbf{定理 4.3（一价定律）}\quad 若两只证券（或组合）未来支付相同，$x_1=x_2$，则 0 期价格必相同：$V(x_1)=V(x_2)$。
+\textbf{定理 4.3（一价定律）}
+\[
+    x=y\implies V(x)=V(y).
+    \tag{4.2}
+\]
 \end{tcolorbox}
 
-无套利蕴含一价定律；反之一般不成立。进一步可证：\textbf{无套利}等价于存在\textbf{状态价格}（或正线性定价泛函）使 $S=X^{\mathsf T}\phi$（完全市场时 $\phi$ 唯一，不完全市场时 $\phi$ 可能不唯一甚至某些分量可为负，见练习 4.5）。鞅测度表述见练习 4.8。
+没有第 1 类套利就得到一价定律。推论：未来支付为 $0$ 的证券价格为 $0$，即 $V(0)=0$。一价定律弱于无套利：没有第 1 类套利推不出没有第 2、3 类。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.4}\quad 支付为正的证券价格为正：
+\[
+    x>0\implies V(x)>0.
+    \tag{4.3}
+\]
+
+\textbf{定理 4.5}\quad $V$ 递增：
+\[
+    x_1\ge x_2\implies V(x_1)\ge V(x_2).
+    \tag{4.4}
+\]
+\end{tcolorbox}
+
+没有第 2 类和第 3 类套利即得这两条。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.6}\quad 无摩擦市场中，定价算子是递增的线性算子：对任意 $a,b\in\mathrm{R}$ 以及支付 $x$、$y$，
+\[
+    V(ax+by)=aV(x)+bV(y).
+    \tag{4.5}
+\]
+从而 $V(0)=0$，并且存在向量 $\phi\in\mathrm{R}^{\Omega}$ 使 $V(x)=\phi^{\mathsf T}x$。
+\end{tcolorbox}
+
+形式与第 3 章的状态价格公式相同。这里只知道 $\phi$ 是一个向量；下一条才把它收成严格正、并且说明这正是无套利。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.7（资产定价基本定理）}\quad 市场不存在套利机会，当且仅当存在 $\phi\gg 0$，使得每只可交易证券的价格都是
+\[
+    S=X^{\mathsf T}\phi.
+    \tag{4.6}
+\]
+教材写成 $S=(\phi^{\mathsf T}X)^{\mathsf T}$，与上式相同。
+\end{tcolorbox}
+
+充分性直接：若 (4.6) 对一切可交易支付成立，则 $V(0)=\phi^{\mathsf T}0=0$，且 $x>0$ 时 $V(x)>0$，三类套利都被排除。必要性是 Stiemke 引理的特例：对 $m\times n$ 矩阵 $X$，存在 $\phi\gg 0$ 使 $S=X^{\mathsf T}\phi$，当且仅当集合 $\{\theta:[-S^{\mathsf T}\theta;\,X\theta]>0\}$ 为空。该集合正是套利机会的集合。证明放在教材附录。
+
+因此无套利意味着存在严格正的状态价格，可为\textbf{所有}可交易证券定价。这样的 $\phi$ 一般不唯一；定理 4.7 没有给出唯一性。给已有证券定价的线性解可以含负分量（练习 4.5），但那一支不能用来代表无套利：无套利要求的是存在一支 $\phi\gg 0$。
+
+\begin{tcolorbox}[example]
+\textbf{例 4.2}\quad 市场上先只有证券 $A$，价格为 $1$，三个状态下支付都是 $1$。没有套利。任一满足 $\phi_1+\phi_2+\phi_3=1$ 的 $\phi\gg 0$ 都能为它定价：
+\[
+    \Phi_A=\{\phi\gg 0:\phi_1+\phi_2+\phi_3=1\}.
+\]
+再加入证券 $B$，价格为 $1$，支付为 $[0;\,2;\,2]$。能为它定价的是
+\[
+    \Phi_B=\{\phi\gg 0:2\phi_2+2\phi_3=1\}.
+\]
+同时给 $A$、$B$ 定价的状态价格是交集
+\[
+    \Phi_A\cap\Phi_B=\{\phi\gg 0:\phi_1=\tfrac12,\;\phi_2+\phi_3=\tfrac12\},
+\]
+解不唯一，故 $A$、$B$ 的价格里没有套利。
+
+再加入证券 $C$，价格为 $2$，支付为 $[2;\,0;\,0]$。条件变成 $\phi_1=1$，
+\[
+    \Phi_C=\{\phi\gg 0:\phi_1=1\}.
+\]
+三者的交集是空集。不存在能为所有证券定价的 $\phi\gg 0$，与例 4.1 中这三只证券存在套利一致。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 4.8}\quad 完全市场上，状态价格向量唯一。
+\end{tcolorbox}
+
+设 $\theta_\omega$ 复制状态 $\omega$ 的阿罗证券，$X\theta_\omega=\mathbf{1}_\omega$。则 $\phi_\omega=S^{\mathsf T}\theta_\omega$，由 $S$ 与复制组合唯一给定。完全意味着任意支付都可通过市场交易复制；这时用状态价格给支付赋值是有效的。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=4.5 风险中性定价和鞅]
+设可交易证券中有一只无风险债券，1 期支付为 $\iota=[1,\ldots,1]^{\mathsf T}$，价格为 $S_1$。由基本定理，存在 $\phi\gg 0$ 使
+\[
+    S_1=\phi^{\mathsf T}\iota=\sum_{\omega\in\Omega}\phi_{\omega}.
+\]
+$1$ 单位债券投资的净收益率称为\textbf{无风险利率} $r_F$：
+\[
+    S_1(1+r_F)=1,\qquad r_F=\frac{1-S_1}{S_1}.
+\]
+因而
+\[
+    \frac{1}{1+r_F}=\sum_{\omega\in\Omega}\phi_{\omega}.
+    \tag{4.7}
+\]
+债券价格可以写成对其确定支付 $1$ 的贴现。$1/(1+r_F)$ 是折现因子，$r_F$ 是折现率。贴现只是用状态价格定价的一种写法。利率也是货币的时间价值：今天 $1$ 单位资源换取未来确定资源时，市场给出的回报。
+
+对其余证券 $n=2,\ldots,N$，支付 $x_n=[x_{1n},\ldots,x_{\Omega n}]^{\mathsf T}$，
+\[
+    S_n=\phi^{\mathsf T}x_n=\sum_{\omega\in\Omega}\phi_{\omega}x_{\omega n}.
+\]
+定义\textbf{风险中性概率}（规范化的状态价格）
+\[
+    q_{\omega}=\frac{\phi_{\omega}}{\sum_{\omega'}\phi_{\omega'}}.
+    \tag{4.8}
+\]
+$q_{\omega}>0$ 且 $\sum q_{\omega}=1$，故 $Q=\{q_{\omega}\}$ 是 $\Omega$ 上的概率测度。定价公式改写成
+\[
+    S_n=S_1\sum_{\omega}q_{\omega}x_{\omega n},
+    \qquad
+    S_n=\frac{\mathrm{E}^{Q}[\tilde{x}_n]}{1+r_F},\quad n=1,\ldots,N.
+    \tag{4.9}
+\]
+(4.9) 就是 (4.6) 的另一种写法，称为\textbf{风险中性定价}（risk-neutral pricing），$Q$ 称为\textbf{风险中性测度}。它适用于所有证券，并不区分风险大小：在 $Q$ 下，每只证券的价格都只是期望支付按无风险利率折现，好像只取得无风险收益。
+
+$Q$ 不是真实概率 $P$。它由 (4.8) 从状态价格定义，风险已经折进 $q_{\omega}$。因此 (4.9) 是定价关系，不是用 $P$ 作的概率预期。
+
+\begin{tcolorbox}[example]
+\textbf{例 4.3}\quad 1 期有两个等可能状态 $a$、$b$。
+\begin{center}
+\begin{tabular}{@{}c@{\quad}c@{}}
+\textbf{证券 1} & \textbf{证券 2} \\[0.35em]
+\WJEventTree[left={$1$},stem]{1,1} &
+\WJEventTree[left={$\tfrac12$},stem]{2,0}
+\end{tabular}
+\end{center}
+证券 1 是无风险债券，$r_F=0$。在真实概率下两只证券的期望支付都是 $1$，但证券 2 的价格只有证券 1 的一半：期望值相同，确定支付与风险支付的价格不必相同。
+
+由价格得 $\phi_a+\phi_b=1$、$2\phi_a=1/2$，故 $\phi_a=1/4$、$\phi_b=3/4$，$Q=\{1/4,\,3/4\}$。风险中性定价给出
+\[
+    \frac{\mathrm{E}^{Q}[\tilde{x}_1]}{1+0}
+    =\tfrac14\cdot 1+\tfrac34\cdot 1=1,
+    \qquad
+    \frac{\mathrm{E}^{Q}[\tilde{x}_2]}{1+0}
+    =\tfrac14\cdot 2+\tfrac34\cdot 0=\tfrac12,
+\]
+正是两只证券的价格。求期望时用的是 $Q$ 不是 $P$。
+\end{tcolorbox}
+
+因为 $S_1=1/(1+r_F)$ 且债券的 1 期支付 $\tilde{x}_1=1$，(4.9) 也可写成
+\[
+    \frac{S_n}{S_1}=\mathrm{E}^{Q}\Bigl[\frac{\tilde{x}_n}{\tilde{x}_1}\Bigr].
+\]
+$S_n$、$S_1$ 以现时消费品计价；$S_n/S_1$ 则是以无风险债券计价的价格。用债券做计价单位时，0 期价格是 $S_n/S_1$，1 期价格是 $\tilde{x}_n$（债券在 1 期的价格恒为 $1$）。除以 $S_1$ 去掉了时间价值，剩下的是风险价值。记 $\hat{S}_{n,t}=S_{n,t}/S_{1,t}$（$t=0,1$），则
+\[
+    \hat{S}_{n,t}=\mathrm{E}^{Q}[\hat{S}_{n,t+1}].
+    \tag{4.10}
+\]
+
+\begin{tcolorbox}[knowledge]
+\textbf{定义 4.3}\quad 随机过程 $z_t,z_{t+1},\ldots$ 称为\textbf{鞅}，若当前值等于对下一期的条件期望：$z_t=\mathrm{E}_t[z_{t+1}]$。
+\end{tcolorbox}
+
+(4.10) 说的是：以债券计价后，证券价格在风险中性测度 $Q$ 下是鞅。因此 $Q$ 也称为\textbf{等价鞅测度}。这里的“等价”是指 $Q$ 与真实测度 $P$ 有相同的零概率集：$p_{\omega}=0$ 当且仅当 $q_{\omega}=0$。$\phi\gg 0$ 给出 $q\gg 0$；若真实概率也严格为正，二者等价。
+
+本书只有两个时点，价格还不是一般的随机过程。规范化价格服从鞅这一关系可以直接搬到动态框架；经济含义在这个静态模型里已经清楚。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=本章小结]
+\begin{enumerate}
+    \item 无摩擦时，线性无关的证券组合给出市场结构的等价描述。市场完全当且仅当独立支付的证券数等于状态数。
+    \item 套利是 $S^{\mathsf T}\theta\le 0$、$X\theta\ge 0$ 且至少一处严格。它只依赖公开的支付和价格，不依赖私有信息或真实概率；无摩擦时人人都可以做。
+    \item 均衡中不存在套利。前提是至少有人不满足，以及市场无摩擦。无套利是均衡的必要条件。
+    \item 资产定价基本定理：无套利当且仅当存在 $\phi\gg 0$ 使 $S=X^{\mathsf T}\phi$。完全市场中这个 $\phi$ 唯一。
+    \item 风险中性定价 $S_n=\mathrm{E}^{Q}[\tilde{x}_n]/(1+r_F)$ 是同一公式的改写。$Q$ 由状态价格规范化得到，不是真实概率。
+    \item 用无风险债券计价后，价格在 $Q$ 下是鞅，$Q$ 是等价鞅测度。
+\end{enumerate}
 \end{tcolorbox}
 \fi
 

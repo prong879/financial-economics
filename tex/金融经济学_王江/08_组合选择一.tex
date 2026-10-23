@@ -1,9 +1,265 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 32–36（印刷页 31–35）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 111–120（小结续至 121）
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 32–36（印刷页 31–35）
 
 \zhchapter{组合选择（一）}
 
 \ifdefined\WJHandoutKnowledge
+
+第 6、7 章给出了期望效用与风险厌恶的描述。本章在给定证券价格和支付的条件下，讨论参与者怎样选择消费与投资组合：先说明最优解为什么存在，再推导最优条件，最后分析风险溢价、风险厌恶与财富对投资的影响。具体效用函数下的显式解留到第 9 章。
+
+\begin{tcolorbox}[knowledge,title=8.1 解的存在性及其特征]
+\textbf{A.\ 消费与投资的联合选择}\quad 仍令 $X$ 为 $\Omega\times N$ 支付矩阵，$S$ 为价格列向量，$\theta$ 为证券持有\textbf{数量}。参与者的初始禀赋为 $(e_0,e_1)$，状态概率为 $\pi_\omega>0$，优化问题为
+\[
+\begin{aligned}
+ \max_\theta\quad &u_0(c_0)+\sum_{\omega=1}^{\Omega}\pi_\omega u_1(c_{1\omega})\\
+ \text{s.t.}\quad &c_0=e_0-S^{\mathsf T}\theta,\qquad c_1=e_1+X\theta,\\
+ &c_0\ge0,\qquad c_1\ge0.
+\end{aligned}\tag{8.1}
+\]
+投资占用今天的消费，却增加未来各状态下的消费。这里价格是参与者接受的外生条件，尚未讨论市场出清。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.1}\quad 在有限状态、无摩擦且允许自由交易的模型中，若可行消费集合非空、效用连续并对每个时期及状态的消费严格递增，则消费与组合选择问题有最优解，当且仅当市场无套利。
+\end{tcolorbox}
+
+\textbf{证明（必要性）：}若 $\theta^*$ 最优，而 $\eta$ 是套利组合，则
+\[
+ d=\begin{bmatrix}-S^{\mathsf T}\eta\\X\eta\end{bmatrix}\ge0,\qquad d\ne0.
+\]
+选择 $\theta^*+\eta$ 后，消费由 $c^*$ 变为 $c^*+d$。没有任何分量减少，至少一项增加，故效用严格提高，与最优性矛盾。
+
+\textbf{证明（充分性）：}无套利保证存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，任意可行消费满足
+\[
+ c_0+\phi^{\mathsf T}c_1=e_0+\phi^{\mathsf T}e_1=:W.
+\]
+由于消费非负且每个状态价格严格为正，
+\[
+ 0\le c_0\le W,\qquad 0\le c_{1\omega}\le W/\phi_\omega.
+\]
+所以可行消费集合有界。它又是非负正交象限与仿射子空间
+$e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在这个非空有界闭集合上取得最大值，且该消费可由某个组合实现。
+
+\textbf{说明：}有界的是可行\textbf{消费}，证券头寸未必有界；冗余证券允许不同头寸实现同一消费。严格凹效用保证最优消费唯一，组合数量还需支付映射无冗余才唯一。对数效用在零处无定义时，须在其定义域内处理边界；可利用趋近零时效用趋于 $-\infty$ 排除最优消费落在该边界。
+
+\tcbline
+\textbf{B.\ Euler 方程}\quad 把预算约束代入目标函数。若最优消费位于内点且效用可微，对第 $n$ 只证券的数量求导得
+\[
+ -u_0'(c_0)S_n+\sum_\omega\pi_\omega u_1'(c_{1\omega})x_{\omega,n}=0.
+\]
+所以
+\[
+ \underbrace{u_0'(c_0)S_n}_{\text{今天少消费的边际效用损失}}
+ =\underbrace{\mathrm E[u_1'(\tilde c_1)\widetilde X_n]}_{\text{未来支付带来的期望边际效用}},
+ \quad n=1,\ldots,N.\tag{8.2}
+\]
+这就是\textbf{Euler 方程}。当 $S_n\ne0$ 时，也可写为
+\[
+ \mathrm E\left[\frac{u_1'(\tilde c_1)}{u_0'(c_0)}
+                 \frac{\widetilde X_n}{S_n}\right]=1.\tag{8.3}
+\]
+含义是：在最优处，将最后一元用于今天消费，或用于投资后在未来消费，两者的边际效用相等。令 $m_\omega=u_1'(c_{1\omega})/u_0'(c_0)$，则 $S_n=\mathrm E[m\widetilde X_n]$；$\pi_\omega m_\omega$ 给出由该参与者最优消费支持的一组状态价格。
+
+\textbf{凹性为什么使一阶条件充分？}对任意头寸变动 $h$，目标函数的二阶方向导数为
+\[
+ u_0''(c_0)(S^{\mathsf T}h)^2+
+ \sum_\omega\pi_\omega u_1''(c_{1\omega})(Xh)_\omega^2\le0.
+\]
+因此整个目标函数对 $\theta$ 凹，内点一阶条件给出全局最优。教材逐只证券的二阶条件为
+\[
+ S_n^2u_0''(c_0)+\mathrm E[u_1''(\tilde c_1)\widetilde X_n^2]\le0.\tag{8.4}
+\]
+多只证券时应同时看所有方向的凹性；只有各个对角项非正一般不足以判断最优。若消费非负、禁止卖空或借贷约束绑定，则应使用相应约束下的最优条件，不能直接套用内点等式。
+\end{tcolorbox}
+
+\begin{tcolorbox}[example]
+\textbf{例 8.1（两状态下的对数效用）}\quad 两状态等概率，唯一证券价格为 $S>0$，支付为 $[x;1]$，其中 $x\ge1$。初始禀赋为 $e_0=w_0>0$、$e_1=0$，效用为
+\[
+ \log c_0+\frac{\rho}{2}(\log c_{1a}+\log c_{1b}),\qquad\rho>0.
+\]
+持有 $\theta$ 单位证券时，$c_0=w_0-S\theta$、$c_{1a}=\theta x$、$c_{1b}=\theta$，所以
+\[
+ \max_{0<\theta<w_0/S}\left\{\log(w_0-S\theta)+\rho\log\theta+
+ \frac{\rho}{2}\log x\right\}.
+\]
+对 $\theta$ 求导，Euler 方程为
+\[
+ \frac{S}{w_0-S\theta}=\frac{\rho}{\theta}
+ \ \Longrightarrow\ S\theta=\rho(w_0-S\theta)
+ \ \Longrightarrow\ \theta^*=\frac{\rho}{1+\rho}\frac{w_0}{S}.
+\]
+二阶导数 $-S^2/(w_0-S\theta)^2-\rho/\theta^2<0$，且两端效用趋于 $-\infty$，故这是唯一最优解。相应消费为
+\[
+ c_0^*=\frac{w_0}{1+\rho},\qquad
+ c_{1a}^*=\frac{\rho w_0x}{(1+\rho)S},\qquad
+ c_{1b}^*=\frac{\rho w_0}{(1+\rho)S}.
+\]
+\textbf{经济含义：}投资支出 $S\theta^*=\rho w_0/(1+\rho)$；越重视未来（$\rho$ 越大），储蓄比例越高。财富增加使消费和投资同比增加；给定价格，提高 $x$ 只改变目标函数中的常数项，故不改变本例的最优数量。这是本例对数偏好与零未来禀赋的性质。
+
+\textbf{核对边际效用：}
+\[
+ u_0'(c_0^*)=\frac{1+\rho}{w_0}
+ =\frac{\rho}{2}\left(\frac{x}{Sc_{1a}^*}+\frac{1}{Sc_{1b}^*}\right).
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=8.2 投资组合的选择]
+\textbf{A.\ 先选组合，再选储蓄}\quad 令
+\[
+ w=e_0-c_0=S^{\mathsf T}\theta.\tag{8.5}
+\]
+这里 $w$ 是扣除当前消费后投入证券的\textbf{金融财富}。给定 $w$，最优组合能达到的期望效用称为\textbf{间接效用函数}：
+\[
+ v_1(w)=\max_{\theta:S^{\mathsf T}\theta=w}
+       \mathrm E[u_1(\tilde e_1+\widetilde X\theta)].\tag{8.6}
+\]
+其中 $\widetilde X$ 是随机状态实现下的支付行向量，非负消费约束仍须满足。完整问题等价于
+\[
+ \max_w\{u_0(e_0-w)+v_1(w)\}.\tag{8.7}
+\]
+内层解决“同样的钱怎样投”，外层解决“今天消费多少、留下多少投资”。后文设 $e_1=0$，略去时间下标，重点研究
+\[
+ v(w)=\max_{\theta:S^{\mathsf T}\theta=w}\mathrm E[u(\widetilde X\theta)].\tag{8.8}
+\]
+不可交易的未来收入会改变组合选择，不能直接并入可自由投资的 $w$。
+
+\tcbline
+\textbf{B.\ 从证券数量改写成投资金额}\quad 设第 $N$ 只证券无风险，净利率为 $r_F$，$1+r_F>0$。将证券取向和计量单位适当调整后，设 $S_n>0$，定义
+\[
+ a_n=S_n\theta_n,\qquad
+ \tilde x_n=\frac{\widetilde X_n}{S_n},\tag{8.9}
+\]
+\[
+ \tilde r_n=\frac{\widetilde X_n-S_n}{S_n}=\tilde x_n-1.\tag{8.10}
+\]
+$a_n$ 是\textbf{金额}，$\theta_n$ 是\textbf{数量}，$a_n/w$ 才是投资\textbf{权重}；$\tilde x_n$ 是总收益率，$\tilde r_n$ 是净收益率。投资金额满足 $\sum_n a_n=w$，从而期末财富为
+\[
+\begin{aligned}
+ \tilde w&=\sum_{n=1}^N a_n(1+\tilde r_n)\\
+ &=w(1+r_F)+\sum_{n=1}^{N-1}a_n(\tilde r_n-r_F).
+\end{aligned}\tag{8.11}
+\]
+$\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-r_F$ 是本章的\textbf{风险溢价}（收益率之差），与第 7 章用确定性等价定义的货币风险溢价须区分。
+
+记 $a=(a_1,\ldots,a_{N-1})^{\mathsf T}$，$\iota$ 为全 1 列向量，组合问题变成
+\[
+ \max_a\ \mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr].\tag{8.12}
+\]
+无风险投资为 $a_N=w-\sum_{n<N}a_n$；负数表示借款。无约束内点解满足
+\[
+ \mathrm E[u'(\tilde w)(\tilde r_n-r_F)]=0,
+ \qquad n=1,\ldots,N-1.\tag{8.13}
+\]
+这表示在风险证券与无风险证券之间再转移一元，期望边际效用的净变化为零。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=8.3 最优组合的性质：单只风险证券]
+以下设 $u'>0$、$u''<0$，风险证券收益非退化，允许卖空与借贷，并假定有限的内点最优解存在、期望与求导可交换。令
+\[
+ z=\tilde r-r_F,\qquad b=w(1+r_F),\qquad
+ F(a)=\mathrm E[u(b+az)].
+\]
+则 $F'(a)=\mathrm E[u'(b+az)z]$，$F''(a)=\mathrm E[u''(b+az)z^2]<0$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.2}\quad 最优风险投资额 $a^*$ 与风险溢价同号：
+\[
+ \begin{array}{c|ccc}
+ \mathrm E[\tilde r]-r_F&=0&>0&<0\\\hline
+ a^*&=0&>0&<0
+ \end{array}
+\]
+\end{tcolorbox}
+\textbf{证明：}在 $a=0$ 时，$F'(0)=u'(b)\mathrm E[z]$，其符号与 $\mathrm E[z]$ 相同。严格凹性使 $F'$ 严格递减，故 $F'(a^*)=0$ 的根分别在零点、零点右侧或左侧。正风险溢价使参与者愿意从零开始买入，但持仓增大时风险成本最终抵消收益。
+
+\tcbline
+\textbf{A.\ 绝对风险厌恶决定投资金额怎样随财富变化}\quad 以下设 $\mathrm E[z]>0$，所以 $a^*(w)>0$。记
+$A(t)=-u''(t)/u'(t)$。
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.3}\quad 在相关财富区间内：CARA 使最优风险投资\textbf{金额}不随财富变化；DARA 使其随财富增加；IARA 使其随财富减少。
+\end{tcolorbox}
+\textbf{证明：}把一阶条件 $\mathrm E[u'(b+a^*z)z]=0$ 对 $w$ 求导，记 $\tilde w^*=b+a^*z$，得
+\[
+ (1+r_F)\mathrm E[u''(\tilde w^*)z]
+ +\frac{da^*}{dw}\mathrm E[u''(\tilde w^*)z^2]=0,
+\]
+即
+\[
+ \frac{da^*}{dw}=-(1+r_F)
+ \frac{\mathrm E[u''(\tilde w^*)z]}{\mathrm E[u''(\tilde w^*)z^2]}.
+\]
+分母负，故导数与分子 $\mathrm E[u''(\tilde w^*)z]$ 同号。利用一阶条件减掉常数项，
+\[
+ \mathrm E[u''(\tilde w^*)z]
+ =-\mathrm E[(A(\tilde w^*)-A(b))u'(\tilde w^*)z].
+\]
+DARA 下，$z>0$ 时 $\tilde w^*>b$、$A(\tilde w^*)<A(b)$；$z<0$ 时则反向。两种情况下括号与 $z$ 的乘积均为负，前面再取负号，得到 $da^*/dw>0$。CARA 时差为零；IARA 时符号相反。
+
+这里比较的是 $A$ 在可能期末财富\textbf{整个区间}上的变化，不能仅凭初始财富处一个 $A'(w)$ 的符号推断任意风险下的结论。
+
+\tcbline
+\textbf{B.\ 相对风险厌恶决定投资比例怎样随财富变化}\quad 设 $w>0$、期末财富为正，令
+\[
+ \alpha^*(w)=\frac{a^*(w)}{w},\qquad
+ e(w)=\frac{w}{a^*(w)}\frac{da^*}{dw}.
+\]
+$e$ 是风险投资金额对财富的\textbf{弹性}，且
+\[
+ \frac{d\alpha^*}{dw}=\frac{a^*}{w^2}(e-1).
+\]
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.4}\quad 记 $R(t)=tA(t)$。在相关财富区间内，CRRA 对应 $e=1$、风险投资比例不变；DRRA 对应 $e>1$、比例随财富增加；IRRA 对应 $e<1$、比例随财富减少。
+\end{tcolorbox}
+\textbf{证明：}记 $D=\mathrm E[u''(\tilde w^*)z^2]<0$。由前式及 $\tilde w^*=b+a^*z$，
+\[
+\begin{aligned}
+ e-1&=-\frac{b\,\mathrm E[u''(\tilde w^*)z]+a^*D}{a^*D}\\
+ &=-\frac{\mathrm E[u''(\tilde w^*)\tilde w^*z]}{a^*D}
+ =\frac{\mathrm E[R(\tilde w^*)u'(\tilde w^*)z]}{a^*D}.
+\end{aligned}
+\]
+再用一阶条件，将分子写成
+$\mathrm E[(R(\tilde w^*)-R(b))u'(\tilde w^*)z]$。
+DRRA 下该分子为负，分母也为负，故 $e-1>0$；CRRA 时为零，IRRA 时相反。\textbf{金额增加不等于比例增加：}例如 CRRA 下金额随财富同比增加，而比例不变。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=8.3（续）最优组合的性质：多只风险证券]
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.5}\quad 所有风险证券的风险溢价都为零，当且仅当全投无风险证券的 $a=0$ 是最优组合之一。
+\end{tcolorbox}
+\textbf{证明：}若 $a=0$ 最优，内点一阶条件给出
+$u'(b)\mathrm E[\tilde r_n-r_F]=0$，故每只证券风险溢价均为零。反之，若均为零，则任意组合都有 $\mathrm E[\tilde w]=b$。由 Jensen 不等式，
+\[
+ \mathrm E[u(\tilde w)]\le u(\mathrm E[\tilde w])=u(b),
+\]
+而 $a=0$ 恰好达到 $u(b)$，故最优。若存在能完全抵消的风险头寸，最优金额向量未必唯一；严格凹性排除的是带有非零消费风险的同效用方案。
+
+\begin{tcolorbox}[knowledge]
+\textbf{定理 8.6}\quad 最优组合的期望收益率不低于无风险收益率。若至少一只证券风险溢价非零，且允许在零头寸附近自由调整、最优解存在，则最优组合的期望收益率严格更高。
+\end{tcolorbox}
+\textbf{证明：}全投无风险证券是可行的，所以
+\[
+ u(\mathrm E[\tilde w^*])\ge\mathrm E[u(\tilde w^*)]\ge u(b).
+\]
+由 $u'>0$，$\mathrm E[\tilde w^*]\ge b$，即
+\[
+ (a^*)^{\mathsf T}(\mathrm E[\tilde r]-r_F\iota)\ge0.
+\]
+若某一风险溢价非零，在 $a=0$ 处沿该证券风险溢价的同号方向小幅交易，效用的一阶变化严格为正，所以最优效用严格大于 $u(b)$，上述期望财富不等式也严格成立。$w>0$ 时除以 $w$，得到期望组合净收益率大于 $r_F$。
+
+\textbf{为什么不能逐只套用定理 8.2？}多资产下还要看证券对\textbf{整个组合风险}的影响。即使每只证券的风险溢价都为正，最优组合也可能卖空其中某只证券，以对冲其余证券的风险；只能保证最优组合整体的期望超额收益非负。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=8.4 本章结论]
+\begin{enumerate}
+ \item 无套利使可行消费集合有界；连续效用在非空闭集合上达到最优。冗余会影响头寸唯一性。
+ \item 内点 Euler 方程把今天投资的边际成本与未来消费的期望边际效用相等；凹性使一阶条件充分。
+ \item 消费与投资可分两步：给定储蓄求最优组合，再用间接效用决定储蓄。
+ \item 单风险资产下，最优头寸与风险溢价同号；绝对风险厌恶控制投资\textbf{金额}的财富效应，相对风险厌恶控制投资\textbf{比例}的财富效应。
+ \item 多风险资产下，零风险溢价使全投无风险证券最优；存在非零风险溢价时，最优组合整体有正的期望超额收益，但不能据此推断每只证券的持仓符号。
+\end{enumerate}
+\end{tcolorbox}
+
 \fi
 
 \input{tex/金融经济学_王江/08_组合选择一_习题.tex}

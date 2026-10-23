@@ -128,8 +128,8 @@
         2\times 1+(-1)\times 1=1,\quad (-1)\times 1+2\times 1=1,\quad 2\times\tfrac12+(-1)\times 1+2\times\tfrac12=1
     \]
     因而 $\begin{bmatrix}2 \\ -1 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量；
-    \item 状态价格向量的非负性意味着不存在套利机会；
-    \item 不是。因而它只是可能的状态价格之一，并不一定是真实的状态价格；
+    \item 资产定价基本定理：没有套利，当且仅当存在严格正的状态价格 $\phi\gg 0$，使每只可交易证券的价格都是 $S=X^{\mathsf T}\phi$。因此“状态价格必须非负”在这里的含义是均衡价格里不能有套利：若每一支给现有证券定价的 $\phi$ 都有负分量，市场就存在套利。
+    \item 不是。因而它只是可能的状态价格之一，并不一定是真实的状态价格；定理要求的是存在一支 $\phi\gg 0$，而不是每一个解都严格为正。下面 (d) 给出的正向量说明无套利仍然成立；
     \item 因为
     \[
         \tfrac12\times 1+\tfrac12\times 1=1,\quad \tfrac12\times 1+\tfrac12\times 1=1,\quad \tfrac12\times\tfrac12+\tfrac12\times 1+\tfrac12\times\tfrac12=1
@@ -200,7 +200,7 @@
     \]
     无风险利率 $r_{F}=\bigl(\sum_{i}\phi_{i}\bigr)^{-1}-1=0.25$。
     \item 等价鞅测度 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$，即 $Q=\begin{bmatrix}0.25 \\ 0.25 \\ 0.25 \\ 0.25\end{bmatrix}$。
-    \item 由 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$ 与 $1+r_{F}=1/\sum_{j}\phi_{j}$，
+    \item 两期模型里的鞅性质是风险中性定价：用等价鞅测度 $Q$ 对 1 期支付取期望，再按无风险利率折现，应当回到 0 期价格，即 $S_{n}=\mathrm{E}^{Q}[X_{n}]/(1+r_{F})$。由 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$ 与 $1+r_{F}=1/\sum_{j}\phi_{j}$，
     \[
         \frac{\mathrm{E}^{Q}[X_{n}]}{1+r_{F}}=\phi^{\mathsf T}X_{n}.
     \]

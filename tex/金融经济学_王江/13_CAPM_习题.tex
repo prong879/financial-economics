@@ -50,7 +50,7 @@
         S=\bar{v}-\frac{1}{K}\Bigl(\sum y_{k}+1\Bigr)\Sigma\iota
     \]
 
-    \item 因为
+    \item 这里无风险利率为 $0$，CAPM 是 $\bar{r}_{i}=\beta_{i}\bar{r}_{m}$，其中 $\beta_{i}=\operatorname{Cov}(\tilde{r}_{i},\tilde{r}_{m})/\operatorname{Var}(\tilde{r}_{m})$，$\tilde{r}_{m}$ 是市场组合收益率。下面验证这个等式。因为
     \[
         \begin{aligned}
             \frac{\bar{r}_{i}}{\beta_{i}\bar{r}_{m}}
@@ -102,7 +102,7 @@
             &\ne 1
         \end{aligned}
     \]
-    因而 CAPM 成立；这是因为需要用股票来对冲与股票相关的其它风险。股票 $i$ 的期望收益率为
+    因而 CAPM 不成立：上式一般不等于 $1$，期望收益不能只写成市场组合 beta 的倍数。这是因为需要用股票来对冲与股票相关的其它风险。股票 $i$ 的期望收益率为
     \[
         \bar{r}_{i}=\frac{\bar{v}_{i}}{S_{i}}-1=\frac{1}{1-\frac{1}{K\bar{v}_{i}}\bigl((\sum y_{k}+1)(\Sigma\iota)+\sum y_{k}\Sigma c\bigr)_{i}}-1
     \]
