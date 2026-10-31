@@ -44,7 +44,89 @@ $\sim_d$ 表示\textbf{分布相同}。第 3 条是关于存在某种配对的�
 \]
 所以 $F_A(t)\le F_B(t)$。该判据也适用于离散分布。
 
-\textbf{证明（非负增量表示）：}令 $U$ 在 $(0,1)$ 上均匀分布，$Q_i(p)=\inf\{x:F_i(x)\ge p\}$ 为分位数函数。$F_A\le F_B$ 等价于 $Q_A(p)\ge Q_B(p)$。取
+% 课堂照片补充：用同一阈值的竖线与同一概率的横线，对照 CDF 与分位数的排序。
+\par\medskip\noindent\begin{minipage}{\linewidth}
+\textbf{图解：累积分布函数越高，分位数反而越小。}
+记 $Q_i(p)=F_i^{-1}(p)=\inf\{x:F_i(x)\ge p\}$，$0<p<1$。
+这里 $F_i^{-1}$ 表示\textbf{广义反函数（分位数函数）}，不是 $1/F_i$；连续且严格递增时就是通常的反函数。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\textbf{同一阈值：竖着比较概率}\\[3pt]
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,font=\small]
+ \path[use as bounding box] (-1.3,-0.65) rectangle (5.8,3.9);
+ \draw[->] (0,0)--(5.5,0) node[right] {$x$};
+ \draw[->] (0,0)--(0,3.4) node[above] {$F(x)$};
+ \node[below left] at (0,0) {$0$};
+ \draw[gray!55,dotted] (0,3)--(5.1,3);
+ \node[left] at (0,3) {$1$};
+ \draw[blue!70!black,thick,domain=0:5.1,samples=90]
+   plot (\x,{3/(1+exp(-2*(\x-2)))});
+ \draw[red!70!black,thick,dashed,domain=0:5.1,samples=90]
+   plot (\x,{3/(1+exp(-2*(\x-3)))});
+ \node[blue!70!black,below] at (3.75,2.94) {$F_B$};
+ \node[red!70!black,below] at (4.7,2.8) {$F_A$};
+ \draw[gray,dashed] (2.5,0)--(2.5,2.1932);
+ \draw[blue!70!black,densely dotted] (0,2.1932)--(2.5,2.1932);
+ \draw[red!70!black,densely dotted] (0,0.8068)--(2.5,0.8068);
+ \fill[blue!70!black] (2.5,2.1932) circle (2pt);
+ \fill[red!70!black] (2.5,0.8068) circle (2pt);
+ \node[left,blue!70!black] at (0,2.1932) {$F_B(x_0)$};
+ \node[left,red!70!black] at (0,0.8068) {$F_A(x_0)$};
+ \node[below] at (2.5,0) {$x_0$};
+ \draw[<->] (2.75,0.86)--(2.75,2.14);
+\end{tikzpicture}}
+\par\smallskip
+$F_B(x_0)>F_A(x_0)$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\textbf{同一概率：横着比较收益}\\[3pt]
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,font=\small]
+ \path[use as bounding box] (-1.3,-0.65) rectangle (5.8,3.9);
+ \draw[->] (0,0)--(5.5,0) node[right] {$x$};
+ \draw[->] (0,0)--(0,3.4) node[above] {$F(x)$};
+ \node[below left] at (0,0) {$0$};
+ \draw[gray!55,dotted] (0,3)--(5.1,3);
+ \node[left] at (0,3) {$1$};
+ \draw[blue!70!black,thick,domain=0:5.1,samples=90]
+   plot (\x,{3/(1+exp(-2*(\x-2)))});
+ \draw[red!70!black,thick,dashed,domain=0:5.1,samples=90]
+   plot (\x,{3/(1+exp(-2*(\x-3)))});
+ \node[blue!70!black,below] at (3.75,2.94) {$F_B$};
+ \node[red!70!black,below] at (4.7,2.8) {$F_A$};
+ \draw[gray,dashed] (0,1.5)--(3.7,1.5);
+ \node[left] at (0,1.5) {$p$};
+ \draw[blue!70!black,densely dotted] (2,0)--(2,1.5);
+ \draw[red!70!black,densely dotted] (3,0)--(3,1.5);
+ \fill[blue!70!black] (2,1.5) circle (2pt);
+ \fill[red!70!black] (3,1.5) circle (2pt);
+ \node[below,blue!70!black] at (1.8,0) {$F_B^{-1}(p)$};
+ \node[below,red!70!black] at (3.3,0) {$F_A^{-1}(p)$};
+ \draw[<->] (2.04,1.23)--(2.96,1.23);
+\end{tikzpicture}}
+\par\smallskip
+$F_B^{-1}(p)<F_A^{-1}(p)$
+\end{minipage}
+\end{minipage}
+\end{center}
+\end{minipage}\par\medskip
+
+左图固定 $x_0$：沿竖直辅助线，$F_B$ 在上，表示 $B$ 不超过该阈值的概率更大。
+右图固定 $p$：沿水平辅助线，先遇到 $F_B$、后遇到 $F_A$，再向下投影到横轴，故达到同一累计概率时，$B$ 的收益分位数更小。
+图中用严格不等式展示两条曲线分开的情形；一般的一阶占优判据为
+\[
+ F_B(x)\ge F_A(x)\quad(\forall x)
+ \quad\Longleftrightarrow\quad
+ F_B^{-1}(p)\le F_A^{-1}(p)\quad(\forall p\in(0,1)).
+\]
+
+\textbf{证明（非负增量表示）：}令 $U$ 在 $(0,1)$ 上均匀分布。由上述关系，$F_A\le F_B$ 等价于 $Q_A(p)\ge Q_B(p)$。取
 \[
  \tilde x_A'=Q_A(U),\qquad \tilde x_B'=Q_B(U),\qquad
  \tilde d=Q_A(U)-Q_B(U)\ge0,

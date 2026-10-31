@@ -15,7 +15,7 @@
 \[
     u\bigl(\alpha x+(1-\alpha)y\bigr)\ge \alpha u(x)+(1-\alpha)u(y),
 \]
-则称 $u$ 为\textbf{凹}函数。不等式严格时称为严格凹。
+则称 $u$ 为\textbf{凹}函数。当 $x\ne y$ 且 $0<\alpha<1$ 时不等式严格，则称为严格凹。
 \end{tcolorbox}
 
 凹性就是 Jensen 不等式的方向：函数在弦的上方。二阶可微时它等价于边际效用递减。
@@ -36,22 +36,31 @@
 \textbf{定理 7.2}\quad 若凹函数 $u$ 二阶可微，则 $u''\le 0$。
 \end{tcolorbox}
 
-定理 7.2 的证明：取 $x=z-\delta$、$y=z+\delta$、$\alpha=1/2$，凹性给出
+\textbf{定理 7.1 的二阶可微情形：}这是从总效用的\textbf{拟凹性}推出伯努利效用凹性的关键，不能直接把两个概念等同。取一个正概率状态 $\omega$，记 $k=\rho p_\omega>0$。在当前消费及该状态消费都为内点 $w$、其余消费固定的计划上，考虑
 \[
-\begin{aligned}
-    \tfrac{1}{2} u(x) + \tfrac{1}{2} u(y) \le u(\tfrac{1}{2} x + \tfrac{1}{2} y) \\
-    \tfrac{1}{2}\bigl[u(z-\delta)+u(z+\delta)\bigr]\le u(z).
-\end{aligned}
+ c^+(t):(c_0,c_{1\omega})=(w+kt,w-t),\qquad
+ c^-(t):(c_0,c_{1\omega})=(w-kt,w+t).
 \]
-移项得 \(\tfrac12 u(z-\delta)+\tfrac12 u(z+\delta) -u(z)\le 0\)。再把 \(u(z)\) 拆成两个 \(\tfrac12 u(z)\)：
+两计划的中点是原计划 $c$。沿这一方向的边际效用恰好抵消：
 \[
-    \tfrac12\bigl[u(z)-u(z-\delta)\bigr]-\tfrac12\bigl[u(z+\delta)-u(z)\bigr]\ge 0.
+ ku'(w)-ku'(w)=0.
 \]
-两边乘 \(2/\delta^{2}\)（\(\delta>0\)），即二阶中心差商
+若反设 $u''(w)>0$，泰勒展开给出
 \[
-    \frac{u(z+\delta)+u(z-\delta)-2u(z)}{\delta^{2}}\le 0.
+ U(c^\pm(t))-U(c)=\tfrac12(k^2+k)u''(w)t^2+o(t^2)>0
 \]
-令 \(\delta\to 0\)，左端趋于 \(u''(z)\)，故 \(u''(z)\le 0\)。
+（$t$ 充分小）。两端都严格优于中点，与凸偏好要求
+$U(c)\ge\min\{U(c^+(t)),U(c^-(t))\}$ 矛盾。故每个内点都须有 $u''(w)\le0$，从而 $u$ 凹。此论证明确使用了 (6.4)、正概率和二阶可微条件，且没有把拟凹性直接替换成凹性。
+
+\textbf{定理 7.2 的证明：}在 $z$ 左右各取距离 $\delta>0$ 的一点，凹性要求中点的效用不低于两端效用的平均值：
+\[
+ u(z)\ge\tfrac12[u(z-\delta)+u(z+\delta)].
+\]
+两边乘 2、移项，再除以 $\delta^2>0$，直接得到
+\[
+ \frac{u(z+\delta)-2u(z)+u(z-\delta)}{\delta^2}\le0.
+\]
+左边正是二阶中心差商。令 $\delta\to0$，它趋于 $u''(z)$，所以 $u''(z)\le0$。这也说明凹性的几何图像与边际效用递减是同一曲率性质的两种表述。
 
 因此在 (6.4) 中，$u'$ 是消费的边际效用，不满足性要求 $u'>0$；偏好凸则 $u''\le 0$，多出来的一单位消费带来的效用越来越少。一块钱对穷人比对富人更重要。
 \end{tcolorbox}
@@ -62,10 +71,11 @@
 \begin{tcolorbox}[knowledge]
 \textbf{定义 7.2}\quad 不确定支付 $\tilde{g}$ 若满足 $\mathrm{E}[\tilde{g}]=0$，称为\textbf{公平赌博}。
 
-\textbf{定义 7.3}\quad 效用为 $u$ 的参与者是（严格）\textbf{风险厌恶}的，若对一切公平赌博，
+\textbf{定义 7.3}\quad 效用为 $u$ 的参与者是（严格）\textbf{风险厌恶}的，若对一切定义域内的公平赌博，
 \[
     \mathrm{E}\bigl[u(w+\tilde{g})\bigr]\le(<)\,\mathrm{E}\bigl[u(w)\bigr]=u(w).
 \]
+严格风险厌恶的严格不等式只针对非退化赌博；$\tilde g\equiv0$ 时两边相等。
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge]
@@ -84,16 +94,39 @@ $u$ 严格凹且 $\tilde{x}$ 不恒为常数时，不等式严格。取 $\tilde{
 \]
 $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ 不恒为零时，严格凹对应严格风险厌恶。
 
-\textbf{必要性：}把凹性还原成一次公平赌博。任取 $w_2>w_1$、$p\in(0,1)$，令 $\Delta=w_2-w_1$，
+\textbf{必要性（按 PPT 第 8–9 页的构造思路）：}现在只知道参与者拒绝公平赌博，要据此证明 $u$ 凹。任取 $w_2>w_1$、$p\in(0,1)$，目标是得到
 \[
-    \underbrace{g_1=-(1-p)\Delta}_{\text{坏结果}},\qquad \underbrace{g_2=p\Delta}_{\text{好结果}},
+ pu(w_1)+(1-p)u(w_2)\le u(pw_1+(1-p)w_2).
 \]
 
-概率分别为 $p$ 与 $1-p$。则 $\mathrm{E}[\tilde{g}]=0$。记 $w=pw_1+(1-p)w_2$，就有 $w_1=w+g_1$、$w_2=w+g_2$。风险厌恶给出
+\textbf{第一步：选择初始财富。}把两个最终结果的期望值设为初始财富：
 \[
-    pu(w_1)+(1-p)u(w_2)\le u\bigl(pw_1+(1-p)w_2\bigr),
+ w=pw_1+(1-p)w_2.
 \]
-即 $u$ 凹。
+这样只需设计一个赌博，把财富从 $w$ 分别变成 $w_1$、$w_2$，它就会自动公平。
+
+\textbf{第二步：用“最终财富减初始财富”确定净支付。}记 $\Delta=w_2-w_1>0$，则
+\[
+\begin{aligned}
+ g_1&=w_1-w=-(1-p)\Delta<0,\qquad\text{概率 }p,\\
+ g_2&=w_2-w=p\Delta>0,\qquad\text{概率 }1-p.
+\end{aligned}
+\]
+验证公平性：
+\[
+ \mathrm E[\tilde g]=p[-(1-p)\Delta]+(1-p)p\Delta=0.
+\]
+注意坏结果的概率是 $p$，并不要求输赢概率相同；净支付的大小正好补偿概率差异。
+
+\textbf{第三步：应用风险厌恶定义。}因为 $w+g_1=w_1$、$w+g_2=w_2$，
+\[
+\begin{aligned}
+ pu(w_1)+(1-p)u(w_2)
+ &=\mathrm E[u(w+\tilde g)]\\
+ &\le u(w)=u(pw_1+(1-p)w_2).
+\end{aligned}
+\]
+这恰好是要证明的凹性不等式。若对所有非退化公平赌博严格拒绝，则上式严格，得到严格凹性。
 
 所以，偏好能写成期望效用时，\textbf{偏好凸等价于风险厌恶}。
 
@@ -110,6 +143,7 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
 因此 $c=100$ 时是公平赌博；$c=50$ 或 $c=0$ 时净期望收益分别为 50 元和 100 元，均不是公平赌博。严格风险厌恶者拒绝前者的非退化公平赌博，却\textbf{可能接受有正期望收益的风险}；“厌恶风险”不等于“拒绝所有不确定投资”。
 \end{tcolorbox}
 
+\newpage
 \begin{tcolorbox}[knowledge,title=7.3 风险厌恶的度量]
 风险厌恶的程度既依赖赌博本身，也依赖 $u$ 和财富。下面的度量针对\textbf{小}风险：取值范围（最大值减最小值）很小。大风险不一定适用。
 
@@ -177,23 +211,56 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
    +\tfrac12u''(w)\varepsilon^2\mathrm E[\tilde z^2]+o(\varepsilon^2).
 \end{aligned}
 \]
-一阶项由公平性消失，二阶项由方差决定。又因为
+\textbf{左边为什么只剩方差？}公平性使一阶项为零，而且 $\mathrm E[\tilde z^2]=\operatorname{Var}(\tilde z)$。因此赌博造成的效用变化为
 \[
- CE_\varepsilon=u^{-1}(\mathrm E[u(w+\varepsilon\tilde z)]),
+ \mathrm E[u(w+\varepsilon\tilde z)]-u(w)
+ =\tfrac12u''(w)\varepsilon^2\operatorname{Var}(\tilde z)+o(\varepsilon^2).
 \]
-反函数在 $u(w)$ 处的导数为 $1/u'(w)$，所以 $\pi_\varepsilon=w-CE_\varepsilon=O(\varepsilon^2)$。这就说明为什么右侧展开时只需保留 $\pi$ 的一次项：$\pi^2=O(\varepsilon^4)$ 比所保留的二阶风险项更小。对 (7.1) 两边展开，得到
+
+\textbf{右边为什么只保留 $\pi$ 的一次项？}记风险溢价为 $\pi_\varepsilon$。由定义和中值定理，在 $w-\pi_\varepsilon$ 与 $w$ 之间存在 $\xi_\varepsilon$，使
 \[
-    u(w)+\tfrac12 u''(w)\,\mathrm{Var}[\tilde{g}]
-    =u(w)-u'(w)\,\pi
+\begin{aligned}
+ u'(\xi_\varepsilon)\pi_\varepsilon
+ &=u(w)-u(w-\pi_\varepsilon)\\
+ &=u(w)-\mathrm E[u(w+\varepsilon\tilde z)]
+ =O(\varepsilon^2).
+\end{aligned}
 \]
-（略去 $\pi$ 与 $\tilde{g}$ 的高阶项）。因此
+风险缩小时 $CE\to w$，故 $\xi_\varepsilon\to w$，且 $u'(\xi_\varepsilon)\to u'(w)>0$。于是 $\pi_\varepsilon=O(\varepsilon^2)$、$\pi_\varepsilon^2=O(\varepsilon^4)$。右边的二次项比保留的二阶风险项更小，所以
 \[
-    \pi\approx\tfrac12 A(w)\,\mathrm{Var}[\tilde{g}],
-    \qquad
-    A(w)\equiv-\frac{u''(w)}{u'(w)}.
-    \tag{7.2}
+ u(w-\pi_\varepsilon)=u(w)-u'(w)\pi_\varepsilon+o(\varepsilon^2).
 \]
-方差度量风险的大小，溢价与它成正比。$u'>0$、$u''\le 0$ 保证 $A(w)\ge 0$。$A(w)$ 是 Arrow--Pratt \textbf{绝对风险厌恶}系数：它是每单位绝对风险（方差）对应的溢价，既依赖 $u$，也依赖财富 $w$。其倒数是\textbf{风险容忍}系数
+
+\textbf{令左右两边相等，再换算为财富单位：}
+\[
+ \underbrace{-u'(w)\pi_\varepsilon}_{\text{放弃确定财富的效用变化}}
+ =\underbrace{\tfrac12u''(w)\varepsilon^2\operatorname{Var}(\tilde z)}_{\text{承担公平风险的效用变化}}
+ +o(\varepsilon^2).
+\]
+除以 $-u'(w)$，得到
+\[
+ \pi_\varepsilon=-\frac{u''(w)}{2u'(w)}\varepsilon^2\operatorname{Var}(\tilde z)
+ +o(\varepsilon^2).
+\]
+记回 $\tilde g=\varepsilon\tilde z$，就有
+\[
+ \pi\approx\tfrac12 A(w)\operatorname{Var}(\tilde g),\qquad
+ A(w)=-\frac{u''(w)}{u'(w)}.\tag{7.2}
+\]
+这里除以边际效用，是把\textbf{效用损失换成财富损失}；负号使风险厌恶时的溢价为正。这与后文折点例中“效用损失除以左侧斜率”的换算逻辑相同。
+
+\textbf{中心矩展开（PPT 第 15 页）：}若一般随机财富的均值为 $m$，可写为 $\widetilde W=m+\varepsilon\tilde z$，其中 $\mathrm E[\tilde z]=0$、$\tilde z$ 有界。若 $u$ 在 $m$ 附近四阶连续可微，则
+\[
+\begin{aligned}
+ \mathrm E[u(\widetilde W)]
+ &=u(m)+\frac{u''(m)}2\varepsilon^2\mathrm E[\tilde z^2]\\
+ &\quad+\frac{u'''(m)}6\varepsilon^3\mathrm E[\tilde z^3]
+ +\frac{u^{(4)}(m)}{24}\varepsilon^4\mathrm E[\tilde z^4]+o(\varepsilon^4).
+\end{aligned}
+\]
+$\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是方差，三阶反映不对称，四阶反映更高阶的分布形态。二阶近似只保留方差，不表示所有风险都能只用方差刻画。PPT 的无穷泰勒级数还需解析性、收敛性及交换期望与求和的条件，有限阶小风险展开不依赖这些更强要求。
+
+方差度量风险的大小，溢价与它成正比。$u'>0$、$u''\le 0$ 保证 $A(w)\ge 0$。$A(w)$ 是 Arrow--Pratt \textbf{绝对风险厌恶}系数：它等于小风险下风险溢价与方差之比的两倍（$A(w)\approx2\pi/\operatorname{Var}(\tilde g)$），既依赖 $u$，也依赖财富 $w$。其倒数是\textbf{风险容忍}系数
 \[
     T(w)=\frac{1}{A(w)}=-\frac{u'(w)}{u''(w)}.
     \tag{7.3}
@@ -207,12 +274,30 @@ $A(w)$ 衡量的是给定绝对大小的赌博，比如抛硬币赢或输 $100$�
 \[
     \mathrm{E}\bigl[u\bigl(w(1+\tilde{g})\bigr)\bigr]=u\bigl(w(1-\pi_R)\bigr).
 \]
-小风险下同样展开，得到
+\textbf{相对风险溢价的推导（PPT 第 19–20 页）：}令 $\tilde g=\varepsilon\tilde z$，$\mathrm E[\tilde z]=0$。风险金额为 $w\varepsilon\tilde z$，确定财富减少量为 $w\pi_R$，故
+\[
+\begin{aligned}
+ \mathrm E[u(w+w\varepsilon\tilde z)]
+ &=u(w)+\tfrac12u''(w)w^2\varepsilon^2\mathrm E[\tilde z^2]+o(\varepsilon^2),\\
+ u(w-w\pi_R)&=u(w)-u'(w)w\pi_R+o(\varepsilon^2).
+\end{aligned}
+\]
+第二式利用 $\pi_R=O(\varepsilon^2)$。令两边相等，再除以 $wu'(w)>0$，得到
+\[
+ \pi_R=-\frac12\frac{wu''(w)}{u'(w)}\varepsilon^2\mathrm E[\tilde z^2]
+ +o(\varepsilon^2).
+\]
+因此
 \[
     \pi_R\approx\tfrac12 R(w)\,\mathrm{Var}[\tilde{g}],
     \qquad
     R(w)\equiv-\frac{wu''(w)}{u'(w)}=wA(w).
     \tag{7.5}
+\]
+对同一个按比例的赌博，货币风险溢价与比例风险溢价满足\textbf{精确关系} $\pi_{\mathrm{money}}=w\pi_R$。其二阶近似为
+\[
+ \pi_{\mathrm{money}}\approx\tfrac12 A(w)w^2\operatorname{Var}(\tilde g),\qquad
+ \pi_R\approx\tfrac12 R(w)\operatorname{Var}(\tilde g).
 \]
 $R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和风险相对财富的大小。方差仍然是这里对小风险本身的度量。
 
@@ -307,7 +392,11 @@ $R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和�
     \]
     绝对风险厌恶随财富下降（DARA），相对风险厌恶是常数，故称 CRRA（constant relative risk aversion）。风险容忍 $T(w)=w/\gamma$ 与财富成正比。
 
-    \item \textbf{对数}\quad $u(w)=\log w$。它是幂效用在 $\gamma\to 1$ 时的极限，仍属 CRRA：
+    \item \textbf{对数}\quad $u(w)=\log w$。将幂效用作不影响偏好的常数平移后，
+    \[
+      \lim_{\gamma\to1}\frac{w^{1-\gamma}-1}{1-\gamma}=\ln w.
+    \]
+    因此对数效用是正仿射标准化后的幂效用极限，仍属 CRRA：
     \[
         A(w)=\frac{1}{w},\qquad R(w)=1.
     \]
@@ -391,6 +480,27 @@ $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度�
 
 $u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。凹变换把已经风险厌恶的 $u_2$ 变得更厌恶风险；Arrow--Pratt 系数更大，为消除同一风险愿意放弃的财富更多。
 
+\textbf{两个人的 CE 比较（PPT 第 12 页）：}对同一个随机财富 $\widetilde W$，记 $CE_i=u_i^{-1}(\mathrm E[u_i(\widetilde W)])$，$\pi_i=\mathrm E[\widetilde W]-CE_i$。Pratt 定理给出
+\[
+ A_1\ge A_2\ \text{处处成立}
+ \quad\Longrightarrow\quad CE_1\le CE_2,\qquad\pi_1\ge\pi_2.
+\]
+图中越靠左的 CE 对应越大的风险溢价。\textbf{同一个赌局}的 CE 排序只是这一个比较；要推出“总体上更厌恶风险”，必须对所有相关财富和赌博都成立，不能只看一张图或一次选择。
+
+\textbf{数字验证：}两人都面对等概率为 1 或 9 的同一随机财富，期望财富为 5；第一人取 $u_1(w)=\ln w$，第二人取 $u_2(w)=\sqrt w$。则
+\[
+ A_1(w)=\frac1w>\frac1{2w}=A_2(w),\qquad w>0.
+\]
+按各自效用计算而不是直接比较效用数值：
+\[
+\begin{array}{c|c|c|c}
+ &\text{期望效用}&CE&\pi=5-CE\\\hline
+ u_1=\ln w&\tfrac12\ln1+\tfrac12\ln9=\ln3&3&2\\
+ u_2=\sqrt w&\tfrac12\sqrt1+\tfrac12\sqrt9=2&4&1
+\end{array}
+\]
+第一人的 CE 更靠左、为消除同一风险愿意放弃更多财富，与 Pratt 定理一致；两人的期望效用数字本身不具有跨人比较意义。
+
 \textbf{第 4 条推出第 1 条：}固定任意财富 $w$，取等概率的 $\pm\varepsilon$ 公平赌博，则
 \[
  \pi_i(w,\varepsilon)=\tfrac12A_i(w)\varepsilon^2+o(\varepsilon^2).
@@ -420,61 +530,32 @@ $\bar w$ 可代表债务偿还门槛、最低保障目标或作为参照的初�
 【可能要考】\textbf{折点处的公平赌博}\quad 财富恰为 $\bar{w}$。公平的 Bernoulli 赌博以 $1/2$ 的概率得到 $\delta$、以 $1/2$ 的概率得到 $-\delta$。按定义 7.4，风险溢价是多少？它与可微情形的阶数有何不同？
 \end{question}
 \begin{solution}
-\textbf{第一步：明确这里使用的定义 7.4。}
-风险溢价 $\pi$ 由
+% 课堂板书：用户提供的折点风险溢价照片，按板书等式顺序整理。
+\textbf{按课堂板书，先写定义，再代入两种结果，最后代入分段效用。}定义 7.4 为
 \[
-    \mathrm{E}\bigl[u(w+\tilde{g})\bigr]=u(w-\pi)
+ \mathrm E[u(w+\tilde g)]=u(w-\pi).
 \]
-
-定义：参加赌博后的期望效用，与放弃 $\pi$ 元、消除风险后的确定效用相同。因此，$\pi$ 是为了消除这项风险最多愿意放弃的财富。本题初始财富为 $\bar{w}$，所以要求解的是
+本题 $w=\bar w$，且 $\tilde g$ 以相同概率取 $\delta$、$-\delta$（$\delta>0$），故
 \[
-    \mathrm{E}\bigl[u(\bar{w}+\tilde{g})\bigr]=u(\bar{w}-\pi).
+ \frac12u(\bar w+\delta)+\frac12u(\bar w-\delta)
+ =u(\bar w-\pi).
 \]
-
-\textbf{第二步：计算赌博的期望效用。}
-设 $\delta>0$。赌博以相同概率带来 $\delta$ 和 $-\delta$，故
+赢时在折点右侧，用 $a_+$；输时在折点左侧，用 $a_-$。左边的期望效用为
+$\tfrac12a_+\delta+\tfrac12a_-(-\delta)<0=u(\bar w)$，所以确定性等值低于 $\bar w$、$\pi>0$。因此右边也在折点左侧，须用 $a_-$。于是板书的关键一步是
 \[
-    \mathrm{E}[\tilde{g}]=\tfrac12\delta+\tfrac12(-\delta)=0.
+ \underbrace{\frac12a_+\delta+\frac12a_-(-\delta)}_{\text{赌博的期望效用}}
+ =\underbrace{a_-(-\pi)}_{\text{确定财富的效用}}.
 \]
-
-赢时财富位于折点右侧，使用斜率 $a_{+}$；输时位于折点左侧，使用斜率 $a_{-}$：
-\begin{align*}
-    u(\bar{w}+\delta)
-    &=a_{+}\bigl[(\bar{w}+\delta)-\bar{w}\bigr]=a_{+}\delta,\\
-    u(\bar{w}-\delta)
-    &=a_{-}\bigl[(\bar{w}-\delta)-\bar{w}\bigr]=-a_{-}\delta.
-\end{align*}
-
-因此
-\begin{align*}
-    \mathrm{E}\bigl[u(\bar{w}+\tilde{g})\bigr]
-    &=\tfrac12u(\bar{w}+\delta)+\tfrac12u(\bar{w}-\delta)\\
-    &=\tfrac12 a_{+}\delta-\tfrac12 a_{-}\delta
-    =-\tfrac12(a_{-}-a_{+})\delta<0.
-\end{align*}
-
-由于 $a_{-}>a_{+}$，损失带来的效用下降超过同额收益带来的效用上升。赌博的期望效用低于 $u(\bar{w})=0$，故其确定性等值低于 $\bar{w}$，即 $\pi>0$。
-
-\textbf{第三步：计算确定财富的效用并求解。}
-$\pi>0$ 意味着 $\bar{w}-\pi$ 位于折点左侧，必须使用左侧斜率：
+保留输时的 $(-\delta)$ 与放弃财富的 $(-\pi)$，便能直接看清符号。整理得
 \[
-    u(\bar{w}-\pi)
-    =a_{-}\bigl[(\bar{w}-\pi)-\bar{w}\bigr]
-    =-a_{-}\pi.
+ \frac\delta2(a_+-a_-)=-a_-\pi
+ \quad\Longrightarrow\quad
+ \boxed{\pi=\frac{\delta}{2a_-}(a_--a_+).}
 \]
+\textbf{为什么除以 $a_-$？}左边先算出的是效用损失
+$\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用减少 $a_-$，所以除以 $a_-$ 才换算成财富金额。这正是板书从第三行到最后一行的含义。
 
-代入定义 7.4，即 (7.1)，得到
-\[
-    -\tfrac12(a_{-}-a_{+})\delta=-a_{-}\pi.
-\]
-
-两边同乘 $-1$，再除以 $a_{-}>0$，得
-\[
-    \boxed{\pi=\frac{a_{-}-a_{+}}{2a_{-}}\,\delta.}
-\]
-\textbf{为什么要除以 $a_{-}$？} $\tfrac12(a_{-}-a_{+})\delta$ 是赌博造成的期望效用损失；左侧每减少一单位财富，效用下降 $a_{-}$。因此，效用损失除以 $a_{-}$，才是以财富计量的风险溢价。
-
-\textbf{第四步：比较风险溢价的阶数。}
+\textbf{再比较风险溢价的阶数。}
 赌博的方差为
 \[
     \mathrm{Var}[\tilde{g}]
@@ -511,6 +592,17 @@ $\pi>0$ 意味着 $\bar{w}-\pi$ 位于折点左侧，必须使用左侧斜率：
  u'(w)\varepsilon\mu+O(\varepsilon^2),
 \]
 固定 $\mu>0$、充分小的 $\varepsilon$ 下为正。这解释了折点为何可能形成不参与区间；是否出现持仓跳跃，还取决于完整投资机会与约束，不能仅凭一个折点断言。
+
+\textbf{保险解释（PPT 第 30 页）：}若随机损失为 $L\ge0$，全额保险保费为 $P$，无保险财富为 $w-L$、投保后为 $w-P$。最高愿付保费 $P_{\max}$ 满足
+\[
+ u(w-P_{\max})=\mathrm E[u(w-L)].
+\]
+令 $m=w-\mathrm E[L]$、$\tilde g=\mathrm E[L]-L$，就有 $\mathrm E[\tilde g]=0$、$w-L=m+\tilde g$。按风险溢价定义，
+\[
+ \mathrm E[u(w-L)]=u(m-\pi)
+ \quad\Longrightarrow\quad P_{\max}=\mathrm E[L]+\pi.
+\]
+最高愿付保费等于\textbf{精算公平保费加消除风险的溢价}。光滑偏好对小风险的额外支付通常是二阶量；若风险跨越折点，该额外支付可为一阶量。两种模型都可能愿付高于期望损失的保费，是否投保还要比较实际报价，不能说只有一阶风险厌恶者才愿支付附加保费。
 
 \tcbline
 \textbf{B.\ 风险厌恶与投资金额、比例}\quad 令 $q=\tilde r-r_F$ 为超额收益率，$b=w(1+r_F)$ 为全投无风险证券时的期末财富，$a$ 为风险投资金额。对\textbf{小的风险敞口}在 $b$ 处展开，

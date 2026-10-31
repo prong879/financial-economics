@@ -25,13 +25,13 @@
 
 \textbf{证明（必要性）：}若 $\theta^*$ 最优，而 $\eta$ 是套利组合，则
 \[
- d=\begin{bmatrix}-S^{\mathsf T}\eta\\X\eta\end{bmatrix}\ge0,\qquad d\ne0.
+ \underbrace{\begin{bmatrix}-S^{\mathsf T}\eta\\X\eta\end{bmatrix}}_{d\text{：消费增量}}\ge0,\qquad d\ne0.
 \]
 选择 $\theta^*+\eta$ 后，消费由 $c^*$ 变为 $c^*+d$。没有任何分量减少，至少一项增加，故效用严格提高，与最优性矛盾。
 
-\textbf{证明（充分性）：}无套利保证存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，任意可行消费满足
+\textbf{证明（充分性）：}无套利保证存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。任意可行消费满足
 \[
- c_0+\phi^{\mathsf T}c_1=e_0+\phi^{\mathsf T}e_1=:W.
+ c_0+\phi^{\mathsf T}c_1=\underbrace{e_0+\phi^{\mathsf T}e_1}_{W\text{：禀赋的现值}}.
 \]
 由于消费非负且每个状态价格严格为正，
 \[
@@ -43,7 +43,21 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \textbf{说明：}有界的是可行\textbf{消费}，证券头寸未必有界；冗余证券允许不同头寸实现同一消费。严格凹效用保证最优消费唯一，组合数量还需支付映射无冗余才唯一。对数效用在零处无定义时，须在其定义域内处理边界；可利用趋近零时效用趋于 $-\infty$ 排除最优消费落在该边界。
 
 \tcbline
-\textbf{B.\ Euler 方程}\quad 把预算约束代入目标函数。若最优消费位于内点且效用可微，对第 $n$ 只证券的数量求导得
+\textbf{B.\ Euler 方程}\quad 把预算约束代入目标函数，先写为
+\[
+ \max_\theta\left\{
+ u_0(e_0-S^{\mathsf T}\theta)
+ +\sum_{\omega=1}^{\Omega}\pi_\omega u_1(e_{1\omega}+(X\theta)_\omega)
+ \right\}.
+\]
+若最优消费位于内点且效用可微，对第 $n$ 只证券的数量求导，一阶条件为
+\[
+ -u_0'\!\left(\underbrace{e_0-S^{\mathsf T}\theta}_{c_0}\right)S_n
+ +\sum_\omega\pi_\omega
+ u_1'\!\left(\underbrace{e_{1\omega}+(X\theta)_\omega}_{c_{1\omega}}\right)
+ x_{\omega,n}=0.
+\]
+用下方括注标出的消费记号整理，得
 \[
  -u_0'(c_0)S_n+\sum_\omega\pi_\omega u_1'(c_{1\omega})x_{\omega,n}=0.
 \]
@@ -58,7 +72,14 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  \mathrm E\left[\frac{u_1'(\tilde c_1)}{u_0'(c_0)}
                  \frac{\widetilde X_n}{S_n}\right]=1.\tag{8.3}
 \]
-含义是：在最优处，将最后一元用于今天消费，或用于投资后在未来消费，两者的边际效用相等。令 $m_\omega=u_1'(c_{1\omega})/u_0'(c_0)$，则 $S_n=\mathrm E[m\widetilde X_n]$；$\pi_\omega m_\omega$ 给出由该参与者最优消费支持的一组状态价格。
+含义是：\textbf{在最优处，将最后一元用于今天消费，或用于投资后在未来消费，两者的边际效用相等}。将边际效用之比直接代入定价式，得到
+\[
+ S_n=\mathrm E\!\left[
+ \underbrace{\frac{u_1'(\tilde c_1)}{u_0'(c_0)}}_{m\text{：随机贴现因子}}
+ \widetilde X_n\right]
+ =\mathrm E[m\widetilde X_n].
+\]
+在状态 $\omega$ 下，该比值记为 $m_\omega$；$\pi_\omega m_\omega$ 给出由该参与者最优消费支持的一组状态价格。
 
 \textbf{凹性为什么使一阶条件充分？}对任意头寸变动 $h$，目标函数的二阶方向导数为
 \[
@@ -132,34 +153,66 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \[
  \tilde r_n=\frac{\widetilde X_n-S_n}{S_n}=\tilde x_n-1.\tag{8.10}
 \]
-$a_n$ 是\textbf{金额}，$\theta_n$ 是\textbf{数量}，$a_n/w$ 才是投资\textbf{权重}；$\tilde x_n$ 是总收益率，$\tilde r_n$ 是净收益率。投资金额满足 $\sum_n a_n=w$，从而期末财富为
+$a_n$ 是\textbf{金额}，$\theta_n$ 是\textbf{数量}，$a_n/w$ 才是投资\textbf{权重}；$\tilde x_n$ 是总收益率，$\tilde r_n$ 是净收益率。
+
+% 课堂板书：用户提供的期末财富分解照片；先分开无风险与风险投资，再代入预算。
+\textbf{按课堂板书，先把无风险投资单独列出。}总投资额为 $w$，故
+\[
+ a_N+\sum_{n=1}^{N-1}a_n=w
+ \quad\Longrightarrow\quad
+ a_N=w-\sum_{n=1}^{N-1}a_n.
+\]
+第 $N$ 只证券的净收益率确定为 $r_F$，其余证券的净收益率为 $\tilde r_n$。将无风险投资额代入，逐步得到
 \[
 \begin{aligned}
- \tilde w&=\sum_{n=1}^N a_n(1+\tilde r_n)\\
+ \tilde w
+ &=a_N(1+r_F)+\sum_{n=1}^{N-1}a_n(1+\tilde r_n)\\
+ &=\left(w-\sum_{n=1}^{N-1}a_n\right)(1+r_F)
+   +\sum_{n=1}^{N-1}a_n(1+\tilde r_n)\\
+ &=w(1+r_F)+\sum_{n=1}^{N-1}a_n
+   \bigl[(1+\tilde r_n)-(1+r_F)\bigr]\\
  &=w(1+r_F)+\sum_{n=1}^{N-1}a_n(\tilde r_n-r_F).
 \end{aligned}\tag{8.11}
 \]
+\textbf{含义：}先把全部财富按无风险利率增长，得到基准 $w(1+r_F)$；再加上各笔风险投资相对无风险投资多赚或少赚的部分。每一元转投风险证券，增加的是 $\tilde r_n-r_F$，因为这同时放弃了该元本来能取得的无风险收益。因此这里相加的是\textbf{超额收益}，不再重复加本金。
+
 $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-r_F$ 是本章的\textbf{风险溢价}（收益率之差），与第 7 章用确定性等价定义的货币风险溢价须区分。
 
 记 $a=(a_1,\ldots,a_{N-1})^{\mathsf T}$，$\iota$ 为全 1 列向量，组合问题变成
 \[
- \max_a\ \mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr].\tag{8.12}
+ \begin{aligned}
+ &\max_{a_1,\ldots,a_{N-1}}\ \mathrm E\!\left[
+ u\!\left(w(1+r_F)+
+ \underbrace{\sum_{n=1}^{N-1}a_n(\tilde r_n-r_F)}_{a^{\mathsf T}(\tilde r-r_F\iota)}\right)\right]\\
+ &\qquad=\max_a\ \mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr].
+\end{aligned}\tag{8.12}
 \]
 无风险投资为 $a_N=w-\sum_{n<N}a_n$；负数表示借款。无约束内点解满足
 \[
- \mathrm E[u'(\tilde w)(\tilde r_n-r_F)]=0,
- \qquad n=1,\ldots,N-1.\tag{8.13}
+ \mathrm E\!\left[u'\!\left(
+ \underbrace{w(1+r_F)+\sum_{j=1}^{N-1}a_j(\tilde r_j-r_F)}_{\tilde w}
+ \right)(\tilde r_n-r_F)\right]=0,
+ \qquad n=1,\ldots,N-1.\tag{8.13}\label{eq:wj-8-13}
 \]
 这表示在风险证券与无风险证券之间再转移一元，期望边际效用的净变化为零。
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge,title=8.3 最优组合的性质：单只风险证券]
-以下设 $u'>0$、$u''<0$，风险证券收益非退化，允许卖空与借贷，并假定有限的内点最优解存在、期望与求导可交换。令
+以下设 $u'>0$、$u''<0$，风险证券收益非退化，允许卖空与借贷，并假定有限的内点最优解存在、期望与求导可交换。$a$ 仍表示风险证券的投资金额。单只风险证券下，直接将期末财富写入目标函数：
 \[
- z=\tilde r-r_F,\qquad b=w(1+r_F),\qquad
- F(a)=\mathrm E[u(b+az)].
+ \max_a\ \mathrm E\!\left[u\!\left(
+   \underbrace{w(1+r_F)+a(\tilde r-r_F)}_{\tilde w\text{：期末财富}}
+ \right)\right].
 \]
-则 $F'(a)=\mathrm E[u'(b+az)z]$，$F''(a)=\mathrm E[u''(b+az)z^2]<0$。
+将期望效用记为 $F(a)$。给定 $w$，关于投资金额 $a$ 求导：
+\[
+\begin{aligned}
+ F'(a)&=\mathrm E\!\left[u'\!\left(w(1+r_F)+a(\tilde r-r_F)\right)
+                          (\tilde r-r_F)\right],\\
+ F''(a)&=\mathrm E\!\left[u''\!\left(w(1+r_F)+a(\tilde r-r_F)\right)
+                           (\tilde r-r_F)^2\right]<0.
+\end{aligned}
+\]
 
 \begin{tcolorbox}[knowledge]
 \textbf{定理 8.2}\quad 最优风险投资额 $a^*$ 与风险溢价同号：
@@ -170,30 +223,79 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
  \end{array}
 \]
 \end{tcolorbox}
-\textbf{证明：}在 $a=0$ 时，$F'(0)=u'(b)\mathrm E[z]$，其符号与 $\mathrm E[z]$ 相同。严格凹性使 $F'$ 严格递减，故 $F'(a^*)=0$ 的根分别在零点、零点右侧或左侧。正风险溢价使参与者愿意从零开始买入，但持仓增大时风险成本最终抵消收益。
+\textbf{证明：}在 $a=0$ 时，$F'(0)=u'(w(1+r_F))\mathrm E[\tilde r-r_F]$，其符号与风险溢价 $\mathrm E[\tilde r]-r_F$ 相同。严格凹性使 $F'$ 严格递减。内点最优解满足一阶条件
+\[
+ F'(a^*)=\mathrm E\!\left[
+ u'\!\left(w(1+r_F)+a^*(\tilde r-r_F)\right)(\tilde r-r_F)\right]=0.
+\]
+因此，该方程的根分别在零点、零点右侧或左侧。正风险溢价使参与者愿意从零开始买入，但持仓增大时风险成本最终抵消收益。
 
 \tcbline
-\textbf{A.\ 绝对风险厌恶决定投资金额怎样随财富变化}\quad 以下设 $\mathrm E[z]>0$，所以 $a^*(w)>0$。记
+\textbf{A.\ 绝对风险厌恶决定投资金额怎样随财富变化}\quad 以下设 $\mathrm E[\tilde r]-r_F>0$，所以 $a^*(w)>0$。记
 $A(t)=-u''(t)/u'(t)$。
 \begin{tcolorbox}[knowledge]
-\textbf{定理 8.3}\quad 在相关财富区间内：CARA 使最优风险投资\textbf{金额}不随财富变化；DARA 使其随财富增加；IARA 使其随财富减少。
+% 对照教材印刷页 118（PDF 第 133 页）：以导数符号列示三种情形。
+\textbf{定理 8.3}\quad 在相关财富区间内：
+\begin{itemize}
+ \item CARA：$A'(t)=0\ \Longrightarrow\ (a^*)'(w)=0$，最优风险投资\textbf{金额}不随财富变化；
+ \item DARA：$A'(t)<0\ \Longrightarrow\ (a^*)'(w)>0$，最优风险投资\textbf{金额}随财富增加；
+ \item IARA：$A'(t)>0\ \Longrightarrow\ (a^*)'(w)<0$，最优风险投资\textbf{金额}随财富减少。
+\end{itemize}
 \end{tcolorbox}
-\textbf{证明：}把一阶条件 $\mathrm E[u'(b+a^*z)z]=0$ 对 $w$ 求导，记 $\tilde w^*=b+a^*z$，得
+\textbf{证明：}由 8.2 节的一阶条件\eqref{eq:wj-8-13}，在单只风险证券的情形下，将最优期末财富完整代入，得到
 \[
- (1+r_F)\mathrm E[u''(\tilde w^*)z]
- +\frac{da^*}{dw}\mathrm E[u''(\tilde w^*)z^2]=0,
+ \mathrm E\!\left[
+ u'\!\left(\underbrace{w(1+r_F)+a^*(w)(\tilde r-r_F)}_{\tilde w^*\text{：最优期末财富}}\right)
+ (\tilde r-r_F)\right]=0.
+\]
+
+其中，
+\[
+\tilde{w}=w(1+r_f)+a^*(w)(\tilde{r}-r_f)
+\]
+
+
+这里 $a^*(w)$ 是随初始财富 $w$ 变化的最优投资金额；$r_F$、$\tilde r$ 及其概率分布保持不变。先对完整的期末财富表达式求导：
+\[
+ \frac{d\tilde w^*}{dw}
+ =\frac{d}{dw}\left[w(1+r_F)+a^*(w)(\tilde r-r_F)\right]
+ =(1+r_F)+\frac{da^*}{dw}(\tilde r-r_F).
+\]
+再用链式法则，并在期望与求导可交换的条件下，将一阶条件两边对 $w$ 求导：
+\[
+\begin{aligned}
+ 0&=\frac{d}{dw}\mathrm E\!\left[
+ u'\!\left(w(1+r_F)+a^*(w)(\tilde r-r_F)\right)(\tilde r-r_F)\right]\\
+ &=\mathrm E\!\left[
+ u''\!\left(\underbrace{w(1+r_F)+a^*(w)(\tilde r-r_F)}_{\tilde w^*}\right)
+ (\tilde r-r_F)
+ \underbrace{\left((1+r_F)+(\tilde r-r_F)\frac{da^*}{dw}\right)}_{d\tilde w^*/dw}
+ \right].
+\end{aligned}
+\]
+在这一式中，$u'$ 对期末财富求导得到 $u''$，再乘期末财富对 $w$ 的导数；外面的超额收益率 $\tilde r-r_F$ 不随 $w$ 变化。
+
+以下用上式下方括注标出的 $\tilde w^*$ 表示完整的最优期末财富，以便整理式子。由于 $da^*/dw$ 对给定的 $w$ 不随状态变化，可以提出期望，故
+\[
+ (1+r_F)\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]
+ +\frac{da^*}{dw}\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]=0,
 \]
 即
 \[
  \frac{da^*}{dw}=-(1+r_F)
- \frac{\mathrm E[u''(\tilde w^*)z]}{\mathrm E[u''(\tilde w^*)z^2]}.
+ \frac{\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]}
+      {\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]}.
 \]
-分母负，故导数与分子 $\mathrm E[u''(\tilde w^*)z]$ 同号。利用一阶条件减掉常数项，
+分母负，故导数与分子 $\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]$ 同号。利用一阶条件减掉常数项，
 \[
- \mathrm E[u''(\tilde w^*)z]
- =-\mathrm E[(A(\tilde w^*)-A(b))u'(\tilde w^*)z].
+\begin{aligned}
+ &\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]\\
+ &\quad=-\mathrm E\!\left[
+ \bigl(A(\tilde w^*)-A(w(1+r_F))\bigr)
+ u'(\tilde w^*)(\tilde r-r_F)\right].
+\end{aligned}
 \]
-DARA 下，$z>0$ 时 $\tilde w^*>b$、$A(\tilde w^*)<A(b)$；$z<0$ 时则反向。两种情况下括号与 $z$ 的乘积均为负，前面再取负号，得到 $da^*/dw>0$。CARA 时差为零；IARA 时符号相反。
+DARA 下，$\tilde r-r_F>0$ 时 $\tilde w^*>w(1+r_F)$、$A(\tilde w^*)<A(w(1+r_F))$；$\tilde r-r_F<0$ 时则反向。两种情况下括号与超额收益率的乘积均为负，前面再取负号，得到 $da^*/dw>0$。CARA 时差为零；IARA 时符号相反。
 
 这里比较的是 $A$ 在可能期末财富\textbf{整个区间}上的变化，不能仅凭初始财富处一个 $A'(w)$ 的符号推断任意风险下的结论。
 
@@ -201,25 +303,38 @@ DARA 下，$z>0$ 时 $\tilde w^*>b$、$A(\tilde w^*)<A(b)$；$z<0$ 时则反向�
 \textbf{B.\ 相对风险厌恶决定投资比例怎样随财富变化}\quad 设 $w>0$、期末财富为正，令
 \[
  \alpha^*(w)=\frac{a^*(w)}{w},\qquad
- e(w)=\frac{w}{a^*(w)}\frac{da^*}{dw}.
+ \underbrace{\frac{w}{a^*(w)}\frac{da^*}{dw}}_{e(w)\text{：投资金额对财富的弹性}}.
 \]
 $e$ 是风险投资金额对财富的\textbf{弹性}，且
 \[
- \frac{d\alpha^*}{dw}=\frac{a^*}{w^2}(e-1).
+ \frac{d\alpha^*}{dw}
+ =\frac{w\,da^*/dw-a^*}{w^2}
+ =\frac{a^*}{w^2}\left(
+ \underbrace{\frac{w}{a^*}\frac{da^*}{dw}}_{e(w)}-1\right).
 \]
 \begin{tcolorbox}[knowledge]
 \textbf{定理 8.4}\quad 记 $R(t)=tA(t)$。在相关财富区间内，CRRA 对应 $e=1$、风险投资比例不变；DRRA 对应 $e>1$、比例随财富增加；IRRA 对应 $e<1$、比例随财富减少。
 \end{tcolorbox}
-\textbf{证明：}记 $D=\mathrm E[u''(\tilde w^*)z^2]<0$。由前式及 $\tilde w^*=b+a^*z$，
+\textbf{证明：}将前面得到的 $da^*/dw$ 代入弹性，并利用
+$\tilde w^*=w(1+r_F)+a^*(w)(\tilde r-r_F)$，得到
 \[
 \begin{aligned}
- e-1&=-\frac{b\,\mathrm E[u''(\tilde w^*)z]+a^*D}{a^*D}\\
- &=-\frac{\mathrm E[u''(\tilde w^*)\tilde w^*z]}{a^*D}
- =\frac{\mathrm E[R(\tilde w^*)u'(\tilde w^*)z]}{a^*D}.
+ e-1
+ &=-\frac{w(1+r_F)\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]}
+          {a^*\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]}-1\\
+ &=-\frac{\mathrm E\!\left[u''(\tilde w^*)
+       \underbrace{\bigl(w(1+r_F)+a^*(\tilde r-r_F)\bigr)}_{\tilde w^*}
+       (\tilde r-r_F)\right]}
+          {a^*\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]}\\
+ &=\frac{\mathrm E[R(\tilde w^*)u'(\tilde w^*)(\tilde r-r_F)]}
+         {a^*\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]}.
 \end{aligned}
 \]
 再用一阶条件，将分子写成
-$\mathrm E[(R(\tilde w^*)-R(b))u'(\tilde w^*)z]$。
+\[
+ \mathrm E\!\left[\bigl(R(\tilde w^*)-R(w(1+r_F))\bigr)
+ u'(\tilde w^*)(\tilde r-r_F)\right].
+\]
 DRRA 下该分子为负，分母也为负，故 $e-1>0$；CRRA 时为零，IRRA 时相反。\textbf{金额增加不等于比例增加：}例如 CRRA 下金额随财富同比增加，而比例不变。
 \end{tcolorbox}
 
@@ -228,24 +343,28 @@ DRRA 下该分子为负，分母也为负，故 $e-1>0$；CRRA 时为零，IRRA 
 \textbf{定理 8.5}\quad 所有风险证券的风险溢价都为零，当且仅当全投无风险证券的 $a=0$ 是最优组合之一。
 \end{tcolorbox}
 \textbf{证明：}若 $a=0$ 最优，内点一阶条件给出
-$u'(b)\mathrm E[\tilde r_n-r_F]=0$，故每只证券风险溢价均为零。反之，若均为零，则任意组合都有 $\mathrm E[\tilde w]=b$。由 Jensen 不等式，
 \[
- \mathrm E[u(\tilde w)]\le u(\mathrm E[\tilde w])=u(b),
+ u'(w(1+r_F))\mathrm E[\tilde r_n-r_F]=0,
+ \qquad n=1,\ldots,N-1.
 \]
-而 $a=0$ 恰好达到 $u(b)$，故最优。若存在能完全抵消的风险头寸，最优金额向量未必唯一；严格凹性排除的是带有非零消费风险的同效用方案。
+故\textbf{每只证券风险溢价均为零}。反之，若均为零，则任意组合都有 $\mathrm E[\tilde w]=w(1+r_F)$。由 Jensen 不等式，
+\[
+ \mathrm E[u(\tilde w)]\le u(\mathrm E[\tilde w])=u(w(1+r_F)),
+\]
+而 $a=0$ 恰好达到 $u(w(1+r_F))$，故最优。若存在能完全抵消的风险头寸，最优金额向量未必唯一；严格凹性排除的是带有非零消费风险的同效用方案。
 
 \begin{tcolorbox}[knowledge]
 \textbf{定理 8.6}\quad 最优组合的期望收益率不低于无风险收益率。若至少一只证券风险溢价非零，且允许在零头寸附近自由调整、最优解存在，则最优组合的期望收益率严格更高。
 \end{tcolorbox}
 \textbf{证明：}全投无风险证券是可行的，所以
 \[
- u(\mathrm E[\tilde w^*])\ge\mathrm E[u(\tilde w^*)]\ge u(b).
+ u(\mathrm E[\tilde w^*])\ge\mathrm E[u(\tilde w^*)]\ge u(w(1+r_F)).
 \]
-由 $u'>0$，$\mathrm E[\tilde w^*]\ge b$，即
+由 $u'>0$，$\mathrm E[\tilde w^*]\ge w(1+r_F)$，即
 \[
  (a^*)^{\mathsf T}(\mathrm E[\tilde r]-r_F\iota)\ge0.
 \]
-若某一风险溢价非零，在 $a=0$ 处沿该证券风险溢价的同号方向小幅交易，效用的一阶变化严格为正，所以最优效用严格大于 $u(b)$，上述期望财富不等式也严格成立。$w>0$ 时除以 $w$，得到期望组合净收益率大于 $r_F$。
+若某一风险溢价非零，在 $a=0$ 处沿该证券风险溢价的同号方向小幅交易，效用的一阶变化严格为正，所以最优效用严格大于 $u(w(1+r_F))$，上述期望财富不等式也严格成立。$w>0$ 时除以 $w$，得到期望组合净收益率大于 $r_F$。
 
 \textbf{为什么不能逐只套用定理 8.2？}多资产下还要看证券对\textbf{整个组合风险}的影响。即使每只证券的风险溢价都为正，最优组合也可能卖空其中某只证券，以对冲其余证券的风险；只能保证最优组合整体的期望超额收益非负。
 \end{tcolorbox}
