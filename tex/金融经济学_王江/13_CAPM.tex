@@ -1,9 +1,84 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 68–75（印刷页 67–74）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 197–207（PDF 页 212–222）
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 68–75（印刷页 67–74）
 
-\zhchapter{资本资产定价模型（CAPM）}
+\lecture{资本资产定价模型}
 
 \ifdefined\WJHandoutKnowledge
+
+第 12 章说明：若参与者有均值--方差偏好，风险证券的最优组合都沿切点组合方向。本章再加\textbf{市场出清}，把切点组合识别为所有风险证券的总供给组合，由此得到资本资产定价模型（CAPM）。
+
+\begin{tcolorbox}[knowledge,title=13.1 市场组合与均衡]
+证券 $n$ 的流通份额为 $\bar\theta_n$、价格为 $P_n$，市场价值为 $v_n=P_n\bar\theta_n$。全部证券的市场价值 $v_M=\sum_nv_n$，\textbf{市场组合}的价值权重为
+\[
+ z_{n,M}=\frac{P_n\bar\theta_n}{v_M},\qquad
+ z_M=\begin{bmatrix}z_{1,M}&\cdots&z_{N,M}\end{bmatrix}^{\mathsf T}.
+ \tag{13.2}
+\]
+这是所有可交易风险证券按市值组成的总供给组合。它不是随意选取的股票指数；要用某指数代理市场组合，还需说明覆盖范围和权重。
+
+\textbf{定理 13.1}\quad 有无风险证券且所有参与者对风险资产的需求均为切点组合 $z_T$ 时，市场出清意味着 $z_M=z_T$。证明：参与者 $k$ 对风险组合投入 $a_k$，总风险资产需求为 $(\sum_ka_k)z_T$；债券净供给为零时，$\sum_ka_k=v_M$，故风险资产总需求正好是 $v_Mz_T$，与风险资产总供给 $v_Mz_M$ 相等。于是二者权重相同。
+
+由第 12 章切点组合的贝塔关系得到\textbf{定理 13.2（CAPM）}：对任意证券 $n$，
+\[
+ \bar r_n-r_F=\beta_{n,M}(\bar r_M-r_F),\qquad
+ \beta_{n,M}=\frac{\operatorname{Cov}(\widetilde r_n,\widetilde r_M)}
+ {\operatorname{Var}(\widetilde r_M)}.
+ \tag{13.3}
+\]
+证券的风险溢价是市场风险溢价乘以它对市场的\textbf{贝塔}。定价关系要求均值--方差选择、可交易与市场出清等条件，不是对任意收益数据的恒等式。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=13.3 系统风险与证券市场线]
+把资产的超额收益投影到市场超额收益上：
+\[
+ \widetilde r_n-r_F
+ =\alpha_n+\beta_{n,M}(\widetilde r_M-r_F)+\widetilde\varepsilon_n,
+ \quad\mathrm E[\widetilde\varepsilon_n]=0,
+ \quad\operatorname{Cov}(\widetilde\varepsilon_n,\widetilde r_M)=0.
+ \tag{13.4}
+\]
+贝塔项是\textbf{系统风险}，残差项是与市场不相关的\textbf{剩余风险}。方差分解为
+\[
+ \sigma_n^2=\beta_{n,M}^2\sigma_M^2+\sigma_{\varepsilon_n}^2.
+\]
+CAPM 要求 $\alpha_n=0$；剩余方差即使很大，也不会仅因自身波动大而获得风险溢价。证券市场线以贝塔为横轴、期望收益率为纵轴，截距是 $r_F$，斜率是 $\bar r_M-r_F$。这与以\emph{总标准差}为横轴、只适用于有效组合的资本市场线不同。
+
+\begin{tcolorbox}[example]
+\textbf{例 13.1}\quad 若 $r_F=4\%$、$\bar r_M=12\%$，市场风险溢价为 $8\%$。贝塔分别为 $0,1.5,-1.5$ 的资产，CAPM 预期风险溢价分别为 $0,12\%,-12\%$，对应预期收益率 $4\%,16\%,-8\%$。负贝塔资产在市场下跌时倾向提供保险，因而可接受低于无风险利率的预期收益；高总波动率并不能改变这一贝塔结论。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=13.4 无风险资产缺席时的 CAPM]
+没有可交易无风险资产时，第 12 章仍保证参与者各自的最优组合位于均值--方差前沿。市场出清使市场组合 $M$ 也位于该前沿。取与 $M$ 收益零协方差的前沿组合 $zcm$，\textbf{定理 13.3}给出
+\[
+ \bar r_q-\bar r_{zcm}
+ =\beta_{q,M}(\bar r_M-\bar r_{zcm})
+ \tag{13.5}
+\]
+对任意组合 $q$ 成立。这里的 $\bar r_{zcm}$ 是\textbf{零贝塔组合收益率}，不是不存在的无风险利率；$zcm$ 自身仍有风险。这是无风险资产版本的推广，不能把 (13.5) 的截距直接写作 $r_F$。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=13.5 CAPM 作为均衡结果]
+均值--方差偏好可由不同条件得到。\textbf{二次效用}使期望效用取决于均值和方差，但要限制财富域以保持边际效用为正。若资产\textbf{联合正态}且参与者具有 CARA 效用，则组合终值正态，期望效用等价于最大化
+\[
+ \mathrm E[\widetilde w_k]-\frac{a_k}{2}\operatorname{Var}(\widetilde w_k).
+\]
+令风险证券期末支付向量均值为 $\bar x$、协方差矩阵为 $\Sigma$、0 期价格为 $P$，参与者 $k$ 的最优证券持仓为
+\[
+ \theta_k=\frac1{a_k}\Sigma^{-1}[\bar x-(1+r_F)P].
+\]
+对所有人加总并令总需求等于总供给 $\bar\theta$，记 $1/a=\sum_k1/a_k$，则
+\[
+ P=\frac{\bar x-a\Sigma\bar\theta}{1+r_F}.
+\]
+将价格和市场组合的价值定义代入，可再得到 (13.3)。这一推导说明在正态支付、CARA 偏好、共同信念和完整可交易等\textbf{充分条件}下，CAPM 可以由一般均衡产生；并不表示这些条件在现实中自动成立。
+\end{tcolorbox}
+
+\begin{tcolorbox}[summary,title=本章小结]
+均值--方差偏好使每个人持有相同的有效风险组合；市场出清把该组合识别为市值加权的市场组合。CAPM 于是用市场贝塔定价系统风险，剩余风险不单独获得溢价。无风险资产缺席时，用零贝塔前沿组合的收益率取代无风险利率。二次效用与正态支付加 CARA 偏好提供两类可推导 CAPM 的具体条件。
+\end{tcolorbox}
+
 \fi
 
 \input{tex/金融经济学_王江/13_CAPM_习题.tex}

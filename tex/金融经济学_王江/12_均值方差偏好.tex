@@ -1,9 +1,101 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 62–67（印刷页 61–66）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 179–192（PDF 页 194–207）
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 62–67（印刷页 61–66）
 
-\zhchapter{在均值-方差偏好下的投资组合选择}
+\lecture{在均值-方差偏好下的投资组合选择}
 
 \ifdefined\WJHandoutKnowledge
+
+上一章在一般偏好和不完全证券结构下，均衡选择依赖完整的支付分布。本章增加条件，使参与者只按收益分布的\textbf{均值}与\textbf{方差}选择组合；这把组合问题化为协方差矩阵上的二次优化。
+
+\begin{tcolorbox}[knowledge,title=12.1 均值--方差偏好]
+记终值财富为 $\widetilde w$，均值 $\bar w=\mathrm E[\widetilde w]$，标准差 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。若参与者的排序可由
+\[
+ \mathrm E[u(\widetilde w)]=v(\bar w,\sigma_w)
+ \tag{12.1}
+\]
+完全表示，则称具有\textbf{均值--方差偏好}。这需要对效用函数或可选收益分布施加条件，而非一般期望效用的自动性质。
+
+\textbf{定理 12.1}\quad 若 $u(w)=w-\tfrac12 a w^2$，则
+\[
+ \mathrm E[u(\widetilde w)]
+ =\bar w-\tfrac12a(\bar w^2+\sigma_w^2).
+\]
+因此二次效用具有均值--方差表示。但 $u'(w)=1-aw$ 只在 $w<1/a$ 时为正；若财富越过该区间，二次效用会违反不满足性，使用时须限制财富域。
+
+\textbf{定理 12.2}\quad 若可交易证券的联合支付为正态分布，则每个线性组合仍为正态分布，其分布完全由均值和方差决定。因此，只要期望效用存在，参与者对这些组合的排序具有均值--方差表示；不要求效用本身二次型。
+
+\textbf{定理 12.3}\quad 对联合正态支付及递增、严格凹的效用，$v$ 对均值严格递增、对标准差严格递减；$v$ 对均值凹、对标准差凹，且具有相应的联合凹性。证明把财富写成 $\bar w+\sigma_w Z$，$Z\sim N(0,1)$：
+\[
+ v_1=\mathrm E[u'(\bar w+\sigma_wZ)]>0,
+ \quad v_2=\mathrm E[u'(\bar w+\sigma_wZ)Z]<0.
+\]
+后一个符号可由 $Z$ 对称性与 $u'$ 递减得到。二阶导数的凹性由 $u''<0$ 及 Cauchy--Schwarz 不等式得到。正态分布有负财富尾部；若效用只定义在正财富域，必须另作定义域处理，不能直接套用。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=12.2 无风险证券缺席时的前沿]
+设 $N$ 只风险证券的净收益率向量为 $\widetilde r$，均值 $\bar r$，正定协方差矩阵 $\Sigma$。权重 $z$ 满足 $\mathbf1^{\mathsf T}z=1$，组合均值和方差为
+\[
+ \bar r_p=z^{\mathsf T}\bar r,\qquad
+ \sigma_p^2=z^{\mathsf T}\Sigma z.
+\]
+在给定目标收益 $\bar r_p$ 下求最小方差，得到\textbf{均值--方差前沿}（MVF）组合：
+\[
+ \min_z\ \tfrac12 z^{\mathsf T}\Sigma z,
+ \quad\text{s.t. }z^{\mathsf T}\bar r=\bar r_p,
+ \quad z^{\mathsf T}\mathbf1=1.
+ \tag{12.2}
+\]
+令 $a=\bar r^{\mathsf T}\Sigma^{-1}\bar r$、$b=\bar r^{\mathsf T}\Sigma^{-1}\mathbf1$、$c=\mathbf1^{\mathsf T}\Sigma^{-1}\mathbf1$、$d=ac-b^2>0$，一阶条件解为
+\[
+ z_p=\frac1d\Sigma^{-1}\bigl[(c\bar r_p-b)\bar r+(a-b\bar r_p)\mathbf1\bigr].
+ \tag{12.3}
+\]
+$d>0$ 要求各风险证券的预期收益不全相同；若 $d=0$，目标收益约束退化，应单独处理。正定的 $\Sigma$ 保证解唯一。
+
+把解写成 $z_p=z_0+\bar r_p(z_1-z_0)$，可见\textbf{定理 12.5}：任意 MVF 组合可由 $z_0,z_1$ 两个 MVF 组合形成；\textbf{推论 12.1--12.2}：任意两个不同的 MVF 组合足以生成整条前沿，它们的线性组合仍在前沿。这就是无风险证券缺席时的\textbf{两基金分离}（定理 12.6--12.7）。组合权重允许卖空；若另有权重非负约束，前沿会分段，公式须改写。
+
+前沿在 $(\sigma,\bar r)$ 平面是一条双曲线的边界。顶点是\textbf{最小方差组合}（MVP），其均值为 $b/c$，权重为 $\Sigma^{-1}\mathbf1/c$。前沿的上半支在均值--方差偏好下有效；下半支被同方差、更高均值的组合支配。
+
+\textbf{定理 12.8}\quad 对任意组合 $p$，$\operatorname{Cov}(\widetilde r_p,\widetilde r_{\rm MVP})=\sigma_{\rm MVP}^2$。证明：MVP 的一阶条件给出 $\Sigma z_{\rm MVP}=\mathbf1/c$，故 $z_p^{\mathsf T}\Sigma z_{\rm MVP}=1/c$。\textbf{定理 12.9}进一步指出，对非 MVP 的前沿组合 $p$，存在一个均值--方差前沿上的零协方差组合 $zcp$，用作后面的定价基准。
+
+\textbf{定理 12.10}\quad 若 $p$ 是非 MVP 的前沿组合，则任意组合 $q$ 满足
+\[
+ \bar r_q-\bar r_{zcp}
+ =\beta_{q,p}(\bar r_p-\bar r_{zcp}),\qquad
+ \beta_{q,p}=\frac{\operatorname{Cov}(\widetilde r_q,\widetilde r_p)}{\sigma_p^2}.
+ \tag{12.6}
+\]
+证明将 $\Sigma z_p=\lambda_r\bar r+\lambda_1\mathbf1$ 两边左乘任意权重 $z_q^{\mathsf T}$，再分别取 $q=p,zcp$ 消去乘子。这里是\textbf{零贝塔定价式}，其基准收益不一定等于无风险利率。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=12.4 存在无风险证券时]
+令无风险净利率为 $r_F$，风险证券的预期超额收益向量 $\eta=\bar r-r_F\mathbf1$。风险证券权重 $z$ 不必合计为 1，余下资金投向无风险证券。若 $\eta^{\mathsf T}\Sigma^{-1}\eta>0$，给定组合预期超额收益 $\bar\eta_p$，最小方差解是
+\[
+ z_p=\frac{\bar\eta_p}{\eta^{\mathsf T}\Sigma^{-1}\eta}\Sigma^{-1}\eta.
+ \tag{12.7}
+\]
+将 $\bar\eta_p$ 取为使风险证券权重和为 1 的值，得到\textbf{切点组合}
+\[
+ z_T=\frac{\Sigma^{-1}\eta}{\mathbf1^{\mathsf T}\Sigma^{-1}\eta},
+\]
+前提是分母非零。所有此类前沿组合是无风险证券与 $T$ 的线性组合（\textbf{定理 12.11}）；这就是一基金加无风险证券的分离。若 $r_F$ 位于风险证券前沿的适当位置，切点 $T$ 在有效前沿上（\textbf{定理 12.12}）。
+
+无风险证券与 $T$ 在 $(\sigma,\bar r)$ 平面形成\textbf{资本市场线}。风险组合 $q$ 的 Sharpe 比为 $(\bar r_q-r_F)/\sigma_q$；在允许自由借贷和卖空的上述条件下，切点组合具有最高 Sharpe 比。
+
+\textbf{定理 12.13}\quad 若 $p$ 是有无风险证券时的均值--方差有效组合，任意组合 $q$ 满足
+\[
+ \bar r_q-r_F=\beta_{q,p}(\bar r_p-r_F),\qquad
+ \beta_{q,p}=\frac{\operatorname{Cov}(\widetilde r_q,\widetilde r_p)}{\sigma_p^2}.
+ \tag{12.9}
+\]
+特别地，取 $p=T$ 得切点组合的贝塔定价式（12.10）。这里的 $p$ 是\emph{有效组合}；下一章才在均衡条件下识别它与\emph{市场组合}的关系。
+\end{tcolorbox}
+
+\begin{tcolorbox}[summary,title=本章小结]
+二次效用或联合正态支付等条件可使组合排序只依赖均值与方差。无风险证券缺席时，前沿由两个风险基金生成，并有零贝塔定价关系；存在无风险证券时，前沿由切点风险组合与无风险证券生成，风险溢价可由相对于有效组合的贝塔表示。上述分析以协方差矩阵正定、相关组合可交易及适当的定义域为条件。
+\end{tcolorbox}
+
 \fi
 
 \input{tex/金融经济学_王江/12_均值方差偏好_习题.tex}

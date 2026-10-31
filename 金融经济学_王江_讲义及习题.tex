@@ -94,7 +94,7 @@
 \else
 \MakeFourThreeOneCover
     {431 FINANCE \quad/\quad FINANCIAL ECONOMICS}
-    {\ifdefined\WJExercisesOnly 金融经济学·王江·习题\else 金融经济学·王江·讲义及习题\fi}
+    {金融经济学}
     {\ifdefined\WJExercisesOnly 王江《金融经济学》课后习题\else 王江《金融经济学》讲义及习题解答\fi}
     {从偏好与状态价格出发，完成资产定价的推演}
     {Bilibili@园丁小区詹姆斯}
@@ -108,8 +108,13 @@
 
 \cleardoublepage
 
-% 原书解答从第 2 章开始，无第 1 章习题。
-\setcounter{chapter}{1}
+% 完整讲义包含引论；原书解答从第 2 章开始，仅习题版保持原编号。
+\ifdefined\WJHandoutKnowledge
+  \setcounter{chapter}{0}
+  \input{tex/金融经济学_王江/01_引论.tex}
+\else
+  \setcounter{chapter}{1}
+\fi
 \input{tex/金融经济学_王江/02_基本框架.tex}
 \input{tex/金融经济学_王江/03_Arrow-Debreu经济.tex}
 \input{tex/金融经济学_王江/04_套利和资产定价.tex}

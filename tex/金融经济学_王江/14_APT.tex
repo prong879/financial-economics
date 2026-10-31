@@ -1,9 +1,75 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 76–79（印刷页 75–78）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 213–223（PDF 页 228–238）
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 76–79（印刷页 75–78）
 
-\zhchapter{套利定价理论（APT）}
+\lecture{套利定价理论}
 
 \ifdefined\WJHandoutKnowledge
+
+CAPM 用市场组合的贝塔衡量系统风险。本章先不指定风险因子的经济含义，而假设收益可以由少数共同因子与剩余风险分解；再研究无套利给预期收益施加的限制。\textbf{精确复制}与\textbf{大市场中的近似复制}会得到不同强度的结论。
+
+\begin{tcolorbox}[knowledge,title=14.1 资产收益的因子结构]
+设 $N$ 只资产有 $F$ 个共同因子，收益满足线性因子模型
+\[
+ \widetilde r_n=\bar r_n+\sum_{k=1}^{F}b_{n,k}\widetilde f_k
+ +\widetilde\varepsilon_n,\qquad n=1,\ldots,N.
+ \tag{14.1}
+\]
+$\mathrm E[\widetilde f_k]=\mathrm E[\widetilde\varepsilon_n]=0$；$b_{n,k}$ 是资产 $n$ 对因子 $k$ 的\textbf{载荷}，$\widetilde\varepsilon_n$ 是因子无法解释的剩余风险。把因子标准化为 $\operatorname{Cov}(\widetilde f)=I$，并令因子与剩余风险不相关，则向量式为
+\[
+ \widetilde r=\bar r+B\widetilde f+\widetilde\varepsilon,
+ \qquad \operatorname{Cov}(\widetilde r)=BB^{\mathsf T}
+ +\operatorname{Cov}(\widetilde\varepsilon).
+ \tag{14.2}
+\]
+共同因子解释跨资产共同波动；剩余风险能否充分分散，取决于它在不同资产间的协方差结构。因子可经可逆线性变换重新表示，所以单个因子的名称和载荷并不天然唯一；定价关系在相应变换后保持一致。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=14.2 精确因子模型与无套利]
+先假设无剩余风险，只有一个因子：$\widetilde r_n=\bar r_n+b_n\widetilde f$。若有两只资产的载荷不同，适当的多空组合可以使因子载荷为 0，从而得到无风险组合；也可构造载荷为 1 的\textbf{因子组合}。若无套利，所有无风险组合的收益须相同，且拥有同样因子载荷的组合须同价。于是\textbf{定理 14.1（单因子 APT）}：
+\[
+ \bar r_n=r_F+b_n\lambda,\qquad\forall n,
+ \tag{14.5}
+\]
+其中 $\lambda$ 是单位因子载荷的风险溢价。若某资产不满足上式，买入便宜的一边、卖出由无风险组合和因子组合复制的另一边，可形成零成本、无随机支付差且严格正收益的套利。
+
+精确 $F$ 因子模型写成 $\widetilde r=\bar r+B\widetilde f$。对任何零成本且零因子载荷的组合 $z$，无套利要求 $z^{\mathsf T}\bar r=0$。线性代数因此给出\textbf{定理 14.2}：
+\[
+ \bar r=\lambda_0\mathbf1+B\lambda,
+ \quad\text{即 }\bar r_n=\lambda_0+\sum_{k=1}^{F}b_{n,k}\lambda_k.
+ \tag{14.6}
+\]
+若存在收益线性无关的无风险组合，$\lambda_0=r_F$；因子组合可交易时，$\lambda_k$ 是第 $k$ 个标准化因子组合超出无风险利率的期望收益。因子协方差矩阵为单位阵只是标准化选择，不是经济上必须相互独立。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=14.3 剩余风险、极限套利与近似 APT]
+若每只资产还带有 $\widetilde\varepsilon_n$，有限资产的因子组合通常\textbf{不能精确复制}单只资产：消去共同因子后仍留下特殊风险。因此 (14.6) 不再由有限市场的简单复制严格推出。
+
+考察越来越大的市场。\textbf{定义 14.1}\quad 若存在零成本组合序列，使其预期支付持续增大，而支付方差趋于 0，就称存在\textbf{极限套利}。这一概念强于只排除每个有限市场中的常规无套利机会。
+
+\textbf{定理 14.3}\quad 若收益由固定数目 $F$ 的共同因子与有界、可充分分散的剩余风险描述，且不存在极限套利，则预期收益向量相对于某个 $F$ 因子线性定价向量的\textbf{平方偏差总和有界}：
+\[
+ \sum_{i=1}^{n}
+ (\bar r_i^{(n)}-\lambda_0^{(n)}-b_i^{(n)\mathsf T}\lambda^{(n)})^2
+ \le A,
+\]
+其中 $A$ 与资产数 $n$ 无关。证明的要点是把预期收益投影到由常数与因子载荷张成的空间；若正交残差的平方范数无界，可放大一个零成本、零因子载荷的组合，使其期望收益趋于无穷而剩余风险方差趋于零，违反无极限套利。
+
+\textbf{定理 14.4}\quad 上述平方和界意味着：对任意固定 $\epsilon>0$，定价误差超过 $\epsilon$ 的资产数量至多为 $A/\epsilon^2$。故随着资产数增加，定价式对\textbf{大多数资产}近似成立；不能说每一只资产都被精确定价。
+
+\textbf{边界例子。}即使每个有限市场没有常规套利，若越来越多独立特殊风险资产的预期超额收益保持正值，组合可分散其风险却保留收益，从而形成极限套利。无极限套利不是普通无套利的自动推论，也不是市场均衡的完整条件。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=14.5 APT 作为均衡结果]
+前述 APT 主要由支付结构和无套利出发。要说明该关系是\textbf{均衡}价格，还需偏好、禀赋、可交易性和出清等条件。\textbf{定理 14.5}给出一组充分条件：证券支付具有因子结构；无风险支付、各共同因子及参与者的禀赋可由证券支付线性表出；参与者严格风险厌恶；均衡配置为内点。在这些条件下，均衡中的个体消费可在因子支付空间内表示，个体边际效用定价条件给每个因子组合赋予溢价 $\lambda_k$，从而推出 (14.6)。
+
+这一结果说明精确 APT 可与均衡相容，但其条件比“因子模型加无套利”更强。与 CAPM 相比，APT 容许多个系统因子，却不直接告诉我们因子的经济身份或风险溢价数值；这些仍需模型设定或数据识别。
+\end{tcolorbox}
+
+\begin{tcolorbox}[summary,title=本章小结]
+精确因子模型中，因子支付可复制，常规无套利给出精确的线性预期收益关系。含剩余风险的大市场中，无极限套利只保证多数资产的近似定价，可能存在少数偏差较大的资产。若还要把 APT 解释成均衡结果，必须补充偏好、可交易支付与市场出清的条件。
+\end{tcolorbox}
+
 \fi
 
 \input{tex/金融经济学_王江/14_APT_习题.tex}

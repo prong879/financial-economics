@@ -15,25 +15,22 @@
             \begin{aligned}
                 \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
                 \mathrm{s.t.}\quad &w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})=0\\
-                &c_{0},c_{1a},c_{1b}\ge 0
+                &c_{0},c_{1a},c_{1b}>0
             \end{aligned}
         \]
 
-        拉格朗日函数为
+        假设 $w>0$、$\phi_a,\phi_b>0$。对数效用的消费域为 $c_0,c_{1a},c_{1b}>0$；最优解在内部，可直接使用等式预算的拉格朗日函数
         \[
-            \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})\bigr)-\mu_{0}c_{0}-\mu_{a}c_{1a}-\mu_{b}c_{1b}
+            \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-c_0-\phi_a c_{1a}-\phi_b c_{1b}\bigr).
         \]
-        其一阶条件为
+        一阶条件为
         \[
-            \begin{aligned}
-                \frac{1}{c_{0}}&=\lambda+\mu_{0}\\
-                \tfrac12\bigl(1/c_{1a}\bigr)&=\lambda\phi_{a}+\mu_{a}\\
-                \tfrac12\bigl(1/c_{1b}\bigr)&=\lambda\phi_{b}+\mu_{b}\\
-                c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}&=w\\
-                \mu_{i}c_{i}&=0,\quad i=0,a,b
-            \end{aligned}
+          \frac1{c_0}=\lambda,\qquad
+          \frac1{2c_{1a}}=\lambda\phi_a,\qquad
+          \frac1{2c_{1b}}=\lambda\phi_b,\qquad
+          c_0+\phi_a c_{1a}+\phi_b c_{1b}=w.
         \]
-        对数效用在 $c=0$ 处边际效用为无穷大，因而最优消费在每一时期每一状态都严格为正（当然，假设 $\phi\gg 0$，即所有状态价格严格为正）。也就是说，最优消费总是在 $\mathrm{R}^{1+\Omega}$ 的内部而不是边界上，因而非负性约束从不起限制作用。在这种情况下，我们可以在一阶条件中去掉这些约束（以及对应的乘子）而直接求解最优。        因此，$\mu_{i}=0$（$i=0,a,b$）。一阶条件的解记为最优消费：
+        当消费趋近 $0$ 时，对数效用趋于负无穷、边际效用趋于正无穷，因此最优消费在每一时期、每一状态都严格为正。由上述一阶条件得到最优消费：
         \[
             c_{0}^{*}=\frac{1}{\lambda},\qquad
             c_{1a}^{*}=\frac{1}{\lambda}\frac{1}{2\phi_{a}},\qquad
@@ -52,7 +49,7 @@
             c_{1b}^{*}=\frac14\frac{w}{\phi_{b}}
         \]
 
-        可以看出，参与者把一半财富用作现在的消费，把另外一半财富作为未来的消费。某一状态下的消费与对应的状态价格负相关。这个结果很直观。状态价格高的状态下的消费更昂贵。结果，参与者在这些状态下选择较低的消费。
+        可以看出，参与者把一半财富用作现在的消费，把另外一半财富作为未来的消费。在财富给定时，某一状态下的消费与对应状态价格成反比；若价格变化也改变禀赋市值，还须计入财富效应。这个结果很直观。状态价格高的状态下的消费更昂贵。结果，参与者在这些状态下选择较低的消费。
         \end{solution}
 
     \begin{problem}

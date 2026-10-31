@@ -19,39 +19,64 @@
 最后一个结论说的是，对于具有单调递增的相对风险厌恶的投资者，他在风险资产上的投资额占他财富的比例随着财富的增加而减少。
 \end{problem}
 \begin{solution}
+设最优投资额有限且唯一，可行投资的期末财富为正，相关期望存在。以下先讨论内点解，边界解由凹目标函数的单侧导数条件得到。
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \[
-        u_{1}'(w)=\lambda u'(\lambda w),\qquad u_{1}''(w)=\lambda^{2}u''(\lambda w)
-    \]
-    由此以及 $R'(w)\ge 0$ 可得
-    \[
-        R_{1}(w)=\frac{wu_{1}''(w)}{u_{1}'(w)}=\frac{\lambda^{2}wu''(\lambda w)}{\lambda u'(\lambda w)}=\frac{\lambda wu''(\lambda w)}{u'(\lambda w)}=R(\lambda w)\ge R(w)=R_{2}(w);
-    \]
+\item 由链式法则，
+\[
+ u_1'(z)=\lambda u'(\lambda z),\qquad
+ u_1''(z)=\lambda^2u''(\lambda z).
+\]
+因此
+\[
+ R_1(z)=-\frac{z u_1''(z)}{u_1'(z)}
+ =-\frac{\lambda z u''(\lambda z)}{u'(\lambda z)}
+ =R(\lambda z)\ge R(z)=R_2(z),
+\]
+其中用到 $z>0$、$\lambda>1$ 和 $R'\ge0$。
 
-    \item 参与者优化的一阶条件是 $E\bigl[U'\bigl(\lambda(W+a\tilde{r})\bigr)\lambda\tilde{r}\bigr]=0$，因为 $E[\tilde{r}]>0$，从而有 $a>0$。一阶条件的两边对 $\lambda$ 求导得：
-    \[
-        E\bigl[u''(w+\lambda a\tilde{r})(w+a\tilde{r}+\lambda a'\tilde{r})\tilde{r}\bigr]=0
-    \]
-    \[
-        \begin{aligned}
-            &\Rightarrow\lambda^{2}a'E\bigl[-u''(\tilde{w})\tilde{r}^{2}\bigr]=E\bigl[u''(\tilde{w})\tilde{w}\tilde{r}\bigr]=E\bigl[-u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\\
-            &\Rightarrow\operatorname{sign}(a')=-\operatorname{sign}\bigl(E\bigl[u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\bigr)
-        \end{aligned}
-    \]
-    因为
-    \[
-        E\bigl[u'(\tilde{w})R(\tilde{w})\tilde{r}\bigr]\ge E\bigl[u'(\tilde{w})R(w)\tilde{r}\bigr]=R(w)E\bigl[u'(\tilde{w})\tilde{r}\bigr]=0
-    \]
-    最后一个等式是因为一阶条件；因此 $a'\le 0$；
-    \[
-        \begin{aligned}
-            &\Rightarrow a(\lambda w)\le a(w),\ \lambda>1\\
-            &\Rightarrow a_{1}(w)\le a_{2}(w)
-        \end{aligned}
-    \]
+\item 记绝对风险厌恶系数为 $A_i(z)=-u_i''(z)/u_i'(z)$。由 (a)，
+\[
+ A_1(z)=\frac{R_1(z)}{z}\ge\frac{R_2(z)}{z}=A_2(z).
+\]
+令 $h(z)=u_1'(z)/u_2'(z)>0$，则
+\[
+ \frac{h'(z)}{h(z)}=-A_1(z)+A_2(z)\le0,
+\]
+所以 $h$ 非增。对给定的初始财富 $w$，记
+\[
+ F_i(a)=E[u_i(w+a\tilde r)],\qquad
+ F_i'(a)=E[u_i'(w+a\tilde r)\tilde r].
+\]
+由于 $F_i'(0)=u_i'(w)E[\tilde r]>0$，有限的内点最优额为正。令 $a_2=a_2(w)>0$，其一阶条件为 $F_2'(a_2)=0$。当 $\tilde r\ge0$ 时，$h(w+a_2\tilde r)\le h(w)$；当 $\tilde r<0$ 时，不等式反向，但乘以 $\tilde r$ 后又反向。因此逐状态有
+\[
+ h(w+a_2\tilde r)\tilde r\le h(w)\tilde r.
+\]
+乘以正数 $u_2'(w+a_2\tilde r)$ 并取期望，得到
+\[
+ \begin{aligned}
+ F_1'(a_2)
+ &=E[h(w+a_2\tilde r)u_2'(w+a_2\tilde r)\tilde r]\\
+ &\le h(w)F_2'(a_2)=0.
+ \end{aligned}
+\]
+$F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a_2(w)$。
 
-    \item 令 $\lambda=\dfrac{w_{2}}{w_{1}}$，令 $u_{1}(w)=u(\lambda w)$，$u_{2}(w)=u(w)$，那么由 (a) 和 (b) 有 $\dfrac{a(w_{2})}{\lambda}\le a(w_{1})$，即 $\widehat{a}(w_{1})\ge\widehat{a}(w_{2})$。
+\item 若 $w_1=w_2$，结论显然。若 $0<w_1<w_2$，令 $\lambda=w_2/w_1>1$。在初始财富 $w_1$ 下，
+\[
+ E[u_1(w_1+a\tilde r)]
+ =E[u(w_2+\lambda a\tilde r)].
+\]
+用 $b=\lambda a$ 换元，并在可行集随财富同比例缩放的条件下，有
+\[
+ a_1(w_1)=\frac{a(w_2)}{\lambda},\qquad a_2(w_1)=a(w_1).
+\]
+由 (b) 得
+\[
+ \frac{a(w_2)}{\lambda}\le a(w_1)
+ \quad\Longrightarrow\quad
+ \boxed{\frac{a(w_2)}{w_2}\le\frac{a(w_1)}{w_1}}.
+\]
+因此相对风险厌恶随财富非减时，最优风险投资比例随财富非增。
 \end{enumerate}
 \end{solution}
 
@@ -65,7 +90,7 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
-为简便起见，假设效用函数为 $U(w)=-e^{-aw}$，
+假设效用函数为 $U(w)=-e^{-aw}$，
 \begin{enumerate}[label=(\alph*)]
     \item 由定义有
     \[
@@ -111,7 +136,7 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
-为简便起见，假设效用函数为 $U(w)=\log(w)$，
+假设效用函数为 $U(w)=\log(w)$，
 \begin{enumerate}[label=(\alph*)]
     \item 由定义有
     \[
@@ -145,25 +170,49 @@
 用这两种定义计算风险溢价。它们相等吗？解释所得到的结论。
 \end{problem}
 \begin{solution}
-不妨设 $U(w)=w^{\frac12}$，
-
-第一种定义：
+相对风险厌恶系数为 2，即
 \[
-    \begin{aligned}
-        \sqrt{w-\pi_{1}}&=\tfrac12\sqrt{w+b}+\tfrac12\sqrt{w-b}\\
-        \Rightarrow\pi_{1}&=\tfrac12\bigl(w-\sqrt{w^{2}-b^{2}}\bigr)
-    \end{aligned}
+ -\frac{x u''(x)}{u'(x)}=2.
 \]
 
-第二种定义：
+积分得 $u'(x)=Kx^{-2}$（$K>0$），故可取
 \[
-    \begin{aligned}
-        \sqrt{w+\pi_{2}+\tilde{g}}&=\tfrac12\sqrt{w+b+\pi_{2}}+\tfrac12\sqrt{w-b+\pi_{2}}\\
-        \Rightarrow\pi_{2}&=\frac{b^{2}}{4w}
-    \end{aligned}
+ u(x)=-\frac1x,\qquad x>0.
 \]
 
-两种定义所得的结果不一样，$\pi_{1}>\pi_{2}$，这是因为定义中的初始财富不一样，而效用函数的绝对风险厌恶系数又不是常数，因此得到的风险溢价不一样。
+公平二项赌博的两个结果各以 $1/2$ 的概率发生。
+
+\textbf{第一种定义。}由 $E[u(w+\tilde g)]=u(w-\pi_1)$，
+\[
+ -\frac12\left(\frac1{w+b}+\frac1{w-b}\right)
+ =-\frac{w}{w^2-b^2}=-\frac1{w-\pi_1}.
+\]
+
+所以 $w-\pi_1=(w^2-b^2)/w>0$，从而
+\[
+  \pi_1=\frac{b^2}{w}.
+\]
+
+\textbf{第二种定义。}由 $E[u(w+\tilde g+\pi_2)]=u(w)$，
+\[
+ -\frac{w+\pi_2}{(w+\pi_2)^2-b^2}=-\frac1w.
+\]
+
+令 $z=w+\pi_2$，得到 $z^2-wz-b^2=0$。取满足正财富约束的正根，得
+\[
+ z=\frac{w+\sqrt{w^2+4b^2}}2>w>b,
+ \qquad
+ \pi_2=\frac{\sqrt{w^2+4b^2}-w}{2}.
+\]
+
+比较可得
+\[
+ \pi_2=\frac{2b^2}{\sqrt{w^2+4b^2}+w}
+ <\frac{b^2}{w}=\pi_1.
+\]
+
+两者不相等。$\pi_1$ 是在财富 $w$ 下为避免风险愿意支付的金额；$\pi_2$ 是为接受风险所需的事前补偿。由于 $A(x)=2/x$ 随财富增加而下降，加入补偿后承担同一风险的绝对风险厌恶程度降低，所以所需补偿小于避免风险的支付意愿。等价地，第二个方程给出 $\pi_2=b^2/(w+\pi_2)<b^2/w$。小风险下两者的一阶非零近似均为 $b^2/w$，但精确值不同。
+
 \end{solution}
 
 \begin{problem}
@@ -175,19 +224,30 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 严格风险厌恶（定义 7.3）是指：对非零的公平赌博 $\mathrm{E}[\tilde{g}]=0$，有 $\mathrm{E}[u(w+\tilde{g})]<u(w)$。定理 7.3 说这等价于 $u$ 严格凹。公平赌博 $\tilde{g}_{1}$ 以各一半的概率取 $b$ 和 $-b$，Jensen 不等式因此是严格的：
-    \[
-        V_{1}=E[u(w+\tilde{g}_{1})]=\tfrac12 u(w+b)+\tfrac12 u(w-b)<u(w)
-    \]
+\item 严格风险厌恶意味着伯努利效用 $u$ 严格凹。由于 $b>0$，$w+b$ 与 $w-b$ 不同，严格 Jensen 不等式给出
+\[
+ V_1=\tfrac12u(w+b)+\tfrac12u(w-b)
+ <u\left(\tfrac12(w+b)+\tfrac12(w-b)\right)=u(w).
+\]
 
-    \item
-    \[
-        \begin{aligned}
-            V_{2}
-            &=E[u(w+\tilde{g})]=\tfrac14 u(w+b)+\tfrac12 u(w)+\tfrac14 u(w-b)\\
-            &>\tfrac14 u(w+b)+\tfrac12\bigl(\tfrac12 u(w+b)+\tfrac12 u(w-b)\bigr)+\tfrac14 u(w-b)=V_{1}
-        \end{aligned}
-    \]
+\item 两个赌博独立且各以 $1/2$ 的概率取 $-b,b$，故平均风险的分布为
+\[
+ \Pr(\tilde g=b)=\tfrac14,\quad
+ \Pr(\tilde g=0)=\tfrac12,\quad
+ \Pr(\tilde g=-b)=\tfrac14.
+\]
+于是
+\[
+ \begin{aligned}
+ V_2&=\tfrac14u(w+b)+\tfrac12u(w)+\tfrac14u(w-b)\\
+ &=\tfrac12V_1+\tfrac12u(w),
+ \end{aligned}
+\]
+从而
+\[
+  V_2-V_1=\tfrac12\bigl[u(w)-V_1\bigr]>0.
+\]
+所以在题设条件下，总有 $V_2>V_1$。分散化改善了处境，但平均后的风险仍非退化，故仍有 $V_2<u(w)$；完整排序为 $V_1<V_2<u(w)$。
 \end{enumerate}
 \end{solution}
 

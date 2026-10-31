@@ -9,56 +9,78 @@
 满足独立性公理。
 \end{problem}
 \begin{solution}
-独立性公理说的是：若两个消费计划 $c$ 与 $c'$ 只在某一状态 $\omega'$ 上的消费路径相同，记为 $x$，并且 $c\succeq c'$，则把这个共同路径 $x$ 换成另一条路径 $y$ 之后，排序不变。也就是说，其他状态下谁更好，不依赖于状态 $\omega'$ 上到底发生什么。下面验证给定的 $U$ 满足这一点。
-
-假设 $c$ 和 $c'$ 在状态 $\omega'$ 有相同的消费路径 $x=[c_{0},c_{x}]$，且 $c\succeq c'$，那么有
+设两个计划 $c,c'$ 在状态 $\omega'$ 的消费路径同为 $(c_0,x)$，并且 $c\succeq c'$。由效用表示，
 \[
-    \begin{aligned}
-        U(c)
-        &=u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})+\pi_{\omega'}u_{1}(c_{x})\\
-        &\ge u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')+\pi_{\omega'}u_{1}(c_{x})=U(c')
-    \end{aligned}
+ U(c)-U(c')=
+ \sum_{\omega\ne\omega'}\pi_\omega
+ \bigl[u_1(c_{1\omega})-u_1(c'_{1\omega})\bigr]\ge0.
 \]
+把共同路径换成 $(c_0,y)$，记新计划为 $d,d'$。两边共同的 $u_0(c_0)$ 和 $\pi_{\omega'}u_1(y)$ 仍抵消，故
 \[
-    \Leftrightarrow\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})\ge\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')
+ U(d)-U(d')=U(c)-U(c')\ge0.
 \]
-现在把消费路径换成 $y=[c_{0},c_{y}]$，那么我们有
-\[
-    \begin{aligned}
-        U(c)
-        &=u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega})+\pi_{\omega'}u_{1}(c_{y})\\
-        &\ge u_{0}(c_{0})+\sum_{\omega\in\Omega-\{\omega'\}}\pi_{\omega}u_{1}(c_{1\omega}')+\pi_{\omega'}u_{1}(c_{y})=U(c')
-    \end{aligned}
-\]
-即 $c\succeq c'$ 仍然成立，故 $U(c)$ 满足独立性公理。
+因此 $d\succeq d'$，排序保持不变，独立性公理成立。
 \end{solution}
 
 \begin{problem}
 \problemno{6.2*} 对于由练习 6.1 给出的效用函数表示的偏好，证明连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
 \end{problem}
 \begin{solution}
-公理 2（连续性）说的是：对任意消费计划 $c$，觉得不差于 $c$ 的计划全体 $\{a:a\succeq c\}$，以及觉得 $c$ 不差于它的计划全体 $\{b:b\preceq c\}$，都是闭集。闭集的序列刻画是：集合中一列计划的极限如果存在，极限仍在集合里。$u_{0}$ 连续则是指 $x_{n}\to x$ 时 $u_{0}(x_{n})\to u_{0}(x)$。下面用偏好的闭集性质推出 $u_{0}$ 的这一极限性质。
+由喜多厌少，$u_0,u_1$ 严格递增，且 $\sum_\omega\pi_\omega=1$。
 
-我们只证明 $u_{0}(\cdot)$ 是连续的，$u_{1}(\cdot)$ 的连续性可以类似证明。
+考虑未来各状态消费均为 $y$ 的计划，其效用为
+\[
+ F(x,y)=u_0(x)+u_1(y).
+\]
+原偏好限制在这些计划上仍连续。下面证明：若 $F(x,y)=f(x)+g(y)$ 表示连续偏好，且 $f,g$ 严格递增，则 $f$ 连续。
 
-假设序列 $\{x_{n}\}_{n=1}^{\infty}$ 的极限是 $x$，且 $u_{0}(x_{n})\ge(\le)\,u_{0}(c_{0})$，那么我们只须证明 $u_{0}(x)\ge(\le)\,u_{0}(c_{0})$。令 $c$ 为 0 期消费为 $c_{0}$、1 期各状态消费均为 $y>0$ 的消费计划，而 $c_{n}'$ 为 0 期消费为 $x_{n}$、1 期各状态消费均为 $y$ 的消费计划，$c'$ 为 0 期消费为 $x$、1 期各状态消费均为 $y$ 的消费计划。由假设我们有 $c_{n}'\in\{a\in\mathrm{C}:a\succeq(\preceq)c\}$，由效用函数的连续性我们有 $c'$ 也是 $c_{n}'$ 的极限，因而 $c'\in\{a\in\mathrm{C}:a\succeq(\preceq)c\}$，因而 $u_{0}(x)\ge(\le)\,u_{0}(c_{0})$，$u_{0}(\cdot)$ 是连续的。
+单调函数在内点具有左右极限，且只有至多可数个不连续点。取 $g$ 的一个内点连续点 $y$。
+\begin{enumerate}[label=(\roman*)]
+\item 若 $f$ 在 $x$ 有左跳跃，记 $\delta=f(x)-f(x-)>0$。由 $g$ 在 $y$ 连续且严格递增，可取 $h>0$ 使
+\[
+ 0<g(y)-g(y-h)<\delta.
+\]
+取 $x_n\uparrow x$，则
+\[
+ F(x_n,y)\le f(x-)+g(y)<f(x)+g(y-h)=F(x,y-h).
+\]
+由下等值集闭性，令 $n\to\infty$ 得 $(x,y)\preceq(x,y-h)$，与 $g$ 严格递增矛盾。
+\item 若 $f$ 在 $x$ 有右跳跃，记 $\delta=f(x+)-f(x)>0$。取 $h>0$ 使
+\[
+ 0<g(y+h)-g(y)<\delta.
+\]
+对 $x_n\downarrow x$，有 $F(x_n,y)>F(x,y+h)$。上等值集闭性推出 $(x,y)\succeq(x,y+h)$，同样矛盾。
+\end{enumerate}
+所以左右跳跃均不存在，$f$ 连续；在定义域端点只需相应的单侧论证。令 $(f,g)=(u_0,u_1)$ 得 $u_0$ 连续；交换二者，得 $u_1$ 连续。
+
 \end{solution}
 
 \begin{problem}
 \problemno{6.3**} 如果 $a\succeq b$ 意味着对于 $\forall\,\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，那么称偏好关系 $\succ$ 是弱凸的（weakly convex）。这与第 2 章中的强凸性有所不同。假设偏好关系是连续的并且有练习 6.1 给出的期望效用函数表示（因而 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续函数）。证明此时强凸性包含弱凸性。
 \end{problem}
 \begin{solution}
-强凸性是：若 $a\succ b$，则对任意 $\alpha\in(0,1)$ 有 $\alpha a+(1-\alpha)b\succ b$。写成效用就是第 2 章的凸性：$U(a)>U(b)$ 时，凸组合的效用仍严格高于 $U(b)$。题中的弱凸性只要求 $a\succeq b$ 时凸组合 $\succeq b$，所以 $a\sim b$ 还要单独证。
+按本题的强凸性条件，若 $a\succ b$，则对任意 $0<\alpha<1$，有
+\[
+ \alpha a+(1-\alpha)b\succ b.
+\]
+要证弱凸性，只须补上 $a\sim b$ 的情形；$\alpha=0,1$ 以及 $a\succ b$ 的情形都已成立。
 
-当 $\alpha=0$ 或 1 时，$\alpha a+(1-\alpha)b\succeq b$ 显然成立；当 $a\succ b$，$\alpha\in(0,1)$ 时，由强凸性有 $\alpha a+(1-\alpha)b\succ b$；现在证明如果 $\alpha\in(0,1)$，$a\sim b$，那么 $\alpha a+(1-\alpha)b\succeq b$。不妨假设效用函数是递增的，另外假设 $\epsilon>0$ 为任意正实数，令 $a'=a+\begin{bmatrix}\epsilon \\ 0 \\ 0 \\ \ldots \\ 0\end{bmatrix}\succ b$，由强凸性有 $\alpha a'+(1-\alpha)b\succ b$，即
+设 $a\sim b$，$0<\alpha<1$，记 $m=\alpha a+(1-\alpha)b$。反设 $m\prec b$，则
 \[
-    u_{0}(\alpha c_{0}^{a}+(1-\alpha)c_{0}^{b}+\alpha\epsilon)+\sum\pi_{\omega}u_{1}(\alpha c_{1\omega}^{a}+(1-\alpha)c_{1\omega}^{b})>u_{0}(c_{0}^{b})+\sum\pi_{\omega}u_{1}(c_{1\omega}^{b})
+ U(m)<U(a)=U(b).
 \]
-由于 $\epsilon$ 是任意实数，并且 $u_{0}$ 是连续函数，因此
+由于 $U$ 连续，沿着从 $a$ 到 $m$ 的线段，由介值定理可取
 \[
-    u_{0}(\alpha c_{0}^{a}+(1-\alpha)c_{0}^{b})+\sum\pi_{\omega}u_{1}(\alpha c_{1\omega}^{a}+(1-\alpha)c_{1\omega}^{b})\ge u_{0}(c_{0}^{b})+\sum\pi_{\omega}u_{1}(c_{1\omega}^{b})
+ d=(1-t)a+tm,\quad 0<t<1,\qquad
+ U(m)<U(d)<U(b).
 \]
-即 $\alpha a+(1-\alpha)b\succeq b$ 成立，命题得证。
+于是 $b\succ d$。另一方面，$m$ 位于 $d$ 与 $b$ 之间。具体地，令
+\[
+ \beta=\frac{\alpha}{1-t+t\alpha}\in(0,1),
+ \qquad m=\beta d+(1-\beta)b.
+\]
+由 $b\succ d$ 和强凸性，应有 $m\succ d$，与 $U(m)<U(d)$ 矛盾。因此 $m\succeq b$，弱凸性成立。
+
 \end{solution}
 
 \begin{problem}

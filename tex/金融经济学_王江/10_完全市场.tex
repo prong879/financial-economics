@@ -1,9 +1,207 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 源 PDF：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 44–53（印刷页 43–52）
+% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 143–163（PDF 页 158–178）
+% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 44–53（印刷页 43–52）
 
-\zhchapter{完全市场中的资源配置与资产价格}
+\lecture{完全市场中的资源配置与资产价格}
 
 \ifdefined\WJHandoutKnowledge
+
+第 3 章的 Arrow--Debreu 经济直接交易状态或有消费。本章从证券市场出发：当证券支付能够生成每个状态的支付时，两种市场给出相同的预算集合和均衡配置。以下依次讨论完全市场均衡、风险分担、代表性参与者及消费定价。
+
+\begin{tcolorbox}[knowledge,title=10.1 完全市场中的均衡]
+设 1 期有 $\Omega$ 个正概率状态，交易证券的支付矩阵为 $X$，价格向量为 $S$。若 $\operatorname{rank}(X)=\Omega$，任意或有支付 $y$ 都能由组合 $\theta$ 复制：$X\theta=y$。无套利时存在唯一严格正的状态价格向量 $\phi$，满足
+\[
+ S=X^{\mathsf T}\phi,\qquad V(y)=\phi^{\mathsf T}y.
+\]
+若 $X$ 是方阵，$\phi=X^{-\mathsf T}S$；若证券多于状态，满行秩仍保证状态价格唯一。状态 $\omega$ 的阿罗证券支付为 $\mathbf e_\omega$，价格为 $\phi_\omega$。
+
+参与者 $k$ 的两期禀赋为 $(e_{k,0},e_{k,1\omega})$，消费为 $(c_{k,0},c_{k,1\omega})$。在无交易摩擦、可自由复制或有支付时，预算集合写成
+\[
+ c_{k,0}+\sum_{\omega=1}^{\Omega}\phi_\omega c_{k,1\omega}
+ \le w_k:=e_{k,0}+\sum_{\omega=1}^{\Omega}\phi_\omega e_{k,1\omega}.
+\]
+它与 Arrow--Debreu 市场的预算集合相同，个人禀赋的\textbf{市值}而非具体状态分布决定预算。均衡要求各人最优化且每期每状态总消费等于总禀赋。这给出\textbf{定理 10.1}：相同财富分布下，完全证券市场与 Arrow--Debreu 市场的均衡配置和状态价格相同。财富分布条件不可省略。
+
+若 $U_k=u_{k,0}(c_{k,0})+\sum_\omega p_\omega u_{k,1}(c_{k,1\omega})$，$p_\omega>0$，效用严格递增、严格凹，内点最优条件为
+\[
+ u'_{k,0}(c_{k,0})=\lambda_k,\qquad
+ p_\omega u'_{k,1}(c_{k,1\omega})=\lambda_k\phi_\omega.
+ \tag{10.2}
+\]
+因此\textbf{定理 10.2}给出跨状态边际替代率：
+\[
+ \frac{p_\omega u'_{k,1}(c_{k,1\omega})}
+ {p_{\omega'}u'_{k,1}(c_{k,1\omega'})}
+ =\frac{\phi_\omega}{\phi_{\omega'}}.
+ \tag{10.3}
+\]
+给定价格和个人财富，严格凹性使消费选择唯一；再由预算和市场出清确定均衡。\textbf{定理 10.3}陈述本章模型的均衡存在且唯一。一般经济的总均衡唯一性不能仅由个人效用严格凹推出，还须检验教材设定的市场、禀赋与内点条件。
+
+\begin{tcolorbox}[example]
+\textbf{例 10.1}\quad 两状态等概率；债券支付 $(1,1)$，股票支付 $(2,1)$，价格分别为 $B,S$。状态价格满足
+\[
+ B=\phi_a+\phi_b,\quad S=2\phi_a+\phi_b,\qquad
+ \phi_a=S-B,\quad\phi_b=2B-S.
+\]
+无套利要求 $B<S<2B$。参与者 1 当期禀赋为 1，参与者 2 持有一单位股票；前者每期效用为 $\log c$，后者为 $2\sqrt c$。逐人求最优消费，再令三处总消费等于 $(1,2,1)$，得到
+\[
+ \phi_a=\frac{1+\sqrt{17}}{16},\quad \phi_b=\frac12,\qquad
+ S=\frac{5+\sqrt{17}}8,\quad B=\frac{9+\sqrt{17}}{16}.
+\]
+可直接核对债券、股票定价式与两个状态价格的正性。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=10.2 最优配置与风险分担]
+\textbf{定理 10.4}\quad 在凸偏好与内点条件下，帕累托最优配置可由一组正权重 $\mu_k$ 的规划问题表示：
+\[
+ \max_{\{c_k\}}\sum_k\mu_k\left[u_{k,0}(c_{k,0})+
+ \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\right],\quad
+ \text{s.t. }\sum_k c_{k,t\omega}=C_{t\omega}.
+ \tag{10.7}
+\]
+将资源约束乘子记为 $\phi'_0,\phi'_\omega$，一阶条件是
+\[
+ \mu_k u'_{k,0}(c_{k,0})=\phi'_0,\qquad
+ \mu_k p_\omega u'_{k,1}(c_{k,1\omega})=\phi'_\omega.
+ \tag{10.8}
+\]
+严格凹性使内点一阶条件充分。令市场状态价格 $\phi_\omega=\phi'_\omega/\phi'_0$，并调整个人初始财富以支持此配置，就得到\textbf{定理 10.5（第二福利经济学定理）}：适当财富再分配后，帕累托最优配置可由完全市场竞争均衡实现。财富再分配是逆命题的一部分。
+
+给定权重 $\mu$ 和 1 期状态总消费 $C_{1\omega}$，最优\textbf{分享规则}为
+\[
+ c_{k,1\omega}=f_{k,1}(C_{1\omega};\mu),\qquad
+ \sum_k f_{k,1}(C;\mu)=C.
+ \tag{10.10}
+\]
+0 期类似。\textbf{定理 10.6}：若 $C_{1\omega}>C_{1\omega'}$，则每个 $k$ 都有 $c_{k,1\omega}>c_{k,1\omega'}$。反证时，若某人消费不增，共同的加权边际效用条件与严格凹性意味着所有人消费均不增，与总资源增加矛盾。完全市场可以消除与总资源无关的个人禀赋风险，但不能消除总资源风险。
+
+\textbf{定理 10.7（线性分享规则）}\quad 共同指数的 HARA 边际效用
+\[
+ u'_{k,1}(c)=\rho_k(d_k+c/\gamma)^{-\gamma},
+ \qquad\rho_k>0,\quad\gamma\ne0,
+\]
+在消费处于定义域内时，足以产生
+\[
+ f_{k,1}(C;\mu)=b_k(C+\gamma\delta_k),\quad
+ b_k=\frac{(\mu_k\rho_k)^{1/\gamma}}
+ {\sum_j(\mu_j\rho_j)^{1/\gamma}},\quad
+ \delta_k=\sum_jd_j-\frac{d_k}{b_k}.
+ \tag{10.11}
+\]
+由规划者条件解出各人消费即可验证；$\sum_k b_k=1$、$\sum_k b_k\delta_k=0$ 保证资源出清。教材把必要性留在附录，本处只把共同指数作为充分条件；$\gamma=0$ 的极限情形须另行处理。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=10.3 代表性参与者]
+将规划问题按各期各状态分别求解，定义总消费的\textbf{间接效用}：
+\[
+ u_0(C_0)=\max_{\sum_kc_{k,0}=C_0}\sum_k\mu_ku_{k,0}(c_{k,0}),\quad
+ u_1(C)=\max_{\sum_kc_{k,1}=C}\sum_k\mu_ku_{k,1}(c_{k,1}).
+ \tag{10.12}
+\]
+由包络定理，$u'_0(C_0)=\phi'_0$、$p_\omega u'_1(C_{1\omega})=\phi'_\omega$；\textbf{定理 10.8}指出 $u_0,u_1$ 严格递增且严格凹。于是代表性参与者的期望效用为
+\[
+ U(C)=u_0(C_0)+\sum_\omega p_\omega u_1(C_{1\omega}),
+ \quad \phi_\omega=\frac{p_\omega u'_1(C_{1\omega})}{u'_0(C_0)}.
+ \tag{10.15}
+\]
+这里规划权重由均衡中的财富分布决定，因此代表性效用函数一般随财富分布变化。
+
+\begin{tcolorbox}[example]
+\textbf{例 10.2}\quad 对例 10.1，取参与者 1 权重为 1、参与者 2 权重为 $\mu$，聚合效用是
+\[
+ u(C)=\max_{c_1+c_2=C}\{\log c_1+2\mu\sqrt{c_2}\}.
+\]
+一阶条件 $1/c_1=\mu/\sqrt{c_2}$ 给出
+\[
+ c_1(C)=\frac{\sqrt{1+4\mu^2C}-1}{2\mu^2},\qquad
+ u'(C)=\frac1{c_1(C)}.
+\]
+将总资源 $(C_0,C_a,C_b)=(1,2,1)$ 代入 (10.15)，再用个人预算确定 $\mu$，即可求回例 10.1 的状态价格。
+\end{tcolorbox}
+
+\textbf{定理 10.9（简单加总）}\quad 若个人效用同属平移幂效用族
+\[
+ u_k(c)=\frac{(d_k+c)^{1-\gamma}}{1-\gamma},\qquad\gamma>0,
+\]
+则聚合效用经正仿射标准化可写成同一形式
+\[
+ u(C)=\frac{(d+C)^{1-\gamma}}{1-\gamma},\qquad d=\sum_kd_k.
+\]
+$\gamma=1$ 取对数极限。\textbf{聚合形式}不依赖财富份额，但各人的消费分配仍随规划权重变化；须满足效用定义域与内点条件。
+\end{tcolorbox}
+
+\begin{tcolorbox}[knowledge,title=10.5 基于消费的资本资产定价模型]
+代表性参与者的一阶条件给出随机支付 $\widetilde X_n$ 的 0 期价格：
+\[
+ S_n=\sum_\omega p_\omega
+ \frac{u'_1(C_{1\omega})}{u'_0(C_0)}X_{n\omega}
+ =\mathrm E[\widetilde m\widetilde X_n],\qquad
+ \widetilde m:=\frac{u'_1(\widetilde C_1)}{u'_0(C_0)}.
+ \tag{10.16}
+\]
+$\widetilde m$ 是随机贴现因子；状态价格为 $\phi_\omega=p_\omega m_\omega$。无风险支付 1 的债券价格为
+\[
+ B=\mathrm E[\widetilde m]=\frac1{1+r_F}.
+ \tag{10.17}
+\]
+用协方差分解价格，得到
+\[
+ S_n=\frac{\mathrm E[\widetilde X_n]}{1+r_F}
+ +\operatorname{Cov}(\widetilde m,\widetilde X_n).
+ \tag{10.18}
+\]
+在总消费低、边际效用高的状态提供更多支付的证券有保险作用，价格相对更高。定价相关的是支付与\textbf{总消费边际效用}的协方差，而非支付方差本身。
+
+若 $\widetilde r_n=\widetilde X_n/S_n-1$，由 $\mathrm E[\widetilde m(1+\widetilde r_n)]=1$ 得精确风险溢价关系
+\[
+ \bar r_n-r_F=-(1+r_F)\operatorname{Cov}(\widetilde m,\widetilde r_n),
+ \qquad\bar r_n=\mathrm E[\widetilde r_n].
+ \tag{10.21}
+\]
+对应的\textbf{现值公式}是
+\[
+ S_n=\frac{\mathrm E[\widetilde X_n]}{1+\bar r_n}.
+ \tag{10.22}
+\]
+资产自己的期望收益率随风险而异，不能将所有风险资产一律按 $r_F$ 折现。
+
+\textbf{消费增长与利率。}为作局部近似，设 $u_0=u$、$u_1=\rho u$，$\widetilde C_1=C_0(1+\widetilde g)$，$\widetilde g$ 较小。令 $R=-C_0u''(C_0)/u'(C_0)$，一阶泰勒展开给出
+\[
+ \widetilde m\approx\rho(1-R\widetilde g),\quad
+ r_F\approx\left(\frac1\rho-1\right)+\frac{R}{\rho}\bar g,
+ \qquad\bar g=\mathrm E[\widetilde g].
+ \tag{10.24}
+\]
+同一局部近似还给出
+\[
+ \bar r_n-r_F\approx(1+r_F)\rho R
+ \operatorname{Cov}(\widetilde g,\widetilde r_n).
+\]
+只有近似条件成立时，才能用消费增长协方差替换精确的边际效用协方差。
+
+\textbf{风险测度与 CAPM。}完全市场中总消费索取权可由状态证券复制，但其收益率不必与消费增长率完全相同。若进一步用市场组合 $m$ 的收益率代表总消费风险，则可得到形式上类似 CAPM 的关系
+\[
+ \bar r_n-r_F\approx\beta_{n,m}(\bar r_m-r_F),\qquad
+ \beta_{n,m}=\frac{\operatorname{Cov}(\widetilde r_n,\widetilde r_m)}
+ {\operatorname{Var}(\widetilde r_m)}.
+ \tag{10.25}
+\]
+精确定价核始终是边际效用；以可观测市场组合为风险代理还需要额外假设。第 13 章再讨论 CAPM 自身的条件。
+
+\begin{tcolorbox}[example]
+\textbf{例 10.3}\quad 若 $\bar g=0.02$、$\rho=0.98$、$R=2$，则 (10.24) 给出
+\[
+ r_F\approx(1/0.98-1)+(2/0.98)\times0.02\approx6.12\%.
+\]
+这是小消费增长风险下的近似计算；风险较大时应回到 $B=\mathrm E[\widetilde m]$ 的精确式。
+\end{tcolorbox}
+\end{tcolorbox}
+
+\begin{tcolorbox}[summary,title=本章小结]
+完全市场使或有支付可复制，并把证券市场与 Arrow--Debreu 经济接通。最优分享规则把个人消费写成总消费的函数；规划权重决定代表性参与者的效用。状态价格是概率乘以边际效用之比，证券价格等于随机贴现因子与支付乘积的期望。风险溢价由收益与边际效用的协方差决定；消费增长和市场组合的公式各有近似或附加条件。
+\end{tcolorbox}
+
 \fi
 
 \input{tex/金融经济学_王江/10_完全市场_习题.tex}
