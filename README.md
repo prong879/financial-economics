@@ -27,6 +27,21 @@ tools/latex/build-dual.sh 金融经济学_熊和平_习题.tex output build/金�
 latexmk -xelatex -usepretex -pretex='\def\WJExercisesOnly{}' -jobname=金融经济学_王江_exercises_only 金融经济学_王江_讲义及习题.tex
 ```
 
+王江精选作业解答：
+
+```sh
+# 默认：第6章第1、2、3题，第7章第1、4、5题，各输出一份 PDF
+python3 tools/latex/export-wj-homework.py
+
+# 自定义章节与题号，按参数中的题号顺序排版
+python3 tools/latex/export-wj-homework.py 6:1,3 7:4,5
+
+# 仅生成入口，供检查选题和源码
+python3 tools/latex/export-wj-homework.py --prepare-only
+```
+
+脚本每次读取当前章节源码，复用正式入口的字体和排版定义。精选版连续排版、无页眉文字，标题仅保留章节名称；题干、原题号及星号与解答原文一并保留。PDF 写入 `output/pdf/`，生成入口与缓存写入 `build/作业精选/`，均不纳入 Git。脚本也可从其他工作目录通过绝对路径调用。
+
 ## 目录
 
 - `tex/金融经济学_王江/`：第 1—15 章的讲义及第 2—15 章的习题，共 29 个文件。
