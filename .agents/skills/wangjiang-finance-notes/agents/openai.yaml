@@ -1,0 +1,4 @@
+interface:
+  display_name: "王江金融经济学讲义整理"
+  short_description: "对照教材与教师课件整理章节、补全关键证明，并统一讲义层级、加框和行文"
+  default_prompt: "使用 $wangjiang-finance-notes 对照王江教材与教师 PPT，整理指定章节，检查遗漏、关键证明、标题层级和讲义表达。"

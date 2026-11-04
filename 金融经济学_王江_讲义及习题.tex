@@ -104,7 +104,9 @@
 \thispagestyle{empty}
 \fi
 
-\MakeFourThreeOneContents[2]
+% 四段编号进入目录；为 2.2.2.1 预留编号宽度。
+\setlength{\cftsubsubsecnumwidth}{4.5em}
+\MakeFourThreeOneContents[3]
 
 \cleardoublepage
 
