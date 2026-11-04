@@ -12,6 +12,11 @@
 \ProvidesExplPackage {exam-zh-font} {2025-02-19} {v0.2.5}
   {exam-zh font module}
 
+% 项目约定：mathtools 必须先于 unicode-math 加载。
+\RequirePackage { mathtools }
+% 保留现有符号选择：mathtools 方括注、unicode-math 冒号；通知仍写入日志。
+\msg_redirect_name:nnn { unicode-math } { mathtools-overbracket } { info }
+\msg_redirect_name:nnn { unicode-math } { mathtools-colon } { info }
 \RequirePackage { unicode-math }
 \RequirePackage { filehook }
 \RequirePackage { etoolbox }
