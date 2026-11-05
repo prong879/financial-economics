@@ -1,75 +1,279 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 213–223（PDF 页 228–238）
-% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 76–79（印刷页 75–78）
-
+% 来源：王江《金融经济学》教材，第14章；已核对教材2021勘误。
 \lecture{套利定价理论}
-
+\label{chap:wj-fourteen}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{section={number=\thesection,aftername=\quad},subsection={number=\thesubsection,aftername=\quad},subsubsection={number=\thesubsubsection,aftername=\quad}}
+\setcounter{equation}{0}
+\newcounter{wjFourteenTheorem}
+\renewcommand{\thewjFourteenTheorem}{\thechapter.\arabic{wjFourteenTheorem}}
+\newcounter{wjFourteenLemma}
+\renewcommand{\thewjFourteenLemma}{\thechapter.\arabic{wjFourteenLemma}}
+\newcounter{wjFourteenDefinition}
+\renewcommand{\thewjFourteenDefinition}{\thechapter.\arabic{wjFourteenDefinition}}
+\newcounter{wjFourteenExample}
+\renewcommand{\thewjFourteenExample}{\thechapter.\arabic{wjFourteenExample}}
+\newcounter{wjFourteenExercise}
+\renewcommand{\thewjFourteenExercise}{\thechapter.\arabic{wjFourteenExercise}}
+\newcommand{\WJFourteenTheorem}[1]{\refstepcounter{wjFourteenTheorem}\label{#1}\textbf{定理 \thewjFourteenTheorem}\quad}
+\newcommand{\WJFourteenLemma}[1]{\refstepcounter{wjFourteenLemma}\label{#1}\textbf{引理 \thewjFourteenLemma}\quad}
+\newcommand{\WJFourteenDefinition}[1]{\refstepcounter{wjFourteenDefinition}\label{#1}\textbf{定义 \thewjFourteenDefinition}\quad}
+\newcommand{\WJFourteenExample}[1]{\refstepcounter{wjFourteenExample}\label{#1}\textbf{例 \thewjFourteenExample}\quad}
+\newcommand{\WJFourteenExercise}[2]{\refstepcounter{wjFourteenExercise}\label{#1}\problemno{\thewjFourteenExercise#2}}
+\newcounter{wjFourteenFigure}
+\renewcommand{\thewjFourteenFigure}{\thechapter.\arabic{wjFourteenFigure}}
+\newcommand{\WJFourteenFigure}[2]{\refstepcounter{wjFourteenFigure}\label{#1}\par\smallskip 图\thewjFourteenFigure\quad #2}
 \ifdefined\WJHandoutKnowledge
 
-CAPM 用市场组合的贝塔衡量系统风险。本章先不指定风险因子的经济含义，而假设收益可以由少数共同因子与剩余风险分解；再研究无套利给预期收益施加的限制。\textbf{精确复制}与\textbf{大市场中的近似复制}会得到不同强度的结论。
+% 教材印刷页213—225，PDF物理页228—240。收益载荷用B记，原书用b。
+% 复核印刷页217：补足标准化市场因子下APT与CAPM的系数对应。
+% 定义14.1按原书采用正的有限期望极限；定理14.3证明用Q^{-1}归一化。
+% 14.4据勘误将正态变量改为epsilon，显式设债券价格为1，重新求均衡价格。
+% 定理14.5补出条件期望与总禀赋条件；以个人Euler及残差价格加总补全原书证明。
+CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，先研究精确复制下的套利定价，再通过分散剩余风险得到大市场中的近似定价，最后讨论这些关系的均衡基础。
 
-\begin{tcolorbox}[knowledge,title=14.1 资产收益的因子结构]
-设 $N$ 只资产有 $F$ 个共同因子，收益满足线性因子模型
-\[
- \widetilde r_n=\bar r_n+\sum_{k=1}^{F}b_{n,k}\widetilde f_k
- +\widetilde\varepsilon_n,\qquad n=1,\ldots,N.
- \tag{14.1}
-\]
-$\mathrm E[\widetilde f_k]=\mathrm E[\widetilde\varepsilon_n]=0$；$b_{n,k}$ 是资产 $n$ 对因子 $k$ 的\textbf{载荷}，$\widetilde\varepsilon_n$ 是因子无法解释的剩余风险。把因子标准化为 $\operatorname{Cov}(\widetilde f)=I$，并令因子与剩余风险不相关，则向量式为
-\[
+\section{资产收益风险的因子模型}\label{sec:wj-fourteen-1}
+\begin{tcolorbox}[knowledge,breakable=false]
+设 $N$ 只资产有 $F<N$ 个共同因子，收益满足
+\begin{equation}
+ \widetilde r_n=\bar r_n+\sum_{k=1}^F b_{n,k}\widetilde f_k+\widetilde\varepsilon_n,
+ \qquad n=1,\ldots,N.\label{eq:wj-14-1}
+\end{equation}
+因子均值为零、协方差矩阵为 $I$；剩余项均值为零，与全部因子不相关，且两两不相关，$\operatorname{Var}(\widetilde\varepsilon_n)\le\bar\sigma^2$。其中 $b_{n,k}$ 是资产 $n$ 对因子 $k$ 的\textbf{载荷}。
+\end{tcolorbox}
+
+共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。记 $B$ 为 $N\times F$ 的载荷矩阵，$\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
+\begin{equation}
  \widetilde r=\bar r+B\widetilde f+\widetilde\varepsilon,
- \qquad \operatorname{Cov}(\widetilde r)=BB^{\mathsf T}
- +\operatorname{Cov}(\widetilde\varepsilon).
- \tag{14.2}
-\]
-共同因子解释跨资产共同波动；剩余风险能否充分分散，取决于它在不同资产间的协方差结构。因子可经可逆线性变换重新表示，所以单个因子的名称和载荷并不天然唯一；定价关系在相应变换后保持一致。
+ \qquad \operatorname{Cov}(\widetilde r)=BB^{\mathsf T}+\Sigma_\varepsilon.
+ \label{eq:wj-14-2}
+\end{equation}
+
+这里 $\Sigma_\varepsilon$ 为对角阵。更一般的相关剩余项，只要协方差矩阵的最大特征值有统一上界，也可使用后面的风险分散论证。因子的单位协方差是标准化约定；它表示因子互不相关。
+
+CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩余项与市场收益不相关；本节的模型则允许多个共同因子，并对剩余项之间的相关性施加限制。定理~\ref{thm:wj-nine-4}还使用了条件期望为零及特定基金构造；本节先从上述二阶矩条件出发。
+图~\ref{fig:wj-fourteen-1} 以等权单因子组合说明：共同因子风险保留，剩余风险随证券数增加而下降。
+
+\input{tex/金融经济学_王江/figures/14_风险分散.tex}
+
+\section{精确因子模型和套利定价理论}\label{sec:wj-fourteen-2}
+\subsection{精确单因子模型}
+令所有剩余项为零，只有一个因子：
+\begin{equation}
+ \widetilde r_n=\bar r_n+b_n\widetilde f.\label{eq:wj-14-3}
+\end{equation}
+
+允许自由多空交易，且有两只资产 $i,j$ 满足 $b_i\ne b_j$。由它们构造成本为1的组合，权重为 $\omega,1-\omega$，其载荷为 $\omega b_i+(1-\omega)b_j$。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenLemma{lem:wj-fourteen-1} 存在因子载荷为零的无风险组合 $p_0$。
+
+\WJFourteenLemma{lem:wj-fourteen-2} 存在因子载荷为1的因子组合 $p_1$。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=14.2 精确因子模型与无套利]
-先假设无剩余风险，只有一个因子：$\widetilde r_n=\bar r_n+b_n\widetilde f$。若有两只资产的载荷不同，适当的多空组合可以使因子载荷为 0，从而得到无风险组合；也可构造载荷为 1 的\textbf{因子组合}。若无套利，所有无风险组合的收益须相同，且拥有同样因子载荷的组合须同价。于是\textbf{定理 14.1（单因子 APT）}：
+\textbf{证明：}分别令载荷为0、1，得到
 \[
- \bar r_n=r_F+b_n\lambda,\qquad\forall n,
- \tag{14.5}
+ \omega_0=\frac{b_j}{b_j-b_i},\qquad
+ \omega_1=\frac{1-b_j}{b_i-b_j}.
 \]
-其中 $\lambda$ 是单位因子载荷的风险溢价。若某资产不满足上式，买入便宜的一边、卖出由无风险组合和因子组合复制的另一边，可形成零成本、无随机支付差且严格正收益的套利。
 
-精确 $F$ 因子模型写成 $\widetilde r=\bar r+B\widetilde f$。对任何零成本且零因子载荷的组合 $z$，无套利要求 $z^{\mathsf T}\bar r=0$。线性代数因此给出\textbf{定理 14.2}：
+因此 $p_0$ 的收益为常数；无套利使全部无风险组合具有相同收益 $r_F$。$p_1$ 的收益写为 $r_F+\lambda+\widetilde f$，其中 $\lambda$ 为单位因子载荷的风险溢价。\hfill$\square$
+
+当 $b_i,b_j\ne0$ 时，无风险组合的收益还给出
+\begin{equation}
+ \frac{\bar r_i-r_F}{b_i}=\frac{\bar r_j-r_F}{b_j}=\lambda.
+ \label{eq:wj-14-4}
+\end{equation}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenTheorem{thm:wj-fourteen-1} 精确单因子模型中，\hyperref[def:wj-four-2]{无套利}要求
+\begin{equation}
+ \bar r_n=r_F+b_n\lambda,\qquad\forall n.\label{eq:wj-14-5}
+\end{equation}
+\end{tcolorbox}
+
+\textbf{证明：}将 $b_n$ 元投向 $p_1$、$1-b_n$ 元投向 $p_0$，组合收益为 $r_F+b_n\lambda+b_n\widetilde f$。与资产 $n$ 的收益相减，得到常数 $\bar r_n-r_F-b_n\lambda$。两边成本相同，若常数非零，买入收益较高的一边并卖出另一边，即构成零成本、正支付的套利。因此该常数为零，包括 $b_n=0$ 的资产。\hfill$\square$
+
+将共同因子取为标准化市场收益，令
 \[
- \bar r=\lambda_0\mathbf1+B\lambda,
- \quad\text{即 }\bar r_n=\lambda_0+\sum_{k=1}^{F}b_{n,k}\lambda_k.
- \tag{14.6}
+ \widetilde f=\frac{\widetilde r_M-\bar r_M}{\sigma_M},\qquad
+ b_n=\beta_{n,M}\sigma_M,\qquad
+ \lambda=\frac{\bar r_M-r_F}{\sigma_M},
 \]
-若存在收益线性无关的无风险组合，$\lambda_0=r_F$；因子组合可交易时，$\lambda_k$ 是第 $k$ 个标准化因子组合超出无风险利率的期望收益。因子协方差矩阵为单位阵只是标准化选择，不是经济上必须相互独立。
+
+则式~\eqref{eq:wj-14-5} 化为第~\ref{sec:wj-thirteen-3}~节的CAPM关系。CAPM从均值--方差选择与市场出清得到该式，精确单因子APT则从支付复制与无套利得到同一形式的定价关系。
+
+\subsection{精确F因子模型}
+令 $\iota$ 为元素全为1的列向量。对于投资金额向量 $z$，成本为 $z^{\mathsf T}\iota$；精确模型下的因子载荷为 $B^{\mathsf T}z$。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenTheorem{thm:wj-fourteen-2} 精确 $F$ 因子模型中，无套利要求存在 $\lambda_0,\lambda$，使
+\begin{equation}
+ \bar r=\lambda_0\iota+B\lambda.\label{eq:wj-14-6}
+\end{equation}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=14.3 剩余风险、极限套利与近似 APT]
-若每只资产还带有 $\widetilde\varepsilon_n$，有限资产的因子组合通常\textbf{不能精确复制}单只资产：消去共同因子后仍留下特殊风险。因此 (14.6) 不再由有限市场的简单复制严格推出。
-
-考察越来越大的市场。\textbf{定义 14.1}\quad 若存在零成本组合序列，使其预期支付持续增大，而支付方差趋于 0，就称存在\textbf{极限套利}。这一概念强于只排除每个有限市场中的常规无套利机会。
-
-\textbf{定理 14.3}\quad 若收益由固定数目 $F$ 的共同因子与有界、可充分分散的剩余风险描述，且不存在极限套利，则预期收益向量相对于某个 $F$ 因子线性定价向量的\textbf{平方偏差总和有界}：
+\textbf{证明：}任取 $z$ 满足 $z^{\mathsf T}\iota=0$、$B^{\mathsf T}z=0$。它的收益支付为常数 $z^{\mathsf T}\bar r$。无套利使该常数为零，因此
 \[
- \sum_{i=1}^{n}
- (\bar r_i^{(n)}-\lambda_0^{(n)}-b_i^{(n)\mathsf T}\lambda^{(n)})^2
- \le A,
+ \bar r\perp\ker[\iota\ B]^{\mathsf T},\qquad
+ \bar r\in\operatorname{col}[\iota\ B].
 \]
-其中 $A$ 与资产数 $n$ 无关。证明的要点是把预期收益投影到由常数与因子载荷张成的空间；若正交残差的平方范数无界，可放大一个零成本、零因子载荷的组合，使其期望收益趋于无穷而剩余风险方差趋于零，违反无极限套利。
 
-\textbf{定理 14.4}\quad 上述平方和界意味着：对任意固定 $\epsilon>0$，定价误差超过 $\epsilon$ 的资产数量至多为 $A/\epsilon^2$。故随着资产数增加，定价式对\textbf{大多数资产}近似成立；不能说每一只资产都被精确定价。
+后一个关系正是式~\eqref{eq:wj-14-6}。\hfill$\square$
 
-\textbf{边界例子。}即使每个有限市场没有常规套利，若越来越多独立特殊风险资产的预期超额收益保持正值，组合可分散其风险却保留收益，从而形成极限套利。无极限套利不是普通无套利的自动推论，也不是市场均衡的完整条件。
+若 $[\iota\ B]$ 列满秩，可求解成本为1、载荷为零的组合，以及成本为1、载荷分别为各单位向量的 $F$ 个因子组合。对这些组合代入定价式，得到 $\lambda_0=r_F$，$\lambda_k=\bar r_{p_k}-r_F$。
+
+\Needspace{16\baselineskip}
+\section{极限套利和APT}\label{sec:wj-fourteen-3}
+\subsection{极限套利与风险分散}
+带有剩余项时，零因子载荷组合的支付仍含 $z^{\mathsf T}\widetilde\varepsilon$。当资产数增加，充分分散的组合可以压低这部分方差，从而形成近似复制。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenDefinition{def:wj-fourteen-1} 对前 $n$ 只资产，若存在组合序列 $z^{(n)}$，满足
+\[
+ \iota^{\mathsf T}z^{(n)}=0,\qquad
+ z^{(n)\mathsf T}\bar r^{(n)}\longrightarrow\delta>0,\qquad
+ \operatorname{Var}(z^{(n)\mathsf T}\widetilde r^{(n)})\longrightarrow0,
+\]
+
+则称存在\textbf{极限套利机会}。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=14.5 APT 作为均衡结果]
-前述 APT 主要由支付结构和无套利出发。要说明该关系是\textbf{均衡}价格，还需偏好、禀赋、可交易性和出清等条件。\textbf{定理 14.5}给出一组充分条件：证券支付具有因子结构；无风险支付、各共同因子及参与者的禀赋可由证券支付线性表出；参与者严格风险厌恶；均衡配置为内点。在这些条件下，均衡中的个体消费可在因子支付空间内表示，个体边际效用定价条件给每个因子组合赋予溢价 $\lambda_k$，从而推出 (14.6)。
+其经济含义是：零初始投入的支付逐渐集中于一个正数。若期望趋于无穷而方差趋于零，也可将组合除以其期望，得到期望为1、方差趋于零的组合。
 
-这一结果说明精确 APT 可与均衡相容，但其条件比“因子模型加无套利”更强。与 CAPM 相比，APT 容许多个系统因子，却不直接告诉我们因子的经济身份或风险溢价数值；这些仍需模型设定或数据识别。
+\subsection{有限市场的近似定价}
+固定共同因子数 $F$，逐步增加资产。沿用第~\ref{sec:wj-fourteen-1}~节的剩余项假设。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenTheorem{thm:wj-fourteen-3} 若不存在极限套利，则对每个 $n$，存在 $\lambda_0^{(n)},\lambda^{(n)}$，且存在与 $n$ 无关的常数 $A$，使
+\[
+ \sum_{i=1}^n\left(\bar r_i-\lambda_0^{(n)}-b_i^{\mathsf T}\lambda^{(n)}\right)^2\le A.
+\]
 \end{tcolorbox}
 
-\begin{tcolorbox}[summary,title=本章小结]
-精确因子模型中，因子支付可复制，常规无套利给出精确的线性预期收益关系。含剩余风险的大市场中，无极限套利只保证多数资产的近似定价，可能存在少数偏差较大的资产。若还要把 APT 解释成均衡结果，必须补充偏好、可交易支付与市场出清的条件。
+\textbf{证明：}将 $\bar r^{(n)}$ 正交投影到 $\operatorname{col}[\iota\ B^{(n)}]$：
+\[
+ \bar r^{(n)}=\lambda_0^{(n)}\iota+B^{(n)}\lambda^{(n)}+\eta^{(n)},
+ \quad \iota^{\mathsf T}\eta^{(n)}=0,\quad B^{(n)\mathsf T}\eta^{(n)}=0.
+\]
+
+记 $Q_n=\|\eta^{(n)}\|^2$。假如 $Q_n$ 无界，选取 $Q_n\to\infty$ 的子列，并令 $z^{(n)}=\eta^{(n)}/Q_n$，则
+\[
+ \underbrace{z^{(n)\mathsf T}\bar r^{(n)}}_{\text{期望支付}}=1,\qquad
+ \operatorname{Var}(z^{(n)\mathsf T}\widetilde r^{(n)})
+ =\frac{\eta^{(n)\mathsf T}\Sigma_\varepsilon^{(n)}\eta^{(n)}}{Q_n^2}
+ \le\frac{\bar\sigma^2}{Q_n}\longrightarrow0.
+\]
+
+该子列的组合可在更大的市场中继续持有，从而构成极限套利，与假设矛盾。因此 $Q_n$ 有统一上界。\hfill$\square$
+
+\subsection{统一系数与定价误差}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenTheorem{thm:wj-fourteen-4} 对同一无限资产序列，在上述条件下，存在一组固定系数 $\lambda_0,\lambda$，使
+\[
+ \sum_{i=1}^\infty(\bar r_i-\lambda_0-b_i^{\mathsf T}\lambda)^2<\infty.
+\]
 \end{tcolorbox}
 
+\textbf{证明：}记 $a_i=(1,b_i^{\mathsf T})^{\mathsf T}$。从这些向量中选取有限个向量，构成它们所张成空间的基。定理~\ref{thm:wj-fourteen-3} 使各基向量上的预测值 $a_i^{\mathsf T}(\lambda_0^{(n)},\lambda^{(n)\mathsf T})^{\mathsf T}$ 有界。将系数限制在该张成空间内，可得有界的系数序列，进而取收敛子列，其极限记为 $(\lambda_0,\lambda^{\mathsf T})^{\mathsf T}$。
+
+对任意固定 $m$，前 $m$ 项的误差平方和不超过 $A$；沿子列取极限，该界仍成立。再令 $m\to\infty$，即得结论。\hfill$\square$
+
+记 $\Delta_i=|\bar r_i-\lambda_0-b_i^{\mathsf T}\lambda|$。对任意 $\epsilon>0$，$\Delta_i>\epsilon$ 的资产至多有 $A/\epsilon^2$ 只，其在前 $n$ 只资产中的比例至多为 $A/(n\epsilon^2)$，趋于零。这给出APT对大多数资产近似成立的具体含义。
+
+\section{极限套利和均衡}\label{sec:wj-fourteen-4}
+% 教材印刷页219—220。补明r_F=0的价格归一化，并重新推导而非沿用勘误中存疑的价格。
+\begin{tcolorbox}[example,breakable=false]
+设无风险证券价格与支付均为1，$N$ 只风险证券的支付为 $v+\widetilde\varepsilon_n$，其中 $v>\sigma^2>0$，$\widetilde\varepsilon\sim N(0,\sigma^2I)$。经济中只有一位参与者，禀赋为每只风险证券各一单位，终期效用为 $-e^{-c_1}$。求均衡价格，并考察 $N$ 增大时的极限套利。
+\end{tcolorbox}
+
+\textbf{解：}给定价格向量 $p$，个人对风险证券的需求为
+\[
+ \theta=\frac1{\sigma^2}(v\iota-p).
+\]
+
+由 $\theta=\iota$ 出清，得到每只证券价格 $p_n=p=v-\sigma^2$。其净收益为
+\[
+ \widetilde r_n=\frac{\sigma^2+\widetilde\varepsilon_n}{v-\sigma^2}.
+\]
+
+各风险证券的剩余风险独立，期望超额收益均为正。任一有限市场中的非零风险头寸都有正方差，其正态支付有取负值的可能；纯无风险、零成本头寸的支付为零，故不存在常规套利。
+
+对前 $n$ 只证券各买入 $n^{-2/3}$ 单位，以卖空无风险证券支付成本，则零成本组合的1期支付为
+\[
+ \widetilde X_n=n^{-2/3}\sum_{i=1}^n(v+\widetilde\varepsilon_i-p),\qquad
+ \mathrm E[\widetilde X_n]=\sigma^2n^{1/3},\quad
+ \operatorname{Var}(\widetilde X_n)=\sigma^2n^{-1/3}.
+\]
+
+将该组合除以其期望，就满足定义~\ref{def:wj-fourteen-1}。因此，每个有限市场均可达到竞争均衡，而这组经济仍产生极限套利。随着 $n$ 增大，参与者持有的总资源和需承担的风险一同增加；\hyperref[sec:wj-seven-cara]{CARA偏好}保持其绝对风险承受能力不变，每只资产的风险补偿仍为正。\hfill$\square$
+
+\section{作为均衡结果的APT}\label{sec:wj-fourteen-5}
+\subsection{支付结构与经济条件}
+设证券支付具有因子结构
+\begin{subequations}\label{eq:wj-14-7}
+\begin{align}
+ \widetilde x&=\bar x+B_x\widetilde f+\widetilde\varepsilon,\label{eq:wj-14-7a}\\
+ \mathrm E[\widetilde\varepsilon\mid\widetilde f]&=0.\label{eq:wj-14-7b}
+\end{align}
+\end{subequations}
+
+条件期望为零意味着 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=0$，其中 $g$ 为使乘积可积的因子函数。因此，剩余支付与由因子决定的消费及边际效用都正交；第~\ref{sec:wj-fourteen-1}~节的二阶矩条件则要求它与因子本身不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFourteenTheorem{thm:wj-fourteen-5} 假设：
+\begin{enumerate}
+ \item 证券支付满足式~\eqref{eq:wj-14-7}，且含无风险证券；
+ \item 各因子可由证券支付线性生成，即 $\mathcal F\subseteq\mathcal M$；
+ \item 个人1期消费可由可交易支付生成；
+ \item 总禀赋属于 $\mathcal F$；
+ \item 个人效用严格递增、严格凹，均衡为内点，相关期望存在。
+\end{enumerate}
+则均衡收益满足式~\eqref{eq:wj-14-6}，其中 $\lambda_0=r_F$。
+\end{tcolorbox}
+
+\subsection{消除剩余风险与均衡定价}
+% 原书以可行的Jensen改善直接得出均衡无残差；这里用个人Euler与残差价格加总落实其预算依据。
+\textbf{证明：}由支付结构和因子可交易性，$\mathcal M=\mathcal F+\mathcal E$。将个人终期消费分解为
+\[
+ \widetilde c_{k,1}=\widetilde c_{k,1}^{\mathcal F}+\widetilde e_k,
+ \qquad \mathrm E[\widetilde e_k\mid\widetilde f]=0.
+\]
+
+总禀赋在 $\mathcal F$ 中，故出清给出 $\sum_k\widetilde e_k=0$。记 $p(\widetilde e_k)$ 为该可交易残差支付的价格。个人Euler方程给出
+\[
+ u'_{k,0}(c_{k,0})p(\widetilde e_k)
+ =\mathrm E[u'_{k,1}(\widetilde c_{k,1})\widetilde e_k]
+ =\mathrm E\!\left[\left(u'_{k,1}(\widetilde c_{k,1}^{\mathcal F}+\widetilde e_k)
+ -u'_{k,1}(\widetilde c_{k,1}^{\mathcal F})\right)\widetilde e_k\right]\le0.
+\]
+
+边际效用严格递减，非零残差使不等式严格成立。因此每人的残差价格非正；而 $\sum_kp(\widetilde e_k)=0$，故全部残差为零，$\widetilde c_{k,1}\in\mathcal F$。
+
+令 $m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$。它是因子的函数，所以 $\mathrm E[m_k\widetilde\varepsilon_n]=0$。对价格非零的证券，收益载荷为 $b_n^{\mathsf T}=B_{x,n}/S_n$。由Euler方程以及 $\mathrm E[m_k]=1/(1+r_F)$，得到
+\begin{equation}
+ \bar r_n-r_F
+ =-\operatorname{Cov}\!\left(\frac{m_k}{\mathrm E[m_k]},\widetilde r_n\right)
+ =b_n^{\mathsf T}\underbrace{\left[-\operatorname{Cov}\!\left(\frac{m_k}{\mathrm E[m_k]},\widetilde f\right)\right]}_{\lambda}.
+ \label{eq:wj-14-8}
+\end{equation}
+
+因子支付可交易，相应因子溢价由共同证券价格确定；式~\eqref{eq:wj-14-8} 即为均衡中的APT。\hfill$\square$
+
+\section{本章小结}\label{sec:wj-fourteen-summary}
+\begin{tcolorbox}[summary,breakable=false]
+\begin{enumerate}
+ \item 共同因子与剩余风险构成收益的因子结构；充分分散压低剩余风险方差。
+ \item 精确因子模型通过复制与无套利得到线性期望收益关系。
+ \item 有界剩余风险与无极限套利使APT定价误差的平方和有界，大误差资产所占比例趋于零。
+ \item 竞争均衡与极限套利讨论不同市场层面的性质；有限经济的均衡可与极限套利序列并存。
+ \item 因子可交易、总禀赋由因子生成等条件，使均衡消费消除剩余风险，得到精确APT。
+\end{enumerate}
+\end{tcolorbox}
 \fi
-
+\Needspace{20\baselineskip}
+\ifdefined\WJHandoutKnowledge
+\section{练习}\label{sec:wj-fourteen-exercises}
+\else
+\section*{课后习题}\addcontentsline{toc}{section}{课后习题}
+\fi
 \input{tex/金融经济学_王江/14_APT_习题.tex}
+\endgroup

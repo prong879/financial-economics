@@ -1,333 +1,615 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，第 3 章
-% 补充：references/金融经济学/金融经济学_第3章 Arrow-Debreu经济.pptx（第 1–30 页）
-% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 8–12（印刷页 7–11）
+% 来源：王江《金融经济学》，印刷第 33—47 页（PDF 第 48—62 页）。
+% 补充：金融经济学_第3章 Arrow-Debreu经济.pptx，第 1—30 页。
+% 习题参考：史上最全最完整的金融经济学答案(王江版).pdf，第 8—12 页。
 
-\lecture{阿罗--德布鲁经济}
+\zhchapter{Arrow-Debreu 经济}\label{chap:wj-three}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{
+ section={number=\thesection,aftername=\quad},
+ subsection={number=\thesubsection,aftername=\quad},
+ subsubsection={number=\thesubsubsection,aftername=\quad}
+}
+% 独立计数器保留教材定义、定理和例题号；标签绑定真实计数器。
+\newcounter{wjThreeDefinition}
+\newcounter{wjThreeTheorem}
+\newcounter{wjThreeExample}
+\renewcommand{\thewjThreeDefinition}{\thechapter.\arabic{wjThreeDefinition}}
+\renewcommand{\thewjThreeTheorem}{\thechapter.\arabic{wjThreeTheorem}}
+\renewcommand{\thewjThreeExample}{\thechapter.\arabic{wjThreeExample}}
+\newcommand{\WJThreeDefinition}[1]{\refstepcounter{wjThreeDefinition}\label{#1}\textbf{定义 \thewjThreeDefinition}\quad}
+\newcommand{\WJThreeTheorem}[1]{\refstepcounter{wjThreeTheorem}\label{#1}\textbf{定理 \thewjThreeTheorem}\quad}
+\newcommand{\WJThreeExample}[1]{\refstepcounter{wjThreeExample}\label{#1}\textbf{例 \thewjThreeExample}\quad}
 
 \ifdefined\WJHandoutKnowledge
+本章考察由全部状态或有证券构成的市场。先说明状态价格与市场完全性，再从个人最优消费推导市场均衡，最后分析均衡配置的效率。支付矩阵仍以状态为行、证券为列；$\theta_k$ 表示证券净交易量，$h_k$ 表示交易后总持仓。
 
-
-本章运用第 2 章的框架分析\textcolor{red}{\textbf{参与者如何选择投资组合、证券价格如何影响这些选择以及市场如何决定这些价格}}。这一简单的市场结构也是理解资源配置效率的基准。
-
-\begin{tcolorbox}[knowledge,title=3.1 Arrow-Debreu 证券市场]
-下面引入一类最简单的证券：它们只在 1 期支付，且支付是已实现状态的函数。
-
+\section{Arrow-Debreu 证券市场}
+\label{sec:wj-three-securities}
 \begin{tcolorbox}[knowledge]
-\textbf{定义 3.1}\quad 状态 $\omega$ \textbf{或有要求权}（state-$\omega$ contingent claim）就是当状态为 $\omega$ 时支付为 $1$、而在其他状态下支付为 $0$ 的证券。
+\WJThreeDefinition{def:wj-three-claim}状态 $\omega$ \textbf{或有要求权}（state-$\omega$ contingent claim）是在 1 期状态为 $\omega$ 时支付 $1$ 单位消费品、其他状态下支付 $0$ 的证券，也称状态 $\omega$ 的 Arrow-Debreu 证券。
+\end{tcolorbox}
+若以 $\omega'$ 表示实际实现的状态，其支付为
+\[
+ x(\omega')=\mathbf{1}_{\{\omega\}}(\omega')=
+ \begin{cases}1,&\omega'=\omega,\\0,&\omega'\ne\omega.\end{cases}
+\]
+\begin{tcolorbox}[example]
+\WJThreeExample{ex:wj-three-1}Lucas 树经济在 1 期有两个可能状态 $a,b$，两只状态或有证券的支付向量分别为
+\[
+ x_a=\begin{bmatrix}1\\0\end{bmatrix},\qquad
+ x_b=\begin{bmatrix}0\\1\end{bmatrix}.
+\]
+\end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=Arrow-Debreu 市场与单位支付矩阵,breakable=false]
+每个可能状态对应一只状态证券，共有 $\Omega$ 只。由它们的完全集合构成的市场称为 \textbf{Arrow-Debreu 证券市场}。按状态顺序排列证券时，支付矩阵为
+\[
+ X^{A\text{-}D}=I_\Omega.
+\]
 \end{tcolorbox}
 
-因此，状态 $\omega$ 或有要求权具有如下支付分布（$x_{\omega'}$ 为状态 $\omega'$ 下的支付）：
+其中第 $\omega$ 列只在第 $\omega$ 行取 $1$，直接对应状态 $\omega$ 的单位支付。
+
+\section{状态价格}
+\label{sec:wj-three-prices}
+\begin{tcolorbox}[knowledge,title=状态价格]
+状态 $\omega$ 的阿罗证券在 0 期的价格记为 $\phi_\omega$，以 0 期消费品计量，称为\textbf{状态价格}（state price）。状态价格向量为 $\phi=(\phi_1,\ldots,\phi_\Omega)^{\mathsf T}$。
+\end{tcolorbox}
+
+% 来源：教师 PPT 第 3 页的台风状态证券情境。
+\begin{tcolorbox}[example,title=课堂例题：只在台风状态支付的证券]
+设明天有晴天、下雨、台风、地震四个互斥且穷尽的可能状态，按此顺序排列。某证券只在台风发生时支付 $1$ 单位消费品，其他状态支付为零，其支付向量为 $(0,0,1,0)^{\mathsf T}$。今天购买一份该证券所需支付的消费品数量，就是台风状态的状态价格。
+\end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=状态价格的正性,breakable=false]
+只考虑正概率状态。在无摩擦、允许自由买卖且无套利时，
+\begin{equation}
+ \phi\gg0.\label{eq:wj-three-positive-price}
+\end{equation}
+\end{tcolorbox}
+
+若某个 $\phi_\omega\le0$，买入一份该证券的当期净支出非正，未来支付非负且以正概率为正，构成套利。状态价格同时反映时间价值与相应状态下资源的稀缺性，其总和一般不为 $1$。在一价定律下，支付向量 $x$ 的复制成本为 $\phi^{\mathsf T}x$；实际概率则描述各状态发生的可能性。
+
+\section{市场的完全性}
+\subsection{消费计划的复制与完全市场}
+在 Arrow-Debreu 市场中，给定有限的未来消费向量 $c_1=(c_{11},\ldots,c_{1\Omega})^{\mathsf T}$，取总持仓 $h=c_1$，便有
 \[
-    x_{\omega'}=
-    \begin{cases}
-        1, & \omega'=\omega,\\
-        0, & \omega'\neq\omega,
-    \end{cases}
-    \qquad\text{即}\qquad
-    x(\omega')=\mathbf{1}_{\omega}(\omega'),
+ \underbrace{X^{A\text{-}D}h}_{\text{组合支付}}=I_\Omega c_1
+ =\underbrace{c_1}_{\text{目标消费}},\qquad
+ \underbrace{\phi^{\mathsf T}h}_{\text{复制成本}}=\sum_{\omega=1}^{\Omega}\phi_\omega c_{1\omega}.
 \]
-其中 $\mathbf{1}_{\omega}(\cdot)$ 为示性函数：当 $\omega'=\omega$ 时取 $1$，否则取 $0$。
+\begin{tcolorbox}[knowledge]
+\WJThreeDefinition{def:wj-three-complete}如果任一有限消费计划都可以通过有限成本的可交易证券组合来融资，则称证券市场为\textbf{完全市场}（complete market），也称完备市场。
+\end{tcolorbox}
+有限状态、有限价格下，这要求证券支付能够生成全部状态支付。Arrow-Debreu 市场因此是完全市场。完全性说明支付可以复制；个人能够负担的消费还须满足其财富约束。
 
 \begin{tcolorbox}[example]
-\textbf{例 3.1}\quad 在例 2.1 的 Lucas 树经济中，1 期有两个可能状态，因而有两个或有要求权，其支付向量分别为
+\WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $(1,1)^{\mathsf T}$ 的无风险债券。若要复制消费 $(2,1)^{\mathsf T}$，债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。
+\end{tcolorbox}
+
+\subsection{完全性的判别}
+\label{sec:wj-three-rank}
+\begin{tcolorbox}[knowledge,title=完全市场的行满秩判据,breakable=false]
+设一般支付矩阵 $X\in\mathrm R^{\Omega\times N}$，允许任意实数持仓。市场完全当且仅当
 \[
-    \text{状态 $a$ 或有要求权：}\begin{bmatrix}1 \\ 0\end{bmatrix},\qquad
-    \text{状态 $b$ 或有要求权：}\begin{bmatrix}0 \\ 1\end{bmatrix}.
+ \operatorname{Im}(X)=\mathrm R^\Omega
+ \quad\Longleftrightarrow\quad \operatorname{rank}(X)=\Omega.
 \]
 \end{tcolorbox}
 
-对每个状态都可以定义一个相应的或有要求权，共有 $\Omega$ 个。这些或有要求权称为\textbf{Arrow-Debreu 证券}；由它们的完全集合构成的证券市场称为\textbf{Arrow-Debreu 证券市场}。若按状态排列证券，支付矩阵（市场结构）为单位阵：
-\[
-    X^{A\text{-}D}=
-    \begin{bmatrix}
-        1 & \cdots & 0 & \cdots & 0 \\
-        \vdots & \ddots & \vdots & \ddots & \vdots \\
-        0 & \cdots & 1 & \cdots & 0 \\
-        \vdots & \ddots & \vdots & \ddots & \vdots \\
-        0 & \cdots & 0 & \cdots & 1
-    \end{bmatrix}
-    =I.
-\]
-\end{tcolorbox}
+\textbf{（完全市场 $\Rightarrow$ 行满秩）}每个单位状态支付 $\mathbf e_\omega$ 都可复制，所以这些构成 $\mathrm R^\Omega$ 基底的向量均在 $X$ 的列空间中，列空间就是 $\mathrm R^\Omega$，其维数为 $\Omega$。
 
-\begin{tcolorbox}[knowledge,title=3.2 状态价格]
-记 $\phi_{\omega}$ 为 0 期购买、在状态 $\omega$ 才支付 $1$ 单位消费品的状态 $\omega$ 或有要求权的价格（以 0 期消费品计量）。\textcolor{red}{\textbf{因为状态 $\omega$ 或有要求权在 1 期只有当状态为 $\omega$ 时才支付 $1$ 单位的消费品}}，$\phi_{\omega}$ 也称为\textbf{状态价格}（state price）。所有状态价格组成向量
-\[
-    \phi=\begin{bmatrix}\phi_1 \\ \vdots \\ \phi_{\omega} \\ \vdots \\ \phi_{\Omega}\end{bmatrix}.
-\]
-在无套利（没有免费的午餐）下，状态价格严格为正：
-\[
-    \phi\gg 0.
-\]
-若 $\phi_\omega\le0$，买入一份该状态证券，无须正的初始支出，未来支付非负且在状态 $\omega$ 为正，形成套利（只考虑可能发生的状态）。状态价格不是发生概率，也不必加总为 $1$；它还反映时间价值和该状态下资源的稀缺性。在无摩擦、一价定律成立时，支付为 $x$ 的可复制证券价格为 $\phi^{\mathsf T}x$。
-\end{tcolorbox}
+\textbf{（行满秩 $\Rightarrow$ 完全市场）}若列空间维数为 $\Omega$，则它等于 $\mathrm R^\Omega$，每个有限消费向量都能写成 $Xh$。证券价格与组合分量均有限时，其复制成本 $S^{\mathsf T}h$ 也有限，故市场完全。
 
-\begin{tcolorbox}[knowledge,title=3.3 市场的完全性]
-在 Arrow-Debreu 市场中，1 期的消费计划可写成 $x=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\omega} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$。持有状态证券组合 $\theta=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\omega} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$ 即可复制该消费计划：
-\[
-    \begin{aligned}
-        \underbrace{X\theta}_{\substack{\text{组合在 1 期各状态下的总支付}\\\text{（一般：任意证券组合的收益）}}}
-        =\underbrace{X^{A\text{-}D}\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}}_{\substack{\theta\text{：状态 }\omega\text{ 阿罗证券持有 }c_{1\omega}\text{ 份}\\\text{研究阿罗市场，此处 }X=X^{A\text{-}D}}}
-        =\underbrace{\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}}_{X^{A\text{-}D}=I\text{，故状态 }\omega\text{ 下收入 }c_{1\omega}}
-        =\underbrace{x}_{\text{欲实现的 1 期消费计划}}.
-    \end{aligned}
-\]
-该组合在 0 期的成本为
-\[
-    \underbrace{\phi^{\mathsf T}\theta}_{\text{复制该计划在 0 期支付的总成本}}
-    =\underbrace{\sum_{\omega\in\Omega}\phi_{\omega}c_{1\omega}}_{\text{各状态消费 }\times\text{ 对应状态价格}}.
-\]
+证券数至少等于状态数是必要条件；证券之间的线性相关性决定这些证券提供了多少独立支付方向。
 
-\textcolor{red}{是否 \textbf{完全}，取决于市场能否以 \textbf{有限成本}为任意 \textbf{有限消费计划} \textbf{融资}}。
-
-\begin{tcolorbox}[knowledge]
-\textbf{定义 3.2}\quad 如果市场中的任一有限消费计划都可以通过有限成本的可交易证券的组合来融资，那么我们就称这个证券市场是\textbf{完全的}（complete）。即，任给消费计划 $c=\begin{bmatrix}c_{11} \\ \vdots \\ c_{1\Omega}\end{bmatrix}$，存在证券组合 $\theta\in\mathrm R^N$ 使得 $X\theta=c$ 有解。
-\end{tcolorbox}
-
-
-
-\begin{tcolorbox}[example]
-\textbf{例 3.2}\quad 在 Lucas 树经济中，若市场上只有一只无风险债券，其支付为 $\begin{bmatrix}1 \\ 1\end{bmatrix}$。参与者若想要消费计划 $\begin{bmatrix}2 \\ 1\end{bmatrix}$（在状态 $a$ 消费 $2$、在状态 $b$ 消费 $1$），无法仅靠该债券实现，市场\textbf{不完备}。
-\end{tcolorbox}
-
-
-\begin{enumerate}
-    \item 在完全市场中，任意消费计划 $x=[c_{11},\dots,c_{1\Omega}]$ 都是状态证券的线性组合；投资者可通过买卖状态证券在不同状态间调整消费。
-    \item 完全市场中，消费者有最高的灵活度，可以实现最优的风险配置。
-    \item 在相同状态空间、无摩擦且允许自由组合时，完全市场都能生成全部状态支付；比较价格与均衡配置，还须保持对应的定价关系、偏好和禀赋，不能把支付空间等价理解为不同经济有相同价格。
-    \item 完全不表示每个人能负担任何消费计划：支付能被复制，与个人财富足以支付复制成本，是两个问题。
-    \item \textbf{金融创新}的价值之一，正是通过增加可交易证券使市场更完全，从而更好地实现风险分担与效率。
-\end{enumerate}
-
-\begin{tcolorbox}[example,title=PPT 补充：三组支付矩阵的完全性]
+% 来源：教师 PPT 第 9 页的三组支付矩阵。
+\begin{tcolorbox}[example,title=课堂例题：三组支付矩阵的完全性]
+判断下列三个市场是否完全：
 \[
  X_1=\begin{bmatrix}1&3\\2&4\end{bmatrix},\quad
  X_2=\begin{bmatrix}1&2\\2&4\end{bmatrix},\quad
  X_3=\begin{bmatrix}1&0&1\\0&1&1\\1&1&1\end{bmatrix}.
 \]
-$\det X_1=-2\ne0$，两状态的任意支付都可复制；$X_2$ 第二列是第一列的两倍，秩为 $1$，两只证券仍不能生成两状态全部支付。$\det X_3=-1\ne0$，所以第三个市场完全，虽没有直接列出全部阿罗证券，也能复制它们。一般判据为 $\mathrm{rank}(X)=\Omega$；两只证券面对三个状态时，秩最多为 $2$，必不完全。
+\end{tcolorbox}
+$\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的两倍，秩为 $1<2$，故第二个市场不完全。$\det X_3=-1\ne0$，故第三个市场完全；其中虽未直接列出全部阿罗证券，也能通过组合复制它们。两只证券面对三个状态时，秩最多为 $2$，市场必不完全。
+
+在相同的状态空间中，完全市场都能生成全部状态支付。若偏好、禀赋及对应的支付定价相同，这些市场提供相同的消费机会；它们可以使用不同的证券作为支付空间的基底。
+
+\subsection{市场不完全与金融创新}
+% 来源：教师 PPT 第 10、23 页；将金融创新归入完全性主题。
+\begin{tcolorbox}[example,title=课堂例题：保险合约为何可能缺失]
+失业保险可能降低投保人寻找工作的激励；全额手机屏幕保险可能降低使用保护措施的意愿。健康状况较差的人也可能更愿意购买健康保险，而保险人难以准确识别其风险类型。分析这些因素如何影响保险合约的供给。
+\end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=道德风险与逆向选择,breakable=false]
+投保后行为发生变化属于\textbf{道德风险}；投保前不同风险类型的选择差异属于\textbf{逆向选择}。
 \end{tcolorbox}
 
-\textbf{为什么现实中仍有未被交易的风险？}PPT 以保险说明：\textbf{道德风险}是投保后的行为激励改变，\textbf{逆向选择}是投保前风险类型的信息不对称；可验证性不足、交易和执行成本也会使某些状态合约缺失。大量独立风险有利于分散，但不能据此断言系统性风险绝不能承保或交易；分散困难与支付不可交易是不同问题。
+加上损失可验证性不足和合约执行成本，一些状态支付便难以成为可交易合约。大量独立风险有利于保险人分散损失，系统性风险则需要额外的风险承担能力和融资安排。
 
+健康保险中，若保险人难以区分风险类型，可能按投保群体的平均风险收取统一保费。低风险者认为保费过高而退出后，留下的投保群体平均风险上升，保险人便可能进一步提高保费，促使更多低风险者退出。这种“保费上升—低风险者退出—平均风险继续上升”的反馈，可能使保险覆盖范围收缩，甚至使某些合约退出市场。
+
+金融创新通过增加原有列空间之外的新支付向量，扩大可交易支付空间。例如，巨灾债券提供特定灾害状态的支付，通胀挂钩债券提供与购买力变化相关的支付，信用衍生品提供与违约事件相关的支付。其对完全性的贡献取决于新支付是否增加矩阵的秩。
+
+\section{参与者的优化}
+\subsection{禀赋财富与预算约束}
+\label{sec:wj-three-budget}
+\begin{tcolorbox}[knowledge,title=初始持仓、总持仓与净交易,breakable=false]
+给定状态价格 $\phi\gg0$，参与者的禀赋为 $e=(e_0,e_1^{\mathsf T})^{\mathsf T}$。在阿罗证券中，复制未来禀赋的初始持仓为 $\bar\theta=e_1$。记交易后总持仓为 $h$，净买入量为 $\theta=h-\bar\theta$，则
+\[
+ c_1=e_1+\theta=h.
+\]
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=3.4 参与者的优化]
-考虑单个参与者的效用优化问题。在 Arrow-Debreu 市场中，设参与者禀赋为 $e$、效用函数为 $U$。若 1 期禀赋以状态证券组合 $\bar{\theta}=\begin{bmatrix}e_{11} \\ \vdots \\ e_{1\Omega}\end{bmatrix}$ 持有（初始持有），则 1 期禀赋的支付为
-\[
-    X^{A\text{-}D}\bar{\theta}=\bar{\theta}=e_1=
-    \begin{bmatrix}e_{11} \\ \vdots \\ e_{1\Omega}\end{bmatrix}.
-\]
+\begin{tcolorbox}[knowledge,title=禀赋的市场财富,breakable=false]
+禀赋在当期的市场价值为
+\begin{equation}
+ w=\underbrace{e_0}_{\text{当期禀赋}}
+   +\underbrace{\phi^{\mathsf T}e_1}_{\text{未来禀赋市值}}.\label{eq:wj-three-wealth}
+\end{equation}
 
-上式的 $\bar\theta=e_1$ 是\textbf{复制禀赋}的初始组合；交易后复制目标消费的总持仓应记作 $\theta=c_1$，两者不能混同。参与者的\textbf{财富}为禀赋在 0 期的市场价值：
-\[
- w=e_0+\phi^{\mathsf T}e_1.
- \tag{3.2}
-\]
-也可以直接从净交易推预算：令 $z=\theta-\bar\theta=c_1-e_1$ 为状态证券净买入量，则
-\[
- c_0+\phi^{\mathsf T}z\le e_0
- \iff c_0+\phi^{\mathsf T}c_1\le e_0+\phi^{\mathsf T}e_1=w.
- \tag{3.3}
-\]
-因此“先把禀赋换成财富再选择消费”是等价分析方法，不要求参与者在现实交易中先卖光全部禀赋。
+这称为总财富或禀赋的市场财富。
+\end{tcolorbox}
 
-记扩展价格向量 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$（0 期消费品价格为 $1$，即计价物），则预算约束可写为 $\hat{\phi}^{\mathsf T}c\le\hat{\phi}^{\mathsf T}e$，或 $\hat{\phi}^{\mathsf T}(e-c)\ge 0$。
+\begin{tcolorbox}[knowledge,title=价值预算约束,breakable=false]
+证券净交易支出与可负担消费的关系为
+\begin{equation}
+ \begin{aligned}
+ c_0+\phi^{\mathsf T}\theta&\le e_0\\
+ \Longleftrightarrow\quad c_0+\phi^{\mathsf T}c_1
+ &\le e_0+\phi^{\mathsf T}e_1=w.
+ \end{aligned}\label{eq:wj-three-budget}
+\end{equation}
+\end{tcolorbox}
 
-参与者的优化问题为（在预算内最大化效用，且消费非负）
-\begin{align}
-    \max_{c\in C}\ &U(c) \tag{3.4}\\
-    \mathrm{s.t.}\quad &\hat{\phi}^{\mathsf T}(e-c)\ge 0, \notag\\
-    &c\ge 0. \notag
-\end{align}
+预算不等式允许自由处置资源；在不满足性下，最优选择花光预算。将禀赋按市场价格计入财富后，个人可直接在消费空间中选择最优计划。
 
+\begin{tcolorbox}[knowledge,title=扩展价格与消费优化,breakable=false]
+记扩展价格向量 $\hat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，其中 $\phi_0=1$。参与者的问题为
+\begin{equation}
+ \begin{aligned}
+ \max_{c\in\mathrm R_+^{1+\Omega}}\quad&U(c)\\
+ \mathrm{s.t.}\quad&\hat\phi^{\mathsf T}c\le w=\hat\phi^{\mathsf T}e.
+ \end{aligned}\label{eq:wj-three-optimization}
+\end{equation}
+\end{tcolorbox}
+
+\subsection{最优消费的存在性}
 \begin{tcolorbox}[knowledge]
-\textbf{定理 3.1}\quad 设 $C=\mathrm{R}^{1+\Omega}_{+}$，$\hat\phi\gg0$、$0\le w<\infty$，$U(\cdot)$ 在 $C$ 上连续，则问题 (3.4) 有解。
+\WJThreeTheorem{thm:wj-three-existence}设 $\hat\phi\gg0$、$0\le w<\infty$，且 $U$ 在 $\mathrm R_+^{1+\Omega}$ 上连续，则问题~\eqref{eq:wj-three-optimization}（预算约束下的效用最大化）有最优解。
+\end{tcolorbox}
+\textbf{证明。}预算集 $B=\{c\ge0:\hat\phi^{\mathsf T}c\le w\}$ 包含零向量，因而非空。每个分量满足
+\[
+ 0\le c_i\le\frac{w}{\phi_i}\le\frac{w}{\min_{0\le j\le\Omega}\phi_j},
+ \qquad i=0,\ldots,\Omega,
+\]
+
+所以预算集有界。若 $c^{(n)}\in B$ 且 $c^{(n)}\to c$，取极限仍有 $c\ge0$、$\hat\phi^{\mathsf T}c\le w$，故 $B$ 闭。在有限维空间中，非空有界闭集为紧集，连续效用函数在其上取得最大值。
+
+对数效用的定义域为严格正消费集；例~\ref{ex:wj-three-3} 将结合其边界行为构造唯一最优解。
+
+\subsection{最优消费的一阶条件}
+\begin{tcolorbox}[knowledge,title=边际效用向量,breakable=false]
+设 $U$ 在消费集的邻域上连续可微，且各项边际效用严格为正：
+\begin{equation}
+ DU(c)\gg0,\qquad
+ DU(c)=(\partial_0U(c),\ldots,\partial_\Omega U(c))^{\mathsf T}.\label{eq:wj-three-marginal-utility}
+\end{equation}
+
+其中 $\partial_0U$ 表示当期消费的边际效用，$\partial_\omega U$ 表示未来状态 $\omega$ 消费的边际效用。
 \end{tcolorbox}
 
-\textbf{证明（补齐 PPT 的有界性步骤）：}预算集
-\[
- B=\{c\ge0:\hat\phi^{\mathsf T}c\le w\}
-\]
-非空（含零消费），且每个分量均满足 $0\le c_i\le w/\phi_i\le w/\min_j\phi_j$，其中 $\phi_0=1$。所以可行消费不会无限增大。若可行序列 $c^{(n)}\to c$，取极限仍有 $c\ge0$、$\hat\phi^{\mathsf T}c\le w$，故极限仍可行。连续函数在这样的有限维有界闭集上取得最大值。此处先用不等式预算集；只有加入不满足性后，才可推出最优时预算取等号。
-
-以下另假设 $U$ 可微且各消费分量的边际效用严格为正。\textbf{这是本章使用的强化单调性条件}；一般的不满足性本身并不等价于处处 $DU\gg0$。记 $\partial_0 U$ 为 0 期消费的边际效用，$\partial_{\omega}U$ 为状态 $\omega$ 下 1 期消费的边际效用，则
-\[
-    \partial_0 U>0,\qquad \partial_{\omega}U>0,\quad\forall\omega\in\Omega,
-    \tag{3.5}
-\]
-边际效用向量为 $DU=\begin{bmatrix}\partial_0 U \\ \partial_1 U \\ \vdots \\ \partial_{\Omega}U\end{bmatrix}$，后续一阶分析采用 $DU\gg0$。
-
+% 教材印刷第 38 页及 PPT 第 14、17 页使用 +mu；按非负乘子约定改为 -mu。
+% 凹性是本处充分性证明的附加条件，区别于前章偏好凸性（效用拟凹）。
 \begin{tcolorbox}[knowledge]
-\textbf{定理 3.2}\quad 设 $w>0$、$U$ 可微且 $DU\gg 0$。则 (3.4) （参与者的效用优化问题，在预算内最大化效用，且消费非负）的解满足：存在 $\lambda>0$、$\mu_i\ge 0$（$i=0,1,\dots,\Omega$）使得
+\WJThreeTheorem{thm:wj-three-kkt}设 $w>0$、$\hat\phi\gg0$，效用函数 $U$ 在消费集的邻域上连续可微，并满足~\eqref{eq:wj-three-marginal-utility}（各项边际效用严格为正）。若 $c^*$ 是问题~\eqref{eq:wj-three-optimization}（预算约束下的效用最大化）的最优解，则存在 $\lambda>0$、$\mu_i\ge0$，使
+\begin{subequations}
 \begin{align}
-    \partial_i U&=\lambda\phi_i-\mu_i,\quad i=0,1,\dots,\Omega\quad(\phi_0=1),\tag{3.6a}\\
-    \hat{\phi}^{\mathsf T}(e-c)&=0,\tag{3.6b}\\
-    \mu_i c_i&=0,\quad i=0,1,\dots,\Omega.\tag{3.6c}
+ \partial_iU(c^*)&=\lambda\phi_i-\mu_i,\qquad i=0,\ldots,\Omega,\label{eq:wj-three-kkt-stationarity}\\
+ \hat\phi^{\mathsf T}c^*&=w,\label{eq:wj-three-kkt-budget}\\
+ \mu_i c_i^*&=0,\qquad i=0,\ldots,\Omega.\label{eq:wj-three-kkt-complementarity}
 \end{align}
-
-
-定理 3.2 说的是：在问题 (3.4)（预算约束 $+$ 消费非负）下，若 $DU\gg0$，则最优消费满足 KKT 条件 (3.6a)–(3.6c)（不等式约束下的一阶必要条件；若 $U$ 凹且可行集凸，亦为充分条件；不能把“偏好凸”误写成“效用函数凸”）。含义简述如下：
-\begin{itemize}
-    \item \textbf{(3.6a)} \textbf{边际效用定价：}$\partial_i U=\lambda\phi_i-\mu_i$。内点（$c_i>0$）时 $\mu_i=0$，边际效用与扩展价格成比例；若某期/某状态消费为 $0$，则 $\partial_iU/\phi_i\le\lambda$；该分量的单位支出边际效用不高于正消费分量，非负约束阻止继续减少它。
-    \item \textbf{(3.6b)} \textbf{预算紧绑：}按 $\hat{\phi}$ 计价时花光财富，$\hat{\phi}^{\mathsf T}c=\hat{\phi}^{\mathsf T}e$（在 $DU\gg 0$ 下不会故意少花）。
-    \item \textbf{(3.6c)} \textbf{互补松弛：}$\mu_i c_i=0$。要么该分量消费为正、对应乘子为零；要么消费为零、允许 $\mu_i>0$（角点解）。
-\end{itemize}
+\end{subequations}
+若进一步假设 $U$ 为凹函数，则可行消费 $c^*$ 为最优解，当且仅当它满足上述条件（一阶条件、预算用尽条件与互补松弛条件）。
 \end{tcolorbox}
 
-对问题 (3.4) 构造拉格朗日函数（$\lambda$ 为预算约束 $\hat{\phi}^{\mathsf T}(e-c)\ge 0$ 的乘子，$\mu_i$ 为 $c_i\ge 0$ 的乘子）：
+\textbf{（最优解 $\Rightarrow$ 一阶条件）}边际效用严格为正，故预算若有剩余便可增加消费，最优时必有~\eqref{eq:wj-three-kkt-budget}。又因 $w>0$，至少一个分量 $c_j^*>0$。记 $\mathbf e_i$ 为第 $i$ 个坐标方向的单位向量。对两个正消费分量 $i,j$，沿
 \[
-    \mathcal{L}
-    =U(c)+\lambda\,\hat{\phi}^{\mathsf T}(e-c)+\sum_{i=0}^{\Omega}\mu_i c_i.
+ d=\frac{\mathbf e_i}{\phi_i}-\frac{\mathbf e_j}{\phi_j}
 \]
-对 $c_i$ 求偏导并令其为零，即得 (3.6a)；与 (3.6b)、(3.6c) 联立即为定理 3.2。\textbf{符号校正：}对本处“最大化、$c_i\ge0$、$\mu_i\ge0$”的约定，拉格朗日函数应加 $\mu_i c_i$，故边际条件应为 $\partial_iU=\lambda\phi_i-\mu_i$；PPT 所列加号应相应校正。最优时至少一个消费分量为正，故由该分量的一阶条件可知 $\lambda>0$。对参与者 $k$ 将 $U,c,e$ 换为 $U_k,c_k,e_k$ 即可。
 
-\textbf{角点检验：}取 $U=2c_0+c_1$、价格均为 $1$、财富为 $1$，最优消费为 $(1,0)$。此时 $\lambda=2$、$\mu_0=0$、$\mu_1=1$，满足 $\partial_1U=1=2-1$；若误用加号便无法用非负乘子表达这个最优角点。
+作充分小的正、反向调整均可行，且 $\hat\phi^{\mathsf T}d=0$。最优性要求 $DU(c^*)^{\mathsf T}d=0$，所以所有正消费分量的单位支出边际效用相同。记其共同值为 $\lambda=\partial_jU(c^*)/\phi_j>0$。
 
-对参与者 $k$，\textbf{内点解}（$c_k\gg 0$，故 $\mu_i=0$）时由 (3.6a) 可写成 $DU_k(c_k)=\lambda_k\hat{\phi}$，即
-\begin{align}
-    \underbrace{\frac{\partial U_k(c_k)}{\partial c_k(0)}=\lambda_k}_{\substack{\text{对第 0 期消费求偏导}\\(\phi_0=1)}},
-    &\quad
-    \underbrace{\frac{\partial U_k(c_k)}{\partial c_k(\omega)}=\lambda_k\phi_{\omega}}_{\substack{\text{对第 1 期各状态消费求偏导}}},\quad
-    \forall\omega\in\Omega. \tag{3.7}
-\end{align}
+若 $c_i^*=0$，仅沿增加第 $i$ 项、减少正消费第 $j$ 项的方向作小调整可行。最优性要求该方向导数非正，即 $\partial_iU(c^*)/\phi_i\le\lambda$。于是令 $\mu_i=\lambda\phi_i-\partial_iU(c^*)\ge0$；正消费分量取 $\mu_i=0$，便同时得到~\eqref{eq:wj-three-kkt-stationarity} 与~\eqref{eq:wj-three-kkt-complementarity}。
 
-等价地，\textbf{跨期边际替代率}等于状态价格：
+\textbf{（一阶条件 $+$ 效用凹性 $\Rightarrow$ 最优解）}对任一可行消费 $a$，由凹函数的切平面不等式，
 \[
- \frac{\partial_\omega U_k(c_k)}{\partial_0 U_k(c_k)}=\phi_\omega
+ \begin{aligned}
+ U(a)-U(c^*)&\le DU(c^*)^{\mathsf T}(a-c^*)\\
+ &=\lambda\underbrace{\hat\phi^{\mathsf T}(a-c^*)}_{\le0}
+ -\underbrace{\sum_{i=0}^{\Omega}\mu_i a_i}_{\ge0}
+ +\underbrace{\sum_{i=0}^{\Omega}\mu_i c_i^*}_{=0}\le0.
+ \end{aligned}
+\]
+
+因此 $c^*$ 至少与每个可行消费一样好，确为最优解。若 $U$ 严格凹，最优消费唯一。
+
+这些条件也可由拉格朗日函数
+\[
+ \mathcal L=U(c)+\lambda(w-\hat\phi^{\mathsf T}c)+\sum_{i=0}^{\Omega}\mu_i c_i
+\]
+
+读出。$\lambda$ 是增加一单位财富的边际价值；$\mu_i$ 则对应消费非负约束。正消费分量的单位支出边际效用为 $\lambda$；零消费分量至多为 $\lambda$，此时继续减少该消费受到非负约束限制。
+
+% 来源：教材印刷第 40 页；相对于非负消费集区分内点与边界。
+\begin{tcolorbox}[knowledge,title=内点解与角点解,breakable=false]
+若最优消费的所有分量都严格为正，称为\textbf{内点解}（interior solution）；若至少一个分量为零，则位于非负消费集的边界，通常称为\textbf{角点解}（corner solution）。
+\end{tcolorbox}
+
+\begin{tcolorbox}[example,title=课堂例题：角点消费与互补松弛]
+设 $U(c_0,c_1)=2c_0+c_1$，两项价格均为 $1$，财富为 $1$。求最优消费及相应乘子。
+\end{tcolorbox}
+当期消费的单位支出边际效用为 $2$，高于未来消费的 $1$，故 $c^*=(1,0)$。取 $\lambda=2$、$\mu_0=0$、$\mu_1=1$，有 $\partial_1U=1=2-1$ 与 $\mu_1c_1^*=0$，满足全部条件。
+
+\subsection{内点解与边际替代率}
+\begin{tcolorbox}[knowledge,title=内点最优与边际替代率,breakable=false]
+若最优消费 $c_k\gg0$，非负约束乘子均为零，由~\eqref{eq:wj-three-kkt-stationarity}（边际效用、价格与约束乘子的关系）得
+\begin{equation}
+ DU_k(c_k)=\lambda_k\hat\phi,\qquad
+ \partial_0U_k=\lambda_k,\quad\partial_\omega U_k=\lambda_k\phi_\omega.\label{eq:wj-three-interior}
+\end{equation}
+
+因此跨期、跨状态消费的边际替代率满足
+\begin{equation}
+ \frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}=\phi_\omega
  \quad\Longleftrightarrow\quad
- \partial_0U_k(c_k)=\frac1{\phi_\omega}\partial_\omega U_k(c_k).
- \tag{3.8}
-\]
-\textbf{用预算内的小调整理解：}将状态 $\omega$ 的消费增加 $\mathrm dc_\omega$，须减少当前消费 $\mathrm dc_0=-\phi_\omega\mathrm dc_\omega$，效用的一阶变化为
-\[
- \mathrm dU_k=(\partial_\omega U_k-\phi_\omega\partial_0U_k)\mathrm dc_\omega.
-\]
-内点最优要求这个系数为零；若为正，增加该状态消费有利，若为负，反向调整有利。这是\textbf{边际}上的无差异，不表示任意幅度转移消费都保持效用不变。$\phi_\omega$ 衡量为未来该状态消费 $1$ 单位所放弃的当前消费量，$1/\phi_\omega$ 是反向交换的数量比，不能把它解释成“效用单位的交换率”。
-
-\begin{tcolorbox}[example,title=PPT 补充：例 3.3 的对数消费规则]
-对 $U=\log c_0+\tfrac12(\log c_{1a}+\log c_{1b})$，假设 $w>0$、$\phi_a,\phi_b>0$。消费趋近零时对数效用趋于负无穷，最优解在正消费区域。一阶条件给出
-\[
- c_0=\frac1\lambda,\qquad c_{1a}=\frac1{2\lambda\phi_a},\qquad
- c_{1b}=\frac1{2\lambda\phi_b}.
-\]
-代入预算得 $1/\lambda+1/(2\lambda)+1/(2\lambda)=w$，于是
-\[
- \lambda=\frac2w,\qquad c_0^*=\frac w2,\quad
- c_{1a}^*=\frac w{4\phi_a},\quad c_{1b}^*=\frac w{4\phi_b}.
-\]
-一半财富用于现在，每个未来状态分得四分之一的\textbf{支出}，不是相同的消费数量。价格对消费的反比关系是在财富 $w$ 给定下的结论；当初始禀赋含未来消费时，价格变化也会改变 $w$。PPT 第 18 页末项的分母应为 $\phi_b$。完整题目与解答保留在本章后面的例 3.3。
-\end{tcolorbox}
+ \partial_0U_k(c_k)=\frac1{\phi_\omega}\partial_\omega U_k(c_k).\label{eq:wj-three-mrs}
+\end{equation}
 \end{tcolorbox}
 
+在预算内增加 $\mathrm dc_{1\omega}$ 单位状态 $\omega$ 消费，需要减少当期消费 $\mathrm dc_0=-\phi_\omega\mathrm dc_{1\omega}$，对应
+\[
+ \mathrm dU_k=
+ \underbrace{(\partial_\omega U_k-\phi_\omega\partial_0U_k)}_{\text{预算内转移的边际净效用}}
+ \mathrm dc_{1\omega}.
+\]
 
-\begin{tcolorbox}[knowledge,title=3.5 市场均衡]
-给定状态价格，Arrow-Debreu 经济中的\textbf{均衡}是一组状态价格 $\{\phi_{\omega},\,\omega\in\Omega\}$，使得：
+内点最优时该系数为零，即市场交换比例与个人边际替代率一致。$\phi_\omega$ 表示为未来该状态增加一单位消费所放弃的当期消费量。
+
+图~\ref{fig:wj-budget-tangency} 以两商品为例，给出预算线与无差异曲线相切的内点最优解。
+
+\input{tex/金融经济学_王江/figures/03_预算与切点.tex}
+
+% 来源：教材印刷第 39—40 页，PPT 第 17—18 页；末项分母统一为 phi_b。
+\begin{tcolorbox}[example]
+\WJThreeExample{ex:wj-three-3} 考虑“Lucas 树经济”，1 期有两个概率相等的状态 $a$ 和 $b$。假设 1 期的两个可能状态的状态价格分别为 $\phi_{a}$ 和 $\phi_{b}$。考虑一个参与者，他的禀赋为 $(e_{0};e_{1a};e_{1b})$。他具有如下对数形式的效用函数：
+\[
+    U(c_{0},c_{1a},c_{1b})=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})
+\]
+
+他的最优消费/组合选择是什么？
+\end{tcolorbox}
+\begin{solution}
+给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
+\[
+    \begin{aligned}
+        \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
+        \mathrm{s.t.}\quad &w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})=0\\
+        &c_{0},c_{1a},c_{1b}>0
+    \end{aligned}
+\]
+
+假设 $w>0$、$\phi_a,\phi_b>0$。对数效用的消费域为 $c_0,c_{1a},c_{1b}>0$；最优解在内部，可直接使用等式预算的拉格朗日函数
+\[
+    \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-c_0-\phi_a c_{1a}-\phi_b c_{1b}\bigr).
+\]
+
+一阶条件为
+\[
+  \frac1{c_0}=\lambda,\qquad
+  \frac1{2c_{1a}}=\lambda\phi_a,\qquad
+  \frac1{2c_{1b}}=\lambda\phi_b,\qquad
+  c_0+\phi_a c_{1a}+\phi_b c_{1b}=w.
+\]
+
+当消费趋近 $0$ 时，对数效用趋于负无穷、边际效用趋于正无穷，因此最优消费在每一时期、每一状态都严格为正。由上述一阶条件得到最优消费：
+\[
+    c_{0}^{*}=\frac{1}{\lambda},\qquad
+    c_{1a}^{*}=\frac{1}{\lambda}\frac{1}{2\phi_{a}},\qquad
+    c_{1b}^{*}=\frac{1}{\lambda}\frac{1}{2\phi_{b}}
+\]
+
+把 $c^{*}$ 代入预算约束，我们可以得到 $\lambda$ 的解：
+\[
+    \frac{1}{\lambda}+\frac{1}{2\lambda}+\frac{1}{2\lambda}=w\qquad\Rightarrow\qquad\lambda=\frac{2}{w}
+\]
+
+最后，我们有
+\[
+    c_{0}^{*}=\frac12 w,\qquad
+    c_{1a}^{*}=\frac14\frac{w}{\phi_{a}},\qquad
+    c_{1b}^{*}=\frac14\frac{w}{\phi_{b}}
+\]
+
+参与者将一半财富用于当期消费，另一半用于未来消费。给定财富 $w$，各未来状态的最优消费与状态价格成反比。价格变化还会通过 $w=e_0+\phi^{\mathsf T}e_1$ 改变禀赋财富，因此价格变动的总效应同时包含消费成本与财富的变化。
+
+由于效用在正消费域上严格凹，上述可行的一阶条件解是唯一的最优解。各项最优支出为
+\[
+ \underbrace{c_0^*}_{w/2},\qquad
+ \underbrace{\phi_a c_{1a}^*}_{w/4},\qquad
+ \underbrace{\phi_b c_{1b}^*}_{w/4}.
+\]
+
+状态证券的初始持仓为 $\bar\theta=e_1$，交易后总持仓为 $h^*=c_1^*$，故净买入量为
+\[
+ \theta^*=h^*-\bar\theta
+ =\begin{bmatrix}w/(4\phi_a)-e_{1a}\\w/(4\phi_b)-e_{1b}\end{bmatrix}.
+\]
+
+\end{solution}
+
+
+\section{市场均衡}
+\subsection{均衡的定义与市场出清}
+\label{sec:wj-three-equilibrium}
+\begin{tcolorbox}[knowledge,title=Arrow-Debreu 均衡,breakable=false]
+均衡由一组状态价格 $\phi$ 和消费配置 $\{c_k\}_{k=1}^K$ 构成，满足：
 \begin{enumerate}
-    \item \textbf{给定价格，每个参与者最优化：}对参与者 $k$，
-    \[
-        c_k(e_k,\phi)=\operatorname*{Argmax}\,U_k(c_k)
-    \]
-    满足 $c_{k,0}+\phi^{\mathsf T}c_{k,1}=e_{k,0}+\phi^{\mathsf T}e_{k,1}$ 且 $c_k\ge 0$；
-    \item \textbf{商品市场出清}：
-    \[
-        \sum_{k=1}^{K}c_{k,0}(e_k,\phi)=\sum_{k=1}^{K}e_{k,0},\qquad
-        \sum_{k=1}^{K}c_{k,1}(e_k,\phi)=\sum_{k=1}^{K}e_{k,1}.
-    \]
+ \item 每个参与者为价格接受者，在自己的预算集中选择最优消费：
+ \[
+ c_k\in\operatorname*{arg\,max}_{c\ge0,\ \hat\phi^{\mathsf T}c\le\hat\phi^{\mathsf T}e_k}U_k(c).
+ \]
+ \item 当期及未来每个状态的商品市场分别出清：
+ \[
+ \underbrace{\sum_k c_{k,0}=\sum_k e_{k,0}}_{\text{当期商品出清}},\qquad
+ \underbrace{\sum_k c_{k,1\omega}=\sum_k e_{k,1\omega}}_{\text{状态 }\omega\text{ 商品出清}},
+ \quad\omega=1,\ldots,\Omega.
+ \]
 \end{enumerate}
-令总超额需求为 $z=\sum_k(c_k-e_k)$。将花光预算的等式加总，得到 $\hat\phi^{\mathsf T}z=0$，这就是 Walras 法则。在价格严格为正时，若其中 $\Omega$ 个分量为零，剩余一个也必须为零。因此可以用 $1+\Omega$ 个出清条件中的 $\Omega$ 个求解价格，最后一式用于核验。出清按每个未来状态分别成立，不能仅检查概率加权后的总量。
+\end{tcolorbox}
+这里的 $1+\Omega$ 种商品分别是当期消费品与未来各状态的或有消费品。上述定义正是\textbf{瓦尔拉斯均衡}（竞争均衡）在本模型中的形式。
 
+\begin{tcolorbox}[knowledge,title=Walras 法则,breakable=false]
+在不满足性下，各参与者花光预算。令 $z=\sum_k(c_k-e_k)$，加总预算等式即得 \textbf{Walras 法则}：
+\[
+ \hat\phi^{\mathsf T}z=\sum_k\hat\phi^{\mathsf T}(c_k-e_k)=0.
+\]
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=瓦尔拉斯均衡]
-\textbf{瓦尔拉斯均衡}（Walrasian equilibrium，竞争均衡）指一组价格与配置，使得：
-\begin{enumerate}
-    \item 每个参与者在给定价格下最大化效用（或厂商最大化利润），且为\textbf{价格接受者}；
-    \item 每个市场（每种商品）上\textbf{总需求等于总供给}（市场出清）。
-\end{enumerate}
-在本章中，商品是 $1+\Omega$ 种\textbf{或有商品}：0 期消费品（计价物，价格 $1$）与 1 期各状态 $\omega$ 下的消费品（价格 $\phi_\omega$，即状态 $\omega$ 阿罗证券的价格）。上文两条均衡条件正是瓦尔拉斯均衡在 Arrow-Debreu 证券市场经济中的写法，故也称\textbf{Arrow-Debreu 均衡}。第 2.5 节中的 Walras 法则说明：在标准预算下，$1+\Omega$ 个商品市场里若 $1+\Omega-1$ 个已出清，则剩余一个自动出清；实物总禀赋 $\sum_k e_k$ 仅被重新分配，不会凭空增减。
-\end{tcolorbox}
+若价格严格为正，$1+\Omega$ 个市场中任意 $\Omega$ 个已出清，剩下一个也出清。因此求解价格可使用其中 $\Omega$ 个条件，最后一式用于核验。未来出清条件逐状态成立。
 
-\begin{tcolorbox}[knowledge,title=3.5 市场均衡（存在性与边际条件）]
+\subsection{均衡的存在性}
+% 教材定理 3.3（第 42 页）及 PPT 第 22 页未单列生存性条件。
+% 保留原命题归属，同时给出足以使用有限维交换经济存在定理的一组条件。
 \begin{tcolorbox}[knowledge]
-\textbf{定理 3.3}\quad 对定义 2.5 （两期、$\Omega$ 状态、单一不可储存商品、$K$ 名同质信息参与者、禀赋与满足公理 1–3 的偏好（不满足性、连续性、凸性）、无摩擦证券市场 $X$）中的经济，Arrow-Debreu 证券市场存在均衡。
+\WJThreeTheorem{thm:wj-three-equilibrium-existence}在两期、有限状态的 Arrow-Debreu 交换经济中，若每人的偏好连续、凸且严格单调（即公理~\ref{axiom:wj-two-1} 所述的不满足性），并且每人的禀赋向量均严格为正，则存在竞争均衡；均衡价格各分量严格为正，可将当期价格归一为 $1$。
+\end{tcolorbox}
+这是有限商品交换经济的均衡存在结论：把每个日期、状态下的消费看作一种商品，完全的状态证券将个人预算化为该交换经济的价值预算。其一般证明需要不动点方法，本章使用该存在结论。
+
+对于含零禀赋分量的具体经济，可直接检验最优消费与市场出清，例~\ref{ex:wj-three-4} 即采用这种方法。
+% 原书定理 3.3 未逐项给出生存性条件。此处保留严格正个人禀赋作为明确的充分条件。
+% 仅有非负禀赋不足以保证严格正价格均衡：禀赋 (1,0)、效用 sqrt(c0)+sqrt(c1) 时未来总资源为零，而任意严格正价格下的最优未来消费均为正。
+
+
+\subsection{均衡中的边际替代率}
+\subsubsection{共同边际估值与互利交易}
+\begin{tcolorbox}[knowledge,title=均衡中的共同边际替代率,breakable=false]
+在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足~\eqref{eq:wj-three-mrs}（内点最优时，边际替代率等于状态价格），因而
+\begin{equation}
+ \frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}
+ =\phi_\omega
+ =\frac{\partial_\omega U_{k'}(c_{k'})}{\partial_0U_{k'}(c_{k'})},
+ \qquad\forall k,k',\omega.\label{eq:wj-three-common-mrs}
+\end{equation}
 \end{tcolorbox}
 
-在可微且各参与者最优消费均为内点时，所有人面对相同价格，因而在任一状态 $\omega$ 上\textcolor{red}{\textbf{相对边际效用都相等}}：
+共同的状态价格使不同参与者关于同一状态消费的边际估值一致。
+
+% 来源：教材印刷第 42 页、PPT 第 22 页；展开双方交易的可行性与效用变化。
+记参与者 $k$ 对状态 $\omega$ 消费的边际估值为
 \[
-    \frac{\partial_{\omega}U_k(c_k)}{\partial_0 U_k(c_k)}
-    =\phi_{\omega}
-    =\frac{\partial_{\omega}U_{k'}(c_{k'})}{\partial_0 U_{k'}(c_{k'})},
-    \quad\forall k,k',\,\omega\in\Omega.
-    \tag{3.9}
+ m_{k,\omega}=\frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}.
 \]
-$\phi_{\omega}$ 可理解为：为在状态 $\omega$ 多获得 1 单位 1 期消费，0 期须放弃的消费量——市场上关于跨期、跨状态资源配置的\textbf{共识价格}。
 
-\end{tcolorbox}
-
-\begin{tcolorbox}[example,title=PPT 补充：例 3.4 从个人需求到均衡价格]
-两人禀赋为 $(100;0,0)$、$(0;200,50)$，具有例 3.3 的相同对数效用。财富为 $w_1=100$、$w_2=200\phi_a+50\phi_b$。记 $W=w_1+w_2$，三项市场出清为
+考虑两个消费均为内点的参与者，假设 $m_{k,\omega}>\phi_\omega>m_{k',\omega}$。让 $k$ 从 $k'$ 买入 $t>0$ 份状态 $\omega$ 证券，支付 $\phi_\omega t$ 单位当期消费品。双方消费变化分别为
 \[
- \frac W2=100,\qquad \frac W{4\phi_a}=200,\qquad
- \frac W{4\phi_b}=50.
+ \begin{aligned}
+ (\Delta c_{k,0},\Delta c_{k,1\omega})&=(-\phi_\omega t,t),\\
+ (\Delta c_{k',0},\Delta c_{k',1\omega})&=(\phi_\omega t,-t).
+ \end{aligned}
 \]
-先得 $W=200$，再得 $\phi_a=1/4$、$\phi_b=1$，代回财富恰有 $w_1=w_2=100$。两人最优消费均为 $(50;100,25)$，逐状态加总正好等于总禀赋。两状态概率相同却价格不同：状态 $b$ 的总消费更少，同样一单位消费更稀缺，状态价格更高。均衡公式 $\phi_\omega=c_{k,0}/(2c_{k,\omega})$ 也给出相同结果。详细推导保留在后面的例 3.4。
+
+其余状态消费保持不变。双方各自的消费变化按市场价格计值为零，并且逐日期、逐状态相互抵消，所以交易既满足个人预算，也保持总资源可行。内点条件保证 $t$ 足够小时，双方消费仍非负。沿此交易方向，
+\[
+ \begin{aligned}
+ \left.\frac{\mathrm dU_k}{\mathrm dt}\right|_{t=0}
+ &=\partial_0U_k\underbrace{(m_{k,\omega}-\phi_\omega)}_{>0}>0,\\
+ \left.\frac{\mathrm dU_{k'}}{\mathrm dt}\right|_{t=0}
+ &=\partial_0U_{k'}\underbrace{(\phi_\omega-m_{k',\omega})}_{>0}>0.
+ \end{aligned}
+\]
+
+因此存在足够小的正交易量，使双方效用都严格提高。这样的配置尚未达到个人最优与市场均衡。若两人的边际估值不同，任何介于二者之间的交易价格都提供相应的互利交换机会；均衡时共同状态价格与各人的边际估值一致，这类进一步交易动机随之消失。
+
+\subsubsection{两状态经济的均衡}
+% 来源：教材印刷第 42—43 页，PPT 第 24 页。
+\begin{tcolorbox}[example]
+\WJThreeExample{ex:wj-three-4} 考虑一个经济，在 1 期有两个概率相等的状态 $a$ 和 $b$。经济中有参与者 1 和 2，他们具有的禀赋分别为：
+\begin{center}
+\WJEventTree[left={$e_{1}{:}100$}]{0,0}
+\qquad
+\WJEventTree[left={$e_{2}{:}0$}]{200,50}
+\end{center}
+两个参与者都具有如下形式的对数效用函数：
+\[
+    U(c)=\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})
+\]
+
+求均衡状态价格、消费配置和证券净交易量。
 \end{tcolorbox}
+\begin{solution}
+在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
+
+现在我们开始分析这个经济的均衡。从给定交易证券价格下参与者的最优化问题开始。记 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$ 为状态价格（向量），即两个状态或有证券的价格。我们可以定义每个参与者的财富为 $w=\hat{\phi}^{\top}e$，这里 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$，而 $e$ 是他的禀赋。这时，最优化问题变成了：
+\[
+    \begin{aligned}
+        \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
+        \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=w
+    \end{aligned}
+\]
+
+由例~\ref{ex:wj-three-3}，最优消费为
+\[
+    c_{k,0}^{*}=\tfrac12 w_{k},\qquad
+    c_{k,a}^{*}=\tfrac14\frac{w_{k}}{\phi_{a}},\qquad
+    c_{k,b}^{*}=\tfrac14\frac{w_{k}}{\phi_{b}},\qquad k=1,2
+\]
+
+在状态价格 $\phi_{a},\phi_{b}$ 下，参与者按禀赋市值计的财富为 $w_{k}=e_{k,0}+\phi_{a}e_{k,a}+\phi_{b}e_{k,b}$（0 期消费品价格为 $1$）。代入禀赋 $(100;0,0)$ 与 $(0;200,50)$：
+\[
+    w_{1}=100+0\cdot\phi_{a}+0\cdot\phi_{b}=100,\qquad
+    w_{2}=0+200\phi_{a}+50\phi_{b}=200\phi_{a}+50\phi_{b}.
+\]
+
+\textbf{0 期商品市场出清}（两人 0 期消费之和等于经济 0 期总禀赋 $100$）。由例~\ref{ex:wj-three-3}，$c_{k,0}^{*}=\tfrac12 w_{k}$，故
+\[
+    c_{1,0}^{*}+c_{2,0}^{*}=\tfrac12 w_{1}+\tfrac12 w_{2}=\tfrac12(w_{1}+w_{2})=100
+    \quad\Longrightarrow\quad w_{1}+w_{2}=200.
+\]
+
+把 $w_{1},w_{2}$ 代入 $w_{1}+w_{2}=200$：
+\[
+    100+(200\phi_{a}+50\phi_{b})=200.
+\]
+
+移项得 $200\phi_{a}+50\phi_{b}=100$；两边同除以 $50$，得到与状态价格有关的第一个方程
+\[
+    4\phi_{a}+\phi_{b}=2.
+\]
+
+\textbf{1 期·状态 $a$ 商品市场出清}（状态 $a$ 下总消费 $200$）。由 $c_{k,a}^{*}=\tfrac14 w_{k}/\phi_{a}$，
+\[
+    c_{1,a}^{*}+c_{2,a}^{*}=\tfrac{w_{1}}{4\phi_{a}}+\tfrac{w_{2}}{4\phi_{a}}
+    =\frac{w_{1}+w_{2}}{4\phi_{a}}=200
+    \quad\Longrightarrow\quad w_{1}+w_{2}=800\phi_{a}.
+\]
+
+与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。状态 $b$ 出清 $\dfrac{w_{1}+w_{2}}{4\phi_{b}}=50$ 自动成立。此时 $w_{1}=w_{2}=100$，最优消费为
+\[
+    \begin{aligned}
+        c_{1,0}^{*}=c_{2,0}^{*}&=50\\
+        c_{1,a}^{*}=c_{2,a}^{*}&=100\\
+        c_{1,b}^{*}=c_{2,b}^{*}&=25
+    \end{aligned}
+\]
+
+将消费代回边际替代率，可逐状态检验均衡的一阶条件。对 $k=1,2$，都有
+\[
+ \begin{aligned}
+ m_{k,a}&=\frac{1/(2c_{k,a}^*)}{1/c_{k,0}^*}
+ =\frac{50}{2\times100}=\frac14=\phi_a,\\
+ m_{k,b}&=\frac{1/(2c_{k,b}^*)}{1/c_{k,0}^*}
+ =\frac{50}{2\times25}=1=\phi_b.
+ \end{aligned}
+\]
+
+两人在每个状态的边际估值相同，并分别等于该状态的市场价格。
+
+初始状态证券持仓分别为 $(0,0)^{\mathsf T}$ 与 $(200,50)^{\mathsf T}$，因此
+\[
+ \theta_1^*=\begin{bmatrix}100\\25\end{bmatrix},\qquad
+ \theta_2^*=\begin{bmatrix}-100\\-25\end{bmatrix},\qquad
+ \underbrace{\theta_1^*+\theta_2^*=0}_{\text{证券净交易出清}}.
+\]
+
+参与者 1 支出 $100/4+25=50$，参与者 2 获得同额收入，二人的当期消费均为 $50$。状态 $b$ 的总禀赋较少，每单位消费更稀缺，因此即使两状态概率相同，仍有 $\phi_b>\phi_a$。
+
+\end{solution}
 
 
-
-\begin{tcolorbox}[knowledge,title=3.5 市场均衡（续）]
-\textbf{不完全市场为何未必有逐状态 MRS 相等？}若只能买卖一般支付矩阵 $X$ 的证券，内点、无交易限制时，最优条件只要求
+\subsubsection{证券缺失与交易成本}
+% 来源：教师 PPT 第 22 页关于不完全市场的讨论。
+若一般证券市场的支付矩阵为 $X$、证券价格为 $S$，在内点、无交易限制下，对净交易量求一阶条件只得到
 \[
  X^{\mathsf T}m_k=S,\qquad
  (m_k)_\omega=\frac{\partial_\omega U_k}{\partial_0U_k}.
 \]
-所以 $X^{\mathsf T}(m_k-m_{k'})=0$。只有当 $X$ 行满秩，才能推出 $m_k=m_{k'}$；不完全市场可能留下未被交易消除的状态间估值差异。交易成本和持仓约束还可能把相应等式改成不等式。
 
-\textbf{金融创新如何增加完全性？}关键是新支付列不在原有列空间中，而非名称或数量增加。PPT 中的巨灾债券、通胀挂钩债券和信用衍生品，是针对特定灾害、购买力或违约支付的例子；它们能否增加秩须逐一检查，不能仅凭引入一种产品就断言市场完全。
-可行配置满足 $\sum_{k=1}^{K}c_k=\sum_{k=1}^{K}e_k$。对均衡配置，将各参与者预算约束在 $\hat{\phi}$ 下加总，得到
+两人之差满足 $X^{\mathsf T}(m_k-m_{k'})=0$。当 $X$ 行满秩时，其转置的零空间只有零向量，故边际替代率向量相同；市场不完全时，未被证券支付覆盖的方向仍可能存在估值差异。这说明完全性在消除进一步交易动机中的作用。
+
+% 来源：教材印刷第 44 页、PPT 第 22 页；用买卖价差说明交易成本的影响。
+\textbf{交易成本与无交易区间。}即使某状态证券可以交易，买卖价差也会改变上述条件。设买入一份须付 $\phi_\omega^{\mathrm{ask}}$，卖出一份只能得到 $\phi_\omega^{\mathrm{bid}}$，且
 \[
-    \sum_{k=1}^{K}\hat{\phi}^{\mathsf T}c_k=\sum_{k=1}^{K}\hat{\phi}^{\mathsf T}e_k.
-    \tag{3.10}
+ 0<\phi_\omega^{\mathrm{bid}}\le\phi_\omega^{\mathrm{ask}}.
 \]
 
+仅考虑这种单位交易成本，且没有持仓限制。对消费为内点的参与者，增加少量买入带来的边际效用为 $\partial_0U_k(m_{k,\omega}-\phi_\omega^{\mathrm{ask}})$，增加少量卖出带来的边际效用为 $\partial_0U_k(\phi_\omega^{\mathrm{bid}}-m_{k,\omega})$。因此两种方向均无严格的一阶改善，需要
+\[
+ \underbrace{\phi_\omega^{\mathrm{bid}}\le m_{k,\omega}\le\phi_\omega^{\mathrm{ask}}}_{\text{边际上的无交易区间}}.
+\]
+
+不同参与者的边际估值可以位于这个区间的不同位置，而都没有增加交易的边际动机。若效用为凹函数，这些方向条件也足以保证单独交易该证券无法提高效用。无价差时，区间收缩为一个价格，便恢复~\eqref{eq:wj-three-common-mrs} 的等式条件。
+
+% 来源：教师 PPT 第 28 页；将共同边际估值与可复制证券定价相连。
+\subsubsection{状态价格与证券定价}
+在完全的状态证券市场中，证券 $n$ 在未来各状态的支付为 $x_n=(x_{1n},\ldots,x_{\Omega n})^{\mathsf T}$。持有 $x_{\omega n}$ 份状态 $\omega$ 的阿罗证券，便能复制其支付，因此在无摩擦、一价定律下，
+\[
+ S_n=\underbrace{\phi^{\mathsf T}x_n}_{\text{复制组合的成本}}
+ =\sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}.
+\]
+
+均衡条件~\eqref{eq:wj-three-common-mrs}（各参与者的边际替代率共同等于状态价格）进一步把这里的状态价格与各参与者的边际替代率联系起来。资产价格由各状态支付按状态价格加权求和得到，而状态价格综合反映偏好、状态概率与资源稀缺性。
+
+\subsection{均衡配置的效率}
+\label{sec:wj-three-welfare}
+可行配置逐日期、逐状态满足 $\sum_k c_k=\sum_k e_k$。在同一价格下计价，有
+\begin{equation}
+ \hat\phi^{\mathsf T}\sum_k c_k=\hat\phi^{\mathsf T}\sum_k e_k.\label{eq:wj-three-feasibility-value}
+\end{equation}
 \begin{tcolorbox}[knowledge]
-\textbf{定理 3.4}\quad 对存在 Arrow-Debreu 证券市场的经济（定义 2.5），均衡达到的资源配置是\textbf{Pareto 最优的}。
+\WJThreeTheorem{thm:wj-three-welfare}在本章无摩擦、完全的状态证券市场中，若偏好满足不满足性（公理~\ref{axiom:wj-two-1}，喜多厌少），则竞争均衡配置是 \textbf{\hyperref[def:wj-two-9]{Pareto 最优的}}：不存在另一可行配置，使所有人至少一样好、至少一人严格更好。
 \end{tcolorbox}
+\textbf{证明。}记均衡价格为 $\hat\phi\gg0$，均衡配置为 $\{c_k\}$，$w_k=\hat\phi^{\mathsf T}e_k=\hat\phi^{\mathsf T}c_k$。反设存在 Pareto 改善的可行配置 $\{a_k\}$。
 
-\textbf{证明（按 PPT 的预算比较法）：}记均衡配置为 $\{c_k\}$，财富为 $w_k=\hat\phi^{\mathsf T}e_k=\hat\phi^{\mathsf T}c_k$。反设存在可行配置 $\{a_k\}$，所有人弱偏好 $a_k$，至少一人 $j$ 严格偏好。
-
-先证弱改善者必须满足 $\hat\phi^{\mathsf T}a_k\ge w_k$。若其成本小于 $w_k$，剩余预算可购买一个各分量为正的小消费增量 $d$，在不满足性下 $a_k+d$ 严格优于 $a_k$，从而严格优于原最优消费 $c_k$，且仍在预算内，矛盾。对严格改善者 $j$，则必有 $\hat\phi^{\mathsf T}a_j>w_j$，否则 $a_j$ 本来就买得起，与 $c_j$ 最优矛盾。加总得
+先证每个弱改善者均有 $\hat\phi^{\mathsf T}a_k\ge w_k$。若其成本小于 $w_k$，令剩余预算为 $b=w_k-\hat\phi^{\mathsf T}a_k>0$，取
 \[
- \hat\phi^{\mathsf T}\sum_k a_k>\sum_k w_k
- =\hat\phi^{\mathsf T}\sum_k e_k,
+ d=\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}(1,\ldots,1)^{\mathsf T}\gg0.
 \]
-却与可行性 $\sum_k a_k=\sum_k e_k$ 矛盾。故均衡配置 Pareto 最优。这里比较的是\textbf{偏好改善}，不要求每个人的每个消费分量都增加；并且需要完全市场使相关可行消费计划能按同一状态价格购买。
+则 $a_k+d$ 的成本为 $w_k-b/2<w_k$，仍在预算内。由不满足性，$a_k+d\succ_k a_k\succeq_k c_k$，与 $c_k$ 最优矛盾。
 
-定理 3.4 即\textbf{福利经济学第一定理}：完全、无摩擦的证券市场使参与者达到\textcolor{red}{\textbf{资源在不同时期和不同状态下的 Pareto 最优配置}}，为证券市场的资源配置效率提供了理论基础（亚当·斯密“看不见的手”的现代表述）。
+对严格改善者 $j$，必有 $\hat\phi^{\mathsf T}a_j>w_j$；否则 $a_j$ 本来就在预算内，却严格优于 $c_j$，同样矛盾。因此
+\[
+ \underbrace{\hat\phi^{\mathsf T}\sum_k a_k}_{\text{改善配置的总成本}}
+ >\sum_k w_k
+ =\underbrace{\hat\phi^{\mathsf T}\sum_k e_k}_{\text{总禀赋价值}},
+\]
+与可行性 $\sum_k a_k=\sum_k e_k$ 矛盾。故均衡配置 Pareto 最优。
 
-\begin{tcolorbox}[knowledge,title=福利经济学两大定理]
-\textbf{第一定理}（定理 3.4）：在完全、无摩擦的竞争市场中，任一均衡配置都是 Pareto 最优的。
+定理~\ref{thm:wj-three-welfare} 即\textbf{福利经济学第一定理}。它说明分散的个人选择可以在完全、无摩擦的竞争市场中达到跨期、跨状态配置效率。这一证明直接比较可行配置的预算成本，适用于包括角点消费在内的均衡配置。
 
-\textbf{第二定理}（福利经济学第二定理）：在消费集凸、偏好凸（满足公理 3）且市场完全（如 Arrow-Debreu 市场）等条件下，\textbf{任一} Pareto 最优配置都可以成为某个竞争均衡的配置——只需在交易开始前对禀赋作适当的\textbf{一次性总付转移}（lump-sum redistribution），使参与者的初始禀赋变为 $e_k'$，再令他们在状态价格 $\phi$ 下自由交易即可达到该配置。
-
-第二定理的含义：在一定条件下，\textbf{效率}问题与\textbf{分配}问题可以分开处理——先确定有效的总资源配置，再通过不扭曲价格信号的转移支付来实现合意的福利分配。（现实中转移支付往往受信息、政治与再分配成本限制，故第二定理更多是规范基准。）
+\begin{tcolorbox}[knowledge,title=效率与分配]
+Pareto 效率排除了使所有人不受损、至少一人受益的进一步调整，但有效配置仍可对应不同的福利分配。第二福利定理研究在附加条件下，如何通过一次性财富再分配支持给定的有效配置；这一问题将在完全市场的资源配置章节进一步讨论。
 \end{tcolorbox}
 
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[knowledge,title=本章小结]
+\section*{本章小结}
+\addcontentsline{toc}{section}{本章小结}
+\begin{tcolorbox}[summary]
 \begin{enumerate}
-    \item 状态 $\omega$ 或有要求权在状态 $\omega$ 支付 $1$、其他状态支付 $0$；由全部状态或有证券构成的市场为 Arrow-Debreu 证券市场。
-    \item 任一有限消费计划可用有限成本证券组合融资时，市场完全；Arrow-Debreu 市场是完全市场。
-    \item 均衡存在，且各参与者最优化、市场出清；在可微、内点条件下，均衡时相对边际效用（跨期边际替代率）相等。
-    \item \textbf{福利经济学第一定理：}Arrow-Debreu 均衡配置 Pareto 最优。
-    \item \textbf{福利经济学第二定理：}在凸性与完全市场下，任一 Pareto 最优配置可通过一次性总付转移与市场交易实现。
+ \item 每个状态的阿罗证券提供该状态下的一单位支付，全部阿罗证券构成的支付矩阵为单位阵。
+ \item 无套利时状态价格严格为正；它是或有消费的价格，实际概率则衡量状态发生的可能性。
+ \item 完全市场能够复制全部状态支付。有限维、可自由组合时，完全性等价于支付矩阵行满秩。
+ \item 给定价格与财富，个人先在预算集内优化；内点最优时，边际替代率等于状态价格。
+ \item 均衡同时满足个人最优与逐状态市场出清。在相应存在条件下，完全市场具有竞争均衡；在可微、内点条件下，各人的边际替代率一致。
+ \item 第一福利定理说明均衡配置 Pareto 最优，将状态证券的交易与资源配置效率联系起来。
 \end{enumerate}
 \end{tcolorbox}
 \clearpage
 \fi
 
+\section*{课后习题}
+\addcontentsline{toc}{section}{课后习题}
 \input{tex/金融经济学_王江/03_Arrow-Debreu经济_习题.tex}
+\endgroup

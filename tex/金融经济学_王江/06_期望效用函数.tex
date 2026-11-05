@@ -1,247 +1,313 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 87–95
-% 课堂补充：references/金融经济学/金融经济学_第6章 期望效用函数.pptx（夏晖，2026 年 10 月），共 34 页；含图片公式核对。
-% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 26–27（印刷页 25–26）
+% 来源：王江《金融经济学》，印刷第 87—97 页（PDF 第 102—112 页，含习题）。
+% 补充：金融经济学_第6章 期望效用函数.pptx，第 1—34 页；已核对图片公式。
+% 核对：教材勘误 2021，第 93 页式 (6.4)；答案参考 PDF 第 26—27 页。
 
 \lecture{期望效用函数}
+\label{chap:wj-six}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{
+ section={number=\thesection,aftername=\quad},
+ subsection={number=\thesubsection,aftername=\quad},
+ subsubsection={number=\thesubsubsection,aftername=\quad}
+}
+% 保留教材定理 6.1、例 6.1—6.3；公理 4 沿用全书公理序号。
+\newcounter{wjSixTheorem}
+\newcounter{wjSixExample}
+\newcounter{wjSixAxiom}
+\setcounter{wjSixAxiom}{3}
+\renewcommand{\thewjSixTheorem}{\thechapter.\arabic{wjSixTheorem}}
+\renewcommand{\thewjSixExample}{\thechapter.\arabic{wjSixExample}}
+\renewcommand{\thewjSixAxiom}{\arabic{wjSixAxiom}}
+\newcommand{\WJSixTheorem}[1]{\refstepcounter{wjSixTheorem}\label{#1}\textbf{定理 \thewjSixTheorem}\quad}
+\newcommand{\WJSixExample}[1]{\refstepcounter{wjSixExample}\label{#1}\textbf{例 \thewjSixExample}\quad}
+\newcommand{\WJSixAxiom}[1]{\refstepcounter{wjSixAxiom}\label{#1}\textbf{公理 \thewjSixAxiom}\quad}
 
 \ifdefined\WJHandoutKnowledge
+无套利由已有证券的价格和支付确定复制关系；均衡分析进一步从偏好、禀赋与市场结构解释价格水平。本章从偏好出发，先建立期望效用的表示，再加入状态独立与时间可加假设，最后通过悖论和行为模型考察这些假设的经济含义。
 
-无套利给出的是证券价格之间的关系：由可交易证券的价格和支付可以定出状态价格的集合，也可以给冗余证券定价。它几乎不依赖经济的具体特征，因此也回答不了这些价格本身由什么决定。以二叉树为例，无套利能给出期权价格以及 $u>1+r_F>d$，但不能告诉股票过程和无风险利率从何而来，也不能把所有证券的价格都定出来。要追问价格水平以及证券在资源配置中的作用，必须回到第 2 章的均衡分析，而对偏好、风险分布和市场结构作出更具体的假设。本章从偏好开始。
-
-第 2 章用不满足性、连续性和凸性等条件刻画偏好；一般效用表示的拟凹性与本章伯努利效用的凹性需要区分，$U(c)$ 的具体形式仍很宽。一般的 $U(c)$ 同时依赖两件事：未来状态的概率，以及各状态下对消费的偏好。本章用\textbf{独立性公理}把二者分开，得到期望效用；再加上状态独立、时间可加等假设，得到后面各章使用的形式；最后指出这些假设排除了哪些行为，以及文献里常见的拓展。
-
-\begin{tcolorbox}[knowledge,title=6.1 期望效用函数]
-先看 1 期没有不确定性、两期消费都确定的情形，效用记为 $u(c_0,c_1)$。若 1 期有两个等可能状态 $a$ 与 $b$，消费分别为 $c_{1a}$、$c_{1b}$。状态 $a$ 下消费路径 $(c_0,c_{1a})$ 的效用记为 $u_a(c_0,c_{1a})$，下标表示这条路径的效用可以依赖状态。一个直接的做法是用概率作权数，取各消费路径效用的平均值：
-\[
-    \tfrac12 u_a(c_0,c_{1a})+\tfrac12 u_b(c_0,c_{1b}).
-\]
-一般地，若上述分离成立，效用就是各消费路径效用的期望，
-\[
-    U(c)=\sum_{\omega\in\Omega}p_{\omega}\,u_{\omega}(c_0,c_{1\omega}).
-    \tag{6.1}
-\]
-教材 (6.1) 把概率记为 $\pi_\omega$。这种 $U$ 称为\textbf{期望效用函数}（expected utility function）。概率以线性权重进入总效用；本书另假定这些概率外生给定、为所有人共同知晓，对消费本身的喜好则因人而异。期望效用也可配合不同人的主观概率使用，“共同概率”并不是期望效用形式本身强制的。它还蕴涵下面的公理。
-
-\begin{tcolorbox}[knowledge]
-\textbf{公理 4（独立性公理）}\quad 设消费计划 $c$ 与 $c'$ 在某一状态上的消费路径同为 $x$，且 $c\succeq c'$。把这个共同路径 $x$ 换成另一路径 $y$ 后，$c$ 与 $c'$ 的排序不变。
+\section{期望效用函数}\label{sec:wj-six-expected}
+\subsection{消费计划、消费路径与概率权重}
+\begin{tcolorbox}[knowledge,title=消费计划、消费路径与真实概率,breakable=false]
+沿用前文的两期模型，消费计划为 $c=(c_0,c_{11},\ldots,c_{1\Omega})^{\mathsf T}$。状态 $\omega$ 的消费路径是 $(c_0,c_{1\omega})$，路径效用记为 $u_\omega(c_0,c_{1\omega})$。只列正概率状态，记其真实概率为 $p_\omega>0$、$\sum_\omega p_\omega=1$。
 \end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=期望效用表示,breakable=false]
+以各状态概率为权重，对消费路径的效用求平均：
+\begin{equation}
+ U(c)=\sum_{\omega=1}^{\Omega}p_\omega u_\omega(c_0,c_{1\omega}).
+ \label{eq:wj-six-1}
+\end{equation}
+这种表示称为\textbf{期望效用函数}（expected utility function）。
+\end{tcolorbox}
+% 教材式 (6.1) 用 pi_omega；沿用第三、四讲的 p_omega 表示真实概率，避免与风险中性概率 q_omega 混用。
+例如，两个状态 $a,b$ 等可能时，$U(c)=\tfrac12u_a(c_0,c_{1a})+\tfrac12u_b(c_0,c_{1b})$。概率以线性权重进入总效用，消费路径的评价由 $u_\omega$ 给出。本书采用所有参与者共同知晓的外生概率；采用主观概率时，同一形式也可描述个人对状态的判断。
 
-含义：若 $c$ 与 $c'$ 只在状态 $\omega$ 上同为路径 $x$，且 $c\succeq c'$，则剩余状态下路径的综合比较支持 $c$，不要求它在每一个剩余状态都更好。把 $x$ 换成 $y$ 后排序不变，说明其他状态下的比较不受状态 $\omega$ 上发生什么的影响。各互斥状态下的效用彼此独立。
+\subsection{状态间独立性与共同后果替换}\label{sec:wj-six-independence}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSixAxiom{axiom:wj-six-independence}\textbf{（独立性公理）}固定当前消费。若两个消费计划在某些状态上具有共同后果，比较它们时，将这些共同后果在两个计划中同时替换，偏好排序保持不变。
+\end{tcolorbox}
+% 教材公理 4 以一个共同状态表述。为调用 Debreu 的可加表示定理，此处明确对共同状态组也适用；单个共同状态是其特例。
+设共同状态组为 $A$，$c_{1\omega}=c'_{1\omega}=x_\omega$ 对 $\omega\in A$ 成立。替换时，两计划同时改用 $y_\omega$，其余状态的消费保持原样。公理约束的是\textbf{状态间的偏好可分性}：不同部分的排序不随共同部分的取值而变化。
 
-两状态、等概率时可以直接验证。设
+\textbf{（期望效用表示 $\Rightarrow$ 独立性）}若 $c\succeq c'$，由式~\eqref{eq:wj-six-1}（按真实概率加权的消费路径效用），共同状态的贡献抵消后有
 \[
-    c=\begin{bmatrix}c_0\\ c_{1a}\\ c_{1b}\end{bmatrix},\qquad
-    c'=\begin{bmatrix}c_0\\ c'_{1a}\\ c_{1b}\end{bmatrix},
+ U(c)-U(c')=
+ \sum_{\omega\notin A}p_\omega
+ \bigl[u_\omega(c_0,c_{1\omega})-u_\omega(c_0,c'_{1\omega})\bigr]\ge0.
 \]
-二者在状态 $b$ 上的路径相同。若 $c\succeq c'$，则
-\[
-    U(c)=\tfrac12\bigl[u_a(c_0,c_{1a})+u_b(c_0,c_{1b})\bigr]
-    \ge\tfrac12\bigl[u_a(c_0,c'_{1a})+u_b(c_0,c_{1b})\bigr]=U(c').
-\]
-把状态 $b$ 的共同路径换成 $(c_0,c'_{1b})$，得到 $c''$、$c'''$。$u_b$ 在两边的贡献仍相同，故 $c''\succeq c'''$。
 
-各消费路径与互斥的状态相对应：\textbf{一个状态发生意味着其余状态不发生，因此不同路径之间可以分开比较}。这是独立性公理说得通的一个理由。
+将共同后果换成 $y_\omega$ 后，右端不变，故新计划仍保持同一排序。两个计划在其余状态的效用贡献按权重合计比较。
 
-% PPT 第 6–8 页：替换共同后果的含义与数字验证。
-\textbf{独立性的对象是偏好排序。}这里将两个计划在某状态的\textbf{共同后果同时替换}，其余不同部分保持不变；它不表示“只改变一个计划的消费也不影响排序”，也不要求证券收益等随机变量在统计上独立。互斥性说明为何可以考虑这种分离，但独立性本身仍是一项可检验、也可能被违反的偏好假设。
-
-\textbf{课堂数字验证（PPT 第 8 页）：}固定相同的当前消费，未来两状态等概率，$u(x)=\sqrt{x}$。原来的未来消费为 $c=(100,16)$、$c'=(64,16)$；把共同的雨天消费 16 同时换成 36，得到 $c''=(100,36)$、$c'''=(64,36)$。
+% 来源：PPT 第 8 页。
+\begin{tcolorbox}[example,title=课堂例题：共同消费的替换,breakable=false]
+当前消费相同，晴、雨两状态等概率，未来效用为 $u(x)=\sqrt{x}$。比较未来消费 $(100,16)$ 与 $(64,16)$；再把两计划共同的雨天消费从 $16$ 同时换成 $36$，偏好是否改变？
+\end{tcolorbox}
+\begin{solution}
 \[
 \begin{array}{c|cc|c}
  \text{计划}&\text{晴天消费}&\text{雨天消费}&\text{未来期望效用}\\\hline
  c&100&16&\tfrac12(10+4)=7\\
  c'&64&16&\tfrac12(8+4)=6\\
- c''&100&36&\tfrac12(10+6)=8\\
- c'''&64&36&\tfrac12(8+6)=7
+ d&100&36&\tfrac12(10+6)=8\\
+ d'&64&36&\tfrac12(8+6)=7
 \end{array}
 \]
-两个比较的效用差均为 $\tfrac12(10-8)=1$。共同部分改变了总效用水平，却没有改变两计划之间的排序。
 
-
-\begin{tcolorbox}[example]
-\begin{question}
-\textbf{例 6.1}\quad 明天或晴或雨。计划 $c$：晴则在海滩玩 $4$ 小时，雨则看 $4$ 小时电视。计划 $c'$：晴则海滩 $2$ 小时再看电视 $2$ 小时，雨则仍看 $4$ 小时电视。这里出现两种消费品（海滩与电视），但比较的仍是整条消费计划。参与者更喜欢海滩，故晴天时更喜欢 $c$ 而不是 $c'$，即 $c\succeq c'$。
-
-另给两个计划：$\tilde{c}$ 为晴则海滩 $4$ 小时、雨则海滩 $4$ 小时；$\tilde{c}'$ 为晴则海滩 $2$ 小时再电视 $2$ 小时、雨则海滩 $4$ 小时。独立性公理要求他选择 $\tilde{c}$ 而不是 $\tilde{c}'$。只要雨天的安排相同，雨天具体做什么不影响晴天的偏好。
-\end{question}
-\begin{solution}
-两个计划在雨天的消费路径相同，排序已由晴天的路径决定。把雨天的共同路径从“看电视”换成“去海滩”，晴天的比较原样保留。
+两次比较的效用差均为 $1$，所以 $c\succ c'$、$d\succ d'$。共同消费影响总效用水平，两个计划之间的排序保持不变。
 \end{solution}
-\end{tcolorbox}
 
-\begin{tcolorbox}[example]
-\begin{question}
-\textbf{例 6.2}\quad 仍在例 6.1 的晴天里比较两个消费组合，而不是两条跨状态的消费计划。组合 $c_1$：海滩 $4$ 小时并喝 $1$ 升水；组合 $c_2$：电视 $4$ 小时并喝 $1$ 升水。若他选择 $c_1$，把那 $1$ 升水去掉之后，是否仍选择海滩 $4$ 小时？
-\end{question}
+\begin{tcolorbox}[example,breakable=false]
+\WJSixExample{ex:wj-six-1}明天或晴或雨。计划 $c$：晴天在海滩玩 $4$ 小时，雨天看 $4$ 小时电视；计划 $c'$：晴天在海滩玩 $2$ 小时、看电视 $2$ 小时，雨天仍看 $4$ 小时电视。已知 $c\succ c'$。现在把两个计划的雨天安排都改为工作 $4$ 小时，得到 $d,d'$，应如何选择？
+\end{tcolorbox}
+% 教材印刷第 90 页和 PPT 第 10 页均把雨天后果换成“工作 4 小时”；恢复原例，保留其余时间和活动数据。
 \begin{solution}
-不一定。酷暑里他可能因此改选待在室内。海滩和水是互补品，总效用取决于两种消费品的搭配，而不只是单件消费品。独立性公理讲的是\textbf{互斥状态}之间的独立，不是同一状态里不同商品之间的独立。
+晴天的不同安排保持原样，雨天共同的“看电视”同时换成“工作”。由公理~\ref{axiom:wj-six-independence}（同时替换共同状态的消费，不改变偏好排序），仍有 $d\succ d'$。
 \end{solution}
+
+\begin{tcolorbox}[example,breakable=false]
+\WJSixExample{ex:wj-six-2}晴天比较两种消费组合：$c_1$ 是海滩玩 $4$ 小时并喝 $1$ 升水，$c_2$ 是看电视 $4$ 小时并喝 $1$ 升水。若先选择 $c_1$，将两组合的水都去掉后，是否仍会选择海滩？
+\end{tcolorbox}
+\begin{solution}
+酷暑下，水与海滩活动存在互补性，去掉水可能使参与者转而选择室内活动。这里改变了\textbf{同一状态中消费品的搭配}；公理~\ref{axiom:wj-six-independence} 约束的是\textbf{互斥状态之间}的偏好。
+\end{solution}
+
+\subsection{可加表示定理及其适用范围}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSixTheorem{thm:wj-six-1}\textbf{（Debreu，可加表示）}固定当前消费，设未来消费域为实区间的笛卡尔积，偏好完备、传递、连续，且至少有三个本质状态分量（改变该分量能影响排序）。则各状态组的偏好独立，当且仅当偏好具有连续的状态可加效用表示。给定 $p_\omega>0$，可将该表示写成~\eqref{eq:wj-six-1} 的概率加权形式。
+\end{tcolorbox}
+% 教材定理 6.1 是可加表示结果的简略叙述；补明 Debreu 原文的乘积消费域、状态组独立和至少三个本质分量条件。
+% Debreu, Topological Methods in Cardinal Utility Theory, Cowles DP 76 (1959), Section 3, pp. 9—10.
+% https://cowles.yale.edu/sites/default/files/2022-08/d0076.pdf
+\textbf{（可加表示 $\Rightarrow$ 状态组独立）}上文的共同项抵消已经证明这一方向。
+
+\textbf{（状态组独立 $\Rightarrow$ 可加表示）}在定理给定的消费域和非退化条件下，应用 Debreu 的可加表示定理，得到 $\sum_\omega v_\omega(c_{1\omega};c_0)$。令 $u_\omega(c_0,x)=v_\omega(x;c_0)/p_\omega$，便得到概率加权形式。可加表示定理的拓扑证明在此作为已有结果使用。
+
+这一构造说明，固定概率时可以在权重与状态效用之间重新归一化。后文将~\eqref{eq:wj-six-1} 作为整个消费计划上的效用表示，再通过\textbf{状态独立性}统一不同状态的效用尺度。两个状态的课堂例题用于验证共同项抵消；彩票混合的表示条件见第~\ref{sec:wj-six-lottery} 节。
+
+% 为两级标题和首个短框预留空间，避免标题留在页尾。
+\Needspace{11\baselineskip}
+\section{附加假设}\label{sec:wj-six-assumptions}
+\subsection{状态独立}
+\begin{tcolorbox}[knowledge,title=状态独立的期望效用,breakable=false]
+若同一完整消费路径的效用与状态标签无关，即 $u_\omega(c_0,c_1)=u(c_0,c_1)$，则
+\begin{equation}
+ U(c)=\sum_{\omega=1}^{\Omega}p_\omega u(c_0,c_{1\omega}).
+ \label{eq:wj-six-2}
+\end{equation}
+\end{tcolorbox}
+状态独立性与消费后果的描述有关。若后果只写“喝一升水”，天气可能直接影响效用；若将阳光、温度等一并写入消费篮子，同一个函数就可评价不同天气下的完整后果。
+
+% 来源：PPT 第 12—13 页。
+\begin{tcolorbox}[example,title=课堂例题：把阳光纳入消费篮子,breakable=false]
+用 $(x,s)$ 表示冰淇淋数量和阳光数量。晴天的篮子为 $(1,1)$，阴天为 $(1,0)$。同一个效用函数满足 $v(1,1)=10$、$v(1,0)=5$。说明效用差异来自哪里。
+\end{tcolorbox}
+\begin{solution}
+两种天气提供的完整消费篮子不同，效用差异由 $s$ 的变化解释。状态独立性要求同一完整篮子采用同一评价函数；各状态的资源供给仍可不同。
+\end{solution}
+
+\subsection{时间可加与时间偏好}
+\subsubsection{可加形式与交叉边际效用}
+\begin{tcolorbox}[knowledge,title=时间可加性,breakable=false]
+若路径效用可写为 $u(c_0,c_1)=u_0(c_0)+u_1(c_1)$，则称其为\textbf{时间可加}（time additive）。相应总效用为
+\begin{equation}
+ U(c)=u_0(c_0)+\sum_{\omega=1}^{\Omega}p_\omega u_1(c_{1\omega}).
+ \label{eq:wj-six-3}
+\end{equation}
+\end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=时间可加与交叉边际效用,breakable=false]
+时间可加形式下，一期消费的边际效用只取决于该期消费。在矩形定义域上，若路径效用二阶连续可微，这等价于 $\partial_{01}u=0$。
 \end{tcolorbox}
 
-独立性是期望效用形式的必要条件，也是充分条件。
+\textbf{（可加形式 $\Rightarrow$ 交叉偏导为零）}对 $u_0(c_0)+u_1(c_1)$ 依次对两变量求导，得到 $\partial_{01}u=0$。
 
+\textbf{（交叉偏导为零 $\Rightarrow$ 可加形式）}由 $\partial_{01}u=0$，$\partial_0u(c_0,c_1)$ 不随 $c_1$ 变化，记为 $f(c_0)$。积分后得到
 \[
-\text{独立性} \Leftrightarrow \text{期望效用}
+ u(c_0,c_1)=\int f(c_0)\,\mathrm dc_0+g(c_1)=u_0(c_0)+u_1(c_1).
 \]
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 6.1（Debreu）}\quad 在独立性公理下，定理 2.1 给出的效用函数具有 (6.1) 的期望效用形式。
+今天多吃牛肉可能降低明天对牛肉的边际效用，对应 $\partial_{01}u<0$；今天多抽烟可能提高明天抽烟的边际效用，对应 $\partial_{01}u>0$。两种情形都存在跨期相互作用，通常需要时间不可加形式。
+% 来源：教材印刷第 92 页，保留牛肉与抽烟两个方向的跨期边际效用说明。
+
+\Needspace{11\baselineskip}
+\subsubsection{共同单期效用与时间偏好系数}
+进一步设 $u_0=u$、$u_1=\rho u$，$\rho>0$，得到
+\begin{tcolorbox}[knowledge,title=时间可加的标准形式,breakable=false]
+\begin{equation}
+ U(c)=u(c_0)+\rho\sum_{\omega=1}^{\Omega}p_\omega u(c_{1\omega}).
+ \label{eq:wj-six-4}
+\end{equation}
+$\rho$ 是\textbf{时间偏好系数}或时间折扣系数：$\rho=1$ 时两期权重相同；$0<\rho<1$ 时未来效用权重较低。
 \end{tcolorbox}
+% 按教材勘误 2021：原式 (6.4) 首项 u_0(c_0) 改为 u(c_0)，与 u_1=rho u 的假设一致。
+状态概率 $p_\omega$、时间权重 $\rho$ 与单期效用 $u$ 分别刻画事件发生的机会、消费时点与消费本身的评价。
 
-解释：不确定状态下的效用，是每一可能状态下消费路径效用的加权平均，权重为该状态的概率。 教材在既定消费空间和前述偏好条件下陈述此表示结果；后文用到的彩票混合独立性还需以彩票为选择对象，不能把仅有连续性或互斥性本身当作期望效用表示的充分条件。
+\subsection{总效用的序数性与单期效用的基数性}\label{sec:wj-six-cardinal}
+\begin{tcolorbox}[knowledge,title=总效用与单期效用的变换范围,breakable=false]
+总效用 $U$ 作为\hyperref[def:wj-two-4]{偏好表示}，可作任意严格递增变换。单期效用 $u$ 的数值差则进入概率加权，改变它的曲率可能改变彩票排序。
 \end{tcolorbox}
-
-\begin{tcolorbox}[knowledge,title=6.2 附加假设]
-(6.1) 仍相当一般。下面几条简化是为了在最优消费、组合选择和均衡价格中得到更具体的结论。除特别声明外，后文都采用这些形式。
-
-\tcbline
-
-\textbf{A.\ 状态独立}
-
-(6.1) 允许同一消费路径在不同状态下给出不同效用。这是否合理，取决于状态和消费怎样描述。用“晴天喝 $1$ 升水”和“多云喝 $1$ 升水”来写，效用除了水量还会依赖天气；若改用“阳光的消费量”刻画晴和阴，扣掉阳光之后，两个状态可以变成一样的，同时喝 $1$ 升水加享受 $1$ 小时阳光的效用就不必再依赖“晴或阴”这个标签。对市场总体而言状态仍有区别（可消费的阳光总量不同，会影响价格）；若只关心个人消费和效用，就可以认为没有区别。于是状态独立的期望效用是自然的：
-\[
-    u_{\omega}(c_0,c_{1\omega})=u(c_0,c_{1\omega}),
-    \qquad
-    U(c)=\sum_{\omega\in\Omega}p_{\omega}\,u(c_0,c_{1\omega}).
-    \tag{6.2}
-\]
-
-\textbf{课堂解释（PPT 第 13 页）：}把完整消费篮子写为 $(x,s)$，$x$ 是冰淇淋数量，$s$ 是阳光数量。晴天可消费 $(1,1)$，阴天为 $(1,0)$；用同一个 $v(x,s)$，可以有 $v(1,1)=10$、$v(1,0)=5$。效用差异来自\textbf{消费篮子不同}，无需另给“晴天效用函数”和“阴天效用函数”。这不表示阳光可自由交易，也不意味着任何状态依赖都能在既定商品定义下消除；它说明状态独立性依赖模型怎样完整描述消费后果。
-
-若不加限制，状态依赖的效用非常灵活，几乎任何行为都可以被解释成“他只是不喜欢在某个状态下消费”。这种写法方便，但假设与结论之间几乎没有距离，本书对此持审慎态度，后文默认 (6.2)。
-
-\tcbline
-
-\textbf{B.\ 时间可加性}
-
-(6.2) 中，1 期的效用仍可以依赖 0 期消费，反之亦然，即交叉导数 $\partial^{2}u/(\partial c_0\partial c_{1\omega})$ 可以非零。实物消费里这很常见：今天吃了很多牛肉，明天对牛肉的胃口下降；今天多抽烟，明天更想抽。但本书配置的是财富和资源，而不是特定实物。为简单起见，假定
-\[
-    \frac{\partial^{2}u(c_0,c_1)}{\partial c_0\,\partial c_1}=0,
-\]
-从而
-\[
-    u(c_0,c_1)=u_0(c_0)+u_1(c_1).
-\]
-\textbf{为什么交叉偏导为零会得到可加形式？}在矩形消费定义域内，若 $u$ 二阶连续可微且 $\partial_{01}u=0$，则 $\partial_0u(c_0,c_1)$ 不随 $c_1$ 变化，可记为 $f(c_0)$。对 $c_0$ 积分，
-\[
- u(c_0,c_1)=\int f(c_0)\,dc_0+g(c_1)=u_0(c_0)+u_1(c_1).
-\]
-反过来，可加形式的交叉偏导显然为零。它排除的是一期消费对另一期\textbf{边际效用}的影响，并不表示两期消费在预算中互不约束。
-
-一条消费路径的效用等于各期效用之和，称为\textbf{时间可加}（time additive）或\textbf{时间可分}（time separable）。期望效用化为
-\[
-    U(c)=u_0(c_0)+\sum_{\omega\in\Omega}p_{\omega}\,u_1(c_{1\omega}).
-    \tag{6.3}
-\]
-
-有时再设两期的效用函数只差一个正的倍数，
-\[
-    u_0(c_0)+u_1(c_1)=u(c_0)+\rho\,u(c_1),\qquad\rho>0.
-\]
-$\rho$ 称为\textbf{时间偏好系数}（time preference coefficient），也称为时间折扣系数。$\rho=1$ 时，参与者不关心消费发生在哪一期；$\rho<1$ 时，同样的消费越早越好，推迟一期使等量消费的效用降为原来的 $\rho$ 倍。此时
-\[
-    U(c)=u(c_0)+\rho\sum_{\omega\in\Omega}p_{\omega}\,u(c_{1\omega}).
-    \tag{6.4}
-\]
-三个因素完全分开：状态概率 $P=\{p_\omega\}$、时间性 $\rho$、消费本身的效用 $u(\cdot)$。称呼上常把 $u(\cdot)$ 也叫效用函数，但须与总效用 $U$ 分开。
-
-\textbf{与资产定价的联系（PPT 第 5、15 页）：}可加形式给出 $\partial_0U=u'(c_0)$、$\partial_\omega U=\rho p_\omega u'(c_{1\omega})$。内点最优时，状态价格满足
-\[
- \phi_\omega=\rho p_\omega\frac{u'(c_{1\omega})}{u'(c_0)},\qquad
- m_\omega=\frac{\phi_\omega}{p_\omega}
- =\rho\frac{u'(c_{1\omega})}{u'(c_0)}.
-\]
-$m$ 是随机折现因子，证券定价写为 $S_n=\mathrm E[m\widetilde X_n]$。概率、时间偏好与消费边际效用的作用由此分别显现。若效用时间不可加，边际效用会依赖整条消费路径，推导仍可进行，但不再自动具有上述单期边际效用比的简洁形式；是否存在解析解取决于具体模型。
-
-
-$U$ 是序数的：正单调变换不改变消费计划的排序，数值大小本身不重要。$u$ 不是这样。对 $u$ 作正单调变换，可能改变消费计划的排序。
-
-\begin{tcolorbox}[example]
-\begin{question}
-\textbf{例 6.3}\quad 两个状态等可能。消费计划
+\begin{tcolorbox}[example,breakable=false]
+\WJSixExample{ex:wj-six-3}两状态等可能，当前消费均为 $1$，未来消费如下。偏好由 $u(c_0)+\tfrac12[u(c_{11})+u(c_{12})]$ 表示。分别取 $u(c)=c$ 和 $v(c)=\sqrt c$，比较 $A,B$。
 \begin{center}
-\begin{tabular}{@{}c@{\quad}c@{}}
-\textbf{计划 A} & \textbf{计划 B} \\[0.35em]
-\WJEventTree[left={$1$},stem]{1,1} &
-\WJEventTree[left={$1$},stem]{3,0}
+\begin{tabular}{cc}
+ 计划 $A$ & 计划 $B$\\
+ \WJEventTree[left={$1$},stem]{1,1}&\WJEventTree[left={$1$},stem]{3,0}
 \end{tabular}
 \end{center}
-偏好由 $u(c_0)+\frac12\bigl[u(c_{11})+u(c_{12})\bigr]$ 表示。先取 $u(c)=c$，再取 $v(c)=\sqrt{u(c)}=\sqrt{c}$。两种效用函数下，A 与 B 的排序是否相同？
-\end{question}
-\begin{solution}
-$u(c)=c$ 时，
-\[
-    U(A)=1+\tfrac12(1+1)=2,
-    \qquad
-    U(B)=1+\tfrac12(3+0)=\tfrac52.
-\]
-$B$ 优于 $A$。换成 $v(c)=\sqrt{c}$ 后，
-\[
-    U(A)=1+\tfrac12(\sqrt{1}+\sqrt{1})=2,
-    \qquad
-    U(B)=1+\tfrac12(\sqrt{3}+\sqrt{0})=1+\tfrac{\sqrt{3}}{2}.
-\]
-$1+\sqrt{3}/2<2$，故 $A$ 优于 $B$。排序反过来了。
-\end{solution}
 \end{tcolorbox}
+\begin{solution}
+线性效用下，$U(A)=2$、$U(B)=5/2$，故 $B\succ A$。平方根效用下，$V(A)=2$、$V(B)=1+\sqrt3/2<2$，故 $A\succ B$。逐个确定结果的排序相同，消费计划的排序发生了改变。
+\end{solution}
 
-\textbf{课堂对照（PPT 第 18 页）：}令 $C$ 确定获得 1.5，$D$ 等概率获得 1 或 2。在 $u(x)=x$ 下，两者效用都为 1.5；换成 $v(x)=\sqrt{x}$ 后，
+% 来源：PPT 第 18 页。
+\begin{tcolorbox}[example,title=课堂例题：相同期望财富的两个选择,breakable=false]
+$C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性与平方根效用比较。
+\end{tcolorbox}
+\begin{solution}
+线性效用下两者均为 $1.5$，参与者无差异。平方根效用下，
 \[
- V(C)=\sqrt{1.5}\approx1.224745,
- \qquad V(D)=\tfrac12(1+\sqrt2)\approx1.207107.
+ \sqrt{1.5}\approx1.224745>\tfrac12(1+\sqrt2)\approx1.207107,
 \]
-$C$ 严格优于 $D$。虽然平方根保持每个确定结果的排序，却改变了对彩票的排序。对\textbf{总效用}变换成 $\sqrt{U}$ 与先对\textbf{单期效用}变换后再取期望不同：一般有
-$\sqrt{\mathrm E[u(\widetilde W)]}\ne\mathrm E[\sqrt{u(\widetilde W)}]$。
 
-因此 $u$ 具有\textbf{基数性}（cardinal）：不同消费水平上效用的相对差值会进入期望，从而影响排序。在期望效用形式下，偏好由 $u$ 唯一描述；$u$ 的正线性变换（$au+b$，$a>0$）与 $u$ 等价，一般的正单调变换则不行。这与定理 2.1 里序数的 $U$ 不同。 对 (6.4) 使用同一个变换 $v=au+b$，可直接验证
+参与者严格偏好确定的 $C$。对总效用取平方根保留排序；先对单期效用取平方根、再求期望，则改变了风险评价。
+\end{solution}
+
+\begin{tcolorbox}[knowledge,title=正仿射变换与基数性,breakable=false]
+在通常的非退化彩票域上，表示同一彩票偏好的伯努利效用相差一个\textbf{正仿射变换} $v=au+b$（$a>0$）。称 $u$ 具有\textbf{基数性}：它的相对效用差具有比较意义，原点与单位可重新选择。
+\end{tcolorbox}
+对式~\eqref{eq:wj-six-4}（两期采用共同单期效用的时间可加形式）的两期采用同一变换 $v=au+b$，可验证
 \[
  V(c)=aU(c)+b(1+\rho),\qquad a>0,
 \]
-所以所有计划的排序不变。“基数性”不表示效用具有可直接观察的绝对单位，也不保证不同人的效用数值可以直接比较。
+
+所以排序保持不变。此处的效用尺度是个人内部的评价尺度。
+
+\Needspace{15\baselineskip}
+\subsection{与状态价格和随机折现因子的联系}
+沿用第~\ref{sec:wj-three-budget} 节的完全市场预算约束，设偏好由式~\eqref{eq:wj-six-4}（两期采用共同单期效用的时间可加形式）给出，$u$ 可微、$u'>0$，且最优消费为内点。拉格朗日一阶条件为
+\[
+ u'(c_0)=\lambda,\qquad
+ \rho p_\omega u'(c_{1\omega})=\lambda\phi_\omega.
+\]
+
+两式相除，得到
+\begin{tcolorbox}[knowledge,title=随机折现因子与证券定价,breakable=false]
+\textbf{随机折现因子}（stochastic discount factor）为各状态支付提供折现权重，使证券价格等于折现后支付的真实概率期望。上述内点最优条件给出
+\begin{equation}
+ \phi_\omega=p_\omega\underbrace{\rho\frac{u'(c_{1\omega})}{u'(c_0)}}_{m_\omega},
+ \qquad S_n=\sum_\omega p_\omega m_\omega X_{\omega n}
+ =\mathrm E^P[m\widetilde X_n].
+ \label{eq:wj-six-sdf}
+\end{equation}
+其中 $m_\omega$ 是状态 $\omega$ 下的随机折现因子，$\phi_\omega=p_\omega m_\omega$ 是相应的单位状态价格。
 \end{tcolorbox}
+$m_\omega$ 将时间偏好和两期消费的边际效用联系起来。若采用一般路径效用 $u_\omega(c_0,c_{1\omega})$，分母相应为 $\partial_0U=\sum_\omega p_\omega\partial_0u_\omega$，分子为 $\partial_\omega U=p_\omega\partial_1u_\omega$。
+% 来源：PPT 第 5、15 页的定价联系；由第三讲内点一阶条件展开，避免将时间不可加直接等同于“无法求解”。
 
-\begin{tcolorbox}[knowledge,title=6.3 期望效用函数的拓展]
-(6.4) 加上单调和凹，对偏好的刻画简洁，也因此排除了不少行为。当由它推出的结论与观察不一致时，自然会放宽假设。\textbf{行为金融学}（behavioral finance）讨论这些实证偏离及其含义，超出本书范围。这里只说明它们怎样改写效用函数。例子包括（远不止这些）：
+\section{期望效用函数的拓展}\label{sec:wj-six-extensions}
+行为金融学关注心理与行为特征对金融决策和市场结果的影响。下面从消费习惯、社会参照、状态权重和参考点等角度拓展偏好结构。
+% 来源：教材印刷第 94 页，补回偏好拓展与行为金融学的联系。
+\subsection{习惯与攀比}
+\begin{tcolorbox}[knowledge,title=习惯与社会参照,breakable=false]
+\textbf{习惯}以自己的过去消费为参照：
+\[
+ U(c_0,c_1)=u(c_0)+\rho u(c_1-hc_0),\qquad h\ge0.
+\]
 
-\begin{itemize}
-    \item \textbf{习惯}（habit formation）：效用依赖消费相对于过去水平的增量，是时间不可分的一种形式。例如
-    \[
-        u(c_0,c_1)=u(c_0)+\rho\,u(c_1-hc_0),\qquad h\ge 0.
-    \]
-    1 期效用取决于相对于前期消费的增量。若采用要求正消费的对数形式，须有 $c_1-hc_0>0$，且接近该边界时效用趋于 $-\infty$。只有边际效用 $u'(0)=\infty$ 本身不能推出零消费效用是 $-\infty$，例如平方根效用在零处仍有限。
-    \item \textbf{攀比}（catching up with the Joneses）：效用不仅依赖自己的消费，还依赖别人的消费，
-    \[
-        u(c_0,c_1)=u(c_0-kC_0)+\rho\,u(c_1-kC_1),\qquad 0\le k<1,
-    \]
-    其中 $C_0$、$C_1$ 为两期的人均总消费。实际效用取决于个人消费与人均消费之差。给定状态下总禀赋是给定的，这也可以看成状态依赖的一种特殊形式。
-    \item \textbf{状态依赖}（state dependence）：例如效用直接依赖经济总体的消费水平。由第 3 章，边际效用高的状态会被配置更多资源。若“经济情况好”时边际效用更高，参与者会把更多资源放到好状态、给差状态留下更少，与通常把财富从好状态转移到坏状态的保险直觉相反。这类偏好可以解释为过于乐观，高估了好状态发生的可能，也是经济与行为金融讨论的对象。
-    \item \textbf{一阶风险厌恶}（first order risk aversion）：效用在参考点处不可微。例如
-    \[
-        u(c)=
-        \begin{cases}
-            a_{+}(c-\bar{c}), & c\ge\bar{c},\\
-            a_{-}(c-\bar{c}), & c<\bar{c},
-        \end{cases}
-        \qquad a_{-}>a_{+}>0.
-    \]
-    $u$ 在 $c=\bar{c}$ 处不可微，跨越参考点时损失与收益的边际价值不同。这可以刻画一种参考点不对称，但本例两侧均线性，并不是包含损失域凸性、概率加权等要素的完整前景理论。其一阶风险厌恶含义在下一章讨论。
-    \item \textbf{不确定性厌恶}（uncertainty aversion）：可引出超出标准期望效用的模型。要区分已知概率下对风险的态度与概率本身不明确时的模糊厌恶；违反独立性公理不能自动等同于模糊厌恶。下节按 PPT 补充已知概率的彩票反例。
-\end{itemize}
+\textbf{攀比}以他人的消费为参照：
+\[
+ U(c_0,c_1)=u(c_0-kC_0)+\rho u(c_1-kC_1),\qquad 0\le k<1,
+\]
+其中 $C_t$ 表示第 $t$ 期人均消费。
+\end{tcolorbox}
+% 教材第 95 页称 C_t 为总消费，并在括号中容许人均量；此处统一使用人均消费，k 为无量纲比较系数。
+有不确定性时，以上为逐路径效用，按状态概率加权得到总效用。对数习惯效用要求 $c_0>0$、$c_1-hc_0>0$；后一项接近零时，未来效用趋于 $-\infty$。
 
-\textbf{习惯与攀比的区别（PPT 第 19 页）：}习惯的参照来自自己的过去，攀比的参照来自他人的消费。在习惯模型 $u(c_0)+\rho u(c_1-hc_0)$ 中，
+习惯模型的两期边际效用为
 \[
  \partial_0U=u'(c_0)-\rho h u'(c_1-hc_0),\qquad
  \partial_1U=\rho u'(c_1-hc_0).
 \]
-今天多消费不仅提供当期效用，还提高明天的习惯基准，因此边际收益要扣除后一项。攀比模型在个人把 $C_t$ 视为给定时，边际效用为 $u'(c_t-kC_t)$，基准来自社会环境。两类偏好可影响组合与价格，但并不单凭函数形式就必然推出“追涨杀跌”或“羊群行为”。
 
-这些形式都还落在第 2 章的基本框架里，只是比 (6.3)、(6.4) 更灵活。本书此后只用 (6.3) 或 (6.4)。基本框架一旦清楚，再把效用换成上面的某一类拓展是直接的。
+当前消费提供直接效用，同时提高未来的习惯基准。攀比模型中，个人把人均消费视为给定时，边际效用为 $u'(c_t-kC_t)$，相应期别另乘时间权重。两种参照分别连接个人的消费历史与社会消费环境。
+
+\subsection{状态依赖}
+\begin{tcolorbox}[knowledge,title=状态依赖的效用,breakable=false]
+\textbf{状态依赖}（state dependence）允许同一完整消费路径在不同状态下采用不同的效用函数 $u_\omega$，其边际效用也可随状态变化。
+\end{tcolorbox}
+给定价格和财富，若某状态下消费的边际效用提高，参与者会增加对该状态资源的需求，直至重新满足边际效用与状态价格之间的最优条件。
+
+偏好也可通过 $u_\omega(c)=a_\omega u(c)$、$a_\omega>0$ 表示，则
+\[
+ \sum_\omega p_\omega a_\omega u(c_{1\omega})
+ =A\sum_\omega \widehat p_\omega u(c_{1\omega}),\qquad
+ A=\sum_\omega p_\omega a_\omega,\quad
+ \widehat p_\omega=\frac{p_\omega a_\omega}{A}.
+\]
+
+在这种乘法形式下，状态偏好可写成重新加权的主观概率；一般状态依赖则直接通过 $u_\omega$ 描述。若偏好权重偏向经济较好的状态，资源需求也可能偏向这些状态。
+% 教材第 95 页与 PPT 第 20 页把状态依赖解释为乐观概率；补明这种对应所需的乘法形式，避免将一般状态依赖等同于概率误判。
+
+\subsection{参考点与一阶风险厌恶}
+\begin{tcolorbox}[knowledge,title=参考点处的折点,breakable=false]
+设参考消费为 $\bar c$，
+\[
+ u(c)=\begin{cases}
+ a_+(c-\bar c),&c\ge\bar c,\\
+ a_-(c-\bar c),&c<\bar c,
+ \end{cases}
+ \qquad a_->a_+>0.
+\]
+
+同额损失引起的效用下降大于同额收益引起的效用上升；函数在参考点连续，在该点的左右斜率不同。
+\end{tcolorbox}
+\begin{tcolorbox}[knowledge,title=一阶风险厌恶,breakable=false]
+若在参考点面对等概率的 $\pm\varepsilon$ 公平赌博，
+\[
+ \mathrm E[u(\bar c\pm\varepsilon)]-u(\bar c)
+ =-\tfrac12(a_--a_+)\varepsilon.
+\]
+
+相对于确定的参考消费，效用损失与风险尺度 $\varepsilon$ 成正比，体现\textbf{一阶风险厌恶}。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=6.4 不确定性下的决策：圣彼得堡悖论]
-% PPT 第 21–24 页，包含图片中的奖金表、级数与 CE。
-掷一枚公平硬币，直到第一次正面出现。若首次正面在第 $i$ 次出现，奖金为 $X_i=2^{i-1}$，概率为 $2^{-i}$：
+下一讲将用凹性进一步分析风险态度。
+
+\subsection{风险与模糊性}
+\begin{tcolorbox}[knowledge,title=风险与模糊性,breakable=false]
+\textbf{风险}指结果不确定、但概率给定的情形；\textbf{模糊性}指概率本身缺乏明确刻画的情形。风险态度评价给定概率下的随机结果；模糊性厌恶表现为对概率不明确的选择的回避倾向。
+\end{tcolorbox}
+后面的阿莱斯例保留已知概率，考察独立性公理；放宽该公理可以得到非期望效用模型。
+
+\section{悖论与独立性}\label{sec:wj-six-paradoxes}
+\subsection{圣彼得堡悖论}
+\subsubsection{彩票与期望奖金}
+% 来源：PPT 第 21—24 页；金额表、级数、两种效用均已核对图片。
+\begin{tcolorbox}[example,title=课堂例题：圣彼得堡彩票,breakable=false]
+不断掷一枚公平硬币，直到首次正面出现。若首次正面在第 $i$ 次，奖金为 $X_i=2^{i-1}$，概率为 $2^{-i}$。求期望奖金；将奖金视为最终财富，分别用对数和平方根效用计算期望效用与确定性等值。
 \[
 \begin{array}{c|ccccc}
  \text{路径}&H&TH&TTH&TTTH&\cdots\\\hline
@@ -249,58 +315,78 @@ $\sqrt{\mathrm E[u(\widetilde W)]}\ne\mathrm E[\sqrt{u(\widetilde W)}]$。
  \text{奖金}&1&2&4&8&\cdots
 \end{array}
 \]
-若只按期望奖金评价，
-\[
- \mathrm E[X]=\sum_{i=1}^{\infty}2^{-i}2^{i-1}
- =\tfrac12\sum_{i=1}^{\infty}1=\infty.
-\]
-但无限的期望奖金并不意味着人们愿意支付无限入场费。课堂用凹效用说明，关心效用与只关心期望金额会给出不同评价。
+\end{tcolorbox}
+期望奖金为 $\mathrm E[X]=\sum_{i\ge1}2^{-i}2^{i-1}=\tfrac12\sum_{i\ge1}1=\infty$。期望金额准则因此给出无限评价；期望效用准则改为比较奖金带来的效用。
 
-\textbf{A.\ 对数效用的计算}\quad 暂把奖金本身视为最终财富，$u(x)=\ln x$。则
+% 为短定义框及其标题保留同页空间。
+\Needspace{11\baselineskip}
+\subsubsection{对数与平方根效用的计算}
+\begin{tcolorbox}[knowledge,title=确定性等值,breakable=false]
+随机财富 $X$ 的\textbf{确定性等值}（certainty equivalent，$CE$），是使参与者在 $X$ 与一笔确定财富之间无差异的金额：
 \[
- \mathrm E[u(X)]=\ln2\sum_{i=1}^{\infty}2^{-i}(i-1).
+ u(CE)=\mathrm E[u(X)],\qquad CE=u^{-1}\!\bigl(\mathrm E[u(X)]\bigr).
 \]
-从几何级数开始，在 $|x|<1$ 时逐项求导：
+这里 $u$ 严格递增，且期望效用有限并属于 $u$ 的值域，因此 $CE$ 唯一。
+\end{tcolorbox}
+\begin{solution}
+由几何级数及其导数，
 \[
  \sum_{i=0}^{\infty}x^i=\frac1{1-x},\qquad
- \sum_{i=1}^{\infty}ix^{i-1}=\frac1{(1-x)^2}.
-\]
-令 $x=1/2$ 并乘以 $1/2$，得到
-\[
- \sum_{i=1}^{\infty}i2^{-i}=2,\qquad
- \sum_{i=1}^{\infty}2^{-i}=1.
-\]
-所以 $\mathrm E[\ln X]=\ln2(2-1)=\ln2$，确定性等值为
-\[
- CE_{\ln}=\exp(\mathrm E[\ln X])=2.
+ \sum_{i=1}^{\infty}ix^{i-1}=\frac1{(1-x)^2},\quad |x|<1.
 \]
 
-\textbf{B.\ 平方根效用的计算}\quad 若 $u(x)=\sqrt{x}$，
+取 $x=1/2$，得 $\sum_{i\ge1}i2^{-i}=2$、$\sum_{i\ge1}2^{-i}=1$。
+
+对 $u(x)=\ln x$，
 \[
-\begin{aligned}
- \mathrm E[\sqrt X]
- &=\sum_{i=1}^{\infty}2^{-i}2^{(i-1)/2}
- =\frac12\sum_{j=0}^{\infty}(1/\sqrt2)^j\\
- &=\frac{1/2}{1-1/\sqrt2}=1+\frac1{\sqrt2}.
-\end{aligned}
+ \mathrm E[\ln X]=\ln2\sum_{i\ge1}2^{-i}(i-1)=\ln2,
+ \qquad CE_{\ln}=2.
 \]
-故
+
+对 $u(x)=\sqrt x$，
 \[
+ \mathrm E[\sqrt X]=\frac12\sum_{j=0}^{\infty}(1/\sqrt2)^j
+ =1+\frac1{\sqrt2},\qquad
  CE_{\sqrt{\cdot}}=\left(1+\frac1{\sqrt2}\right)^2
  =\frac32+\sqrt2\approx2.914214.
 \]
-两种凹效用都使该彩票的期望效用和 CE 有限，但 CE 数值不同。凹性并不保证\textbf{任意}无界彩票的期望效用都有限；结论须针对具体分布与效用检验。
 
-\textbf{CE 与入场费须区分：}上述计算没有纳入初始财富和支付费用。若初始财富为 $w$，入场费为 $f$，无差异条件应为
+两种效用对这种彩票的评价均有限，具体数值由效用曲率和彩票分布共同决定。
+\end{solution}
+
+\subsubsection{初始财富与最高入场费}
+若初始财富为 $w$、参加游戏需付费 $f$，则购买后的最终财富为 $w-f+X$。最高可接受费用由
 \[
- \sum_{i=1}^{\infty}2^{-i}u(w-f+2^{i-1})=u(w),
+ \mathrm E[u(w-f+X)]=u(w)
 \]
-且每个结果须在效用定义域内。因此不能把 2 或 2.914214 直接当作所有财富者的最高入场费。有限财富、主办者偿付能力与奖金上限也会影响实际决策。
+确定，并要求各结果属于效用定义域。此式评价购买游戏前后的财富；前面的 $CE$ 评价奖金本身。初始财富和费用改变时，两者按各自的无差异条件计算。
+
+\subsection{彩票混合独立性}\label{sec:wj-six-lottery}
+设 $L,M,N$ 为后果的彩票，$\alpha L+(1-\alpha)N$ 表示先以概率 $\alpha$ 选择 $L$，否则选择 $N$，再依所选彩票实现后果。
+\begin{tcolorbox}[knowledge,title=彩票混合独立性,breakable=false]
+对任意 $0<\alpha<1$，
+\begin{equation}
+ L\succeq M\quad\Longleftrightarrow\quad
+ \alpha L+(1-\alpha)N\succeq\alpha M+(1-\alpha)N.
+ \label{eq:wj-six-mixture}
+\end{equation}
+\end{tcolorbox}
+若 $V(L)=\sum_i p_i u(x_i)$，则混合后两彩票的效用差为
+\[
+ V\bigl(\alpha L+(1-\alpha)N\bigr)
+ -V\bigl(\alpha M+(1-\alpha)N\bigr)
+ =\alpha[V(L)-V(M)].
+\]
+
+$\alpha>0$，所以差值的符号保持不变，证明了~\eqref{eq:wj-six-mixture} 的双向关系。
+\begin{tcolorbox}[knowledge,title=期望效用表示定理：彩票形式,breakable=false]
+在简单彩票构成的混合集上，偏好若满足完备性、传递性、混合连续性与混合独立性，就具有 \textbf{von Neumann--Morgenstern 期望效用表示} $V(L)=\sum_i p_i u(x_i)$。伯努利效用 $u$ 在正仿射变换下唯一。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=6.4（续）阿莱斯悖论与独立性]
-% PPT 第 25–27 页；p3/p4 沿用 PPT 第 26 页的编号。
-奖金单位为\textbf{万美元}，四种彩票为：
+\subsection{阿莱斯悖论}
+% 来源：PPT 第 25—27 页；P_3/P_4 编号按第 26 页图片。
+\begin{tcolorbox}[example,title=课堂例题：两对抽奖的选择,breakable=false]
+奖金单位为万美元，四种彩票为
 \[
 \begin{array}{c|ccc}
  &0&100&500\\\hline
@@ -310,23 +396,20 @@ $\sqrt{\mathrm E[u(\widetilde W)]}\ne\mathrm E[\sqrt{u(\widetilde W)}]$。
  P_4&0.89&0.11&0
 \end{array}
 \]
-课堂讨论的一种选择模式是 $P_1\succ P_2$，同时 $P_3\succ P_4$。第一对偏好确定得到 100；第二对则偏好 10\% 得到 500，而非 11\% 得到 100。
 
-\textbf{为什么不可能由同一个期望效用表示？}若 $P_1\succ P_2$，就有
+若参与者选择 $P_1\succ P_2$，同时 $P_3\succ P_4$，能否用同一个期望效用函数解释？说明共同后果如何替换。
+\end{tcolorbox}
+\begin{solution}
+第一对排序要求
 \[
- u(100)>0.01u(0)+0.89u(100)+0.10u(500),
+ u(100)>0.01u(0)+0.89u(100)+0.10u(500)
+ \quad\Longleftrightarrow\quad
+ 0.11u(100)>0.01u(0)+0.10u(500).
 \]
-即
-\[
- 0.11u(100)>0.01u(0)+0.10u(500).\tag{6.A}
-\]
-而 $P_3\succ P_4$ 要求
-\[
- 0.90u(0)+0.10u(500)>0.89u(0)+0.11u(100),
-\]
-即 $0.01u(0)+0.10u(500)>0.11u(100)$，与 (6.A) 矛盾。这与 $u$ 是否凹无关；仅改变风险厌恶程度不能消除这个矛盾。
 
-\textbf{共同后果是怎样被替换的？}令 $Q$ 为“以 $1/11$ 概率得到 0、以 $10/11$ 概率得到 500”的彩票，$\delta_x$ 表示确定得到 $x$。则
+第二对排序却要求 $0.01u(0)+0.10u(500)>0.11u(100)$，两者矛盾。
+
+令 $Q=(1/11)\delta_0+(10/11)\delta_{500}$，其中 $\delta_x$ 表示确定得到 $x$，则
 \[
 \begin{aligned}
  P_1&=0.11\delta_{100}+0.89\delta_{100},&
@@ -335,61 +418,88 @@ $\sqrt{\mathrm E[u(\widetilde W)]}\ne\mathrm E[\sqrt{u(\widetilde W)}]$。
  P_3&=0.11Q+0.89\delta_0.
 \end{aligned}
 \]
-彩票混合独立性要求，对任意 $0<\alpha<1$，
-\[
- L\succeq M\ \Longleftrightarrow\
- \alpha L+(1-\alpha)R\succeq\alpha M+(1-\alpha)R.
-\]
-把双方共有的 89\%“得到 100”同时换为“得到 0”，原来的排序应保持，故 $P_1\succ P_2$ 应推出 $P_4\succ P_3$。观察到的相反选择体现\textbf{共同后果效应或确定性效应}。这是已知概率的彩票，不是因为人们不知道概率才产生的悖论。
 
-PPT 列出几种回应：坚持独立性作为规范要求；研究接近 0、1 的概率是否有特殊作用；引入后悔；或放宽独立性、构建非期望效用模型。悖论说明这组选择与特定公理不能同时成立，并不单凭一个例子就证明所有人、所有情形都遵循另一种模型。
-\end{tcolorbox}
+把两彩票共同的 $89\%$“得到 $100$”换成“得到 $0$”，混合独立性要求 $P_4\succ P_3$。题给选择违反这一要求，称为\textbf{共同后果效应}，也体现对确定结果的特殊评价。
+\end{solution}
 
-\begin{tcolorbox}[knowledge,title=6.4（续）秩依效用与前景理论]
-\textbf{A.\ 秩依效用（PPT 第 28 页）}\quad 秩依效用保留最终结果的效用，但按结果排序后的\textbf{累计概率}构造决策权重。设 $x_1\le\cdots\le x_n$、对应概率为 $p_i$，取递增函数 $g:[0,1]\to[0,1]$，满足 $g(0)=0,g(1)=1$，可写成
+围绕这一悖论，可以把独立性作为规范要求保留，也可以研究接近 $0$、$1$ 的概率、后悔与非线性决策权重。下面给出两类放宽标准结构的模型。
+
+\section{非期望效用与行为模型}\label{sec:wj-six-behavior}
+\Needspace{12\baselineskip}
+\subsection{秩依效用}
+设结果按 $x_1\le\cdots\le x_n$ 排列，概率为 $p_i$。取递增函数 $g:[0,1]\to[0,1]$，$g(0)=0,g(1)=1$，\textbf{秩依效用}（rank-dependent utility）可写为
+\begin{tcolorbox}[knowledge,title=秩依效用与累计概率权重,breakable=false]
 \[
  V=\sum_{i=1}^n\pi_i u(x_i),\qquad
  \pi_i=g\!\left(\sum_{j=i}^np_j\right)
        -g\!\left(\sum_{j=i+1}^np_j\right).
 \]
-$\pi_i\ge0$ 且 $\sum\pi_i=1$；$g(p)=p$ 时退回期望效用。权重依赖结果的\textbf{秩}，不是把每个 $p_i$ 分别变换后直接相加。某些加权函数可刻画高估小概率等现象，但这些性质不是所有秩依效用模型都自动具备的；概率为零的事件仍有零权重。
+$\pi_i\ge0$，且由相邻项相消得 $\sum_i\pi_i=g(1)-g(0)=1$。$g(p)=p$ 时，$\pi_i=p_i$，退回期望效用。
+\end{tcolorbox}
+权重由按结果好坏排序的累计概率决定。调整 $g$ 的形状，可以提高特定尾部事件的决策权重；零概率结果对应的累计概率差为零，权重也为零。
+% PPT 第 28 页把对“概率为零的损失”赋予过高权重作为解释；此处按其累计概率定义修正为尾部事件的非线性加权。
 
-\tcbline
-\textbf{B.\ 前景理论（PPT 第 29–31 页）}\quad 前景理论的关键是\textbf{参考点、收益与损失的不对称及概率决策权重}。价值函数作用于相对参考点 $r$ 的变化 $x-r$，而不只作用于最终财富。常见示意形式为
+\subsection{前景理论与参考点}
+\begin{tcolorbox}[knowledge,title=收益、损失与损失厌恶,breakable=false]
+价值函数作用于相对参考点 $r$ 的变化 $y=x-r$。一种常见形式为
 \[
  v(y)=\begin{cases}y^\alpha,&y\ge0,\\-\lambda(-y)^\alpha,&y<0,\end{cases}
  \qquad0<\alpha<1,\quad\lambda>1.
 \]
-收益域凹、损失域凸；$\lambda>1$ 使同额损失的价值变化绝对值更大。损失厌恶与风险厌恶不是同一个概念：前者比较收益和损失，后者比较同一域内确定与不确定结果。完整模型还需指定概率权重；仅给这个价值函数并不能推出所有选择。
 
-\textbf{课堂例：同样最终财富，不同参考点}\quad 明确两项选择是\textbf{最终财富}：$A$ 确定为 50 元，$B$ 等概率为 100 元或 0 元。设 $\alpha=1/2,\lambda=2$，暂用原概率权重，只考察参考点的影响。
+收益域凹、损失域凸；$\lambda>1$ 使同额损失的价值变化绝对值更大，称为\textbf{损失厌恶}。评价彩票时，再按模型规定的概率决策权重加总各结果的价值。
+\end{tcolorbox}
+参考点决定收益与损失的划分；函数在各域的曲率影响该域内的风险态度；损失厌恶比较同额收益与损失的价值变化。
+
+价值函数在参考点两侧的形状见图~\ref{fig:wj-prospect-value}。
+
+\input{tex/金融经济学_王江/figures/06_前景价值函数.tex}
+
+% 来源：PPT 第 30—31 页。“得到 50”与“最终财富 50”混用；将选项统一为最终财富，保留 0/50/100 数据。
+\begin{tcolorbox}[example,title=课堂例题：同样财富与不同参考点,breakable=false]
+$A$ 的最终财富确定为 $50$ 元；$B$ 的最终财富等概率为 $100$ 或 $0$ 元。设 $\alpha=1/2$、$\lambda=2$，采用原概率作为权重。分别以 $r=0$、$r=100$ 为参考点比较两选择。
+\end{tcolorbox}
+\begin{solution}
 \[
 \begin{array}{c|cc|c}
  \text{参考点}&V(A)&V(B)&\text{排序}\\\hline
- r=0&\sqrt{50}\approx7.071&\tfrac12\sqrt{100}+\tfrac12\sqrt0=5&A\succ B\\
- r=100&-2\sqrt{50}\approx-14.142&\tfrac12v(0)+\tfrac12v(-100)=-10&B\succ A
+ 0&\sqrt{50}\approx7.071&\tfrac12\sqrt{100}+\tfrac12\sqrt0=5&A\succ B\\
+ 100&-2\sqrt{50}\approx-14.142&\tfrac12v(0)+\tfrac12v(-100)=-10&B\succ A
 \end{array}
 \]
-相同最终财富在第一种框架下是收益，在第二种框架下是损失，因而可能发生偏好反转。若题目改为“在现有财富之外\textbf{新增}50 元”，则必须先加回现有财富再减参考点，不能把新增收益和最终财富混用。
+
+相同最终财富相对于不同参考点，分别落入收益域与损失域，产生相反的排序。
+\end{solution}
+
+\subsection{心理账户与丢票、丢钱}
+\begin{tcolorbox}[knowledge,title=心理账户,breakable=false]
+\textbf{心理账户}（mental accounting）指参与者按资金的用途或来源划分账户，并分别评价其中的收入、支出和损失。支出的账户归属会影响其可接受程度。
 \end{tcolorbox}
-
-\begin{tcolorbox}[example]
-\textbf{课堂例：丢票与丢钱（PPT 第 32–33 页）}\quad 两张演出票总价为 $K$，仍能买到同样的票且没有流动性约束。比较：已经买好的票丢失后是否重买；与准备买票前丢失了 $K$ 元现金后是否仍买。两种情形的经济损失均为 $K$，再次购票都需另付 $K$。
-
-如果只考虑最终财富、同样的演出体验和同样的后续机会，两种情形的可选结果相同，标准期望效用模型应给出相同的购票决定。但心理账户可能使参与者给出不同回答：丢票后的重买被计入“看演出”账户，感觉这场演出的成本变成 $2K$；丢现金则记入一般现金损失，演出账户仍只记 $K$，因而更容易接受购买。
-
-这说明\textbf{损失怎样归类和描述}会影响选择。心理账户与参考点、框架效应相关，但不等于前景理论的全部定义；若两种情形实际存在不同的找回概率、票价或预算约束，也应先控制这些差异。
+% 来源：PPT 第 32—33 页。
+\begin{tcolorbox}[example,title=课堂例题：演出票与现金的损失,breakable=false]
+两张演出票总价为 $K$，仍能买到同样的票，且购票资金充足。比较两种情形：已买好的票丢失后是否重买；准备买票前丢失 $K$ 元现金后是否仍买。两种情形其余机会相同。若只按最终财富与演出体验评价，应如何选择？心理账户会怎样影响判断？
 \end{tcolorbox}
+\begin{solution}
+两情形的经济损失均为 $K$，再次购票均需支付 $K$，可获得的后续结果相同，因此按最终财富与演出体验评价时，购票决定相同。
 
-\begin{tcolorbox}[knowledge,title=本章小结]
+心理账户按用途归类支出。丢票后重买可能使“观看演出”账户累计记入 $2K$，参与者因超出该账户预算而放弃；丢现金被记入一般现金损失，演出账户仍只记 $K$，参与者可能继续购买。差异来自对同一损失与支出的归类方式。
+\end{solution}
+
+\section*{本章小结}
+\addcontentsline{toc}{section}{本章小结}
+\begin{tcolorbox}[summary]
 \begin{enumerate}
-    \item 独立性公理下，效用可以写成各消费路径效用的期望 $U(c)=\sum_{\omega}p_{\omega}u_{\omega}(c_0,c_{1\omega})$。独立性是这一形式的充分必要条件（定理 6.1）。它针对的是互斥状态，不是同一状态中不同商品。
-    \item 状态独立把 $u_{\omega}$ 收成同一个 $u$；时间可加再把它拆成 $u_0(c_0)+\sum p_{\omega}u_1(c_{1\omega})$。若两期只差时间偏好系数 $\rho$，则 $U(c)=u(c_0)+\rho\sum p_{\omega}u(c_{1\omega})$。总效用 $U$ 是序数的，单期效用 $u$ 是基数的，只在正线性变换下保持排序。
-    \item 习惯以自己的过去消费为参照，攀比以他人消费为参照；参考点不对称、非线性概率权重等也可拓展标准模型。后文的组合选择与均衡定价主要使用 (6.3) 或 (6.4)。
-    \item 圣彼得堡悖论区分期望金额与期望效用；CE 与包含初始财富和费用的最高入场费须分别计算。
-    \item 阿莱斯例中的两对选择若反向排序，就与共同后果独立性矛盾；秩依效用、前景理论和心理账户分别强调概率权重、参考点及框架等作用，不能混为同一个假设。
+ \item 期望效用对消费路径效用按真实概率线性加权；共同后果替换保持偏好排序。可加表示需要相应的消费域、连续性与非退化条件。
+ \item 状态独立统一不同状态的效用函数；时间可加分离两期边际效用，标准形式为 $U(c)=u(c_0)+\rho\sum_\omega p_\omega u(c_{1\omega})$。
+ \item 总效用 $U$ 是序数表示；彩票偏好的伯努利效用在正仿射变换下等价。内点最优时，$m_\omega=\rho u'(c_{1\omega})/u'(c_0)$ 联系消费与定价。
+ \item 习惯、攀比、状态依赖和参考点分别改变消费评价的历史、社会、状态与基准结构。
+ \item 圣彼得堡彩票区分期望奖金与期望效用；阿莱斯选择违反混合独立性。秩依效用、前景理论与心理账户分别突出累计概率、参考点与支出归类。
 \end{enumerate}
 \end{tcolorbox}
+\clearpage
 \fi
 
+\section*{课后习题}
+\addcontentsline{toc}{section}{课后习题}
 \input{tex/金融经济学_王江/06_期望效用函数_习题.tex}
+\endgroup

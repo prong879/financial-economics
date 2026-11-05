@@ -1,11 +1,15 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 02_基本框架 课后习题（由章节文件拆分）
 
+\newcounter{wjTwoExercise}
+\renewcommand{\thewjTwoExercise}{\thechapter.\arabic{wjTwoExercise}}
+\newcommand{\WJTwoProblem}[2]{\refstepcounter{wjTwoExercise}\label{#1}\problemno{\thewjTwoExercise#2}}
+
 \begin{problem}
-\problemno{2.1} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
+\WJTwoProblem{prob:wj-two-1}{} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
 \end{problem}
 \begin{solution}
-定义 2.4：效用函数表示偏好 $\succeq$，是指对任意两个消费计划，$U(c_{1})\ge U(c_{2})$ 当且仅当 $c_{1}\succeq c_{2}$。两个效用函数表示相同偏好，就是它们给出完全一样的排序。正单调变换不改变不等号的方向，所以 $V=f(U)$ 与 $U$ 排序相同。
+\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-two-4}\else 教材定义 2.4\fi：效用函数表示偏好 $\succeq$，是指对任意两个消费计划，$U(c_{1})\ge U(c_{2})$ 当且仅当 $c_{1}\succeq c_{2}$。两个效用函数表示相同偏好，就是它们给出完全一样的排序。正单调变换不改变不等号的方向，所以 $V=f(U)$ 与 $U$ 排序相同。
 
 假设 $U(c)$ 表示的偏好关系为 $\succeq$，那么 $\forall\, c_{1},\,c_{2}\in\mathrm{R}_{+}^{N}$ 有
 \[
@@ -15,11 +19,12 @@
 \[
     V(c_{1})=f(U(c_{1}))\ge f(U(c_{2}))=V(c_{2})\Leftrightarrow U(c_{1})\ge U(c_{2})
 \]
+
 因此 $V(c_{1})\ge V(c_{2})\Leftrightarrow c_{1}\succeq c_{2}$，即 $V(c)$ 表示的偏好也是 $\succeq$。
 \end{solution}
 
 \begin{problem}
-\problemno{2.2*} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
+\WJTwoProblem{prob:wj-two-2}{*} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
 \begin{center}
 \WJEventTree{a,b}
 \end{center}
@@ -31,6 +36,7 @@
         U(c) &= -e^{-ac_{0}}-\tfrac12\bigl(e^{-ac_{1a}}+e^{-ac_{1b}}\bigr)
     \end{aligned}
 \]
+
 证明它们满足：不满足性、连续性和凸性。
 \end{problem}
 \begin{solution}
@@ -94,7 +100,7 @@
 \end{solution}
 
 \begin{problem}
-\problemno{2.3} $U(c)=c-\tfrac12 a c^{2}$ 是一可能的效用函数，其中 $c\in\mathrm{R}_{+}$，$a$ 是非负的系数。$U(c)$ 具有不满足性吗？如果不是，那么 $a$ 取什么值和/或 $c$ 在什么范围内时 $U(c)$ 具有不满足性？
+\WJTwoProblem{prob:wj-two-3}{} $U(c)=c-\tfrac12 a c^{2}$ 是一可能的效用函数，其中 $c\in\mathrm{R}_{+}$，$a$ 是非负的系数。$U(c)$ 具有不满足性吗？如果不是，那么 $a$ 取什么值和/或 $c$ 在什么范围内时 $U(c)$ 具有不满足性？
 \end{problem}
 \begin{solution}
 不一定，比如当 $a=1$ 时，$U(\tfrac12)=\tfrac38<U(1)=\tfrac12>U(3)=-1.5$。$U(c)$ 不具有不满足性。
@@ -144,7 +150,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\problemno{2.4} 考虑一个经济，它在 1 期有三个可能状态：$a$，$b$ 和 $c$：
+\WJTwoProblem{prob:wj-two-4}{} 考虑一个经济，它在 1 期有三个可能状态：$a$，$b$ 和 $c$：
 \begin{center}
 \WJEventTree{a,b,c}
 \end{center}
@@ -223,7 +229,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\problemno{2.5} 在练习 2.4 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
+\WJTwoProblem{prob:wj-two-5}{} 在练习~\ref{prob:wj-two-4} 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
 \end{problem}
 \begin{solution}
 无摩擦，允许卖空。预算集是花费不超过禀赋市值的那些 1 期支付：
@@ -236,7 +242,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\problemno{2.6} 在上面的练习中引入练习 2.4 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
+\WJTwoProblem{prob:wj-two-6}{} 在上面的练习中引入练习~\ref{prob:wj-two-4} 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
 \end{problem}
 \begin{solution}
 证券 3 上的禀赋为 $0$，可交易财富仍是 $\theta_{1}S_{1}+\theta_{2}S_{2}$。预算集为
@@ -247,7 +253,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     \alpha_{1},\alpha_{2},\alpha_{3}\in\mathrm{R}\Bigr\}.
 \]
 
-练习 2.5 的预算集是
+练习~\ref{prob:wj-two-5} 的预算集是
 \[
     B_{12}=\Bigl\{C\in\mathrm{R}_{+}^{3}:
     C=\alpha_{1}X_{1}+\alpha_{2}X_{2},\;
@@ -269,7 +275,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\problemno{2.7*} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
+\WJTwoProblem{prob:wj-two-7}{*} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
 \[
     U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
 \]
@@ -385,6 +391,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         U^{b}=\max_{S\in\mathrm{R}}\,U\bigl(100-S,\,1+S(1+r_F)\bigr)
         \ge U(100,1)=U^{a}.
     \]
+
     等号当且仅当最优储蓄恰好是 \(S^{*}=0\)，即 \(100\rho(1+r_F)=1\)。
 
     \item \textbf{交易益处 $g$。}定义 $U^{b}(w-g)=U^{a}$：$w-g$ 是与交易后最优效用相同、但用一条 0 期财富数字表示的\textbf{确定性等价财富}；$g=w-(w-g)$ 即为因能交易而多出来的等价 0 期资源。
@@ -408,6 +415,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         =w-\rho^{-\frac{\rho}{1+\rho}}(1+r_F)^{-\frac{\rho}{1+\rho}}
         100^{\frac{1}{1+\rho}}(1+\rho).
     \]
+
     $g$ 随 $\rho$、$r_F$ 增加而增加：二者都提高把消费从 0 期转到 1 期」的动机，能在市场上做跨期配置带来的等价收益更大。
 \end{enumerate}
 \end{solution}

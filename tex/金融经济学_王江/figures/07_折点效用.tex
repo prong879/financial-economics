@@ -1,0 +1,27 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：正文折点模型，示例a_-=2、a_+=1、delta=1，pi=1/4。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=2.1cm,y=1cm]
+ \draw[->] (-1.7,0)--(2,0) node[right] {$w-\bar w$};
+ \draw[->] (0,-2.8)--(0,2) node[above] {$u(w)$};
+ \draw[blue!70!black,very thick] (-1.3,-2.6)--(0,0)--(1.6,1.6);
+ \draw[gray] (-1,-2)--(1,1);
+ \draw[dotted,gray] (-1,0)--(-1,-2) (1,0)--(1,1);
+ \draw[dashed,red!70!black] (-1.5,-.5)--(.15,-.5);
+ \draw[dotted,red!70!black] (-.25,0)--(-.25,-.5);
+ \fill[red!70!black] (-.25,-.5) circle(1.8pt);
+ \node[left] at (-1.5,-.5) {$\mathrm E[u]=-1/2$};
+ \node[above] at (-1,0) {$-\delta$}; \node[below] at (1,0) {$\delta$};
+ \node[above left,red!70!black] at (-.25,0) {$-\pi$};
+ \node[below right] at (0,0) {$0$};
+ \node[left] at (-1,-2) {斜率 $a_-=2$};
+ \node[right] at (1.2,1.2) {斜率 $a_+=1$};
+\end{tikzpicture}
+\par\smallskip\small
+财富位于参考点时，图取 $a_-=2,a_+=1,\delta=1$。
+弦的中点给出期望效用，向效用曲线水平投影得到 $CE=\bar w-1/4$；一般有 $\pi=\delta/4$，与风险规模成正比。
+\WJFigure{fig:wj-kinked-utility}{折点效用与一阶风险厌恶}
+\end{minipage}
+\end{center}

@@ -1,0 +1,75 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：（a）凸偏好；（b）递增波浪曲线拟凹但不凹；（c）凹性。
+% （b）u(x)=1+x+sin(pi*x)/4，0<=x<=4；导数>=1-pi/4>0。
+% 严格递增兼顾本章不满足性；全区间拟凹，但部分曲线低于弦，故不凹。
+% 三幅图统一物理画布、横轴基线及子图标题位置；缩放仅作用于绘图区。
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}[t]{.32\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\footnotesize]
+ \path[use as bounding box] (-.55,-1.35) rectangle (3.8,3.65);
+ \begin{scope}[x=.30cm,y=.30cm]
+ \fill[blue!7] (1,9) plot[domain=1:9,samples=70] (\x,{9/\x}) --(9,10)--(1,10)--cycle;
+ \draw[->] (0,0)--(10.1,0) node[right] {$c_0$};
+ \draw[->] (0,0)--(0,10.2) node[above] {$c_1$};
+ \draw[blue!70!black,thick,domain=.9:9.5,samples=70] plot (\x,{9/\x});
+ \draw[red!70!black,thick] (1,9)--(9,1);
+ \fill (1,9) circle(1.7pt) node[above right] {$A$}
+       (9,1) circle(1.7pt) node[above right] {$B$};
+ \fill[red!70!black] (5,5) circle(1.9pt) node[above right] {$M$};
+ \node[blue!70!black,align=center] at (6.3,8.5) {至少和 $A$\\一样好};
+\end{scope}
+ \node[align=center] at (1.55,-.88) {（a）凸偏好与拟凹性\\$A\sim B,\quad M\succ A$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.32\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\footnotesize]
+ \path[use as bounding box] (-.55,-1.35) rectangle (3.8,3.65);
+ \begin{scope}[x=.70cm,y=.54cm]
+ \draw[->] (0,0)--(4.55,0) node[right] {$x$};
+ \draw[->] (0,0)--(0,5.65) node[above] {$u(x)$};
+ \draw[gray,densely dashed] (0,1)--(4.2,1);
+ \draw[red!70!black,thick] (0,1)--(4,5);
+ \draw[blue!70!black,thick,domain=0:4,samples=160]
+   plot (\x,{1+\x+.25*sin(180*\x)});
+ \fill (0,1) circle(1.6pt) node[left] {$1$};
+ \fill (4,5) circle(1.6pt) node[above right] {$5$};
+ \draw[gray,densely dashed] (4,0)--(4,5);
+ \node[below] at (0,0) {$0$};
+ \node[below] at (4,0) {$4$};
+\end{scope}
+ \node[align=center] at (1.55,-.88) {（b）拟凹，但不凹\\部分曲线低于所画的弦};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.32\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\footnotesize]
+ \path[use as bounding box] (-.55,-1.35) rectangle (3.8,3.65);
+ \begin{scope}[x=.32cm,y=.925cm]
+ \node at (5,3.7) {$u(x)=\sqrt{x}$};
+ \draw[->] (0,0)--(10,0) node[right] {$x$};
+ \draw[->] (0,0)--(0,3.3) node[above] {$u(x)$};
+ \draw[gray,densely dashed] (1,0)--(1,1) (5,0)--(5,{sqrt(5)}) (9,0)--(9,3);
+ \draw[red!70!black,thick] (1,1)--(9,3);
+ \draw[blue!70!black,thick,domain=1:9,samples=70] plot (\x,{sqrt(\x)});
+ \fill (1,1) circle(1.6pt) node[left] {$1$};
+ \fill (9,3) circle(1.6pt) node[right] {$3$};
+ \fill[blue!70!black] (5,{sqrt(5)}) circle(1.8pt) node[above left] {$\sqrt5$};
+ \fill[red!70!black] (5,2) circle(1.6pt) node[below right] {$2$};
+ \node[below] at (1,0) {$1$};
+ \node[below] at (5,0) {$5$};
+ \node[below] at (9,0) {$9$};
+\end{scope}
+ \node[align=center] at (1.55,-.88) {（c）凹性：曲线不低于弦\\$\sqrt5>\tfrac12(1+3)=2$};
+\end{tikzpicture}
+\end{minipage}
+\par\smallskip\small
+（a）横、纵轴均为消费量，$M=(A+B)/2$，浅蓝区域为上等值集在图示范围内的部分。
+（b）（c）横轴为消费量 $x$，纵轴为效用 $u(x)$；蓝线为效用曲线，红线连接曲线上两个选定点。（b）的灰虚线标出图示左端点效用。
+\WJFigure{fig:wj-convex-preference-curvature}{凸偏好、拟凹性与凹性}
+\end{minipage}
+\end{center}

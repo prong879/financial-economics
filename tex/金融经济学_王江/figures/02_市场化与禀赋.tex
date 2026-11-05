@@ -1,0 +1,39 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：三个未来状态，X_1=(2,1/2,0)^T、X_2=(1/2,2,0)^T。
+% M={x:x_c=0} 为 x_a O x_b 平面；e_{1,1}=(5/2,5/2,0)^T，
+% e_{2,1}=(5/2,5/2,3)^T。浅蓝四边形只画出无限平面的一部分。
+\Needspace{18\baselineskip}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,
+ x={(.95cm,-.15cm)},y={(-.60cm,-.40cm)},z={(0cm,.95cm)}]
+ \coordinate (O) at (0,0,0);
+ \coordinate (Sone) at (2,.5,0);
+ \coordinate (Stwo) at (.5,2,0);
+ \coordinate (Ein) at (2.5,2.5,0);
+ \coordinate (Eout) at (2.5,2.5,3);
+ % 两只证券在第三状态均无支付，生成的子空间就是水平坐标平面。
+ \filldraw[fill=blue!7,draw=blue!35!black,line width=.45pt]
+  (-.4,-.4,0)--(4,-.4,0)--(4,4,0)--(-.4,4,0)--cycle;
+ \draw[->,black!60] (O)--(4.6,0,0) node[right] {$x_a$};
+ \draw[->,black!60] (O)--(0,4.6,0) node[below left] {$x_b$};
+ \draw[->,black!60] (O)--(0,0,3.3) node[above] {$x_c$};
+ \draw[->,blue!70!black,thick] (O)--(Sone) node[above right] {$X_1$};
+ \draw[->,blue!70!black,thick] (O)--(Stwo) node[above left] {$X_2$};
+ \draw[->,black,thick] (O)--(Ein);
+ \fill (Ein) circle(1.8pt) node[below right] {$e_{1,1}=X_1+X_2$};
+ \draw[->,red!70!black,very thick] (O)--(Eout);
+ \fill[red!70!black] (Eout) circle(2pt)
+  node[above right,text=red!70!black] {$e_{2,1}\notin M$};
+ \draw[gray,densely dashed] (Ein)--(Eout);
+ \node[above left] at (O) {$O$};
+ \node[anchor=west,align=left,text=blue!70!black] at (4.2,0,1.1)
+  {$M=\operatorname{span}\{X_1,X_2\}$};
+ \draw[blue!45!black,thin] (4.1,0,1.05)--(4,.4,0);
+\end{tikzpicture}
+\par\smallskip\small
+浅蓝区域仅画出无限平面 $M$ 的一部分。
+\WJFigure{fig:wj-marketed-endowments}{市场化支付子空间与未来禀赋}
+\end{minipage}
+\end{center}

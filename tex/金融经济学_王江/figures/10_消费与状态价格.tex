@@ -1,0 +1,20 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：代表性参与者对数效用，m=rho*C0/C；示例rho*C0=1。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.6cm,y=1.3cm]
+ \draw[->] (0,0)--(4.1,0) node[right] {总消费 $C_1$};
+ \draw[->] (0,0)--(0,2.6) node[above] {$m=\phi/p$};
+ \draw[blue!70!black,very thick,domain=.45:3.7,samples=80] plot (\x,{1/\x});
+ \draw[dotted,gray] (.7,0)--(.7,1.42857)--(0,1.42857)
+   (2.8,0)--(2.8,.35714)--(0,.35714);
+ \fill[red!70!black] (.7,1.42857) circle(2pt) node[above right] {资源较少的状态};
+ \fill[blue!70!black] (2.8,.35714) circle(2pt) node[above right] {资源较多的状态};
+\end{tikzpicture}
+\par\smallskip\small
+对数效用下 $m=\rho C_0/C_1$，图取 $\rho C_0=1$。
+资源稀缺时边际效用高，每单位概率对应的状态价格密度较高；在这些状态支付较多的资产具有保险价值。
+\WJFigure{fig:wj-consumption-pricing-kernel}{总消费与定价核}
+\end{minipage}
+\end{center}

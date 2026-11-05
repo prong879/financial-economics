@@ -1,62 +1,258 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 169–175（PDF 页 184–190）
-% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 54–61（印刷页 53–60）
-
+% 来源：王江《金融经济学》，印刷页169—178（PDF物理页184—193）；核对2021勘误11.2。
+% 保留教材定义11.1—11.3、定理11.1—11.4及例11.1；概率、价格均用列向量。
+% 定理11.3、11.4以证券市场经济（个人未来禀赋已市场化）为前提。
+% 11.3的有限执行价构造取严格正的总禀赋；零支付值时另需可复制常数支付。
+\begingroup
+\ctexset{chapter={format=\LARGE\bfseries\centering}}
 \lecture{不完全市场中的资源配置和资产定价}
+\label{chap:wj-eleven}
+\endgroup
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\ctexset{section={number=\thesection,aftername=\quad},subsection={number=\thesubsection,aftername=\quad}}
+\setcounter{equation}{0}
+\newcounter{wjElevenDefinition}
+\newcounter{wjElevenTheorem}
+\newcounter{wjElevenExample}
+\newcounter{wjElevenExercise}
+\renewcommand{\thewjElevenDefinition}{\thechapter.\arabic{wjElevenDefinition}}
+\renewcommand{\thewjElevenTheorem}{\thechapter.\arabic{wjElevenTheorem}}
+\renewcommand{\thewjElevenExample}{\thechapter.\arabic{wjElevenExample}}
+\renewcommand{\thewjElevenExercise}{\thechapter.\arabic{wjElevenExercise}}
+\newcommand{\WJElevenDefinition}[1]{\refstepcounter{wjElevenDefinition}\label{#1}\textbf{定义 \thewjElevenDefinition}\quad}
+\newcommand{\WJElevenTheorem}[1]{\refstepcounter{wjElevenTheorem}\label{#1}\textbf{定理 \thewjElevenTheorem}\quad}
+\newcommand{\WJElevenExample}[1]{\refstepcounter{wjElevenExample}\label{#1}\textbf{例 \thewjElevenExample}\quad}
+\newcommand{\WJElevenExercise}[2]{\refstepcounter{wjElevenExercise}\label{#1}\problemno{\thewjElevenExercise#2}}
 
 \ifdefined\WJHandoutKnowledge
+市场不完全时，参与者只能通过现有证券转移资源，消费选择和均衡价格因而依赖证券支付结构及个人禀赋的分布。本章先讨论一般不完全市场中的消费、价格与约束最优性，再研究能够实现完全市场风险分担的特殊情形。
 
-完全市场中证券支付可以生成所有状态的支付；本章研究证券支付空间较小时，消费选择、资源配置和证券价格如何变化。关键是区分\textbf{可获得的配置}与所有物理可行的配置。
-
-\begin{tcolorbox}[knowledge,title=11.1 消费选择与证券价格]
-设支付矩阵 $X$ 有 $N$ 个独立列，状态数为 $\Omega>N$。交易可生成的支付空间为
+\section{消费和证券价格}\label{sec:wj-eleven-1}
+\subsection{市场化支付空间与消费选择}
+设未来有 $\Omega$ 个状态，公共概率为 $p_\omega>0$。支付矩阵 $X$ 为 $\Omega\times N$，其列线性独立，且 $N<\Omega$。\hyperref[sec:wj-two-marketed]{市场化}的支付空间为
 \[
- M=\{X\theta:\theta\in\mathbb R^N\}\subsetneq\mathbb R^\Omega.
+ M=\{X\theta:\theta\in\mathbb R^N\}\subsetneq\mathbb R^\Omega,
+ \qquad \dim M=N.
 \]
-参与者 $k$ 的 1 期消费仅能属于 $e_{k,1}+M$。\textbf{例 11.1}：两状态只有一只支付 $(2,1)$ 的证券，持仓 $\theta$ 后消费为 $(e_{k,a}+2\theta,e_{k,b}+\theta)$，可选点只在二维平面的一条直线上。
 
-对持仓的内点优化给出 Euler 方程
+沿用第~\ref{sec:wj-ten-1}~节的净交易口径：$e_k$ 包括初始证券的支付，$\theta_k$ 表示净购买数量。预算关系为
 \[
+ c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\qquad
+ c_{k,1}=e_{k,1}+X\theta_k.
+\]
+
+因此，参与者的未来消费限于仿射空间 $e_{k,1}+M$，并须满足效用定义域等消费条件。
+
+\begin{tcolorbox}[example,breakable=false]
+\WJElevenExample{example:wj-eleven-1} 1期有两个状态 $a,b$，市场只有一只证券，其支付为
+\[
+ \WJEventTree[stem]{2,1}.
+\]
+参与者的未来禀赋为 $(e_a,e_b)^{\mathsf T}$。净买入 $\theta$ 单位证券后，消费为
+\[
+ c_a=e_a+2\theta,\qquad c_b=e_b+\theta.
+\]
+\end{tcolorbox}
+
+消去 $\theta$ 得 $c_b=e_b+(c_a-e_a)/2$。可选消费位于经过禀赋点、斜率为 $1/2$ 的直线上；实际可行部分还受0期预算与消费定义域限制。
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+ \draw[->] (0,0)--(6,0) node[right] {$c_a$};
+ \draw[->] (0,0)--(0,3.3) node[above] {$c_b$};
+ \draw[thick] (.3,.65)--(5.4,3.2);
+ \fill (2,1.5) circle (1.6pt);
+ \draw[densely dotted] (2,0) node[below] {$e_a$}--(2,1.5)--(0,1.5) node[left] {$e_b$};
+ \node[above left] at (2,1.5) {$e_1$};
+ \node[below right] at (4,2.5) {$e_1+X\theta$};
+ \node[below left] at (0,0) {$0$};
+\end{tikzpicture}
+
+不完全市场中的可选消费
+\end{center}
+
+\subsection{Euler方程与状态价格}
+设效用严格递增、严格凹，采用时间可加的期望效用。个人优化问题为
+\[
+ \max_{\theta_k}\left\{
+ u_{k,0}(e_{k,0}-S^{\mathsf T}\theta_k)
+ +\mathrm E[u_{k,1}(\widetilde e_{k,1}+\widetilde X^{\mathsf T}\theta_k)]
+ \right\},
+\]
+其中 $\widetilde X$ 为随机证券支付列向量。内点最优的一阶条件给出
+\begin{equation}
  S_nu'_{k,0}(c_{k,0})
- =\mathrm E[u'_{k,1}(\widetilde c_{k,1})\widetilde X_n],
- \qquad n=1,\ldots,N.
- \tag{11.1}
-\]
-记个人随机贴现因子 $m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$，等价地
+ =\mathrm E[u'_{k,1}(\widetilde c_{k,1})\widetilde X_n],\qquad n=1,\ldots,N.
+ \label{eq:wj-11-1}
+\end{equation}
+
+除以0期边际效用，得到
+\begin{equation}
+ S_n=\mathrm E\left[
+ \frac{u'_{k,1}(\widetilde c_{k,1})}{u'_{k,0}(c_{k,0})}\widetilde X_n
+ \right].
+ \label{eq:wj-11-2}
+\end{equation}
+
+令 $m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$，则向量形式为
+\begin{equation}
+ S=\mathrm E[m_k\widetilde X],\qquad\forall k.
+ \label{eq:wj-11-3}
+\end{equation}
+% 教材公式(11.3)以pi_k记个人相对边际效用；沿用第十讲m的定价核记号。
+
+所有参与者对已交易证券的边际估值一致，即
 \[
- S_n=\mathrm E[m_k\widetilde X_n],\qquad\forall k,n.
- \tag{11.2}
+ \mathrm E[(m_k-m_j)\widetilde X_n]=0,\qquad\forall k,j,n.
 \]
-所有参与者对\textbf{已交易证券}的边际估值一致，但他们的 $m_k$ 可因未能交易的风险而不同。将 $m_k$ 乘以状态概率，可得到给现有证券定价的正状态价格向量；由于 $N<\Omega$，这种向量通常不唯一。仅凭个人 Euler 方程不能像完全市场那样从总消费唯一确定所有或有支付的价格。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=11.2 约束下的最优配置]
-\textbf{定义 11.1}\quad 给定禀赋，若每人的消费变化都可由市场证券支付复制，即 $c_{k,1}-e_{k,1}\in M$，且 0 期预算可满足，则称配置\textbf{可获得}。市场不完全时，满足总资源约束的物理可行配置未必可获得。
-
-\textbf{定义 11.2}\quad 若不存在另一可获得配置，在保持总资源不变时使所有人弱变好、至少一人严格变好，则配置\textbf{约束最优}。它只在现有证券结构允许的交易集合内比较。
-
-\textbf{定理 11.1}\quad 在本章的无套利、局部不满足与均衡条件下，证券市场均衡是约束最优的。证明与第一福利定理类似：若存在可获得的帕累托改进，每个改进者所需的证券组合按均衡价格至少不便宜；对所有人加总，便与证券市场出清矛盾。约束最优\emph{不等于}无约束帕累托最优。
-\end{tcolorbox}
-
-\begin{tcolorbox}[knowledge,title=11.3 实质完全市场]
-\textbf{定义 11.3}\quad 对\emph{给定}禀赋与偏好，若所有帕累托最优配置都可通过现有证券交易实现，市场称为\textbf{实质完全}。它是相对于该经济的概念，比 $\operatorname{rank}(X)=\Omega$ 的结构性完全更弱。
-
-\textbf{定理 11.2}\quad 在本章均衡与福利定理的条件下，实质完全市场的均衡配置是帕累托最优的：若有更优的物理可行配置，实质完全性会使它也可获得，与约束最优矛盾。
-
-\textbf{定理 11.3}\quad 若交易以市场组合为标的、执行价格齐备的期权，并满足无套利、可交易与支付可分辨的条件，期权的分段支付可复制市场组合的各个不同支付值。若市场组合只有 $N_d$ 个不同的状态支付值，所需独立支付的维数是 $N_d$，它可以小于 $\Omega$。当帕累托最优风险分担只依赖总禀赋，即只依赖市场组合支付时，复制这些支付值即可使市场实质完全。第 5 章以单个\emph{状态}为标的补齐期权支付的结构性完全化，与这里以\emph{市场组合支付}为标的的论证不同。
-
-\textbf{定理 11.4}\quad 若有无风险债券，且所有参与者 1 期效用的边际效用同属共同指数的 HARA 形式
+完全市场中，这些条件使个人定价核逐状态相等；不完全市场中，未被证券支付生成的方向允许个人定价核存在差异。
+令 $\phi_{k,\omega}=p_\omega m_{k,\omega}>0$，则
 \[
- u'_{k,1}(c)=\rho_k(d_k+c/\gamma)^{-\gamma},
- \qquad \rho_k>0,\quad\gamma>-1,\quad\gamma\ne0,
+ X^{\mathsf T}\phi_k=S.
 \]
-在分享规则和消费满足定义域、内点条件下，市场实质完全。由第 10 章的线性分享规则，每个人的最优消费是 $b_kC_1$ 加一个常数；总禀赋 $C_1$ 由市场组合支付生成，常数由债券复制。因此所有帕累托最优分享都可由证券实现。这里还需要市场组合与债券可交易，不能仅凭偏好形式推出结论。
+
+每个 $\phi_k$ 都是现有证券的正状态价格向量。由于 $N<\Omega$，$X^{\mathsf T}$ 有非零零空间；在任一正解附近，沿零空间作足够小的扰动仍是正解。因此无套利价格对应多个正状态价格向量。
+
+式~\eqref{eq:wj-11-3}（个人边际效用比构造的定价核为已交易证券定价）建立了个人消费与证券价格之间的关系。完全市场的风险分担使个人边际效用可以归结为总消费的函数；一般不完全市场中，个人消费还取决于禀赋分布和交易限制。要从经济的原始条件求出价格，须将Euler方程与个人预算、市场出清条件联立，确定均衡消费。
+
+\section{约束下的最优配置}\label{sec:wj-eleven-2}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenDefinition{def:wj-eleven-attainable} 给定个人禀赋 $\{e_k\}$，若配置 $\{c_k\}$ 满足
+\[
+ c_{k,1}-e_{k,1}\in M,\qquad\forall k,
+\]
+则称该配置是\textbf{可获得的}。这一条件刻画未来消费变化能否由现有证券支付生成。
 \end{tcolorbox}
 
-\begin{tcolorbox}[summary,title=本章小结]
-不完全市场限制了个人的可交易支付空间。已交易证券的 Euler 方程仍成立，但不同参与者可以有不同的随机贴现因子，也可能存在多个能给现有证券定价的状态价格向量。均衡一般只保证约束最优；当现有证券足以实现该经济所有帕累托最优风险分担时，市场虽未结构性完全，均衡仍可达到帕累托最优。
+完全市场中，所有未来消费变化都可复制；不完全市场中，可获得性限制了个人之间资源转移的方式。0期消费及总资源约束在配置的可行性比较中另行满足。
+
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenDefinition{def:wj-eleven-constrained} 若不存在另一可获得配置 $\{c'_k\}$，使得
+\begin{equation}
+ \sum_k c'_k=\sum_k c_k
+ \label{eq:wj-11-4}
+\end{equation}
+且所有参与者弱变好、至少一人严格变好，则称可获得配置 $\{c_k\}$ 在证券市场结构 $X$ 下是\textbf{约束最优的}。
 \end{tcolorbox}
 
+式~\eqref{eq:wj-11-4} 对0期及未来每个状态分别成立。约束最优与\hyperref[def:wj-two-9]{帕累托最优}使用不同的比较集合：前者限于可获得配置，后者包括全部物理可行配置。
+
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenTheorem{thm:wj-eleven-1} 在固定证券支付结构 $X$ 下，无交易限制、效用严格递增且无套利的竞争均衡配置是约束最优的。
+\end{tcolorbox}
+
+\textbf{证明：}记均衡价格为 $S$，均衡消费为 $c_k$。由无套利，存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，则均衡预算满足
+\[
+ \widehat\phi^{\mathsf T}c_k=\widehat\phi^{\mathsf T}e_k.
+\]
+
+假设另有可获得配置 $c'_k$ 帕累托占优于 $c_k$。若某人的 $c'_k$ 价值严格低于其禀赋价值，由可获得性可复制其未来消费变化，余款还可增加0期消费，得到严格优于均衡的预算内选择，违反个人最优性。因此每个人都有
+\[
+ \widehat\phi^{\mathsf T}c'_k\ge\widehat\phi^{\mathsf T}c_k.
+\]
+
+对于严格变好者，等号也会违反个人最优性，故至少一人的不等式严格成立。加总得到
+\[
+ \widehat\phi^{\mathsf T}\sum_kc'_k>
+ \widehat\phi^{\mathsf T}\sum_kc_k,
+\]
+
+与式~\eqref{eq:wj-11-4}（两套配置的总消费逐日期、逐状态相同）矛盾。故均衡是约束最优的。\hfill$\square$
+
+\section{实质完全市场}\label{sec:wj-eleven-3}
+\subsection{实质完全性与帕累托最优}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenDefinition{def:wj-eleven-effective} 给定个人禀赋和偏好，若通过证券市场 $X$ 可以获得所有帕累托最优配置，则称市场是\textbf{实质完全的}。
+\end{tcolorbox}
+
+结构性完全要求生成任意状态支付；实质完全性要求实现给定经济的全部最优风险分担，因而同时取决于支付结构、个人禀赋和偏好。
+
+以下沿用前文的均衡条件，并假设可行配置的共同效用上等值集合紧致，从而保证帕累托最优配置取得。
+
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenTheorem{thm:wj-eleven-2} 若证券市场是实质完全的，则均衡配置是帕累托最优的。
+\end{tcolorbox}
+
+\textbf{证明：}记均衡配置为 $A$。若 $A$ 不是帕累托最优，则存在可行配置使所有人弱变好、至少一人严格变好。在这一改进配置的共同效用上等值集合上最大化效用之和，由连续性与紧致性可取到一个支配 $A$ 的帕累托最优配置 $A^*$。实质完全性使 $A^*$ 可获得，与 $A$ 的约束最优性矛盾。故 $A$ 是帕累托最优的。\hfill$\square$
+
+以下两种情形都以\textbf{\hyperref[def:wj-two-6]{证券市场经济}}为前提：每个人的未来禀赋都是可交易证券的支付，即
+\[
+ e_{k,1}=X\bar\theta_k\in M,\qquad
+ \theta_M=\sum_k\bar\theta_k,\qquad
+ \underbrace{X_M=X\theta_M=\sum_ke_{k,1}}_{\text{市场组合支付等于未来总禀赋}}.
+\]
+
+因此，最优消费 $c_{k,1}\in M$ 蕴含净消费变化 $c_{k,1}-e_{k,1}\in M$。以下沿用第~\ref{chap:wj-ten}~讲的共同状态概率、状态无关的严格递增严格凹效用及内点风险分担假设。
+
+\subsection{以总禀赋为标的的期权}
+设市场组合支付 $X_M$ 有 $N_d$ 个不同取值
+\[
+ 0<z_1<z_2<\cdots<z_{N_d}.
+\]
+
+引入以市场组合为标的、执行价格为 $z_1,\ldots,z_{N_d-1}$ 的\hyperref[def:wj-five-european]{看涨期权}，其支付为 $(X_M-z_i)^+$。
+
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenTheorem{thm:wj-eleven-3} 在证券市场经济中，如果市场包括以市场组合为标的、执行价格齐备的期权，则市场实质完全。市场组合与上述 $N_d-1$ 只看涨期权足以生成总禀赋的任意函数。
+\end{tcolorbox}
+
+\textbf{证明：}在不同的总禀赋取值上，市场组合及期权支付组成矩阵
+\[
+ \begin{pmatrix}
+ z_1&0&0&\cdots&0\\
+ z_2&z_2-z_1&0&\cdots&0\\
+ z_3&z_3-z_1&z_3-z_2&\cdots&0\\
+ \vdots&\vdots&\vdots&\ddots&\vdots\\
+ z_{N_d}&z_{N_d}-z_1&z_{N_d}-z_2&\cdots&z_{N_d}-z_{N_d-1}
+ \end{pmatrix}.
+\]
+
+它是对角元严格为正的下三角矩阵，因而可逆。给定任意函数 $f(z_i)$，均可解出组合头寸，使组合在 $X_M=z_i$ 时支付 $f(z_i)$。
+
+由完全市场的最优风险分担，给定规划权重，个人最优消费是总消费的函数：$c_{k,1}=f_k(X_M)$。上述证券可复制每个 $f_k$，故 $c_{k,1}\in M$。又因 $e_{k,1}\in M$，最优配置可获得；这一论证对全部最优分享规则成立，故市场实质完全。\hfill$\square$
+
+相同总禀赋值下，所有这些支付都相同，因此这些证券生成的支付空间维数为 $N_d$。当 $N_d<\Omega$ 时，市场实质完全而结构不完全。这与第~\ref{chap:wj-five}~讲用状态标的证券实现结构性完全的构造相区别。
+
+\subsection{HARA效用函数}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJElevenTheorem{thm:wj-eleven-4} 在证券市场经济中，若存在无风险证券，且所有参与者的1期边际效用具有共同指数的\hyperref[sec:wj-seven-hara]{HARA}形式
+\[
+ u'_{k,1}(c)=\rho_k(d_k+c/\gamma)^{-\gamma}>0,
+ \qquad\rho_k>0,\quad\gamma>-1,\quad\gamma\ne0,
+\]
+其中 $d_k+c/\gamma>0$。则市场实质完全。
+\end{tcolorbox}
+
+\textbf{证明：}由定理~\ref{thm:wj-ten-7}（共同斜率的风险容忍度对应仿射最优分享规则），共同斜率的风险容忍度使每个最优分享规则为仿射函数。写成
+\[
+ c_{k,1}=a_k+b_kC_1
+ =\underbrace{a_k\mathbf1}_{\text{常数支付}}
+ +\underbrace{b_kX_M}_{\text{市场组合支付}}.
+\]
+
+若债券每单位到期支付1，只需持有 $a_k$ 单位债券和 $b_k$ 单位市场组合；若债券价格归一为1、到期支付 $1+r_F$，则债券头寸为 $a_k/(1+r_F)$。因此 $c_{k,1}\in M$。结合 $e_{k,1}\in M$，所有帕累托最优配置均可获得，市场实质完全。\hfill$\square$
+
+同一复制论证也适用于CARA偏好：其风险容忍度为常数，最优风险分担仍是总消费的仿射函数。债券和市场组合可以复制这些分享规则，从而实现实质完全。
+
+\section{本章小结}\label{sec:wj-eleven-summary}
+\begin{tcolorbox}[summary,breakable=false]
+\begin{enumerate}
+ \item 不完全市场将个人未来消费限制在 $e_{k,1}+M$；最优选择和均衡价格取决于支付结构及个人禀赋分布。
+ \item 已交易证券满足Euler方程，但个人定价核可以不同，现有证券的正状态价格向量也不唯一。
+ \item 竞争均衡是约束最优的；实质完全性使给定经济的全部最优风险分担都可获得，从而得到帕累托最优的均衡。
+ \item 在个人未来禀赋已市场化的证券经济中，总禀赋期权可以复制非线性分享规则；共同指数HARA或CARA偏好下，债券和市场组合即可复制仿射分享规则。
+\end{enumerate}
+\end{tcolorbox}
 \fi
 
+\ifdefined\WJHandoutKnowledge
+\section{练习}\label{sec:wj-eleven-exercises}
+\else
+\section*{课后习题}
+\addcontentsline{toc}{section}{课后习题}
+\fi
 \input{tex/金融经济学_王江/11_不完全市场_习题.tex}
+\endgroup

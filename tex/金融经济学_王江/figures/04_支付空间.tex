@@ -1,0 +1,28 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：第4章秩与支付生成。两个状态，允许持仓取任意实数。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=1cm]
+ \draw[->] (-.4,0)--(3.4,0) node[right] {$x_a$};
+ \draw[->] (0,-.4)--(0,3.2) node[above] {$x_b$};
+ \draw[blue!70!black,thick] (-.35,-.35)--(2.8,2.8);
+ \draw[->,blue!70!black,very thick] (0,0)--(1.5,1.5) node[above left] {$X_1$};
+ \draw[->,red!70!black,thick] (0,0)--(2.5,2.5) node[right] {$X_2$};
+ \fill (2.4,.6) circle(1.8pt) node[right] {$y$};
+ \node at (1.5,-.95) {（a）同向支付只生成一条直线};
+\end{tikzpicture}\hspace{1.1cm}
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=1cm]
+ \draw[->] (-.4,0)--(3.4,0) node[right] {$x_a$};
+ \draw[->] (0,-.4)--(0,3.2) node[above] {$x_b$};
+ \draw[->,blue!70!black,very thick] (0,0)--(2.6,.7) node[below right] {$X_1$};
+ \draw[->,red!70!black,very thick] (0,0)--(.6,2) node[above right] {$X_2$};
+ \draw[dashed,gray] (2.6,.7)--(3.2,2.7)--(.6,2);
+ \draw[->,black,thick] (0,0)--(3.2,2.7) node[above right] {$y$};
+ \node at (1.5,-.95) {（b）独立支付生成整个平面};
+\end{tikzpicture}
+\par\smallskip\small
+左图 $\operatorname{rank}(X)=1$，图中 $y$ 无法复制；右图 $\operatorname{rank}(X)=2$，任意两状态支付均可复制，所画 $y=X_1+X_2$。允许卖空时，生成空间包括负坐标方向。
+\WJFigure{fig:wj-payoff-span}{支付向量的秩与生成空间}
+\end{minipage}
+\end{center}

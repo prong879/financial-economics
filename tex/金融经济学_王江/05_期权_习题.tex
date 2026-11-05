@@ -1,8 +1,16 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 05_期权 课后习题（由章节文件拆分）
+% 教材练习：印刷第 82—85 页（PDF 第 97—100 页）；答案参考 PDF 第 20—25 页。
+% 5.1 教材原题除息价为 uS、dS；答案参考题干改写为 (1+rF+u)S、(1+rF-d)S 却仍沿用 uS、dS 的解答。恢复教材原题。
+% 5.3 原题“较高”补明弱不等式及严格条件；有限状态下两支付可同时为零。
+% 5.4 原参考答案用当期内在价值差界定未来蝴蝶支付价格，一般不成立；以到期支付上界 delta 贴现。
+% 5.8(c) 原题严格较高改为不低于；新增可执行策略只保证弱不等式。
+% 5.9 原参考仅解 ud<1 的子情形；现对四条路径取最大值，覆盖题给全部参数。
+\newcounter{wjFiveExercise}
+\renewcommand{\thewjFiveExercise}{\thechapter.\arabic{wjFiveExercise}}
+\newcommand{\WJFiveProblem}[1]{\refstepcounter{wjFiveExercise}\label{prob:wj-five-\arabic{wjFiveExercise}}\problemno{\thewjFiveExercise#1}}
 
 \begin{problem}
-\problemno{5.1} 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi$ 和 $1-\pi$。存在一只收益率为 $r_{F}$ 的无风险证券。还存在一只风险证券，它的现时价格为 $S$，在 1 期支付红利 $\delta S$。它在 1 期的除权价（即红利后的价格）在状态 $a$ 下是 $(1+r_{F}+u)S$、在状态 $b$ 下是 $(1+r_{F}-d)S$。
+\WJFiveProblem{} 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi$ 和 $1-\pi$。存在一只收益率为 $r_{F}$ 的无风险证券。还存在一只风险证券，它的现时价格为 $S$，在 1 期支付红利 $\delta S$。它在 1 期的除权价（即红利后的价格）在状态 $a$ 下是 $uS$、在状态 $b$ 下是 $dS$。
 \begin{enumerate}[label=(\alph*)]
     \item 为使市场中不存在套利机会，$\pi$，$r_{F}$，$u$，$d$ 和 $\delta$ 应该满足什么条件？
     \item 1 期到期、执行价为 $K$ 的欧式买权的 0 期价格是多少？
@@ -11,87 +19,122 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
+令 $R=1+r_F$。按 $u>d\ge0$、$S>0$、$\delta\ge0$ 记号讨论；期权在 1 期股利支付后按除息价结算。股票持有人收到的总支付分别为 $(u+\delta)S$、$(d+\delta)S$。
 \begin{enumerate}[label=(\alph*)]
-    \item $u+\delta>1+r_{F}>d+\delta$；
-    \item 令状态价格向量为 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$，那么有
-    \[
-        \begin{aligned}
-            \phi_{a}+\phi_{b}&=\frac{1}{1+r_{F}}\\
-            (u+\delta)S\phi_{a}+(d+\delta)S\phi_{b}&=S
-        \end{aligned}
-    \]
-    求解方程组可得状态价格为
-    \[
-        \begin{aligned}
-            \phi_{a}&=\frac{1}{1+r_{F}}\frac{(1+r_{F})-(d+\delta)}{u-d}\\
-            \phi_{b}&=\frac{1}{1+r_{F}}\frac{(u+\delta)-(1+r_{F})}{u-d}
-        \end{aligned}
-    \]
-    因而期权的价格为
-    \[
-        c=\phi_{a}[uS-K]_{+}+\phi_{b}[dS-K]_{+}=
-        \begin{cases}
-            0 & uS<K\\
-            \phi_{a}(uS-K) & dS\le K\le uS\\
-            \phi_{a}(uS-K)+\phi_{b}(dS-K) & K<dS
-        \end{cases}
-    \]
-    \item 对于美式期权来说，如果在 0 期执行，那么获得的收益是 $[S-K]_{+}$，如果在 1 期执行，那么收益和欧式期权一样，因而 $C=\max\{[S-K]_{+},c\}$。当且仅当 $[S-K]_{+}>c$ 时提前执行是最优的。当 $\delta$ 很大时，股价 $S$ 中含有股利的成份越多，因而越有可能提前执行。
-    \item 对于欧式看跌期权，价格为
-    \[
-        p=\phi_{a}[K-uS]_{+}+\phi_{b}[K-dS]_{+}=
-        \begin{cases}
-            0 & K<dS\\
-            \phi_{b}(K-dS) & dS\le K\le uS\\
-            \phi_{a}(K-uS)+\phi_{b}(K-dS) & K>uS
-        \end{cases}
-    \]
-    而对于美式看跌期权，$P=\max\{[K-S]_{+},p\}$。当 $\delta$ 越大时，股价 $S$ 中含有股利的成份越多，因而越有可能不提前执行。
+ \item 取两个状态均有正概率，即 $0<\pi<1$，并要求 $R>0$。无套利的充要条件为
+ \[
+ d+\delta<R<u+\delta.
+ \]
+
+ 若 $d+\delta\ge R$，买入一股并借入 $S$，到期两状态净支付均非负，至少一项严格为正；若 $u+\delta\le R$，卖出一股并将所得存入债券账户，也得到套利。反过来，下列严格正状态价格同时为股票和债券定价，保证无套利。
+
+ \item 状态价格满足
+ \[
+ \phi_a+\phi_b=\frac1R,\qquad
+ (u+\delta)S\phi_a+(d+\delta)S\phi_b=S.
+ \]
+
+ 解得
+ \[
+ \phi_a=\frac{R-d-\delta}{R(u-d)},\qquad
+ \phi_b=\frac{u+\delta-R}{R(u-d)}.
+ \]
+
+ 欧式看涨在除息后结算，故
+ \[
+ c=\phi_a[uS-K]_++\phi_b[dS-K]_+.
+ \]
+
+ 具体为
+ \[
+ c=\begin{cases}
+ 0,&K\ge uS,\\
+ \phi_a(uS-K),&dS\le K<uS,\\
+ \phi_a(uS-K)+\phi_b(dS-K),&K<dS.
+ \end{cases}
+ \]
+
+ 股票在到期时还支付确定股利 $\delta S$，所以欧式平价可核验为
+ \[
+ c+\frac K R+\frac{\delta S}R=p+S.
+ \]
+
+ \item 美式看涨在 0 期立即执行并卖出股票可得 $[S-K]_+$，等待则价值为 $c$，因此
+ \[
+ C=\max\{[S-K]_+,c\}\ge c.
+ \]
+
+ 当 $[S-K]_+>c$ 时立即执行严格更优；等号时两种选择价值相同。固定 $S,u,d,R$，在无套利参数范围内增加 $\delta$ 会降低 $\phi_a$、提高 $\phi_b$。因看涨的上涨支付不低于下跌支付，继续持有价值 $c$ 非增，提前执行动机相应增强。
+
+ \item 欧式看跌为
+ \[
+ p=\phi_a[K-uS]_++\phi_b[K-dS]_+
+ =\begin{cases}
+ 0,&K\le dS,\\
+ \phi_b(K-dS),&dS<K\le uS,\\
+ \phi_a(K-uS)+\phi_b(K-dS),&K>uS.
+ \end{cases}
+ \]
+
+ 美式看跌为 $P=\max\{[K-S]_+,p\}$，立即执行严格更优的条件为 $[K-S]_+>p$。看跌的下跌支付不低于上涨支付；在上述固定参数比较中，增加 $\delta$ 使继续持有价值 $p$ 非减，从而减弱提前执行动机。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.2} 在 1 期有三个可能状态：$\{\omega_{1},\omega_{2},\omega_{3}\}$，在经济中有三只交易证券，它们的支付向量如下：
+\WJFiveProblem{} 在 1 期有三个可能状态：$\{\omega_{1},\omega_{2},\omega_{3}\}$，在经济中有三只交易证券，它们的支付向量如下：
 \[
     X_{a}=\begin{bmatrix}1\\1\\0\end{bmatrix},\quad
     X_{b}=\begin{bmatrix}0\\1\\1\end{bmatrix},\quad
     X_{c}=\begin{bmatrix}1/2\\1\\1/2\end{bmatrix}.
 \]
-这些证券的 0 期均衡价格是 $S_{a}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。[这与前一章练习 4.5 定义的经济一样。]考虑一份标的资产证券为 $a$、执行价格为 $1/2$ 的欧式买权。它的支付是什么？你能确定它的价格吗？
+
+这些证券的 0 期均衡价格是 $S_{a}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。考虑一份标的资产证券为 $a$、执行价格为 $1/2$ 的欧式买权。它的支付是什么？你能确定它的价格吗？
 \end{problem}
 \begin{solution}
+
 它的支付是 $\begin{bmatrix}1/2\\1/2\\0\end{bmatrix}$，因为它的支付恰为证券 $a$ 的一半，因而它的价格也是一半即 $\tfrac12$。
 \end{solution}
 
 \begin{problem}
-\problemno{5.3} 蝴蝶头寸是看涨期权的组合：（1）买入 1 份执行价格为 $K-\delta$ 的看涨期权，（2）卖出 2 份执行价格为 $K$ 的看涨期权，（3）买入 1 份执行价格为 $K+\delta$ 的看涨期权。因此，蝴蝶头寸可由两个参数 $K$ 和 $\delta$ 刻划。比较两个蝴蝶头寸，$K$ 相同但 $\delta$ 不同。证明 $\delta$ 较高的蝴蝶头寸的价值较高。
+\WJFiveProblem{} 蝴蝶头寸是看涨期权的组合：（1）买入 1 份执行价格为 $K-\delta$ 的看涨期权，（2）卖出 2 份执行价格为 $K$ 的看涨期权，（3）买入 1 份执行价格为 $K+\delta$ 的看涨期权。因此，蝴蝶头寸可由两个参数 $K$ 和 $\delta$ 刻划。比较两个蝴蝶头寸，$K$ 相同但 $\delta$ 不同。证明较宽的蝴蝶头寸价值不低，并说明严格较高的条件。
 \end{problem}
 \begin{solution}
-无套利时定价算子单调（定理 4.5）：一份支付在每个状态下都不低于另一份，价格也不更低。差额在某些状态严格为正、其余状态不为负时，由定理 4.4 价格严格更高。下面比较两种宽度的蝴蝶头寸的支付。
 
-假设 $\delta_{1}>\delta_{0}$，比较两只期权的支付。当 1 期价格 $S$ 大于 $K+\delta$ 或者小于 $K-\delta$ 时，两者的支付都为 0；当 $S\in[K-\delta_{1},K-\delta_{0}]$ 时 $X_{1}=S-(K-\delta_{1})>X_{0}=0$；当 $S\in[K-\delta_{0},K]$ 时 $X_{1}=S-(K-\delta_{1})>S-(K-\delta_{0})=X_{0}$；当 $S\in[K,K+\delta_{0}]$ 时 $X_{1}=-S+(K+\delta_{1})>-S+(K+\delta_{0})=X_{0}$；当 $S\in[K+\delta_{0},K+\delta_{1}]$ 时 $X_{1}=-S+(K+\delta_{1})>0=X_{0}$；根据无套利原理，$\delta$ 较高的期权价格较高。
+蝴蝶支付可简写为
+\[
+ h_\delta(x)=[\delta-|x-K|]_+.
+\]
+
+若 $\delta_1>\delta_0>0$，逐状态均有 $h_{\delta_1}(x)\ge h_{\delta_0}(x)$。由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-four-5}\else 价格的单调性\fi（逐状态支付不低则价格不低），较宽组合的价格不低。
+
+当存在正概率状态满足 $|\tilde X-K|<\delta_1$ 时，较宽组合在该状态的支付严格更高，由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-four-4}\else 非负支付的正价格性质\fi（非负、非零支付具有严格正价格）得到严格价格比较。若全部状态均落在较宽组合的支付区间之外或端点，两组合支付都为零，价格相等。
 \end{solution}
 
 \begin{problem}
-\problemno{5.4} 对于参数为 $K$ 和 $\delta$ 的蝴蝶头寸，给出它的价格的一个上界和下界。
+\WJFiveProblem{} 对于参数为 $K$ 和 $\delta$ 的蝴蝶头寸，给出它的价格的一个上界和下界。
 \end{problem}
 \begin{solution}
-一个上界是 $[S-(K-\delta)]_{+}-[S-(K+\delta)]_{+}$，因为期权的支付是非负的，因而 0 是它的一个下界。
+
+蝴蝶支付满足 $0\le h_\delta(\tilde X)\le\delta$。若单位债券到期支付 $1$、价格为 $B=1/R$，则无套利给出
+\[
+ 0\le V(h_\delta)\le\frac\delta R.
+\]
+
+下界由支付非负得到；上界由到期确定支付 $\delta$ 的债券组合得到。还可利用
+\[
+ h_\delta(\tilde X)\le[\tilde X-(K-\delta)]_+-[\tilde X-K]_+
+\]
+给出可交易看涨价差的上界：
+\[
+ V(h_\delta)\le c(S,K-\delta)-c(S,K).
+\]
 \end{solution}
 
 \begin{problem}
-\problemno{5.5} 股票价格具有如下形式的二叉树结构：
+\WJFiveProblem{} 股票价格具有如下形式的二叉树结构：
 \begin{center}
-\begin{tikzpicture}[x=1.35em,y=1.15em,baseline=(current bounding box.center)]
-    \node[anchor=east] at (-0.15,0) {$10$};
-    \draw[thick] (0,0) -- (1.1,0.7);
-    \draw[thick] (0,0) -- (1.1,-0.7);
-    \draw[thick] (1.1,0.35) -- (1.1,1.05);
-    \draw[thick] (1.1,0.7) -- (1.85,0.7);
-    \draw[thick] (1.1,-0.7) -- (1.85,-0.7);
-    \node[anchor=west] at (2.0,0.7) {$12$};
-    \node[anchor=west] at (2.0,-0.7) {$8$};
-\end{tikzpicture}
+\WJEventTree[left={$10$},stem]{12,8}
 \end{center}
 两个可能结果的发生概率相等，无风险利率是 $10\%$。
 \begin{enumerate}[label=(\alph*)]
@@ -100,34 +143,34 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
 \begin{enumerate}[label=(\alph*)]
-    \item 由第 1 题中公式可以得到状态价格为 $\phi=[\tfrac{15}{22},\tfrac{5}{22}]$，因而看跌期权的价格为 $\dfrac{5}{22}\times[9-8]=\dfrac{5}{22}$；
-    \item 由于股价不变，状态价格也不会变化，因而看跌期权的价格是不变的。
+ \item $R=11/10$、$u=6/5$、$d=4/5$，故风险中性上涨概率为 $q=(R-d)/(u-d)=3/4$。状态价格为
+ \[
+ \phi_u=\frac qR=\frac{15}{22},\qquad
+ \phi_d=\frac{1-q}R=\frac5{22}.
+ \]
+
+ 看跌到期支付为 $(0,1)^{\mathsf T}$，所以 $p_0=5/22$。
+ \item 给定股票和债券价格、未来两种支付，复制组合与状态价格已确定。真实上涨概率的变化不改变这组复制条件，故看跌的无套利价格仍为 $5/22$。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.6} 二叉树模型可以拓展到多于两个时期的情形。考虑拓展到三个时期 0，1，2 的情况。股票价格服从如下的二叉树过程：
+\WJFiveProblem{} 二叉树模型可以拓展到多于两个时期的情形。考虑拓展到三个时期 0，1，2 的情况。股票价格服从如下的二叉树过程：
 \begin{center}
-\begin{tikzpicture}[x=1.6em,y=1.15em,baseline=(current bounding box.center)]
-    \node[anchor=east] at (0,0) {$10$};
-    \draw[thick] (0.15,0) -- (1.5,1.6);
-    \draw[thick] (0.15,0) -- (1.5,-1.6);
-    \node[anchor=east] at (1.5,1.6) {$12$};
-    \node[anchor=east] at (1.5,-1.6) {$8$};
-    \draw[thick] (1.65,1.6) -- (3.2,2.7);
-    \draw[thick] (1.65,1.6) -- (3.2,0.7);
-    \draw[thick] (1.65,-1.6) -- (3.2,-0.7);
-    \draw[thick] (1.65,-1.6) -- (3.2,-2.7);
-    \draw[thick] (3.2,2.2) -- (3.2,3.2);
-    \draw[thick] (3.2,2.7) -- (4.0,2.7);
-    \draw[thick] (3.2,0.7) -- (4.0,0.7);
-    \draw[thick] (3.2,-0.7) -- (4.0,-0.7);
-    \draw[thick] (3.2,-2.7) -- (4.0,-2.7);
-    \node[anchor=west] at (4.15,2.7) {$14.4$};
-    \node[anchor=west] at (4.15,0.7) {$9.6$};
-    \node[anchor=west] at (4.15,-0.7) {$9.6$};
-    \node[anchor=west] at (4.15,-2.7) {$6.4$};
+\begin{tikzpicture}[WJ binomial compact]
+\node[WJ binomial node] (A) at (0,0) {$10$};
+\node[WJ binomial node] (B) at (1,1.25) {$12$};
+\node[WJ binomial node] (C) at (1,-1.25) {$8$};
+\node[WJ binomial node] (D) at (2,2) {$14.4$};
+\node[WJ binomial node] (E) at (2,.6667) {$9.6$};
+\node[WJ binomial node] (F) at (2,-.6667) {$9.6$};
+\node[WJ binomial node] (G) at (2,-2) {$6.4$};
+\foreach \a/\b in {A/B,A/C,B/D,B/E,C/F,C/G}
+  \draw[WJ binomial edge] (\a.east) -- (\b.west);
+\foreach \x/\t in {0/0,1/1,2/2}
+  \node[WJ binomial time] at (\x,-2.65) {$t=\t$};
 \end{tikzpicture}
 \end{center}
 每一期间（即，从 0 期到 1 期或从 1 期到 2 期）的利率都是 $10\%$。考虑一份在 2 期到期、执行价格为 9 的看涨期权。
@@ -139,88 +182,103 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
+沿用练习~\ref{prob:wj-five-5} 的逐期状态价格 $\phi_u=15/22$、$\phi_d=5/22$，每个节点使用相同的复制关系。
 \begin{enumerate}[label=(\alph*)]
-    \item 支付是
-    \[
-        \begin{bmatrix}5.4\\0.6\\0.6\\0\end{bmatrix}
-    \]
-    \item 可以求得每个节点的状态价格都和第 5 题中的一样。当股价为 12 时，期权价格为 $\dfrac{15}{22}\times 5.4+\dfrac{5}{22}\times 0.6=3.82$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 0.6=0.41$；
-    \item 看涨期权的 0 期价格为 $\dfrac{15}{22}\times 3.82+\dfrac{5}{22}\times 0.41=2.70$；
-    \item 因为没有股利，美式看涨期权不会提前执行，价格也是 2.70。
+ \item 按 $uu,ud,du,dd$ 四条路径排列，到期支付为 $(27/5,3/5,3/5,0)^{\mathsf T}$。
+ \item 股价为 $12$ 与 $8$ 时的期权价格分别为
+ \[
+ c_{1,u}=\frac{15}{22}\frac{27}{5}+\frac5{22}\frac35=\frac{42}{11}\approx3.8182,
+ \qquad
+ c_{1,d}=\frac{15}{22}\frac35=\frac9{22}\approx0.4091.
+ \]
+ \item 继续倒推，
+ \[
+ c_0=\frac{15}{22}\frac{42}{11}+\frac5{22}\frac9{22}
+ =\frac{1305}{484}\approx2.6963.
+ \]
+ \item 股票无股利且利率为正，各节点提前执行看涨均不优于持有。美式与欧式价格相同，约为 $2.70$。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.7*} 在练习 5.6 描述的经济中，考虑一份以股票为标的资产、在 2 期到期、执行价格为 14 的看跌期权。
+\WJFiveProblem{*} 在练习~\ref{prob:wj-five-6} 描述的经济中，考虑一份以股票为标的资产、在 2 期到期、执行价格为 14 的看跌期权。
 \begin{enumerate}[label=(\alph*)]
     \item 如果它是欧式期权，求解它的 0 期价格。
     \item 如果它是美式期权，求解它的 0 期价格。
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
 \begin{enumerate}[label=(\alph*)]
-    \item 期权的 2 期支付是 $\begin{bmatrix}0\\4.4\\4.4\\7.6\end{bmatrix}$；在 1 期，当股价为 12 时，期权价格为 $\dfrac{5}{22}\times 4.4=1$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 4.4+\dfrac{5}{22}\times 7.6=4.73$；因而期权的 0 期价格为 $\dfrac{15}{22}\times 1+\dfrac{5}{22}\times 4.73=1.76$。
-    \item 期权的 2 期支付是 $\begin{bmatrix}0\\4.4\\4.4\\7.6\end{bmatrix}$；在 1 期如果不提前执行，当股价为 12 时，期权价格为 $\dfrac{5}{22}\times 4.4=1$；当股价为 8 时，期权价格为 $\dfrac{15}{22}\times 4.4+\dfrac{5}{22}\times 7.6=4.73$；而如果在 1 期提前执行，那么期权的支付分别为 2 和 6，因而参与者会提前执行，期权在 1 期的支付为 $\begin{bmatrix}2 \\ 6\end{bmatrix}$；如果在 0 期不提前执行，期权的价格为 $\dfrac{15}{22}\times 2+\dfrac{5}{22}\times 6=2.73$，而如果在 0 期提前执行，参与者的收益是 4，因此参与者在 0 期就执行期权，期权在 0 期的价格是 4。
+ \item 到期支付为 $(0,22/5,22/5,38/5)^{\mathsf T}$。在 1 期两节点，
+ \[
+ p_{1,u}=\frac5{22}\frac{22}{5}=1,\qquad
+ p_{1,d}=\frac{15}{22}\frac{22}{5}+\frac5{22}\frac{38}{5}
+ =\frac{52}{11}.
+ \]
+
+ 因而欧式价格为
+ \[
+ p_0=\frac{15}{22}\times1+\frac5{22}\frac{52}{11}
+ =\frac{425}{242}\approx1.7562.
+ \]
+ \item 美式期权在 1 期比较立即执行与继续持有：
+ \[
+ P_{1,u}=\max\{14-12,1\}=2,\qquad
+ P_{1,d}=\max\{14-8,52/11\}=6.
+ \]
+
+ 两节点均应立即执行。0 期继续持有价值为 $(15/22)2+(5/22)6=30/11$，立即执行价值为 $14-10=4$，故 $P_0=4$。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.8*} 这里的经济与练习 5.6 描述的经济一样，只是这里的参数更一般性：
+\WJFiveProblem{*} 这里的经济与练习~\ref{prob:wj-five-6} 描述的经济一样，只是这里的参数更一般性：
 \begin{center}
-\begin{tikzpicture}[x=1.6em,y=1.15em,baseline=(current bounding box.center)]
-    \node[anchor=east] at (0,0) {$S$};
-    \draw[thick] (0.15,0) -- (1.5,1.6);
-    \draw[thick] (0.15,0) -- (1.5,-1.6);
-    \node[anchor=east] at (1.5,1.6) {$uS$};
-    \node[anchor=east] at (1.5,-1.6) {$dS$};
-    \draw[thick] (1.65,1.6) -- (3.2,2.7);
-    \draw[thick] (1.65,1.6) -- (3.2,0.7);
-    \draw[thick] (1.65,-1.6) -- (3.2,-0.7);
-    \draw[thick] (1.65,-1.6) -- (3.2,-2.7);
-    \draw[thick] (3.2,2.2) -- (3.2,3.2);
-    \draw[thick] (3.2,2.7) -- (4.0,2.7);
-    \draw[thick] (3.2,0.7) -- (4.0,0.7);
-    \draw[thick] (3.2,-0.7) -- (4.0,-0.7);
-    \draw[thick] (3.2,-2.7) -- (4.0,-2.7);
-    \node[anchor=west] at (4.15,2.7) {$u^{2}S$};
-    \node[anchor=west] at (4.15,0.7) {$udS$};
-    \node[anchor=west] at (4.15,-0.7) {$duS$};
-    \node[anchor=west] at (4.15,-2.7) {$d^{2}S$};
+\begin{tikzpicture}[WJ binomial compact]
+\node[WJ binomial node] (A) at (0,0) {$S$};
+\node[WJ binomial node] (B) at (1,1.25) {$uS$};
+\node[WJ binomial node] (C) at (1,-1.25) {$dS$};
+\node[WJ binomial node] (D) at (2,2) {$u^{2}S$};
+\node[WJ binomial node] (E) at (2,.6667) {$udS$};
+\node[WJ binomial node] (F) at (2,-.6667) {$duS$};
+\node[WJ binomial node] (G) at (2,-2) {$d^{2}S$};
+\foreach \a/\b in {A/B,A/C,B/D,B/E,C/F,C/G}
+  \draw[WJ binomial edge] (\a.east) -- (\b.west);
+\foreach \x/\t in {0/0,1/1,2/2}
+  \node[WJ binomial time] at (\x,-2.65) {$t=\t$};
 \end{tikzpicture}
 \end{center}
 每一期间的利率都是 $r_{F}$ 且 $0<d<1+r_{F}<u$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解在每一时期考虑下一期的两种可能情形（即股价上升或下降）的风险中性概率。
     \item 用 $S$，$u$，$d$ 和 $r_{F}$ 表示欧式看跌期权在 0 期的价格。
-    \item 证明在 2 期到期的美式看涨期权的价格比具有相同执行价格、但在 1 期到期的美式看涨期权的价格要高。
+    \item 证明在 2 期到期的美式看涨期权的价格比具有相同执行价格、但在 1 期到期的美式看涨期权的价格不低。
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
+令 $R=1+r_F$。由 $0<d<R<u$，每个节点的风险中性概率均为
+\[
+ q=\frac{R-d}{u-d},\qquad1-q=\frac{u-R}{u-d}.
+\]
 \begin{enumerate}[label=(\alph*)]
-    \item 状态价格在每期都是一样的，
-    \[
-        \begin{aligned}
-            \phi_{u}&=\frac{1}{1+r_{F}}\frac{(1+r_{F})-d}{u-d}\\
-            \phi_{d}&=\frac{1}{1+r_{F}}\frac{u-(1+r_{F})}{u-d}
-        \end{aligned}
-    \]
-    因此，每一个节点处的风险中性概率也是一样的，
-    \[
-        q_{u}=\frac{(1+r_{F})-d}{u-d},\quad q_{d}=\frac{u-(1+r_{F})}{u-d}
-    \]
-    \item 欧式看跌期权在 0 期的价格为
-    \[
-        \begin{aligned}
-            &\phi_{u}\bigl(\phi_{u}[K-u^{2}S]_{+}+\phi_{d}[K-udS]_{+}\bigr)+\phi_{d}\bigl(\phi_{u}[K-udS]_{+}+\phi_{d}[K-d^{2}S]_{+}\bigr)\\
-            &=\phi_{u}^{2}[K-u^{2}S]_{+}+2\phi_{u}\phi_{d}[K-udS]_{+}+\phi_{d}^{2}[K-d^{2}S]_{+}
-        \end{aligned}
-    \]
-    \item 因为美式期权可以提前执行，在 2 期到期的期权既可以选在 1 期执行也可以选择在 2 期执行，而在 1 期到期的美式看涨期权只会选择在 1 期执行（虽然都可以在 0 期执行，但是在没有股利的情况下，美式看涨期权是不会提前执行的），因而在 2 期到期的期权价格更高。
+ \item 下一期条件状态价格为 $\phi_u=q/R$、$\phi_d=(1-q)/R$，各节点相同。
+ \item 四条路径的支付按其风险中性权重贴现两期：
+ \[
+ p_0=\frac1{R^2}\left\{
+ q^2[K-u^2S]_++2q(1-q)[K-udS]_++(1-q)^2[K-d^2S]_+
+ \right\}.
+ \]
+ \item 2 期到期的美式期权允许在 0、1、2 期执行，1 期到期的只允许在 0、1 期执行。后者的每一种执行策略都可用于前者，所得支付相同，故前者的价值不低。
+
+ 新增执行机会可能带来严格增益。例如 $S=10,u=1.2,d=0.8,R=1.1,K=13$ 时，1 期到期的看涨在两状态均为零，而 2 期到期的看涨在 $uu$ 路径有正支付，因此后者价格严格更高。若把 $K$ 改为 $20$，所有执行时点都为虚值，两种期限的价格均为零。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.9*} 考虑练习 5.8 描述的经济。假设一只证券在 2 期的支付是股票价格从 0 期到 2 期所达到的最大值。（这是一个关于回望期权的例子，它的支付依赖于标的证券的价格路径）。
+\WJFiveProblem{*} 考虑练习~\ref{prob:wj-five-8} 描述的经济。假设一只证券在 2 期的支付是股票价格从 0 期到 2 期所达到的最大值。（这是一个关于回望期权的例子，它的支付依赖于标的证券的价格路径）。
 \begin{enumerate}[label=(\alph*)]
     \item 写出它在 2 期的支付。
     \item 导出它的 0 期价格。
@@ -228,27 +286,54 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
-这里只考虑 $ud<1$ 的情形，其它情形可以类似考虑。
+
+令 $R=1+r_F$、$q=(R-d)/(u-d)$。记 $h_{ij}$ 为沿路径 $ij$ 到达 2 期时的最大历史股价。
 \begin{enumerate}[label=(\alph*)]
-    \item 期权在 2 期的支付是
-    \[
-        \begin{bmatrix}u^{2}S\\uS\\S\end{bmatrix}
-    \]
-    \item 0 期价格为 $\phi_{u}^{2}u^{2}S+\phi_{u}\phi_{d}(u+1)S+\phi_{d}^{2}S$；
-    \item 用在 2 期支付一美元的无风险债券把价格正规化之后，价格过程是鞅，是指在每个节点上这个比值等于它下一期的条件期望。债券价格就是折现因子，所以两期之间这等价于当前价格等于 $\mathrm{E}^{Q}[\text{下一期支付}]/(1+r_{F})$。在 1 期，当股价为 $uS$ 时，
-    \[
-        \mathrm{E}^{Q}[\tilde{X}_{2}]=\frac{1}{\phi_{u}+\phi_{d}}(\phi_{u}u^{2}S+\phi_{d}uS)
-    \]
-    而正规化后的价格为
-    \[
-        (\phi_{u}u^{2}S+\phi_{d}uS)\Big/\frac{1}{1+r_{F}}=(1+r_{F})(\phi_{u}u^{2}S+\phi_{d}uS)=\frac{1}{\phi_{u}+\phi_{d}}(\phi_{u}u^{2}S+\phi_{d}uS)
-    \]
-    可以验证其它各节点均如此，因而期权的价格过程为鞅。
+ \item 按 $uu,ud,du,dd$ 排列，完整支付为
+ \[
+ \begin{aligned}
+ h_{uu}&=S\max\{1,u,u^2\},&h_{ud}&=S\max\{1,u,ud\},\\
+ h_{du}&=S\max\{1,d,du\},&h_{dd}&=S\max\{1,d,d^2\}.
+ \end{aligned}
+ \]
+
+ 若 $u>1>d$ 且 $ud<1$，则得到 $(u^2S,uS,S,S)^{\mathsf T}$。中间两条路径的终点股价相同，但历史最高价可以不同。
+
+ \item 1 期的两个节点价值与 0 期价值分别为
+ \[
+ V_{1,u}=\frac{qh_{uu}+(1-q)h_{ud}}R,\qquad
+ V_{1,d}=\frac{qh_{du}+(1-q)h_{dd}}R,
+ \]
+ \[
+ V_0=\frac1{R^2}\left\{q^2h_{uu}+q(1-q)(h_{ud}+h_{du})+(1-q)^2h_{dd}\right\}.
+ \]
+
+ 四条路径分别赋予风险中性权重；相同终点股价的路径按各自的历史最高价计价。
+
+ \item 以 2 期支付一单位的债券为计价单位，其价格为
+ \[
+ B_0=R^{-2},\qquad B_1=R^{-1},\qquad B_2=1.
+ \]
+
+ 记 $\widehat V_t=V_t/B_t$。在 1 期上涨节点，
+ \[
+ \widehat V_{1,u}=RV_{1,u}=qh_{uu}+(1-q)h_{ud}
+ =\left.\mathrm E^Q[\widehat V_2\mid\mathcal F_1]\right|_u.
+ \]
+
+ 在下跌节点同样有 $\widehat V_{1,d}=qh_{du}+(1-q)h_{dd}$。0 期则有
+ \[
+ \mathrm E^Q[\widehat V_1]
+ =qRV_{1,u}+(1-q)RV_{1,d}=R^2V_0=\widehat V_0.
+ \]
+
+ 两个日期的条件期望关系均成立，所以债券计价的价格过程在等价鞅测度 $Q$ 下是鞅。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{5.10} 经济在 1 期有 3 个状态。状态一指数证券在三个状态下的支付分别为 1，2，3：
+\begin{samepage}
+\WJFiveProblem{} 经济在 1 期有 3 个状态。状态指数证券在三个状态下的支付分别为 1，2，3：
 \begin{center}
 \WJEventTree[stem]{1,2,3}
 \end{center}
@@ -260,8 +345,10 @@
 \qquad
 \WJEventTree[stem]{1,0,0}
 \end{center}
+\end{samepage}
 \end{problem}
 \begin{solution}
+
 记状态指数证券的支付向量为 $X_{0}=\begin{bmatrix}1\\2\\3\end{bmatrix}$，执行价格为 1 的指数期权的支付向量为 $X_{1}=\begin{bmatrix}0\\1\\2\end{bmatrix}$，执行价格为 2 的指数期权的支付向量为 $X_{2}=\begin{bmatrix}0\\0\\1\end{bmatrix}$ 那么我们可得：
 \[
     X_{0}-X_{1}=\begin{bmatrix}1\\1\\1\end{bmatrix},\quad

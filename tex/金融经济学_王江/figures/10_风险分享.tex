@@ -1,0 +1,22 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：CARA风险容忍度d1=3,d2=1；合适的规划权重使截距为0。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.35cm,y=.85cm]
+ \draw[->] (0,0)--(5.7,0) node[right] {总消费 $C$};
+ \draw[->] (0,0)--(0,5.5) node[above] {个人消费};
+ \draw[gray,dashed] (0,0)--(5,5) node[above left] {$f_1+f_2=C$};
+ \draw[blue!70!black,very thick] (0,0)--(5,3.75) node[right] {$f_1(C)=3C/4$};
+ \draw[red!70!black,thick] (0,0)--(5,1.25) node[right] {$f_2(C)=C/4$};
+ \draw[dotted,gray] (4,0)--(4,3)--(0,3) (4,1)--(0,1);
+ \fill[blue!70!black] (4,3) circle(1.8pt);
+ \fill[red!70!black] (4,1) circle(1.8pt);
+ \node[below] at (4,0) {$4$}; \node[left] at (0,3) {$3$}; \node[left] at (0,1) {$1$};
+\end{tikzpicture}
+\par\smallskip\small
+例取 $u_1(c)=-e^{-c/3},u_2(c)=-e^{-c}$、规划权重 $(\mu_1,\mu_2)=(3,1)$。
+两人的风险容忍度分别为 $3,1$，分享斜率为 $3/4,1/4$。总消费增加一单位时，各自消费增加 $3/4,1/4$；个人禀赋风险通过交易分担，总资源风险仍由双方共同承担。
+\WJFigure{fig:wj-risk-sharing}{风险容忍度与最优消费分享}
+\end{minipage}
+\end{center}

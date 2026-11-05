@@ -1,0 +1,23 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教材图15.1，印刷第229页；按例15.1取K=4，V(y0)=4sqrt(y0)。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.1cm,y=.55cm]
+ \draw[->] (0,0)--(8,0) node[right] {投入 $y_0$};
+ \draw[->] (0,0)--(0,12.5) node[above] {产出市值 $V$};
+ \draw[blue!70!black,very thick,domain=0:7.4,samples=100] plot (\x,{4*sqrt(\x)});
+ \draw[gray,dashed] (0,0)--(7.4,7.4) node[right] {$V=y_0$};
+ \draw[red!70!black,thick] (0,4)--(7.4,11.4) node[above left] {$V=y_0+v^*$};
+ \draw[dotted,gray] (4,0)--(4,8)--(0,8);
+ \draw[<->] (4,4)--(4,8) node[midway,right,xshift=3pt] {$v^*=4$};
+ \fill (4,8) circle(2pt) node[above left] {$V'(y_0^*)=1$};
+ \node[below] at (4,0) {$y_0^*=4$}; \node[left] at (0,8) {$8$};
+ \node[blue!70!black] at (6.3,9.1) {$V=\phi^{\mathsf T}y_1(y_0)$};
+\end{tikzpicture}
+\par\smallskip\small
+例取 $V(y_0)=4\sqrt{y_0}$。生产曲线与斜率为 $1$ 的最高等净值线相切时，$V-y_0$ 最大。
+最优投入为 $4$，产出市值为 $8$，净值为 $4$；净值对应生产曲线与成本线的竖直距离。
+\WJFifteenFigure{fig:wj-fifteen-1}{最优生产决策与净值最大化}
+\end{minipage}
+\end{center}

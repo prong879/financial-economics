@@ -1,0 +1,36 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教材图13.1，印刷第201页；左侧补图衔接第12章。
+% 两轴均为净收益率；右图采用正文例题rF=4%、rM=12%。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=.85cm]
+ \draw[->] (0,0)--(4.3,0) node[right] {$\sigma$};
+ \draw[->] (0,0)--(0,4.6) node[above] {$\mathrm E[r]$};
+ \draw[blue!70!black,very thick] (0,1)--(2.3,4.25269) node[above right] {CML};
+ \draw[gray!65,thick,domain=-1.4:0,samples=40,variable=\t]
+   plot ({sqrt(1+\t*\t)},{2+\t});
+ \draw[red!70!black,thick,domain=0:2.3,samples=50,variable=\t]
+   plot ({sqrt(1+\t*\t)},{2+\t});
+ \fill (1.41421,3) circle(1.8pt) node[above left] {$M=T$};
+ \fill[red!70!black] (2.7,2.2) circle(1.8pt) node[right] {$q$};
+ \node[left] at (0,1) {$r_F$};
+ \node[align=center] at (2,-1.05) {（a）资本市场线\\有效组合的总风险与收益};
+\end{tikzpicture}\hspace{.9cm}
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.65cm,y=.85cm]
+ \draw[->] (-.35,0)--(2.65,0) node[right] {$\beta_{n,M}$};
+ \draw[->] (0,0)--(0,4.6) node[above] {$\mathrm E[r_n]$};
+ \draw[blue!70!black,very thick] (-.25,.5)--(1.65,4.3) node[above right] {SML};
+ \draw[dotted,gray] (1,0)--(1,3)--(0,3);
+ \fill (1,3) circle(1.8pt) node[above left] {$M$};
+ \fill[red!70!black] (1.5,4) circle(1.8pt);
+ \node[below] at (1,0) {$1$}; \node[below] at (1.5,0) {$1.5$};
+ \node[left] at (0,1) {$4\%$}; \node[left] at (0,3) {$12\%$};
+ \node[right,red!70!black] at (1.5,4) {$16\%$};
+ \node[align=center] at (1.05,-1.05) {（b）证券市场线\\各证券及组合的贝塔与收益};
+\end{tikzpicture}
+\par\smallskip\small
+在 CAPM 均衡中，切点组合就是市场组合。CML 以总标准差为横轴，只刻画有效组合；SML 以市场贝塔为横轴，刻画各证券及组合的期望收益。
+\WJThirteenFigure{fig:wj-thirteen-1}{资本市场线与证券市场线}
+\end{minipage}
+\end{center}

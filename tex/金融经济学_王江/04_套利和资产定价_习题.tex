@@ -1,8 +1,18 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 04_套利和资产定价 课后习题（由章节文件拆分）
+% 教材练习：印刷第 63—65 页（PDF 第 78—80 页）。
+% 对照：正式勘误 2021、答案参考 PDF 第 14—18 页；答案参考的计算另行核验。
+% 4.1(a) 参考答案误将 X1,X2,X3,X4 判为独立；实际 X2=X1+X3。
+% 4.1(b) 原书题干未给价格；数值条件来自答案参考解答，补明无套利假设。
+% 4.5(b) 原题“非负”按本章基本定理的严格正条件校正。
+% 4.6(a) 原题“当期价格 S1”按其时点定义校正为 S0，并补全交割准备金策略。
+% 4.8 使用正式勘误中的证券 1、2、4、5 及价格，不采用答案参考末尾的另一改题方案。
+
+\newcounter{wjFourExercise}
+\renewcommand{\thewjFourExercise}{\thechapter.\arabic{wjFourExercise}}
+\newcommand{\WJFourProblem}[2]{\refstepcounter{wjFourExercise}\label{#1}\problemno{\thewjFourExercise#2}}
 
 \begin{problem}
-\problemno{4.1} 经济在 1 期有 4 个可能状态。在市场中有 5 只可交易证券，它们的支付矩阵 $X$ 如下：
+\WJFourProblem{prob:wj-four-1}{} 经济在 1 期有 4 个可能状态。在市场中有 5 只可交易证券，它们的支付矩阵 $X$ 如下：
 \[
     X=\begin{bmatrix}
         1 & 1 & 0 & 0 & 0 \\
@@ -13,7 +23,7 @@
 \]
 \begin{enumerate}[label=(\alph*)]
     \item 证明市场是完全的。
-    \item 假设五只证券的 0 期价格分别为 $1$，$2.5$，$1.5$，$0.75$，$0.25$。证明状态价格向量存在且唯一，并给出它的值。
+    \item 假设市场无套利，证明状态价格向量存在且唯一。进一步设五只证券的 0 期价格分别为 $1$，$2.5$，$1.5$，$0.75$，$0.25$，求状态价格向量。
     \item 证明市场上存在冗余证券。
     \item 选择一组足以保证市场完全的复合证券。把每一只 Arrow-Debreu 证券都表示成这些证券的组合。称这些组合为状态或有组合。
     \item 用状态或有组合把任一由五只交易证券组成的组合表示出来。
@@ -21,58 +31,104 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
-记 5 只交易证券的支付向量分别为
-\[
-    X_{1}=\begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix},\quad X_{2}=\begin{bmatrix}1 \\ 2 \\ 3 \\ 4\end{bmatrix},\quad X_{3}=\begin{bmatrix}0 \\ 1 \\ 2 \\ 3\end{bmatrix},\quad X_{4}=\begin{bmatrix}0 \\ 0 \\ 1 \\ 2\end{bmatrix},\quad X_{5}=\begin{bmatrix}0 \\ 0 \\ 0 \\ 1\end{bmatrix}
-\]
 \begin{enumerate}[label=(\alph*)]
-    \item 因为 $X_{1}$、$X_{2}$、$X_{3}$、$X_{4}$ 的支付是互相独立的四只证券，而状态数等于 4，因而证券市场是完全的；
-    \item 假设状态价格向量为 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3} \\ \phi_{4}\end{bmatrix}$，那么有：
+    \item 证券 $2,3,4,5$ 的支付子矩阵为
     \[
-        \begin{aligned}
-            \phi_{1}+\phi_{2}+\phi_{3}+\phi_{4}&=1\\
-            \phi_{1}+2\phi_{2}+3\phi_{3}+4\phi_{4}&=2.5\\
-            \phi_{2}+2\phi_{3}+3\phi_{4}&=1.5\\
-            \phi_{3}+2\phi_{4}&=0.75\\
-            \phi_{4}&=0.25
-        \end{aligned}
+      Y=[X_2,X_3,X_4,X_5]
+      =\begin{bmatrix}1&0&0&0\\2&1&0&0\\3&2&1&0\\4&3&2&1\end{bmatrix}.
     \]
-    求解上述方程组可以得到唯一的解为 $\phi=\begin{bmatrix}\tfrac14 \\ \tfrac14 \\ \tfrac14 \\ \tfrac14\end{bmatrix}$；
-    \item 买入 1 单位的证券 2 卖出 1 单位的证券 3，得到的支付是 $\begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix}$，恰好就是证券 1 的支付，因而市场上存在冗余证券；
-    \item 证券 2、3、4、5 可以保证市场完全，而且我们有
+
+    $Y$ 是对角元均为 $1$ 的下三角矩阵，故 $\det Y=1$，四列线性无关。状态数为 $4$，所以 $\operatorname{rank}(X)=4$，市场完全。前四只证券之间则有 $X_2=X_1+X_3$，它们不是一组独立证券。
+
+    \item 无套利保证存在 $\phi\gg0$ 满足 $X^{\mathsf T}\phi=S$；完全性保证该解唯一。也可直接观察：$Y$ 可逆，证券 $2,3,4,5$ 的价格已经唯一确定 $\phi$，其余证券的价格由无套利复制关系确定。
+
+    代入给定价格，状态价格方程为
     \[
-        \begin{aligned}
-            X_{2}-2X_{3}+X_{4}&=\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix}\\
-            X_{3}-2X_{4}+X_{5}&=\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\\
-            X_{4}-2X_{5}&=\begin{bmatrix}0 \\ 0 \\ 1 \\ 0\end{bmatrix}\\
-            X_{5}&=\begin{bmatrix}0 \\ 0 \\ 0 \\ 1\end{bmatrix}
-        \end{aligned}
+      \begin{aligned}
+       \phi_1+\phi_2+\phi_3+\phi_4&=1,\\
+       \phi_1+2\phi_2+3\phi_3+4\phi_4&=2.5,\\
+       \phi_2+2\phi_3+3\phi_4&=1.5,\\
+       \phi_3+2\phi_4&=0.75,\\
+       \phi_4&=0.25.
+      \end{aligned}
     \]
-    \item 假设组合中 5 只交易证券的头寸分别为 $\theta_{1}$、$\theta_{2}$、$\theta_{3}$、$\theta_{4}$、$\theta_{5}$，那么状态或有组合的头寸分别为 $\theta_{1}+\theta_{2}$，$\theta_{1}+2\theta_{2}+\theta_{3}$，$\theta_{1}+3\theta_{2}+2\theta_{3}+\theta_{4}$，$\theta_{1}+4\theta_{2}+3\theta_{3}+2\theta_{4}+\theta_{5}$；
-    \item 因为状态或有组合的支付是 $\mathrm{R}^{4}$ 空间的一组基，因而状态或有组合可生成支付空间。
+
+    从末式依次回代得到 $\phi_4=1/4$、$\phi_3=1/4$、$\phi_2=1/4$、$\phi_1=1/4$。第二式亦成立，故
+    \[
+      \phi=(1/4,1/4,1/4,1/4)^{\mathsf T}\gg0.
+    \]
+
+    五个价格全部由同一严格正向量给出，验证了该组数值价格无套利。
+
+    \item 因为 $X_1=X_2-X_3$，证券 $1$ 可由其余证券复制，因而是冗余证券；价格也满足 $S_1=S_2-S_3=1$。
+
+    \item 以证券 $2,3,4,5$ 为复制工具，四只状态证券的支付分别为
+    \[
+      \begin{aligned}
+       X_2-2X_3+X_4&=\mathbf e_1,\\
+       X_3-2X_4+X_5&=\mathbf e_2,\\
+       X_4-2X_5&=\mathbf e_3,\\
+       X_5&=\mathbf e_4,
+      \end{aligned}
+    \]
+    其中 $\mathbf e_i$ 是 $\mathrm R^4$ 的第 $i$ 个单位向量。故四个状态或有组合在证券 $2,3,4,5$ 上的持仓分别为
+    \[
+      a_1=(1,-2,1,0)^{\mathsf T},\quad a_2=(0,1,-2,1)^{\mathsf T},\quad
+      a_3=(0,0,1,-2)^{\mathsf T},\quad a_4=(0,0,0,1)^{\mathsf T}.
+    \]
+
+    \item 原组合 $\theta=(\theta_1,\ldots,\theta_5)^{\mathsf T}$ 的四个状态支付为
+    \[
+      \alpha=X\theta=
+      \begin{bmatrix}
+       \theta_1+\theta_2\\
+       \theta_1+2\theta_2+\theta_3\\
+       \theta_1+3\theta_2+2\theta_3+\theta_4\\
+       \theta_1+4\theta_2+3\theta_3+2\theta_4+\theta_5
+      \end{bmatrix}.
+    \]
+
+    持有 $\alpha_i$ 份第 $i$ 个状态或有组合，即可复制原组合：
+    \[
+      Y\sum_{i=1}^4\alpha_i a_i
+      =\sum_{i=1}^4\alpha_i\mathbf e_i=\alpha=X\theta.
+    \]
+
+    无套利下，两种实现方式的成本也相同。
+
+    \item 四个状态或有组合的支付为 $\mathbf e_1,\ldots,\mathbf e_4$，构成 $\mathrm R^4$ 的一组基。任意状态支付 $z=(z_1,\ldots,z_4)^{\mathsf T}$ 均可写为 $z=\sum_i z_i\mathbf e_i$，故它们生成全部状态支付空间。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{4.2} 银行 1 的存贷利率为 $r_{1}$ 而银行 2 的为 $r_{2}$，且 $r_{1}>r_{2}$。证明存在套利机会。
+\WJFourProblem{prob:wj-four-2}{} 银行 1 的存贷利率为 $r_{1}$ 而银行 2 的为 $r_{2}$，且 $r_{1}>r_{2}$。证明存在套利机会。
 \end{problem}
 \begin{solution}
-从银行 2 借钱并全部存入银行 1，参与者就可以获得第 2 类套利。
+从银行 $2$ 借入 $1$ 单位资金，并在同一时点全部存入银行 $1$。假设两笔交易同时到期、可按题给利率成交且无额外费用，现金流为
+\[
+ \underbrace{1-1}_{\text{0 期净现金流}}=0,\qquad
+ \underbrace{(1+r_1)-(1+r_2)}_{\text{1 期净现金流}}=r_1-r_2>0.
+\]
+
+因此该策略为第 2 类套利。
 \end{solution}
 
 \begin{problem}
-\problemno{4.3} 银行 $i$ 的贷款利率为 $r_{ia}$（即顾客借钱的利率）而存款利率为 $r_{ib}$，$i=1,2$。
+\WJFourProblem{prob:wj-four-3}{} 银行 $i$ 的贷款利率为 $r_{ia}$（即顾客借钱的利率）而存款利率为 $r_{ib}$，$i=1,2$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明无套利要求 $r_{ia}\ge r_{ib}$。
     \item 两个银行的存贷利率应该满足什么样的条件才能使市场上不存在套利机会。
 \end{enumerate}
 \end{problem}
 \begin{solution}
+假设两家银行的存贷总收益率均严格为正，借贷可同时进行、期限相同、无信用风险且无额外费用。
+
 \begin{enumerate}[label=(\alph*)]
     \item 设 $r_{ia}<r_{ib}$。从银行 $i$ 借入 $1$ 并存入该银行：0 期收到贷款 $1$、支付存款 $1$，净现金流为 $0$；1 期收回 $1+r_{ib}$、偿还 $1+r_{ia}$，净现金流为
     \[
         (1+r_{ib})-(1+r_{ia})=r_{ib}-r_{ia}>0.
     \]
+
     这是第 2 类套利。因此无套利要求 $r_{ia}\ge r_{ib}$。
     \item 无套利当且仅当最高存款利率不超过最低贷款利率：
     \[
@@ -80,19 +136,20 @@
     \]
     即 $r_{1a}\ge r_{1b}$、$r_{2a}\ge r_{2b}$、$r_{1a}\ge r_{2b}$、$r_{2a}\ge r_{1b}$。
 
-    若 $r_{1a}<r_{2b}$，从银行 1 借入 $1$ 并存入银行 2，0 期净现金流为 $0$，1 期净现金流为 $r_{2b}-r_{1a}>0$。若 $r_{2a}<r_{1b}$，从银行 2 借入并存入银行 1，1 期净现金流为 $r_{1b}-r_{2a}>0$。本行的情形已由 (a) 给出。
+    \textbf{（无套利 $\Rightarrow$ 最高存款利率不超过最低贷款利率）}若 $r_{1a}<r_{2b}$，从银行 1 借入 $1$ 并存入银行 2，0 期净现金流为 $0$，1 期净现金流为 $r_{2b}-r_{1a}>0$。若 $r_{2a}<r_{1b}$，从银行 2 借入并存入银行 1，1 期净现金流为 $r_{1b}-r_{2a}>0$。本行的情形已由 (a) 给出。
 
-    反过来，设上述四个不等式成立，记 $r_{b}^{*}=\max(r_{1b},r_{2b})$、$r_{a}^{*}=\min(r_{1a},r_{2a})$，则 $r_{b}^{*}\le r_{a}^{*}$。以 $\theta_{i}\ge 0$ 表示在银行 $i$ 的借款、$\delta_{i}\ge 0$ 表示存款。0 期净流入为 $\sum\theta_{i}-\sum\delta_{i}$，1 期净流入为
+    \textbf{（最高存款利率不超过最低贷款利率 $\Rightarrow$ 无套利）}设上述四个不等式成立，记 $r_{b}^{*}=\max(r_{1b},r_{2b})$、$r_{a}^{*}=\min(r_{1a},r_{2a})$，则 $r_{b}^{*}\le r_{a}^{*}$。以 $\theta_{i}\ge 0$ 表示在银行 $i$ 的借款、$\delta_{i}\ge 0$ 表示存款。0 期净流入为 $\sum\theta_{i}-\sum\delta_{i}$，1 期净流入为
     \[
         \sum_{i}\delta_{i}(1+r_{ib})-\sum_{i}\theta_{i}(1+r_{ia})
         \le(1+r_{b}^{*})\sum\delta_{i}-(1+r_{a}^{*})\sum\theta_{i}.
     \]
+
     若 0 期净流入为 $0$，则 $\sum\theta_{i}=\sum\delta_{i}$，1 期净流入不超过 $(r_{b}^{*}-r_{a}^{*})\sum\delta_{i}\le 0$。若 0 期净流入为正，则 $\sum\theta_{i}>\sum\delta_{i}$，1 期净流入严格为负。因此不存在套利。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{4.4} 考虑练习 4.1 中定义的市场。假设 5 只交易证券的价格分别为 $1$，$2$，$3/2$，$1$，$1/2$。
+\WJFourProblem{prob:wj-four-4}{} 考虑练习~\ref{prob:wj-four-1} 中定义的市场。假设 5 只交易证券的价格分别为 $1$，$2$，$3/2$，$1$，$1/2$。
 \begin{enumerate}[label=(\alph*)]
     \item 在这样的价格和支付下存在套利机会吗？
     \item 你能构建第 1、2 以及 3 类套利机会吗？
@@ -100,22 +157,34 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 买入 1 单位的证券 4，卖出 2 单位的证券 5，0 期支付为 0，而 1 期支付为 $\begin{bmatrix}0 \\ 0 \\ 1 \\ 0\end{bmatrix}>0$，因而存在套利机会。
-    \item 上面构造了第 2 类套利机会。卖出 1 单位的证券 1 和 1 单位的证券 3，同时买入 1 单位的证券 2，那么 0 期支付为 $\tfrac12$，而 1 期支付为 0，这是第 1 类套利机会。同时进行上述两种交易就可以得到第 3 类套利机会。
+    \item 取组合 $\theta^{\mathrm{II}}=(0,0,0,1,-2)^{\mathsf T}$，即买入证券 $4$ 一份、卖出证券 $5$ 两份。其当期成本为 $1-2\times(1/2)=0$，未来支付为 $X_4-2X_5=\mathbf e_3=(0,0,1,0)^{\mathsf T}>0$，构成第 2 类套利。
+
+    \item 记题给价格向量为 $S=(1,2,3/2,1,1/2)^{\mathsf T}$。三类套利可以统一列为
+    \[
+      \begin{array}{c|c|c|c}
+       \text{类别}&\theta^{\mathsf T}&S^{\mathsf T}\theta&X\theta\\\hline
+       \mathrm I&(-1,1,-1,0,0)&-1/2&0\\
+       \mathrm {II}&(0,0,0,1,-2)&0&\mathbf e_3\\
+       \mathrm {III}&(-1,1,-1,1,-2)&-1/2&\mathbf e_3
+      \end{array}
+    \]
+
+    第 1 类组合买入证券 $2$ 一份，同时卖出证券 $1$ 和 $3$ 各一份。因 $X_2-X_1-X_3=0$，未来净支付为零；当期成本为 $2-1-3/2=-1/2$，即\textbf{净收入} $1/2$。第 3 类组合为前两者之和，当期净收入 $1/2$，未来支付为非负、非零的 $\mathbf e_3$。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{4.5} 在 1 期有三个可能状态：$\{\omega_{1},\omega_{2},\omega_{3}\}$。在经济中有三只交易证券，$a$，$b$，$c$，它们的支付向量如下：
+\WJFourProblem{prob:wj-four-5}{} 在 1 期有三个可能状态：$\{\omega_{1},\omega_{2},\omega_{3}\}$。在经济中有三只交易证券，$a$，$b$，$c$，它们的支付向量如下：
 \[
     X_{a}=\begin{bmatrix}1\\1\\0\end{bmatrix},\quad
     X_{b}=\begin{bmatrix}0\\1\\1\end{bmatrix},\quad
     X_{c}=\begin{bmatrix}1/2\\1\\1/2\end{bmatrix}.
 \]
+
 这些证券的 0 期均衡价格为：$S_{a}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。
 \begin{enumerate}[label=(\alph*)]
     \item 证明 $\begin{bmatrix}2 \\ -1 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量，因为它给出了三支现有证券的价格。
-    \item “资产定价基本定理”指出状态价格必须是非负的。在一个两期经济里，对于证券市场这意味着什么？并给出其解释。
+    \item “资产定价基本定理”要求存在严格为正的状态价格向量。在一个两期经济里，对于证券市场这意味着什么？并给出其解释。
     \item 上面的例子是这个原理的反例吗？为什么？
     \item 证明 $\begin{bmatrix}1/2 \\ 1/2 \\ 1/2\end{bmatrix}$ 是另外一个可能的状态价格向量。在这种情况下，所有状态价格都是正的。
     \item 解释为什么存在多个可能的状态价格向量，它们对已有证券都给出相同的价格。
@@ -123,43 +192,76 @@
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 因为
+    \item 状态价格的线性方程为
     \[
-        2\times 1+(-1)\times 1=1,\quad (-1)\times 1+2\times 1=1,\quad 2\times\tfrac12+(-1)\times 1+2\times\tfrac12=1
+       \phi_1+\phi_2=1,\qquad\phi_2+\phi_3=1,\qquad
+       \tfrac12\phi_1+\phi_2+\tfrac12\phi_3=1.
     \]
-    因而 $\begin{bmatrix}2 \\ -1 \\ 2\end{bmatrix}$ 是一个可能的状态价格向量；
-    \item 资产定价基本定理：没有套利，当且仅当存在严格正的状态价格 $\phi\gg 0$，使每只可交易证券的价格都是 $S=X^{\mathsf T}\phi$。因此“状态价格必须非负”在这里的含义是均衡价格里不能有套利：若每一支给现有证券定价的 $\phi$ 都有负分量，市场就存在套利。
-    \item 不是。因而它只是可能的状态价格之一，并不一定是真实的状态价格；定理要求的是存在一支 $\phi\gg 0$，而不是每一个解都严格为正。下面 (d) 给出的正向量说明无套利仍然成立；
-    \item 因为
+
+    代入 $(2,-1,2)^{\mathsf T}$，三式均成立。因此它是给已有证券定价的一个线性解，但含负分量。
+
+    \item 无套利当且仅当存在 $\phi\gg0$ 使 $X^{\mathsf T}\phi=S$。严格正权重使每个非负、非零的可交易支付具有正价格，从而排除零成本或负成本的套利组合。
+
+    \item 不是反例。(a) 中的负分量解并未排除其他严格正解的存在；(d) 将给出一支严格正解，从而证明这些证券的价格无套利。
+
+    \item 代入 $(1/2,1/2,1/2)^{\mathsf T}$，有
     \[
-        \tfrac12\times 1+\tfrac12\times 1=1,\quad \tfrac12\times 1+\tfrac12\times 1=1,\quad \tfrac12\times\tfrac12+\tfrac12\times 1+\tfrac12\times\tfrac12=1
+       \phi_1+\phi_2=1,\qquad\phi_2+\phi_3=1,\qquad
+       \tfrac12\phi_1+\phi_2+\tfrac12\phi_3=1.
     \]
-    因而 $\begin{bmatrix}\tfrac12 \\ \tfrac12 \\ \tfrac12\end{bmatrix}$ 是一个可能的状态价格向量；
-    \item 因为市场是不完全的，因而可能存在多个状态价格，它们都给出已有证券的价格。
+
+    该向量严格为正，所以满足资产定价基本定理的要求。
+
+    \item 因 $X_c=(X_a+X_b)/2$，且 $X_a,X_b$ 线性无关，支付矩阵的秩为 $2<3$，市场不完全。第三个定价方程是前两个的平均，不再提供独立约束。全部线性解为
+    \[
+       \phi=(t,1-t,t)^{\mathsf T},\qquad t\in\mathrm R.
+    \]
+    其中严格正解对应 $0<t<1$，所以无套利状态价格也不唯一。$t=2$ 给出 (a) 的解，$t=1/2$ 给出 (d) 的解。它们对已有证券支付的定价相同，而对不可复制支付的延伸估值可以不同。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{4.6} 远期合约（Forward）是在未来（即 1 期）以当期（即 0 期）确定的价格交易某一证券或商品的合约，而在当期没有现金流产生。在当期约定的未来交易价格称作远期价格。比方说，考虑一份在 1 期以 $F_{0}$ 的价格购买 1 盎司黄金的远期合约。合约的买方同意在 1 期（合约的到期日）从卖方买入 1 盎司黄金。在当期没有现金交换。令 $S_{t}$ 为 $t=0,1$ 期黄金的价格，而 $r_{F}$ 为利率。考虑在 1 期得到 1 盎司黄金的两种方法：
+\WJFourProblem{prob:wj-four-6}{} 远期合约（Forward）是在未来（即 1 期）以当期（即 0 期）确定的价格交易某一证券或商品的合约，而在当期没有现金流产生。在当期约定的未来交易价格称作远期价格。比方说，考虑一份在 1 期以 $F_{0}$ 的价格购买 1 盎司黄金的远期合约。合约的买方同意在 1 期（合约的到期日）从卖方买入 1 盎司黄金。在当期没有现金交换。令 $S_{t}$ 为 $t=0,1$ 期黄金的价格，而 $r_{F}$ 为利率。考虑在 1 期得到 1 盎司黄金的两种方法：
 \begin{itemize}
     \item 现在购买一份远期合约。在 1 期，支付远期价格 $F_{0}$ 并获得黄金。
     \item 现在支付 $S_{0}$ 买入 1 盎司黄金，并且持有它直到 1 期。假设从现在起持有黄金直到 1 期没有另外的成本或收益。
 \end{itemize}
-在这两种情况下，我们在 1 期同样得到 1 盎司黄金，而那时它的价值为 $S_{1}$。
+在这两种情况下，我们在 1 期同样得到 1 盎司黄金，而那时它的价值为 $S_{1}$；第一种方法还需要准备 1 期交割款 $F_0$。
 \begin{enumerate}[label=(\alph*)]
-    \item 由于这两种策略给予我们相同的支付 $S_{1}$，无套利原理意味着它们的成本必须一样。用当期的价格 $S_{1}$ 和 $r_{F}$ 给出远期价格。
+    \item 为远期策略配置到期支付 $F_0$ 的无风险债券后，两种完整策略都在 1 期取得价值为 $S_1$ 的黄金，且无额外净支出。由无套利原理比较其当期成本。用当期的价格 $S_{0}$ 和 $r_{F}$ 给出远期价格。
     \item 假设持有 1 盎司黄金不仅得到它的 1 期出售收益，在 1 期还得到额外收益 $y$。$y$ 将如何影响远期价格？
 \end{enumerate}
 \end{problem}
 \begin{solution}
+设无风险存贷总收益率 $1+r_F>0$，且可以自由买卖黄金、借贷和交易远期合约。
 \begin{enumerate}[label=(\alph*)]
-    \item 第一种方法的成本是 $\dfrac{F_{0}}{1+r_{F}}$，而第二种方法的成本是 $S_{0}$，根据无套利原理，$\dfrac{F_{0}}{1+r_{F}}=S_{0}$，因此，$F_{0}=(1+r_{F})S_{0}$；
-    \item 由于第二种方法还得到额外收益，由无套利原理原理有 $F_{0}<(1+r_{F})S_{0}$。（如果收益是确定性的，那么应该有 $F_{0}+y=(1+r_{F})S_{0}$）
+    \item 新签远期合约的初始价值为零。为在到期时支付交割款，另以 $F_0/(1+r_F)$ 购买到期支付 $F_0$ 的无风险债券。1 期债券支付恰好用于远期交割，整个组合取得一盎司黄金，且无额外净现金支出。
+
+    直接买入并持有一盎司黄金的当期成本为 $S_0$，1 期也取得同一盎司黄金。两种完整策略的未来支付相同，所以其成本必须相等：
+    \[
+       \underbrace{\frac{F_0}{1+r_F}}_{\text{远期交割准备金的当期成本}}
+       =\underbrace{S_0}_{\text{直接买入黄金的当期成本}},\qquad
+       F_0=(1+r_F)S_0.
+    \]
+
+    \item 先设 $y$ 是在 1 期确定收到、可支配的现金收益。持有黄金的到期总支付为 $S_1+y$，而“远期加交割准备金”的到期支付仅为 $S_1$。因此，现货黄金等价于后一组合再加一只到期支付 $y$ 的无风险债券：
+    \[
+       S_0=\frac{F_0+y}{1+r_F},\qquad
+       F_0=(1+r_F)S_0-y.
+    \]
+
+    当 $y>0$ 时，远期价格低于无现金收益时的持有成本价格；若 $y=0$，恢复 (a) 的结果。
+
+    若 $y$ 是可复制的随机现金流，记其当期复制价值为 $V(y)$，则同一比较给出
+    \[
+       F_0=(1+r_F)\bigl(S_0-V(y)\bigr).
+    \]
+    该式采用随机收益的复制价值 $V(y)$；确定现金收益的情形对应 $V(y)=y/(1+r_F)$。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{4.7} 英镑现时对美元的价格（即英镑/美元汇率）为 $S_{0}$（即一英镑的美元价格为本 $S_{0}$），美元利率为 $r_{A}$ 而英镑利率为 $r_{B}$。考虑一份在 1 期购买 1 英镑的远期合约。远期价格（即远期汇率）应该是多少？提示：考虑在 1 期得到 1 英镑的两种策略。
+\WJFourProblem{prob:wj-four-7}{} 英镑现时对美元的价格（即英镑/美元汇率）为 $S_{0}$（即一英镑的美元价格为 $S_{0}$），美元利率为 $r_{A}$ 而英镑利率为 $r_{B}$。考虑一份在 1 期购买 1 英镑的远期合约。远期价格（即远期汇率）应该是多少？提示：考虑在 1 期得到 1 英镑的两种策略。
 \begin{itemize}
     \item 购买一份远期合约。在 1 期，支付远期价格 $F_{0}$ 购入 1 英镑。
     \item 现在以当前汇率 $S_{0}$ 买入 $x$ 英镑并以 $r_{B}$ 的利率进行投资，在 1 期得到 1 英镑。
@@ -167,11 +269,24 @@
 得到的远期价格、现时汇率和利率之间的关系就叫作抛补利率平价理论（Covered Interest Rate Parity）。
 \end{problem}
 \begin{solution}
-第一种策略的 0 期支付是 $\dfrac{F_{0}}{1+r_{A}}$ 美元，而第二种策略的 0 期支付是 $\dfrac{S_{0}}{1+r_{B}}$ 美元，根据无套利原理，$\dfrac{F_{0}}{1+r_{A}}=\dfrac{S_{0}}{1+r_{B}}$，即 $F_{0}=\dfrac{1+r_{A}}{1+r_{B}}S_{0}$。
+设 $1+r_A>0$、$1+r_B>0$，两种货币都可无风险借贷、兑换且无交易费用。$S_0$ 的单位为美元/英镑，远期价格 $F_0$ 也以美元/英镑报价。
+
+为了在 1 期取得 $1$ 英镑而无额外净支出，可比较：
+\begin{enumerate}
+    \item 签订买入 $1$ 英镑的远期合约，并存入 $F_0/(1+r_A)$ 美元。1 期美元存款增长为 $F_0$，恰好用于交割，得到 $1$ 英镑。
+    \item 当期买入 $x=1/(1+r_B)$ 英镑并存入英镑账户，1 期本息为 $x(1+r_B)=1$ 英镑；当期美元成本为 $S_0/(1+r_B)$。
+\end{enumerate}
+两种策略的到期支付同为 $1$ 英镑，无套利要求其美元成本相等：
+\[
+    \frac{F_0}{1+r_A}=\frac{S_0}{1+r_B},\qquad
+    F_0=S_0\frac{1+r_A}{1+r_B}.
+\]
+
+这就是以美元/英镑报价的抛补利率平价关系。
 \end{solution}
 
 \begin{problem}
-\problemno{4.8} 考虑练习 4.1 定义的市场。假设证券 1，2，4，5 的价格分别是 $0.8$，$2$，$0.6$，$0.2$。
+\WJFourProblem{prob:wj-four-8}{} 考虑练习~\ref{prob:wj-four-1} 定义的市场。假设证券 1，2，4，5 的价格分别是 $0.8$，$2$，$0.6$，$0.2$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算状态价格和利率。
     \item 构建等价鞅测度。
@@ -179,41 +294,55 @@
 \end{enumerate}
 \end{problem}
 \begin{solution}
-记练习 4.1 中五只证券的支付列向量为 $X_{1},\ldots,X_{5}$。状态价格 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3} \\ \phi_{4}\end{bmatrix}$ 满足 $S_{n}=\phi^{\mathsf T}X_{n}$，即
-\[
-    S_{1}=\phi^{\mathsf T}X_{1},\quad S_{2}=\phi^{\mathsf T}X_{2},\quad S_{4}=\phi^{\mathsf T}X_{4},\quad S_{5}=\phi^{\mathsf T}X_{5}.
-\]
 \begin{enumerate}[label=(\alph*)]
-    \item 代入 $S_{1}=0.8$，$S_{2}=2$，$S_{4}=0.6$，$S_{5}=0.2$ 得
+    \item 由题给证券 $1,2,4,5$ 的价格，状态价格满足
     \[
-        \begin{aligned}
-            \phi_{1}+\phi_{2}+\phi_{3}+\phi_{4}&=0.8,\\
-            \phi_{1}+2\phi_{2}+3\phi_{3}+4\phi_{4}&=2,\\
-            \phi_{3}+2\phi_{4}&=0.6,\\
-            \phi_{4}&=0.2.
-        \end{aligned}
+      \begin{aligned}
+       \phi_1+\phi_2+\phi_3+\phi_4&=0.8,\\
+       \phi_1+2\phi_2+3\phi_3+4\phi_4&=2,\\
+       \phi_3+2\phi_4&=0.6,\\
+       \phi_4&=0.2.
+      \end{aligned}
     \]
-    由后两式 $\phi_{3}=0.2$；前两式相减得 $\phi_{2}=0.2$，$\phi_{1}=0.2$。故
+
+    后两式给出 $\phi_4=\phi_3=0.2$；前两式相减得 $\phi_2+2\phi_3+3\phi_4=1.2$，故 $\phi_2=0.2$，进而 $\phi_1=0.2$。因此
     \[
-        \phi=\begin{bmatrix}0.2 \\ 0.2 \\ 0.2 \\ 0.2\end{bmatrix},\qquad
-        S_{3}=\phi^{\mathsf T}X_{3}=1.2.
+       \phi=(0.2,0.2,0.2,0.2)^{\mathsf T},\qquad
+       S_3=\phi^{\mathsf T}X_3=0.2(0+1+2+3)=1.2.
     \]
-    无风险利率 $r_{F}=\bigl(\sum_{i}\phi_{i}\bigr)^{-1}-1=0.25$。
-    \item 等价鞅测度 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$，即 $Q=\begin{bmatrix}0.25 \\ 0.25 \\ 0.25 \\ 0.25\end{bmatrix}$。
-    \item 两期模型里的鞅性质是风险中性定价：用等价鞅测度 $Q$ 对 1 期支付取期望，再按无风险利率折现，应当回到 0 期价格，即 $S_{n}=\mathrm{E}^{Q}[X_{n}]/(1+r_{F})$。由 $Q_{i}=\phi_{i}/\sum_{j}\phi_{j}$ 与 $1+r_{F}=1/\sum_{j}\phi_{j}$，
+
+    证券 $1$ 在各状态均支付 $1$，所以债券价格 $B_0=S_1=0.8$，无风险利率为 $r_F=1/B_0-1=0.25$。
+
+    \item 规范化状态价格，得到
     \[
-        \frac{\mathrm{E}^{Q}[X_{n}]}{1+r_{F}}=\phi^{\mathsf T}X_{n}.
+       q_i=\frac{\phi_i}{\sum_j\phi_j}=\frac14,\qquad
+       Q=(1/4,1/4,1/4,1/4)^{\mathsf T}.
     \]
-    证券 $1$、$2$、$4$、$5$ 的价格正是用来解出 $\phi$ 的，故 $\phi^{\mathsf T}X_{n}=S_{n}$。证券 $3$ 的价格取为 $S_{3}=\phi^{\mathsf T}X_{3}$。在 $Q_{i}=1/4$、$1+r_{F}=5/4$ 下，
+
+    四个可能状态的实际概率均为正，而 $q_i>0$，故 $Q$ 与实际概率测度等价。
+
+    \item 以 $X_n(\omega)$ 表示证券 $n$ 在状态 $\omega$ 的到期支付。在 $Q$ 下，对五只证券逐一计算，得到
     \[
-        \begin{aligned}
-            \frac{\mathrm{E}^{Q}[X_{1}]}{1+r_{F}}&=\frac{(1+1+1+1)/4}{5/4}=0.8=S_{1},\\
-            \frac{\mathrm{E}^{Q}[X_{2}]}{1+r_{F}}&=\frac{(1+2+3+4)/4}{5/4}=2=S_{2},\\
-            \frac{\mathrm{E}^{Q}[X_{3}]}{1+r_{F}}&=\frac{(0+1+2+3)/4}{5/4}=1.2=S_{3},\\
-            \frac{\mathrm{E}^{Q}[X_{4}]}{1+r_{F}}&=\frac{(0+0+1+2)/4}{5/4}=0.6=S_{4},\\
-            \frac{\mathrm{E}^{Q}[X_{5}]}{1+r_{F}}&=\frac{(0+0+0+1)/4}{5/4}=0.2=S_{5}.
-        \end{aligned}
+      \begin{array}{c|ccccc}
+       n&1&2&3&4&5\\\hline
+       \mathrm E^Q[X_n]&1&5/2&3/2&3/4&1/4\\
+       \mathrm E^Q[X_n]/(1+r_F)&0.8&2&1.2&0.6&0.2
+      \end{array}
     \]
+
+    最后一行恰为五只证券的价格，其中 $S_3$ 由 (a) 求出，因而全部满足风险中性定价公式。
+
+    再明确债券计价单位。无风险债券的到期价格为 $B_1=1$，记
+    \[
+       \widehat S_{n,0}=\frac{S_n}{B_0},\qquad
+       \widehat S_{n,1}(\omega)=\frac{X_n(\omega)}{B_1}=X_n(\omega).
+    \]
+
+    因 $B_0=1/(1+r_F)$，上表的定价等式等价于
+    \[
+       \widehat S_{n,0}=\mathrm E^Q[\widehat S_{n,1}],\qquad n=1,\ldots,5.
+    \]
+
+    因此五只证券\textbf{以债券计价的价格}在 $Q$ 下具有两期鞅性质。
 \end{enumerate}
 \end{solution}
-

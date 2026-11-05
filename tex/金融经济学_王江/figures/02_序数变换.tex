@@ -1,0 +1,31 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：教材印刷第16—17页，例2.3、2.4及效用序数性；V(c)=exp(U(c))。
+% 点名始终表示同一消费计划，指数变换作用于完整效用U(c)。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+% 断轴后的可见区间以V-.65定位；刻度仍标原效用值，零点附近用双斜线标明省略。
+\begin{tikzpicture}[>=Stealth,font=\small,x=11cm,y=6cm]
+ \draw[->] (-.37,0)--(.18,0) node[right] {$U(c)$};
+ \draw[->] (0,0)--(0,.56) node[above] {$V(c)=e^{U(c)}$};
+ \draw[white,line width=4pt] (0,.03)--(0,.06);
+ \draw (-.006,.027)--(.006,.042) (-.006,.047)--(.006,.062);
+ \draw[gray!65,densely dotted] ({ln(.75)},0)--({ln(.75)},.10)--(0,.10);
+ \draw[gray!65,densely dotted] ({.5*ln(.75)},0)--({.5*ln(.75)},{sqrt(3)/2-.65})--(0,{sqrt(3)/2-.65});
+ \draw[blue!70!black,very thick,domain=-.35:.13,samples=80]
+   plot (\x,{exp(\x)-.65});
+ \fill ({ln(.75)},.10) circle(2pt) node[above left] {B};
+ \fill ({.5*ln(.75)},{sqrt(3)/2-.65}) circle(2pt) node[above left] {C};
+ \fill (0,.35) circle(2pt) node[above left] {A};
+ \node[below,font=\footnotesize] at ({ln(.75)},0) {$\log(3/4)$};
+ \node[below,font=\footnotesize] at ({.5*ln(.75)},0) {$\tfrac12\log(3/4)$};
+ \node[below] at (0,0) {$0$};
+ \node[right] at (0,.10) {$\tfrac34$};
+ \node[right] at (0,{sqrt(3)/2-.65}) {$\tfrac{\sqrt3}{2}$};
+ \node[right] at (0,.35) {$1$};
+\end{tikzpicture}
+\par\smallskip\small
+纵轴在零点与 $3/4$ 之间省略了一段区间；A、B、C 在两轴上均表示同一消费计划。
+\WJFigure{fig:wj-ordinal-transform}{严格递增变换保留消费计划的排序}
+\end{minipage}
+\end{center}

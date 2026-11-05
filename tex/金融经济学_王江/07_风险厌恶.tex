@@ -1,17 +1,39 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 99–107
+% 来源：王江《金融经济学》，印刷第 99—109 页（PDF 第 114—124 页，含习题）。
+% 核对：教材勘误 2021，第 105 页平方效用、第 107 页折点风险溢价。
 % 课堂补充：references/金融经济学/金融经济学_第7章 风险厌恶.pptx（夏晖，2026 年 10 月），共 32 页；公式图片与正文逐页核对。
 % 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 28–31（印刷页 27–30）
 
 \lecture{风险厌恶}
+\label{chap:wj-seven}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{
+ section={number=\thesection,aftername=\quad},
+ subsection={number=\thesubsection,aftername=\quad},
+ subsubsection={number=\thesubsubsection,aftername=\quad}
+}
+\newcounter{wjSevenDefinition}
+\newcounter{wjSevenTheorem}
+\newcounter{wjSevenExercise}
+\renewcommand{\thewjSevenDefinition}{\thechapter.\arabic{wjSevenDefinition}}
+\renewcommand{\thewjSevenTheorem}{\thechapter.\arabic{wjSevenTheorem}}
+\renewcommand{\thewjSevenExercise}{\thechapter.\arabic{wjSevenExercise}}
+\newcommand{\WJSevenDefinition}[1]{\refstepcounter{wjSevenDefinition}\label{#1}\textbf{定义 \thewjSevenDefinition}\quad}
+\newcommand{\WJSevenTheorem}[1]{\refstepcounter{wjSevenTheorem}\label{#1}\textbf{定理 \thewjSevenTheorem}\quad}
+\newcommand{\WJSevenExercise}[2]{\refstepcounter{wjSevenExercise}\label{#1}\problemno{\thewjSevenExercise#2}}
 
 \ifdefined\WJHandoutKnowledge
 
-第 2 章要求偏好凸。在第 6 章的期望效用 (6.4) 下，这个要求落在单期效用 $u$ 上：边际效用递减，并且面对公平赌博时宁可要期望值。本章把这件事说成风险厌恶，再用 Arrow--Pratt 系数度量它，并比较不同的 $u$。除特别声明外，设 $u$ 可微；不满足性即 $u'>0$。
+在第~\ref{chap:wj-six}~讲的期望效用~\eqref{eq:wj-six-4}（两期采用共同单期效用的时间可加形式）下，偏好的凸性与单期效用的凹性相联系。凹效用意味着边际效用递减，也意味着确定财富至少不劣于期望值相同的风险财富。本章先刻画风险厌恶，再用 Arrow--Pratt 系数度量其程度，最后比较典型效用并讨论投资和保险中的应用。财富取值于区间 $I$，所讨论的随机财富及其期望属于 $I$，相关期望有限；涉及导数时采用相应的光滑性条件，且 $u'>0$。
 
-\begin{tcolorbox}[knowledge,title=7.1 边际效用递减]
-\begin{tcolorbox}[knowledge]
-\textbf{定义 7.1}\quad 若对任意 $x$、$y$ 与 $\alpha\in[0,1]$，
+\section{边际效用递减}\label{sec:wj-seven-1}
+\subsection{凹函数与边际效用}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenDefinition{def:wj-seven-1} 若对任意 $x$、$y$ 与 $\alpha\in[0,1]$，
 \[
     u\bigl(\alpha x+(1-\alpha)y\bigr)\ge \alpha u(x)+(1-\alpha)u(y),
 \]
@@ -21,80 +43,86 @@
 凹性就是 Jensen 不等式的方向：函数在弦的上方。二阶可微时它等价于边际效用递减。
 
 % PPT 第 3–4 页：凹性与拟凹性的区别。
-\textbf{凹函数与拟凹函数不能混同。}一般效用表示 $U$ 的\textbf{拟凹性}要求
+\subsection{凹性、拟凹性与凸偏好}
+一般效用表示 $U$ 的\textbf{拟凹性}要求
 \[
  U(\alpha x+(1-\alpha)y)\ge\min\{U(x),U(y)\},
 \]
-它表示两种消费方案的混合不差于较差的那个，对应偏好的凸性。\textbf{凹性}则要求混合的效用不低于效用的加权平均，条件更强。凹函数必拟凹，反之不成立；例如 $U(c)=c^2$ 在 $c>0$ 上递增且拟凹，却是凸函数。
+它表示两种消费方案的混合不差于较差的那个，对应\hyperref[axiom:wj-two-3]{偏好的凸性}。\textbf{凹性}则要求混合的效用不低于效用的加权平均，条件更强。凹函数必拟凹，反之不成立；例如 $U(c)=c^2$ 在 $c>0$ 上递增且拟凹，却是凸函数。
 
-这里须分清\textbf{一般消费效用表示 $U$}与\textbf{期望效用中的伯努利效用 $u$}。一般序数效用可作任意严格递增变换，函数的曲率未必保持；期望效用的伯努利效用只在正仿射变换下保持全部彩票排序。定理 7.1 是在期望效用结构下得到的结论，不能仅凭任意一个一维效用表示的拟凹性就推出风险厌恶。
+一般\hyperref[def:wj-two-4]{序数效用} $U$ 可作任意严格递增变换；期望效用中的\hyperref[sec:wj-six-cardinal]{伯努利效用} $u$ 则以正仿射变换保持彩票排序。在~\eqref{eq:wj-six-4} 的共同单期效用结构下，凸偏好对 $u$ 的曲率施加如下约束。
 
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenTheorem{thm:wj-seven-1} 若凸的连续偏好能写成式~\eqref{eq:wj-six-4}（两期采用共同单期效用的时间可加形式）的期望效用，则相应的 $u(\cdot)$ 是凹的。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 7.1}\quad 若凸的连续偏好能写成 (6.4) 的期望效用，则相应的 $u(\cdot)$ 是凹的。
-
-\textbf{定理 7.2}\quad 若凹函数 $u$ 二阶可微，则 $u''\le 0$。
+\WJSevenTheorem{thm:wj-seven-2} 若凹函数 $u$ 二阶可微，则 $u''\le 0$。
 \end{tcolorbox}
 
-\textbf{定理 7.1 的二阶可微情形：}这是从总效用的\textbf{拟凹性}推出伯努利效用凹性的关键，不能直接把两个概念等同。取一个正概率状态 $\omega$，记 $k=\rho p_\omega>0$。在当前消费及该状态消费都为内点 $w$、其余消费固定的计划上，考虑
+\textbf{证明（二阶连续可微情形）：}取一个正概率状态 $\omega$，记 $k=\rho p_\omega>0$。在当前消费及该状态消费都为内点 $w$、其余消费固定的计划上，考虑
 \[
  c^+(t):(c_0,c_{1\omega})=(w+kt,w-t),\qquad
  c^-(t):(c_0,c_{1\omega})=(w-kt,w+t).
 \]
+
 两计划的中点是原计划 $c$。沿这一方向的边际效用恰好抵消：
 \[
  ku'(w)-ku'(w)=0.
 \]
+
 若反设 $u''(w)>0$，泰勒展开给出
 \[
  U(c^\pm(t))-U(c)=\tfrac12(k^2+k)u''(w)t^2+o(t^2)>0
 \]
 （$t$ 充分小）。两端都严格优于中点，与凸偏好要求
-$U(c)\ge\min\{U(c^+(t)),U(c^-(t))\}$ 矛盾。故每个内点都须有 $u''(w)\le0$，从而 $u$ 凹。此论证明确使用了 (6.4)、正概率和二阶可微条件，且没有把拟凹性直接替换成凹性。
+$U(c)\ge\min\{U(c^+(t)),U(c^-(t))\}$ 矛盾。故每个内点都须有 $u''(w)\le0$，从而 $u$ 凹。
 
-\textbf{定理 7.2 的证明：}在 $z$ 左右各取距离 $\delta>0$ 的一点，凹性要求中点的效用不低于两端效用的平均值：
+\textbf{定理~\ref{thm:wj-seven-2} 的证明：}在 $z$ 左右各取距离 $\delta>0$ 的一点，凹性要求中点的效用不低于两端效用的平均值：
 \[
  u(z)\ge\tfrac12[u(z-\delta)+u(z+\delta)].
 \]
+
 两边乘 2、移项，再除以 $\delta^2>0$，直接得到
 \[
  \frac{u(z+\delta)-2u(z)+u(z-\delta)}{\delta^2}\le0.
 \]
+
 左边正是二阶中心差商。令 $\delta\to0$，它趋于 $u''(z)$，所以 $u''(z)\le0$。这也说明凹性的几何图像与边际效用递减是同一曲率性质的两种表述。
 
-因此在 (6.4) 中，$u'$ 是消费的边际效用，不满足性要求 $u'>0$；偏好凸则 $u''\le 0$，多出来的一单位消费带来的效用越来越少。一块钱对穷人比对富人更重要。
-\end{tcolorbox}
+因此在式~\eqref{eq:wj-six-4}（$u$ 为两期共同的单期效用函数）中，$u'$ 是消费的边际效用，不满足性要求 $u'>0$；偏好凸则 $u''\le 0$，多出来的一单位消费带来的效用越来越少。一块钱对穷人比对富人更重要。
 
-\begin{tcolorbox}[knowledge,title=7.2 风险厌恶的定义]
-凹性还有一层含义：在期望值相同的确定支付和不确定支付之间，参与者选择确定的那个。
+\section{风险厌恶的定义}\label{sec:wj-seven-2}
+凹性还有一层含义：在期望值相同的确定支付和不确定支付之间，参与者认为确定支付至少不劣。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定义 7.2}\quad 不确定支付 $\tilde{g}$ 若满足 $\mathrm{E}[\tilde{g}]=0$，称为\textbf{公平赌博}。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenDefinition{def:wj-seven-2} 不确定支付 $\tilde{g}$ 若满足 $\mathrm{E}[\tilde{g}]=0$，称为\textbf{公平赌博}。
 
-\textbf{定义 7.3}\quad 效用为 $u$ 的参与者是（严格）\textbf{风险厌恶}的，若对一切定义域内的公平赌博，
+\WJSevenDefinition{def:wj-seven-3} 效用为 $u$ 的参与者是（严格）\textbf{风险厌恶}的，若对一切定义域内的公平赌博，
 \[
     \mathrm{E}\bigl[u(w+\tilde{g})\bigr]\le(<)\,\mathrm{E}\bigl[u(w)\bigr]=u(w).
 \]
+
 严格风险厌恶的严格不等式只针对非退化赌博；$\tilde g\equiv0$ 时两边相等。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 7.3}\quad 参与者（严格）风险厌恶，当且仅当 $u$ 是（严格）凹函数。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenTheorem{thm:wj-seven-3} 参与者（严格）风险厌恶，当且仅当 $u$ 是（严格）凹函数。
 \end{tcolorbox}
 
 \textbf{证明：}
 
-\textbf{充分性：}凹函数满足 Jensen 不等式。对随机变量 $\tilde{x}$，
+\textbf{（凹性 $\Rightarrow$ 风险厌恶）}凹函数满足 Jensen 不等式。对随机变量 $\tilde{x}$，
 \[
     \mathrm{E}\bigl[u(\tilde{x})\bigr]\le u\bigl(\mathrm{E}[\tilde{x}]\bigr);
 \]
+
 $u$ 严格凹且 $\tilde{x}$ 不恒为常数时，不等式严格。取 $\tilde{x}=w+\tilde{g}$。公平赌博给出 $\mathrm{E}[\tilde{g}]=0$，故 $\mathrm{E}[\tilde{x}]=w+\mathrm{E}[\tilde{g}]=w$，从而
 \[
     \mathrm{E}\bigl[u(w+\tilde{g})\bigr]\le u(w).
 \]
-$w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ 不恒为零时，严格凹对应严格风险厌恶。
+$w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义~\ref{def:wj-seven-3}。$\tilde{g}$ 不恒为零时，严格凹对应严格风险厌恶。
 
-\textbf{必要性（按 PPT 第 8–9 页的构造思路）：}现在只知道参与者拒绝公平赌博，要据此证明 $u$ 凹。任取 $w_2>w_1$、$p\in(0,1)$，目标是得到
+% 来源：PPT 第 8—9 页，保留公平赌博的构造步骤。
+\textbf{（风险厌恶 $\Rightarrow$ 凹性）}现在只知道参与者拒绝公平赌博，要据此证明 $u$ 凹。任取 $w_2>w_1$、$p\in(0,1)$，目标是得到
 \[
  pu(w_1)+(1-p)u(w_2)\le u(pw_1+(1-p)w_2).
 \]
@@ -103,6 +131,7 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
 \[
  w=pw_1+(1-p)w_2.
 \]
+
 这样只需设计一个赌博，把财富从 $w$ 分别变成 $w_1$、$w_2$，它就会自动公平。
 
 \textbf{第二步：用“最终财富减初始财富”确定净支付。}记 $\Delta=w_2-w_1>0$，则
@@ -112,11 +141,13 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
  g_2&=w_2-w=p\Delta>0,\qquad\text{概率 }1-p.
 \end{aligned}
 \]
+
 验证公平性：
 \[
  \mathrm E[\tilde g]=p[-(1-p)\Delta]+(1-p)p\Delta=0.
 \]
-注意坏结果的概率是 $p$，并不要求输赢概率相同；净支付的大小正好补偿概率差异。
+
+坏结果的概率为 $p$，两个净支付的大小按相应概率配平，使平均支付为零。
 
 \textbf{第三步：应用风险厌恶定义。}因为 $w+g_1=w_1$、$w+g_2=w_2$，
 \[
@@ -126,58 +157,68 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
  &\le u(w)=u(pw_1+(1-p)w_2).
 \end{aligned}
 \]
+
 这恰好是要证明的凹性不等式。若对所有非退化公平赌博严格拒绝，则上式严格，得到严格凹性。
 
-所以，偏好能写成期望效用时，\textbf{偏好凸等价于风险厌恶}。
+在~\eqref{eq:wj-six-4} 的共同单期效用结构下，凹性使总效用凹，因而偏好凸；结合定理~\ref{thm:wj-seven-1}（该期望效用结构下，凸偏好蕴含单期效用凹），这一结构中的凸偏好与风险厌恶相联系。
 
 % PPT 第 5–7 页：三种风险态度及净支付口径。
-\textbf{三种风险态度：}对非退化公平赌博，风险厌恶者偏好确定财富 $w$；风险喜好者偏好赌博；风险中性者无差异。相应地，$u$ 分别为凹、凸、仿射函数。二阶可微时，弱风险厌恶对应 $u''\le0$，弱风险喜好对应 $u''\ge0$，风险中性对应 $u''=0$。处处 $u''<0$ 是严格凹的充分条件，但严格凹不要求二阶导数在每一点都严格为负。
+\begin{tcolorbox}[knowledge,title=三种风险态度,breakable=false]
+对非退化公平赌博，风险厌恶者认为确定财富 $w$ 至少不劣于赌博；风险喜好者认为赌博至少不劣于确定财富；风险中性者无差异。严格风险厌恶与严格风险喜好分别对应严格偏好。相应地，$u$ 分别为凹、凸、仿射函数。二阶可微时，弱风险厌恶对应 $u''\le0$，弱风险喜好对应 $u''\ge0$，风险中性对应 $u''=0$。处处 $u''<0$ 是严格凹的充分条件，但严格凹函数的二阶导数也可在个别点为零。
 \end{tcolorbox}
 
-\begin{tcolorbox}[example]
-\textbf{课堂例：入局费与公平赌博（PPT 第 5 页）}\quad 掷公平硬币，正面获得 200 元，反面获得 0 元，入局费为 $c$。判断公平性须计算\textbf{扣除费用后的净支付}：
+% 来源：PPT 第 5 页。
+\begin{tcolorbox}[example,title=课堂例题：入局费与公平赌博,breakable=false]
+掷公平硬币，正面获得 200 元，反面获得 0 元。入局费分别为 $c=100,50,0$ 元，判断各赌局是否公平。
+\end{tcolorbox}
+\begin{solution}
+扣除入局费后的净支付为
 \[
  \tilde g=\begin{cases}200-c,&\text{概率 }1/2,\\-c,&\text{概率 }1/2,\end{cases}
  \qquad \mathrm E[\tilde g]=100-c.
 \]
-因此 $c=100$ 时是公平赌博；$c=50$ 或 $c=0$ 时净期望收益分别为 50 元和 100 元，均不是公平赌博。严格风险厌恶者拒绝前者的非退化公平赌博，却\textbf{可能接受有正期望收益的风险}；“厌恶风险”不等于“拒绝所有不确定投资”。
-\end{tcolorbox}
 
-\newpage
-\begin{tcolorbox}[knowledge,title=7.3 风险厌恶的度量]
-风险厌恶的程度既依赖赌博本身，也依赖 $u$ 和财富。下面的度量针对\textbf{小}风险：取值范围（最大值减最小值）很小。大风险不一定适用。
+因此 $c=100$ 时是公平赌博；$c=50$ 或 $c=0$ 时净期望收益分别为 50 元和 100 元，均不是公平赌博。严格风险厌恶者拒绝 $c=100$ 的非退化公平赌博。$c=50$ 或 $0$ 时，参与决策由正的期望收益与风险的权衡决定。
+\end{solution}
 
-\tcbline
+\section{风险厌恶的度量}\label{sec:wj-seven-3}
+风险溢价同时反映风险分布、效用与初始财富。小风险展开把风险大小与偏好曲率分开，给出绝对和相对风险厌恶系数。
 
-\textbf{A.\ 绝对风险厌恶}
+\subsection{绝对风险厌恶与风险溢价}
 
-\begin{tcolorbox}[knowledge]
-\textbf{定义 7.4}\quad 参与公平赌博 $\tilde{g}$ 所要求的\textbf{风险溢价} $\pi$ 由
-\[
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenDefinition{def:wj-seven-4} 参与公平赌博 $\tilde{g}$ 所要求的\textbf{风险溢价} $\pi$ 由
+\begin{equation}
     \mathrm{E}\bigl[u(w+\tilde{g})\bigr]=u(w-\pi)
-    \tag{7.1}
-\]
-定义。它是 \textbf{为了消除风险而愿意放弃的财富}。赌博 $\tilde{g}$ 的确定性等值是 $-\pi$；随机财富 $w+\tilde{g}$ 的确定性等值是 $w-\pi$。
+\label{eq:wj-seven-1}
+\end{equation}
+定义。它是 \textbf{为了消除风险而愿意放弃的财富}。净赌博相对于初始财富的确定性等值为 $-\pi$；随机财富 $w+\tilde g$ 的确定性等值为 $w-\pi$。
 
 另一种写法是为承担风险所要求的最小补偿 $\hat{\pi}$：
 \[
     \mathrm{E}\bigl[u(w+\tilde{g}+\hat{\pi})\bigr]=u(w).
 \]
-一般 $\hat{\pi}\neq\pi$。在光滑效用的小风险二阶近似下，两者具有相同的主导项。
 
-\textbf{定义 7.5}\quad 取值范围很小的赌博称为小风险。
+两种补偿的精确值一般不同；在光滑效用的小风险二阶近似下，具有相同的主导项。
+
+\WJSevenDefinition{def:wj-seven-5} 取值范围很小的赌博称为小风险。
 \end{tcolorbox}
 
 % PPT 第 11–17 页：CE 的含义及泰勒展开。
-\textbf{确定性等值不等于期望财富。}对一般随机财富 $\widetilde W$，若 $u$ 严格递增，则
+\hypertarget{wj-certainty-equivalent-risk-premium}{}
+\begin{tcolorbox}[knowledge,title=确定性等值与风险溢价,breakable=false]
+对一般随机财富 $\widetilde W$，若 $u$ 严格递增，则
 \[
  u(CE)=\mathrm E[u(\widetilde W)],\qquad
  CE=u^{-1}(\mathrm E[u(\widetilde W)]),\qquad
  \pi=\mathrm E[\widetilde W]-CE.
 \]
-先对\textbf{效用}取期望，再用反函数换回财富单位；不能把 $u(\mathrm E[\widetilde W])$ 当成期望效用。公平赌博时 $\mathrm E[\widetilde W]=w$，所以 $CE=w-\pi$。对非退化风险，严格风险厌恶、风险中性、严格风险喜好分别给出 $CE<w$、$CE=w$、$CE>w$，即 $\pi>0$、$\pi=0$、$\pi<0$。
 
-\textbf{图解（PPT 第 12 页）：}横轴是财富，纵轴是效用，图中两个结果等概率。先连接两个可能结果的效用点；弦上对应期望财富的高度就是期望效用。从该高度水平移到效用曲线，再向下投影，得到 $CE$。凹曲线位于弦上方，故 $CE$ 在期望财富左边，水平距离就是风险溢价。不同效用的比较须看 CE 或 Arrow--Pratt 系数，不能只凭图像的纵向高低判断。
+先计算期望效用 $\mathrm E[u(\widetilde W)]$，再用反函数换回财富单位。公平赌博时 $\mathrm E[\widetilde W]=w$，所以 $CE=w-\pi$。对非退化风险，严格风险厌恶、风险中性、严格风险喜好分别给出 $CE<w$、$CE=w$、$CE>w$，即 $\pi>0$、$\pi=0$、$\pi<0$。
+\end{tcolorbox}
+
+% 来源：PPT 第 12 页。
+\textbf{几何解释：}横轴是财富，纵轴是效用，图中两个结果等概率。先连接两个可能结果的效用点；弦上对应期望财富的高度就是期望效用。从该高度水平移到效用曲线，再向下投影，得到 $CE$。凹曲线位于弦上方，故 $CE$ 在期望财富左边，水平距离就是风险溢价。跨效用的风险态度比较采用 CE 或 Arrow--Pratt 系数。
 
 \begin{center}
 \begin{tikzpicture}[x=1.35cm,y=1.35cm,>=stealth,font=\small]
@@ -200,7 +241,8 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
 \end{tikzpicture}
 \end{center}
 
-\textbf{泰勒展开的每一步：}设 $\tilde g=\varepsilon\tilde z$，$\mathrm E[\tilde z]=0$、$\tilde z$ 有界，令 $\varepsilon\to0$。假设 $u$ 在 $w$ 附近二阶连续可微且 $u'(w)>0$，则
+\subsubsection{小风险展开与绝对风险厌恶系数}
+设 $\tilde g=\varepsilon\tilde z$，$\mathrm E[\tilde z]=0$、$\tilde z$ 有界，令 $\varepsilon\to0$。假设 $u$ 在 $w$ 附近二阶连续可微且 $u'(w)>0$，则
 \[
 \begin{aligned}
  u(w+\varepsilon\tilde z)
@@ -211,13 +253,14 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
    +\tfrac12u''(w)\varepsilon^2\mathrm E[\tilde z^2]+o(\varepsilon^2).
 \end{aligned}
 \]
-\textbf{左边为什么只剩方差？}公平性使一阶项为零，而且 $\mathrm E[\tilde z^2]=\operatorname{Var}(\tilde z)$。因此赌博造成的效用变化为
+
+\textbf{期望效用的二阶变化。}公平性使一阶项为零，而且 $\mathrm E[\tilde z^2]=\operatorname{Var}(\tilde z)$。因此赌博造成的效用变化为
 \[
  \mathrm E[u(w+\varepsilon\tilde z)]-u(w)
  =\tfrac12u''(w)\varepsilon^2\operatorname{Var}(\tilde z)+o(\varepsilon^2).
 \]
 
-\textbf{右边为什么只保留 $\pi$ 的一次项？}记风险溢价为 $\pi_\varepsilon$。由定义和中值定理，在 $w-\pi_\varepsilon$ 与 $w$ 之间存在 $\xi_\varepsilon$，使
+\textbf{风险溢价的阶数。}记风险溢价为 $\pi_\varepsilon$。由定义和中值定理，在 $w-\pi_\varepsilon$ 与 $w$ 之间存在 $\xi_\varepsilon$，使
 \[
 \begin{aligned}
  u'(\xi_\varepsilon)\pi_\varepsilon
@@ -226,30 +269,50 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
  =O(\varepsilon^2).
 \end{aligned}
 \]
+
 风险缩小时 $CE\to w$，故 $\xi_\varepsilon\to w$，且 $u'(\xi_\varepsilon)\to u'(w)>0$。于是 $\pi_\varepsilon=O(\varepsilon^2)$、$\pi_\varepsilon^2=O(\varepsilon^4)$。右边的二次项比保留的二阶风险项更小，所以
 \[
  u(w-\pi_\varepsilon)=u(w)-u'(w)\pi_\varepsilon+o(\varepsilon^2).
 \]
 
-\textbf{令左右两边相等，再换算为财富单位：}
+\textbf{将效用损失换算为财富金额。}
 \[
  \underbrace{-u'(w)\pi_\varepsilon}_{\text{放弃确定财富的效用变化}}
  =\underbrace{\tfrac12u''(w)\varepsilon^2\operatorname{Var}(\tilde z)}_{\text{承担公平风险的效用变化}}
  +o(\varepsilon^2).
 \]
+
 除以 $-u'(w)$，得到
 \[
  \pi_\varepsilon=-\frac{u''(w)}{2u'(w)}\varepsilon^2\operatorname{Var}(\tilde z)
  +o(\varepsilon^2).
 \]
+\hypertarget{wj-absolute-risk-aversion}{}
+\begin{tcolorbox}[knowledge,title=Arrow--Pratt 绝对风险厌恶系数,breakable=false]
 记回 $\tilde g=\varepsilon\tilde z$，就有
-\[
+\begin{equation}
  \pi\approx\tfrac12 A(w)\operatorname{Var}(\tilde g),\qquad
- A(w)=-\frac{u''(w)}{u'(w)}.\tag{7.2}
-\]
+ A(w)=-\frac{u''(w)}{u'(w)}.
+\label{eq:wj-seven-2}
+\end{equation}
+\end{tcolorbox}
 这里除以边际效用，是把\textbf{效用损失换成财富损失}；负号使风险厌恶时的溢价为正。这与后文折点例中“效用损失除以左侧斜率”的换算逻辑相同。
 
-\textbf{中心矩展开（PPT 第 15 页）：}若一般随机财富的均值为 $m$，可写为 $\widetilde W=m+\varepsilon\tilde z$，其中 $\mathrm E[\tilde z]=0$、$\tilde z$ 有界。若 $u$ 在 $m$ 附近四阶连续可微，则
+方差度量风险的大小，溢价与它成正比。$u'>0$、$u''\le 0$ 保证 $A(w)\ge 0$。$A(w)$ 是 Arrow--Pratt \textbf{绝对风险厌恶}系数：它等于小风险下风险溢价与方差之比的两倍（$A(w)\approx2\pi/\operatorname{Var}(\tilde g)$），既依赖 $u$，也依赖财富 $w$。
+
+\hypertarget{wj-risk-tolerance}{}
+\begin{tcolorbox}[knowledge,title=风险容忍系数,breakable=false]
+当 $A(w)>0$ 时，其倒数是\textbf{风险容忍}系数
+\begin{equation}
+    T(w)=\frac{1}{A(w)}=-\frac{u'(w)}{u''(w)}.
+\label{eq:wj-seven-3}
+\end{equation}
+\end{tcolorbox}
+
+
+\subsubsection{中心矩与更高阶风险}
+% 来源：PPT 第 15 页。
+若一般随机财富的均值为 $m$，可写为 $\widetilde W=m+\varepsilon\tilde z$，其中 $\mathrm E[\tilde z]=0$、$\tilde z$ 有界。若 $u$ 在 $m$ 附近四阶连续可微，则
 \[
 \begin{aligned}
  \mathrm E[u(\widetilde W)]
@@ -258,66 +321,29 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义 7.3。$\tilde{g}$ �
  +\frac{u^{(4)}(m)}{24}\varepsilon^4\mathrm E[\tilde z^4]+o(\varepsilon^4).
 \end{aligned}
 \]
-$\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是方差，三阶反映不对称，四阶反映更高阶的分布形态。二阶近似只保留方差，不表示所有风险都能只用方差刻画。PPT 的无穷泰勒级数还需解析性、收敛性及交换期望与求和的条件，有限阶小风险展开不依赖这些更强要求。
+$\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是方差，三阶反映不对称，四阶反映更高阶的分布形态。二阶项由方差决定；三阶和四阶项进一步反映偏度与尾部形态对期望效用的影响。
 
-方差度量风险的大小，溢价与它成正比。$u'>0$、$u''\le 0$ 保证 $A(w)\ge 0$。$A(w)$ 是 Arrow--Pratt \textbf{绝对风险厌恶}系数：它等于小风险下风险溢价与方差之比的两倍（$A(w)\approx2\pi/\operatorname{Var}(\tilde g)$），既依赖 $u$，也依赖财富 $w$。其倒数是\textbf{风险容忍}系数
-\[
-    T(w)=\frac{1}{A(w)}=-\frac{u'(w)}{u''(w)}.
-    \tag{7.3}
-\]
-
-\tcbline
-
-\textbf{B.\ 相对风险厌恶}
-
-$A(w)$ 衡量的是给定绝对大小的赌博，比如抛硬币赢或输 $100$。财富不同时，同样 $100$ 元的相对分量不同。若盈亏与总财富成比例，写成 $w\tilde{g}$，
-\[
-    \mathrm{E}\bigl[u\bigl(w(1+\tilde{g})\bigr)\bigr]=u\bigl(w(1-\pi_R)\bigr).
-\]
-\textbf{相对风险溢价的推导（PPT 第 19–20 页）：}令 $\tilde g=\varepsilon\tilde z$，$\mathrm E[\tilde z]=0$。风险金额为 $w\varepsilon\tilde z$，确定财富减少量为 $w\pi_R$，故
-\[
-\begin{aligned}
- \mathrm E[u(w+w\varepsilon\tilde z)]
- &=u(w)+\tfrac12u''(w)w^2\varepsilon^2\mathrm E[\tilde z^2]+o(\varepsilon^2),\\
- u(w-w\pi_R)&=u(w)-u'(w)w\pi_R+o(\varepsilon^2).
-\end{aligned}
-\]
-第二式利用 $\pi_R=O(\varepsilon^2)$。令两边相等，再除以 $wu'(w)>0$，得到
-\[
- \pi_R=-\frac12\frac{wu''(w)}{u'(w)}\varepsilon^2\mathrm E[\tilde z^2]
- +o(\varepsilon^2).
-\]
-因此
-\[
-    \pi_R\approx\tfrac12 R(w)\,\mathrm{Var}[\tilde{g}],
-    \qquad
-    R(w)\equiv-\frac{wu''(w)}{u'(w)}=wA(w).
-    \tag{7.5}
-\]
-对同一个按比例的赌博，货币风险溢价与比例风险溢价满足\textbf{精确关系} $\pi_{\mathrm{money}}=w\pi_R$。其二阶近似为
-\[
- \pi_{\mathrm{money}}\approx\tfrac12 A(w)w^2\operatorname{Var}(\tilde g),\qquad
- \pi_R\approx\tfrac12 R(w)\operatorname{Var}(\tilde g).
-\]
-$R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和风险相对财富的大小。方差仍然是这里对小风险本身的度量。
-
-\textbf{单位与标准化：}$A(w)$ 的单位是财富单位的倒数，$R(w)$ 无量纲。若 $\bar u=\alpha+\beta u$、$\beta>0$，则 $-\bar u''/\bar u'=-u''/u'$，故度量不受效用刻度影响。相反，单看 $u''$ 的大小会受效用单位影响，不能据此比较两个人。
+\subsubsection{对数效用的精确计算与近似}
+% 来源：PPT 第 13—14 页；精确值由原始财富计算，课件 86681.87 来自过早舍入。
+\begin{tcolorbox}[example,title=课堂例题：对数效用下的大风险,breakable=false]
+初始财富 100\,000 元，等概率变为 150\,000 元或 50\,000 元，$u(w)=\ln w$。计算效用变化、确定性等值与风险溢价，并与二阶近似比较。
 \end{tcolorbox}
-
-\begin{tcolorbox}[example]
-\textbf{课堂例：对数效用下的大风险（PPT 第 13–14 页）}\quad 初始财富 100\,000 元，等概率变为 150\,000 元或 50\,000 元，$u(w)=\ln w$。净赌博为 $\pm50\,000$，期望为零。
+\begin{solution}
+净赌博为 $\pm50\,000$，期望为零。
 \[
 \begin{aligned}
  \text{盈利的效用增加}&=\ln(150000/100000)=\ln1.5\approx0.405465,\\
  \text{亏损的效用减少}&=\ln(100000/50000)=\ln2\approx0.693147.
 \end{aligned}
 \]
+
 同额亏损的效用损失更大，故
 \[
  \mathrm E[u(\widetilde W)]-u(100000)
  =\tfrac12\ln1.5-\tfrac12\ln2
  =\tfrac12\ln0.75\approx-0.143841<0.
 \]
+
 确定性等值与风险溢价应使用未提前舍入的数值计算：
 \[
  CE=\exp\bigl(\tfrac12\ln150000+\tfrac12\ln50000\bigr)
@@ -326,13 +352,21 @@ $R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和�
 \[
  \pi=100000-CE\approx13397.46\text{ 元}.
 \]
+
 本例若套用二阶近似，只得到 $\pi\approx\tfrac12(1/100000)50000^2=12500$ 元；风险达到初始财富的 50\%，近似与精确值存在明显差异。
 
-\tcbline
-\textbf{课堂例：对数效用下的小风险（PPT 第 18 页）}\quad $w=20\,000$ 元，等概率赢或输 10 元。由于 $A(w)=1/w$、$\operatorname{Var}(\tilde g)=100$，
+\end{solution}
+
+% 来源：PPT 第 18 页。
+\begin{tcolorbox}[example,title=课堂例题：对数效用下的小风险,breakable=false]
+ $w=20\,000$ 元，等概率赢或输 10 元，$u(w)=\ln w$。计算风险溢价的近似值与精确值。
+\end{tcolorbox}
+\begin{solution}
+由于 $A(w)=1/w$、$\operatorname{Var}(\tilde g)=100$，
 \[
  \pi\approx\frac{100}{2\times20000}=0.0025\text{ 元}.
 \]
+
 精确计算为
 \[
 \begin{aligned}
@@ -342,21 +376,72 @@ $R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和�
  \approx0.002500000156\text{ 元}.
 \end{aligned}
 \]
-小风险下近似十分接近精确值。风险溢价是\textbf{财富金额}，这里不是 $0.25\%$，而是约四分之一分钱。
+
+小风险下近似十分接近精确值。风险溢价约为四分之一分钱，以财富金额计量。
+\end{solution}
+
+\subsection{相对风险厌恶与比例风险}
+
+$A(w)$ 衡量的是给定绝对大小的赌博，比如抛硬币赢或输 $100$。财富不同时，同样 $100$ 元的相对分量不同。若盈亏与总财富成比例，写成 $w\tilde{g}$，
+\[
+    \mathrm{E}\bigl[u\bigl(w(1+\tilde{g})\bigr)\bigr]=u\bigl(w(1-\pi_R)\bigr).
+\]
+% 来源：PPT 第 19—20 页。
+\textbf{相对风险溢价的推导：}令 $\tilde g=\varepsilon\tilde z$，$\mathrm E[\tilde z]=0$。风险金额为 $w\varepsilon\tilde z$，确定财富减少量为 $w\pi_R$，故
+\[
+\begin{aligned}
+ \mathrm E[u(w+w\varepsilon\tilde z)]
+ &=u(w)+\tfrac12u''(w)w^2\varepsilon^2\mathrm E[\tilde z^2]+o(\varepsilon^2),\\
+ u(w-w\pi_R)&=u(w)-u'(w)w\pi_R+o(\varepsilon^2).
+\end{aligned}
+\]
+
+第二式利用 $\pi_R=O(\varepsilon^2)$。令两边相等，再除以 $wu'(w)>0$，得到
+\[
+ \pi_R=-\frac12\frac{wu''(w)}{u'(w)}\varepsilon^2\mathrm E[\tilde z^2]
+ +o(\varepsilon^2).
+\]
+% 原书由 (7.3) 跳至 (7.5)，保留此编号间隔。
+\setcounter{equation}{4}
+\hypertarget{wj-relative-risk-aversion}{}
+\begin{tcolorbox}[knowledge,title=相对风险厌恶系数,breakable=false]
+因此
+\begin{equation}
+    \pi_R\approx\tfrac12 R(w)\,\mathrm{Var}[\tilde{g}],
+    \qquad
+    R(w)\equiv-\frac{wu''(w)}{u'(w)}=wA(w).
+\label{eq:wj-seven-5}
+\end{equation}
+\end{tcolorbox}
+对同一个按比例的赌博，货币风险溢价与比例风险溢价满足\textbf{精确关系} $\pi_{\mathrm{money}}=w\pi_R$。其二阶近似为
+\[
+ \pi_{\mathrm{money}}\approx\tfrac12 A(w)w^2\operatorname{Var}(\tilde g),\qquad
+ \pi_R\approx\tfrac12 R(w)\operatorname{Var}(\tilde g).
+\]
+$R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和风险相对财富的大小。方差仍然是这里对小风险本身的度量。
+
+\begin{tcolorbox}[knowledge,title=单位与效用刻度,breakable=false]
+$A(w)$ 的单位是财富单位的倒数，$R(w)$ 无量纲。若 $\bar u=\alpha+\beta u$、$\beta>0$，则 $-\bar u''/\bar u'=-u''/u'$，故度量不受效用刻度影响。$u''$ 的数值随效用单位改变，Arrow--Pratt 系数则保持不变。
 \end{tcolorbox}
 
-\begin{tcolorbox}[example]
-\textbf{课堂例：相同财富比例的风险（PPT 第 21 页）}\quad 两人财富分别为 10 万元、1000 万元，均具有 $\gamma=2$ 的 CRRA 效用 $u(w)=-1/w$，面临等概率赢或输财富的 10\% 的赌博。令 $\tilde g=\pm0.1$，则
+% 来源：PPT 第 21 页。
+\begin{tcolorbox}[example,title=课堂例题：相同财富比例的风险,breakable=false]
+两人财富分别为 10 万元、1000 万元，均具有 $\gamma=2$ 的 CRRA 效用 $u(w)=-1/w$，面临等概率赢或输财富的 10\% 的赌博。计算两人的风险溢价金额与比例。
+\end{tcolorbox}
+\begin{solution}
+令 $\tilde g=\pm0.1$，则
 \[
  R(w)=2,\qquad \operatorname{Var}(\tilde g)=0.01,\qquad
  \pi_R\approx\tfrac12\times2\times0.01=0.01.
 \]
+
 本例还能精确求解：
 \[
  \mathrm E[u(w(1+\tilde g))]
  =-\frac{1}{2w}\left(\frac1{1.1}+\frac1{0.9}\right)
  =-\frac{1}{0.99w}=u(0.99w).
 \]
+
 所以 $CE=0.99w$，$\pi_R=1\%$ 在本例恰好也是精确值。两人消除风险愿付的金额分别为 1000 元、10 万元，但占财富的比例相同。
 
 \textbf{与 CARA 对照：}对 $u(w)=-e^{-aw}$ 和固定金额公平赌博 $\tilde g$，
@@ -365,84 +450,111 @@ $R(w)$ 是\textbf{相对风险厌恶}。相对溢价同时取决于 $R(w)$ 和�
  \quad\Longrightarrow\quad
  \pi=\frac1a\ln\mathrm E[e^{-a\tilde g}],
 \]
-故同一 $a$ 的两人面对\textbf{同一个固定金额风险}时，风险溢价金额相同，不随初始财富改变。比如都面对 $\pm1$ 万元的赌博，两人的\textbf{赌注}分别占财富的 10\% 和 0.1\%；这两个百分比不是尚未计算的风险溢价比例。
+故同一 $a$ 的两人面对\textbf{同一个固定金额风险}时，风险溢价金额相同，不随初始财富改变。例如，$\pm1$ 万元的固定赌注分别占两人财富的 10\% 和 0.1\%；消除这项风险所愿付的金额由参数 $a$ 和赌博分布决定。
+\end{solution}
+
+\section{风险厌恶的几个例子}\label{sec:wj-seven-4}
+以下效用函数常用于后续的市场模型。
+\hypertarget{wj-risk-aversion-wealth-changes}{}
+\begin{tcolorbox}[knowledge,title=风险厌恶随财富的变化,breakable=false]
+若 $A'(w)>0$（$<0$），称为绝对风险厌恶递增（递减），记为 IARA（DARA）。若 $R'(w)>0$（$<0$），称为相对风险厌恶递增（递减），记为 IRRA（DRRA）。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=7.4 风险厌恶的几个例子]
-下面几个 $u$ 在后面的市场模型里反复出现。第 2 章只记了它们的形状；这里补上 $A$ 和 $R$。若 $A'(w)>0$（$<0$），称为绝对风险厌恶递增（递减），记为 IARA（DARA）。若 $R'(w)>0$（$<0$），称为相对风险厌恶递增（递减），记为 IRRA（DRRA）。
+\subsection{线性（风险中性）}
+\begin{tcolorbox}[knowledge,breakable=false]
+$u(w)=w$。则 $A(w)=R(w)=0$，风险容忍为无穷。期望支付相同的结果被看成一样，不管风险。
+\end{tcolorbox}
 
-\begin{enumerate}
-    \item \textbf{线性（风险中性）}\quad $u(w)=w$。则 $A(w)=R(w)=0$，风险容忍为无穷。期望支付相同的结果被看成一样，不管风险。
-
-    \item \textbf{负指数（CARA）}\quad $u(w)=-e^{-aw}$，$a>0$。
+\subsection{负指数（CARA）}\label{sec:wj-seven-cara}
+\begin{tcolorbox}[knowledge,breakable=false]
+$u(w)=-e^{-aw}$，$a>0$。
     \[
         A(w)=a,\qquad R(w)=aw.
     \]
-    绝对风险厌恶是常数，故称 CARA（constant absolute risk aversion）。相对风险厌恶随财富上升（IRRA）。
 
-    \item \textbf{平方}\quad $u(w)=w-\frac12 aw^{2}$，$a>0$，定义在 $w\in[0,1/a)$ 上，以保证 $u'(w)=1-aw>0$。
+    绝对风险厌恶是常数，故称 CARA（constant absolute risk aversion）。相对风险厌恶随财富上升（IRRA）。
+\end{tcolorbox}
+
+\subsection{平方}
+\begin{tcolorbox}[knowledge,breakable=false]
+$u(w)=w-\frac12 aw^{2}$，$a>0$，定义在 $w\in[0,1/a)$ 上，以保证 $u'(w)=1-aw>0$。
     \[
         A(w)=\frac{a}{1-aw},\qquad R(w)=\frac{aw}{1-aw}.
     \]
-    $A(w)$ 随 $w$ 上升，是 IARA：财富越高，风险容忍 $T(w)=(1-aw)/a$ 越低。\textcolor{red}{\textbf{教材该段写成“绝对风险厌恶随财富递减”，与这个公式相反。}}
+    $A(w)$ 随 $w$ 上升，是 IARA：财富越高，风险容忍 $T(w)=(1-aw)/a$ 越低。
+% 依教材勘误 2021 第 105 页，绝对风险厌恶应随财富递增。
+\end{tcolorbox}
 
-    \item \textbf{幂（CRRA）}\quad $u(w)=\dfrac{w^{1-\gamma}}{1-\gamma}$，$\gamma>0$、$\gamma\neq 1$，$w>0$。
+\subsection{幂（CRRA）}\label{sec:wj-seven-crra}
+\begin{tcolorbox}[knowledge,breakable=false]
+$u(w)=\dfrac{w^{1-\gamma}}{1-\gamma}$，$\gamma>0$、$\gamma\neq 1$，$w>0$。
     \[
         A(w)=\frac{\gamma}{w},\qquad R(w)=\gamma.
     \]
-    绝对风险厌恶随财富下降（DARA），相对风险厌恶是常数，故称 CRRA（constant relative risk aversion）。风险容忍 $T(w)=w/\gamma$ 与财富成正比。
 
-    \item \textbf{对数}\quad $u(w)=\log w$。将幂效用作不影响偏好的常数平移后，
+    绝对风险厌恶随财富下降（DARA），相对风险厌恶是常数，故称 CRRA（constant relative risk aversion）。风险容忍 $T(w)=w/\gamma$ 与财富成正比。
+\end{tcolorbox}
+
+\subsection{对数}
+\begin{tcolorbox}[knowledge,breakable=false]
+$u(w)=\log w$。将幂效用作不影响偏好的常数平移后，
     \[
       \lim_{\gamma\to1}\frac{w^{1-\gamma}-1}{1-\gamma}=\ln w.
     \]
+
     因此对数效用是正仿射标准化后的幂效用极限，仍属 CRRA：
     \[
         A(w)=\frac{1}{w},\qquad R(w)=1.
     \]
+\end{tcolorbox}
 
-    \item \textbf{双曲线绝对风险厌恶（HARA）}\quad 直接由容忍系数规定。$\gamma\ge -1$ 时
+\subsection{双曲线绝对风险厌恶（HARA）}\label{sec:wj-seven-hara}
+\begin{tcolorbox}[knowledge,breakable=false]
+由线性风险容忍规定。在 $d+w/\gamma>0$ 的财富区间上，取教材参数范围 $\gamma\ge-1$、$\gamma\ne0$，
     \[
         A(w)=\frac{1}{d+w/\gamma},
         \qquad
         T(w)=d+\frac{w}{\gamma}.
     \]
+
     风险容忍对财富是线性的，前面几类都是它的特例：
     \begin{itemize}
-        \item 风险中性：$d=\infty$；
+        \item 风险中性：$d\to\infty$ 的极限；
         \item 平方：$\gamma=-1$ 且 $d=1/a$；
         \item 负指数：$\gamma\to\infty$ 且 $d=1/a$；
         \item 幂：$d=0$，$\gamma>0$ 且 $\gamma\neq 1$；
-        \item 对数：$d=0$ 且 $\gamma\to 1$。
+        \item 对数：$d=0$ 且 $\gamma=1$。
     \end{itemize}
-\end{enumerate}
-
+\end{tcolorbox}
 % PPT 第 23–24 页：参数解释及统一推导。
-\textbf{HARA 参数怎样影响风险态度？}须在 $T(w)=d+w/\gamma>0$ 的定义域中讨论，且公式取 $\gamma\ne0$。$d$ 是容忍度直线的截距，$1/\gamma$ 是斜率；$d$ 可解释为独立于当前财富的基础容忍度，但不是无需模型就能识别的实际保障金额。只有零财富属于定义域时，$T(0)=d$ 才能直接解释为零财富处的容忍度。
+\subsubsection{HARA 的参数与效用表示}
+$d$ 是风险容忍直线的截距，$1/\gamma$ 是斜率。若零财富属于定义域，则 $T(0)=d$；当 $d=0$、$\gamma>0$ 时，容忍度随财富趋近零而趋近零。
 \[
  T'(w)=\frac1\gamma,\qquad
  A'(w)=-\frac{1/\gamma}{(d+w/\gamma)^2},\qquad
  R(w)=\frac{w}{d+w/\gamma},\qquad
  R'(w)=\frac{d}{(d+w/\gamma)^2}.
 \]
+
 因此 $\gamma>0$ 时容忍度随财富上升、绝对风险厌恶下降；$\gamma=-1$ 的二次效用则相反。$d=0$ 给出常相对风险厌恶；$d>0$ 时相对风险厌恶随财富上升，尽管绝对风险厌恶可以同时下降。\textbf{DARA 与 IRRA 可以同时成立。}
 
 从容忍度还可反推效用。因为
 \[
  \frac{d}{dw}\ln u'(w)=\frac{u''(w)}{u'(w)}=-\frac1{d+w/\gamma},
 \]
+
 积分得到 $u'(w)=C(d+w/\gamma)^{-\gamma}$，$C>0$。再积分，$\gamma\ne1$ 时
 \[
  u(w)=K+\frac{C\gamma}{1-\gamma}(d+w/\gamma)^{1-\gamma};
 \]
 $\gamma=1$ 时为 $u(w)=K+C\ln(d+w)$。这说明不同经典效用来自对风险容忍度结构的不同假设；固定 $d>0$、令 $\gamma\to\infty$ 时，$T(w)\to d$，相应效用在适当正仿射标准化后趋向 CARA 形式。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=7.5 风险厌恶的比较]
-$A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度。设 $u_1$、$u_2$ 递增且二阶可微，$A_1$、$A_2$ 为相应的绝对风险厌恶。
+\section{风险厌恶的比较}\label{sec:wj-seven-5}
+$A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度。设 $u_1$、$u_2$ 在同一财富区间上二阶连续可微且导数为正，$A_1$、$A_2$ 为相应的绝对风险厌恶。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 7.4（Pratt）}\quad 下列四条等价：
+\subsection{Pratt 定理及其证明}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJSevenTheorem{thm:wj-seven-4}\textbf{（Pratt）} 下列四条等价：
 \begin{enumerate}
     \item $A_1(w)\ge A_2(w)$ 对一切 $w$ 成立；
     \item $u_1\bigl(u_2^{-1}(z)\bigr)$ 是 $z$ 的凹函数；
@@ -453,7 +565,7 @@ $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度�
 \end{tcolorbox}
 
 % PPT 第 26–27 页：补齐链式求导与反向证明。
-\textbf{第 1、2、3 条的等价：}由于 $u_2'>0$，反函数存在。令 $z=u_2(w)$、$f(z)=u_1(u_2^{-1}(z))$，链式法则给出
+\textbf{（第 1 条 $\Leftrightarrow$ 第 2、3 条）}由于 $u_2'>0$，反函数存在。令 $z=u_2(w)$、$f(z)=u_1(u_2^{-1}(z))$，链式法则给出
 \[
  f'(z)=\frac{u_1'(w)}{u_2'(w)}>0,
 \]
@@ -466,9 +578,10 @@ $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度�
  &=-\frac{u_1'(w)}{[u_2'(w)]^2}[A_1(w)-A_2(w)].
 \end{aligned}
 \]
+
 前面的比例因子为正，所以 $A_1\ge A_2$ 当且仅当 $f''\le0$。且 $f(u_2(w))=u_1(w)$，这就把“更厌恶风险”与“对另一个效用再作递增凹变换”连起来。
 
-\textbf{第 3 条推出第 4 条：}对公平赌博 $\tilde g$，
+\textbf{（第 3 条 $\Rightarrow$ 第 4 条）}对公平赌博 $\tilde g$，
 \begin{align*}
     u_1(w-\pi_1)
     &=\mathrm{E}\bigl[u_1(w+\tilde{g})\bigr]
@@ -478,20 +591,41 @@ $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度�
     =u_1(w-\pi_2).
 \end{align*}
 
-$u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。凹变换把已经风险厌恶的 $u_2$ 变得更厌恶风险；Arrow--Pratt 系数更大，为消除同一风险愿意放弃的财富更多。
+$u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。递增凹变换提高风险厌恶程度；Arrow--Pratt 系数更大，为消除同一风险愿意放弃的财富更多。
 
-\textbf{两个人的 CE 比较（PPT 第 12 页）：}对同一个随机财富 $\widetilde W$，记 $CE_i=u_i^{-1}(\mathrm E[u_i(\widetilde W)])$，$\pi_i=\mathrm E[\widetilde W]-CE_i$。Pratt 定理给出
+\textbf{（第 4 条 $\Rightarrow$ 第 1 条）}固定任意财富 $w$，取等概率的 $\pm\varepsilon$ 公平赌博，则
+\[
+ \pi_i(w,\varepsilon)=\tfrac12A_i(w)\varepsilon^2+o(\varepsilon^2).
+\]
+
+若对所有赌博都有 $\pi_1\ge\pi_2$，两边除以 $\varepsilon^2/2>0$，再令 $\varepsilon\to0$，得到 $A_1(w)\ge A_2(w)$。$w$ 任意，故总体比较成立。对每个财富点取小风险极限，便由所有赌博的溢价排序恢复逐点的系数排序。
+
+
+\subsection{确定性等值与风险溢价的比较}
+% 来源：PPT 第 12 页。
+\begin{tcolorbox}[knowledge,title=同一风险的 CE 与溢价排序,breakable=false]
+对同一个随机财富 $\widetilde W$，记 $CE_i=u_i^{-1}(\mathrm E[u_i(\widetilde W)])$，$\pi_i=\mathrm E[\widetilde W]-CE_i$。Pratt 定理给出
 \[
  A_1\ge A_2\ \text{处处成立}
  \quad\Longrightarrow\quad CE_1\le CE_2,\qquad\pi_1\ge\pi_2.
 \]
-图中越靠左的 CE 对应越大的风险溢价。\textbf{同一个赌局}的 CE 排序只是这一个比较；要推出“总体上更厌恶风险”，必须对所有相关财富和赌博都成立，不能只看一张图或一次选择。
+\end{tcolorbox}
+CE 越低，消除同一风险所愿付的金额越高。总体风险厌恶比较要求这一排序对所有相关财富与赌博成立。
 
-\textbf{数字验证：}两人都面对等概率为 1 或 9 的同一随机财富，期望财富为 5；第一人取 $u_1(w)=\ln w$，第二人取 $u_2(w)=\sqrt w$。则
+图~\ref{fig:wj-ce-comparison} 以同一等概率赌博比较两种效用下的确定性等值，风险厌恶较强者的 CE 更低。
+
+\input{tex/金融经济学_王江/figures/07_CE比较.tex}
+
+\begin{tcolorbox}[example,title=课堂例题：对数与平方根效用的比较,breakable=false]
+两人都面对等概率为 1 或 9 的随机财富，第一人取 $u_1(w)=\ln w$，第二人取 $u_2(w)=\sqrt w$。比较两人的风险厌恶系数、确定性等值与风险溢价。
+\end{tcolorbox}
+\begin{solution}
+期望财富为 5，且
 \[
  A_1(w)=\frac1w>\frac1{2w}=A_2(w),\qquad w>0.
 \]
-按各自效用计算而不是直接比较效用数值：
+
+按各自效用计算，得到：
 \[
 \begin{array}{c|c|c|c}
  &\text{期望效用}&CE&\pi=5-CE\\\hline
@@ -499,17 +633,15 @@ $u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。凹变换把已�
  u_2=\sqrt w&\tfrac12\sqrt1+\tfrac12\sqrt9=2&4&1
 \end{array}
 \]
-第一人的 CE 更靠左、为消除同一风险愿意放弃更多财富，与 Pratt 定理一致；两人的期望效用数字本身不具有跨人比较意义。
 
-\textbf{第 4 条推出第 1 条：}固定任意财富 $w$，取等概率的 $\pm\varepsilon$ 公平赌博，则
-\[
- \pi_i(w,\varepsilon)=\tfrac12A_i(w)\varepsilon^2+o(\varepsilon^2).
-\]
-若对所有赌博都有 $\pi_1\ge\pi_2$，两边除以 $\varepsilon^2/2>0$，再令 $\varepsilon\to0$，得到 $A_1(w)\ge A_2(w)$。$w$ 任意，故总体比较成立。这里用的是\textbf{小风险极限}，而非把二阶近似当成对任意大风险的精确公式。
-\end{tcolorbox}
+第一人的 CE 更靠左、为消除同一风险愿意放弃更多财富，与 Pratt 定理一致；风险态度通过 CE 与风险溢价比较。
+\end{solution}
 
-\begin{tcolorbox}[knowledge,title=7.6 一阶风险厌恶]
-上面的 $A(w)$、$R(w)$ 都假设 $u$ 可微，并且只刻画小风险的二阶效应。若 $u$ 在参考点不可微，溢价的阶数会变。第 6 章的折点效用是
+\section{一阶风险厌恶}\label{sec:wj-seven-6}
+光滑效用的小风险溢价通常是风险规模的二阶量。参考点处边际效用发生跳跃时，风险溢价可以出现一阶项。
+\subsection{折点效用与风险溢价的阶数}
+\begin{tcolorbox}[knowledge,title=参考点处的边际效用跳跃,breakable=false]
+沿用第~\ref{sec:wj-six-extensions}~节的折点效用：
 \[
     u(w)=
     \begin{cases}
@@ -520,40 +652,46 @@ $u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。凹变换把已�
 \]
 
 % PPT 第 29–30 页：门槛含义及一阶效应的范围。
-$\bar w$ 可代表债务偿还门槛、最低保障目标或作为参照的初始财富；同额损失的效用变化率 $a_-$ 大于同额收益的变化率 $a_+$，反映跨越目标时的不对称。\textbf{在任一线性分支内部，$u''=0$，对不跨越折点的赌博是风险中性的。}一阶风险厌恶来自折点处边际效用的跳跃，不能将左侧斜率较大解释成左侧曲率更大。
-
-光滑效用下，对 $\pm\delta$ 风险，$\pi=O(\delta^2)$，即与\textbf{方差}同阶；并非与“方差的平方”同阶。折点处则有 $\pi=O(\delta)$。两种溢价都随 $\delta\to0$ 趋于零，但前者 $\pi/\delta\to0$，后者该比值保持正值。若初始财富与折点有固定距离，足够小且始终处于同一线性分支的风险不会产生这一折点效应。
 \end{tcolorbox}
+$\bar w$ 可代表债务偿还门槛、最低保障目标或作为参照的初始财富；同额损失的效用变化率 $a_-$ 大于同额收益的变化率 $a_+$，反映跨越目标时的不对称。\textbf{在任一线性分支内部，$u''=0$，对不跨越折点的赌博是风险中性的。}一阶风险厌恶来自折点处边际效用的跳跃。
 
-\begin{tcolorbox}[example]
-\begin{question}
-【可能要考】\textbf{折点处的公平赌博}\quad 财富恰为 $\bar{w}$。公平的 Bernoulli 赌博以 $1/2$ 的概率得到 $\delta$、以 $1/2$ 的概率得到 $-\delta$。按定义 7.4，风险溢价是多少？它与可微情形的阶数有何不同？
-\end{question}
+\begin{tcolorbox}[knowledge,title=一阶与二阶风险溢价,breakable=false]
+光滑效用下，对 $\pm\delta$ 风险，$\pi=O(\delta^2)$，即与\textbf{方差}同阶。折点处则有 $\pi=O(\delta)$。两种溢价都随 $\delta\to0$ 趋于零，但前者 $\pi/\delta\to0$，后者该比值保持正值。
+\end{tcolorbox}
+若初始财富与折点有固定距离，足够小且始终处于同一线性分支的风险不会产生这一折点效应。
+
+\begin{tcolorbox}[example,title=课堂例题：折点处的公平赌博,breakable=false]
+ 财富恰为 $\bar{w}$。公平的 Bernoulli 赌博以 $1/2$ 的概率得到 $\delta$、以 $1/2$ 的概率得到 $-\delta$。按定义~\ref{def:wj-seven-4}（以消除风险时愿意放弃的财富衡量风险溢价），风险溢价是多少？它与可微情形的阶数有何不同？
+\end{tcolorbox}
 \begin{solution}
 % 课堂板书：用户提供的折点风险溢价照片，按板书等式顺序整理。
-\textbf{按课堂板书，先写定义，再代入两种结果，最后代入分段效用。}定义 7.4 为
+由定义~\ref{def:wj-seven-4}，
 \[
  \mathrm E[u(w+\tilde g)]=u(w-\pi).
 \]
+
 本题 $w=\bar w$，且 $\tilde g$ 以相同概率取 $\delta$、$-\delta$（$\delta>0$），故
 \[
  \frac12u(\bar w+\delta)+\frac12u(\bar w-\delta)
  =u(\bar w-\pi).
 \]
+
 赢时在折点右侧，用 $a_+$；输时在折点左侧，用 $a_-$。左边的期望效用为
-$\tfrac12a_+\delta+\tfrac12a_-(-\delta)<0=u(\bar w)$，所以确定性等值低于 $\bar w$、$\pi>0$。因此右边也在折点左侧，须用 $a_-$。于是板书的关键一步是
+$\tfrac12a_+\delta+\tfrac12a_-(-\delta)<0=u(\bar w)$，所以确定性等值低于 $\bar w$、$\pi>0$。因此右边也在折点左侧，须用 $a_-$。代入分段效用，得到
 \[
  \underbrace{\frac12a_+\delta+\frac12a_-(-\delta)}_{\text{赌博的期望效用}}
  =\underbrace{a_-(-\pi)}_{\text{确定财富的效用}}.
 \]
+
 保留输时的 $(-\delta)$ 与放弃财富的 $(-\pi)$，便能直接看清符号。整理得
 \[
  \frac\delta2(a_+-a_-)=-a_-\pi
  \quad\Longrightarrow\quad
  \boxed{\pi=\frac{\delta}{2a_-}(a_--a_+).}
 \]
+
 \textbf{为什么除以 $a_-$？}左边先算出的是效用损失
-$\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用减少 $a_-$，所以除以 $a_-$ 才换算成财富金额。这正是板书从第三行到最后一行的含义。
+$\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用减少 $a_-$，所以除以 $a_-$ 才换算成财富金额。
 
 \textbf{再比较风险溢价的阶数。}
 赌博的方差为
@@ -571,72 +709,104 @@ $\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用�
 \]
 是风险规模 $\delta$ 的二阶量。本题折点处的溢价则恰好与 $\delta$ 成正比，是一阶量，称为\textbf{一阶风险厌恶}。例如，风险规模减半时，本题的溢价也减半；光滑效用下非零的二阶近似则减为原来的四分之一。
 
-\textcolor{red}{\textbf{教材印作 $\pi=\tfrac12(a_{-}-a_{+})\delta$，按定义 7.4 还应除以左侧斜率 $a_{-}$。}}与 $\delta$ 而非 $\delta^{2}$ 成正比这一点不受影响。
+% 教材勘误 2021 第 107 页已补上分母 a_-；与 PPT 第 28 页及课堂板书一致。
 \end{solution}
-\end{tcolorbox}
 
 
-\begin{tcolorbox}[knowledge,title=7.7 风险厌恶度量的应用]
+图~\ref{fig:wj-kinked-utility} 展示了折点效用下期望效用、确定性等值与风险溢价的几何关系。
+
+\input{tex/金融经济学_王江/figures/07_折点效用.tex}
+
+\section{风险厌恶度量的应用}\label{sec:wj-seven-7}
 % PPT 第 30–31 页：参与门槛与配置公式，补上所需条件。
-\textbf{A.\ 一阶风险厌恶与参与门槛}\quad 在折点财富 $\bar w$ 处，考虑等概率带来 $\varepsilon(\mu+\delta)$ 或 $\varepsilon(\mu-\delta)$ 的小额投资，$\varepsilon>0$、$0<\mu<\delta$。这项投资的期望盈利是 $\varepsilon\mu>0$，但期望效用变化为
+\subsection{一阶风险厌恶与参与门槛}
+ 在折点财富 $\bar w$ 处，考虑等概率带来 $\varepsilon(\mu+\delta)$ 或 $\varepsilon(\mu-\delta)$ 的小额投资，$\varepsilon>0$、$0<\mu<\delta$。这项投资的期望盈利是 $\varepsilon\mu>0$，但期望效用变化为
 \[
  \tfrac{\varepsilon}{2}\{a_+(\mu+\delta)+a_-(\mu-\delta)\}
  =\tfrac{\varepsilon}{2}\{(a_++a_-)\mu-(a_--a_+)\delta\}.
 \]
-故参与条件为
+\begin{tcolorbox}[knowledge,title=折点处的参与门槛,breakable=false]
+参与条件为
 \[
  \frac{\mu}{\delta}\ge\frac{a_--a_+}{a_-+a_+}.
 \]
+\end{tcolorbox}
 缩小投资规模 $\varepsilon$ 不改变这个门槛：即使期望收益为正，只要补偿相对损失幅度不足，参与者仍会拒绝。光滑效用且 $u'(w)>0$ 时，同一投资的效用变化为
 \[
  u'(w)\varepsilon\mu+O(\varepsilon^2),
 \]
-固定 $\mu>0$、充分小的 $\varepsilon$ 下为正。这解释了折点为何可能形成不参与区间；是否出现持仓跳跃，还取决于完整投资机会与约束，不能仅凭一个折点断言。
 
-\textbf{保险解释（PPT 第 30 页）：}若随机损失为 $L\ge0$，全额保险保费为 $P$，无保险财富为 $w-L$、投保后为 $w-P$。最高愿付保费 $P_{\max}$ 满足
+固定 $\mu>0$、充分小的 $\varepsilon$ 下为正。折点因此可使正期望收益的小额投资出现不参与区间。
+
+\subsection{保险与最高愿付保费}
+% 来源：PPT 第 30 页。
+若随机损失为 $L\ge0$，全额保险保费为 $P$，无保险财富为 $w-L$、投保后为 $w-P$。最高愿付保费 $P_{\max}$ 满足
 \[
  u(w-P_{\max})=\mathrm E[u(w-L)].
 \]
+
 令 $m=w-\mathrm E[L]$、$\tilde g=\mathrm E[L]-L$，就有 $\mathrm E[\tilde g]=0$、$w-L=m+\tilde g$。按风险溢价定义，
 \[
  \mathrm E[u(w-L)]=u(m-\pi)
  \quad\Longrightarrow\quad P_{\max}=\mathrm E[L]+\pi.
 \]
-最高愿付保费等于\textbf{精算公平保费加消除风险的溢价}。光滑偏好对小风险的额外支付通常是二阶量；若风险跨越折点，该额外支付可为一阶量。两种模型都可能愿付高于期望损失的保费，是否投保还要比较实际报价，不能说只有一阶风险厌恶者才愿支付附加保费。
+\begin{tcolorbox}[knowledge,title=最高愿付保费,breakable=false]
+\[
+ P_{\max}=\underbrace{\mathrm E[L]}_{\text{精算公平保费}}+\underbrace{\pi}_{\text{消除风险的溢价}}.
+\]
 
-\tcbline
-\textbf{B.\ 风险厌恶与投资金额、比例}\quad 令 $q=\tilde r-r_F$ 为超额收益率，$b=w(1+r_F)$ 为全投无风险证券时的期末财富，$a$ 为风险投资金额。对\textbf{小的风险敞口}在 $b$ 处展开，
+投保条件为实际保费 $P\le P_{\max}$。
+\end{tcolorbox}
+光滑偏好对小风险的额外支付通常是二阶量；若风险跨越折点，该额外支付可为一阶量。
+
+\subsection{风险厌恶与投资金额、比例}
+ 令 $q=\tilde r-r_F$ 为超额收益率，$b=w(1+r_F)$ 为全投无风险证券时的期末财富，$a$ 为风险投资金额。对\textbf{小的风险敞口}在 $b$ 处展开，
 \[
  \mathrm E[u(b+aq)]\approx u(b)+u'(b)a\mathrm E[q]
                   +\tfrac12u''(b)a^2\mathrm E[q^2].
 \]
+
 对 $a$ 求导，得到局部近似
 \[
  a^*\approx\frac{\mathrm E[q]}{A(b)\mathrm E[q^2]}.
 \]
 若风险溢价较小，$\mathrm E[q^2]=\operatorname{Var}(q)+(\mathrm E[q])^2
-\approx\sigma^2$，且忽略短期无风险增长、令 $b\approx w$，则
+\approx\sigma^2$，且忽略短期无风险增长、令 $b\approx w$，得到
+\begin{tcolorbox}[knowledge,title=风险投资金额与比例的局部近似,breakable=false]
 \[
  a^*\approx\frac{\mathrm E[\tilde r]-r_F}{A(w)\sigma^2},\qquad
  \alpha^*=\frac{a^*}{w}\approx
  \frac{\mathrm E[\tilde r]-r_F}{R(w)\sigma^2}.
 \]
-因此同样投资机会下，更高风险厌恶降低风险敞口；CARA 对应风险投资金额不随财富变化，CRRA 对应风险投资比例不随财富变化，其精确条件在第 8、9 章讨论。
-
-\textbf{与 Merton 公式的关系：}PPT 的 $\alpha^*=(\mu-r_F)/(\gamma\sigma^2)$，在单只风险资产服从几何布朗运动、参数恒定、CRRA 偏好、无额外交易限制且无外生劳动收入等经典连续时间条件下是精确的最优比例。这里的 $\mu$ 是单位时间收益漂移，$\sigma$ 是扩散波动率；不能将它直接当成任意单期收益分布下的精确结论。给定同样机会，$\gamma=5$ 时的最优比例是 $\gamma=2$ 时的 $2/5$，但不能脱离模型把某个 $\gamma$ 数值固定归类为“高度”或“中度”风险厌恶。
 \end{tcolorbox}
+在上述近似下，同样投资机会下，更高风险厌恶降低风险敞口；CARA 对应风险投资金额不随财富变化，CRRA 对应风险投资比例不随财富变化，其精确条件在后续组合选择两讲讨论。
 
-\begin{tcolorbox}[knowledge,title=本章小结]
+\subsubsection{连续时间的 CRRA 配置}
+\begin{tcolorbox}[knowledge,title=连续时间的 CRRA 最优比例,breakable=false]
+单只风险资产服从几何布朗运动、参数恒定、CRRA 偏好、无额外交易限制且无外生劳动收入的经典 Merton 模型中，最优风险投资比例为
+\[
+ \alpha^*=\frac{\mu-r_F}{\gamma\sigma^2}.
+\]
+其中 $\mu$ 是单位时间收益漂移，$\sigma$ 是扩散波动率，$\gamma>0$ 是相对风险厌恶系数。
+\end{tcolorbox}
+给定同样机会，$\gamma=5$ 时的最优比例是 $\gamma=2$ 时的 $2/5$。
+
+\section*{本章小结}
+\addcontentsline{toc}{section}{本章小结}
+\begin{tcolorbox}[summary]
 \begin{enumerate}
-    \item 凸偏好写成期望效用后，$u$ 是凹的；二阶可微时 $u''\le 0$，即边际效用递减。
-    \item 风险厌恶：公平赌博（$\mathrm{E}[\tilde{g}]=0$）不如它的期望值。这与 $u$ 凹等价。
+    \item 在~\eqref{eq:wj-six-4} 的共同单期效用结构下，凸偏好对应的 $u$ 是凹的；二阶可微时 $u''\le 0$，即边际效用递减。
+    \item 风险厌恶：确定财富至少不劣于期望值相同的公平赌博（$\mathrm{E}[\tilde{g}]=0$）。这与 $u$ 凹等价。
     \item 小风险的溢价 $\pi\approx\tfrac12 A(w)\,\mathrm{Var}[\tilde{g}]$，$A(w)=-u''(w)/u'(w)$ 为绝对风险厌恶，其倒数为风险容忍。与财富成比例的风险用 $R(w)=wA(w)$。
     \item 线性效用风险中性；负指数是 CARA；幂效用和对数是 CRRA；平方效用是 IARA，且只在 $w<1/a$ 上边际效用为正。HARA 把这些情形收成风险容忍对财富线性。
-    \item Pratt 定理：绝对风险厌恶处处更高、效用是另一个效用的凹变换、以及对一切公平赌博要求更高溢价，三者等价。
+    \item Pratt 定理：绝对风险厌恶处处不低、效用是另一个效用的递增凹变换、以及对一切公平赌博要求不低的溢价，三者等价。
     \item 确定性等值由 $u(CE)=\mathrm E[u(\widetilde W)]$ 求得，风险溢价是期望财富与 CE 的差；应先计算期望效用，再反解财富。
     \item 本章分段线性效用在折点处对称小风险的溢价与风险规模成正比，称为一阶风险厌恶；在同一线性分支内则风险中性。风险厌恶度量应用于资产配置时，须同时保留收益分布与交易约束等模型条件。
 \end{enumerate}
 \end{tcolorbox}
 \fi
 
+\section*{课后习题}
+\addcontentsline{toc}{section}{课后习题}
 \input{tex/金融经济学_王江/07_风险厌恶_习题.tex}
+\endgroup

@@ -1,127 +1,15 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 03_Arrow-Debreu经济 课后习题（由章节文件拆分）
+% 教材第 3 章练习 1—4；教材例 3.3、3.4 位于本章正文。
 
-    \begin{problem}
-        \problemno{例 3.3} 考虑“Lucas 树经济”，1 期有两个概率相等的状态 $a$ 和 $b$。假设 1 期的两个可能状态的状态价格分别为 $\phi_{a}$ 和 $\phi_{b}$。考虑一个参与者，他的禀赋为 $(e_{0};e_{1a};e_{1b})$。他具有如下对数形式的效用函数：
-        \[
-            U(c_{0},c_{1a},c_{1b})=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})
-        \]
-        
-        他的最优消费/组合选择是什么？
-        \end{problem}
-        \begin{solution}
-        给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
-        \[
-            \begin{aligned}
-                \max_{\{c_{0},c_{1a},c_{1b}\}}\ &\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})\\
-                \mathrm{s.t.}\quad &w-(c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b})=0\\
-                &c_{0},c_{1a},c_{1b}>0
-            \end{aligned}
-        \]
+\newcounter{wjThreeExercise}
+\renewcommand{\thewjThreeExercise}{\thechapter.\arabic{wjThreeExercise}}
+\newcommand{\WJThreeProblem}[2]{\refstepcounter{wjThreeExercise}\label{#1}\problemno{\thewjThreeExercise#2}}
 
-        假设 $w>0$、$\phi_a,\phi_b>0$。对数效用的消费域为 $c_0,c_{1a},c_{1b}>0$；最优解在内部，可直接使用等式预算的拉格朗日函数
-        \[
-            \mathcal{L}=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})+\lambda\bigl(w-c_0-\phi_a c_{1a}-\phi_b c_{1b}\bigr).
-        \]
-        一阶条件为
-        \[
-          \frac1{c_0}=\lambda,\qquad
-          \frac1{2c_{1a}}=\lambda\phi_a,\qquad
-          \frac1{2c_{1b}}=\lambda\phi_b,\qquad
-          c_0+\phi_a c_{1a}+\phi_b c_{1b}=w.
-        \]
-        当消费趋近 $0$ 时，对数效用趋于负无穷、边际效用趋于正无穷，因此最优消费在每一时期、每一状态都严格为正。由上述一阶条件得到最优消费：
-        \[
-            c_{0}^{*}=\frac{1}{\lambda},\qquad
-            c_{1a}^{*}=\frac{1}{\lambda}\frac{1}{2\phi_{a}},\qquad
-            c_{1b}^{*}=\frac{1}{\lambda}\frac{1}{2\phi_{b}}
-        \]
-
-        把 $c^{*}$ 代入预算约束，我们可以得到 $\lambda$ 的解：
-        \[
-            \frac{1}{\lambda}+\frac{1}{2\lambda}+\frac{1}{2\lambda}=w\qquad\Rightarrow\qquad\lambda=\frac{2}{w}
-        \]
-
-        最后，我们有
-        \[
-            c_{0}^{*}=\frac12 w,\qquad
-            c_{1a}^{*}=\frac14\frac{w}{\phi_{a}},\qquad
-            c_{1b}^{*}=\frac14\frac{w}{\phi_{b}}
-        \]
-
-        可以看出，参与者把一半财富用作现在的消费，把另外一半财富作为未来的消费。在财富给定时，某一状态下的消费与对应状态价格成反比；若价格变化也改变禀赋市值，还须计入财富效应。这个结果很直观。状态价格高的状态下的消费更昂贵。结果，参与者在这些状态下选择较低的消费。
-        \end{solution}
-
-    \begin{problem}
-        \problemno{例 3.4} 考虑一个经济，在 1 期有两个概率相等的状态 $a$ 和 $b$。经济中有参与者 1 和 2，他们具有的禀赋分别为：
-        \begin{center}
-        \WJEventTree[left={$e_{1}{:}100$}]{0,0}
-        \qquad
-        \WJEventTree[left={$e_{2}{:}0$}]{200,50}
-        \end{center}
-        两个参与者都具有如下形式的对数效用函数：
-        \[
-            U(c)=\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})
-        \]
-        \end{problem}
-        \begin{solution}
-        在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
-        
-        现在我们开始分析这个经济的均衡。从给定交易证券价格下参与者的最优化问题开始。记 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$ 为状态价格（向量），即两个状态或有证券的价格。我们可以定义每个参与者的财富为 $w=\hat{\phi}^{\top}e$，这里 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$，而 $e$ 是他的禀赋。这时，最优化问题变成了：
-        \[
-            \begin{aligned}
-                \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
-                \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=w
-            \end{aligned}
-        \]
-
-        由例 3.3，最优消费为
-        \[
-            c_{k,0}^{*}=\tfrac12 w_{k},\qquad
-            c_{k,a}^{*}=\tfrac14\frac{w_{k}}{\phi_{a}},\qquad
-            c_{k,b}^{*}=\tfrac14\frac{w_{k}}{\phi_{b}},\qquad k=1,2
-        \]
-        在状态价格 $\phi_{a},\phi_{b}$ 下，参与者按禀赋市值计的财富为 $w_{k}=e_{k,0}+\phi_{a}e_{k,a}+\phi_{b}e_{k,b}$（0 期消费品价格为 $1$）。代入禀赋 $(100;0,0)$ 与 $(0;200,50)$：
-        \[
-            w_{1}=100+0\cdot\phi_{a}+0\cdot\phi_{b}=100,\qquad
-            w_{2}=0+200\phi_{a}+50\phi_{b}=200\phi_{a}+50\phi_{b}.
-        \]
-
-        \textbf{0 期商品市场出清}（两人 0 期消费之和等于经济 0 期总禀赋 $100$）。由例 3.3，$c_{k,0}^{*}=\tfrac12 w_{k}$，故
-        \[
-            c_{1,0}^{*}+c_{2,0}^{*}=\tfrac12 w_{1}+\tfrac12 w_{2}=\tfrac12(w_{1}+w_{2})=100
-            \quad\Longrightarrow\quad w_{1}+w_{2}=200.
-        \]
-
-        把 $w_{1},w_{2}$ 代入 $w_{1}+w_{2}=200$：
-        \[
-            100+(200\phi_{a}+50\phi_{b})=200.
-        \]
-
-        移项得 $200\phi_{a}+50\phi_{b}=100$；两边同除以 $50$，得到与状态价格有关的第一个方程
-        \[
-            4\phi_{a}+\phi_{b}=2.
-        \]
-
-        \textbf{1 期·状态 $a$ 商品市场出清}（状态 $a$ 下总消费 $200$）。由 $c_{k,a}^{*}=\tfrac14 w_{k}/\phi_{a}$，
-        \[
-            c_{1,a}^{*}+c_{2,a}^{*}=\tfrac{w_{1}}{4\phi_{a}}+\tfrac{w_{2}}{4\phi_{a}}
-            =\frac{w_{1}+w_{2}}{4\phi_{a}}=200
-            \quad\Longrightarrow\quad w_{1}+w_{2}=800\phi_{a}.
-        \]
-
-        与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。状态 $b$ 出清 $\dfrac{w_{1}+w_{2}}{4\phi_{b}}=50$ 自动成立。        此时 $w_{1}=w_{2}=100$，最优消费为
-        \[
-            \begin{aligned}
-                c_{1,0}^{*}=c_{2,0}^{*}&=50\\
-                c_{1,a}^{*}=c_{2,a}^{*}&=100\\
-                c_{1,b}^{*}=c_{2,b}^{*}&=25
-            \end{aligned}
-        \]
-        \end{solution}
+\par\noindent
+\begin{minipage}{\linewidth}
 
 \begin{problem}
-\problemno{3.1*} 考虑如下经济，在 1 期有两个可能状态 $a$ 和 $b$：
+\WJThreeProblem{prob:wj-three-1}{*} 考虑如下经济，在 1 期有两个可能状态 $a$ 和 $b$：
 \begin{center}
 \WJEventTree{a,b}
 \end{center}
@@ -137,18 +25,20 @@
     \[
         U(c_{0},c_{1a},c_{1b})=-e^{-c_{0}}-\tfrac12\bigl(e^{-c_{1a}}+e^{-c_{1b}}\bigr).
     \]
+
     不考虑消费的非负约束，写出他的优化问题。求解他的最优消费选择。
     \item 讨论他的消费如何依赖于 Arrow-Debreu 证券的价格向量 $\phi$。
     \item 证明在某些价格下，他（在某些时期/状态下）的消费可能是负的。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
     \item Arrow-Debreu 证券的支付向量是 $X_{a}=\begin{bmatrix}1 \\ 0\end{bmatrix}$，$X_{b}=\begin{bmatrix}0 \\ 1\end{bmatrix}$；
     \item $2X_{a}+X_{b}$；
     \item 0 期禀赋为 $0$，1 期禀赋是 $2$ 单位状态 $a$ 或有要求与 $1$ 单位状态 $b$ 或有要求，金融财富为 $w=2\phi_{a}+\phi_{b}$。在消费集 $\mathrm{R}_{+}^{3}$ 上，预算集是
     \[
-        \bigl\{c\in\mathrm{R}_{+}^{3}:c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}=w\bigr\}.
+        \bigl\{c\in\mathrm{R}_{+}^{3}:c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}\le w\bigr\}.
     \]
     \item 本问不施加 $c\ge 0$，在 $\phi_{a}>0$、$\phi_{b}>0$ 时于 $c\in\mathrm{R}^{3}$ 上求解
     \[
@@ -157,22 +47,26 @@
             \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}=w=2\phi_{a}+\phi_{b}
         \end{aligned}
     \]
+
     拉格朗日函数为
     \[
         \mathcal{L}=-e^{-c_{0}}-\tfrac12\bigl(e^{-c_{1a}}+e^{-c_{1b}}\bigr)+\lambda\bigl(w-c_{0}-\phi_{a}c_{1a}-\phi_{b}c_{1b}\bigr)
     \]
+
     对消费求导，一阶条件为
     \[
         e^{-c_{0}}=\lambda,\qquad
         \tfrac12 e^{-c_{1a}}=\lambda\phi_{a},\qquad
         \tfrac12 e^{-c_{1b}}=\lambda\phi_{b}
     \]
+
     从而最优消费为
     \[
         c_{0}^{*}=-\log\lambda,\qquad
         c_{1a}^{*}=-\log(2\lambda\phi_{a}),\qquad
         c_{1b}^{*}=-\log(2\lambda\phi_{b})
     \]
+
     代入预算约束：
     \[
         -\log\lambda-\phi_{a}\log(2\lambda\phi_{a})-\phi_{b}\log(2\lambda\phi_{b})=w
@@ -181,6 +75,7 @@
     \[
         \log\lambda=-\frac{w+\phi_{a}\log(2\phi_{a})+\phi_{b}\log(2\phi_{b})}{S}
     \]
+
     从而 $c_{0}^{*}=-\log\lambda$，且 $c_{1a}^{*}=-\log\lambda-\log(2\phi_{a})$、$c_{1b}^{*}=-\log\lambda-\log(2\phi_{b})$。代入 $w=2\phi_{a}+\phi_{b}$ 得到
     \[
         \begin{aligned}
@@ -217,15 +112,19 @@
     \[
         c_{0}^{*}=\frac{0.3+0.2\log(0.2)}{1.2}\approx -0.0182<0.
     \]
+
     该计划满足预算等式，但 $c_{0}^{*}<0$，因而不属于 (c) 的预算集。
 \end{enumerate}
 \end{solution}
 
+\par\noindent
+\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{3.2} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
+\WJThreeProblem{prob:wj-three-2}{} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
 \[
     U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
 \]
+
 有一只可交易证券，它的 0 期价格为 1、1 期支付为 $1+r_{F}$。这里，$r_{F}$ 是利率。
 \begin{enumerate}[label=(\alph*)]
     \item 假设利率 $r_{F}$ 是给定的，导出参与者对证券的需求。
@@ -234,34 +133,41 @@
     \item 均衡利率如何依赖于偏好参数 $\rho$？解释所得到的结论。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 先不考虑消费的非负性，求解参与者的证券需求。此时参与者的优化问题变成了
+    \item 设 $\rho>0$、$1+r_F>0$。以 $\theta$ 表示债券净买入量，对数效用要求 $-1/(1+r_F)<\theta<100$。在此区间内求解
     \[
         \max_{\theta}\bigl\{\log(100-\theta)+\rho\log\bigl(1+\theta(1+r_{F})\bigr)\bigr\}
     \]
-    这与练习 2.7 是同一规划。一阶条件
+
+    一阶条件
     \[
         \frac{1}{100-\theta}=\rho\frac{1+r_{F}}{1+\theta(1+r_{F})}
     \]
+
     解得证券需求
     \[
         \theta^{*}=\frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}
     \]
+
     最优消费为
     \[
         c_{0}^{*}=\frac{100(1+r_{F})+1}{(1+\rho)(1+r_{F})},\quad
         c_{1}^{*}=\frac{\rho\bigl(100(1+r_{F})+1\bigr)}{1+\rho}
     \]
-    由于最优消费都是非负的，因此上面的求解过程没有问题。
+
+    在给定参数条件下，两项消费均严格为正，满足对数效用的定义域；目标函数严格凹，故该一阶条件解为唯一最优解。
     \item 由于市场上只有一个参与者，因而市场出清条件是 $\theta^{*}=0$；
     \item 由上面的市场出清条件，我们可以求得均衡利率为 $r_{F}=\dfrac{1}{100\rho}-1$；
     \item $r_{F}$ 随着偏好系数的增加而减小。这是因为偏好系数增大，未来消费带来的边际效用相对增加，从而人们对能将财富在 0 期、1 期之间进行转换的证券需求增加，证券价格上升，利率下降。
 \end{enumerate}
 \end{solution}
 
+\par\noindent
+\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{3.3*} 继续考虑练习 3.2 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $\begin{bmatrix}1 \\ 100\end{bmatrix}$。
+\WJThreeProblem{prob:wj-three-3}{*} 继续考虑练习~\ref{prob:wj-three-2} 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $\begin{bmatrix}1 \\ 100\end{bmatrix}$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解参与者 2 的最优消费/储蓄选择。
     \item 比较参与者 1 和 2 的最优消费/储蓄选择。
@@ -270,43 +176,59 @@
     \item 证明均衡配置是 Pareto 最优的。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 先不考虑消费非负的约束，参与者 2 的优化问题就变成了
+    \item 仍设 $\rho>0$、$1+r_F>0$。参与者 2 在 $-100/(1+r_F)<\theta<1$ 内求解
     \[
         \max_{\theta}\bigl\{\log(1-\theta)+\rho\log\bigl(100+\theta(1+r_{F})\bigr)\bigr\}
     \]
+
     一阶条件 $\dfrac{1}{1-\theta}=\rho\dfrac{1+r_{F}}{100+\theta(1+r_{F})}$ 给出证券需求
     \[
         \theta^{*}=\frac{\rho(1+r_{F})-100}{(1+\rho)(1+r_{F})}
     \]
+
     最优消费为
     \[
         c_{0}^{*}=\frac{(1+r_{F})+100}{(1+\rho)(1+r_{F})},\quad
         c_{1}^{*}=\frac{\rho\bigl((1+r_{F})+100\bigr)}{1+\rho}
     \]
-    由于最优消费都是非负的，因此上面的求解过程没有问题。
-    \item 两人的最优消费/储蓄选择形式上是完全一样的，差别在于两人的禀赋不一样；
+
+    在给定参数条件下，两项消费均严格为正，满足对数效用的定义域；目标函数严格凹，故该一阶条件解为唯一最优解。
+    \item 两人均把财富的 $1/(1+\rho)$ 用于当期消费，$\rho/(1+\rho)$ 用于未来消费。在均衡 $1+r_F=1/\rho$ 下，净买入量为 $\theta_1^*=99\rho/(1+\rho)>0$、$\theta_2^*=-99\rho/(1+\rho)<0$；当期禀赋较多者储蓄，未来禀赋较多者借款；
     \item 此时的市场出清条件是 $\theta_{1}^{*}+\theta_{2}^{*}=0$，即
     \[
         \frac{100\rho(1+r_{F})-1}{(1+\rho)(1+r_{F})}+\frac{\rho(1+r_{F})-100}{(1+\rho)(1+r_{F})}=0
     \]
     分子之和为零：$101\rho(1+r_{F})=101$，故 $1+r_{F}=1/\rho$；
     \item 均衡利率是 $r_{F}=1/\rho-1$。只有参与者 1 时总禀赋为 $(100,1)$，均衡利率为 $1/(100\rho)-1$；现在总禀赋为 $(101,101)$，利率由跨期边际替代率 $\rho$ 单独决定，不再被极端的当期/未来禀赋扭曲；
-    \item 配置 Pareto 最优，是指不存在另一种可行配置，使某人的效用严格提高而其他人都不下降。完全市场的均衡满足这一点（定理 3.4）；可检验的条件是两人的跨期边际替代率相等。边际效用之比为
+    \item 均衡时两人的消费均严格为正，且
     \[
-        \frac{\partial U/\partial c_{1}}{\partial U/\partial c_{0}}=\rho\frac{c_{0}}{c_{1}}
+        \frac{\partial_1U_k(c_k^*)}{\partial_0U_k(c_k^*)}
+        =\rho\frac{c_{k,0}^*}{c_{k,1}^*}
+        =\frac{1}{1+r_F}=\rho.
     \]
-    由两人的最优消费都有 $c_{0}^{*}/c_{1}^{*}=1/[\rho(1+r_{F})]$，因而两人的
+
+    因此 $DU_k(c_k^*)=\lambda_k(1,\rho)^{\mathsf T}$，其中 $\lambda_k>0$。对任一使两人效用都不下降的可行配置 $\{a_k\}$，由效用凹性，
     \[
-        \rho\frac{c_{0}^{*}}{c_{1}^{*}}=\frac{1}{1+r_{F}}
+      0\le U_k(a_k)-U_k(c_k^*)
+      \le\lambda_k(1,\rho)(a_k-c_k^*).
     \]
-    相等，均衡配置是 Pareto 最优的。
+
+    若某人的效用严格提高，其右端严格为正；另一人的右端非负。两式分别除以 $\lambda_k$ 后加总，得到
+    \[
+       (1,\rho)\sum_{k=1}^2(a_k-c_k^*)>0,
+    \]
+    与可行性 $\sum_k a_k=\sum_k c_k^*=(101,101)^{\mathsf T}$ 矛盾。故均衡配置 Pareto 最优。
+    \ifdefined\WJHandoutKnowledge 这也是定理~\ref{thm:wj-three-welfare} 在本题中的应用。\fi
 \end{enumerate}
 \end{solution}
 
+\par\noindent
+\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{3.4*} 在 1 期，经济有三个等可能的状态 $a$、$b$ 和 $c$。在证券市场上交易的 Arrow-Debreu 证券集合是完全的。经济中有两个参与者，参与者 1 和 2。他们的禀赋如下：
+\WJThreeProblem{prob:wj-three-4}{*} 在 1 期，经济有三个等可能的状态 $a$、$b$ 和 $c$。在证券市场上交易的 Arrow-Debreu 证券集合是完全的。经济中有两个参与者，参与者 1 和 2。他们的禀赋如下：
 \begin{center}
 \WJEventTree[left={$e_{1}{:}100$}]{0,0,0}
 \qquad
@@ -323,74 +245,75 @@
     \item 证明每一参与者的消费在总消费中所占的份额 $c_{k,1\omega}/e_{1\omega}$ 在所有状态下都是一样的，其中 $k=1,2$，而 $e_{1\omega}$ 是在状态 $\omega=a,b,c$ 下的 1 期总消费/禀赋。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 求解最优消费选择时，先不考虑消费非负的约束。对于参与者 1，它的优化问题是：
+    \item 设三个状态价格均严格为正。效用的经济定义域为各项消费严格为正；在该区域内效用严格递增、严格凹。参与者 $k$ 的财富为
     \[
-        \begin{aligned}
-            \max_{\{c_{0},c_{1}\}}\ &\Bigl\{-\frac{1}{c_{0}}-\frac13\Bigl(\frac{1}{c_{1a}}+\frac{1}{c_{1b}}+\frac{1}{c_{1c}}\Bigr)\Bigr\}\\
-            \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{1a}+\phi_{b}c_{1b}+\phi_{c}c_{1c}=100
-        \end{aligned}
+       w_1=100,\qquad w_2=200\phi_a+100\phi_b+50\phi_c.
     \]
-    拉格朗日函数为
+
+    两人的优化问题统一写为
     \[
-        \mathcal{L}=-\frac{1}{c_{0}}-\frac13\Bigl(\frac{1}{c_{1a}}+\frac{1}{c_{1b}}+\frac{1}{c_{1c}}\Bigr)+\lambda\bigl(100-c_{0}-\phi_{a}c_{1a}-\phi_{b}c_{1b}-\phi_{c}c_{1c}\bigr)
+      \begin{aligned}
+       \max_{c_{k,0},c_{k,1\omega}>0}\quad&
+       -\frac1{c_{k,0}}-\frac13\sum_{\omega=a,b,c}\frac1{c_{k,1\omega}}\\
+       \mathrm{s.t.}\quad&c_{k,0}+\sum_{\omega=a,b,c}\phi_\omega c_{k,1\omega}=w_k.
+      \end{aligned}
     \]
-    一阶条件是边际效用与状态价格成比例：
+
+    一阶条件为
     \[
-        \frac{1}{c_{0}^{2}}=\lambda,\qquad
-        \frac{1}{3c_{1\omega}^{2}}=\lambda\phi_{\omega},\quad\omega=a,b,c
+       \frac1{c_{k,0}^2}=\lambda_k,\qquad
+       \frac1{3c_{k,1\omega}^2}=\lambda_k\phi_\omega,
     \]
-    因而 $c_{1\omega}=c_{0}/\sqrt{3\phi_{\omega}}$。代入预算约束
+
+    从而 $c_{k,1\omega}=c_{k,0}/\sqrt{3\phi_\omega}$。记
     \[
-        c_{0}\Bigl(1+\sqrt{\frac{\phi_{a}}{3}}+\sqrt{\frac{\phi_{b}}{3}}+\sqrt{\frac{\phi_{c}}{3}}\Bigr)=100
+       A=1+\sum_{\omega=a,b,c}\sqrt{\frac{\phi_\omega}{3}},
     \]
-    得到参与者 1 的最优消费选择为
+
+    代入预算便得唯一最优消费
     \[
-        \begin{aligned}
-            c_{0}^{*}&=\frac{100}{1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}}\\
-            c_{1a}^{*}&=\frac{100}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
-            c_{1b}^{*}&=\frac{100}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
-            c_{1c}^{*}&=\frac{100}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}
-        \end{aligned}
+       c_{k,0}^*=\frac{w_k}{A},\qquad
+       c_{k,1\omega}^*=\frac{w_k}{A\sqrt{3\phi_\omega}},
+       \quad k=1,2,\ \omega=a,b,c.
     \]
-    参与者 2 的财富为 $w_{2}=200\phi_{a}+100\phi_{b}+50\phi_{c}$，同一组一阶条件给出
+
+    这些消费均严格为正，且满足预算，严格凹性保证其最优性。初始持仓分别为 $\bar\theta_1=(0,0,0)^{\mathsf T}$、$\bar\theta_2=(200,100,50)^{\mathsf T}$，最优净买入量为 $\theta_k^*=c_{k,1}^*-\bar\theta_k$。
+
+    \item 当期出清要求 $\sum_k c_{k,0}^*=100$。加总两人的最优未来消费，各状态出清分别为
     \[
-        c_{0}^{*}=\frac{w_{2}}{1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}},\qquad
-        c_{1\omega}^{*}=\frac{c_{0}^{*}}{\sqrt{3\phi_{\omega}}}
+       \frac{100}{\sqrt{3\phi_a}}=200,\qquad
+       \frac{100}{\sqrt{3\phi_b}}=100,\qquad
+       \frac{100}{\sqrt{3\phi_c}}=50.
     \]
-    即
+
+    因而
     \[
-        \begin{aligned}
-            c_{0}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}}\\
-            c_{1a}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
-            c_{1b}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}\\
-            c_{1c}^{*}&=\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}
-        \end{aligned}
+       \phi_a=\frac1{12},\qquad\phi_b=\frac13,\qquad\phi_c=\frac43.
     \]
-    因为最优消费都是非负的，因而上面的求解过程是没有问题的；
-    \item 市场出清条件是
+
+    代回得到 $A=13/6$、$w_2=350/3$，故完整均衡配置为
     \[
-        \begin{aligned}
-            &\frac{100}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{a}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=200\\
-            &\frac{100}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{b}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=100\\
-            &\frac{100}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}+\frac{200\phi_{a}+100\phi_{b}+50\phi_{c}}{\sqrt{3\phi_{c}}\bigl(1+\sqrt{\phi_{a}/3}+\sqrt{\phi_{b}/3}+\sqrt{\phi_{c}/3}\bigr)}=50
-        \end{aligned}
+       c_1^*=\frac1{13}(600,1200,600,300)^{\mathsf T},\qquad
+       c_2^*=\frac1{13}(700,1400,700,350)^{\mathsf T}.
     \]
-    由 $c_{1\omega}=c_{0}/\sqrt{3\phi_{\omega}}$，0 期总禀赋为 100，故 $\sum_{k}c_{k,0}=100$。状态 $a$ 的出清化为
+
+    两向量之和为 $(100,200,100,50)^{\mathsf T}$，逐日期、逐状态出清。证券净交易量为
     \[
-        \frac{\sum_{k}c_{k,0}}{\sqrt{3\phi_{a}}}=\frac{100}{\sqrt{3\phi_{a}}}=200
+       \theta_1^*=\frac1{13}(1200,600,300)^{\mathsf T},\qquad
+       \theta_2^*=-\theta_1^*.
     \]
-    即 $\sqrt{3\phi_{a}}=\dfrac12$，从而 $\phi_{a}=\dfrac{1}{12}$。同理 $\dfrac{100}{\sqrt{3\phi_{b}}}=100$ 给出 $\phi_{b}=\dfrac13$，$\dfrac{100}{\sqrt{3\phi_{c}}}=50$ 给出 $\phi_{c}=\dfrac43$。
-    \item $\phi_{a}<\phi_{b}<\phi_{c}$，对于参与者 1、2 都有 $c_{1a}^{*}>c_{1b}^{*}>c_{1c}^{*}$，即总禀赋越高、消费越高；
-    \item 因为对于消费者 1、2 都有
+
+    \item 题中比较的是各状态的\textbf{总禀赋}。由于 $\phi_a<\phi_b<\phi_c$，由最优消费公式，对每个 $k$ 都有 $c_{k,1a}^*>c_{k,1b}^*>c_{k,1c}^*$，与总禀赋 $200>100>50$ 的顺序一致。
+
+    \item 由状态出清，$e_{1\omega}=100/\sqrt{3\phi_\omega}$。因此
     \[
-        \begin{aligned}
-            \frac{c_{1a}^{*}}{c_{1b}^{*}}&=\sqrt{\frac{\phi_{b}}{\phi_{a}}}=2=\frac{200}{100}\\
-            \frac{c_{1a}^{*}}{c_{1c}^{*}}&=\sqrt{\frac{\phi_{c}}{\phi_{a}}}=4=\frac{200}{50}
-        \end{aligned}
+       \frac{c_{k,1\omega}^*}{e_{1\omega}}
+       =\frac{c_{k,0}^*/\sqrt{3\phi_\omega}}{100/\sqrt{3\phi_\omega}}
+       =\frac{c_{k,0}^*}{100},
     \]
-    因此，每一参与者的消费在总消费中所占的份额在所有状态下都是相等的。
+    与状态无关。参与者 1 在三个未来状态的份额均为 $6/13$，参与者 2 均为 $7/13$。
 \end{enumerate}
 \end{solution}
-

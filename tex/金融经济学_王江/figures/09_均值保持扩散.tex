@@ -1,0 +1,36 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：A恒等于2，B以相同概率取1、3；S(y)=积分(F_A-F_B)<=0。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.05cm,y=2.35cm]
+ \draw[->] (0,0)--(4.1,0) node[right] {$x$};
+ \draw[->] (0,0)--(0,1.25) node[above] {$F(x)$};
+ \draw[blue!70!black,very thick] (0,0)--(2,0) (2,1)--(3.8,1);
+ \draw[blue!70!black,dotted] (2,0)--(2,1);
+ \draw[red!70!black,thick,dashed] (0,0)--(1,0) (1,.5)--(3,.5) (3,1)--(3.8,1);
+ \draw[red!70!black,dotted] (1,0)--(1,.5) (3,.5)--(3,1);
+ \fill[blue!70!black] (2,1) circle(1.8pt);
+ \fill[red!70!black] (1,.5) circle(1.8pt) (3,1) circle(1.8pt);
+ \foreach \x in {1,2,3} \node[below] at (\x,0) {$\x$};
+ \node[left] at (0,.5) {$1/2$}; \node[left] at (0,1) {$1$};
+ \node[blue!70!black] at (2.6,.87) {$F_A$};
+ \node[red!70!black] at (2.6,.64) {$F_B$};
+ \node at (2,-.35) {（a）CDF 交叉};
+\end{tikzpicture}\hspace{1cm}
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.05cm,y=2.35cm]
+ \draw[->] (0,0)--(4.1,0) node[right] {$y$};
+ \draw[->] (0,-.7)--(0,.55) node[above] {$S(y)$};
+ \fill[blue!10] (1,0)--(2,-.5)--(3,0)--cycle;
+ \draw[blue!70!black,very thick] (0,0)--(1,0)--(2,-.5)--(3,0)--(3.8,0);
+ \draw[dotted,gray] (2,0)--(2,-.5)--(0,-.5);
+ \foreach \x in {1,2,3} \node[above] at (\x,0) {$\x$};
+ \node[left] at (0,-.5) {$-1/2$};
+ \node at (2,-1.05) {（b）累计面积始终非正};
+\end{tikzpicture}
+\par\smallskip\small
+取 $A\equiv2$，$B$ 等概率取 $1,3$。两者均值为 $2$，且 $B=A+e$、$\mathrm E[e\mid A]=0$。
+CDF 虽然交叉，$S(y)=\int_{-\infty}^y(F_A-F_B)\,dx\le0$，故 $A\succeq_{\mathrm{SSD}}B$。
+\WJFigure{fig:wj-mean-preserving-spread}{均值保持扩散与分布函数差的积分}
+\end{minipage}
+\end{center}

@@ -1,19 +1,46 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 125–137（小结续至 138）
 % 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 38–42（印刷页 37–41）
-% 定理 9.4 的必要性保留教材论证思路；9.5、9.6、9.7 的必要性等证明出处随正文注明。
+% Ross 定理必要性展开有限状态、非退化内点情形；9.5—9.7 的外部偏好刻画按教材保留。
 
 \lecture{组合选择（二）}
+\label{chap:wj-nine}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{
+ section={number=\thesection,aftername=\quad},
+ subsection={number=\thesubsection,aftername=\quad},
+ subsubsection={number=\thesubsubsection,aftername=\quad}
+}
+\setcounter{equation}{0}
+\newcounter{wjNineDefinition}
+\newcounter{wjNineTheorem}
+\newcounter{wjNineExample}
+\newcounter{wjNineExercise}
+\renewcommand{\thewjNineDefinition}{\thechapter.\arabic{wjNineDefinition}}
+\renewcommand{\thewjNineTheorem}{\thechapter.\arabic{wjNineTheorem}}
+\renewcommand{\thewjNineExample}{\thechapter.\arabic{wjNineExample}}
+\renewcommand{\thewjNineExercise}{\thechapter.\arabic{wjNineExercise}}
+\newcommand{\WJNineDefinition}[2]{\refstepcounter{wjNineDefinition}\label{#1}\textbf{定义 \thewjNineDefinition#2}\quad}
+\newcommand{\WJNineTheorem}[2]{\refstepcounter{wjNineTheorem}\label{#1}\textbf{定理 \thewjNineTheorem#2}\quad}
+\newcommand{\WJNineExample}[2]{\refstepcounter{wjNineExample}\label{#1}\textbf{例 \thewjNineExample#2}\quad}
+\newcommand{\WJNineExercise}[2]{\refstepcounter{wjNineExercise}\label{#1}\problemno{\thewjNineExercise#2}}
+
 
 \ifdefined\WJHandoutKnowledge
 
-第 8 章在一般期望效用下讨论最优组合的性质。本章进一步限制收益率分布或参与者偏好，回答两个问题：什么时候所有某类参与者都对两个组合给出相同排序？什么时候不同参与者只需持有少数几只共同基金？前者引出\textbf{随机占优}，后者引出\textbf{共同基金分离}。
+第~\ref{chap:wj-eight}~章在一般期望效用下讨论最优组合的性质。本章进一步限制收益率分布或参与者偏好，回答两个问题：什么时候所有某类参与者都对两个组合给出相同排序？什么时候不同参与者只需持有少数几只共同基金？前者引出\textbf{随机占优}，后者引出\textbf{共同基金分离}。
 
-\begin{tcolorbox}[knowledge,title=9.1 随机占优：一阶随机占优]
+\section{随机占优}\label{sec:wj-nine-1}
+\subsection{一阶随机占优}
+\subsubsection{定义与等价判据}
 记 $\tilde r_A,\tilde r_B$ 为净收益率，$\tilde x_A=1+\tilde r_A$、$\tilde x_B=1+\tilde r_B$ 为总收益率，$F_A,F_B$ 为总收益率的累积分布函数。固定相同初始投资额后，可以把财富尺度吸收到效用函数中，直接比较收益率。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定义 9.1}\quad 如果对每个递增效用函数（$u'\ge0$）都有
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineDefinition{def:wj-nine-1}{} 如果对每个递增效用函数（$u'\ge0$）都有
 \[
  \mathrm E[u(\tilde x_A)]\ge\mathrm E[u(\tilde x_B)],
 \]
@@ -21,8 +48,8 @@
 \end{tcolorbox}
 这里不限制风险厌恶程度：风险厌恶、风险中性乃至风险喜好的参与者，只要喜欢更多收益，都会弱偏好 $A$。比较的是\textbf{全部投资于组合 $A$ 与全部投资于组合 $B$}，而非已经得到了同时交易两者时的最优头寸。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.1}\quad 下列叙述等价：
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-1}{} 下列叙述等价：
 \begin{enumerate}
  \item $A\succeq_{\mathrm{FSD}}B$；
  \item 对所有 $x$，$F_A(x)\le F_B(x)$；
@@ -37,14 +64,17 @@ $\sim_d$ 表示\textbf{分布相同}。第 3 条是关于存在某种配对的�
  \mathrm E[u(\tilde x_A)]-\mathrm E[u(\tilde x_B)]
  =-\int_L^H u'(x)\Delta F(x)\,dx.
 \]
+
 若 $\Delta F\le0$，右端对一切 $u'\ge0$ 非负，得到 FSD。反过来，若所有递增效用都偏好 $A$，取阈值效用 $u_t(x)=\mathbf1_{\{x>t\}}$（或其光滑递增近似），则
 \[
  1-F_A(t)=\mathrm E[u_t(\tilde x_A)]
  \ge\mathrm E[u_t(\tilde x_B)]=1-F_B(t),
 \]
+
 所以 $F_A(t)\le F_B(t)$。该判据也适用于离散分布。
 
 % 课堂照片补充：用同一阈值的竖线与同一概率的横线，对照 CDF 与分位数的排序。
+\subsubsection{分位数与非负增量表示}
 \par\medskip\noindent\begin{minipage}{\linewidth}
 \textbf{图解：累积分布函数越高，分位数反而越小。}
 记 $Q_i(p)=F_i^{-1}(p)=\inf\{x:F_i(x)\ge p\}$，$0<p<1$。
@@ -133,20 +163,19 @@ $F_B^{-1}(p)<F_A^{-1}(p)$
 \]
 就得到第 3 条；反向由递增效用下 $u(\tilde x_B'+\tilde d)\ge u(\tilde x_B')$ 立即成立。
 
-\textbf{含义与边界：}取 $u(x)=x$ 得 $\mathrm E[\tilde x_A]\ge\mathrm E[\tilde x_B]$，但均值更高本身不能推出 FSD；还须在\textbf{每一个阈值}上，$A$ 落到该阈值以下的概率都不大于 $B$。若分布函数交叉，一阶判据不能给出排序。
-\end{tcolorbox}
+\textbf{经济含义：}取 $u(x)=x$ 得 $\mathrm E[\tilde x_A]\ge\mathrm E[\tilde x_B]$，但均值更高本身不能推出 FSD；还须在\textbf{每一个阈值}上，$A$ 落到该阈值以下的概率都不大于 $B$。若分布函数交叉，一阶判据不能给出排序。
 
-\begin{tcolorbox}[knowledge,title=9.1（续）与无风险证券组合的比较]
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.2}\quad 若 $A\succeq_{\mathrm{FSD}}B$ 且 $\mathrm E[\tilde r_B]\ge r_F$，则对 $u'>0,u''<0$ 的参与者，
+\subsubsection{与无风险证券组合的福利比较}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-2}{} 若 $A\succeq_{\mathrm{FSD}}B$ 且 $\mathrm E[\tilde r_B]\ge r_F$，则对 $u'>0,u''<0$ 的参与者，
 \[
  \max_a\mathrm E[u(b+a(\tilde r_A-r_F))]
  \ge\max_a\mathrm E[u(b+a(\tilde r_B-r_F))],
  \qquad b=w(1+r_F).
 \]
-这里分别允许在“$A$ 与无风险证券”和“$B$ 与无风险证券”之间选择，并假设最优解存在、交易及效用定义域允许下述比较。
+两侧分别在风险资产与无风险证券之间自由配置，最优解存在，比较中使用的组合均在效用定义域内。
 \end{tcolorbox}
-\textbf{证明：}令 $a_B^*$ 为右侧最优风险投资额。由定理 8.2，$\mathrm E[\tilde r_B]\ge r_F$ 保证 $a_B^*\ge0$。因此 $t\mapsto u(b+a_B^*(t-r_F))$ 递增，FSD 给出
+\textbf{证明：}令 $a_B^*$ 为右侧最优风险投资额。由定理~\ref{thm:wj-eight-2}（最优风险投资额与风险溢价同号），$\mathrm E[\tilde r_B]\ge r_F$ 保证 $a_B^*\ge0$。因此 $t\mapsto u(b+a_B^*(t-r_F))$ 递增，FSD 给出
 \[
 \begin{aligned}
  \max_a\mathrm E[u(b+a(\tilde r_A-r_F))]
@@ -154,27 +183,28 @@ $F_B^{-1}(p)<F_A^{-1}(p)$
  &\ge\mathrm E[u(b+a_B^*(\tilde r_B-r_F))].
 \end{aligned}
 \]
+
 最后一项就是只交易 $B$ 与无风险证券时的最优效用。
 
-\textbf{适用范围：}这个定理比较最优\textbf{福利}，没有断言 $a_A^*\ge a_B^*$。若把 $A$、$B$ 分别与第三只风险证券 $C$ 搭配，联合分布和相关性会影响组合风险，单看 $A$、$B$ 的边际分布占优通常不足以排序；也不能直接排除最优组合同时持有 $A$ 和 $B$。
-\end{tcolorbox}
+\textbf{经济含义：}定理给出最优\textbf{福利}的排序；最优风险投资额还取决于收益分布与边际效用的相互作用。若把 $A$、$B$ 分别与第三只风险证券 $C$ 搭配，联合分布和相关性会影响组合风险，单看 $A$、$B$ 的边际分布占优通常不足以排序；最优组合可以同时持有 $A$ 和 $B$。
 
-\begin{tcolorbox}[knowledge,title=9.1（续）二阶随机占优]
-\begin{tcolorbox}[knowledge]
-\textbf{定义 9.2（本教材口径）}\quad 若对每个\textbf{凹}效用函数（$u''\le0$）都有
+\subsection{二阶随机占优}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineDefinition{def:wj-nine-2}{（本教材口径）} 若对每个\textbf{\hyperref[def:wj-seven-1]{凹}}效用函数（$u''\le0$）都有
 \[
  \mathrm E[u(\tilde x_A)]\ge\mathrm E[u(\tilde x_B)],
 \]
 则称 $A$ 对 $B$ \textbf{二阶随机占优}（SSD），记为 $A\succeq_{\mathrm{SSD}}B$。
 \end{tcolorbox}
-\textbf{这里没有要求 $u'\ge0$。}分别代入 $u(x)=x$ 和 $u(x)=-x$，两者都是凹函数，可得
+\textbf{凹性允许边际效用取正值或负值。}分别代入 $u(x)=x$ 和 $u(x)=-x$，两者都是凹函数，可得
 \[
  \mathrm E[\tilde x_A]=\mathrm E[\tilde x_B].
 \]
+
 所以本教材的 SSD 是\textbf{等均值下的风险比较}，也可理解为凹序。另一些教材把 SSD 定义为所有\textbf{递增且凹}效用下的排序，那一定义容许均值不同；本章沿用王江教材的等均值口径。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.3}\quad 下列叙述等价：
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-3}{} 下列叙述等价：
 \begin{enumerate}
  \item $A\succeq_{\mathrm{SSD}}B$；
  \item $\mathrm E[\tilde x_A]=\mathrm E[\tilde x_B]$，且
@@ -187,10 +217,15 @@ $F_B^{-1}(p)<F_A^{-1}(p)$
 \end{tcolorbox}
 第 3 条表示 $B$ 是在 $A$ 上再加一层\textbf{条件均值为零的风险}，称为均值保持扩散。只要求 $\mathrm E[\tilde e]=0$ 不够；条件均值为零也不要求独立。
 
+图~\ref{fig:wj-mean-preserving-spread} 以一个均值保持扩散展示 CDF 交叉而两者之差的累计积分始终非正的情形。
+
+\input{tex/金融经济学_王江/figures/09_均值保持扩散.tex}
+
 \textbf{证明（1 与 2）：}仍先考虑有界支撑 $[L,H]$。等均值给出
 \[
  S(L)=0,\qquad S(H)=\mathrm E[\tilde x_B]-\mathrm E[\tilde x_A]=0.
 \]
+
 连续分部积分两次，得到
 \[
 \begin{aligned}
@@ -199,12 +234,14 @@ $F_B^{-1}(p)<F_A^{-1}(p)$
  &=\int_L^H u''(x)S(x)\,dx.
 \end{aligned}
 \]
+
 $S\le0$、$u''\le0$ 时右端非负，故 2 推出 1。反向，除利用线性效用得到等均值外，对每个 $y$ 取凹函数 $u_y(x)=\min\{x,y\}$。由于
 \[
  \mathrm E[\min\{\tilde x,y\}]
  =y-\mathrm E[(y-\tilde x)_+],\qquad
  \mathrm E[(y-\tilde x)_+]=\int_{-\infty}^y F(x)\,dx,
 \]
+
 所有凹效用均偏好 $A$ 就要求 $-S(y)\ge0$，得到 2。非光滑函数可用凹的光滑函数近似。
 
 \textbf{证明（3 推出 1）：}由条件 Jensen 不等式，
@@ -216,23 +253,22 @@ $S\le0$、$u''\le0$ 时右端非负，故 2 推出 1。反向，除利用线性�
  =\mathrm E[u(\tilde x_A)].
 \end{aligned}
 \]
-1 推出 3 是均值保持扩散表示定理，教材引 Rothschild--Stiglitz（1970），此处保留该结论，不另展开构造证明。
+
+1 推出 3 为均值保持扩散表示定理（Rothschild--Stiglitz，1970）。
 
 \textbf{方差的作用：}若二阶矩存在，取 $u(x)=-x^2$，SSD 推出
 $\operatorname{Var}(\tilde x_A)\le\operatorname{Var}(\tilde x_B)$。反之，等均值加方差更小并不足以保证 SSD，因为凹效用还会反映尾部等分布特征。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=9.1（续）随机占优与逐状态占优]
-\begin{tcolorbox}[knowledge]
-\textbf{定义 9.3}\quad 若在实际同一组状态下，$x_A(\omega)\ge x_B(\omega)$ 对每个 $\omega$ 都成立，且至少一个可能状态严格大于，则称 $A$ \textbf{占优}于 $B$。
+\subsection{随机占优与逐状态占优}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineDefinition{def:wj-nine-3}{} 若在实际同一组状态下，$x_A(\omega)\ge x_B(\omega)$ 对每个 $\omega$ 都成立，且至少一个可能状态严格大于，则称 $A$ \textbf{占优}于 $B$。
 \end{tcolorbox}
 逐状态占优比较同一状态下的表现，不依赖各状态概率的具体大小；随机占优比较\textbf{概率分布}，依赖参与者采用的概率。逐状态占优推出 FSD，FSD 不推出实际逐状态占优。
 
 若每投入 1 元，$A$ 在所有状态的总支付不低于 $B$，某状态严格更高，则买入 1 元 $A$、卖空 1 元 $B$ 的初始净成本为零，未来净支付处处非负且某处为正，构成套利。随机占优本身不能保证这个逐状态支付差，因此不必产生套利，随机被占优的证券仍可能存在于均衡中。
-\end{tcolorbox}
 
 \begin{tcolorbox}[example]
-\textbf{例 9.1（逐状态占优）}\quad 教材给出的收益数字如下：
+\WJNineExample{ex:wj-nine-1}{（逐状态占优）} 两种状态下的总收益率如下：
 \begin{center}
 \begin{tabular}{c|cc}
  &好状态&坏状态\\\hline
@@ -244,7 +280,7 @@ $A$ 在好状态严格更好，在坏状态相同，所以 $A$ 占优于 $B$，�
 \end{tcolorbox}
 
 \begin{tcolorbox}[example]
-\textbf{例 9.2（FSD 不等于逐状态占优）}\quad 好、坏状态等概率，总收益率为
+\WJNineExample{ex:wj-nine-2}{（FSD 不等于逐状态占优）} 好、坏状态等概率，总收益率为
 \begin{center}
 \begin{tabular}{c|cc}
  &好状态&坏状态\\\hline
@@ -260,127 +296,360 @@ $A$ 在坏状态低于 $B$，故不逐状态占优。其分布却满足
  F_B(t)&0&1/2&1&1
 \end{array}
 \]
+
 处处 $F_A\le F_B$，所以 $A\succeq_{\mathrm{FSD}}B$。但买 $A$、卖 $B$ 的状态收益差为 $[0.2;-0.1]$，有亏损状态，不能据此认定套利。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=9.2 组合分离与共同基金]
-\textbf{A.\ 用投资权重描述组合}\quad 令 $w>0$ 为总投资额，$a_n$ 为第 $n$ 只证券的投资金额，定义
+\section{组合分离}\label{sec:wj-nine-2}
+\subsection{共同基金分离}
+令 $w>0$ 为总投资额，$a_n$ 为第 $n$ 只证券的投资金额，定义
 \[
  z_n=\frac{a_n}{w},\qquad z^{\mathsf T}\iota=1,\qquad
  \tilde x_z=z^{\mathsf T}\tilde x,\qquad \tilde w=w\tilde x_z.
 \]
-$z$ 是\textbf{权重向量}，$\tilde x_z$ 是该组合的\textbf{总收益率}。为避免两者混淆，不把它们写成同一个符号。给定 $w$ 后令 $v(t)=u(wt)$，问题为
+$z$ 是\textbf{权重向量}，$\tilde x_z$ 是该组合的\textbf{总收益率}。给定 $w$ 后令 $v(t)=u(wt)$，问题为
 \[
  \max_{z:z^{\mathsf T}\iota=1}\mathrm E[v(\tilde x_z)].
 \]
-$v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者即使有相同的财富效用，也未必选择相同权重。下述分离讨论通常允许自由卖空与借贷，并在共同概率信念、存在最优解及相关非退化条件下进行。
+$v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者即使有相同的财富效用，也未必选择相同权重。以下采用共同概率信念，允许自由卖空与借贷，并讨论最优解存在的情形。用纯风险基金表示共同风险方向时，该方向的净投资额须非零。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定义 9.4}\quad 若存在 $F$ 只共同基金 $z_{f_1},\ldots,z_{f_F}$，使每个参与者的最优组合都可表示为
-\[
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineDefinition{def:wj-nine-4}{} 若存在 $F$ 只共同基金 $z_{f_1},\ldots,z_{f_F}$，使每个参与者都能选择一个最优组合表示为
+\begin{equation}
  z_k=\sum_{i=1}^F\lambda_{ki}z_{f_i},\qquad
- \sum_{i=1}^F\lambda_{ki}=1,\tag{9.1}
-\]
+ \sum_{i=1}^F\lambda_{ki}=1.\label{eq:wj-9-1}
+\end{equation}
 则称 $F$--\textbf{基金分离}成立。
 \end{tcolorbox}
-几何上，最优权重位于至多 $F-1$ 维的\textbf{仿射}空间中；它由 $F$ 只基金张成，且所有权重之和仍为 1。$\lambda_{ki}$ 可以为负，故不是只能取非负系数的凸组合。基金可以由原证券构造，并非新增证券；分离基金的选择通常不唯一。
+最优解唯一时，这些最优权重位于至多 $F-1$ 维的\textbf{仿射}空间中；它由 $F$ 只基金张成，且所有权重之和仍为 1。$\lambda_{ki}$ 可以为负，故不是只能取非负系数的凸组合。基金由原证券构造，分离基金的选择通常不唯一。若最优解不唯一，分离要求每人有一个最优选择可由共同基金实现；覆盖全部最优组合则需另行考察其集合维数。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定义 9.5}\quad 若上述 $F$ 只基金中有一只为无风险证券，其余 $F-1$ 只只由风险证券组成，则称 $F$--\textbf{基金货币分离}成立。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineDefinition{def:wj-nine-5}{} 若上述 $F$ 只基金中有一只为无风险证券，其余 $F-1$ 只只由风险证券组成，则称 $F$--\textbf{基金货币分离}成立。
 \end{tcolorbox}
 两基金货币分离意味着每个人都在“同一只风险基金”和“无风险证券”之间分配财富。不同人的风险承受程度可以改变两者的比例，但不改变风险基金内部的相对权重。$N$ 基金分离总可用原来 $N$ 只证券实现，有内容的结论是 $F<N$。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=9.2（续）收益率分布与两基金分离]
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.4（Ross，教材表述）}\quad 存在总收益率为 $x_F=1+r_F$ 的无风险证券。在相应非退化条件下，对任意递增且凹的效用都成立的两基金货币分离，可由下列收益结构刻画：对 $n=1,\ldots,N-1$，存在 $\beta_n$、共同因子 $\tilde y$、残差 $\tilde e_n$ 与风险基金权重 $q_n$，使
-\[
- \tilde x_n=x_F+\beta_n\tilde y+\tilde e_n,\qquad
- \mathrm E[\tilde e_n\mid\tilde y]=0,
-\]
-\[
- \sum_{n=1}^{N-1}q_n=1,\qquad
- \sum_{n=1}^{N-1}q_n\tilde e_n=0.
-\]
-无风险证券与该风险基金构成分离基金。
+\subsection{收益率分布与共同基金分离}
+\begin{tcolorbox}[knowledge,breakable=false]
+% 按课堂投影片保留定理措辞、三条条件及权重符号 w_n。
+\WJNineTheorem{thm:wj-nine-4}{（Ross）} 假设存在总收益率为 $x_F$ 的无风险证券，并考虑某个严格凹偏好具有非零内点最优风险投资的情形。当且仅当风险资产的收益率满足下列条件时，两基金分离对有最优解的递增且凹的效用函数成立：对于 $n=1,\ldots,N-1$，存在 $\beta_n,w_n,\tilde y,\tilde e_n$，使得
+\begin{enumerate}
+ \item $\displaystyle \tilde x_n=x_F+\beta_n\tilde y+\tilde e_n$；
+ \item $\displaystyle \mathrm E[\tilde e_n\mid\tilde y]=0$；
+ \item $\displaystyle \sum_{n=1}^{N-1}w_n\tilde e_n=0$，其中
+       $\displaystyle \sum_{n=1}^{N-1}w_n=1$。
+\end{enumerate}
+其中风险基金因子载荷 $\beta_w=\sum_{n=1}^{N-1}w_n\beta_n\ne0$，无风险证券是另一只分离基金。
 \end{tcolorbox}
-\textbf{条件含义：}共同因子产生\textbf{共同风险}，残差产生\textbf{特殊风险}。条件均值为零比简单不相关更强；最后一式要求某个可交易风险基金\textbf{完全消除}残差，不只是使残差方差较小。下述证明要求基金的因子载荷 $\beta_q=\sum q_n\beta_n\ne0$。
+\textbf{符号说明：}这里 $x_F=1+r_F$ 是无风险总收益率，$w_n$ 是风险基金在第 $n$ 只风险证券上的权重。用 $w=(w_1,\ldots,w_{N-1},0)^{\mathsf T}$ 表示风险基金的权重向量，用 $F=(0,\ldots,0,1)^{\mathsf T}$ 表示无风险基金；本段的 $w$ 是向量，初始财富另记为 $W$。无风险证券作为分离基金之一，故这里也属于定义~\ref{def:wj-nine-5} 的两基金货币分离。
 
-\textbf{证明（充分性）：}把 $q$ 扩充为 $N$ 维向量，令 $q_N=0$，并令 $f=(0,\ldots,0,1)^{\mathsf T}$ 为无风险基金。设 $\beta_N=\tilde e_N=0$。风险基金的总收益率为
+\textbf{条件含义：}共同因子产生\textbf{共同风险}，残差产生\textbf{特殊风险}。条件均值为零约束残差在每个因子取值上的平均值；第 3 条要求可交易风险基金\textbf{完全消除}残差。基金的非零因子载荷使任意组合的共同风险都可由该基金匹配。
+
+% 课堂照片补充：投影片“B 收益率分布与共同基金分离”，定理~\ref{thm:wj-nine-4}；
+% 板书由 E[Y|X]=0 推出 E[Y]=0，并展开 Cov(X,Y)。以下补齐中间步骤。
+\subsubsection{条件均值、协方差与因子载荷}
+设随机变量 $X,Y$ 的二阶矩有限，且 $\mathrm E[Y\mid X]=0$（几乎处处）。先用迭代期望法则求 $Y$ 的无条件均值：
 \[
- \tilde x_q=q^{\mathsf T}\tilde x=x_F+\beta_q\tilde y.
+\begin{aligned}
+ \mathrm E[Y]
+ &=\mathrm E\!\left[\mathrm E[Y\mid X]\right]\\
+ &=\mathrm E[0]=0.
+\end{aligned}
 \]
-任取组合 $z$，记 $\beta_z=z^{\mathsf T}\beta$，令
+
+协方差可展开为：
 \[
- \lambda=\frac{\beta_z}{\beta_q},\qquad
- z_0=\lambda q+(1-\lambda)f,\qquad \eta=z-z_0.
+\begin{aligned}
+ \operatorname{Cov}(X,Y)
+ &=\mathrm E\!\left[(X-\mathrm E[X])(Y-\mathrm E[Y])\right]\\
+ &=\mathrm E[XY]-\mathrm E[X]\mathrm E[Y]
+   -\mathrm E[Y]\mathrm E[X]+\mathrm E[X]\mathrm E[Y]\\
+ &=\mathrm E[XY]-\mathrm E[X]\mathrm E[Y].
+\end{aligned}
 \]
-于是 $\eta^{\mathsf T}\iota=0$（零成本头寸），$\eta^{\mathsf T}\beta=0$（无共同因子敞口）。从而
+其中乘积项也可用迭代期望计算。由于给定 $X$ 后，$X$ 本身已知，可以提出条件期望：
 \[
- \tilde x_z=\underbrace{x_F+\beta_z\tilde y}_{\tilde x_{z_0}}
-                  +\eta^{\mathsf T}\tilde e,\qquad
- \mathrm E[\eta^{\mathsf T}\tilde e\mid\tilde y]=0.
+\begin{aligned}
+ \mathrm E[XY]
+ &=\mathrm E\!\left[\mathrm E[XY\mid X]\right]\\
+ &=\mathrm E\!\left[X\,\mathrm E[Y\mid X]\right]\\
+ &=\mathrm E[X\cdot0]=0.
+\end{aligned}
 \]
-对凹函数 $v$，条件 Jensen 不等式给出
+
+将两项代回，便得到
 \[
+ \boxed{\operatorname{Cov}(X,Y)=0-\mathrm E[X]\cdot0=0.}
+\]
+
+若 $X,Y$ 的方差都为正，相应的相关系数也为零；零方差情形的协方差仍为零。
+
+\textbf{代回定理~\ref{thm:wj-nine-4}（Ross 两基金分离定理）：}令 $X=\tilde y$、$Y=\tilde e_n$，便有
+\[
+ \mathrm E[\tilde e_n]=0,\qquad
+ \mathrm E[\tilde y\tilde e_n]=0,\qquad
+ \operatorname{Cov}(\tilde y,\tilde e_n)=0.
+\]
+
+因此对收益结构 $\tilde x_n=x_F+\beta_n\tilde y+\tilde e_n$，
+\[
+\begin{aligned}
+ \mathrm E[\tilde x_n]&=x_F+\beta_n\mathrm E[\tilde y],\\
+ \operatorname{Cov}(\tilde x_n,\tilde y)
+ &=\beta_n\operatorname{Var}(\tilde y)
+   +\operatorname{Cov}(\tilde e_n,\tilde y)
+ =\beta_n\operatorname{Var}(\tilde y).
+\end{aligned}
+\]
+
+当 $\operatorname{Var}(\tilde y)>0$ 时，
+\[
+ \beta_n=\frac{\operatorname{Cov}(\tilde x_n,\tilde y)}
+                   {\operatorname{Var}(\tilde y)}.
+\]
+
+更一般地，只要乘积可积，对任意 $g(\tilde y)$ 都有
+\[
+ \mathrm E[g(\tilde y)\tilde e_n]
+ =\mathrm E\!\left[g(\tilde y)\mathrm E[\tilde e_n\mid\tilde y]\right]=0.
+\]
+
+这说明条件均值为零还排除了残差与因子的非线性函数之间的这类联系。它不要求残差与因子独立，也不要求不同证券的残差彼此不相关。
+
+\textbf{逆命题不成立：}令 $X$ 以相同概率取 $-1,0,1$，$Y=X^2-2/3$。则
+\[
+ \mathrm E[X]=\mathrm E[Y]=0,\qquad
+ \mathrm E[XY]=\mathrm E[X^3]-\tfrac23\mathrm E[X]=0,
+\]
+
+所以 $\operatorname{Cov}(X,Y)=0$；但 $Y$ 是 $X$ 的函数，故
+\[
+ \mathrm E[Y\mid X]=X^2-\tfrac23\ne0.
+\]
+
+因此，定理中的条件均值限制不能仅用“不相关”替代。
+
+% 课堂照片补充：投影片第 27 页“充分性”及板书的向量展开。
+\subsubsection{Ross 定理的充分性}
+\textbf{因子条件 $\Rightarrow$ 两基金分离。}
+
+\textbf{第一步：将各证券的收益写成向量形式。}
+令 $\iota=(1,\ldots,1)^{\mathsf T}$，并设
+\[
+\begin{gathered}
+ \tilde x=(\tilde x_1,\ldots,\tilde x_{N-1},x_F)^{\mathsf T},\\
+ \beta=(\beta_1,\ldots,\beta_{N-1},0)^{\mathsf T},\qquad
+ \tilde e=(\tilde e_1,\ldots,\tilde e_{N-1},0)^{\mathsf T}.
+\end{gathered}
+\]
+
+最后一只证券是无风险证券，故其因子载荷和残差都为零。逐只证券的收益等式合为
+\[
+ \boxed{\tilde x=x_F\iota+\beta\tilde y+\tilde e.}
+\]
+
+\textbf{第二步：构造只有共同风险的基金 $w$。}
+由定理~\ref{thm:wj-nine-4} 第 3 条（风险基金权重之和为 $1$，且组合残差为零），$w^{\mathsf T}\iota=1$、$w^{\mathsf T}\tilde e=0$。定义 $\beta_w=w^{\mathsf T}\beta$，于是
+\[
+\begin{aligned}
+ \tilde x_w:=w^{\mathsf T}\tilde x
+ &=x_Fw^{\mathsf T}\iota+w^{\mathsf T}\beta\tilde y
+   +w^{\mathsf T}\tilde e\\
+ &=x_F+\beta_w\tilde y.
+\end{aligned}
+\]
+基金 $w$ 的收益只包含共同风险。若初始财富为 $W>0$，全部投资于该基金后的期末财富为
+\[
+ \tilde W=Ww^{\mathsf T}\tilde x=W\tilde x_w,
+ \qquad \frac{\tilde W}{W}=\tilde x_w.
+\]
+
+因此，权重向量 $w$、基金总收益率 $\tilde x_w$ 与期末财富 $\tilde W$ 是三个不同的量。
+
+\textbf{第三步：将任意组合分解为两基金组合与剩余头寸。}
+任取满足 $z^{\mathsf T}\iota=1$ 的组合 $z$，记 $\beta_z=z^{\mathsf T}\beta$。在 $\beta_w\ne0$ 时，令
+\[
+ \lambda=\frac{\beta_z}{\beta_w}
+ =\frac{z^{\mathsf T}\beta}{w^{\mathsf T}\beta},\qquad
+ z_0=\lambda w+(1-\lambda)F,\qquad \eta=z-z_0.
+\]
+便得到三部分分解
+\[
+ \boxed{z=\lambda w+(1-\lambda)F+\eta.}
+\]
+这里 $\lambda$ 可为任意实数。由于 $w^{\mathsf T}\iota=F^{\mathsf T}\iota=1$，
+\[
+\begin{aligned}
+ 1=z^{\mathsf T}\iota
+ &=\lambda w^{\mathsf T}\iota+(1-\lambda)F^{\mathsf T}\iota
+   +\eta^{\mathsf T}\iota\\
+ &=1+\eta^{\mathsf T}\iota,
+ \qquad\Longrightarrow\qquad \eta^{\mathsf T}\iota=0.
+\end{aligned}
+\]
+
+又因 $F^{\mathsf T}\beta=0$，所以上述分解两边乘以 $\beta$ 得
+\[
+\begin{aligned}
+ z^{\mathsf T}\beta
+ &=\lambda w^{\mathsf T}\beta+(1-\lambda)F^{\mathsf T}\beta
+   +\eta^{\mathsf T}\beta\\
+ &=\frac{\beta_z}{\beta_w}\beta_w+0+\eta^{\mathsf T}\beta\\
+ &=z^{\mathsf T}\beta+\eta^{\mathsf T}\beta,
+ \qquad\Longrightarrow\qquad \eta^{\mathsf T}\beta=0.
+\end{aligned}
+\]
+
+所以 $\eta$ 既是\textbf{零成本头寸}，又没有共同因子敞口。
+
+\textbf{第四步：展开组合收益，识别剩余风险。}
+无风险基金有 $F^{\mathsf T}\tilde x=x_F$；而剩余头寸满足
+\[
+\begin{aligned}
+ \eta^{\mathsf T}\tilde x
+ &=x_F\eta^{\mathsf T}\iota+\eta^{\mathsf T}\beta\tilde y
+   +\eta^{\mathsf T}\tilde e\\
+ &=\eta^{\mathsf T}\tilde e.
+\end{aligned}
+\]
+
+因此，组合收益可写为
+\[
+\begin{aligned}
+ \tilde x_z=z^{\mathsf T}\tilde x
+ &=\lambda w^{\mathsf T}\tilde x+(1-\lambda)F^{\mathsf T}\tilde x
+   +\eta^{\mathsf T}\tilde x\\
+ &=\lambda(x_F+\beta_w\tilde y)+(1-\lambda)x_F
+   +\eta^{\mathsf T}\tilde e\\
+ &=\underbrace{x_F+\beta_z\tilde y}_{\tilde x_{z_0}}
+   +\eta^{\mathsf T}\tilde e.
+\end{aligned}
+\]
+
+又由定理~\ref{thm:wj-nine-4} 第 2 条（给定共同因子时，各证券残差的条件均值为零），
+\[
+ \mathrm E[\eta^{\mathsf T}\tilde e\mid\tilde y]
+ =\sum_{n=1}^{N-1}\eta_n\mathrm E[\tilde e_n\mid\tilde y]=0,
+ \qquad
+ \mathrm E[\tilde x_z\mid\tilde y]=\tilde x_{z_0}.
+\]
+
+\textbf{第五步：利用凹效用移除剩余风险。}
+对凹函数 $v$，给定 $\tilde y$ 后应用条件 Jensen 不等式：
+\[
+\begin{aligned}
+ \mathrm E[v(\tilde x_z)\mid\tilde y]
+ &\le v\!\left(\mathrm E[\tilde x_z\mid\tilde y]\right)
+ =v(\tilde x_{z_0}),\\
  \mathrm E[v(\tilde x_z)]
- =\mathrm E\{\mathrm E[v(\tilde x_{z_0}+\eta^{\mathsf T}\tilde e)\mid\tilde y]\}
+ &=\mathrm E\!\left[\mathrm E[v(\tilde x_z)\mid\tilde y]\right]
  \le\mathrm E[v(\tilde x_{z_0})].
+\end{aligned}
 \]
-任意组合都能换成一个具有相同因子敞口、没有残差风险的两基金组合，效用不下降。因此可在 $q$、$f$ 中找到最优组合。若严格凹且残差非退化，移除残差还会严格提高效用；弱凹或冗余时最优头寸未必唯一。
 
-\textbf{必要性的教材论证思路：}若同一只风险基金 $q$ 与无风险证券可服务于所有递增凹效用，设 $\tilde y=\tilde x_q-x_F$，并在 $\mathrm E[\tilde y]\ne0$ 时定义
+任意组合都能换成具有相同因子敞口、没有残差风险的两基金组合 $z_0$，效用不下降。因此可在 $w$、$F$ 中找到最优组合。若严格凹且剩余风险非退化，移除该风险还会严格提高效用；弱凹或冗余时最优头寸未必唯一。
+
+\subsubsection{Ross 定理的必要性（有限状态）}
+\textbf{两基金分离 $\Rightarrow$ 条件均值为零。}
+% 教材印刷页 135 的勘误要求保留 x_F+lambda*y；以下以固定最优点的边际效用扰动补足量词。
+在有限状态模型中，设各状态概率为正，风险基金超额收益 $\tilde y=\tilde x_w-x_F$ 满足 $\mathrm E[\tilde y]\ne0$。假设存在一个光滑收益率效用 $v_0$，在相关财富区间上满足 $v_0'>0$、$v_0''<0$，其两基金最优组合为
+\[
+ \tilde x_0=x_F+\lambda_0\tilde y,\qquad \lambda_0\ne0,
+\]
+且该解位于可行域内部。这些条件给出下面必要性证明的非退化情形。
+
+\textbf{第一步：构造均值为零的残差。}令
 \[
  \beta_n=\frac{\mathrm E[\tilde x_n]-x_F}{\mathrm E[\tilde y]},\qquad
  \tilde e_n=\tilde x_n-x_F-\beta_n\tilde y.
 \]
-这保证 $\mathrm E[\tilde e_n]=0$、$\sum q_n\beta_n=1$ 和 $\sum q_n\tilde e_n=0$。对一个内点最优的两基金组合
-$\tilde x_0=x_F+\lambda\tilde y$，基金及单只证券的一阶条件分别是
+
+于是 $\mathrm E[\tilde e_n]=0$。对基金各证券加权，得到
 \[
- \mathrm E[v'(\tilde x_0)\tilde y]=0,\qquad
- \mathrm E[v'(\tilde x_0)(\tilde x_n-x_F)]=0.
+ \sum_{n=1}^{N-1}w_n\beta_n=1,\qquad
+ \sum_{n=1}^{N-1}w_n\tilde e_n=0.
 \]
-相减得到 $\mathrm E[v'(\tilde x_0)\tilde e_n]=0$。教材接着利用“对所有递增凹效用成立”的要求，用分段线性凹效用的边际效用检验不同因子区间，推出
-$\mathrm E[\tilde e_n\mid\tilde y]=0$。
 
-此处保留该必要性思路；完整推导还需处理效用变动与最优 $\lambda$ 的联动及可实现性，不能将某个固定最优点的一阶条件直接视为对任意权重函数都成立。上面的条件 Jensen 论证则已给出完整的充分性证明；零因子载荷、零期望超额收益等退化情形须另行讨论。
-\end{tcolorbox}
+\textbf{第二步：写出最优点的一阶条件。}两基金分离使 $\tilde x_0$ 同时为全市场最优收益率。分别沿基金与单只证券的超额收益方向求导，有
+\[
+ \mathrm E[v_0'(\tilde x_0)\tilde y]=0,\qquad
+ \mathrm E[v_0'(\tilde x_0)(\tilde x_n-x_F)]=0.
+\]
 
-\begin{tcolorbox}[knowledge,title=9.2（续）偏好与共同基金分离]
-\textbf{A.\ 单基金与两基金}\quad 本节改为限制参与者偏好，而不预先限制证券收益率分布。
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.5}\quad 若要求在\textbf{任意证券集合}下都成立单基金分离，教材给出的刻画是：所有参与者定义在\textbf{收益率}上的效用函数，在正仿射变换意义下相同，即
+第二式减去第一式的 $\beta_n$ 倍，得
+\[
+ \mathrm E[v_0'(\tilde x_0)\tilde e_n]=0.
+\]
+
+\textbf{第三步：保持同一最优点，改变边际效用。}任取定义在 $\tilde y$ 各取值上的函数 $h$，满足 $\mathrm E[h(\tilde y)\tilde y]=0$。由于 $\lambda_0\ne0$，不同的 $y$ 对应不同的 $x_F+\lambda_0 y$。可在这些有限个财富点上作充分小的光滑扰动，使
+\[
+ v_\varepsilon'(x_F+\lambda_0 y)
+ =v_0'(x_F+\lambda_0 y)+\varepsilon h(y),
+\]
+并保持效用严格递增、严格凹。扰动后仍有
+\[
+ \mathrm E[v_\varepsilon'(\tilde x_0)\tilde y]=0.
+\]
+
+凹性使 $\lambda_0$ 仍为两基金中的最优选择；两基金分离又使它成为全市场最优选择。因此
+\[
+ \mathrm E[v_\varepsilon'(\tilde x_0)\tilde e_n]=0
+ \quad\Longrightarrow\quad
+ \mathrm E[h(\tilde y)\tilde e_n]=0.
+\]
+
+这里通过保持基金方向的一阶条件，让效用扰动前后的最优投资量都等于 $\lambda_0$。
+
+\textbf{第四步：识别条件均值。}记 $m_n(y)=\mathrm E[\tilde e_n\mid\tilde y=y]$。上式说明，所有满足 $\mathrm E[h(\tilde y)\tilde y]=0$ 的函数都满足
+\[
+ \mathrm E[h(\tilde y)m_n(\tilde y)]=0.
+\]
+
+在以状态概率为权重的有限维内积空间中，$m_n$ 因而属于 $\tilde y$ 张成的一维空间，即 $m_n(\tilde y)=c_n\tilde y$。再取期望：
+\[
+ 0=\mathrm E[\tilde e_n]=c_n\mathrm E[\tilde y].
+\]
+
+由 $\mathrm E[\tilde y]\ne0$ 得 $c_n=0$，故 $\mathrm E[\tilde e_n\mid\tilde y]=0$，三条因子条件全部成立。
+% 一般分布的必要性涉及函数空间与扰动可容许性；本讲展开有限状态、非退化内点情形。
+
+\subsection{偏好与共同基金分离}
+本节改为限制参与者偏好，而不预先限制证券收益率分布。
+\subsubsection{单基金分离与共同收益率偏好}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-5}{} 在\textbf{任意证券集合}下均成立单基金分离，当且仅当所有参与者定义在\textbf{收益率}上的效用函数在正仿射变换意义下相同，即
 \[
  v_k(t)=A_k+B_kv(t),\qquad B_k>0.
 \]
 \end{tcolorbox}
-\textbf{充分性解释：}正仿射变换不改变期望效用的排序，故所有人都可以选择同一个最优权重组合，只是投资金额不同。这里比较的是 $v_k(t)=u_k(w_kt)$，并非仅要求财富效用 $u_k$ 形式相同；必要性是对任意证券集合的普遍性要求下的偏好刻画，教材未在本节展开证明。
+\textbf{充分性解释：}正仿射变换不改变期望效用的排序，故所有人都可以选择同一个最优权重组合，只是投资金额不同。这里的收益率效用为 $v_k(t)=u_k(w_kt)$，因此财富差异也进入偏好比较。必要性是对任意证券集合成立的偏好刻画。
 
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.6}\quad 在教材的普遍性刻画下，若不限制证券集合，两基金分离对应于平方（二次）效用偏好。
+\subsubsection{二次效用与两基金分离}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-6}{} 不预设无风险证券、允许证券集合任意变化时，两基金分离对所有证券集合成立，当且仅当参与者具有平方（二次）效用偏好。
 \end{tcolorbox}
-二次效用下，期望效用只依赖组合均值和方差，故最优组合落在均值--方差有效集合上，可由两个适当基金生成。证明按教材安排放到第 12 章。二次效用只在边际效用为正的财富区间内满足不满足性，使用时须保留这一定义域限制；这里的普遍性结论不排除在\textbf{特定}收益分布下其他偏好也有基金分离。
+二次效用下，期望效用只依赖组合均值和方差，故最优组合落在均值--方差有效集合上，可由两个适当基金生成。均值--方差有效集合的构造见第~\ref{sec:wj-twelve-3}~节。二次效用的递增区间由正边际效用条件确定。给定特定收益分布时，其他偏好也可能产生两基金分离。
 
-\tcbline
-\textbf{B.\ HARA 偏好与两基金货币分离}
-\begin{tcolorbox}[knowledge]
-\textbf{定理 9.7（Cass--Stiglitz）}\quad 存在无风险证券时，教材给出的两基金货币分离偏好刻画为：参与者具有共同形状参数的 HARA 偏好，边际效用在正比例变换后可写为
+\subsubsection{HARA 偏好与两基金货币分离}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJNineTheorem{thm:wj-nine-7}{（Cass--Stiglitz）} 存在无风险证券时，两基金货币分离对任意风险证券集合成立，当且仅当参与者具有共同形状参数的 \hyperref[sec:wj-seven-hara]{HARA 偏好}。其边际效用在正比例变换后可写为
 \[
  u_k'(t)=\left(d_k+\frac{t}{\gamma}\right)^{-\gamma},
  \qquad d_k+\frac{t}{\gamma}>0,
 \]
-其中 $\gamma\ge-1$ 为参与者共同参数（上式取 $\gamma\ne0$），$d_k$ 可随参与者变化。教材陈述取 $d_k>0$；$d_k=0$ 的幂效用及相应极限形式也在其讨论中。
+其中 $\gamma\ge-1$ 为参与者共同参数（上式取 $\gamma\ne0$），$d_k$ 可随参与者变化。$d_k>0$；$d_k=0$ 给出相应幂效用，负指数效用作为极限形式处理。
 \end{tcolorbox}
 HARA 的绝对风险容忍度为
 \[
  T_k(t)=-\frac{u_k'(t)}{u_k''(t)}=d_k+\frac{t}{\gamma}.
 \]
+
 关键是所有人的风险容忍度对财富具有\textbf{相同斜率}，截距可以不同。对数效用、幂效用、二次效用及负指数效用的相应形式或极限均与这一族有关；正的仿射变换不影响组合选择。
 
 \textbf{证明（充分性，有限的 $\gamma\ne0$）：}令 $\tilde q=\tilde x_R-x_F\iota$ 为风险证券的总收益率相对无风险证券之差，$a_k$ 为风险证券投资\textbf{金额}向量。期末财富为
 \[
  \tilde w_k=w_kx_F+a_k^{\mathsf T}\tilde q.
 \]
+
 设 $C_k=d_k+w_kx_F/\gamma>0$，作变量替换
 \[
  a_k=\gamma C_k h_k,
@@ -390,54 +659,63 @@ HARA 的绝对风险容忍度为
  d_k+\frac{\tilde w_k}{\gamma}
  =C_k(1+h_k^{\mathsf T}\tilde q).
 \]
+
 内点一阶条件 $\mathrm E[u_k'(\tilde w_k)\tilde q]=0$ 变成
 \[
  C_k^{-\gamma}\mathrm E[(1+h_k^{\mathsf T}\tilde q)^{-\gamma}\tilde q]=0.
 \]
+
 消掉正的常数 $C_k^{-\gamma}$，方程及 HARA 自然定义域 $1+h_k^{\mathsf T}\tilde q>0$ 都与 $w_k,d_k$ 无关。假设无额外个体交易限制，并在非冗余、最优解唯一的情形下，大家得到同一个 $h^*$，故
 \[
  a_k=\gamma C_k h^*,\qquad
  \frac{a_{k,n}}{a_{k,m}}=\frac{h_n^*}{h_m^*}
  \quad(h_m^*\ne0).
 \]
-所有人的风险头寸方向相同，只是总规模不同。若 $H=\iota^{\mathsf T}h^*\ne0$，令风险基金内部权重 $z_R=h^*/H$，则每个人都持有该风险基金与无风险证券的组合，得到两基金货币分离。额外的非负财富、禁止卖空等限制若绑定，可能破坏这一缩放论证。
+
+所有人的风险头寸沿同一方向变化，规模由财富与风险容忍度决定。若 $H=\iota^{\mathsf T}h^*\ne0$，令风险基金内部权重 $z_R=h^*/H$，则每个人都持有该风险基金与无风险证券的组合，得到两基金货币分离。额外的非负财富、禁止卖空等限制若绑定，可能破坏这一缩放论证。
 
 \textbf{CARA 极限：}若 $u_k'(t)=\exp(-t/d_k)$、$d_k>0$，则一阶条件为
 \[
  e^{-w_kx_F/d_k}\mathrm E[e^{-(a_k/d_k)^{\mathsf T}\tilde q}\tilde q]=0.
 \]
-所以 $a_k/d_k$ 的最优方向也对所有人相同。教材对定理 9.7 只证明充分性，必要性引用 Cass--Stiglitz（1970）；这里保留该证明边界。风险基金净投资为零等退化情况还需单独选择基金表示。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=9.3 共同基金分离和风险投资]
+所以 $a_k/d_k$ 的最优方向也对所有人相同。必要性的偏好刻画见 Cass--Stiglitz（1970）。共同风险方向净投资为零时，可将该零成本头寸与无风险证券合成为单位成本基金，得到一般两基金表示。
+
+\section{共同基金分离和风险投资}\label{sec:wj-nine-3}
 两基金货币分离把 $N-1$ 只风险证券的问题化为\textbf{一只共同风险基金}与无风险证券之间的选择。令共同风险基金的净收益率为 $\tilde r_Q$，风险投资总额为 $a_Q$，则
 \[
  \tilde w=w(1+r_F)+a_Q(\tilde r_Q-r_F),\qquad a_F=w-a_Q.
 \]
-假设 $\mathrm E[\tilde r_Q]>r_F$ 且存在有限内点最优解，第 8 章关于单风险资产的性质可以直接用于风险基金：
+
+假设 $\mathrm E[\tilde r_Q]>r_F$ 且存在有限内点最优解，第~\ref{chap:wj-eight}~章关于单风险资产的性质可以直接用于风险基金，其中定理~\ref{thm:wj-eight-3}（投资金额的财富效应）与定理~\ref{thm:wj-eight-4}（投资比例的财富效应）分别说明金额和比例随财富的变化：
 \begin{itemize}
  \item 更高的绝对风险厌恶使风险基金投资额下降，无风险投资额上升（给定同一财富）。
- \item DARA、CARA、IARA 分别使风险基金投资\textbf{金额}随财富增加、保持不变、减少。
- \item DRRA、CRRA、IRRA 分别使风险基金投资\textbf{比例}随财富增加、保持不变、减少；对应的无风险投资比例变化方向相反。
+ \item \hyperlink{wj-risk-aversion-wealth-changes}{DARA}、\hyperref[sec:wj-seven-cara]{CARA}、\hyperlink{wj-risk-aversion-wealth-changes}{IARA} 分别使风险基金投资\textbf{金额}随财富增加、保持不变、减少。
+ \item \hyperlink{wj-risk-aversion-wealth-changes}{DRRA}、\hyperref[sec:wj-seven-crra]{CRRA}、\hyperlink{wj-risk-aversion-wealth-changes}{IRRA} 分别使风险基金投资\textbf{比例}随财富增加、保持不变、减少；对应的无风险投资比例变化方向相反。
 \end{itemize}
 例如 IRRA 下，$d(a_Q/w)/dw<0$，所以
 \[
  \frac{d}{dw}\left(\frac{a_F}{w}\right)
  =-\frac{d}{dw}\left(\frac{a_Q}{w}\right)>0.
 \]
-上述结论以共同风险基金保持不变为前提。一般多风险证券模型中，风险偏好或财富变化还可能改变风险组合内部构成，不能直接逐只套用单风险资产结论。
-\end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=9.4 本章结论]
+共同风险基金保持不变时，上述比较静态适用于基金的投资金额和比例。一般多风险证券模型中，还需同时分析风险基金内部权重的变化。
+
+\section*{本章小结}
+\addcontentsline{toc}{section}{本章小结}
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item FSD 是所有递增效用都认可的排序，等价于累积分布函数处处更低；它推出均值不低，但均值不低不能反推 FSD。
  \item 本教材的 SSD 比较等均值风险，等价于累积分布函数之差的累计积分处处非正，也等价于较差分布是较好分布的均值保持扩散。
  \item 逐状态占优与随机占优须区分：前者在允许卖空时导出套利，后者本身不保证存在套利；单证券的随机占优也不能直接延伸到任意风险组合。
- \item $F$ 基金分离使所有最优组合都能由 $F$ 只共同基金表示；含无风险证券的相应分离称为货币分离。
+ \item $F$ 基金分离使每位参与者都能在 $F$ 只共同基金中找到最优组合；含无风险证券的相应分离称为货币分离。
  \item 收益分布的因子结构，或参与者偏好的共同结构，可以带来两基金分离。两基金货币分离使单风险资产的投资结论适用于共同风险基金。
 \end{enumerate}
 \end{tcolorbox}
 
 \fi
 
+\section*{课后习题}
+\addcontentsline{toc}{section}{课后习题}
 \input{tex/金融经济学_王江/09_组合选择二_习题.tex}
+\endgroup

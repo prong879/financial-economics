@@ -1,0 +1,19 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：有限责任的普通债股支付，债务面值F；横轴为公司到期总支付y1。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.25cm,y=.85cm]
+ \draw[->] (0,0)--(6.3,0) node[right] {公司到期支付 $y_1$};
+ \draw[->] (0,0)--(0,5.8) node[above] {债权与股权支付};
+ \draw[gray,dashed,thick] (0,0)--(5.3,5.3) node[right] {$d_1+e_1=y_1$};
+ \draw[blue!70!black,very thick] (0,0)--(2,2)--(5.4,2) node[right] {$d_1=\min(y_1,F)$};
+ \draw[red!70!black,thick] (0,0)--(2,0)--(5.4,3.4) node[right] {$e_1=(y_1-F)_+$};
+ \draw[dotted,gray] (2,0)--(2,2)--(0,2);
+ \node[below] at (2,0) {$F$}; \node[left] at (0,2) {$F$};
+\end{tikzpicture}
+\par\smallskip\small
+面值为 $F$ 的普通债务先获得支付，股东取得剩余支付。改变 $F$ 会改变两条支付曲线的分界，但逐状态总支付仍为 $y_1$；线性定价因此给出 $D+E=V$。
+\WJFifteenFigure{fig:wj-fifteen-2}{公司总支付的债股分割}
+\end{minipage}
+\end{center}

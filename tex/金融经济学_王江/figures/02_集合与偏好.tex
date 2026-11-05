@@ -1,0 +1,43 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教材图2.3—2.5，印刷第13—15页。以二维截面呈现原有几何含义。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=.92cm,y=.92cm]
+ \fill[blue!7] (0,0) rectangle (3,2.8);
+ \node[anchor=north east,font=\footnotesize] at (2.9,2.7) {$C=\mathrm R_+^{1+\Omega}$};
+ \draw[->] (0,0)--(3.3,0) node[right] {$c_0$};
+ \draw[->] (0,0)--(0,3) node[above] {$c_1$};
+ \draw[blue!70!black,thick] (.45,2.3)--(2.5,.6);
+ \fill[blue!70!black] (.45,2.3) circle(1.7pt) node[above right] {$a$}
+   (2.5,.6) circle(1.7pt) node[above right] {$b$}
+   (1.475,1.45) circle(1.7pt);
+ \node[above right] at (1.475,1.45) {$m$};
+ \node at (1.4,-.75) {（a）闭凸消费集};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[>=Stealth,font=\small,x=.92cm,y=.92cm]
+ \fill[blue!9] (.8,.8) rectangle (3,2.8);
+ \draw[->] (0,0)--(3.3,0) node[right] {$c_0$};
+ \draw[->] (0,0)--(0,3) node[above] {$c_1$};
+ \draw[dashed,gray] (.8,2.8)--(.8,.8)--(3,.8);
+ \fill (.8,.8) circle(1.8pt) node[below left] {$b$};
+ \fill[blue!70!black] (2.3,2.1) circle(1.8pt) node[right] {$a\succ b$}
+   (2.3,.8) circle(1.8pt) node[below] {$a'\succ b$};
+ \node at (1.4,-.75) {（b）增加消费改善偏好};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[>=Stealth,font=\small,x=.92cm,y=.92cm]
+ \fill[blue!9] (.48,2.5) plot[domain=.48:2.9,samples=50] (\x,{1.2/\x}) --(2.9,2.8)--(.48,2.8)--cycle;
+ \draw[->] (0,0)--(3.3,0) node[right] {$c_0$};
+ \draw[->] (0,0)--(0,3) node[above] {$c_1$};
+ \draw[blue!70!black,thick,domain=.48:2.9,samples=50] plot (\x,{1.2/\x});
+ \draw[red!70!black,thick] (.6,2)--(2,.6);
+ \fill (.6,2) circle(1.7pt) node[above right] {$a$}
+   (2,.6) circle(1.7pt) node[below right] {$b$};
+ \node[font=\footnotesize,align=center] at (1.85,2.2) {$\{c:c\succeq b\}$};
+ \node at (1.4,-.75) {（c）凸的上等值集};
+\end{tikzpicture}
+\par\smallskip\small
+（a）$m=\alpha a+(1-\alpha)b$ 及非负消费集的边界仍在集合内；（b）$a>b$、$a'>b$ 均采用本章向量约定；（c）在正消费域取 $U(c)=c_0c_1$，同一无差异曲线两点的混合位于上等值集中。
+\WJFigure{fig:wj-consumption-preferences}{消费集与偏好的几何性质}
+\end{minipage}
+\end{center}

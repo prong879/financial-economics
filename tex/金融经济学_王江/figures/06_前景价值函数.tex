@@ -1,0 +1,25 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：PPT第29—31页的参考点解释，按正文价值函数取alpha=1/2、lambda=2。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.5cm,y=.85cm]
+ \draw[->] (-2.6,0)--(2.9,0) node[right] {$y=x-r$};
+ \draw[->] (0,-3.6)--(0,2.1) node[above] {$v(y)$};
+ \draw[blue!70!black,very thick,domain=0:2.4,samples=80] plot (\x,{sqrt(\x)});
+ \draw[red!70!black,very thick,domain=-2.4:0,samples=80] plot (\x,{-2*sqrt(-\x)});
+ \draw[dotted,gray] (1,0)--(1,1)--(0,1)
+   (-1,0)--(-1,-2)--(0,-2);
+ \fill[blue!70!black] (1,1) circle(1.8pt);
+ \fill[red!70!black] (-1,-2) circle(1.8pt);
+ \node[above] at (-1,0) {$-1$}; \node[below] at (1,0) {$1$};
+ \node[left] at (0,1) {$1$}; \node[right] at (0,-2) {$-2$};
+ \node[blue!70!black] at (1.7,1.9) {收益域：凹};
+ \node[red!70!black] at (-1.7,-3.5) {损失域：凸};
+ \node[above left] at (0,0) {参考点};
+\end{tikzpicture}
+\par\smallskip\small
+示例取 $\alpha=1/2,\lambda=2$。同额损失的价值变化更大；移动参考点 $r$ 会改变同一最终财富所属的收益域或损失域。
+\WJFigure{fig:wj-prospect-value}{参考点与前景价值函数}
+\end{minipage}
+\end{center}

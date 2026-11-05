@@ -1,25 +1,33 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 08_组合选择一 课后习题（由章节文件拆分）
 
+\begin{samepage}
 \begin{problem}
-\problemno{8.1} 假设有 $N$ 项资产，收益率为 $\tilde{r}_{i}$，$i=1,\cdots,N$，它们是独立同分布的。对于一个具有不满足性和凹性效用函数的投资者，计算他的最优投资组合。
+\WJEightExercise{exer:wj-eight-1}{} 假设有 $N$ 项资产，收益率为 $\tilde{r}_{i}$，$i=1,\cdots,N$，它们是独立同分布的。对于一个具有不满足性和凹性效用函数的投资者，计算他的最优投资组合。
 \end{problem}
+\end{samepage}
+\Needspace{6\baselineskip}
 \begin{solution}
-设组合权重 $\theta=(\theta_{1},\ldots,\theta_{N})$，$\sum_{i}\theta_{i}=1$，期望效用目标先写为
+设 $w>0$，$\theta_i$ 是投资权重，$\sum_i\theta_i=1$。沿用本章的净收益率记号，期末财富与目标函数为
 \[
- \max_\theta E\!\left[u\!\left(
- \underbrace{w\sum_i\theta_i\tilde r_i}_{\tilde w\text{：期末财富}}
- \right)\right].
+ \widetilde W(\theta)=w\left(1+\sum_{i=1}^N\theta_i\tilde r_i\right),\qquad
+ F(\theta)=\mathrm E[u(\widetilde W(\theta))].
 \]
-其一阶条件为：对任意 $j,k$，
+
+对任意权重向量 $\theta$，将其分量作全部 $N!$ 种排列，记为 $\theta^{(\sigma)}$。独立同分布使联合收益分布具有交换对称性，所以各排列的期望效用均为 $F(\theta)$。这些排列的平均向量为 $\bar\theta=(1/N,\ldots,1/N)$。由 $u$ 的凹性和财富对权重的线性关系，
 \[
-    E\!\left[u'\!\left(w\sum_i\theta_i\tilde r_i\right)(\tilde r_j-\tilde r_k)\right]=0.
+ F(\bar\theta)
+ =F\left(\frac1{N!}\sum_\sigma\theta^{(\sigma)}\right)
+ \ge\frac1{N!}\sum_\sigma F(\theta^{(\sigma)})
+ =F(\theta).
 \]
-由于 $\{\tilde{r}_{i}\}$ 独立同分布，目标函数对 $\theta$ 对称；严格凹效用下最优解唯一，故必有 $\theta_{i}^{*}=1/N$。即最优组合是所有风险资产的等权重组合。
+
+因此\textbf{等权组合 $\theta_i^*=1/N$ 是最优组合之一}。这个结论适用于无约束权重及禁止卖空的单纯形：两类可行集都对排列和取平均封闭。严格凹效用加上非退化、独立的收益分布可进一步保证权重唯一；一般凹性下可存在其他同样最优的组合。\qedhere
 \end{solution}
 
+\begin{samepage}
 \begin{problem}
-\problemno{8.2*} 假设你必须将 $w$ 投资于两只证券：一只无风险债券和一只风险证券。无风险债券的收益率确定为 $r_{F}$。风险证券的收益率为 $\tilde{r}$，它的均值为 $\bar{r}$ 而方差为 $\sigma^{2}$。假设你的目标就是最大化你的二次效用函数的期望值：
+\WJEightExercise{exer:wj-eight-2}{*} 假设你必须将 $w$ 投资于两只证券：一只无风险债券和一只风险证券。无风险债券的收益率确定为 $r_{F}$。风险证券的收益率为 $\tilde{r}$，它的均值为 $\bar{r}$ 而方差为 $\sigma^{2}$。假设你的目标就是最大化你的二次效用函数的期望值：
 \[
     E\Bigl[\tilde{w}-\tfrac12 a\tilde{w}^{2}\Bigr].
 \]
@@ -28,88 +36,124 @@
     \item 讨论最优组合如何依赖于股票和债券的期望收益率 $r_{F}$ 和 $\bar{r}$，股票收益率的波动率 $\sigma$，以及偏好系数 $a$。为这些依赖关系提供经济解释。
 \end{enumerate}
 \end{problem}
+\end{samepage}
+\Needspace{6\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设投资于股票的资产比例为 $x$，那么有
-    \[
-        \tilde{w}=w\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)
-    \]
-    参与者的优化问题是
-    \[
-        \max_x E\!\left[
- \underbrace{w\bigl(1+r_F+x(\tilde r-r_F)\bigr)}_{\tilde w}
- -\frac a2\bigl(w(1+r_F+x(\tilde r-r_F))\bigr)^2\right].
-    \]
-    先计算期末财富的一阶、二阶矩：
-    \[
-    \begin{aligned}
-        E[\tilde w]&=w\bigl(1+r_F+x(\bar r-r_F)\bigr),\\
-        E[\tilde w^2]&=w^2\bigl[(1+r_F+x(\bar r-r_F))^2+x^2\sigma^2\bigr].
-    \end{aligned}
-    \]
-    代入目标函数后对 $x$ 求导，一阶条件为
-    \[
-        w(\bar r-r_F)-aw^2\bigl[(1+r_F+x(\bar r-r_F))(\bar r-r_F)+x\sigma^2\bigr]=0.
-    \]
-    整理得
-    \[
-        (\bar r-r_F)\bigl[1-aw(1+r_F)\bigr]
-        =aw\bigl((\bar r-r_F)^2+\sigma^2\bigr)x.
-    \]
-    解得最优权重
-    \[
-        x^{*}=\frac{(\bar{r}-r_{F})\bigl(1-aw(1+r_{F})\bigr)}{aw\bigl(\sigma^{2}+(\bar{r}-r_{F})^{2}\bigr)}
-    \]
+\item 设股票权重为 $x$，记
+\[
+ R_F=1+r_F,\qquad \delta=\bar r-r_F,\qquad
+ D=\sigma^2+\delta^2.
+\]
 
-    \item $x^{*}$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 的增加而减小。股票的期望收益率增加使得股票的需求增加，而无风险收益率增加使得债券的需求增加；$\sigma^{2}$ 增大，股票的风险变大，对股票的需求变小；最后，$a$ 增大表明参与者更加厌恶风险，因而对股票的需求减小。
+取 $a>0$、$w>0$、$D>0$，并允许借贷与卖空。期末财富为
+\[
+ \tilde w=w\bigl(R_F+x(\tilde r-r_F)\bigr).
+\]
+
+其均值、二阶矩分别为
+\[
+ \mathrm E[\tilde w]=w(R_F+x\delta),\qquad
+ \mathrm E[\tilde w^2]=w^2[(R_F+x\delta)^2+x^2\sigma^2].
+\]
+
+代入目标函数，得到
+\[
+ J(x)=w(R_F+x\delta)
+ -\frac a2w^2[(R_F+x\delta)^2+x^2\sigma^2].
+\]
+
+一阶、二阶导数为
+\[
+ J'(x)=w\delta-aw^2(R_F\delta+xD),\qquad
+ J''(x)=-aw^2D<0.
+\]
+
+故唯一无约束最优权重为
+\[
+ \boxed{x^*=\frac{\delta[1-awR_F]}{awD}
+              =\left(\frac1{aw}-R_F\right)\frac\delta D.}
+\]
+
+债券权重为 $1-x^*$。若另有限制 $0\le x\le1$，则在严格凹目标下将上式截取到区间 $[0,1]$。退化情形 $D=0$ 时，股票与债券的收益均相同，任意权重给出相同期末财富。
+
+\item 记 $B=1/(aw)-R_F$。固定其他参数，逐项求导得到
+\[
+\begin{aligned}
+ \frac{\partial x^*}{\partial\bar r}
+ &=B\frac{\sigma^2-\delta^2}{D^2},&
+ \frac{\partial x^*}{\partial r_F}
+ &=-\frac\delta D-B\frac{\sigma^2-\delta^2}{D^2},\\
+ \frac{\partial x^*}{\partial\sigma^2}
+ &=-\frac{B\delta}{D^2},&
+ \frac{\partial x^*}{\partial a}
+ &=-\frac{\delta}{a^2wD}.
+\end{aligned}
+\]
+
+在 $\delta>0$、$B>0$ 时，股票权重为正，方差及偏好参数 $a$ 上升都降低股票需求；若另有 $\delta^2<\sigma^2$，股票期望收益率上升会增加需求，无风险利率上升则降低需求。$\delta^2>\sigma^2$ 时，股票期望收益率的效应反向。
+
+例如 $w=1$、$a=0.1$、$r_F=0$、$\sigma=0.1$ 时，$\bar r$ 从 $0.2$ 增至 $0.3$，上式给出的 $x^*$ 从 $36$ 降至 $27$。二次效用的边际效用为 $1-a\tilde w$，在 $\tilde w=1/a$ 达到零；无约束最优解体现了这一饱和点。不满足性对应 $\tilde w<1/a$ 的财富区间；在这一范围内求解时，将它作为可行性约束。
+\qedhere
 \end{enumerate}
 \end{solution}
 
+\begin{samepage}
 \begin{problem}
-\problemno{8.3*} 考虑与练习 8.2 一样的问题。不过现在假设效用函数具有常数绝对风险厌恶系数：
+\WJEightExercise{exer:wj-eight-3}{*} 考虑与练习~\ref{exer:wj-eight-2}（在一只风险证券与无风险证券之间配置财富）一样的问题。不过现在假设效用函数具有常数绝对风险厌恶系数：
 \[
     E\bigl[-e^{-a\tilde{w}}\bigr].
 \]
+
 另外，假设股票收益率 $\tilde{r}$ 是正态分布的。
 \begin{enumerate}[label=(\alph*)]
     \item 求解最优投资组合。
     \item 讨论最优组合如何依赖于股票和债券的期望收益率 $r_{F}$ 和 $\bar{r}$，股票收益率的波动率 $\sigma$，以及偏好系数 $a$。为这些依赖性提供经济解释。[如果需要的话，你可以添加其它条件。]
 \end{enumerate}
 \end{problem}
+\end{samepage}
+\Needspace{6\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设投资于股票的资产比例为 $x$，那么有
-    \[
-        \tilde{w}=w\bigl(1+r_{F}+x(\tilde{r}-r_{F})\bigr)
-    \]
-    参与者的优化问题是
-    \[
-        \max_x E\!\left[-\exp\!\left(-a
- \underbrace{w(1+r_F+x(\tilde r-r_F))}_{\tilde w}\right)\right].
-    \]
-    因 $\tilde{r}$ 正态，$\tilde{w}$ 亦正态。对正态随机变量有
-    \[
-        E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
-    \]
-    其中 $E[\tilde{w}]=w\bigl(1+r_{F}+x(\bar{r}-r_{F})\bigr)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{2}\sigma^{2}$。最大化上式等价于最大化确定性等价，完整写为
-    \[
-        \max_x\left\{w\bigl(1+r_F+x(\bar r-r_F)\bigr)
-        -\frac a2 w^2x^2\sigma^2\right\}.
-    \]
-    对 $x$ 的一阶条件为
-    \[
-        w(\bar{r}-r_{F})-a\,w^{2}x\sigma^{2}=0
-    \]
-    因而最优权重（CARA 下风险资产的金额 $wx^{*}$ 与财富无关）为
-    \[
-        x^{*}=\frac{\bar{r}-r_{F}}{aw\sigma^{2}}
-    \]
-    \item $x^{*}$ 随着 $\bar{r}$ 的增加而增加，随着 $r_{F}$、$\sigma^{2}$、$a$ 以及财富 $w$ 的增加而减小。超额收益上升提高股票需求；$\sigma^{2}$ 或绝对风险厌恶 $a$ 增大则降低股票需求。与二次效用不同：CARA 下风险资产金额 $wx^{*}=(\bar{r}-r_{F})/(a\sigma^{2})$ 不随 $w$ 变化，故权重 $x^{*}$ 随财富下降。
+\item 取 $a>0$、$w>0$、$\sigma^2>0$，允许自由借贷与卖空。设股票权重为 $x$，则
+\[
+ \tilde w=w\bigl(1+r_F+x(\tilde r-r_F)\bigr).
+\]
+
+正态收益使期末财富也是正态变量，因此
+\[
+ \mathrm E[-e^{-a\tilde w}]
+ =-\exp\left(-a\mathrm E[\tilde w]
+              +\frac{a^2}{2}\operatorname{Var}(\tilde w)\right).
+\]
+
+最大化期望效用等价于最大化确定性等值
+\[
+ \mathrm E[\tilde w]-\frac a2\operatorname{Var}(\tilde w)
+ =w(1+r_F)+wx(\bar r-r_F)-\frac a2w^2x^2\sigma^2.
+\]
+
+对 $x$ 求导，得
+\[
+ w(\bar r-r_F)-aw^2x\sigma^2=0,
+ \qquad x^*=\frac{\bar r-r_F}{aw\sigma^2}.
+\]
+
+二阶导数为 $-aw^2\sigma^2<0$，故这是唯一无约束最优权重。
+
+\item 股票投资金额为
+\[
+ wx^*=\frac{\bar r-r_F}{a\sigma^2}.
+\]
+
+股票期望收益率上升提高股票投资；无风险利率或风险厌恶参数 $a$ 上升，降低正风险溢价下的股票投资。$\bar r>r_F$ 时，波动率上升降低正头寸的大小，财富上升使权重下降。$\bar r<r_F$ 时，最优头寸为负，波动率上升使空头金额的绝对值缩小。CARA 下股票投资金额与初始财富无关，权重则与财富成反比。
+\qedhere
 \end{enumerate}
 \end{solution}
 
+\begin{samepage}
 \begin{problem}
-\problemno{8.4**} 赋予投资者初始金融财富 $w$ 以及 $\lambda$ 份不可交易收入 $\tilde{y}$，其中 $\lambda\ge 0$ 且 $E[\tilde{y}]=0$。他可以交易一只无风险证券和一只风险证券。无风险证券的收益率为 0 而风险证券的收益率 $\tilde{r}$ 的均值为 $\bar{r}$。他具有不满足性且是风险厌恶的。他的绝对风险厌恶系数随着他的财富增加而减少。令 $a$ 为风险证券上的投资额。他的期望效用函数为：
+\WJEightExercise{exer:wj-eight-4}{**} 赋予投资者初始金融财富 $w$ 以及 $\lambda$ 份不可交易收入 $\tilde{y}$，其中 $\lambda\ge 0$ 且 $E[\tilde{y}]=0$。他可以交易一只无风险证券和一只风险证券。无风险证券的收益率为 0 而风险证券的收益率 $\tilde{r}$ 的均值为 $\bar{r}$。他具有不满足性且是风险厌恶的。他的绝对风险厌恶系数随着他的财富增加而减少。令 $a$ 为风险证券上的投资额。他的期望效用函数为：
 \[
     \max E\bigl[u(w+a\tilde{r}+\lambda\tilde{y})\bigr].
 \]
@@ -119,84 +163,121 @@
     \item 假设 $\tilde{y}=c(\tilde{r}-\bar{r})+\tilde{\varepsilon}$ 以及 $E[\tilde{\varepsilon}\mid\tilde{r}]=0$。因此，如果 $c\neq 0$，$\tilde{y}$ 和 $\tilde{r}$ 是相关的。当 $\lambda$ 极小时，他持有的股票头寸如何随着 $w$ 变化而变化？解释所得到的结论。
 \end{enumerate}
 \end{problem}
+\end{samepage}
+\Needspace{6\baselineskip}
 \begin{solution}
+% 原题仅假设 DARA；(b) 的背景风险比较需检查诱导效用，不能从 DARA 直接定号。
+% 外部核对：Gollier--Pratt (1996), Risk Vulnerability and the Tempering Effect of Background Risk.
+% https://www.tse-fr.eu/publications/journal-article/risk-vulnerability-and-tempering-effect-background-risk
+以下假定所讨论的最优头寸为有限内点解，$u'>0$、$u''<0$，且相关期望和导数存在，可交换求导与期望。记 $\mu=\mathrm E[\tilde r]$。
 \begin{enumerate}[label=(\alph*)]
-    \item 当 $\lambda=0$ 时，优化的一阶条件是
-    \[
-        E\bigl[u'\!\left(\underbrace{w+a_0^*\tilde r}_{\tilde w}\right)\tilde{r}\bigr]=0
-    \]
-    两边对 $w$ 求导可得
-    \[
-        \frac{da_{0}^{*}}{dw}=\frac{E[u''(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
-    \]
-    这里绝对风险厌恶系数沿用正文的记号，写为
-    \[
-        \underbrace{-\frac{u''(t)}{u'(t)}}_{A(t)\text{：绝对风险厌恶系数}}.
-    \]
-    又
-    \[
-        \begin{aligned}
-            E[u''(\tilde{w})\tilde{r}]
-            &=-E[u'(\tilde{w})A(\tilde{w})\tilde{r}]\\
-            &\ge -E[u'(\tilde{w})A(w)\tilde{r}]\\
-            &=-A(w)E[u'(\tilde{w})\tilde{r}]\\
-            &=0
-        \end{aligned}
-    \]
-    故 $\dfrac{da_{0}^{*}}{dw}\ge 0$，即最优头寸随着 $w$ 的增加而增加；
+\item 令 $W_0=w+a_0^*(w)\tilde r$，一阶条件与隐函数求导给出
+\[
+ \mathrm E[u'(W_0)\tilde r]=0,\qquad
+ (a_0^*)'(w)=-\frac{\mathrm E[u''(W_0)\tilde r]}
+                         {\mathrm E[u''(W_0)\tilde r^2]}.
+\]
 
-    \item 参与者优化的一阶条件是
-    \[
-        E\bigl[u'\!\left(\underbrace{w+a_\lambda^*\tilde r+\lambda\tilde y}_{\tilde w}\right)\tilde{r}\bigr]=0
-    \]
-    两边对 $\lambda$ 求导可得
-    \[
-        \frac{da_{\lambda}^{*}}{d\lambda}=\frac{E[u''(\tilde{w})\tilde{r}\tilde{y}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
-    \]
-    将下面的条件期望记为 $K$：
-    \[
-        \underbrace{E[-A(\tilde w)\tilde y\mid\tilde r]}_{K(w+a_\lambda^*\tilde r)}.
-    \]
-    可以证明 $K(\cdot)>0$，$K'(\cdot)>0$，因此
-    \[
-        \begin{aligned}
- E[u''(\tilde w)\tilde r\tilde y]
- &=E[-A(\tilde w)u'(\tilde w)\tilde r\tilde y]\\
- &=E[K(w+a_\lambda^*\tilde r)u'(\tilde w)\tilde r]\\
- &\ge K(w)E[u'(\tilde w)\tilde r]=0.
- \end{aligned}
-    \]
-    最后一个等式是因为一阶条件，因此，$\dfrac{da_{\lambda}^{*}}{d\lambda}\ge 0$，故 $a_{\lambda}^{*}\ge a_{0}^{*}$；
+分母严格为负。若 $\mu>0$，则 $a_0^*>0$，由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-eight-3}\else 风险投资金额与财富的比较静态结果\fi 的 DARA 结论，$(a_0^*)'(w)>0$。若 $\mu<0$，将 $-\tilde r$ 看作正风险溢价的交易方向，得到 $a_0^*<0$、$(a_0^*)'(w)<0$：财富增加时空头的绝对金额增加。$\mu=0$ 时 $a_0^*=0$，财富效应为零。
 
-    \item 由 (a) 有
-    \[
-        \frac{da_{0}^{*}}{dw}=\frac{E[u''(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}=\frac{-E[u'(\tilde{w})A(\tilde{w})\tilde{r}]}{-E[u''(\tilde{w})\tilde{r}^{2}]}
-    \]
-    而
-    \[
-        \begin{aligned}
- E[u'(\tilde w)A(\tilde w)\tilde r]
- &=E[A(w+a\tilde r)u'(\tilde w)\tilde r]\\
- &\quad+\lambda E[A'(w+a\tilde r)u'(\tilde w)\tilde r\tilde y]
- +o(\lambda^2).
- \end{aligned}
-    \]
-    由 (a) 知道 $E\bigl[A(w+a\tilde{r})u'(\tilde{w})\tilde{r}\bigr]\le 0$，另外 $\lambda$ 又极小，因此
-    \[
-        E[u'(\tilde{w})A(\tilde{w})\tilde{r}]\le 0,\qquad \frac{da^{*}}{dw}\ge 0
-    \]
-    即最优头寸随着初始财富 $w$ 的增加而增加。这是因为 $\lambda$ 极小，因而不可交易收入不会改变 (a) 中的结论。
+\item 独立性使背景收入可以先取期望。定义
+\[
+ v_\lambda(t)=\mathrm E_{\tilde y}[u(t+\lambda\tilde y)],\qquad
+ A_\lambda(t)=-\frac{v_\lambda''(t)}{v_\lambda'(t)}
+ =\frac{\mathrm E[A(t+\lambda\tilde y)u'(t+\lambda\tilde y)]}
+        {\mathrm E[u'(t+\lambda\tilde y)]}.
+\]
+
+组合选择变为 $\max_a\mathrm E_{\tilde r}[v_\lambda(w+a\tilde r)]$。$A_\lambda$ 是用边际效用加权的风险厌恶系数。DARA 描述 $A$ 随财富的变化；$A_\lambda$ 与 $A$ 的比较还取决于背景收入分布和边际效用权重。
+
+\textbf{一个头寸增加的例子。}取效用定义域 $I=(0.8,1.15)$，并令
+\[
+ u(t)=(t-1)-\frac{(t-1)^2}{10}+\frac{(t-1)^3}{6}.
+\]
+
+记 $s=t-1$，则 $u'=1-s/5+s^2/2>0$、$u''=-1/5+s<0$，且
+\[
+ A'(t)=\frac{-24/25-s/5+s^2/2}{(1-s/5+s^2/2)^2}<0
+ \quad(t\in I).
+\]
+
+令 $w=1$，$\tilde r$ 取 $0.1$、$-0.1$，概率分别为 $101/200$、$99/200$，故 $\mu=0.001$。取独立的 $\tilde y=\pm0.02$，各以 $1/2$ 的概率发生，$\lambda=1$。因为 $u'$ 为二次函数，
+\[
+ v_1'(t)=u'(t)+\frac{0.02^2}{2}.
+\]
+
+在原最优头寸 $a_0^*$ 处，新目标关于 $a$ 的导数为
+\[
+ \mathrm E[v_1'(w+a_0^*\tilde r)\tilde r]
+ =\frac{0.02^2}{2}\mu>0.
+\]
+
+两目标均严格凹，最优头寸分别约为 $0.500627$、$0.500727$，所有相关财富均在 $I$ 内，因此 $a_1^*>a_0^*$。
+
+\textbf{一个头寸减少的例子。}取 $u(t)=\log t$，仍使用上述收益分布和背景风险。此时 $a_0^*=\mu/0.1^2=0.1$。记 $b=0.02$，则
+\[
+ v_1'(t)=\frac{t}{t^2-b^2},\qquad
+ A_1(t)=\frac{t^2+b^2}{t(t^2-b^2)}>\frac1t=A(t),\quad t>b.
+\]
+
+由\ifdefined\WJHandoutKnowledge 第~\ref{sec:wj-seven-5}~节的风险厌恶比较\else 风险厌恶比较\fi，$v_1=f\circ u$，其中 $f'>0$、$f''<0$。在 $a_0^*>0$ 处，令 $k_0=f'(u(w))$。因为 $w+a_0^*\tilde r$ 与 $\tilde r$ 同向变化，逐状态有
+\[
+ [f'(u(w+a_0^*\tilde r))-k_0]\,\tilde r<0.
+\]
+
+乘以正的 $u'(w+a_0^*\tilde r)$ 并取期望，再用原一阶条件消去 $k_0$ 项，得到新目标的导数严格为负，故 $a_1^*<a_0^*$。
+
+这两个例子表明，\textbf{DARA 下，独立背景风险既可能增加风险头寸，也可能减少风险头寸}。本题的大小比较取决于具体效用与背景收入分布。若补充 $A_\lambda(t)\ge A(t)$ 在相关区间成立，则同样的凹变换论证给出：正风险溢价下 $0<a_\lambda^*\le a_0^*$；负风险溢价下空头绝对金额减小。$\mu=0$ 时两者均为零。
+
+\item 令 $a_\lambda^*=a^*(w,\lambda)$、$W_\lambda=w+a_\lambda^*\tilde r+\lambda\tilde y$。对一阶条件求导，分别得到
+\[
+ \frac{\partial a^*}{\partial w}
+ =-\frac{\mathrm E[u''(W_\lambda)\tilde r]}
+          {\mathrm E[u''(W_\lambda)\tilde r^2]},\qquad
+ \frac{\partial a^*}{\partial\lambda}
+ =-\frac{\mathrm E[u''(W_\lambda)\tilde r\tilde y]}
+          {\mathrm E[u''(W_\lambda)\tilde r^2]}.
+\]
+
+由 $\mathrm E[\tilde\varepsilon\mid\tilde r]=0$，在 $\lambda=0$ 处有
+\[
+ \mathrm E[u''(W_0)\tilde r\tilde y]
+ =c\,\mathrm E[u''(W_0)\tilde r(\tilde r-\mu)].
+\]
+
+代入并利用 (a) 的财富导数，得到
+\[
+ \left.\frac{\partial a^*}{\partial\lambda}\right|_{\lambda=0}
+ =-c[1+\mu(a_0^*)'(w)],
+\]
+\[
+ a^*(w,\lambda)
+ =a_0^*(w)-\lambda c[1+\mu(a_0^*)'(w)]+o(\lambda).
+\]
+
+收入的相关部分可写入财富为
+\[
+ W_\lambda=(w-\lambda c\mu)+(a+\lambda c)\tilde r
+              +\lambda\tilde\varepsilon.
+\]
+
+其中 $\lambda c$ 是收入自带的风险证券敞口，$-\lambda c\mu$ 是相应的确定财富调整。若 $\mu>0$，$c>0$ 时会减少直接持股来对冲收入风险；$c<0$ 时则增加直接持股。
+
+关于\textbf{财富效应}，若 $\mu>0$，(a) 给出 $(a_0^*)'(w)>0$。在最优解及上述导数对 $(w,\lambda)$ 连续的条件下，对固定 $w$ 存在足够小的 $\lambda\ge0$，使 $\partial a^*/\partial w>0$；$\mu<0$ 时仍为负。$\mu=0$ 时基准财富导数为零，相关背景风险下的财富效应由上面的期望表达式决定。导数的连续性保证非零基准财富效应在小扰动下保持符号。
+\qedhere
 \end{enumerate}
 \end{solution}
 
+\begin{samepage}
 \begin{problem}
-\problemno{8.5**} 假设你是对冲基金中交易政府债的交易员。你有 $w$ 的现金额度。
+\WJEightExercise{exer:wj-eight-5}{**} 假设你是对冲基金中交易政府债的交易员。你有 $w$ 的现金额度。
 \begin{itemize}
     \item 在 0 期，当美联储拍卖新债券时，你可以提交报价而买入政府债。在 1 期，你可以在二级市场上以价格 $\tilde{v}$ 再把它们卖掉，其中 $\tilde{v}=\bar{v}+\tilde{\varepsilon}$，$\bar{v}>0$ 且 $E[\tilde{\varepsilon}]=0$。假设无风险收益率为零。
     \item 你购买债券的报价是 $p$。你购买到的数量 $x(p)$ 是 $p$ 的递增函数且 $x(0)=0$。选择 $p$ 以最大化你的期望效用函数：
     \[
         V(p)=E[u(\tilde{w})],\qquad \tilde{w}=w+x(p)(\bar{v}+\tilde{\varepsilon}-p).
     \]
+
     假设你是不满足的且严格风险厌恶的。为简单起见，假设 $V(p)$ 是严格凹的。
 \end{itemize}
 \begin{enumerate}[label=(\alph*)]
@@ -206,68 +287,82 @@
     \item 假设 $u(\cdot)$ 是绝对风险厌恶递减的。证明初始财富 $w$ 的增加使得 $p^{*}$ 也增加。
 \end{enumerate}
 \end{problem}
+\end{samepage}
+\Needspace{6\baselineskip}
 \begin{solution}
+以下取报价 $p\ge0$，$x$ 可微，$\tilde\varepsilon$ 非退化，且相关期望及导数存在。记
+\[
+ W(p)=w+x(p)(\bar v+\tilde\varepsilon-p),\qquad
+ q(p)=x'(p)(\bar v+\tilde\varepsilon-p)-x(p).
+\]
+
+$q(p)$ 为提高报价时的边际财富变化。
 \begin{enumerate}[label=(\alph*)]
-    \item 一阶条件是
-    \[
-        \begin{aligned}
- V'(p^*)&=E\!\left[
- u'\!\left(\underbrace{w+x(p^*)(\bar v+\tilde\varepsilon-p^*)}_{\tilde w}\right)\right.\\
- &\hspace{3em}\left.\cdot\bigl(x'(p^*)(\bar v+\tilde\varepsilon-p^*)-x(p^*)\bigr)\right]=0.
- \end{aligned}
-    \]
+\item 内点最优报价满足
+\[
+ V'(p^*)=\mathrm E[u'(W(p^*))q(p^*)]=0.
+\]
 
-    \item
-    \[
-        \begin{aligned}
-            V'(0)&=E\bigl[u'(w)\bigl(x'(0)(\bar{v}+\tilde{\varepsilon})\bigr)\bigr]=u'(w)x'(0)\bar{v}>0\\
-            V(\bar{v})&=E\bigl[u(w+x(\bar{v})\tilde{\varepsilon})\bigr]<u(w)=V(0)
-        \end{aligned}
-    \]
-    又因为 $V(p)$ 是凹的，故 $0<p^{*}<\bar{v}$；
+\item 因 $x(0)=0$，$V(0)=u(w)$。对足够小的正报价，$x(p)>0$ 且趋于零，投资收益的均值为 $\bar v-p>0$。在可作一阶展开的条件下，
+\[
+ V(p)-u(w)=u'(w)x(p)(\bar v-p)+o(x(p))>0.
+\]
 
-    \item 由定理 (7.4) 可知，存在 $f'>0$，$f''<0$ 使得 $u_{1}=f(u_{2})$。参与者的优化问题的一阶条件为：
-    \[
-        \begin{aligned}
- E\!\left[
- u_2'\!\left(\underbrace{w+x(p_2)(\bar v+\tilde\varepsilon-p_2)}_{\tilde w_2}\right)\right.&\\
- \left.\cdot\bigl(x'(p_2)(\bar v+\tilde\varepsilon-p_2)-x(p_2)\bigr)\right]&=0.
- \end{aligned}
-    \]
-    考虑
-    \[
-        V_{1}'(p_{2})=E\bigl[f'(u_{2}(\tilde{w}_{2}))u_{2}'(\tilde{w}_{2})\bigl(x'(p_{2})(\bar{v}+\tilde{\varepsilon}-p_{2})-x(p_{2})\bigr)\bigr]
-    \]
-    将报价的边际财富变化标记为
-    \[
-        \underbrace{x'(p_2)(\bar v+\tilde\varepsilon-p_2)-x(p_2)}_{\tilde r}.
-    \]
-    那么 $\tilde{w}_{2}$ 是 $\tilde{r}$ 的增函数，又 $f'(u_{2}(\tilde{w}_{2}))>0$ 且是 $\tilde{w}_{2}$ 的减函数，因此，$V_{1}'(p_{2})\le 0$，另外 $V(p)$ 是凹函数，因此 $p_{1}^{*}\le p_{2}^{*}$。
+而在 $p=\bar v$ 时，严格 Jensen 不等式给出
+\[
+ V(\bar v)=\mathrm E[u(w+x(\bar v)\tilde\varepsilon)]<u(w).
+\]
 
-    \item 假设 $w_{1}>w_{0}$，当 $w=w_{0}$ 时优化问题的一阶条件为
-    \[
-        \begin{aligned}
- E\!\left[u'\!\left(\underbrace{w_0+x(p_0)(\bar v+\tilde\varepsilon-p_0)}_{\tilde w_0}\right)\right.&\\
- \left.\cdot\bigl(x'(p_0)(\bar v+\tilde\varepsilon-p_0)-x(p_0)\bigr)\right]&=0.
- \end{aligned}
-    \]
-    以下仍将绝对风险厌恶系数写为
-    \[
-        \underbrace{-\frac{u''(t)}{u'(t)}}_{A(t)}.
-    \]
-    等式两边对 $w_{0}$ 求导可得
-    \[
-        \begin{aligned}
-            &E\bigl[u''(\tilde{w}_{0})\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\\
-            &=E\bigl[-A(\tilde{w}_{0})u'(\tilde{w}_{0})\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\\
-            &\ge 0
-        \end{aligned}
-    \]
-    因此，
-    \[
-        E\bigl[u'\bigl(w_{1}+x(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})\bigr)\bigl(x'(p_{0})(\bar{v}+\tilde{\varepsilon}-p_{0})-x(p_{0})\bigr)\bigr]\ge 0
-    \]
-    而 $V(p)$ 又是凹的，因此 $p_{1}\ge p_{0}$，即初始财富增加报价也会增加。
+$p>\bar v$ 时，$\mathrm E[W(p)]<w$，所以
+\[
+ V(p)\le u(\mathrm E[W(p)])<u(w).
+\]
+
+因此连续的 $V$ 在 $[0,\bar v]$ 上取到最大值，最大值位于内部；严格凹性保证唯一，故 $0<p^*<\bar v$。若 $x'(0)>0$，第一步也可直接由 $V'(0)=u'(w)x'(0)\bar v>0$ 得到。
+
+\item 由\ifdefined\WJHandoutKnowledge 第~\ref{sec:wj-seven-5}~节的 Pratt 定理\else Pratt 定理\fi，$A_1\ge A_2$ 等价于 $u_1=f\circ u_2$，其中 $f'>0$、$f''\le0$。在交易员2的最优报价 $p_2^*$ 处，记
+\[
+ W_2=W(p_2^*),\quad q_2=q(p_2^*),\quad
+ k_0=f'(u_2(w+x(p_2^*)^2/x'(p_2^*))).
+\]
+
+由一阶条件可知 $x'(p_2^*)>0$：若它为零，则 $q_2=-x(p_2^*)<0$，与一阶条件矛盾。固定报价后，$W_2$ 与 $q_2$ 都是 $\tilde\varepsilon$ 的递增仿射函数，且 $q_2=0$ 对应财富 $w+x(p_2^*)^2/x'(p_2^*)$。因此
+\[
+ [f'(u_2(W_2))-k_0]q_2\le0.
+\]
+
+利用交易员2的一阶条件，得到
+\[
+\begin{aligned}
+ V_1'(p_2^*)&=\mathrm E[f'(u_2(W_2))u_2'(W_2)q_2]\\
+ &=\mathrm E[(f'(u_2(W_2))-k_0)u_2'(W_2)q_2]\le0.
+\end{aligned}
+\]
+
+严格凹目标的导数递减，故 $p_1^*\le p_2^*$。
+
+\item 取 $w_1>w_0$，令 $p_0=p^*(w_0)$、$x_0=x(p_0)$、$x'_0=x'(p_0)>0$，并记
+\[
+ W_0=w_0+x_0(\bar v+\tilde\varepsilon-p_0),\qquad
+ q_0=x'_0(\bar v+\tilde\varepsilon-p_0)-x_0.
+\]
+
+旧一阶条件为 $\mathrm E[u'(W_0)q_0]=0$。令 $\Delta=w_1-w_0$，边际效用比为
+\[
+ k(t)=\frac{u'(t+\Delta)}{u'(t)},\qquad
+ \frac{d}{dt}\log k(t)=A(t)-A(t+\Delta)>0.
+\]
+
+所以 $k$ 随财富递增。$q_0=0$ 对应阈值 $t_0=w_0+x_0^2/x'_0$，$W_0-t_0$ 与 $q_0$ 同号。在旧报价处增加财富后，目标的报价导数为
+\[
+\begin{aligned}
+ V_p(p_0,w_1)
+ &=\mathrm E[k(W_0)u'(W_0)q_0]\\
+ &=\mathrm E[(k(W_0)-k(t_0))u'(W_0)q_0]>0.
+\end{aligned}
+\]
+
+最后一步用了旧一阶条件、DARA 及非退化风险。由严格凹性，新最优报价在旧报价右侧，即 $p^*(w_1)>p^*(w_0)$。若 $V_{pp}<0$，也有 $dp^*/dw=-V_{pw}/V_{pp}>0$。
+\qedhere
 \end{enumerate}
 \end{solution}
-

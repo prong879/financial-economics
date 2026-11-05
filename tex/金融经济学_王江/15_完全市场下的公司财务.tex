@@ -1,81 +1,259 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 知识点：references/金融经济学/金融经济学-王江_261013.pdf，印刷页 227–237（PDF 页 242–252）
-% 习题：references/金融经济学/史上最全最完整的金融经济学答案(王江版).pdf，页 80–86（印刷页 79–85）
-
+% 来源：王江《金融经济学》教材，第15章；已核对教材2021勘误。
 \lecture{完全市场下的公司财务}
-
+\label{chap:wj-fifteen}
+\begingroup
+\raggedbottom
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\ctexset{section={number=\thesection,aftername=\quad},subsection={number=\thesubsection,aftername=\quad},subsubsection={number=\thesubsubsection,aftername=\quad}}
+\setcounter{equation}{0}
+\newcounter{wjFifteenTheorem}
+\renewcommand{\thewjFifteenTheorem}{\thechapter.\arabic{wjFifteenTheorem}}
+\newcounter{wjFifteenLemma}
+\renewcommand{\thewjFifteenLemma}{\thechapter.\arabic{wjFifteenLemma}}
+\newcounter{wjFifteenDefinition}
+\renewcommand{\thewjFifteenDefinition}{\thechapter.\arabic{wjFifteenDefinition}}
+\newcounter{wjFifteenExample}
+\renewcommand{\thewjFifteenExample}{\thechapter.\arabic{wjFifteenExample}}
+\newcounter{wjFifteenExercise}
+\renewcommand{\thewjFifteenExercise}{\thechapter.\arabic{wjFifteenExercise}}
+\newcommand{\WJFifteenTheorem}[1]{\refstepcounter{wjFifteenTheorem}\label{#1}\textbf{定理 \thewjFifteenTheorem}\quad}
+\newcommand{\WJFifteenLemma}[1]{\refstepcounter{wjFifteenLemma}\label{#1}\textbf{引理 \thewjFifteenLemma}\quad}
+\newcommand{\WJFifteenDefinition}[1]{\refstepcounter{wjFifteenDefinition}\label{#1}\textbf{定义 \thewjFifteenDefinition}\quad}
+\newcommand{\WJFifteenExample}[1]{\refstepcounter{wjFifteenExample}\label{#1}\textbf{例 \thewjFifteenExample}\quad}
+\newcommand{\WJFifteenExercise}[2]{\refstepcounter{wjFifteenExercise}\label{#1}\problemno{\thewjFifteenExercise#2}}
+\newcounter{wjFifteenFigure}
+\renewcommand{\thewjFifteenFigure}{\thechapter.\arabic{wjFifteenFigure}}
+\newcommand{\WJFifteenFigure}[2]{\refstepcounter{wjFifteenFigure}\label{#1}\par\smallskip 图\thewjFifteenFigure\quad #2}
 \ifdefined\WJHandoutKnowledge
 
-前面各章主要把资产未来支付视为给定。本章加入\textbf{生产机会}：今天投入资源，会改变明天各状态的可用资源。完全市场为所有状态支付给出价格，从而把生产、消费、投资及融资决策放在同一价值尺度上。
+% 教材印刷页227—239，PDF物理页242—254；15.1恢复A/B/C三层归属。
+% 对应原书公式15.1—15.7；15.2价值最大化不要求出售整个生产技术，未来产出可交易即可。
+前面各章把资产未来支付视为给定。本章加入生产机会：今天投入资源，改变明天各状态的可用资源。完全市场用统一的状态价格评价产出，从而联系生产、消费、公司投资与融资决策。
 
-\begin{tcolorbox}[knowledge,title=15.1 生产机会与价值最大化]
-参与者 $k$ 在 0 期投入 $y_{k,0}$，1 期状态 $\omega$ 的产出为 $y_{k,1\omega}(y_{k,0})$。为突出主要结论，教材假设生产函数可微、产出随投入增加而增加、边际产出递减。给定严格正的状态价格 $\phi$，一个生产计划在 0 期的\textbf{净市场价值}是
+\section{存在生产机会的Arrow--Debreu经济}\label{sec:wj-fifteen-1}
+\subsection{生产机会}
+参与者 $k$ 除商品禀赋外，还拥有生产技术。0期投入为 $y_{k,0}\ge0$，1期状态 $\omega$ 的产出为
+\begin{equation}
+ y_{k,1\omega}=y_{k,1\omega}(y_{k,0}).\label{eq:wj-15-1}
+\end{equation}
+\begin{tcolorbox}[knowledge,breakable=false]
+生产函数连续，在正投入处可微，并满足
 \[
- v_k(y_{k,0})=\sum_\omega\phi_\omega y_{k,1\omega}(y_{k,0})-y_{k,0}.
- \tag{15.2}
+ y_{k,1\omega}(0)=0,\qquad
+ y'_{k,1\omega}\ge0,\qquad y''_{k,1\omega}<0.
 \]
-若内点最优，价值最大化的一阶条件为
-\[
- \sum_\omega\phi_\omega y'_{k,1\omega}(y^*_{k,0})=1.
- \tag{15.5}
-\]
-左边是增加一单位投资所带来产出的市场现值，右边是其投入成本。严格凹性保证内点解唯一；若投资有边界，应按 Kuhn--Tucker 条件判断。
 
-把生产机会的最大净值计入参与者财富：
+这分别表示零投入时无产出、产出随投入增加、边际产出递减。个人效用为
 \[
- w_k=e_{k,0}+\phi^{\mathsf T}e_{k,1}+
- \max_{y_{k,0}}\{\phi^{\mathsf T}y_{k,1}(y_{k,0})-y_{k,0}\}.
- \tag{15.3}
+ U_k(c_k)=u_{k,0}(c_{k,0})+\sum_\omega\pi_\omega u_{k,1}(c_{k,1\omega}),
 \]
-消费选择只受这一最大财富和证券价格约束。因而在给定价格、完全市场及生产机会可交易的条件下，可\textbf{先使生产净值最大，再选择最优消费}。投资规则不依赖业主个人的效用形状；业主偏好影响消费和证券持有，而不改变同一价格下的价值最大化投资规模。
 
-\textbf{定理 15.1（NPV 规则）}\quad 对一个很小的项目 $i$，当期投入 $\delta_i$、未来支付向量 $y_i$，其净现值为
-\[
- \operatorname{NPV}_i=\phi^{\mathsf T}y_i-\delta_i
- =\mathrm E[\widetilde m\widetilde y_i]-\delta_i.
-\]
-应接受所有边际 NPV 为正、且彼此可兼容的项目；最优投资边界处边际 NPV 为零。若用项目自身的风险调整折现率 $\mu_i$ 表示，则 $\operatorname{NPV}_i=\mathrm E[\widetilde y_i]/(1+\mu_i)-\delta_i$。不能对风险不同的项目统一套用无风险利率；若项目相互排斥或资金有约束，还需比较整体可行组合，而非逐项独立接受。
-
-\begin{tcolorbox}[example]
-\textbf{例 15.1}\quad 两状态的生产函数为 $y_1(y_0)=(k_a\sqrt{y_0},k_b\sqrt{y_0})$，$k_a\ge k_b>0$。价值函数
-\[
- v(y_0)=(\phi_ak_a+\phi_bk_b)\sqrt{y_0}-y_0.
-\]
-令 $K=\phi_ak_a+\phi_bk_b$，一阶条件 $K/(2\sqrt{y_0})=1$，所以 $y_0^*=K^2/4$、最大净值 $v^*=K^2/4$。参与者即使原先没有消费品禀赋，也可把产出的部分或有支付出售，取得当期投资资金。
+其中 $\pi_\omega>0$，各期效用严格递增、严格凹。
 \end{tcolorbox}
 
-\textbf{定理 15.2}\quad 在完全证券市场、递增且严格凹的效用、凹生产技术和内点均衡等条件下，含生产机会的竞争均衡仍是帕累托最优。可由代表性参与者规划问题求解总消费与总产出；均衡状态价格等于概率乘以代表性未来消费边际效用与当前边际效用之比。生产计划选择遵守上述 NPV 规则，故资源流向能创造最高净值的可行用途。
-\end{tcolorbox}
+沿用第~\ref{sec:wj-ten-1}~节的完全市场框架，令 $\phi_\omega>0$ 为状态价格，$e_{k,0},e_{k,1}$ 为商品禀赋。用 $y_{k,1}(y_{k,0})$ 表示未来各状态产出的列向量。
 
-\begin{tcolorbox}[knowledge,title=15.2 公司投资决策]
-若生产机会由公司持有，股东 $k$ 持有公司 $f$ 的比例 $s_{k,f}$，且 $\sum_ks_{k,f}=1$，公司的 0 期市场净值为
+\subsection{最优生产策略}
+\subsubsection{价值最大化与消费选择}
+给定投入，生产技术创造的净市场价值为
+\begin{equation}
+ v_k(y_{k,0})=\phi^{\mathsf T}y_{k,1}(y_{k,0})-y_{k,0}.\label{eq:wj-15-2}
+\end{equation}
+
+第一项是未来产出的现值，第二项是当期投入。个人财富为
+\begin{equation}
+ w_k=e_{k,0}+\phi^{\mathsf T}e_{k,1}+v_k(y_{k,0}).\label{eq:wj-15-3}
+\end{equation}
+
+完全市场使消费、证券交易和生产的联合选择等价于
+\begin{equation}
+ \max_{y_{k,0}\ge0,\ c_k>0}U_k(c_k),\qquad
+ c_{k,0}+\phi^{\mathsf T}c_{k,1}\le w_k.
+ \label{eq:wj-15-4}
+\end{equation}
+
+效用随消费递增，扩大财富可扩大预算集合。因此先选择使 $v_k$ 最大的投入，再在最大财富下选择消费。给定市场价格，最优生产由技术和价格决定，个人偏好决定财富在各期、各状态的分配。
+
+记产出市值为 $V_k(y)=\phi^{\mathsf T}y_{k,1}(y)$。它严格凹，$v_k'(y)=V_k'(y)-1$。若存在正的内点最优投入，则其唯一性及最优条件为
+\begin{equation}
+ \underbrace{\phi^{\mathsf T}y'_{k,1}(y_{k,0}^*)}_{\text{边际产出的现值}}=1.
+ \label{eq:wj-15-5}
+\end{equation}
+
+若 $V_k'(0+)\le1$，最优投入为零；若 $V_k'(0+)>1$ 且边际产出现值最终降至1以下，则有唯一正的内点解。
+图~\ref{fig:wj-fifteen-1} 以凹的产出市值函数说明内点最优投入与净值的几何关系。
+
+\input{tex/金融经济学_王江/figures/15_最优生产.tex}
+
+\subsubsection{净现值法则}
+将连续生产过程分成小额边际项目，每份投入为 $\delta$。在投入 $i\delta$ 处增加项目，其支付近似为 $y_1'(i\delta)\delta$，净现值为
 \[
- v_f=\phi^{\mathsf T}y_{f,1}(y_{f,0})-y_{f,0}.
+ \operatorname{NPV}_i=\left[\phi^{\mathsf T}y_1'(i\delta)-1\right]\delta.
 \]
-股东财富包含 $s_{k,f}v_f$。\textbf{定理 15.3}\quad 在完全、竞争和无摩擦的证券市场中，所有股东对公司投资政策有共同的\textbf{价值最大化}目标。对任一股东，增加公司净值可扩大个人预算集合；他可在市场上调整自身风险暴露和消费时间分配。因此经理人若代表股东，应选择最大化 $v_f$ 的项目与投资规模。
 
-这个目标一致性并不意味着股东有相同偏好或持有同样证券；它依赖股东能以同一组市场价格交易相关支付。若支付不能交易、市场有摩擦或管理者目标不同，结论不能直接沿用。
+凹生产技术使边际NPV随投资规模下降。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFifteenTheorem{thm:wj-fifteen-1}（NPV法则）在上述连续生产模型中，应接受边际净现值为正的项目；内点最优投资的边际净现值为零。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=15.3 融资方式与 Modigliani--Miller 定理]
-公司可把未来总支付 $y_1$ 分给债权人 $d_1$ 和股权人 $e_1$，其中 $y_1=d_1+e_1$。在无套利的完全市场中，定价是线性的，故
+\textbf{证明：}边际NPV的符号与 $v'(y_0)$ 相同。其为正时增加投资提高净值，为负时减少投资提高净值；严格凹性使导数为零处达到唯一最大值。这与式~\eqref{eq:wj-15-5} 一致。\hfill$\square$
+
+对支付为 $\widetilde Y_i$、投入为 $\delta_i$ 的项目，使用式~\eqref{eq:wj-10-16}（证券价格等于定价核与支付乘积的期望）中的定价核，
 \[
- D=\phi^{\mathsf T}d_1,\quad E=\phi^{\mathsf T}e_1,\qquad
- D+E=\phi^{\mathsf T}y_1=:V.
+ P_i=\mathrm E[\widetilde m\widetilde Y_i],\qquad
+ \operatorname{NPV}_i=P_i-\delta_i
+ =\frac{\mathrm E[\widetilde Y_i]}{1+\mu_i}-\delta_i,
+ \qquad 1+\mu_i=\frac{\mathrm E[\widetilde Y_i]}{P_i}.
 \]
-若 0 期投资为 $y_0$，股东的项目净值为 $V-y_0$；选择把多少未来支付承诺给债权人，只改变债股之间对同一支付的分割，不改变总支付 $y_1$ 的市场价值。
 
-\textbf{定理 15.4（Modigliani--Miller）}\quad 在完全证券市场、无税、无交易和破产成本、信息对称且融资方式不改变真实投资和经营现金流的条件下，公司价值由投资决策决定，与债股融资比例无关。债务增加可能提高权益的预期收益率，同时也改变权益风险；不能只看融资成本的名义水平而忽略风险转移。
+这里在 $P_i>0$ 时定义项目的风险调整折现率 $\mu_i$。由 $\mathrm E[m]=1/(1+r_F)$，还可写成
+\[
+ 1+\mu_i=\frac{1+r_F}
+ {1+\operatorname{Cov}\!\left(m/\mathrm E[m],\widetilde Y_i/\mathrm E[\widetilde Y_i]\right)}.
+\]
+
+未来支付越集中在边际效用高的状态，保险价值越高，相应折现率越低。
+
+\Needspace{14\baselineskip}
+\begin{tcolorbox}[example,breakable=false]
+\WJFifteenExample{example:wj-fifteen-1} 两状态的状态价格满足 $\phi_a<\phi_b$。参与者没有商品禀赋，但拥有生产技术
+\[
+ y_1(y_0)=(k_a\sqrt{y_0},k_b\sqrt{y_0})^{\mathsf T},\qquad k_a\ge k_b>0.
+\]
+求最优投入、技术净值及初始投资资金的筹集方式。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=15.4 基本框架之外]
-上述结论是明确假设下的基准。实际公司还面临管理者与股东、债权人与股东之间的利益冲突，外部融资的交易成本、税收、破产成本和信息不对称。逆向选择可能使融资证券传递私人信息；道德风险可能使经理人或股东在融资后改变行为。这些因素会改变项目选择、融资时点和资本结构的价值。分析它们时，需要把相关约束和激励明确写入模型，不能把基准 MM 结论直接反用为“融资永远无关”。
+\textbf{解：}记 $K=\phi_ak_a+\phi_bk_b$，则 $v(y_0)=K\sqrt{y_0}-y_0$。最优条件 $K/(2\sqrt{y_0})=1$ 给出
+\[
+ y_0^*=\frac{K^2}{4},\qquad V(y_0^*)=\frac{K^2}{2},\qquad v^*=\frac{K^2}{4}>0.
+\]
+
+出售一半未来产出，现值为 $K^2/4$，恰好支付初始投资；保留的一半产出构成可用于消费安排的正财富。\hfill$\square$
+
+\subsection{市场均衡}
+\subsubsection{个人条件与市场出清}
+给定最优生产后的财富，消费选择的一阶条件为
+\begin{subequations}\label{eq:wj-15-6}
+\begin{align}
+ u'_{k,0}(c_{k,0})&=\nu_k,\label{eq:wj-15-6a}\\
+ \pi_\omega u'_{k,1}(c_{k,1\omega})&=\nu_k\phi_\omega,\qquad\forall\omega.\label{eq:wj-15-6b}
+\end{align}
+\end{subequations}
+
+商品市场出清要求
+\begin{subequations}\label{eq:wj-15-7}
+\begin{align}
+ \sum_kc_{k,0}&=\sum_ke_{k,0}-\sum_ky_{k,0},\label{eq:wj-15-7a}\\
+ \sum_kc_{k,1\omega}&=\sum_ke_{k,1\omega}+\sum_ky_{k,1\omega}(y_{k,0}).\label{eq:wj-15-7b}
+\end{align}
+\end{subequations}
+
+将个人预算加总，并使用未来资源出清，可恢复0期资源出清。因此最优生产条件、个人消费条件与市场出清共同决定均衡价格及配置。
+
+\subsubsection{配置效率与代表性参与者}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFifteenTheorem{thm:wj-fifteen-2} 在完全证券市场、递增且严格凹的效用及凹生产技术下，竞争均衡配置是\hyperref[def:wj-two-9]{帕累托最优}的。对内点均衡，存在正的规划权重，使均衡生产和消费解出加权效用最大化问题；代表性参与者的边际效用给出状态价格。
 \end{tcolorbox}
 
-\begin{tcolorbox}[summary,title=本章小结]
-完全市场给未来各状态的产出统一定价，使生产决策服从净现值最大化。公司股东虽有不同偏好，却可共同支持公司价值最大化；在未来总支付不变且融资无摩擦时，债股分割不影响公司总价值。税收、信息、代理和交易成本等因素会改变这些结论的适用范围。
+\textbf{证明：}将均衡价格记为 $\phi$。任何替代生产计划满足 $v_k(y_{k,0})\le v_k(y_{k,0}^*)$。若一个可行替代配置使所有人效用不降且至少一人提高，个人最优性与局部非饱和性使其消费支出之和严格高于均衡总财富。但可行性又给出
+\[
+ \sum_k(c_{k,0}+\phi^{\mathsf T}c_{k,1})
+ =\sum_k(e_{k,0}+\phi^{\mathsf T}e_{k,1})+\sum_kv_k(y_{k,0})
+ \le\sum_kw_k^*,
+\]
+
+产生矛盾，故均衡为帕累托最优。
+
+在内点均衡取 $\mu_k=1/u'_{k,0}(c_{k,0}^*)>0$。式~\eqref{eq:wj-15-6}（个人消费选择的内点一阶条件）使加权边际效用在每期、每个状态一致；式~\eqref{eq:wj-15-5}（边际产出的现值等于单位投入成本）同时给出规划问题的生产条件。目标函数凹、资源可行集凸，故这些条件支持全局最优。
+
+按第~\ref{sec:wj-ten-3}~节的方法（在总消费约束下最大化个人效用的正权重加总），对给定总消费 $C_t$ 定义
+\[
+ u_t(C_t)=\max_{\sum_kc_{k,t}=C_t}\sum_k\mu_ku_{k,t}(c_{k,t}).
+\]
+
+包络条件给出 $u_0'(C_0^*)=1$、$\pi_\omega u_1'(C_{1\omega}^*)=\phi_\omega$，即
+\[
+ \phi_\omega=\pi_\omega\frac{u_1'(C_{1\omega}^*)}{u_0'(C_0^*)}.
+\]
+
+代表性参与者再选择生产投入，使总资源在当前消费和未来产出之间最优分配。\hfill$\square$
+
+\section{公司的投资决策}\label{sec:wj-fifteen-2}
+设公司 $f$ 拥有生产函数 $y_{f,1}(y_{f,0})$，股东 $k$ 的持股比例为 $s_{k,f}\ge0$，且 $\sum_ks_{k,f}=1$。公司净值及股东财富为
+\[
+ v_f=\phi^{\mathsf T}y_{f,1}(y_{f,0})-y_{f,0},\qquad
+ w_k=e_{k,0}+\phi^{\mathsf T}e_{k,1}+\sum_fs_{k,f}v_f.
+\]
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFifteenTheorem{thm:wj-fifteen-3} 在完全、竞争的证券市场中，股东一致支持公司市场净值最大化。
 \end{tcolorbox}
 
+\textbf{证明：}固定市场价格，公司净值增加 $\Delta v_f>0$ 时，股东财富增加 $s_{k,f}\Delta v_f\ge0$。效用递增且可交易任意状态支付，财富增加扩大其消费预算集合。因此各股东均支持同一投资规则 $\phi^{\mathsf T}y'_{f,1}=1$；个人偏好通过后续消费与证券交易实现。\hfill$\square$
+
+股东目标一致，使所有权与经营管理可以分离：股东委托经理人按净值最大化选择投资，再各自安排消费与风险持有。
+
+\section{融资决策}\label{sec:wj-fifteen-3}
+\subsection{融资现金流与债股价值}
+设公司0期投资为 $y_0$，发行债权筹资 $d_0$，其余 $e_0=y_0-d_0$ 由原股东投入。未来产出分为债权支付 $d_1$ 和股权支付 $e_1$，满足 $y_1=d_1+e_1$。公平发行时，$d_0=\phi^{\mathsf T}d_1$。
+
+债权、股权及公司总资产价值分别为
+\[
+ D=\phi^{\mathsf T}d_1=d_0,\qquad E=\phi^{\mathsf T}e_1,\qquad
+ V=D+E=\phi^{\mathsf T}y_1.
+\]
+
+股东获得的净值为
+\[
+ v=E-e_0=\phi^{\mathsf T}(y_1-d_1)-(y_0-d_0)
+ =\phi^{\mathsf T}y_1-y_0.
+\]
+
+债权取得的支付现值恰好等于筹资额，因而从股东净值中抵消。总资产价值 $V$ 与扣除初始投资后的净值 $v$ 分别衡量产出价值和项目创造的价值。
+
+\subsection{Modigliani--Miller定理}
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJFifteenTheorem{thm:wj-fifteen-4}（Modigliani--Miller）在完全、竞争且无摩擦的证券市场中，固定真实投资和未来总产出，公司的市场价值与融资方式无关。
+\end{tcolorbox}
+
+\textbf{证明：}任意公平定价的债股分割均满足 $D+E=\phi^{\mathsf T}y_1$，而股东净值为 $v=\phi^{\mathsf T}y_1-y_0$。给定 $y_0,y_1$，两者均不随债权支付的选择改变；最大化净值的投资计划也因此相同。\hfill$\square$
+
+融资将同一总支付分配给不同投资者，改变债权与股权各自的风险和收益。完全市场中的\hyperref[thm:wj-four-6]{线性定价}使这些支付分割具有相同的合计价值。
+图~\ref{fig:wj-fifteen-2} 给出普通债务与股权对公司总支付的分割。
+
+\input{tex/金融经济学_王江/figures/15_债股分割.tex}
+
+\section{基本框架外的公司财务}\label{sec:wj-fifteen-4}
+\subsection{信息、控制权与利益冲突}
+公司中的股东、债权人、经理人、员工和顾客，在信息、控制权、资产要求权及经济利益上各有差别。这些差别影响合同设计和公司决策。
+
+经理人掌握自身能力、努力程度和经营情况的私人信息。能力难以在签约前识别时，产生\textbf{逆向选择}；努力和行为难以在签约后观察或约束时，产生\textbf{道德风险}。公司治理通过报酬、监督和控制权安排，使经营行为与股东利益相协调。
+
+债权人与股东之间也存在冲突。股东控制项目选择时，提高项目风险可能增加股权价值，同时降低债权价值。新股发行时，原股东与新投资者对公司前景掌握的信息不同，也会影响融资价格和发行选择。
+
+\subsection{交易成本与制度安排}
+不同融资工具具有不同成本与收益。利息抵税可能提高债务融资的价值；违约处理和破产程序带来额外成本；信息不对称增加证券发行与交易成本。这些因素通过改变现金流、交易机会和激励，影响投资与融资决策。
+
+公司本身也是协调交易和信息的一种制度安排。公司治理、契约设计以及法律和监管环境，共同影响资源配置效率。这使公司财务从给定价格下的价值最大化，进一步延伸到合同和组织形式的选择。
+
+\section{本章小结}\label{sec:wj-fifteen-summary}
+\begin{tcolorbox}[summary,breakable=false]
+\begin{enumerate}
+ \item 完全市场使最优生产与消费选择分离；内点投资满足边际产出现值等于边际投入。
+ \item NPV法则按市场价格衡量项目创造的净值，生产均衡在凹性条件下实现有效资源配置。
+ \item 股东偏好各异，但在共同价格下支持公司净值最大化。
+ \item 固定总产出，公平定价的债股分割保持公司价值不变。
+ \item 信息、激励与交易成本改变公司决策，并形成公司治理和制度设计问题。
+\end{enumerate}
+\end{tcolorbox}
 \fi
-
+\Needspace{24\baselineskip}
+\ifdefined\WJHandoutKnowledge
+\section{练习}\label{sec:wj-fifteen-exercises}
+\else
+\section*{课后习题}\addcontentsline{toc}{section}{课后习题}
+\fi
 \input{tex/金融经济学_王江/15_完全市场下的公司财务_习题.tex}
+\endgroup

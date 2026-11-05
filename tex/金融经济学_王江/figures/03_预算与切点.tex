@@ -1,0 +1,24 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：第3章内点条件。参考431计算讲义的预算线与无差异曲线风格。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.35cm,y=1.05cm]
+ \fill[blue!5] (0,0)--(4,0)--(0,4)--cycle;
+ \draw[->] (0,0)--(4.55,0) node[right] {$c_0$};
+ \draw[->] (0,0)--(0,4.55) node[above] {$c_1$};
+ \draw[red!70!black,thick] (0,4)--(4,0);
+ \draw[blue!70!black,thick,domain=1:4,samples=70] plot (\x,{4/\x});
+ \draw[blue!40!black,dashed,domain=.65:4,samples=60] plot (\x,{2/\x});
+ \draw[dotted,gray] (2,0)--(2,2)--(0,2);
+ \fill (2,2) circle(2pt) node[above right] {$c^*$};
+ \node[below] at (4,0) {$w$}; \node[left] at (0,4) {$w/\phi$};
+ \node[blue!70!black,right] at (4,1) {$U^*$};
+ \node[red!70!black,align=left] at (3.5,3.25) {预算线斜率 $-1/\phi$};
+\end{tikzpicture}
+\par\smallskip\small
+两商品示例的预算为 $c_0+\phi c_1=w$。
+图取 $\phi=1,w=4,U=\log c_0+\log c_1$；切点满足 $\partial_1U/\partial_0U=\phi$。
+\WJFigure{fig:wj-budget-tangency}{预算线与最优消费切点}
+\end{minipage}
+\end{center}

@@ -2,7 +2,7 @@
 % 07_风险厌恶 课后习题（由章节文件拆分）
 
 \begin{problem}
-\problemno{7.1**} 令 $R(w)\equiv -wu''(w)/u'(w)$ 而
+\WJSevenExercise{ex:wj-seven-1}{**} 令 $R(w)\equiv -wu''(w)/u'(w)$ 而
 \[
     a(w)=\operatorname{ArgMax}E\bigl[u(w+a\tilde{r})\bigr]
 \]
@@ -19,13 +19,14 @@
 最后一个结论说的是，对于具有单调递增的相对风险厌恶的投资者，他在风险资产上的投资额占他财富的比例随着财富的增加而减少。
 \end{problem}
 \begin{solution}
-设最优投资额有限且唯一，可行投资的期末财富为正，相关期望存在。以下先讨论内点解，边界解由凹目标函数的单侧导数条件得到。
+设最优投资额有限、唯一且为内点，可行投资的期末财富为正，相关期望存在。可行集合随财富同比例缩放。以下由凹目标的一阶条件证明比较结论。
 \begin{enumerate}[label=(\alph*)]
 \item 由链式法则，
 \[
  u_1'(z)=\lambda u'(\lambda z),\qquad
  u_1''(z)=\lambda^2u''(\lambda z).
 \]
+
 因此
 \[
  R_1(z)=-\frac{z u_1''(z)}{u_1'(z)}
@@ -38,19 +39,23 @@
 \[
  A_1(z)=\frac{R_1(z)}{z}\ge\frac{R_2(z)}{z}=A_2(z).
 \]
+
 令 $h(z)=u_1'(z)/u_2'(z)>0$，则
 \[
  \frac{h'(z)}{h(z)}=-A_1(z)+A_2(z)\le0,
 \]
+
 所以 $h$ 非增。对给定的初始财富 $w$，记
 \[
  F_i(a)=E[u_i(w+a\tilde r)],\qquad
  F_i'(a)=E[u_i'(w+a\tilde r)\tilde r].
 \]
+
 由于 $F_i'(0)=u_i'(w)E[\tilde r]>0$，有限的内点最优额为正。令 $a_2=a_2(w)>0$，其一阶条件为 $F_2'(a_2)=0$。当 $\tilde r\ge0$ 时，$h(w+a_2\tilde r)\le h(w)$；当 $\tilde r<0$ 时，不等式反向，但乘以 $\tilde r$ 后又反向。因此逐状态有
 \[
  h(w+a_2\tilde r)\tilde r\le h(w)\tilde r.
 \]
+
 乘以正数 $u_2'(w+a_2\tilde r)$ 并取期望，得到
 \[
  \begin{aligned}
@@ -59,6 +64,7 @@
  &\le h(w)F_2'(a_2)=0.
  \end{aligned}
 \]
+
 $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a_2(w)$。
 
 \item 若 $w_1=w_2$，结论显然。若 $0<w_1<w_2$，令 $\lambda=w_2/w_1>1$。在初始财富 $w_1$ 下，
@@ -66,22 +72,25 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  E[u_1(w_1+a\tilde r)]
  =E[u(w_2+\lambda a\tilde r)].
 \]
+
 用 $b=\lambda a$ 换元，并在可行集随财富同比例缩放的条件下，有
 \[
  a_1(w_1)=\frac{a(w_2)}{\lambda},\qquad a_2(w_1)=a(w_1).
 \]
+
 由 (b) 得
 \[
  \frac{a(w_2)}{\lambda}\le a(w_1)
  \quad\Longrightarrow\quad
  \boxed{\frac{a(w_2)}{w_2}\le\frac{a(w_1)}{w_1}}.
 \]
+
 因此相对风险厌恶随财富非减时，最优风险投资比例随财富非增。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{7.2} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为常数 $a$。现在他必须承担风险 $\tilde{g}$，$\tilde{g}$ 是一公平赌博（即，他的财富变成 $w+\tilde{g}$）。当 $\tilde{g}$ 具有如下分布时计算确定性等价：
+\WJSevenExercise{ex:wj-seven-2}{} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为常数 $a$。现在他必须承担风险 $\tilde{g}$，$\tilde{g}$ 是一公平赌博（即，他的财富变成 $w+\tilde{g}$）。当 $\tilde{g}$ 具有如下分布时计算确定性等价：
 \begin{enumerate}[label=(\alph*)]
     \item 取值为 $-b$ 和 $b$ 的二项分布；
     \item 区间 $[-c,c]$ 上的均匀分布；
@@ -90,79 +99,111 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 \end{enumerate}
 \end{problem}
 \begin{solution}
-假设效用函数为 $U(w)=-e^{-aw}$，
+常绝对风险厌恶 $a>0$ 对应 $u(x)=-e^{-ax}$。记随机财富的确定性等值为 $CE$，由
+\[
+ -e^{-aCE}=-e^{-aw}\mathrm E[e^{-a\tilde g}]
+\]
+得到
+\[
+ CE=w-\frac1a\ln\mathrm E[e^{-a\tilde g}],\qquad
+ \pi=w-CE=\frac1a\ln\mathrm E[e^{-a\tilde g}].
+\]
+
+净赌博相对于初始财富的确定性等值为 $CE-w=-\pi$。
 \begin{enumerate}[label=(\alph*)]
-    \item 由定义有
-    \[
-        \begin{aligned}
-            U(\pi_{1}+w)
-            &=-e^{-a(w+\pi_{1})}=E\bigl[U(w+\tilde{g})\bigr]=\tfrac12 U(w+b)+\tfrac12 U(w-b)\\
-            &=-\tfrac12 e^{-a(w+b)}-\tfrac12 e^{-a(w-b)}\\
-            \Rightarrow\pi_{1}&=-\frac{1}{a}\log\bigl(\tfrac12 e^{-ab}+\tfrac12 e^{ab}\bigr)
-        \end{aligned}
-    \]
+\item 公平性使 $-b,b$ 各以 $1/2$ 的概率出现，因此
+\[
+ \mathrm E[e^{-a\tilde g}]=\tfrac12(e^{ab}+e^{-ab})=\cosh(ab),
+ \qquad CE=w-\frac1a\ln\cosh(ab).
+\]
+\item 均匀分布下，
+\[
+ \mathrm E[e^{-a\tilde g}]=\frac1{2c}\int_{-c}^ce^{-ax}\,\mathrm dx
+ =\frac{\sinh(ac)}{ac},\qquad
+ CE=w-\frac1a\ln\frac{\sinh(ac)}{ac}.
+\]
+\item 正态密度为 $\frac1{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$。配方得
+\[
+ -ax-\frac{x^2}{2\sigma^2}
+ =-\frac{(x+a\sigma^2)^2}{2\sigma^2}+\frac{a^2\sigma^2}{2},
+\]
 
-    \item 由定义有
-    \[
-        \begin{aligned}
-            U(w+\pi_{2})
-            &=-e^{-a(w+\pi_{2})}=E\bigl[U(w+\tilde{g})\bigr]=\frac{1}{2c}\int_{-c}^{c}-e^{-a(w+x)}\,dx\\
-            &=-\frac{1}{2ac}e^{-aw}(e^{ac}-e^{-ac})\\
-            \Rightarrow\pi_{2}&=-\frac{1}{a}\log\Bigl(\frac{e^{ac}-e^{-ac}}{2ac}\Bigr)
-        \end{aligned}
-    \]
-
-    \item 由定义有
-    \[
-        \begin{aligned}
-            U(w+\pi_{3})
-            &=-e^{-a(w+\pi_{3})}=E\bigl[U(w+\tilde{g})\bigr]\\
-            &=\int_{-\infty}^{\infty}-e^{-a(w+x)}\frac{1}{\sqrt{2\pi\sigma}}\exp\Bigl(-\frac{x^{2}}{2\sigma^{2}}\Bigr)dx\\
-            &=-e^{-aw+\frac{a^{2}\sigma^{2}}{2}}\\
-            \Rightarrow\pi_{3}&=-\frac{a\sigma^{2}}{2}
-        \end{aligned}
-    \]
-
-    \item 在以上各种情形下，确定性等价都不依赖于初始财富 $w$，也就是说，参与者对待公平赌博的态度与财富无关。
+所以 $\mathrm E[e^{-a\tilde g}]=e^{a^2\sigma^2/2}$，从而
+\[
+ CE=w-\frac{a\sigma^2}{2},\qquad\pi=\frac{a\sigma^2}{2}.
+\]
+\item 三种情形的财富确定性等值均随 $w$ 一比一增加；净赌博的确定性等值 $CE-w$ 与风险溢价 $\pi$ 均独立于 $w$。因此 CARA 投资者对同一固定金额赌博的支付意愿与初始财富无关。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\problemno{7.3} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为 1。现在他必须承担与他的财富成比例的风险 $w\tilde{g}$，$w\tilde{g}$ 是一公平赌博。当 $\tilde{g}$ 具有如下分布时，计算确定性等价占初始财富的比例——即相对确定性等价：
+\WJSevenExercise{ex:wj-seven-3}{} 参与者的初始财富为 $w$ 且他的绝对风险厌恶系数为 1。现在他必须承担与他的财富成比例的风险 $w\tilde{g}$，$w\tilde{g}$ 是一公平赌博。当 $\tilde{g}$ 具有如下分布时，计算确定性等价占初始财富的比例——即相对确定性等价：
 \begin{enumerate}[label=(\alph*)]
     \item 取值为 $-b$ 和 $b$ 的二项分布，其中 $0<b<1$；
     \item 区间 $[-c,c]$ 上的均匀分布，其中 $0<c<1$；
     \item 讨论在以上情形下，相对确定性等价如何依赖于初始财富 $w$。从中你能得到什么结论？并解释你的结论。
 \end{enumerate}
+
+\par\smallskip
+\textit{题意说明：原书此处确为“绝对风险厌恶系数为 1”。下文先按这一条件求解；若取相对风险厌恶系数为 1，则得到对数效用下的另一组结果。}
+% 原书印刷第 109 页；参考答案采用对数效用，与原题的“绝对”条件不一致，保留原题并分别处理。
 \end{problem}
 \begin{solution}
-假设效用函数为 $U(w)=\log(w)$，
+\textbf{按原题：$A(x)=1$。}可取 $u(x)=-e^{-x}$。令 $C_R=CE/w$，其中 $w>0$。用上一题的公式，把净风险换成 $w\tilde g$，得到
 \begin{enumerate}[label=(\alph*)]
-    \item 由定义有
-    \[
-        \begin{aligned}
-            U(w\pi_{1}+w)&=\log(w+w\pi_{1})=E\bigl[U(w+w\tilde{g})\bigr]\\
-            &=\tfrac12 U(w+b)+\tfrac12 U(w-b)=\log w+\tfrac12\log(1-b^{2})\\
-            \Rightarrow\pi_{1}&=\sqrt{1-b^{2}}-1
-        \end{aligned}
-    \]
+\item 对公平二项风险，
+\[
+ CE=w-\ln\cosh(wb),\qquad
+ C_R=1-\frac{\ln\cosh(wb)}{w}.
+\]
+\item 对均匀风险，
+\[
+ CE=w-\ln\frac{\sinh(wc)}{wc},\qquad
+ C_R=1-\frac1w\ln\frac{\sinh(wc)}{wc}.
+\]
+\item 两种 $C_R$ 均随 $w$ 严格下降。为统一证明，令
+\[
+ K(t)=\ln\mathrm E[e^{-t\tilde g}],\qquad K(0)=0.
+\]
 
-    \item 由定义有
-    \[
-        \begin{aligned}
-            U(w+w\pi_{2})
-            &=\log(w+w\pi_{2})=E\bigl[U(w+w\tilde{g})\bigr]=\frac{1}{2c}\int_{-c}^{c}\log(w+wx)\,dx\\
-            &=\log w+\frac{1}{2c}\int_{-c}^{c}\log(1+x)\,dx\\
-            \Rightarrow\pi_{2}&=\exp\Bigl(\frac{1}{2c}\int_{-c}^{c}\log(1+x)\,dx\Bigr)-1
-        \end{aligned}
-    \]
+定义倾斜概率下的期望 $\mathrm E_t[Y]=\mathrm E[Ye^{-t\tilde g}]/\mathrm E[e^{-t\tilde g}]$。两种分布均有界且非退化，对 $K$ 求导得到
+\[
+ K'(t)=-\mathrm E_t[\tilde g],\qquad
+ K''(t)=\mathrm E_t[\tilde g^2]-(\mathrm E_t[\tilde g])^2>0.
+\]
 
-    \item 在以上各种情形下，确定性等价都不依赖于初始财富 $w$，也就是说，参与者对待与初始财富成比例的公平赌博的态度与初始财富无关。
+于是
+\[
+ \frac{\mathrm d}{\mathrm dw}\frac{K(w)}w
+ =\frac{wK'(w)-K(w)}{w^2}>0,
+\]
+
+因为分子在 $w=0$ 时为零，导数为 $wK''(w)>0$。故 $C_R=1-K(w)/w$ 严格下降，相对风险溢价 $1-C_R$ 严格上升。这与 $R(w)=wA(w)=w$ 随财富上升一致。
 \end{enumerate}
+
+\textbf{若条件为 $R(x)=1$。}此时可取 $u(x)=\ln x$，得到
+\[
+ C_R=
+ \begin{cases}
+  \sqrt{1-b^2},&\text{公平二项风险},\\[3pt]
+  \displaystyle\exp\!\left(
+  \frac{(1+c)\ln(1+c)-(1-c)\ln(1-c)-2c}{2c}\right),
+  &\text{均匀风险}.
+ \end{cases}
+\]
+
+例如二项风险满足
+\[
+ \mathrm E[\ln(w(1+\tilde g))]
+ =\tfrac12\ln(w(1+b))+\tfrac12\ln(w(1-b))
+ =\ln w+\tfrac12\ln(1-b^2).
+\]
+
+这两种相对确定性等值均与 $w$ 无关；净风险的相对确定性等值为 $C_R-1$。财富金额 $CE=wC_R$ 则与初始财富成比例。
 \end{solution}
 
 \begin{problem}
-\problemno{7.4} 参与者的初始财富为 $w$ 且相对风险厌恶系数为 2。现在他要承担风险 $\tilde{g}$，$\tilde{g}$ 是有两个可能取值 $-b$ 和 $b$ 的公平赌博，$0<b<w$。我们能用两种方式定义风险溢价：
+\WJSevenExercise{ex:wj-seven-4}{} 参与者的初始财富为 $w$ 且相对风险厌恶系数为 2。现在他要承担风险 $\tilde{g}$，$\tilde{g}$ 是有两个可能取值 $-b$ 和 $b$ 的公平赌博，$0<b<w$。我们能用两种方式定义风险溢价：
 \begin{itemize}
     \item $E[u(w+\tilde{g})]=u(w-\pi)$；
     \item $E[u(w+\tilde{g}+\pi)]=u(w)$。
@@ -216,7 +257,7 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 \end{solution}
 
 \begin{problem}
-\problemno{7.5*} 参与者的初始财富为 $w$ 且是严格风险厌恶的。$\tilde{g}_{1}$ 和 $\tilde{g}_{2}$ 是两个独立的公平赌博，具有相同的、定义于 $\{-b,b\}$ 上的二项分布，其中 $0<b<w/2$。
+\WJSevenExercise{ex:wj-seven-5}{*} 参与者的初始财富为 $w$ 且是严格风险厌恶的。$\tilde{g}_{1}$ 和 $\tilde{g}_{2}$ 是两个独立的公平赌博，具有相同的、定义于 $\{-b,b\}$ 上的二项分布，其中 $0<b<w/2$。
 \begin{enumerate}[label=(\alph*)]
     \item 假设他必须承担风险 $\tilde{g}_{1}$，即他的财富变成 $w+\tilde{g}_{1}$。在这种情况下，他的期望效用记为 $V_{1}=E[u(w+\tilde{g}_{1})]$。证明风险使得他的情况恶化，即 $V_{1}<u(w)$。
     \item 现在假设他必须承担的是分散化的风险 $\tilde{g}=\frac12(\tilde{g}_{1}+\tilde{g}_{2})$。记这种情形下的期望效用为 $V_{2}=E[u(w+\tilde{g})]$。$V_{2}$ 是否总是高于 $V_{1}$？
@@ -236,6 +277,7 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  \Pr(\tilde g=0)=\tfrac12,\quad
  \Pr(\tilde g=-b)=\tfrac14.
 \]
+
 于是
 \[
  \begin{aligned}
@@ -243,10 +285,12 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  &=\tfrac12V_1+\tfrac12u(w),
  \end{aligned}
 \]
+
 从而
 \[
   V_2-V_1=\tfrac12\bigl[u(w)-V_1\bigr]>0.
 \]
+
 所以在题设条件下，总有 $V_2>V_1$。分散化改善了处境，但平均后的风险仍非退化，故仍有 $V_2<u(w)$；完整排序为 $V_1<V_2<u(w)$。
 \end{enumerate}
 \end{solution}

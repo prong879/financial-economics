@@ -1,0 +1,23 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：相同因子载荷、等权、两两不相关且同方差的剩余项；不能推广为任意相关结构。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=.3cm,y=1.15cm]
+ \draw[->] (0,0)--(25,0) node[right] {资产数 $N$};
+ \draw[->] (0,0)--(0,3.7) node[above] {组合方差};
+ \draw[blue!70!black,very thick,domain=1:23,samples=90] plot (\x,{1+2/\x});
+ \draw[red!70!black,thick,dashed,domain=1:23,samples=90] plot (\x,{2/\x});
+ \draw[gray,dotted] (0,1)--(23,1);
+ \node[left] at (0,1) {$b^2\sigma_f^2$};
+ \node[blue!70!black,above] at (15,1.18) {总方差};
+ \node[red!70!black,above] at (15,.17) {剩余方差 $\sigma_\varepsilon^2/N$};
+ \node[gray,below] at (8,1) {共同因子风险};
+\end{tikzpicture}
+\par\smallskip\small
+取相同载荷 $b$ 的单因子资产，剩余项两两不相关、同方差且与因子不相关。等权组合有
+$\operatorname{Var}(r_p)=b^2\sigma_f^2+\sigma_\varepsilon^2/N$；图取两项系数为 $1,2$。
+分散投资压低剩余风险，共同因子风险仍保留。
+\WJFourteenFigure{fig:wj-fourteen-1}{分散投资与风险构成}
+\end{minipage}
+\end{center}

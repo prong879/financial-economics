@@ -1,86 +1,65 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 11_不完全市场 课后习题（由章节文件拆分）
+% 来源：教材印刷页175—178，原题11.1—11.6；题号及数据保留。
+% 11.1(b)原题与log定义域冲突，解答说明不改数据；11.4据教材纠正转录时多出的期望内负号。
+% 11.3分别以h_F,h_I区分企业卖出与投机者买入；原书11.6仅写期权，此处明确看涨解释及零净供给。
+% 原书11.3称S(p)为销售额，但pS(p)为收入，依其公式明确S为销售量。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.1*} 经济有两期 $t=0,1$。有两个参与者，1 和 2，他们都有定义于消费路径上的对数效用函数 $c=(c_{0},c_{1})$：$u(c)=\log c_{0}+\log c_{1}$。在 $t=1$ 期有三个等概率的可能状态，$\omega_{1}$，$\omega_{2}$ 以及 $\omega_{3}$。在 $t=0$ 期的总禀赋是 1 而 $t=1$ 期的总禀赋是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。有两只交易证券，一只是无风险债券，在 $t=1$ 期的所有状态下都支付 1 单位的消费品。另外一只是股票，它的 $t=1$ 期支付和总禀赋完全一样，即它的支付向量是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。
+\WJElevenExercise{ex:wj-eleven-1}{*} 经济有两期 $t=0,1$。有两个参与者，1 和 2，他们都有定义于消费路径上的对数效用函数 $c=(c_{0},c_{1})$：$u(c)=\log c_{0}+\log c_{1}$。不确定性下取期望效用为 $\log c_0+\mathrm E[\log\widetilde c_1]$。在 $t=1$ 期有三个等概率的可能状态，$\omega_{1}$，$\omega_{2}$ 以及 $\omega_{3}$。在 $t=0$ 期的总禀赋是 1 而 $t=1$ 期的总禀赋是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。有两只交易证券，一只是无风险债券，在 $t=1$ 期的所有状态下都支付 1 单位的消费品。另外一只是股票，它的 $t=1$ 期支付和总禀赋完全一样，即它的支付向量是 $\begin{bmatrix}1 \\ 1 \\ 2\end{bmatrix}$。
 \begin{enumerate}[label=(\alph*)]
     \item 假设参与者 1 和 2 的禀赋分别为 $\begin{bmatrix}0.4\\0.4\\0.4\\0.8\end{bmatrix}$ 和 $\begin{bmatrix}0.6\\0.6\\0.6\\1.2\end{bmatrix}$。求解均衡利率和均衡股价。均衡配置是 Pareto 最优的吗？解释原因。
     \item 假设参与者 $a$ 和 $b$ 的禀赋分别为 $\begin{bmatrix}0.5\\1\\0\\1\end{bmatrix}$ 和 $\begin{bmatrix}0.5\\0\\1\\1\end{bmatrix}$。导出求解均衡的一阶条件和市场出清条件。在不解出均衡的情况下，讨论均衡配置是否是 Pareto 最优的。解释原因。
 \end{enumerate}
+\par\smallskip\textit{在(b)中，先检验是否存在同时满足市场出清与严格正消费的配置。}
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 假设债券股票的价格分别为 $B$，$S$。对于参与者 1 来说，假设他持有的债券和股票头寸分别为 $\theta_{11}$，$\theta_{12}$，那么他的优化问题是
-    \[
-        \begin{aligned}
-            &\max_{\theta_{11},\,\theta_{12}}\ \log(c_{0})+\tfrac13\bigl[\log(c_{1,1})+\log(c_{1,2})+\log(c_{1,3})\bigr]\\
-            &\quad\text{s.t.}\quad c_{0}=0.4-\theta_{11}B-\theta_{12}S\\
-            &\qquad c_{1,1}=0.4+\theta_{11}+\theta_{12}\\
-            &\qquad c_{1,2}=0.4+\theta_{11}+\theta_{12}\\
-            &\qquad c_{1,3}=0.8+\theta_{11}+2\theta_{12}
-        \end{aligned}
-    \]
-    可以求得
-    \[
-        \begin{aligned}
-            \theta_{11}&=-\frac{1}{15}(5S^{2}+5S-6BS-6B)/(S^{2}-3BS+2B^{2})\\
-            \theta_{12}&=-\frac{1}{15}(3S^{2}-3S-14BS+12B^{2}+4B)/(S^{2}-3BS+2B^{2})
-        \end{aligned}
-    \]
-    同样地可以求得参与者 2 对债券、股票的需求量为
-    \[
-        \begin{aligned}
-            \theta_{21}&=-\frac{1}{10}(5S^{2}+5S-6BS-6B)/(S^{2}-3BS+2B^{2})\\
-            \theta_{22}&=-\frac{1}{10}(3S^{2}-3S-14BS+12B^{2}+4B)/(S^{2}-3BS+2B^{2})
-        \end{aligned}
-    \]
-    市场出清条件为
-    \[
-        \begin{aligned}
-            \theta_{11}+\theta_{21}&=0\\
-            \theta_{12}+\theta_{22}&=0
-        \end{aligned}
-    \]
-    因而可以求得债券、股票的价格分别为
-    \[
-        B=\frac{5}{6},\quad S=1
-    \]
-    均衡利率为 $r_{F}=1/B-1=20\%$；可以验证 $\dfrac{u_{1,1}'(\tilde{c}_{1,1})}{u_{1,0}'(\tilde{c}_{1,0})}=\dfrac{u_{2,1}'(\tilde{c}_{2,1})}{u_{2,0}'(\tilde{c}_{2,0})}$，即边际效用之比在各状态下均相等，因此均衡配置是 Pareto 最优的。
-    \item 对于参与者 1 来说，最优化的一阶条件是
-    \[
-        \begin{aligned}
-            \frac{-B}{0.5-\theta_{11}B-\theta_{12}S}+\frac13\Bigl[\frac{1}{1+\theta_{11}+\theta_{12}}+\frac{1}{\theta_{11}+\theta_{12}}+\frac{1}{1+\theta_{11}+2\theta_{12}}\Bigr]&=0\\
-            \frac{-S}{0.5-\theta_{11}B-\theta_{12}S}+\frac13\Bigl[\frac{1}{1+\theta_{11}+\theta_{12}}+\frac{1}{\theta_{11}+\theta_{12}}+\frac{2}{1+\theta_{11}+2\theta_{12}}\Bigr]&=0
-        \end{aligned}
-    \]
-    对于参与者 2 来说，最优化的一阶条件是
-    \[
-        \begin{aligned}
-            \frac{-B}{0.5-\theta_{21}B-\theta_{22}S}+\frac13\Bigl[\frac{1}{\theta_{21}+\theta_{22}}+\frac{1}{1+\theta_{21}+\theta_{22}}+\frac{1}{1+\theta_{21}+2\theta_{22}}\Bigr]&=0\\
-            \frac{-S}{0.5-\theta_{21}B-\theta_{22}S}+\frac13\Bigl[\frac{1}{\theta_{21}+\theta_{22}}+\frac{1}{1+\theta_{21}+\theta_{22}}+\frac{2}{1+\theta_{21}+2\theta_{22}}\Bigr]&=0
-        \end{aligned}
-    \]
-    市场出清条件为
-    \[
-        \begin{aligned}
-            \theta_{11}+\theta_{21}&=0\\
-            \theta_{12}+\theta_{22}&=0
-        \end{aligned}
-    \]
-    配置是 Pareto 最优的一个条件是边际效用之比在各状态之间相等，考虑
-    \[
-        \begin{aligned}
-            \frac{\theta_{11}+\theta_{12}}{1+\theta_{11}+\theta_{12}}\Big/\frac{1+\theta_{21}+\theta_{22}}{\theta_{21}+\theta_{22}}
-            &=\frac{\theta_{11}+\theta_{12}}{1+\theta_{11}+\theta_{12}}\Big/\frac{1-\theta_{11}-\theta_{12}}{-\theta_{11}-\theta_{12}}\\
-            &=1\big/\bigl(1-\tfrac{1}{(\theta_{11}+\theta_{12})^{2}}\bigr)\ne 1
-        \end{aligned}
-    \]
-    因而，均衡配置不是 Pareto 最优的。
+\item 以 $\theta_{kB},\theta_{kS}$ 表示债券、股票的净购买量，出清要求两者分别加总为零。两人的禀赋分别占总禀赋的 $\lambda_1=0.4$、$\lambda_2=0.6$。考虑零净交易配置，此时
+\[
+ c_{k,0}=\lambda_k,\qquad
+ c_{k,1}=\lambda_k(1,1,2)^{\mathsf T}.
+\]
+
+对数效用的个人定价核在三个状态下均为 $m_k=(1,1,1/2)^{\mathsf T}$，与 $k$ 无关。因此
+\[
+ B=\frac13\left(1+1+\frac12\right)=\frac56,
+ \qquad S=\frac13(1+1+1)=1,
+ \qquad r_F=\frac1B-1=20\%.
+\]
+
+这些价格使两只证券的一阶条件成立。对数效用严格凹，故零净交易为个人最优选择，并满足市场出清。两人的相对边际效用逐状态相等；取规划权重 $\lambda_k$，还有 $\lambda_k/c_{k,0}=1$、$\lambda_k/c_{k,1\omega}=1/C_{1\omega}$，满足规划者的一阶条件，故此均衡配置是帕累托最优的。
+
+支付矩阵的秩为2，小于状态数3，市场结构仍不完全。本小问的个人禀赋均在证券支付空间中，且对数偏好产生比例分享，因而能实现有效配置。
+
+\item 令 $b_k,s_k$ 为债券、股票的净购买量，并记
+\[
+ A_k=0.5-Bb_k-Ss_k,\quad z_k=b_k+s_k,\quad t_k=b_k+2s_k.
+\]
+
+两人的未来消费分别为 $(1+z_1,z_1,1+t_1)$ 和 $(z_2,1+z_2,1+t_2)$，其一阶条件统一写为
+\[
+ \frac{B}{A_k}=\frac13\left(
+ \frac1{z_k}+\frac1{1+z_k}+\frac1{1+t_k}\right),
+ \qquad k=1,2,
+\]
+\[
+ \frac{S}{A_k}=\frac13\left(
+ \frac1{z_k}+\frac1{1+z_k}+\frac2{1+t_k}\right),
+ \qquad k=1,2.
+\]
+
+出清要求 $b_1+b_2=s_1+s_2=0$，从而 $z_2=-z_1$。然而参与者1在状态 $\omega_2$ 的消费要求 $z_1>0$，参与者2在状态 $\omega_1$ 的消费要求 $z_2>0$，二者与出清矛盾。因此，\textbf{本小问不存在具有有限期望效用的均衡}。
+
+这一冲突来自前两个状态无法被债券和股票区分，而两人在这两个状态的零禀赋恰好交错。
 \end{enumerate}
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.2*} 经济中有 $K$ 个具有 CARA 偏好的参与者。经济中只有两个企业，它们的资产在 1 期的支付具有联合正态分布。相关的参数如下：
+\WJElevenExercise{ex:wj-eleven-2}{*} 经济中有 $K$ 个具有 CARA 偏好的参与者。经济中只有两个企业，它们的资产在 1 期的支付具有联合正态分布。相关的参数如下：
 \begin{center}
 \begin{tabular}{lccc}
     \toprule
@@ -93,42 +72,50 @@
 \end{center}
 利率为 $8\%$。推导两个企业 0 期市场价值之间的关系。
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
-考虑参与者 $k$，假设他的效用函数为 $-e^{-a_{k}\tilde{w}}$，那么他的优化问题是
+以每家企业全部资产为一个单位，$P_i$ 表示企业总市场价值，$\widetilde X_i$ 表示其总支付。令 $R_F=1.08$，参与者 $k$ 的期末财富为
 \[
-    \begin{aligned}
-        &\max_{\theta_{k,1},\,\theta_{k,2}}\ \mathrm{E}\bigl[-e^{-a_{k}\tilde{w}_{k}}\bigr]\\
-        &\quad\text{s.t.}\quad \tilde{w}_{k}=(w_{k}-P_{1}\theta_{k,1}-P_{2}\theta_{k,2})(1+r_{F})+\tilde{r}_{1}\theta_{k,1}+\tilde{r}_{2}\theta_{k,2}
-    \end{aligned}
+ \widetilde w_k=(w_k-P_1\theta_{k,1}-P_2\theta_{k,2})R_F
+ +\theta_{k,1}\widetilde X_1+\theta_{k,2}\widetilde X_2.
 \]
-其中 $P_{1}$，$P_{2}$ 分别是企业 1、2 的价格。支付联合正态则 $\tilde{w}_{k}$ 正态，与练习 9.7 相同：最大化 $E[\tilde{w}_{k}]-\dfrac{a_{k}}{2}\operatorname{Var}(\tilde{w}_{k})$。记超额支付 $\mu_{i}=\bar{r}_{i}-P_{i}(1+r_{F})$，$\mu=\begin{bmatrix}\mu_{1}\\\mu_{2}\end{bmatrix}$，协方差阵 $\Sigma=\begin{bmatrix}\sigma_{1}^{2}&\rho\sigma_{1}\sigma_{2}\\\rho\sigma_{1}\sigma_{2}&\sigma_{2}^{2}\end{bmatrix}$。一阶条件 $\mu=a_{k}\Sigma\theta_{k}$ 给出 $\theta_{k}=\dfrac{1}{a_{k}}\Sigma^{-1}\mu$。展开
+
+这里 $\theta_{k,i}$ 是总持仓，出清条件为 $\sum_k\theta_{k,i}=1$。采用CARA效用 $-e^{-a_k w}$，其中 $a_k>0$。正态财富下，最大化期望效用等价于最大化
 \[
-    \Sigma^{-1}=\frac{1}{1-\rho^{2}}\begin{bmatrix}1/\sigma_{1}^{2}&-\rho/(\sigma_{1}\sigma_{2})\\-\rho/(\sigma_{1}\sigma_{2})&1/\sigma_{2}^{2}\end{bmatrix}
+ \mathrm E[\widetilde w_k]-\frac{a_k}{2}\operatorname{Var}(\widetilde w_k).
 \]
-即
+
+记 $\mu=\mathrm E[\widetilde X]-R_FP$、$\Sigma=\operatorname{Cov}(\widetilde X)$。一阶条件和加总分别给出
 \[
-    \begin{aligned}
-        \theta_{k,1}&=\frac{1}{a_{k}(1-\rho^{2})}\Bigl[\frac{\bar{r}_{1}-P_{1}(1+r_{F})}{\sigma_{1}^{2}}-\frac{\rho}{\sigma_{1}\sigma_{2}}\bigl(\bar{r}_{2}-P_{2}(1+r_{F})\bigr)\Bigr]\\
-        \theta_{k,2}&=\frac{1}{a_{k}(1-\rho^{2})}\Bigl[\frac{\bar{r}_{2}-P_{2}(1+r_{F})}{\sigma_{2}^{2}}-\frac{\rho}{\sigma_{1}\sigma_{2}}\bigl(\bar{r}_{1}-P_{1}(1+r_{F})\bigr)\Bigr]
-    \end{aligned}
+ \mu=a_k\Sigma\theta_k,\qquad
+ \mathbf1=\left(\sum_k\frac1{a_k}\right)\Sigma^{-1}\mu.
 \]
-在均衡条件下，企业资产的总需求都是 1，因而我们有
+
+令 $T=\sum_k1/a_k$ 为总风险容忍度，则
 \[
-    \frac{\bar{r}_{1}-P_{1}(1+r_{F})}{\sigma_{1}^{2}}-\frac{\rho}{\sigma_{1}\sigma_{2}}\bigl(\bar{r}_{2}-P_{2}(1+r_{F})\bigr)
-    =\frac{\bar{r}_{2}-P_{2}(1+r_{F})}{\sigma_{2}^{2}}-\frac{\rho}{\sigma_{1}\sigma_{2}}\bigl(\bar{r}_{1}-P_{1}(1+r_{F})\bigr)
+ \mu=\frac1T\Sigma\mathbf1,
+ \qquad
+ \Sigma=\begin{pmatrix}64&52.8\\52.8&121\end{pmatrix}.
 \]
-即
+
+消去 $T$，所求关系为
 \[
-    \frac{\bar{r}_{1}-P_{1}(1+r_{F})}{\sigma_{1}^{2}+\rho\sigma_{1}\sigma_{2}}=\frac{\bar{r}_{2}-P_{2}(1+r_{F})}{\sigma_{2}^{2}+\rho\sigma_{1}\sigma_{2}}
+ \boxed{\frac{10-1.08P_1}{116.8}
+ =\frac{12-1.08P_2}{173.8}},
+ \qquad
+ 10-1.08P_1\approx0.67204(12-1.08P_2).
 \]
-代入数值即得 $10-1.08P_{1}=0.77(12-1.08P_{2})$。
+
+每家企业的超额期望支付与其支付和总支付 $\widetilde X_1+\widetilde X_2$ 的协方差成比例；给定题目数据可确定这一价格关系，具体价格还取决于总风险容忍度。
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.3**} 考虑一个可以以 0 成本生产煤的企业。
+\WJElevenExercise{ex:wj-eleven-3}{**} 考虑一个可以以 0 成本生产煤的企业。
 \begin{itemize}
     \item 煤的未来价格 $\tilde{p}$ 在当前看来是不确定的。令 $\mathrm{E}[\tilde{p}]=\bar{p}$。
-    \item 销售额取决未来价格：$S(\tilde{p})$。
+    \item 销售量取决于未来价格：$S(\tilde{p})$。
     \item 有一个煤的远期市场，远期价格为 $f$。企业可以用远期合约来对冲未来价格中的风险。比如，如果企业售出 $h$ 份远期合约，远期头寸的未来支付为 $h(f-\tilde{p})$。如果 $\tilde{p}$ 的实现值很低，企业从销售中得到的利润很低但是从远期头寸得到利润则很高。
     \item 公司经理是风险厌恶的，他的期望效用为
     \[
@@ -148,184 +135,274 @@
     \[
         \text{概率密度函数}=e^{-(p-d)},\quad p\in[d,+\infty).
     \]
+
     假设共有 $N$ 个投机者。在远期市场上，企业和投机者都表现得像是在竞争市场上一样。均衡远期价格是多少？远期溢价/折扣：$f-\mathrm{E}[\tilde{p}]$ 是多少？解释所得到的结论。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
+以下以 $h_F>0$ 表示企业卖出远期，以 $h_I>0$ 表示单个投机者买入远期。设价格非退化，相关期望有限，参与者可双向交易。
 \begin{enumerate}[label=(\alph*)]
-    \item 投机者的最优化问题的一阶条件是
-    \[
-        \mathrm{E}\bigl[v'\bigl(h(\tilde{p}-f)\bigr)(\tilde{p}-f)\bigr]=0
-    \]
-    因而，
-    \[
-        \mathrm{Cov}\bigl(v'\bigl(h(\tilde{p}-f)\bigr),(\tilde{p}-f)\bigr)=-\mathrm{E}\bigl[v'\bigl(h(\tilde{p}-f)\bigr)\bigr]\mathrm{E}[\tilde{p}-f]
-    \]
-    而 $v'>0$，$v''<0$，因此
-    \[
-        h>0\,(<0)\Leftrightarrow \mathrm{E}[\tilde{p}]>(<)\,f
-    \]
-    即当且仅当 $f<\mathrm{E}[\tilde{p}]$（$f>\mathrm{E}[\tilde{p}]$）时投机者才会买入（卖出）远期合约。
-    \item 厂商最优化问题的一阶条件是
-    \[
-        \mathrm{E}\bigl[u'\bigl(\tilde{p}S(\tilde{p})+h(\tilde{p}-f)\bigr)(\tilde{p}-f)\bigr]=0
-    \]
-    又由假设 $\mathrm{E}[\tilde{p}]=f$ 有
-    \[
-        \mathrm{Cov}\bigl(u'\bigl(\tilde{p}S(\tilde{p})+h(\tilde{p}-f)\bigr),(\tilde{p}-f)\bigr)=0
-    \]
-    令 $e(p)=-\dfrac{d\log S}{d\log p}$，那么 $d\bigl(pS(p)+h(f-p)\bigr)/dp=S(p)\bigl(1-e(p)\bigr)-h$；因此，如果 $e(p)<(>)1$，那么 $h>(<)0$。
-    \item 给定 $f$，$h$，厂商的期望效用是
-    \[
-        \begin{aligned}
-            \mathrm{E}[u(\tilde{\pi})]
-            &=\mathrm{E}\bigl[u\bigl(\tilde{p}S(\tilde{p})+h(f-\tilde{p})\bigr)\bigr]\\
-            &=\frac{e^{-a[S_{0}d+k+h(f-d)]}}{a(S_{0}-h)+1}
-        \end{aligned}
-    \]
-    求导可得厂商的远期合约售出量为：$h_{1}^{*}=S_{0}+\dfrac{1}{a}-\dfrac{1}{a(f-d)}$。投机者的期望效用是
-    \[
-        \mathrm{E}\bigl[v\bigl(h(\tilde{p}-f)\bigr)\bigr]=\frac{e^{ah(f-d)}}{ah+1}
-    \]
-    求导可得投机者的远期合约需求量为：$h_{2}^{*}=\dfrac{1}{a(f-d)}-\dfrac{1}{a}$。市场出清时
-    \[
-        S_{0}+\frac{1}{a}-\frac{1}{a(f-d)}=N\Bigl(\frac{1}{a(f-d)}-\frac{1}{a}\Bigr)
-    \]
-    求得均衡远期价格为 $f^{*}=d+1/\bigl(1-\dfrac{aS_{0}}{N+1}\bigr)$，期权溢价为 $f-\mathrm{E}[\tilde{p}]=1/\bigl(1-\dfrac{aS_{0}}{N+1}\bigr)-1$。当风险厌恶系数增大时，溢价变大（或折扣变小），这是很显然的。当投机者增多时，溢价（折扣）的绝对值变小，即使得远期合约的价格向期望值靠拢，这是投机市场竞争加剧时：如果 $f<\mathrm{E}[\tilde{p}]$，此时投机者买入远期，厂商可以抬高价格；如果 $f>\mathrm{E}[\tilde{p}]$，此时投机者卖出远期，厂商可以压低价格。
+\item 记 $Y=\widetilde p-f$，投机者目标为 $V(h_I)=\mathrm E[v(h_IY)]$。严格凹性给出
+\[
+ V'(0)=v'(0)(\mathrm E[\widetilde p]-f),\qquad
+ V''(h_I)=\mathrm E[v''(h_IY)Y^2]<0.
+\]
+
+有限最优头寸满足 $V'(h_I^*)=0$。由于 $V'$ 严格递减，若 $f<\mathrm E[\widetilde p]$，零头寸处导数为正，最优头寸必在零右侧；若最优头寸为正，由 $V'(h_I^*)=0$ 及严格递减性反推 $V'(0)>0$，故 $f<\mathrm E[\widetilde p]$。负头寸的论证方向相反。于是
+\[
+ h_I^*>0\iff f<\mathrm E[\widetilde p],\qquad
+ h_I^*<0\iff f>\mathrm E[\widetilde p].
+\]
+
+当 $f=\mathrm E[\widetilde p]$ 时，$h_I^*=0$。
+
+\item 令 $R(p)=pS(p)$ 为销售收入，企业目标为
+\[
+ F(h_F)=\mathrm E[u(R(\widetilde p)+h_F(f-\widetilde p))].
+\]
+
+在公平远期价格 $f=\mathrm E[\widetilde p]$ 下，
+\[
+ F'(0)=-\operatorname{Cov}(u'(R(\widetilde p)),\widetilde p).
+\]
+
+设销售量 $S(p)>0$，价格弹性为 $\varepsilon(p)=-pS'(p)/S(p)$，则
+\[
+ R'(p)=S(p)[1-\varepsilon(p)].
+\]
+
+若在整个价格支持集上 $\varepsilon(p)<1$，收入随价格增加而增加，边际效用随价格递减，故上述协方差为负、$F'(0)>0$，企业卖出远期。若处处 $\varepsilon(p)>1$，则收入递减，企业买入远期。若处处等于1，收入为常数，最优头寸为零。弹性跨越1时，头寸方向由上述协方差决定。
+
+这里使用的协方差符号可由独立同分布的 $p,p'$ 验证：
+\[
+ 2\operatorname{Cov}(g(p),p)
+ =\mathrm E[(g(p)-g(p'))(p-p')].
+\]
+
+\item 写 $\widetilde p=d+Z$，其中 $Z$ 服从参数为1的指数分布，故 $\mathrm E[\widetilde p]=d+1$。由 $R(p)=s_0p+k$，企业期望效用为
+\[
+ F(h_F)=-\frac{\exp\{-a[s_0d+k+h_F(f-d)]\}}
+ {1+a(s_0-h_F)},\qquad 1+a(s_0-h_F)>0.
+\]
+
+投机者期望效用为
+\[
+ V(h_I)=-\frac{\exp\{ah_I(f-d)\}}{1+ah_I},\qquad1+ah_I>0.
+\]
+
+分别对 $\log[-F(h_F)]$ 和 $\log[-V(h_I)]$ 求极小值，得到
+\[
+ h_F^*=s_0+\frac1a-\frac1{a(f-d)},\qquad
+ h_I^*=\frac1{a(f-d)}-\frac1a.
+\]
+
+由市场出清 $h_F^*=Nh_I^*$，解得
+\[
+ \boxed{f^*=d+\frac{N+1}{N+1+as_0}},\qquad
+ h_I^*=\frac{s_0}{N+1},\quad h_F^*=\frac{Ns_0}{N+1}.
+\]
+
+上述解要求 $N+1+as_0>0$；通常销售模型取 $s_0\ge0$，这一条件自动满足。代回可得两个期望效用的分母均为 $1+as_0/(N+1)>0$。远期溢价为
+\[
+ \boxed{f^*-\mathrm E[\widetilde p]
+ =-\frac{as_0}{N+1+as_0}}.
+\]
+
+当 $s_0>0$ 时，企业卖出远期以降低销售收入风险，投机者买入并获得正的期望支付，因此远期价格低于期望现货价格。风险厌恶增强使折扣扩大；投机者增多使折扣缩小，$f^*$ 趋近 $\mathrm E[\widetilde p]$。常数收入 $k$ 不影响CARA偏好下的最优对冲头寸。
 \end{enumerate}
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.4*} 证券市场只含有一只风险证券（股票）。一单位股票的支付为 $\tilde{x}$，它服从均值为 $\bar{x}$、波动率为 $\sigma$ 的正态分布。市场上有参与者 1 和 2。参与者 1 的禀赋是 $x_{0}$ 单位的 0 期消费而参与者 2 的禀赋是一单位股票。两个参与者都具有如下形式的期望效用：
+\WJElevenExercise{ex:wj-eleven-4}{*} 证券市场只含有一只风险证券（股票）。一单位股票的支付为 $\tilde{x}$，它服从均值为 $\bar{x}$、波动率为 $\sigma$ 的正态分布。市场上有参与者 1 和 2。参与者 1 的禀赋是 $x_{0}$ 单位的 0 期消费而参与者 2 的禀赋是一单位股票。两个参与者都具有如下形式的期望效用：
 \[
-    -e^{-\alpha c_{0}}-\rho\mathrm{E}\bigl[-e^{-\alpha\tilde{c}_{1}}\bigr].
+    -e^{-\alpha c_{0}}-\rho\mathrm{E}\bigl[e^{-\alpha\tilde{c}_{1}}\bigr],\qquad\alpha,\rho>0.
 \]
 \begin{enumerate}[label=(\alph*)]
     \item 证明证券市场是不完全的。
     \item 写出均衡条件。
     \item 均衡配置是 Pareto 最优的吗？证明结论。
 \end{enumerate}
+\par\smallskip 设 $\sigma>0$；采用定义于实数消费的CARA模型，并允许无约束证券头寸。
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
+记 $w_1=x_0$、$w_2=S$，并以 $\theta_k$ 表示股票总持仓。
 \begin{enumerate}[label=(\alph*)]
-    \item 因为有无穷多个状态（支付是正态分布的），而只有一只证券，因此证券市场是不完全的；
-    \item 均衡条件是存在股票价格 $S$ 使得
-    \[
-        \begin{aligned}
-            \theta_{1}^{*}&=\operatorname{Argmax}_{\theta}\bigl[-e^{-\alpha(x_{0}-\theta S)}+\rho\mathrm{E}\bigl[-e^{-\alpha\theta\tilde{x}}\bigr]\bigr]\\
-            \theta_{2}^{*}&=\operatorname{Argmax}_{\theta}\bigl[-e^{-\alpha(S-\theta S)}+\rho\mathrm{E}\bigl[-e^{-\alpha\theta\tilde{x}}\bigr]\bigr]\\
-            \theta_{1}^{*}+\theta_{2}^{*}&=1
-        \end{aligned}
-    \]
-    \item 参与者 1、2 的最优化问题的一阶条件分别是
-    \[
-        \begin{aligned}
-            e^{-\alpha(x_{0}-\theta_{1}^{*}S)}S&=\rho e^{-\alpha\theta_{1}^{*}\bar{x}+\frac12\alpha^{2}(\theta_{1}^{*})^{2}\sigma^{2}}(\bar{x}-\alpha\theta_{1}^{*}\sigma^{2})\\
-            e^{-\alpha(S-\theta_{2}^{*}S)}S&=\rho e^{-\alpha\theta_{2}^{*}\bar{x}+\frac12\alpha^{2}(\theta_{2}^{*})^{2}\sigma^{2}}(\bar{x}-\alpha\theta_{2}^{*}\sigma^{2})
-        \end{aligned}
-    \]
-    如果均衡配置是 Pareto 最优的，那么两个参与者的边际效用之比应该相等，即
-    \[
-        \frac{-\rho e^{-\alpha\theta_{1}^{*}\tilde{x}}(-a)}{-e^{-\alpha(x_{0}-\theta_{1}^{*}S)}(-a)}=\frac{-\rho e^{-\alpha\theta_{2}^{*}\tilde{x}}(-a)}{-e^{-\alpha(S-\theta_{2}^{*}S)}(-a)}
-    \]
-    又因为 $\theta_{1}^{*}+\theta_{2}^{*}=1$，因而 $\theta_{1}^{*}=\theta_{2}^{*}=\tfrac12$，$S=x_{0}$。代入一阶条件有
-    \[
-        e^{-\frac12\alpha\tilde{x}}=\rho e^{-\frac12\alpha\tilde{x}+\frac18\alpha^{2}\sigma^{2}}(\tilde{x}-\tfrac12\alpha\sigma^{2})
-    \]
-    上述等式不一定成立，因而均衡配置不一定是 Pareto 最优的（实际上，只有当上述等式成立时才是 Pareto 最优的）。
+\item 股票只能生成 $\theta\widetilde x$ 形式的支付，连常数1都不能生成；未来状态连续而支付空间只有一维，市场不完全。
+\item 个人消费及优化条件为
+\[
+ c_{k,0}=w_k-S\theta_k,\qquad
+ \widetilde c_{k,1}=\theta_k\widetilde x,
+\]
+\[
+ \theta_k\in\operatorname*{arg\,max}_{\theta\in\mathbb R}
+ \left\{-e^{-\alpha(w_k-S\theta)}
+ -\rho e^{-\alpha\theta\bar x+\alpha^2\theta^2\sigma^2/2}\right\}.
+\]
+
+市场出清要求 $\theta_1+\theta_2=1$。严格凹性使个人一阶条件成为充分条件：
+\[
+ S e^{-\alpha(w_k-S\theta_k)}
+ =\rho e^{-\alpha\theta_k\bar x+\alpha^2\theta_k^2\sigma^2/2}
+ (\bar x-\alpha\theta_k\sigma^2),\qquad k=1,2.
+\]
+
+这些方程与出清条件共同决定均衡。
+\item 帕累托最优要求两人的跨期边际替代率逐状态相同：
+\[
+ m_k(x)=\rho\exp\{\alpha c_{k,0}-\alpha\theta_k x\},
+ \qquad m_1(x)=m_2(x).
+\]
+
+取对数并比较 $x$ 的系数和常数项，得到
+\[
+ \theta_1=\theta_2=\frac12,\qquad
+ c_{1,0}=c_{2,0},\qquad S=x_0.
+\]
+
+令 $q=\bar x-\alpha\sigma^2/2$，代入股票一阶条件，所需参数关系为
+\[
+ \boxed{x_0=\rho q\exp\left\{
+ \frac{\alpha(x_0-\bar x)}2+\frac{\alpha^2\sigma^2}{8}\right\}}.
+\]
+
+若该关系成立，$S=x_0$、两人各持有半份股票使个人选择最优且市场出清，消费为 $(x_0/2,\widetilde x/2)$。两人的消费完全相同；严格凹性说明这一配置最大化两人等权效用之和，故为帕累托最优。反之，任何有效均衡都必须满足上述关系。
+
+因此，均衡配置为帕累托最优当且仅当框中的参数关系成立。\qedhere
 \end{enumerate}
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.5**} 考虑练习 11.4 中的经济。现在引入一只无风险证券（债券），它在 1 期支付 1 单位消费品。参与者在债券上的禀赋都为 0。
+\WJElevenExercise{ex:wj-eleven-5}{**} 考虑练习~\ref{ex:wj-eleven-4}（仅有一只正态支付股票、两人具有共同 CARA 偏好的经济）中的经济。现在引入一只无风险证券（债券），它在 1 期支付 1 单位消费品。参与者在债券上的禀赋都为 0。
 \begin{enumerate}[label=(\alph*)]
     \item 证券市场完全吗？解释原因。
     \item 写出这个经济的均衡条件。
     \item 求解均衡。
-    \item 比较存在无风险证券时的均衡配置和在练习 11.4 中不存在无风险证券时得到的均衡配置。它们一样吗？为什么一样或不一样？
+    \item 比较存在无风险证券时的均衡配置和在练习~\ref{ex:wj-eleven-4} 中不存在无风险证券时得到的均衡配置。它们一样吗？为什么一样或不一样？
     \item 均衡配置是 Pareto 最优的吗？证明并解释所得到的结论。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
+沿用上一题的实数消费域及参数条件。以 $b_k=\theta_{k,1}$ 表示债券持仓，$s_k=\theta_{k,2}$ 表示股票总持仓；债券总供给为零，股票总供给为1。
 \begin{enumerate}[label=(\alph*)]
-    \item 因为状态数是无穷的，但只有两只证券，因而市场不完全；
-    \item 这个经济的均衡条件是存在债券价格 $B$ 和股票价格 $S$，使得
-    \[
-        \begin{aligned}
-            \begin{bmatrix}\theta_{1,1}^{*} \\ \theta_{1,2}^{*}\end{bmatrix}&=\operatorname{Argmax}_{\{\theta_{1,1},\theta_{1,2}\}}\bigl[-e^{-\alpha(x_{0}-\theta_{1,1}B-\theta_{1,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{1,1}+\theta_{1,2}\tilde{x})}\bigr]\bigr]\\
-            \begin{bmatrix}\theta_{2,1}^{*} \\ \theta_{2,2}^{*}\end{bmatrix}&=\operatorname{Argmax}_{\{\theta_{2,1},\theta_{2,2}\}}\bigl[-e^{-\alpha(S-\theta_{2,1}B-\theta_{2,2}S)}+\rho\mathrm{E}\bigl[-e^{-\alpha(\theta_{2,1}+\theta_{2,2}\tilde{x})}\bigr]\bigr]\\
-            \theta_{1,1}^{*}+\theta_{2,1}^{*}=0;&\quad\theta_{1,2}^{*}+\theta_{2,2}^{*}=1
-        \end{aligned}
-    \]
-    \item 对于参与者 1 来说，最优化的一阶条件是
-    \begin{align}
-            -e^{-\alpha(x_{0}-\theta_{1,1}^{*}B-\theta_{1,2}^{*}S)}(\alpha B)
-            &=\rho e^{-\alpha(\theta_{1,1}^{*}+\theta_{1,2}^{*}\tilde{x})+\frac12\alpha^{2}(\theta_{1,2}^{*})^{2}\sigma^{2}}(-\alpha)
-            \tag{11.1}\\
-            -e^{-\alpha(x_{0}-\theta_{1,1}^{*}B-\theta_{1,2}^{*}S)}(\alpha S)
-            &=\rho e^{-\alpha(\theta_{1,1}^{*}+\theta_{1,2}^{*}\tilde{x})+\frac12\alpha^{2}(\theta_{1,2}^{*})^{2}\sigma^{2}}(-\alpha\bar{x}+\alpha^{2}\theta_{1,2}^{*}\sigma^{2})
-            \tag{11.2}
-    \end{align}
-    参与者 2 的最优化的一阶条件是
-    \begin{align}
-            -e^{-\alpha(S-\theta_{2,1}^{*}B-\theta_{2,2}^{*}S)}(\alpha B)
-            &=\rho e^{-\alpha(\theta_{2,1}^{*}+\theta_{2,2}^{*}\tilde{x})+\frac12\alpha^{2}(\theta_{2,2}^{*})^{2}\sigma^{2}}(-\alpha)
-            \tag{11.3}\\
-            -e^{-\alpha(S-\theta_{2,1}^{*}B-\theta_{2,2}^{*}S)}(\alpha S)
-            &=\rho e^{-\alpha(\theta_{2,1}^{*}+\theta_{2,2}^{*}\tilde{x})+\frac12\alpha^{2}(\theta_{2,2}^{*})^{2}\sigma^{2}}(-\alpha\bar{x}+\alpha^{2}\theta_{2,2}^{*}\sigma^{2})
-            \tag{11.4}
-    \end{align}
-    (11.2) 式/(11.1) 式，(11.4) 式/(11.3) 式可得
-    \[
-        \begin{aligned}
-            \frac{S}{B}&=\bar{x}-\alpha\theta_{1,2}^{*}\sigma^{2}\\
-            \frac{S}{B}&=\bar{x}-\alpha\theta_{2,2}^{*}\sigma^{2}
-        \end{aligned}
-    \]
-    因此 $\theta_{1,2}^{*}=\theta_{2,2}^{*}=\tfrac12$。\\
-    (11.3) 式/(11.1) 式可得
-    \[
-        e^{\alpha(x_{0}-S)+\alpha B(\theta_{2,1}^{*}-\theta_{1,1}^{*})}=e^{\alpha(\theta_{1,1}^{*}-\theta_{2,1}^{*})}
-    \]
-    因此，$\theta_{1,1}^{*}=-\theta_{2,1}^{*}=\dfrac{x_{0}}{2(1+B)}\widehat{S}$。利用 $\dfrac{\widehat{S}}{B}=\bar{x}-\tfrac12\alpha\sigma^{2}$，$\theta_{1,1}^{*}=-\theta_{2,1}^{*}=\dfrac{x_{0}-\widehat{S}}{2(1+B)}$ 以及 (11.1) 式就可求得债券价格 $B$ 以及股票价格 $S$。
-    \item 因为存在了无风险债券，投资者的投资机会增加，使得投资者的选择不一样了；另外，这也改变了股票的投资价值，从而改变了参与者 2 的禀赋的相对值，这也使得均衡配置不一样。最明显的是在第 4 题中两个参与者的股票头寸不相等，而在本题当中则相等；
-    \item 考虑两人的边际效用之间的比值
-    \[
-        \begin{aligned}
-            &\frac{-\rho(-a)e^{-\alpha(\theta_{1,1}^{*}+\theta_{1,2}^{*}\tilde{x})}}{-(-a)e^{-\alpha(x_{0}-\theta_{1,1}^{*}B-\theta_{1,2}^{*}S)}}
-            \Big/
-            \frac{-\rho(-a)e^{-\alpha(\theta_{2,1}^{*}+\theta_{2,2}^{*}\tilde{x})}}{-(-a)e^{-\alpha(S-\theta_{2,1}^{*}B-\theta_{2,2}^{*}S)}}\\
-            &\qquad=e^{-\alpha\bigl(x_{0}-S-(1+B)(\theta_{1,1}^{*}-\theta_{2,1}^{*})\bigr)}=1
-        \end{aligned}
-    \]
-    因而均衡配置是 Pareto 最优的。
+\item 证券支付空间为 $\operatorname{span}\{1,\widetilde x\}$，只能复制仿射支付，例如 $\widetilde x^2$ 就不在其中，故市场仍不完全。
+\item 记 $w_1=x_0,w_2=S$。均衡要求每人选择 $(b_k,s_k)$ 最大化
+\[
+ -e^{-\alpha(w_k-Bb_k-Ss_k)}
+ -\rho e^{-\alpha(b_k+s_k\bar x)+\alpha^2s_k^2\sigma^2/2},
+\]
+
+并满足 $b_1+b_2=0$、$s_1+s_2=1$。相应消费为
+\[
+ c_{k,0}=w_k-Bb_k-Ss_k,\qquad
+ \widetilde c_{k,1}=b_k+s_k\widetilde x.
+\]
+
+\item 令 $A_k=\exp\{-\alpha(b_k+s_k\bar x)+\alpha^2s_k^2\sigma^2/2\}$。债券、股票的一阶条件分别为
+\begin{align*}
+ B e^{-\alpha c_{k,0}}&=\rho A_k,
+ \\
+ S e^{-\alpha c_{k,0}}&=\rho A_k(\bar x-\alpha s_k\sigma^2).
+\end{align*}
+
+相除得到 $S/B=\bar x-\alpha s_k\sigma^2$。由于 $\alpha\sigma^2>0$，两人的股票持仓相同；结合出清可得
+\[
+ s_1=s_2=\frac12,\qquad
+ \frac SB=q\equiv\bar x-\frac{\alpha\sigma^2}{2}.
+\]
+
+两人的债券一阶条件相除，再取对数，得到 $c_{1,0}-c_{2,0}=b_1-b_2$。代入0期预算及 $b_2=-b_1$，可得
+\[
+ b_1=-b_2=\frac{x_0-S}{2(1+B)}.
+\]
+
+此时 $c_{k,0}-b_k=x_0/2$。代回债券一阶条件，得到完整的均衡解
+\[
+ \boxed{B=\rho\exp\left\{
+ \frac{\alpha(x_0-\bar x)}2+\frac{\alpha^2\sigma^2}{8}\right\},
+ \qquad S=B\left(\bar x-\frac{\alpha\sigma^2}{2}\right)}.
+\]
+
+将这两个价格代入上述头寸，即得到个人消费。严格凹性保证一阶条件对应个人最大值。
+
+\item 一般而言，引入债券后配置改变。债券使两人能够通过常数支付调整跨期资源，同时各持有半份股票。若上述解恰有 $S=x_0$，则 $b_1=b_2=0$，配置与上一题的有效均衡相同；这正是上一题得到的特殊参数关系。
+
+\item 对任意实现值 $x$，两人的个人定价核均为
+\[
+ m_k(x)=\rho e^{\alpha(c_{k,0}-b_k)-\alpha x/2}
+ =\rho e^{\alpha x_0/2-\alpha x/2}\equiv m(x).
+\]
+
+因此两人的跨期、跨状态边际替代率一致。也可取正权重 $\mu_k=e^{\alpha c_{k,0}}$，则加权0期边际效用相同，加权未来边际效用也逐状态相同。严格凹性使该配置为规划者最优，故均衡是帕累托最优的。
+
+这一结果体现CARA偏好的仿射风险分担：每个人的未来消费都是 $b_k+\widetilde x/2$，债券与股票正好能复制。
 \end{enumerate}
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\problemno{11.6**} 在练习 11.5 描述的经济中，我们引入一只新的证券，一份以股票为标的资产、执行价格为 $\bar{x}$ 的期权。
+\WJElevenExercise{ex:wj-eleven-6}{**} 在练习~\ref{ex:wj-eleven-5}（已引入无风险债券的股票经济）描述的经济中，我们引入一只新的证券，一份以股票为标的资产、执行价格为 $\bar{x}$ 的看涨期权，其净供给为零。
 \begin{enumerate}[label=(\alph*)]
     \item 现在，由股票、债券和期权所构成的证券市场是完全的吗？解释原因。
-    \item 假设均衡配置和练习 11.5 中的一样。用参与者 1 的 Euler 方程为期权定价。同样地，用参与者 2 的 Euler 方程为期权定价。
-    \item 使用前面得到的结论，分析练习 11.5 中得到的均衡配置是否会因为引入期权而改变。
+    \item 假设均衡配置和练习~\ref{ex:wj-eleven-5} 中的一样。用参与者 1 的 Euler 方程为期权定价。同样地，用参与者 2 的 Euler 方程为期权定价。
+    \item 使用前面得到的结论，分析练习~\ref{ex:wj-eleven-5} 中得到的均衡配置是否会因为引入期权而改变。
     \item 计算期权的均衡价格。
 \end{enumerate}
 \end{problem}
+\end{minipage}\par
+\Needspace{5\baselineskip}
 \begin{solution}
+看涨期权支付为 $(\widetilde x-\bar x)^+$，记其价格为 $C$。
 \begin{enumerate}[label=(\alph*)]
-    \item 由于状态数目大于证券数目，因而市场是不完全的；
-    \item 由参与者 1 的 Euler 方程，期权价格为
-    \[
-        c_{1}=\mathrm{E}\Bigl[\frac{u_{1,1}'(\tilde{c}_{1,1})}{u_{1,0}'(c_{1,0})}[\tilde{x}-\bar{x}]\Bigr]
-        =\mathrm{E}\Bigl[\frac{\rho e^{-\alpha(\theta_{1,1}^{*}+\theta_{1,2}^{*}\tilde{x})}}{e^{-\alpha(x_{0}-\theta_{1,1}^{*}B-\theta_{1,2}^{*}S)}}[\tilde{x}-\bar{x}]\Bigr]
-    \]
-    由参与者 2 的 Euler 方程，期权价格为
-    \[
-        c_{2}=\mathrm{E}\Bigl[\frac{u_{2,1}'(\tilde{c}_{2,1})}{u_{2,0}'(c_{2,0})}[\tilde{x}-\bar{x}]\Bigr]
-        =\mathrm{E}\Bigl[\frac{\rho e^{-\alpha(\theta_{2,1}^{*}+\theta_{2,2}^{*}\tilde{x})}}{e^{-\alpha(S-\theta_{2,1}^{*}B-\theta_{2,2}^{*}S)}}[\tilde{x}-\bar{x}]\Bigr]
-    \]
-    \item 因为第五题中的均衡是 Pareto 最优的，因而边际效用之比相等，$c_{1}=c_{2}$，即参与者对期权的定价是一致的，因而他们不会交易期权，引入期权不会改变第 5 题中的均衡配置。
-    \item 由前面的分析可得 $c=c_{1}=c_{2}$。
+\item 支付空间为 $\operatorname{span}\{1,\widetilde x,(\widetilde x-\bar x)^+\}$，只包含在 $\bar x$ 处至多有一个折点的分段仿射函数，仍无法生成任意连续状态支付，市场不完全。
+\item 在上一题的配置下，参与者1、2的定价核相同，均为
+\[
+ m(x)=\rho e^{\alpha x_0/2-\alpha x/2}.
+\]
+
+分别应用Euler方程，得到
+\[
+ C_1=\mathrm E[m_1(\widetilde x)(\widetilde x-\bar x)^+],\qquad
+ C_2=\mathrm E[m_2(\widetilde x)(\widetilde x-\bar x)^+].
+\]
+
+因此 $C_1=C_2=C$。
+\item 取价格 $C$，令两人新增期权头寸均为零。原有债券、股票的一阶条件仍成立，新增期权的一阶条件也由上述定价式成立。目标函数凹，故原选择在扩大的交易集合中仍为最优，零期权头寸满足出清。因此引入期权后，原均衡消费配置保持不变。
+
+
+\item 由上一题 $B=\mathrm E[m(\widetilde x)]$，用 $m/B$ 对正态密度加权。完成平方后，新的概率密度为均值
+\[
+ q=\bar x-\frac{\alpha\sigma^2}{2}
+\]
+
+、方差 $\sigma^2$ 的正态密度。以 $\mathrm E^Q$ 表示该概率下的期望，则
+\[
+ C=B\mathrm E^Q[(\widetilde x-\bar x)^+].
+\]
+
+令 $Z=(\widetilde x-q)/\sigma$，$d=(q-\bar x)/\sigma=-\alpha\sigma/2$。以 $\varphi,\Phi$ 表示标准正态密度和分布函数，积分得到
+\[
+ \begin{aligned}
+ \mathrm E^Q[(\widetilde x-\bar x)^+]
+ &=\int_{-d}^{\infty}(q-\bar x+\sigma z)\varphi(z)\,dz\\
+ &=(q-\bar x)\Phi(d)+\sigma\varphi(d).
+ \end{aligned}
+\]
+
+故期权均衡价格为
+\[
+ \boxed{C=B\left[\sigma\varphi\left(\frac{\alpha\sigma}{2}\right)
+ -\frac{\alpha\sigma^2}{2}\Phi\left(-\frac{\alpha\sigma}{2}\right)\right]}.
+\]
+
+这里使用正态支付模型的积分定价，正部支付使期权价格严格为正。
 \end{enumerate}
 \end{solution}
 

@@ -1,0 +1,32 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教师PPT第12页双效用CE比较；采用现有课堂例题的1/9等概率财富。
+% 正仿射归一化使两曲线端点均为0和1，保持各自的风险态度与CE。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=2.8cm]
+ \draw[->] (.35,0)--(9.65,0) node[right] {$w$};
+ \draw[->] (.5,0)--(.5,1.4) node[above] {归一化效用};
+ \draw[blue!70!black,very thick,domain=1:9,samples=90] plot (\x,{ln(\x)/ln(9)});
+ \draw[red!70!black,thick,dashed,domain=1:9,samples=90] plot (\x,{(sqrt(\x)-1)/2});
+ \draw[gray] (1,0)--(9,1);
+ \draw[dotted] (.5,.5)--(5,.5)--(5,0);
+ \draw[dotted,blue!70!black] (3,0)--(3,.5);
+ \draw[dotted,red!70!black] (4,0)--(4,.5);
+ \draw[dotted,gray] (9,0)--(9,1);
+ \fill[blue!70!black] (3,.5) circle(1.7pt);
+ \fill[red!70!black] (4,.5) circle(1.7pt);
+ \node[left] at (.5,.5) {$1/2$};
+ \node[below] at (1,0) {$1$}; \node[below] at (9,0) {$9$};
+ \node[below,blue!70!black,align=center] at (3,0) {$CE_1$\\$3$};
+ \node[below,red!70!black,align=center] at (4,0) {$CE_2$\\$4$};
+ \node[below,align=center] at (5,0) {$\mathrm E[W]$\\$5$};
+ \node[blue!70!black,above] at (5.7,.87) {$\ln w/\ln9$};
+ \node[red!70!black,below right] at (6.3,.75) {$(\sqrt w-1)/2$};
+\end{tikzpicture}
+\par\medskip\small
+两种效用作正仿射归一化后，端点都是 $0,1$，同一等概率赌博的期望效用高度均为 $1/2$。
+对数效用更厌恶风险，故 $CE_1=3<4=CE_2$，风险溢价分别为 $2$ 与 $1$。
+\WJFigure{fig:wj-ce-comparison}{同一风险下的确定性等值比较}
+\end{minipage}
+\end{center}
