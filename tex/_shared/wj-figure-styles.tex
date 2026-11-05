@@ -1,0 +1,9 @@
+% !TeX root = ../../金融经济学_王江_讲义及习题.tex
+% 原位图注：按章编号，标签绑定真实图计数器，不引入浮动位置。
+\newcounter{wjFigure}[chapter]
+\renewcommand{\thewjFigure}{\thechapter.\arabic{wjFigure}}
+\newcommand{\WJFigure}[2]{%
+  \par\smallskip
+  \refstepcounter{wjFigure}\label{#1}%
+  图\thewjFigure\quad #2\par
+}
