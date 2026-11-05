@@ -7,7 +7,8 @@
 \usepackage[group-separator={,}]{siunitx}
 
 \tcbuselibrary{breakable}
-\tcbset{breakable}
+% 本地 tcolorbox 兼容补丁：保持 XeLaTeX 可跨页框中的局部答案颜色。
+\tcbset{breakable,use color stack}
 \usetikzlibrary{intersections}
 
 % 完整版：latexmk 默认，或 -usepretex -pretex='\\def\\WJHandoutKnowledge{}'
