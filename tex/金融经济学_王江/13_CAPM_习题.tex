@@ -46,7 +46,7 @@
  \end{aligned}
 \]
 
-CARA系数为1，最大化期望效用等价于最大化均值减去一半方差。一阶条件给出
+CARA系数为1，最大化期望效用等价于最大化均值减去一半方差。目标函数关于 $\theta_k$ 的Hessian为 $-\Sigma$，因 $\Sigma$ 正定而严格凹；一阶条件给出唯一需求
 \[
  \boxed{\theta_k=\Sigma^{-1}(\bar v-S)-y_k\iota}.
 \]
@@ -80,9 +80,9 @@ CARA系数为1，最大化期望效用等价于最大化均值减去一半方差
  =\exp[-(C_k-C_j)-(y_k-y_j)\widetilde\varepsilon].
 \]
 
-帕累托最优风险分担的一阶条件要求各人的边际效用比在所有状态下相同。$\sigma^2>0$ 时，这等价于所有 $y_k$ 相同；$y_k$ 不同时，残差风险的负担尚可通过重新分担而改善。
+这里的帕累托比较允许在1期对总消费作任意可行的状态依赖再分配。帕累托最优风险分担的一阶条件要求各人的边际效用比在所有状态下相同。$\sigma^2>0$ 时，这等价于所有 $y_k$ 相同；$y_k$ 不同时，残差风险的负担尚可通过重新分担而改善。
 
-当所有 $y_k$ 相同，或 $\widetilde\varepsilon=0$ 时，财富仅有常数差异。取规划权重 $\mu_k=e^{C_k}$，加权边际效用逐状态相同；严格凹性使此配置最大化加权效用和，故为帕累托最优。股票的市场风险由CAPM定价，劳动收入中的残差风险则决定均衡配置是否实现最优风险分担。\qedhere
+当所有 $y_k$ 相同，或 $\widetilde\varepsilon=0$ 时，财富仅有常数差异。取规划权重 $\mu_k=e^{C_k}$，加权边际效用逐状态相同；严格凹性使此配置最大化加权效用和，故为帕累托最优。股票的市场风险由CAPM定价，劳动收入中的残差风险则决定均衡配置是否实现上述无约束的最优风险分担。若只允许通过既有股票和债券调整头寸，不能据此断言同一残差风险可被交易并重新分担；该受证券约束的效率问题需要另行界定可行集合。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -102,11 +102,18 @@ CARA系数为1，最大化期望效用等价于最大化均值减去一半方差
 \begin{solution}
 令 $Y=\sum_ky_k$、$V=\iota^{\mathsf T}\Sigma\iota$。记劳动冲击对股票支付回归后的残差方差为 $\tau^2=\sigma^2-c^{\mathsf T}\Sigma^{-1}c\ge0$。
 \begin{enumerate}[label=(\alph*)]
-\item 劳动收入与股票支付的协方差为 $y_k(\Sigma\iota+c)$。因此个人一阶条件为
+\item 由联合正态及 $\operatorname{Cov}(\widetilde v,\widetilde\varepsilon)=c$，个人财富的方差为
+\[
+ \theta_k^{\mathsf T}\Sigma\theta_k+2y_k\theta_k^{\mathsf T}(\Sigma\iota+c)
+ +y_k^2(V+2\iota^{\mathsf T}c+\sigma^2).
+\]
+
+对均值减半方差求导，个人一阶条件为
 \[
  \bar v-S=\Sigma\theta_k+y_k(\Sigma\iota+c),
  \qquad
- \boxed{\theta_k=\Sigma^{-1}(\bar v-S)-y_k(\iota+\Sigma^{-1}c)}.
+ \boxed{\theta_k=\underbrace{\Sigma^{-1}(\bar v-S)}_{\text{共同投资方向}}
+ -y_k\underbrace{(\iota+\Sigma^{-1}c)}_{\text{劳动收入对冲方向}}}.
 \]
 
 股票需求位于两个共同方向 $\Sigma^{-1}(\bar v-S)$、$\iota+\Sigma^{-1}c$ 的张成空间中。一般需要两只风险基金及无风险证券，即至多三基金分离；若这两个方向共线，或投资者的对冲需求相同，基金数可进一步减少。
@@ -139,7 +146,7 @@ CARA系数为1，最大化期望效用等价于最大化均值减去一半方差
  \quad\operatorname{Var}(\widetilde\varepsilon_\perp)=\tau^2.
 \]
 
-代入最优头寸，个人财富具有 $C'_k+d^{\mathsf T}\widetilde v+y_k\widetilde\varepsilon_\perp$ 的形式，其中 $d=\Sigma^{-1}(\bar v-S)$、$C'_k$ 为常数。与上一题的边际效用比论证相同，配置为帕累托最优当且仅当 $\tau^2=0$ 或所有 $y_k$ 相同。
+代入最优头寸，个人财富具有 $C'_k+d^{\mathsf T}\widetilde v+y_k\widetilde\varepsilon_\perp$ 的形式，其中 $d=\Sigma^{-1}(\bar v-S)$、$C'_k$ 为常数。与上一题的边际效用比论证相同，在允许1期状态依赖可行再分配的帕累托比较下，配置为帕累托最优当且仅当 $\tau^2=0$ 或所有 $y_k$ 相同。仅允许既有证券交易时，受约束的可行配置集合不同。
 
 $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\tau^2>0$ 时，只有尚未对冲的残差风险影响上述效率判断。\qedhere
 \end{enumerate}
@@ -183,7 +190,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  \Gamma=\begin{pmatrix}A&C\\C^{\mathsf T}&B\end{pmatrix}
 \]
 
-正定，$L=K_a+K_b$、$R=1+r_F$，$\ell_a=\bar v-Rp_a$、$\ell_b=\bar v-Rp_b$ 为超额期望支付。
+正定，$L=K_a+K_b$、$R=1+r_F>0$，$\ell_a=\bar v-Rp_a$、$\ell_b=\bar v-Rp_b$ 为超额期望支付。
 \begin{enumerate}[label=(\alph*)]
 \item 任一国家的投资者均可交易全部股票，目标函数的头寸相关部分为
 \[
@@ -209,7 +216,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
 
 两国人数通过总数 $L$ 影响总风险容忍度。
 
-\item 对国家 $a,b$ 的第 $i$ 只资产，风险溢价分别为
+\item 以下对收益率的计算假定所涉及的证券价格均非零。对国家 $a,b$ 的第 $i$ 只资产，风险溢价分别为
 \[
  \bar r_{a,i}-r_F=\frac{\alpha[(A+C)\iota]_i}{Lp_{a,i}},\qquad
  \bar r_{b,i}-r_F=\frac{\alpha[(B+C^{\mathsf T})\iota]_i}{Lp_{b,i}}.
@@ -222,7 +229,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  =\iota^{\mathsf T}(A+B+C+C^{\mathsf T})\iota.
 \]
 
-对国家 $a$ 的资产 $i$，
+联合协方差正定且世界市场持有向量非零，故 $Q>0$。对国家 $a$ 的资产 $i$，
 \[
  \beta_{a,i;W}=\frac{V_W[(A+C)\iota]_i}{p_{a,i}Q},\qquad
  \bar r_W-r_F=\frac{\alpha Q}{LV_W}.
@@ -278,7 +285,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  \ell_a=\frac\alpha nH\iota+CB^{-1}\ell_b}.
 \]
 
-所以均衡价格为 $p_k=(\bar v-\ell_k)/R$，资产 $i$ 的风险溢价为 $\ell_{k,i}/p_{k,i}$。国家 $a$ 的风险中，不能用国家 $b$ 资产对冲的部分 $H$ 由本国 $n$ 位投资者承担。
+所以均衡价格为 $p_k=(\bar v-\ell_k)/R$；当 $p_{k,i}\ne0$ 时，资产 $i$ 的风险溢价为 $\ell_{k,i}/p_{k,i}$。国家 $a$ 的风险中，不能用国家 $b$ 资产对冲的部分 $H$ 由本国 $n$ 位投资者承担。
 
 \item 令两国市场市值为 $V_a=\iota^{\mathsf T}p_a>0$、$V_b=\iota^{\mathsf T}p_b>0$，市场风险溢价分别为 $\lambda_a=\bar r_a-r_F$、$\lambda_b=\bar r_b-r_F$。定义
 \[
@@ -302,7 +309,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  +\underbrace{\frac{V_b}{p_{a,i}}\left(f_i-f_0\frac{h_i}{s}\right)}_{\gamma_{b,i}}\lambda_b.
 \]
 
-对国家 $b$ 的资产 $i$，则有 $\gamma_{a,i}=0$、$\gamma_{b,i}=V_bd_i/p_{b,i}$。两国市场风险溢价的系数由市场出清决定，反映本国剩余风险与跨国对冲需求。单向开放使国家 $a$ 的剩余风险由本国投资者承担，国家 $b$ 的风险由两国投资者共同承担。\qedhere
+对国家 $b$ 的资产 $i$，则有 $\gamma_{a,i}=0$、$\gamma_{b,i}=V_bd_i/p_{b,i}$。这是一组由市场出清及上述归一化构造的定价系数，反映本国剩余风险与跨国对冲需求；它们不必等同于某个统计回归中唯一识别的系数。单向开放使国家 $a$ 的剩余风险由本国投资者承担，国家 $b$ 的风险由两国投资者共同承担。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -378,7 +385,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  \delta=\frac{Q(1-MB)}{D}}.
 \]
 
-因此，全部前沿组合均为 $w^a,w^b$ 的仿射组合。其中 $B/Q\le M\le1/B$ 对应 $0\le\delta\le1$，这一段前沿由两只基金的凸组合构成。例如 $M>1/B$ 时 $\delta<0$，有效组合需要卖空支付与定价核同方向的基金 $w^b$。
+因此，全部前沿组合均为 $w^a,w^b$ 的仿射组合。其中 $B/Q\le M\le1/B$ 对应 $0\le\delta\le1$，这一段前沿由两只基金的凸组合构成。例如取任意 $M>1/B$，则 $1-MB<0$、$Q,D>0$，因而 $\delta<0$。这个前沿组合是原题“所有前沿组合都是凸组合”的反例；它需要卖空支付与定价核同方向的基金 $w^b$。
 
 若 $D=0$，定价核为常数，所有资产的期望总收益均为 $1/B$，且 $w^a=w^b$；最小方差前沿退化为无风险点。\qedhere
 \end{enumerate}
@@ -403,7 +410,14 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
 \begin{solution}
 设总禀赋非退化，记 $\sigma_e^2=\operatorname{Var}(\widetilde e)>0$，$B=\sum_\omega\phi_\omega$，$R=1/B$，$P_e=\sum_\omega\phi_\omega e_\omega$。代表性参与者的定价核为 $m_\omega=\phi_\omega/\pi_\omega$；在时间可加效用下，可写为 $m_\omega=u'(e_\omega)/u'_0(e_0)$。
 \begin{enumerate}[label=(\alph*)]
-\item 若所有状态支付均可由CAPM定价，对任意支付 $\widetilde x$ 有
+\item 若所有状态支付均可由CAPM定价，先对价格非零的支付将收益率关系乘以价格：
+\[
+ \mathrm E[\widetilde x]-Rp_x
+ =\frac{\operatorname{Cov}(\widetilde x,\widetilde e)}{\sigma_e^2}
+ [\mathrm E[\widetilde e]-RP_e].
+\]
+
+状态支付的线性定价将此式延伸到价格为零的支付；因此对任意支付 $\widetilde x$ 有
 \[
  \mathrm E[m\widetilde x]
  =B\mathrm E[\widetilde x]-\lambda\operatorname{Cov}(\widetilde x,\widetilde e),
@@ -462,7 +476,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
  \qquad (\widetilde e-K)^+=\Delta\widetilde e+b.
 \]
 
-故期权价格为
+两状态下 $\Delta e_a+b=0$、$\Delta e_b+b=e_b-K$，复制了期权的全部支付。状态价格为正且 $e_b>K$，因此期权价格 $C>0$。故期权价格为
 \[
  \boxed{C=\Delta(P_e-e_aB)}.
 \]
