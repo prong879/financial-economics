@@ -77,16 +77,18 @@
 
 % 来源：教师 PPT 第 4—5 页。
 \begin{tcolorbox}[example,title=课堂例题：第三只证券是否增加支付维度]
+\begin{question}
 晴、雨两个状态下，证券 $A,B,C$ 的支付为
 \[
  X=\begin{bmatrix}10&0&20\\0&10&10\end{bmatrix}.
 \]
 
 判断证券 $C$ 是否冗余，并说明其价格与 $A,B$ 的关系。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度；无套利价格必须满足 $S_C=2S_A+S_B$。例如原来持有 $aA+bB+cC$，可改为 $(a+2c)A+(b+c)B$，各状态支付与成本均相同。增加独立支付方向才会扩大市场可生成的支付空间。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{证券市场的等价描述}
 \begin{tcolorbox}[knowledge,title=证券市场的等价基底,breakable=false]
@@ -130,6 +132,7 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 
 % 来源：教师 PPT 第 9—11 页。
 \begin{tcolorbox}[example,title=课堂例题：先复制阿罗证券，再复制任意支付]
+\begin{question}
 两状态、两证券的支付矩阵为
 \[
  X=\begin{bmatrix}2&3\\5&1\end{bmatrix},\qquad
@@ -137,7 +140,7 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 \]
 
 求复制两只阿罗证券及支付 $y=(5,2)^{\mathsf T}$ 的组合与成本。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 由 $X^{-1}$ 的两列，$\theta_1=[-1,5]^{\mathsf T}/13$、$\theta_2=[3,-2]^{\mathsf T}/13$ 分别复制 $[1,0]^{\mathsf T}$、$[0,1]^{\mathsf T}$。要复制支付 $y=[5,2]^{\mathsf T}$，先把它写成五份第一状态阿罗证券加两份第二状态阿罗证券，再换成可交易证券：
 \[
@@ -149,6 +152,7 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 
 复制成本为 $(S_1+21S_2)/13$。阿罗证券不必实际挂牌交易，能用已有证券复制即可。
 \end{solution}
+\end{tcolorbox}
 
 \section{套利}\label{sec:wj-four-arbitrage}
 \subsection{组合成本与套利的定义}
@@ -183,6 +187,7 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 初始成本为零时，买入恰由卖空收入融资；初始成本为负时，卖空收入支付买入成本后还有余额。这两种交易都由组合本身提供初始资金。
 
 \begin{tcolorbox}[example]
+\begin{question}
 \WJFourExample{ex:wj-four-1}三只证券的价格写在树的根上，支付写在各枝：
 \begin{center}
 \begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
@@ -193,13 +198,14 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 \end{tabular}
 \end{center}
 即 $S^{\mathsf T}=[1,\,1,\,2]$，$X=\begin{bmatrix}1&0&2\\1&2&0\\1&2&0\end{bmatrix}$。找出第 1 类和第 2 类套利组合。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 
 组合 $\theta_1=[2;\,-1;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $B$ 和 $1$ 单位 $C$。$S^{\mathsf T}\theta_1=-1$，$X\theta_1=0$，为\textbf{第 1 类套利}。支付 $[2;2;2]$ 可由 $2$ 单位 $A$ 以成本 $2$ 复制，也可由 $1$ 单位 $B$ 加 $1$ 单位 $C$ 以成本 $3$ 复制——同支付不同价。
 
 组合 $\theta_2=[2;\,0;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $C$。$S^{\mathsf T}\theta_2=0$，$X\theta_2=[0;\,2;\,2]>0$，为\textbf{第 2 类套利}。
 \end{solution}
+\end{tcolorbox}
 
 \section{无套利原理}\label{sec:wj-four-no-arbitrage}
 \begin{tcolorbox}[knowledge]
@@ -353,8 +359,9 @@ $A\theta$ 正是组合的扩展净现金流。无套利排除引理的第一种�
 无套利要求所有证券共享同一支严格正的定价向量。市场不完全时，这样的向量可以有多支；每一支都为已有证券给出相同的价格。
 
 \begin{tcolorbox}[example]
+\begin{question}
 \WJFourExample{ex:wj-four-2}市场依次加入例~\ref{ex:wj-four-1} 的证券 $A$、$B$、$C$。求每一步能为全部已有证券定价的严格正向量集合，并判断是否存在套利。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 先只有证券 $A$，价格为 $1$，三个状态下支付均为 $1$。任一满足 $\phi_1+\phi_2+\phi_3=1$ 的 $\phi\gg 0$ 都能为它定价：
 \[
@@ -380,6 +387,7 @@ $A\theta$ 正是组合的扩展净现金流。无套利排除引理的第一种�
 
 三者的交集是空集。不存在能为所有证券定价的 $\phi\gg 0$，与例~\ref{ex:wj-four-1} 中构造的套利一致。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{完全市场中的唯一性}
 \begin{tcolorbox}[knowledge]
@@ -407,15 +415,17 @@ $1$ 单位债券投资的净收益率称为\textbf{无风险利率} $r_F$：
 \end{equation}
 \end{tcolorbox}
 
-债券价格可以写成对其确定支付 $1$ 的贴现。$1/(1+r_F)$ 是折现因子，$r_F$ 是折现率。贴现只是用状态价格定价的一种写法。无风险利率表示今天一单位消费品投资所换取的确定净回报。
+单位无风险债券的价格等于各状态价格之和，也等于将确定支付 $1$ 折现时所用的折现因子 $1/(1+r_F)$。
 
 % 来源：教师 PPT 第 27 页。
 \begin{tcolorbox}[example,title=课堂例题：从状态价格读出利率]
+\begin{question}
 设晴、雨两状态价格为 $\phi=(0.3,0.5)^{\mathsf T}$。求单位无风险债券的价格与无风险利率。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 债券价格为 $S_1=0.3+0.5=0.8$，故 $r_F=1/0.8-1=25\%$。状态价格之和给出折现因子；各状态的相对权重将在下文用于风险支付的估值。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{风险中性概率与定价公式}\label{sec:wj-four-risk-neutral-probability}
 对其余证券 $n=2,\ldots,N$，支付 $x_n=[x_{1n},\ldots,x_{\Omega n}]^{\mathsf T}$，
@@ -447,19 +457,22 @@ $q_{\omega}>0$ 且 $\sum q_{\omega}=1$，故 $Q=\{q_{\omega}\}$ 是有限状态�
 
 % 来源：教师 PPT 第 30—31 页。
 \begin{tcolorbox}[example,title=课堂例题：套餐支付的价格由复制成本决定]
+\begin{question}
 股票 $A$ 价格为 $10$，两状态支付为 $[20,0]^{\mathsf T}$；债券 $B$ 价格为 $5$，支付为 $[5,5]^{\mathsf T}$。衍生证券 $C$ 支付为 $[25,5]^{\mathsf T}$。求其无套利价格，用风险中性定价验证；若 $C$ 报价为 $20$，应如何套利？
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 $C$ 的支付等于 $A+B$，复制成本为 $10+5=15$，所以无套利价格为 $15$。若报价为 $20$，卖出 $C$ 并买入 $A+B$，初始收入 $5$，未来净支付为零，构成第 1 类套利。
 
 由 $20\phi_1=10$、$5(\phi_1+\phi_2)=5$，得 $\phi_1=\phi_2=1/2$，无风险利率为零，故 $S_C=\mathrm E^Q[\tilde x_C]=(25+5)/2=15$。复制法与风险中性法给出同一价格；这里的 $Q$ 由两只证券的报价确定。
 \end{solution}
+\end{tcolorbox}
 
 \begin{tcolorbox}[knowledge,title=真实概率与风险中性概率,breakable=false]
 真实概率 $P$ 描述状态发生的可能性；$Q$ 由状态价格规范化得到，用于对支付定价。下面的例子展示两种概率权重的区别。
 \end{tcolorbox}
 
 \begin{tcolorbox}[example]
+\begin{question}
 \WJFourExample{ex:wj-four-3}1 期有两个等可能状态 $a$、$b$。
 \begin{center}
 \begin{tabular}{@{}c@{\quad}c@{}}
@@ -469,7 +482,7 @@ $C$ 的支付等于 $A+B$，复制成本为 $10+5=15$，所以无套利价格为
 \end{tabular}
 \end{center}
 比较两只证券在真实概率下的期望支付，求风险中性概率，并验证定价公式。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 证券 1 是无风险债券，$r_F=0$。在真实概率下两只证券的期望支付都是 $1$，但证券 2 的价格只有证券 1 的一半：期望值相同，确定支付与风险支付的价格不必相同。
 
@@ -484,6 +497,7 @@ $C$ 的支付等于 $A+B$，复制成本为 $10+5=15$，所以无套利价格为
 
 由此分别得到两只证券的市场价格。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{债券计价与等价鞅测度}
 因为 $S_1=1/(1+r_F)$ 且债券的 1 期支付 $\tilde{x}_1=1$，式~\eqref{eq:wj-four-9}（风险中性期望贴现定价）也可写成
@@ -513,8 +527,9 @@ $S_n$、$S_1$ 以现时消费品计价；$S_n/S_1$ 则是以无风险债券计�
 
 % PPT 第 34 页将“低估破产风险后廉价买保险”直接称为套利；改用可复制事件支付给出严格的零成本例子。
 \begin{tcolorbox}[example,title=课堂例题：零概率与状态支付]
+\begin{question}
 设事件 $E$ 满足 $P(E)>0$，且事件支付 $\mathbf1_E$ 可以交易或复制。若以 $Q'(E)=0$ 的概率测度 $Q'$ 代入风险中性定价公式，该支付的价格是多少？是否产生套利？
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 代入定价公式得到
 \[
@@ -523,6 +538,7 @@ $S_n$、$S_1$ 以现时消费品计价；$S_n/S_1$ 则是以无风险债券计�
 
 免费买入后，各状态支付非负，事件 $E$ 发生时支付为 $1$，构成第 2 类套利。因此，对这类可交易支付，无套利要求定价权重保留其正概率事件。
 \end{solution}
+\end{tcolorbox}
 
 本章只有两个时点，式~\eqref{eq:wj-four-10} 描述 $t=0$ 到 $t=1$ 的关系。多期模型中，相应关系采用各期信息下的条件期望；计价单位与中间现金流须一并纳入价格过程。
 

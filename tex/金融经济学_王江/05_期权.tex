@@ -41,6 +41,7 @@
  \qquad [x]_+=\max\{0,x\}.
  \label{eq:wj-five-1}
 \end{equation}
+图~\ref{fig:wj-five-option-payoffs} 展示看涨与看跌的到期支付如何随标的支付变化。
 % 来源：教材图 5.1、PPT 第 4 页。横轴统一为到期标的支付。
 \begin{center}
 \begin{tikzpicture}[x=.85cm,y=.8cm,font=\small]
@@ -62,6 +63,7 @@
  \node at (2.5,-.8) {看跌期权};
  \end{scope}
 \end{tikzpicture}
+\WJFigure{fig:wj-five-option-payoffs}{欧式看涨与看跌的到期支付}
 \end{center}
 
 \subsection{美式期权与执行时点}
@@ -77,8 +79,9 @@
 % 教材第 68 页将未取正部的 S-K、K-S 称为内在价值；此处将其与非负行权所得区分。
 % 来源：教师 PPT 第 3、5 页。使用其假设数据，不保留具体交易日期或指数点位类比。
 \begin{tcolorbox}[example,title=课堂例题：ETF 期权的支付与损益]
+\begin{question}
 一份 ETF 看涨合约的执行价为 $3.00$ 元，合约单位为 $10{,}000$ 份，权利金为每份 $0.0800$ 元。忽略融资和交易费用，求到期价格为 $3.20$ 元时的行权支付、净利润、权利金收益率，以及盈亏平衡价和最大损失。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 初始支付权利金 $10{,}000\times0.0800=800$ 元。到期净损益为
 \[
@@ -87,6 +90,7 @@
 
 当 $S_T=3.20$ 时，行权支付为 $2{,}000$ 元，净利润为 $1{,}200$ 元，权利金收益率为 $150\%$。盈亏平衡价为 $3.08$ 元，最大净损失为 $800$ 元。名义本金与权利金之比为 $30{,}000/800=37.5$；期权价格对标的价格的敏感度将在复制组合中用对冲比表示。
 \end{solution}
+\end{tcolorbox}
 
 看涨买方以权利金为最大损失，标的价格上涨则使到期支付持续增加，因而具有非对称的损益结构。
 
@@ -148,11 +152,15 @@
  \end{aligned}
 \]
 
-再由定价算子的线性和单调性，分别得到两种期权价格的凸性不等式。
+再由定价算子的线性和单调性，分别得到
+\[
+ c(S,K_\alpha)\le\alpha c(S,K_1)+(1-\alpha)c(S,K_2),\qquad
+ p(S,K_\alpha)\le\alpha p(S,K_1)+(1-\alpha)p(S,K_2).
+\]
 % PPT 第 11 页中间区域的文字论证未完整比较两边，此处用正部函数的凸性统一证明。
 
 \begin{tcolorbox}[knowledge]
-\WJFiveTheorem{thm:wj-five-4}设 $\theta_i\ge0$，证券价格 $S_i>0$、执行价格 $K_i\ge0$，则以证券组合为标的的期权满足
+\WJFiveTheorem{thm:wj-five-4}设 $\theta_i\ge0$，证券价格 $S_i>0$、执行价格 $K_i\ge0$，组合期权与单项期权均可交易且到期日相同，则以证券组合为标的的期权满足
 \[
  \begin{aligned}
  c\!\left(\sum_i\theta_iS_i,\sum_i\theta_iK_i\right)&\le\sum_i\theta_i c(S_i,K_i),\\
@@ -162,8 +170,8 @@
 \end{tcolorbox}
 \textbf{证明。}右边组合的到期支付非负，且不小于相应的带符号线性组合，因此
 \[
- \left[\sum_i\theta_i(\tilde X_i-K_i)\right]_+
- \le\sum_i\theta_i[\tilde X_i-K_i]_+,
+ \underbrace{\left[\sum_i\theta_i(\tilde X_i-K_i)\right]_+}_{\text{组合期权支付}}
+ \le\underbrace{\sum_i\theta_i[\tilde X_i-K_i]_+}_{\text{单项期权支付之和}},
  \quad
  \left[\sum_i\theta_i(K_i-\tilde X_i)\right]_+
  \le\sum_i\theta_i[K_i-\tilde X_i]_+.
@@ -171,6 +179,7 @@
 
 由逐状态支付比较得到价格比较。组合内部的正负差额可以互相抵消，而逐只证券的期权分别保留了正部支付。
 
+\Needspace{8\baselineskip}
 \subsection{看涨和看跌的价格界}
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-5}欧式看涨价格不超过标的价格：$c(S,K)\le S$。
@@ -193,6 +202,7 @@
  \left[S-\frac K R\right]_+\le c(S,K)\le S.
  \label{eq:wj-five-2}
 \end{equation}
+图~\ref{fig:wj-five-option-bounds} 比较三种到期支付，显示价格上下界的来源。
 % 来源：教材图 5.2—5.3、PPT 第 13—14 页。此图比较到期支付，以单调性推导价格界。
 \begin{center}
 \begin{tikzpicture}[x=.95cm,y=.7cm,font=\small]
@@ -205,6 +215,7 @@
  \node[below right] at (2,0) {$K$};
  \node[left] at (0,-2) {$-K$};
 \end{tikzpicture}
+\WJFigure{fig:wj-five-option-bounds}{看涨期权价格界的支付比较}
 \end{center}
 上方的股票支付给出价格上界；下方的“股票减债券”支付给出价格下界。
 
@@ -255,11 +266,13 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[example]
+\begin{question}
 \WJFiveExample{ex:wj-five-1}0 期价格为 $100$ 的股票立即支付股利 $100$，如同资产清算后将全部所得分配出去，除息后股价为零。以此股票为标的、执行价格为 $80$、1 期到期的欧式和美式看涨期权各值多少？
-\end{tcolorbox}
+\end{question}
 \begin{solution}
-1 期股票支付为零，欧式看涨价值为零。美式看涨可在分红前执行：支付 $80$，取得股票并立即收到股利 $100$，净所得为 $20$。故美式看涨价值为 $20$，提前执行严格最优。
+1 期股票支付为零，欧式看涨价值为零。美式看涨可在除息前行权，支付 $80$ 取得股票并收到 $100$ 股利，净所得为 $20$。故美式看涨价值为 $20$，提前执行严格最优。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{无股利时的提前执行}
 \subsubsection{美式看涨}
@@ -473,6 +486,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
  \end{cases}
  \end{aligned}
 \]
+图~\ref{fig:wj-five-butterfly} 展示组合的三角形支付。
 % 来源：教材图 5.4、勘误第 78—79 页、PPT 第 28—29 页。横轴使用到期支付而非当期股价。
 \begin{center}
 \begin{tikzpicture}[x=.9cm,y=.85cm,font=\small]
@@ -485,22 +499,25 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
  \node[below] at (4,0) {$K$};
  \node[below] at (6,0) {$K+\delta$};
 \end{tikzpicture}
+\WJFigure{fig:wj-five-butterfly}{蝴蝶组合的到期支付}
 \end{center}
 支付只集中在执行价附近，最高支付为 $\delta$，形状类似只在局部状态支付的或有证券。
 
 % 来源：PPT 第 28 页的 61、55/60/65、10/7/5 六个月期算例。
 \begin{tcolorbox}[example,title=课堂例题：蝴蝶组合的支付与利润]
+\begin{question}
 股票现价为 $61$，三只六个月到期看涨期权的执行价为 $55,60,65$，价格分别为 $10,7,5$。按 $+1,-2,+1$ 配置，忽略融资和交易费用，求成本、最大净利润、最大损失和盈亏平衡价。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
-初始成本为 $10-2\times7+5=1$。到期支付在 $S_T\le55$ 或 $S_T\ge65$ 时为零，在 $(55,60]$ 为 $S_T-55$，在 $(60,65)$ 为 $65-S_T$，最高为 $5$。净损益等于到期支付减去成本 $1$，故最大净利润为 $4$、最大净损失为 $1$，盈亏平衡价为 $56$、$64$。计入融资时，用初始成本的到期值计算到期净损益。
+初始成本为 $10-2\times7+5=1$。例如，当 $55<S_T\le60$ 时，三条腿的到期支付依次为 $S_T-55$、$0$ 和 $0$，组合支付为 $S_T-55$。到期支付在 $S_T\le55$ 或 $S_T\ge65$ 时为零，在 $(55,60]$ 为 $S_T-55$，在 $(60,65)$ 为 $65-S_T$，最高为 $5$。净损益等于到期支付减去成本 $1$，故最大净利润为 $4$、最大净损失为 $1$，盈亏平衡价为 $56$、$64$。计入融资时，用初始成本的到期值计算到期净损益。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{状态指数证券与市场完全化}
 \begin{tcolorbox}[knowledge,title=状态分离与状态指数证券]
 若证券在任意两个不同状态下的支付均不同，称其支付具有\textbf{状态分离}（state separating）性质，该证券称为\textbf{状态指数证券}（state-index security）。按支付大小排序，记为 $X_1<X_2<\cdots<X_\Omega$。
 \end{tcolorbox}
-以它为标的、执行价为 $X_\omega$ 的看涨支付为
+假设指数证券的支付非负，并且下述相同到期日、相应执行价的欧式看涨期权均可交易。以它为标的、执行价为 $X_\omega$ 的看涨支付为
 \[
  [\tilde X-X_\omega]_+
  =[0,\ldots,0,X_{\omega+1}-X_\omega,\ldots,X_\Omega-X_\omega]^{\mathsf T}.
@@ -522,7 +539,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
 状态分离使每个状态具有不同的执行价阈值。若两个状态下的标的支付相同，则依赖同一标的支付的期权也在这两个状态下支付相同。
 
 \subsection{用蝴蝶组合复制阿罗证券}
-为展示构造，设状态 $i=1,\ldots,\Omega$ 下指数证券支付为 $i\delta$。记执行价 $n\delta$ 的看涨支付向量为 $C_n$，其中 $C_0$ 等于指数证券本身。执行价 $0,\delta,\ldots,(\Omega-1)\delta$ 对应的支付矩阵为
+为展示构造，设状态 $i=1,\ldots,\Omega$ 下指数证券支付为 $i\delta$。记执行价 $n\delta$ 的看涨支付向量为 $C_n$，其中 $C_0$ 等于指数证券本身，$C_\Omega=C_{\Omega+1}=0$，因为相应执行价达到或超过最高支付。执行价 $0,\delta,\ldots,(\Omega-1)\delta$ 对应的支付矩阵为
 \[
  A_\delta=\begin{bmatrix}
  \delta&0&\cdots&0\\
@@ -545,12 +562,13 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
  =\mathbf e_i.
 \]
 
-在最高状态处，$C_\Omega=C_{\Omega+1}=0$，所以直接持有 $C_{\Omega-1}/\delta$ 即可。每个单位状态支付均能复制，任意支付向量 $y$ 也就能由 $\sum_i y_i\mathbf e_i$ 复制。
+在最高状态，持有 $1/\delta$ 份执行价为 $(\Omega-1)\delta$ 的看涨期权，即可复制单位状态证券。由此可将任意支付向量 $y$ 拆成 $\sum_i y_i\mathbf e_i$，逐项复制。
 
 % 来源：教师 PPT 第 34 页。
 \begin{tcolorbox}[example,title=课堂例题：在三个状态中复制第二个状态]
+\begin{question}
 标的支付为 $(10,20,30)^{\mathsf T}$，可交易看涨的执行价为 $0,10,20$。构造只在第二个状态支付 $1$ 的组合。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 三只期权的支付矩阵为
 \[
@@ -565,6 +583,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
 
 这等价于中心执行价 $20$、间距 $10$ 的蝴蝶组合除以 $10$；执行价 $30$ 的看涨到期支付恒为零。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{从期权价格恢复状态价格}
 \subsubsection{离散状态价格与二阶差分}
@@ -622,6 +641,8 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
 \begin{tcolorbox}[knowledge,title=风险中性密度与定价,breakable=false]
 规范化状态价格密度，得到风险中性概率密度
 \begin{equation}
+ \underbrace{c''(K)}_{\text{状态价格密度}}
+ =\underbrace{Bq(K)}_{\text{折现的风险中性密度}},\qquad
  q(K)=\frac{c''(K)}B=R c''(K),\qquad
  \frac{V(y)}B=\int_0^\infty q(K)y(K)\,\mathrm dK.
  \label{eq:wj-five-density}

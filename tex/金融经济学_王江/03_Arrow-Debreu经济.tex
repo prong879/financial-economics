@@ -64,6 +64,8 @@
 \begin{tcolorbox}[example,title=课堂例题：只在台风状态支付的证券]
 设明天有晴天、下雨、台风、地震四个互斥且穷尽的可能状态，按此顺序排列。某证券只在台风发生时支付 $1$ 单位消费品，其他状态支付为零，其支付向量为 $(0,0,1,0)^{\mathsf T}$。今天购买一份该证券所需支付的消费品数量，就是台风状态的状态价格。
 \end{tcolorbox}
+一般证券的支付可能含有负值，价格也可能为负。状态证券的支付为非负，并在对应状态支付一单位消费品，因此有以下结论。
+
 \begin{tcolorbox}[knowledge,title=状态价格的正性,breakable=false]
 只考虑正概率状态。在无摩擦、允许自由买卖且无套利时，
 \begin{equation}
@@ -87,7 +89,16 @@
 有限状态、有限价格下，这要求证券支付能够生成全部状态支付。Arrow-Debreu 市场因此是完全市场。完全性说明支付可以复制；个人能够负担的消费还须满足其财富约束。
 
 \begin{tcolorbox}[example]
-\WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $(1,1)^{\mathsf T}$ 的无风险债券。若要复制消费 $(2,1)^{\mathsf T}$，债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。
+\begin{question}
+\WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $(1,1)^{\mathsf T}$ 的无风险债券。能否复制消费 $(2,1)^{\mathsf T}$？市场是否完全？
+\end{question}
+\begin{solution}
+债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。若改为交易例~\ref{ex:wj-three-1} 的两只状态证券，则
+\[
+ \underbrace{2x_a+x_b}_{\text{复制目标支付的组合}}
+ =\begin{bmatrix}2\\1\end{bmatrix}.
+\]
+\end{solution}
 \end{tcolorbox}
 
 \subsection{完全性的判别}
@@ -107,30 +118,44 @@
 证券数至少等于状态数是必要条件；证券之间的线性相关性决定这些证券提供了多少独立支付方向。
 
 % 来源：教师 PPT 第 9 页的三组支付矩阵。
+\Needspace{12\baselineskip}
 \begin{tcolorbox}[example,title=课堂例题：三组支付矩阵的完全性]
+\begin{question}
 判断下列三个市场是否完全：
 \[
  X_1=\begin{bmatrix}1&3\\2&4\end{bmatrix},\quad
  X_2=\begin{bmatrix}1&2\\2&4\end{bmatrix},\quad
  X_3=\begin{bmatrix}1&0&1\\0&1&1\\1&1&1\end{bmatrix}.
 \]
+\end{question}
+\begin{solution}
+$\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的两倍，秩为 $1<2$，故第二个市场不完全。$\det X_3=-1\ne0$，故第三个市场完全；其中虽未直接列出全部阿罗证券，也能通过组合复制它们。例如，第三组持仓 $(0,-1,1)^{\mathsf T}$ 复制第一状态证券：
+\[
+ X_3\begin{bmatrix}0\\-1\\1\end{bmatrix}
+ =\begin{bmatrix}1\\0\\0\end{bmatrix}.
+\]
+两只证券面对三个状态时，秩最多为 $2$，市场必不完全。
+\end{solution}
 \end{tcolorbox}
-$\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的两倍，秩为 $1<2$，故第二个市场不完全。$\det X_3=-1\ne0$，故第三个市场完全；其中虽未直接列出全部阿罗证券，也能通过组合复制它们。两只证券面对三个状态时，秩最多为 $2$，市场必不完全。
 
 在相同的状态空间中，完全市场都能生成全部状态支付。若偏好、禀赋及对应的支付定价相同，这些市场提供相同的消费机会；它们可以使用不同的证券作为支付空间的基底。
 
 \subsection{市场不完全与金融创新}
 % 来源：教师 PPT 第 10、23 页；将金融创新归入完全性主题。
-\begin{tcolorbox}[example,title=课堂例题：保险合约为何可能缺失]
-失业保险可能降低投保人寻找工作的激励；全额手机屏幕保险可能降低使用保护措施的意愿。健康状况较差的人也可能更愿意购买健康保险，而保险人难以准确识别其风险类型。分析这些因素如何影响保险合约的供给。
-\end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=道德风险与逆向选择,breakable=false]
 投保后行为发生变化属于\textbf{道德风险}；投保前不同风险类型的选择差异属于\textbf{逆向选择}。
 \end{tcolorbox}
 
+\begin{tcolorbox}[example,title=课堂例题：保险合约为何可能缺失]
+\begin{question}
+失业保险可能降低投保人寻找工作的激励；全额手机屏幕保险可能降低使用保护措施的意愿。健康状况较差的人也可能更愿意购买健康保险，而保险人难以准确识别其风险类型。分析这些因素如何影响保险合约的供给。
+\end{question}
+\begin{solution}
 加上损失可验证性不足和合约执行成本，一些状态支付便难以成为可交易合约。大量独立风险有利于保险人分散损失，系统性风险则需要额外的风险承担能力和融资安排。
 
 健康保险中，若保险人难以区分风险类型，可能按投保群体的平均风险收取统一保费。低风险者认为保费过高而退出后，留下的投保群体平均风险上升，保险人便可能进一步提高保费，促使更多低风险者退出。这种“保费上升—低风险者退出—平均风险继续上升”的反馈，可能使保险覆盖范围收缩，甚至使某些合约退出市场。
+\end{solution}
+\end{tcolorbox}
 
 金融创新通过增加原有列空间之外的新支付向量，扩大可交易支付空间。例如，巨灾债券提供特定灾害状态的支付，通胀挂钩债券提供与购买力变化相关的支付，信用衍生品提供与违约事件相关的支付。其对完全性的贡献取决于新支付是否增加矩阵的秩。
 
@@ -242,7 +267,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \mathcal L=U(c)+\lambda(w-\hat\phi^{\mathsf T}c)+\sum_{i=0}^{\Omega}\mu_i c_i
 \]
 
-读出。$\lambda$ 是增加一单位财富的边际价值；$\mu_i$ 则对应消费非负约束。正消费分量的单位支出边际效用为 $\lambda$；零消费分量至多为 $\lambda$，此时继续减少该消费受到非负约束限制。
+读出。$\lambda$ 是预算约束的影子价格，$\mu_i$ 对应第 $i$ 项消费的非负约束。正消费分量每增加一单位支出所带来的边际效用等于 $\lambda$；零消费分量的这一数值至多为 $\lambda$。
 
 % 来源：教材印刷第 40 页；相对于非负消费集区分内点与边界。
 \begin{tcolorbox}[knowledge,title=内点解与角点解,breakable=false]
@@ -250,9 +275,13 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \end{tcolorbox}
 
 \begin{tcolorbox}[example,title=课堂例题：角点消费与互补松弛]
+\begin{question}
 设 $U(c_0,c_1)=2c_0+c_1$，两项价格均为 $1$，财富为 $1$。求最优消费及相应乘子。
-\end{tcolorbox}
+\end{question}
+\begin{solution}
 当期消费的单位支出边际效用为 $2$，高于未来消费的 $1$，故 $c^*=(1,0)$。取 $\lambda=2$、$\mu_0=0$、$\mu_1=1$，有 $\partial_1U=1=2-1$ 与 $\mu_1c_1^*=0$，满足全部条件。
+\end{solution}
+\end{tcolorbox}
 
 \subsection{内点解与边际替代率}
 \begin{tcolorbox}[knowledge,title=内点最优与边际替代率,breakable=false]
@@ -285,13 +314,14 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 % 来源：教材印刷第 39—40 页，PPT 第 17—18 页；末项分母统一为 phi_b。
 \begin{tcolorbox}[example]
+\begin{question}
 \WJThreeExample{ex:wj-three-3} 考虑“Lucas 树经济”，1 期有两个概率相等的状态 $a$ 和 $b$。假设 1 期的两个可能状态的状态价格分别为 $\phi_{a}$ 和 $\phi_{b}$。考虑一个参与者，他的禀赋为 $(e_{0};e_{1a};e_{1b})$。他具有如下对数形式的效用函数：
 \[
     U(c_{0},c_{1a},c_{1b})=\log c_{0}+\tfrac12(\log c_{1a}+\log c_{1b})
 \]
 
 他的最优消费/组合选择是什么？
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
 \[
@@ -350,6 +380,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \]
 
 \end{solution}
+\end{tcolorbox}
 
 
 \section{市场均衡}
@@ -387,7 +418,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \begin{tcolorbox}[knowledge]
 \WJThreeTheorem{thm:wj-three-equilibrium-existence}在两期、有限状态的 Arrow-Debreu 交换经济中，若每人的偏好连续、凸且严格单调（即公理~\ref{axiom:wj-two-1} 所述的不满足性），并且每人的禀赋向量均严格为正，则存在竞争均衡；均衡价格各分量严格为正，可将当期价格归一为 $1$。
 \end{tcolorbox}
-这是有限商品交换经济的均衡存在结论：把每个日期、状态下的消费看作一种商品，完全的状态证券将个人预算化为该交换经济的价值预算。其一般证明需要不动点方法，本章使用该存在结论。
+把当期消费与未来各状态的消费分别视为一种商品，状态证券预算就成为有限商品交换经济的价值预算。上面的偏好和禀赋假设给出均衡存在的一组充分条件。
 
 对于含零禀赋分量的具体经济，可直接检验最优消费与市场出清，例~\ref{ex:wj-three-4} 即采用这种方法。
 % 原书定理 3.3 未逐项给出生存性条件。此处保留严格正个人禀赋作为明确的充分条件。
@@ -437,6 +468,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \subsubsection{两状态经济的均衡}
 % 来源：教材印刷第 42—43 页，PPT 第 24 页。
 \begin{tcolorbox}[example]
+\begin{question}
 \WJThreeExample{ex:wj-three-4} 考虑一个经济，在 1 期有两个概率相等的状态 $a$ 和 $b$。经济中有参与者 1 和 2，他们具有的禀赋分别为：
 \begin{center}
 \WJEventTree[left={$e_{1}{:}100$}]{0,0}
@@ -449,7 +481,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \]
 
 求均衡状态价格、消费配置和证券净交易量。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
 
@@ -528,6 +560,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 参与者 1 支出 $100/4+25=50$，参与者 2 获得同额收入，二人的当期消费均为 $50$。状态 $b$ 的总禀赋较少，每单位消费更稀缺，因此即使两状态概率相同，仍有 $\phi_b>\phi_a$。
 
 \end{solution}
+\end{tcolorbox}
 
 
 \subsubsection{证券缺失与交易成本}
