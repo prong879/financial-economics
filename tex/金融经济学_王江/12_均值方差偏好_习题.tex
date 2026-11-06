@@ -157,7 +157,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-\item 先设 $\bar r_1\ne\bar r_2$。给定组合均值 $m$，预算和均值约束唯一确定
+\item 允许卖空。先设 $\bar r_1\ne\bar r_2$。给定组合均值 $m$，预算和均值约束唯一确定
 \[
  z=\frac{m-\bar r_2}{\bar r_1-\bar r_2},\qquad1-z=\frac{\bar r_1-m}{\bar r_1-\bar r_2}.
 \]
@@ -170,9 +170,11 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
  +\sigma_2^2(\bar r_1-m)^2}{(\bar r_1-\bar r_2)^2}.
 \]
 
-若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，MVP的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，均值为 $z^*\bar r_1+(1-z^*)\bar r_2$；均值不低于此值的前沿部分构成MVE。若 $D=0$，则 $\rho=1$ 且 $\sigma_1=\sigma_2$；所有组合的风险相同，而均值可无界增加，所以不存在MVP或有限的MVE组合。每个给定均值仍唯一确定一个MVF组合。
+若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，MVP的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，均值为 $z^*\bar r_1+(1-z^*)\bar r_2$。均值不低于此值的前沿部分构成MVE。
 
-\item 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。它们是否在MVE上，取决于各自均值是否不低于MVP均值。这里的前沿取MVF口径，MVE部分由(a)中的均值条件确定。
+若 $D=0$，所有组合的方差相同，所以每个组合都是MVP。由于两只证券的均值不同，允许卖空时可以在同一方差下任意提高均值，因此没有MVE组合。每个给定均值仍唯一确定一个MVF组合。
+
+\item 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。若 $D>0$，均值不低于MVP均值的证券也在MVE上。若 $D=0$，两只证券都不在MVE上。
 
 \item 完全负相关、完全正相关时分别有
 \[
@@ -186,7 +188,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
  \end{aligned}
 \]
 
-第一式给出两条相接射线；第二式在 $\sigma_1\ne\sigma_2$ 时也给出两条相接射线，$\sigma_1=\sigma_2$ 时退化为 $\sigma_p=\sigma_1$ 的竖直线，此时均值可任意增加，因而没有有限的MVE组合。$\rho_{12}=0$ 时，
+第一式给出两条相接射线。第二式在 $\sigma_1\ne\sigma_2$ 时也给出两条相接射线，$\sigma_1=\sigma_2$ 时退化为 $\sigma_p=\sigma_1$ 的竖直线，对应(a)中的 $D=0$。$\rho_{12}=0$ 时，
 \[
  \sigma_p^2=\frac{\sigma_1^2(m-\bar r_2)^2+\sigma_2^2(\bar r_1-m)^2}
  {(\bar r_1-\bar r_2)^2},
@@ -379,13 +381,15 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-在无风险证券缺席的情形，前沿权重具有仿射形式 $z(m)=z_0+m(z_1-z_0)$。若 $z_A,z_B$ 均为MVE，则 $m_A,m_B\ge a/c$。对 $0\le t\le1$，
+仅有风险证券时，若 $d=0$，前沿只包含MVP。若 $d>0$，前沿权重具有仿射形式 $z(m)=z_0+m(z_1-z_0)$。若 $z_A,z_B$ 均为MVE，则 $m_A,m_B\ge a/c$。对 $0\le t\le1$，
 \[
  tz_A+(1-t)z_B=z(tm_A+(1-t)m_B),\qquad
  tm_A+(1-t)m_B\ge a/c.
 \]
 
-故所得组合仍位于前沿上半支，是MVE。有无风险证券且 $K>0$ 时，MVE风险权重均为 $\lambda\Sigma^{-1}\eta$，$\lambda\ge0$；它们的凸组合仍具有这一形式。$d=0$ 或 $K=0$ 对应的相关前沿退化为单点，结论同样成立。
+故所得组合仍位于前沿上半支，是MVE。
+
+有无风险证券时，若 $K=0$，前沿只包含无风险组合。若 $K>0$，MVE组合的风险权重均为 $\lambda\Sigma^{-1}\eta$，其中 $\lambda\ge0$。两个这样的权重向量的凸组合仍具有这一形式，故仍为MVE。
 \end{solution}
 
 \Needspace{8\baselineskip}

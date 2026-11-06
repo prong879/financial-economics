@@ -59,7 +59,7 @@
 \end{tcolorbox}
 $\sim_d$ 表示\textbf{分布相同}。第 3 条是关于存在某种配对的陈述，不表示实际市场中同一状态下的 $A$ 必定比 $B$ 好，也不要求 $\tilde d$ 与 $\tilde x_B$ 独立。
 
-\textbf{证明（效用判据与分布判据）：}先设收益取值有界，在包含其支撑的区间 $[L,H]$ 上分部积分。记 $\Delta F=F_A-F_B$，对光滑 $u$，先用分布函数表示期望，再分部积分：
+\textbf{证明（效用判据与分布判据）：}先设收益取值有界，取 $L$ 严格低于两分布的支撑下端，$H$ 不低于两分布的支撑上端。记 $\Delta F=F_A-F_B$，对光滑 $u$，先用分布函数表示期望，再分部积分：
 \[
 \begin{aligned}
  \mathrm E[u(\tilde x_A)]-\mathrm E[u(\tilde x_B)]
@@ -349,16 +349,19 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 \subsection{收益率分布与共同基金分离}
 \begin{tcolorbox}[knowledge,breakable=false]
 % 按课堂投影片保留定理措辞、三条条件及权重符号 w_n。
-\WJNineTheorem{thm:wj-nine-4}{（Ross）} 假设存在总收益率为 $x_F$ 的无风险证券。下列非退化情形中，风险资产满足因子条件时，存在同一只风险基金，使每个有最优解的递增凹效用都能在该基金与无风险证券之间找到最优组合。反向结论在下面给出的有限状态、共同基金存在且严格凹偏好有非零内点最优风险投资的条件下成立：对于 $n=1,\ldots,N-1$，存在 $\beta_n,w_n,\tilde y,\tilde e_n$，使得
+\WJNineTheorem{thm:wj-nine-4}{（Ross）} 假设存在总收益率为 $x_F$ 的无风险证券。考虑以下三条因子条件。对每只风险证券 $n=1,\ldots,N-1$，存在载荷 $\beta_n$、基金权重 $w_n$ 和残差 $\tilde e_n$，以及共同因子 $\tilde y$，使得
 \begin{enumerate}
  \item $\displaystyle \tilde x_n=x_F+\beta_n\tilde y+\tilde e_n$；
  \item $\displaystyle \mathrm E[\tilde e_n\mid\tilde y]=0$；
  \item $\displaystyle \sum_{n=1}^{N-1}w_n\tilde e_n=0$，其中
        $\displaystyle \sum_{n=1}^{N-1}w_n=1$。
 \end{enumerate}
-其中风险基金因子载荷 $\beta_w=\sum_{n=1}^{N-1}w_n\beta_n\ne0$，无风险证券是另一只分离基金。
+其中风险基金因子载荷 $\beta_w=\sum_{n=1}^{N-1}w_n\beta_n\ne0$。
+
+\textbf{充分性。}满足上述条件时，每个有最优解的递增凹效用投资者，都能用权重为 $(w_1,\ldots,w_{N-1})$ 的风险基金与无风险证券构成一个最优组合。
+
+\textbf{必要性（有限状态）。}若存在对上述投资者共同适用的风险基金，各状态概率为正、该基金的期望超额收益非零，且有一种光滑的收益率效用 $v_0$ 具有非零的内点最优风险头寸，并在相关区间上满足 $v_0'>0$、$v_0''<0$，则可以反推出这三条因子条件。
 \end{tcolorbox}
-因此，在下文必要性证明的附加条件下，上述因子条件与共同基金分离等价。一般分布及零风险头寸等退化情形需要另行考察。
 
 \textbf{符号说明：}这里 $x_F=1+r_F$ 是无风险总收益率，$w_n$ 是风险基金在第 $n$ 只风险证券上的权重。用 $w=(w_1,\ldots,w_{N-1},0)^{\mathsf T}$ 表示风险基金的权重向量，用 $F=(0,\ldots,0,1)^{\mathsf T}$ 表示无风险基金；本段的 $w$ 是向量，初始财富另记为 $W$。无风险证券作为分离基金之一，故这里也属于定义~\ref{def:wj-nine-5} 的两基金货币分离。
 
