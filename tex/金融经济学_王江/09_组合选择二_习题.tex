@@ -144,7 +144,7 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-采用共同概率信念，记 $\bar r_{\max}=\max_i\mathrm E[\tilde r_i]$，并令
+假设参与者采用共同概率信念（原题未明写此条件），记 $\bar r_{\max}=\max_i\mathrm E[\tilde r_i]$，并令
 \[
  I=\{i:\mathrm E[\tilde r_i]=\bar r_{\max}\},\qquad m=|I|.
 \]
@@ -164,13 +164,17 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-由练习~\ref{exer:wj-eight-1} 的交换对称性与 Jensen 不等式，任意可行权重组合的期望效用均不超过等权组合：
+假设参与者效用凹、采用共同概率，且可行集合对证券置换和取平均封闭。对任意可行权重 $z$，将其全部 $N!$ 个置换取平均，得到
+\[
+ \frac1{N!}\sum_{\pi}z_{\pi}=\frac{\iota}{N}.
+\]
+独立同分布使各置换组合的收益分布相同；由 Jensen 不等式，任意可行权重组合的期望效用均不超过等权组合：
 \[
  \mathrm E\!\left[u\!\left(w\left(1+\sum_{i=1}^N z_i\tilde r_i\right)\right)\right]
  \le\mathrm E\!\left[u\!\left(w\left(1+\frac1N\sum_{i=1}^N\tilde r_i\right)\right)\right].
 \]
 
-因此所有参与者都可以选择同一只等权基金 $z_f=\iota/N$，单基金分离成立。凹性保证该共同选择最优；严格凹性结合非冗余条件进一步给出唯一性。
+原题只写独立同分布；若没有凹性等条件，上述 Jensen 论证不能直接使用。因此在这些条件下，所有参与者都可以选择同一只等权基金 $z_f=\iota/N$，单基金分离成立。凹性保证该共同选择最优；严格凹性结合非冗余条件进一步给出唯一性。
 \end{solution}
 
 \begin{samepage}
@@ -200,7 +204,7 @@
     \[
         w\mu-aw^{2}\bigl[(1+r_{F}+x^{\top}\mu)\mu+\Sigma x\bigr]=0
     \]
-    即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得最优权重
+    目标函数的 Hessian 为 $-aw^2(\mu\mu^{\mathsf T}+\Sigma)\prec0$，故一阶条件给出唯一最大值。即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得最优权重
     \[
         x^{*}=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
     \]
@@ -232,7 +236,11 @@
     \[
         E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
     \]
-    其中 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{\top}\Sigma x$，$\mu=\bar{r}-r_{F}\iota$。对 $x$ 的一阶条件为
+    其中 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{\top}\Sigma x$，$\mu=\bar{r}-r_{F}\iota$。最大化期望效用等价于最大化确定性等价
+    \[
+      CE=w(1+r_F)+wx^{\mathsf T}\mu-\frac a2w^2x^{\mathsf T}\Sigma x.
+    \]
+    其 Hessian 为 $-aw^2\Sigma\prec0$，因此最优解唯一。对 $x$ 的一阶条件为
     \[
         w\mu-aw^{2}\Sigma x=0
     \]
@@ -277,13 +285,13 @@
  \Sigma=\begin{bmatrix}A&C\\C^{\mathsf T}&B\end{bmatrix}.
  \]
 
- 定义新收益剔除旧收益线性成分后的协方差及超额收益均值：
+ 原题所述新证券不能由旧证券生成，未必排除新证券之间冗余；这里的扩充协方差正定是更强的条件。定义新收益剔除旧收益线性成分后的协方差及超额收益均值：
  \[
  S=B-C^{\mathsf T}A^{-1}C\succ0,\qquad
  \delta=\mu_1-C^{\mathsf T}A^{-1}\mu_0.
  \]
 
- 分块求逆给出
+ 由分块一阶方程，先消去旧证券权重，得到 $awSx_1^*=\delta$。分块求逆进一步给出
  \[
  \mu^{\mathsf T}\Sigma^{-1}\mu
  =\mu_0^{\mathsf T}A^{-1}\mu_0+\delta^{\mathsf T}S^{-1}\delta,
@@ -325,7 +333,7 @@
  \]
 
  分母为正，持仓方向由剔除旧资产风险敞口后的超额收益
- $\mu_1-c^{\mathsf T}A^{-1}\mu_0$ 决定。因此仅凭 $\mu_1$ 的正负，无法确定 $z_{N+1}$ 的正负。
+ $\mu_1-c^{\mathsf T}A^{-1}\mu_0$ 决定。因此仅凭 $\mu_1$ 的正负，无法确定 $z_{N+1}$ 的正负。例如一只旧资产取 $\mu_0=0.10$、方差 $0.04$，新资产取 $\mu_1=0.05$、方差 $0.09$，协方差 $0.04$。协方差矩阵行列式为 $0.002>0$，但残差超额收益为 $0.05-(0.04/0.04)0.10=-0.05$，故新资产最优权重为负。
 
  \item 均值和标准差的单独比较没有包含协方差信息。只要
  $\mu_1-c^{\mathsf T}A^{-1}\mu_0\ne0$，新证券就有非零最优持仓。

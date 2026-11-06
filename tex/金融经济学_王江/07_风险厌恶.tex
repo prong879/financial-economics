@@ -168,9 +168,10 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义~\ref{def:wj-seven-3
 \end{tcolorbox}
 
 % 来源：PPT 第 5 页。
-\begin{tcolorbox}[example,title=课堂例题：入局费与公平赌博,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：入局费与公平赌博]
+\begin{question}
 掷公平硬币，正面获得 200 元，反面获得 0 元。入局费分别为 $c=100,50,0$ 元，判断各赌局是否公平。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 扣除入局费后的净支付为
 \[
@@ -180,6 +181,7 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义~\ref{def:wj-seven-3
 
 因此 $c=100$ 时是公平赌博；$c=50$ 或 $c=0$ 时净期望收益分别为 50 元和 100 元，均不是公平赌博。严格风险厌恶者拒绝 $c=100$ 的非退化公平赌博。$c=50$ 或 $0$ 时，参与决策由正的期望收益与风险的权衡决定。
 \end{solution}
+\end{tcolorbox}
 
 \section{风险厌恶的度量}\label{sec:wj-seven-3}
 风险溢价同时反映风险分布、效用与初始财富。小风险展开把风险大小与偏好曲率分开，给出绝对和相对风险厌恶系数。
@@ -325,9 +327,10 @@ $\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是
 
 \subsubsection{对数效用的精确计算与近似}
 % 来源：PPT 第 13—14 页；精确值由原始财富计算，课件 86681.87 来自过早舍入。
-\begin{tcolorbox}[example,title=课堂例题：对数效用下的大风险,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：对数效用下的大风险]
+\begin{question}
 初始财富 100\,000 元，等概率变为 150\,000 元或 50\,000 元，$u(w)=\ln w$。计算效用变化、确定性等值与风险溢价，并与二阶近似比较。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 净赌博为 $\pm50\,000$，期望为零。
 \[
@@ -356,11 +359,13 @@ $\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是
 本例若套用二阶近似，只得到 $\pi\approx\tfrac12(1/100000)50000^2=12500$ 元；风险达到初始财富的 50\%，近似与精确值存在明显差异。
 
 \end{solution}
+\end{tcolorbox}
 
 % 来源：PPT 第 18 页。
-\begin{tcolorbox}[example,title=课堂例题：对数效用下的小风险,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：对数效用下的小风险]
+\begin{question}
  $w=20\,000$ 元，等概率赢或输 10 元，$u(w)=\ln w$。计算风险溢价的近似值与精确值。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 由于 $A(w)=1/w$、$\operatorname{Var}(\tilde g)=100$，
 \[
@@ -379,6 +384,7 @@ $\mathrm E[\tilde z^j]$ 是这里的 $j$ 阶中心矩：一阶为零，二阶是
 
 小风险下近似十分接近精确值。风险溢价约为四分之一分钱，以财富金额计量。
 \end{solution}
+\end{tcolorbox}
 
 \subsection{相对风险厌恶与比例风险}
 
@@ -425,9 +431,10 @@ $A(w)$ 的单位是财富单位的倒数，$R(w)$ 无量纲。若 $\bar u=\alpha
 \end{tcolorbox}
 
 % 来源：PPT 第 21 页。
-\begin{tcolorbox}[example,title=课堂例题：相同财富比例的风险,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：相同财富比例的风险]
+\begin{question}
 两人财富分别为 10 万元、1000 万元，均具有 $\gamma=2$ 的 CRRA 效用 $u(w)=-1/w$，面临等概率赢或输财富的 10\% 的赌博。计算两人的风险溢价金额与比例。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 令 $\tilde g=\pm0.1$，则
 \[
@@ -452,6 +459,7 @@ $A(w)$ 的单位是财富单位的倒数，$R(w)$ 无量纲。若 $\bar u=\alpha
 \]
 故同一 $a$ 的两人面对\textbf{同一个固定金额风险}时，风险溢价金额相同，不随初始财富改变。例如，$\pm1$ 万元的固定赌注分别占两人财富的 10\% 和 0.1\%；消除这项风险所愿付的金额由参数 $a$ 和赌博分布决定。
 \end{solution}
+\end{tcolorbox}
 
 \section{风险厌恶的几个例子}\label{sec:wj-seven-4}
 以下效用函数常用于后续的市场模型。
@@ -616,9 +624,10 @@ CE 越低，消除同一风险所愿付的金额越高。总体风险厌恶比�
 
 \input{tex/金融经济学_王江/figures/07_CE比较.tex}
 
-\begin{tcolorbox}[example,title=课堂例题：对数与平方根效用的比较,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：对数与平方根效用的比较]
+\begin{question}
 两人都面对等概率为 1 或 9 的随机财富，第一人取 $u_1(w)=\ln w$，第二人取 $u_2(w)=\sqrt w$。比较两人的风险厌恶系数、确定性等值与风险溢价。
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 期望财富为 5，且
 \[
@@ -636,6 +645,7 @@ CE 越低，消除同一风险所愿付的金额越高。总体风险厌恶比�
 
 第一人的 CE 更靠左、为消除同一风险愿意放弃更多财富，与 Pratt 定理一致；风险态度通过 CE 与风险溢价比较。
 \end{solution}
+\end{tcolorbox}
 
 \section{一阶风险厌恶}\label{sec:wj-seven-6}
 光滑效用的小风险溢价通常是风险规模的二阶量。参考点处边际效用发生跳跃时，风险溢价可以出现一阶项。
@@ -660,9 +670,10 @@ $\bar w$ 可代表债务偿还门槛、最低保障目标或作为参照的初�
 \end{tcolorbox}
 若初始财富与折点有固定距离，足够小且始终处于同一线性分支的风险不会产生这一折点效应。
 
-\begin{tcolorbox}[example,title=课堂例题：折点处的公平赌博,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：折点处的公平赌博]
+\begin{question}
  财富恰为 $\bar{w}$。公平的 Bernoulli 赌博以 $1/2$ 的概率得到 $\delta$、以 $1/2$ 的概率得到 $-\delta$。按定义~\ref{def:wj-seven-4}（以消除风险时愿意放弃的财富衡量风险溢价），风险溢价是多少？它与可微情形的阶数有何不同？
-\end{tcolorbox}
+\end{question}
 \begin{solution}
 % 课堂板书：用户提供的折点风险溢价照片，按板书等式顺序整理。
 由定义~\ref{def:wj-seven-4}，
@@ -711,6 +722,7 @@ $\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用�
 
 % 教材勘误 2021 第 107 页已补上分母 a_-；与 PPT 第 28 页及课堂板书一致。
 \end{solution}
+\end{tcolorbox}
 
 
 图~\ref{fig:wj-kinked-utility} 展示了折点效用下期望效用、确定性等值与风险溢价的几何关系。

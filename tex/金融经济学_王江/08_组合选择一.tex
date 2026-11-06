@@ -62,6 +62,12 @@
  c_0+\phi^{\mathsf T}c_1=\underbrace{e_0+\phi^{\mathsf T}e_1}_{W\text{：禀赋的现值}}.
 \]
 
+也可将可行消费集 $B(e,\{X,S\})$ 放入允许任意状态消费变动的集合
+\[
+ \widehat B(e,\phi)=\{c\ge0:c=e+[-\phi^{\mathsf T}d;d],\ d\in\mathbb R^\Omega\},
+ \qquad B(e,\{X,S\})\subseteq\widehat B(e,\phi).
+\]
+
 由于消费非负且每个状态价格严格为正，
 \[
  0\le c_0\le W,\qquad 0\le c_{1\omega}\le W/\phi_\omega.
@@ -140,9 +146,11 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \end{equation}
 
 这个方向导数同时涵盖证券间的交叉影响，给出整体凹性。消费边界或交易约束绑定时，最优条件采用相应的 KKT 形式。
+逐只证券的二阶条件只检查各坐标方向；仅凭这些条件不足以保证多证券目标整体凹。上述结论使用了 $u_0$ 和 $u_1$ 的凹性。
 \Needspace{10\baselineskip}
 \subsection{两状态下的对数效用}
-\begin{tcolorbox}[example,breakable=false]
+\begin{tcolorbox}[example,breakable]
+\begin{question}
 \WJEightExample{ex:wj-eight-1}\textbf{（两状态下的对数效用）}\quad 两状态等概率，唯一证券价格为 $S>0$，下一期支付由参数 $x\ge1$ 决定，价格与支付为
 \[
  \WJEventTree[left={$S$}]{x,1}.
@@ -153,6 +161,10 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  \log c_0+\frac{\rho}{2}(\log c_{1a}+\log c_{1b}),\qquad\rho>0.
 \]
 
+求最优证券持有量、相应消费及最优处的边际效用。
+\end{question}
+\end{tcolorbox}
+\begin{solution}[blank-type=manual,blank-vsep=6\baselineskip]
 持有 $\theta$ 单位证券时，$c_0=w_0-S\theta$、$c_{1a}=\theta x$、$c_{1b}=\theta$，所以
 \[
  \max_{0<\theta<w_0/S}\left\{\log(w_0-S\theta)+\rho\log\theta+
@@ -175,12 +187,25 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 
 \textbf{经济含义：}投资支出 $S\theta^*=\rho w_0/(1+\rho)$；越重视未来（$\rho$ 越大），储蓄比例越高。财富增加使消费和投资同比增加；给定价格，提高 $x$ 只改变目标函数中的常数项，故不改变本例的最优数量。这是本例对数偏好与零未来禀赋的性质。
 
+给定其他参数，证券价格上升使持有数量下降：
+\[
+ \frac{\partial\theta^*}{\partial S}=-\frac{\rho w_0}{(1+\rho)S^2}<0.
+\]
+在本例中，数量下降恰好抵消价格上升，投资支出 $S\theta^*$ 保持不变。
+
 \textbf{最优处的边际效用：}
 \[
  u_0'(c_0^*)=\frac{1+\rho}{w_0}
  =\frac{\rho}{2}\left(\frac{x}{Sc_{1a}^*}+\frac{1}{Sc_{1b}^*}\right).
 \]
-\end{tcolorbox}
+将两个状态的最优消费分别代入，未来投资的期望边际效用为
+\[
+ \frac{\rho}{2}\left[
+ \frac{(1+\rho)S}{\rho w_0x}\frac{x}{S}
+ +\frac{(1+\rho)S}{\rho w_0}\frac1S\right]
+ =\frac{1+\rho}{w_0}.
+\]
+\end{solution}
 
 \Needspace{20\baselineskip}
 \section{投资组合的选择}\label{sec:wj-eight-2}
@@ -240,7 +265,8 @@ $a_n$ 是投资\textbf{金额}，$\theta_n$ 是证券\textbf{数量}；$w\ne0$ �
 第 $N$ 只证券的净收益率确定为 $r_F$，其余证券的净收益率为 $\tilde r_n$。将无风险投资额代入，逐步得到
 \[
 \begin{aligned}
- \tilde w
+ \tilde w&=\sum_{n=1}^{N}\theta_n\widetilde X_n
+ =\sum_{n=1}^{N}a_n\tilde x_n\\
  &=a_N(1+r_F)+\sum_{n=1}^{N-1}a_n(1+\tilde r_n)\\
  &=\left(w-\sum_{n=1}^{N-1}a_n\right)(1+r_F)
    +\sum_{n=1}^{N-1}a_n(1+\tilde r_n)\\
@@ -332,7 +358,7 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 $A(t)=-u''(t)/u'(t)$。
 \begin{tcolorbox}[knowledge]
 % 教材定理 8.3 的充要表述按所有投资机会解释；固定分布下的严格结论是充分性。
-\WJEightTheorem{thm:wj-eight-3} 在财富区间 $I\subset(0,\infty)$ 上，$A$ 非递增，当且仅当对于所有满足上述条件、风险溢价为正且最优财富属于 $I$ 的单风险证券模型，最优风险投资金额随初始财富非递减。将两处“非递增／非递减”同时反向，也成立；$A$ 恒定当且仅当所有这些模型中的投资金额均不随财富变化。
+\WJEightTheorem{thm:wj-eight-3} 设 $I\subset(0,\infty)$ 为区间。考虑满足上述条件、风险溢价为正，且在所比较的初始财富范围内，无风险基准财富 $w(1+r_F)$ 与所有可能的最优期末财富均属于 $I$ 的单风险证券模型；模型的内点解及比较静态条件在该范围内持续成立。$A$ 在 $I$ 上非递增，当且仅当对于所有这样的投资机会，最优风险投资金额随初始财富非递减。将两处“非递增／非递减”同时反向，也成立；$A$ 恒定当且仅当所有这些模型中的投资金额均不随财富变化。
 
 对给定投资机会，若 $A'<0$、$A'=0$ 或 $A'>0$ 在相关区间处处成立，则分别有 $(a^*)'(w)>0$、$=0$ 或 $<0$，即 DARA、CARA、IARA 的三种金额效应。
 \end{tcolorbox}
@@ -411,7 +437,7 @@ $e$ 衡量初始财富增加 $1\%$ 时，最优风险投资金额变化的百分
 \]
 \begin{tcolorbox}[knowledge]
 % 教材定理 8.4；正财富、正风险溢价，充要关系采用全体投资机会的量词。
-\WJEightTheorem{thm:wj-eight-4} 设 $I\subset(0,\infty)$，\hyperlink{wj-relative-risk-aversion}{相对风险厌恶系数}为 $R(t)=tA(t)$。$R$ 在 $I$ 上非递增，当且仅当对于所有满足单风险证券模型条件、风险溢价为正且最优财富属于 $I$ 的投资机会，最优风险投资比例 $\alpha^*=a^*/w$ 随财富非递减。将单调方向同时反向，也成立；$R$ 恒定当且仅当所有这些模型的风险投资比例均不随财富变化。
+\WJEightTheorem{thm:wj-eight-4} 沿用定理~\ref{thm:wj-eight-3} 的区间、投资机会及财富比较条件，\hyperlink{wj-relative-risk-aversion}{相对风险厌恶系数}为 $R(t)=tA(t)$。$R$ 在 $I$ 上非递增，当且仅当对于所有这些投资机会，最优风险投资比例 $\alpha^*=a^*/w$ 随财富非递减。将单调方向同时反向，也成立；$R$ 恒定当且仅当所有这些模型的风险投资比例均不随财富变化。
 
 对给定投资机会，若 $R'<0$、$R'=0$ 或 $R'>0$ 在相关区间处处成立，则分别有 $e>1$、$=1$ 或 $<1$，即 DRRA、CRRA、IRRA 的三种比例效应。
 \end{tcolorbox}
@@ -498,6 +524,11 @@ DRRA 下该分子为负，分母也为负，故 $e-1>0$；CRRA 时为零，IRRA 
 \]
 
 若某一风险溢价非零，在 $a=0$ 处沿该证券风险溢价的同号方向小幅交易，效用的一阶变化严格为正，所以最优效用严格大于 $u(w(1+r_F))$，上述期望财富不等式也严格成立。$w>0$ 时除以 $w$，得到期望组合净收益率大于 $r_F$。
+具体地，若 $\tilde r_P=\tilde w^*/w-1$，则
+\[
+ \mathrm E[\tilde r_P]-r_F=
+ \frac{\underbrace{(a^*)^{\mathsf T}(\mathrm E[\tilde r]-r_F\iota)}_{\text{期望超额收益金额}}}{w}.
+\]
 
 \begin{tcolorbox}[knowledge,title=多证券组合中的对冲]
 多资产选择同时考虑期望收益和证券对\textbf{整个组合风险}的影响。即使每只证券的风险溢价都为正，最优组合也可能卖空其中某只证券，以对冲其余证券；存在非零风险溢价时，最优组合整体仍有正的期望超额收益。
