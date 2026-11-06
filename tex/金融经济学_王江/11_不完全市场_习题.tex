@@ -181,24 +181,31 @@
  =\mathrm E[(g(p)-g(p'))(p-p')].
 \]
 
-\item 写 $\widetilde p=d+Z$，其中 $Z$ 服从参数为1的指数分布，故 $\mathrm E[\widetilde p]=d+1$。由 $R(p)=s_0p+k$，企业期望效用为
+\item 写 $\widetilde p=d+Z$，其中 $Z$ 服从参数为1的指数分布，故 $\mathrm E[\widetilde p]=d+1$。由 $R(p)=s_0p+k$，企业利润为 $s_0d+k+h_F(f-d)+(s_0-h_F)Z$，投机者的远期支付为 $h_I(d-f)+h_IZ$。对任意 $D>0$，指数分布积分给出 $\int_0^\infty e^{-Dz}\,\mathrm dz=1/D$。把密度 $e^{-z}$ 乘入期望，分别得到
 \[
- F(h_F)=-\frac{\exp\{-a[s_0d+k+h_F(f-d)]\}}
- {1+a(s_0-h_F)},\qquad 1+a(s_0-h_F)>0.
+ \begin{aligned}
+ F(h_F)&=-e^{-a[s_0d+k+h_F(f-d)]}
+     \int_0^\infty e^{-[1+a(s_0-h_F)]z}\,\mathrm dz\\
+ &=-\frac{e^{-a[s_0d+k+h_F(f-d)]}}{1+a(s_0-h_F)},\\
+ V(h_I)&=-e^{ah_I(f-d)}
+     \int_0^\infty e^{-(1+ah_I)z}\,\mathrm dz
+ =-\frac{e^{ah_I(f-d)}}{1+ah_I}.
+ \end{aligned}
 \]
+两个期望有限分别要求 $1+a(s_0-h_F)>0$ 和 $1+ah_I>0$。
 
-投机者期望效用为
+最大化两个负的期望效用，等价于分别最小化 $\log[-F(h_F)]$ 和 $\log[-V(h_I)]$。将两者的一阶导数设为零，
 \[
- V(h_I)=-\frac{\exp\{ah_I(f-d)\}}{1+ah_I},\qquad1+ah_I>0.
+ -a(f-d)+\frac{a}{1+a(s_0-h_F)}=0,\qquad
+ a(f-d)-\frac{a}{1+ah_I}=0.
 \]
-
-分别对 $\log[-F(h_F)]$ 和 $\log[-V(h_I)]$ 求极小值，得到
+两个导数在各自的积分收敛域内都严格递增。若有有限的内点最优解，必须有 $f>d$。反解头寸得
 \[
  h_F^*=s_0+\frac1a-\frac1{a(f-d)},\qquad
  h_I^*=\frac1{a(f-d)}-\frac1a.
 \]
 
-由市场出清 $h_F^*=Nh_I^*$，解得
+将两个最优头寸代入市场出清条件 $h_F^*=Nh_I^*$，整理得 $as_0+N+1=(N+1)/(f-d)$。解得
 \[
  \boxed{f^*=d+\frac{N+1}{N+1+as_0}},\qquad
  h_I^*=\frac{s_0}{N+1},\quad h_F^*=\frac{Ns_0}{N+1}.
@@ -323,7 +330,7 @@
  b_1=-b_2=\frac{x_0-S}{2(1+B)}.
 \]
 
-此时 $c_{k,0}-b_k=x_0/2$。代回债券一阶条件，得到完整的均衡解
+由 $c_{1,0}-c_{2,0}=b_1-b_2$，两人的 $c_{k,0}-b_k$ 相同。由当期商品出清及 $b_1+b_2=0$，这两个量加起来是 $x_0$，故各等于 $x_0/2$。将 $s_k=1/2$ 和 $c_{k,0}-b_k=x_0/2$ 代回债券一阶条件，得到完整的均衡解
 \[
  \boxed{B=\rho\exp\left\{
  \frac{\alpha(x_0-\bar x)}2+\frac{\alpha^2\sigma^2}{8}\right\},
@@ -377,12 +384,14 @@
 \item 取价格 $C$，令两人新增期权头寸均为零。原有债券、股票的一阶条件仍成立，新增期权的一阶条件也由上述定价式成立。目标函数凹，故原选择在扩大的交易集合中仍为最优，零期权头寸满足出清。因此引入期权后，原均衡消费配置保持不变。
 
 
-\item 由上一题 $B=\mathrm E[m(\widetilde x)]$，用 $m/B$ 对正态密度加权。完成平方后，新的概率密度为均值
+\item 由上一题 $B=\mathrm E[m(\widetilde x)]$，用 $m/B$ 对正态密度加权，所得密度的积分为 $1$。将 $m(x)$ 与原密度相乘后，指数中含 $x$ 的部分可配方为
 \[
- q=\bar x-\frac{\alpha\sigma^2}{2}
+ -\frac{(x-\bar x)^2}{2\sigma^2}-\frac{\alpha x}{2}
+ =-\frac{(x-q)^2}{2\sigma^2}
+   -\frac{\alpha\bar x}{2}+\frac{\alpha^2\sigma^2}{8},
+ \qquad q=\bar x-\frac{\alpha\sigma^2}{2}.
 \]
-
-、方差 $\sigma^2$ 的正态密度。以 $\mathrm E^Q$ 表示该概率下的期望，则
+加上定价核中的常数 $\alpha x_0/2$ 后，所有与 $x$ 无关的因子正好由除以 $B$ 消去。因此新密度为均值 $q$、方差 $\sigma^2$ 的正态密度。以 $\mathrm E^Q$ 表示该概率下的期望，则
 \[
  C=B\mathrm E^Q[(\widetilde x-\bar x)^+].
 \]

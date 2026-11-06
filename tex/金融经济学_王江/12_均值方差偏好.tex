@@ -2,7 +2,7 @@
 % 来源：王江《金融经济学》印刷页179—194（PDF物理页194—209）。
 % 核对2021勘误：MVP求导系数、风险权重比例的转置、方差的分母。
 % 沿用教材a=iota^T Sigma^{-1} rbar,b=rbar^T Sigma^{-1} rbar,c=iota^T Sigma^{-1} iota。
-% 教材定理12.3的u''>0与证明冲突，此处据严格凹性取u''<0；标准差的严格单调性取sigma>0。
+% 教材定理12.3采用u''<0；标准差的严格单调性取sigma>0。
 % 图12.1、12.2为教材结构的示意重绘；带无风险资产的完整MVF按标准差绝对值分为上下两射线。
 % 教材p183的a>0不由正定性推出；p187对所有MVF使用lambda_r>0，此处改为非MVP的lambda_r!=0。
 \lecture{在均值--方差偏好下的投资组合选择}
@@ -50,7 +50,7 @@
 \WJTwelveTheorem{thm:wj-twelve-1} 若效用为二次函数，则偏好具有均值--方差表示。
 \end{tcolorbox}
 
-\textbf{证明：}将二次效用写成 $u(w)=w-aw^2/2$，其中 $a>0$。利用二阶矩等于方差加均值平方，
+\textbf{证明：}一般二次函数 $u(w)=A+Bw+Cw^2$ 的期望只依赖 $\bar w$ 与 $\mathrm E[\widetilde w^2]=\bar w^2+\sigma_w^2$。例如，对风险厌恶型二次效用的归一化形式 $u(w)=w-aw^2/2$（$a>0$），
 \[
  \mathrm E[u(\widetilde w)]
  =\bar w-\frac a2\underbrace{(\bar w^2+\sigma_w^2)}_{\mathrm E[\widetilde w^2]}
@@ -87,7 +87,7 @@
  \end{aligned}
 \]
 
-当 $\sigma_w>0$ 时，$u'(\bar w+\sigma_w Z)$ 随 $Z$ 严格递减，故其与 $Z$ 的协方差为负。由于 $\mathrm E[Z]=0$，这就是 $v_2<0$；$\sigma_w=0$ 时 $v_2=u'(\bar w)\mathrm E[Z]=0$。
+当 $\sigma_w>0$ 且 $Z\ne0$ 时，$u'(\bar w+\sigma_w Z)Z<u'(\bar w)Z$：正的 $Z$ 使边际效用下降，负的 $Z$ 则使边际效用上升。取期望即得 $v_2<0$。也可以说，$u'(\bar w+\sigma_w Z)$ 随 $Z$ 严格递减，故其与 $Z$ 的协方差为负。由于 $\mathrm E[Z]=0$，这就是 $v_2<0$；$\sigma_w=0$ 时 $v_2=u'(\bar w)\mathrm E[Z]=0$。
 
 令 $h(Z)=-u''(Y)>0$。Cauchy--Schwarz不等式给出
 \[
@@ -151,7 +151,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 \WJTwelveTheorem{thm:wj-twelve-4} 具有均值--方差偏好的参与者，其最优投资组合为MVF组合。
 \end{tcolorbox}
 
-\textbf{证明：}若最优组合不在前沿，就存在同均值而方差更小的前沿组合。风险厌恶使参与者严格偏好后者，与原组合最优矛盾。\hfill$\square$
+\textbf{证明：}若最优组合不在前沿，就存在同均值而方差更小的前沿组合。同均值下对较小标准差的严格偏好使参与者严格偏好后者，与原组合最优矛盾；这里假定最优组合存在。\hfill$\square$
 
 \section{均值--方差前沿组合的性质}\label{sec:wj-twelve-3}
 \subsection{两基金分离与权重空间的直线}
@@ -166,7 +166,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  z_1-z_0=\frac1d\Sigma^{-1}(c\bar r-a\iota).
 \]
 
-由约束可验证，$z_0,z_1$ 分别为期望净收益率0和1的前沿组合。
+由约束可验证，$z_0,z_1$ 的权重和均为1，且 $z_0^{\mathsf T}\bar r=0$、$z_1^{\mathsf T}\bar r=1$，分别为期望净收益率0和1的前沿组合。记 $h=z_1-z_0$，则 $\iota^{\mathsf T}h=0$、$\bar r^{\mathsf T}h=1$。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-5} 任意MVF组合均可由 $z_0,z_1$ 两个MVF组合形成。
@@ -190,7 +190,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 \WJTwelveTheorem{thm:wj-twelve-6} 在均值--方差偏好下，\hyperref[def:wj-nine-4]{两基金分离}成立。
 \end{tcolorbox}
 
-\textbf{证明：}由定理~\ref{thm:wj-twelve-4}，每位参与者选择前沿组合；由推论~\ref{cor:wj-twelve-1}，这些选择均由同一对前沿基金生成。\hfill$\square$
+\textbf{证明：}在共同的收益均值、协方差和证券可行集合下，由定理~\ref{thm:wj-twelve-4}，每位参与者选择前沿组合；由推论~\ref{cor:wj-twelve-1}，这些选择均由同一对前沿基金生成。\hfill$\square$
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-7} MVF组合的权重向量在 $\mathbb R^N$ 中位于一条直线上。
@@ -212,7 +212,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  \sigma_p^2=\frac1c+\frac cd\left(\bar r_p-\frac ac\right)^2.
 \]
 
-因此，前沿在 $(\sigma,\bar r)$ 平面为双曲线的右支，在权重空间则是定理~\ref{thm:wj-twelve-7} 所述的直线。
+因此，前沿在 $(\sigma,\bar r)$ 平面为双曲线的右支，在权重空间则是定理~\ref{thm:wj-twelve-7} 所述的直线。可行点位于前沿及其右侧；当 $N=2$ 时，每个均值唯一确定权重，可行点只有前沿。若 $N\ge3$，存在同时保持预算与均值的非零方向，可行点填满前沿右侧。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 全部组合中方差最小者称为\textbf{最小方差组合}（MVP）：
@@ -230,7 +230,18 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  h^{\mathsf T}\Sigma z_{\mathrm{MVP}}=0.
 \]
 
-这说明MVP处前沿方差取得最小值。图~\ref{fig:wj-twelve-1} 中，同标准差的前沿点 $E$ 比 $D$ 均值更高，因此风险厌恶且偏好较高均值的参与者选择有效上半支。
+由 $h^{\mathsf T}\Sigma h>0$，该一阶条件也是充分条件，并给出教材中的表达式
+\[
+ \bar r_{\mathrm{MVP}}=-\frac{h^{\mathsf T}\Sigma z_0}{h^{\mathsf T}\Sigma h}=\frac ac,\qquad
+ \sigma_{\mathrm{MVP}}^2=z_0^{\mathsf T}\Sigma z_0-\frac{(h^{\mathsf T}\Sigma z_0)^2}{h^{\mathsf T}\Sigma h}=\frac1c.
+\]
+
+对任意满足 $\iota^{\mathsf T}z=1$ 的组合，写 $z=z_{\mathrm{MVP}}+g$，其中 $\iota^{\mathsf T}g=0$。由 $\Sigma z_{\mathrm{MVP}}=\iota/c$，交叉项为零，故
+\[
+ z^{\mathsf T}\Sigma z=\underbrace{z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}}_{\text{最小方差}}+\underbrace{g^{\mathsf T}\Sigma g}_{\text{偏离MVP增加的方差}}.
+\]
+
+图~\ref{fig:wj-twelve-1} 中，同标准差的前沿点 $E$ 比 $D$ 均值更高，因此风险厌恶且偏好较高均值的参与者选择有效上半支。
 
 \begin{center}
 % 来源：教材图12.1；布局与配色参考431计算讲义有效前沿图。
@@ -252,7 +263,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  \draw[->,black!60] (1.85,1.05)--(1.85,2.55);
  \node[red!70!black,above] at (2.5,3.4) {有效前沿 MVE};
  \node[gray] at (2.6,.55) {无效下半支};
- \node[blue!60!black,align=center] at (2.9,1.85) {可行组合\\所在区域};
+ \node[blue!60!black,align=center] at (2.9,1.85) {可行组合\\可能所在区域};
 \end{tikzpicture}
 \WJTwelveFigure{fig:wj-twelve-1}{均值--方差前沿、有效上半支与MVP}
 \end{center}
@@ -269,9 +280,14 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 \[
  z_q^{\mathsf T}\Sigma z_{\mathrm{MVP}}=1/c=\sigma_{\mathrm{MVP}}^2.
 \]
+也可从最小化直接理解：令 $r_\alpha=\alpha r_q+(1-\alpha)r_{\mathrm{MVP}}$，其方差在 $\alpha=0$ 取得最小值，因此
+\[
+ \tfrac12\left.\frac{d}{d\alpha}\operatorname{Var}(r_\alpha)\right|_{\alpha=0}
+ =\operatorname{Cov}(r_q,r_{\mathrm{MVP}})-\sigma_{\mathrm{MVP}}^2=0.
+\]
 \hfill$\square$
 
-对两个前沿组合，式~\eqref{eq:wj-12-4}（前沿权重关于目标均值的仿射表示）给出
+对两个前沿组合，式~\eqref{eq:wj-12-4}（前沿权重关于目标均值的仿射表示）先给出 $\operatorname{Cov}(\widetilde r_p,\widetilde r_q)=z_0^{\mathsf T}\Sigma z_p+\bar r_q h^{\mathsf T}\Sigma z_p$，化简后有
 \[
  \operatorname{Cov}(\widetilde r_p,\widetilde r_q)
  =\frac1c+\frac cd(\bar r_p-a/c)(\bar r_q-a/c).
@@ -303,7 +319,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  \operatorname{Cov}(\widetilde r_q,\widetilde r_p)=\lambda_r\bar r_q+\lambda_1.
 \]
 
-分别取 $q=zcp$ 和 $q=p$，得 $\bar r_{zcp}=-\lambda_1/\lambda_r$、$\sigma_p^2=\lambda_r(\bar r_p-\bar r_{zcp})$。消去乘子，即得式~\eqref{eq:wj-12-6}。\hfill$\square$
+因此 $\bar r_q=-\lambda_1/\lambda_r+\operatorname{Cov}(\widetilde r_q,\widetilde r_p)/\lambda_r$。分别取 $q=zcp$ 和 $q=p$，得 $\bar r_{zcp}=-\lambda_1/\lambda_r$、$\sigma_p^2=\lambda_r(\bar r_p-\bar r_{zcp})$。消去乘子，即得式~\eqref{eq:wj-12-6}。\hfill$\square$
 
 这一关系来自前沿组合的最优性条件，用协方差衡量证券对组合风险的贡献。这里的基准收益是零协方差组合的收益；有无风险证券时，下一节将以 $r_F$ 为基准。
 
@@ -342,7 +358,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 
 \textbf{证明：}式~\eqref{eq:wj-12-8}（无风险证券与切点组合的两基金表示）给出了生成关系。\hfill$\square$
 
-若 $H=0$，式~\eqref{eq:wj-12-7} 仍给出前沿，但其非零风险方向的权重和为零，因而不存在风险权重和为1的有限切点组合。以下按教材考察 $r_F<\bar r_{\mathrm{MVP}}=a/c$ 的情形，此时 $H=a-r_Fc>0$，切点组合存在且期望超额收益为正。
+若 $K=0$，则 $\eta=0$，所有组合的期望收益均为 $r_F$，最小方差前沿退化为无风险点。若 $K>0$ 且 $H=0$，式~\eqref{eq:wj-12-7} 仍给出前沿，但其非零风险方向的权重和为零，因而不存在风险权重和为1的有限切点组合。以下按教材考察 $r_F<\bar r_{\mathrm{MVP}}=a/c$ 的情形，此时 $H=a-r_Fc>0$，切点组合存在且期望超额收益为正。
 
 \subsection{Sharpe比与有效前沿}
 \begin{tcolorbox}[knowledge,breakable=false]
@@ -356,12 +372,19 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  =\frac{d}{c(a-r_Fc)}>0,
 \]
 
-因此 $T$ 位于有效上半支。\hfill$\square$
+因此 $T$ 位于有效上半支。这里沿用 $d>0$。若 $d=0$，所有风险证券的期望收益相同；在 $r_F<\bar r_{\mathrm{MVP}}$ 下，切点组合就是MVP，仍为MVE。\hfill$\square$
 
 对于 $\sigma_q>0$ 的组合，\textbf{Sharpe比}定义为
 \[
  \operatorname{SR}_q=\frac{\bar r_q-r_F}{\sigma_q}.
 \]
+
+将无风险证券与风险组合 $q$ 分别配置 $1-\alpha$、$\alpha$，则
+\[
+ \bar r_p=r_F+\alpha(\bar r_q-r_F),\qquad \sigma_p=|\alpha|\sigma_q.
+\]
+
+因此，当 $\alpha>0$ 时，两组合的Sharpe比相同；当 $\alpha<0$ 时，Sharpe比符号相反。
 
 由Cauchy--Schwarz不等式，
 \[
@@ -434,6 +457,30 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 
 证券对有效组合风险的贡献由协方差刻画，单位贡献的风险价格由组合风险溢价确定。本章从投资组合最优性得到上述关系；下一讲加入市场出清，将有效风险组合与市场组合联系起来。
 
+\Needspace{18\baselineskip}
+\begin{tcolorbox}[example,title=补充算例：从前沿到切点组合]
+两只风险证券的净收益率均值与协方差矩阵为
+\[
+ \bar r=\begin{pmatrix}1\\2\end{pmatrix},\qquad
+ \Sigma=\begin{pmatrix}1&0\\0&4\end{pmatrix}.
+\]
+允许卖空。求最小方差组合、均值为 $3/2$ 的前沿组合；再设无风险利率 $r_F=0$，求切点组合及其Sharpe比。
+\end{tcolorbox}
+
+\textbf{解：}由 $\Sigma^{-1}=\operatorname{diag}(1,1/4)$，得
+\[
+ a=\frac32,\quad b=2,\quad c=\frac54,\quad d=\frac14.
+\]
+因此 $z_{\mathrm{MVP}}=\Sigma^{-1}\iota/c=(4/5,1/5)^{\mathsf T}$，其均值为 $6/5$、方差为 $4/5$。均值为 $3/2$ 的完全投资组合由两个约束唯一确定为 $(1/2,1/2)^{\mathsf T}$，方差为 $5/4$，所以它也是该目标均值的前沿组合。
+
+当 $r_F=0$ 时，$\eta=\bar r$、$K=2$、$H=3/2$，故
+\[
+ z_T=\frac{\Sigma^{-1}\eta}{H}=\begin{pmatrix}2/3\\1/3\end{pmatrix},\quad
+ \bar r_T=\frac43,\quad \sigma_T^2=\frac89,\quad
+ \operatorname{SR}_T=\frac{4/3}{\sqrt{8/9}}=\sqrt2.
+\]
+这些收益率与方差采用相同的数值单位，例中数值用于说明计算。
+
 \section{本章小结}\label{sec:wj-twelve-summary}
 \begin{tcolorbox}[summary,breakable=false]
 \begin{enumerate}
@@ -445,6 +492,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 \end{tcolorbox}
 \fi
 
+\Needspace{14\baselineskip}
 \ifdefined\WJHandoutKnowledge
 \section{练习}\label{sec:wj-twelve-exercises}
 \else

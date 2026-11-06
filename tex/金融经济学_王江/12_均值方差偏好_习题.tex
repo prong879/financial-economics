@@ -21,13 +21,13 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-取CARA效用的正仿射归一化 $u(w)=-e^{-aw}$，$a>0$。正态财富的均值和方差为
+由 $-u''(w)/u'(w)=a>0$ 解得 $u(w)=A-Be^{-aw}$（$B>0$）。取其正仿射归一化 $u(w)=-e^{-aw}$。正态财富的均值和方差为
 \[
  \bar w=w(1+z^{\mathsf T}\bar r),\qquad
  \sigma_w^2=w^2z^{\mathsf T}\Sigma z.
 \]
 
-由正态变量的矩母函数，(a)、(b)所求效用为
+由正态变量的矩母函数 $\mathrm E[e^{-a\sigma_w Z}]=e^{a^2\sigma_w^2/2}$，(a)、(b)所求效用为
 \[
  v(\bar w,\sigma_w)=-\exp\left(-a\bar w+\frac12a^2\sigma_w^2\right).
 \]
@@ -80,7 +80,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
  -2z(1-z)\sigma_1\sigma_2(1-\rho).
 \]
 
-当 $\rho<1$ 时，组合风险严格小于波动率的加权平均。若进一步有 $k<\min(\sigma_1^2,\sigma_2^2)$，则 $V'(0)<0$、$V'(1)>0$，内点最小值严格小于两个端点风险；这一条件也正是非负权重下严格优于两只证券所需的条件。
+当 $\rho<1$ 时，组合风险严格小于波动率的加权平均。由 $V'(0)=2(k-\sigma_2^2)$、$V'(1)=2(\sigma_1^2-k)$，若进一步有 $k<\min(\sigma_1^2,\sigma_2^2)$，则 $V'(0)<0$、$V'(1)>0$，内点最小值严格小于两个端点风险；这一条件也正是非负权重下严格优于两只证券所需的条件。
 
 \item 令 $D=\sigma_1^2+\sigma_2^2-2k$。当 $D>0$ 时，配方得
 \[
@@ -138,7 +138,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 \]
 
 若保持 $\sigma,c$ 不变并允许任意大的 $N$，上述半正定条件要求 $0\le c\le\sigma^2$。
-\item 当 $c\ge0$ 时，可用 $\widetilde r_i-\bar r_i=F+\varepsilon_i$ 表示二阶矩结构，其中 $\operatorname{Var}(F)=c$、$\operatorname{Var}(\varepsilon_i)=\sigma^2-c$，各残差彼此及与 $F$ 不相关。等权组合的残差方差为 $(\sigma^2-c)/N$，随证券数增加趋于零，留下共同成分的方差 $c$。\qedhere
+\item 当 $c\ge0$ 时，可构造 $\widetilde r_i-\bar r_i=F+\varepsilon_i$ 表示同一二阶矩结构，其中 $\operatorname{Var}(F)=c$、$\operatorname{Var}(\varepsilon_i)=\sigma^2-c$，各残差彼此及与 $F$ 不相关。等权组合的残差方差为 $(\sigma^2-c)/N$，随证券数增加趋于零，留下共同成分的方差 $c$。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -170,7 +170,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
  +\sigma_2^2(\bar r_1-m)^2}{(\bar r_1-\bar r_2)^2}.
 \]
 
-若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，MVP的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，均值为 $z^*\bar r_1+(1-z^*)\bar r_2$；均值不低于此值的前沿部分构成MVE。
+若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，MVP的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，均值为 $z^*\bar r_1+(1-z^*)\bar r_2$；均值不低于此值的前沿部分构成MVE。若 $D=0$，则 $\rho=1$ 且 $\sigma_1=\sigma_2$；所有组合的风险相同，而均值可无界增加，所以不存在MVP或有限的MVE组合。每个给定均值仍唯一确定一个MVF组合。
 
 \item 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。它们是否在MVE上，取决于各自均值是否不低于MVP均值。这里的前沿取MVF口径，MVE部分由(a)中的均值条件确定。
 
@@ -210,7 +210,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 \end{tikzpicture}
 \end{center}
 
-若 $\bar r_1=\bar r_2=m_0$，所有组合均值都等于 $m_0$，MVF仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。\qedhere
+若 $\bar r_1=\bar r_2=m_0$，所有组合均值都等于 $m_0$，MVF在均值--标准差平面仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -243,7 +243,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。一阶条件为 $\Sigma z=\lambda\iota$，故
+MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。一阶条件为 $\Sigma z=\lambda\iota$；代入预算约束得 $\lambda=1/c$。正定性保证解唯一，故
 \[
  z_{\mathrm{MVP}}=\frac{\Sigma^{-1}\iota}{\iota^{\mathsf T}\Sigma^{-1}\iota}.
 \]
@@ -270,7 +270,12 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
  (\sigma_{\mathrm{MVP}},\bar r_{\mathrm{MVP}})=(1/\sqrt c,k).
 \]
 
-因此MVF在均值--标准差平面退化为一点。$N\ge2$ 时，可行组合还包括从该点向右延伸的同均值射线，图中以虚线表示。
+因此MVF在均值--标准差平面退化为一点。$N\ge2$ 时，取非零 $h$ 满足 $\iota^{\mathsf T}h=0$，令 $z=z_{\mathrm{MVP}}+th$。由 $\Sigma z_{\mathrm{MVP}}=\iota/c$，
+\[
+ z^{\mathsf T}\Sigma z=\frac1c+t^2h^{\mathsf T}\Sigma h.
+\]
+
+随着 $t$ 变化，可行组合覆盖从该点向右延伸的同均值射线，图中以虚线表示。
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm,font=\small]
  \draw[->] (0,0)--(5,0) node[right] {$\sigma$};
@@ -341,7 +346,13 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
  \widetilde u_i=\widetilde r_i-\alpha-\beta_{i,p}\widetilde r_p-\beta_{i,zcp}\widetilde r_{zcp}.
 \]
 
-直接取期望得到 $\mathrm E[\widetilde u_i]=0$。由 $\operatorname{Cov}(\widetilde r_p,\widetilde r_{zcp})=0$，分别取与两个组合的协方差，即得两项残差协方差均为零。
+直接取期望得到 $\mathrm E[\widetilde u_i]=0$。由两个基准组合的协方差为零，
+\[
+ \begin{aligned}
+ \operatorname{Cov}(\widetilde u_i,\widetilde r_p)&=\operatorname{Cov}(\widetilde r_i,\widetilde r_p)-\beta_{i,p}\sigma_p^2=0,\\
+ \operatorname{Cov}(\widetilde u_i,\widetilde r_{zcp})&=\operatorname{Cov}(\widetilde r_i,\widetilde r_{zcp})-\beta_{i,zcp}\sigma_{zcp}^2=0.
+ \end{aligned}
+\]
 
 \item 对 $p$ 及 $zcp$ 分别应用零贝塔关系，
 \[
@@ -349,7 +360,7 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
  \bar r_i-\bar r_p=\beta_{i,zcp}(\bar r_{zcp}-\bar r_p).
 \]
 
-由前沿零协方差条件，$\bar r_p$、$\bar r_{zcp}$ 分居MVP均值两侧，因而不同。两式相减并除以 $\bar r_p-\bar r_{zcp}$，得 $\beta_{i,p}+\beta_{i,zcp}=1$。
+由前沿零协方差条件，$\bar r_p$、$\bar r_{zcp}$ 分居MVP均值两侧，因而不同。将两式分别改写为 $\bar r_i=\bar r_{zcp}+\beta_{i,p}(\bar r_p-\bar r_{zcp})$ 和 $\bar r_i=\bar r_p-\beta_{i,zcp}(\bar r_p-\bar r_{zcp})$，相等后除以 $\bar r_p-\bar r_{zcp}$，得 $\beta_{i,p}+\beta_{i,zcp}=1$。
 
 \item 第一条零贝塔关系改写为
 \[
@@ -374,7 +385,7 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
  tm_A+(1-t)m_B\ge a/c.
 \]
 
-故所得组合仍位于前沿上半支，是MVE。有无风险证券时，MVE风险权重均为 $\lambda\Sigma^{-1}\eta$，$\lambda\ge0$；它们的凸组合仍具有这一形式，故结论也成立。
+故所得组合仍位于前沿上半支，是MVE。有无风险证券且 $K>0$ 时，MVE风险权重均为 $\lambda\Sigma^{-1}\eta$，$\lambda\ge0$；它们的凸组合仍具有这一形式。$d=0$ 或 $K=0$ 对应的相关前沿退化为单点，结论同样成立。
 \end{solution}
 
 \Needspace{8\baselineskip}
@@ -385,7 +396,7 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零，故
+沿用 $\Sigma$ 正定的条件，正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零，故
 \[
  \bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta=0
  \iff\bar\eta=0\iff\bar r=r_F\iota.
@@ -432,7 +443,7 @@ MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。
  \le\eta^{\mathsf T}\Sigma^{-1}\eta\equiv K,
 \]
 
-其中不等式来自向量 $\Sigma^{1/2}z$ 与 $\Sigma^{-1/2}\eta$ 的Cauchy--Schwarz不等式。因此 $\operatorname{SR}(z)\le\sqrt K$。等号在 $z$ 为 $\Sigma^{-1}\eta$ 的正倍数时成立；取
+其中不等式来自向量 $\Sigma^{1/2}z$ 与 $\Sigma^{-1/2}\eta$ 的Cauchy--Schwarz不等式。平方不等式给出 $|\operatorname{SR}(z)|\le\sqrt K$，因而 $\operatorname{SR}(z)\le\sqrt K$。等号在 $z$ 为 $\Sigma^{-1}\eta$ 的正倍数时成立；取
 \[
  z_T=\frac{\Sigma^{-1}\eta}{H}
 \]
