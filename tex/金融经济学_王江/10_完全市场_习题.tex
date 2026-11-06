@@ -178,21 +178,37 @@
  c_{k,b}=\frac{\rho(1-\pi)w_k}{(1+\rho)\phi_b}.
  \]
 
- 实现未来消费的债券、股票\textbf{总持仓}为
+ 初始持仓为 $\bar\theta_k=(0,s_k)^{\mathsf T}$（按债券、股票排列）。由 $X(\bar\theta_k+\theta_k)=(c_{k,a},c_{k,b})^{\mathsf T}$ 解出净购买量：
  \[
- h_{B,k}=\frac{u c_{k,b}-d c_{k,a}}{u-d},\qquad
- h_{S,k}=\frac{c_{k,a}-c_{k,b}}{C(u-d)}.
+ \theta_{k,B}=\frac{u c_{k,b}-d c_{k,a}}{u-d},\qquad
+ \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C(u-d)}-s_k.
  \]
 
- 净交易量为 $\theta_{B,k}=h_{B,k}$、$\theta_{S,k}=h_{S,k}-s_k$。
-
- \item 将个人需求相加，并令总消费等于 $(C,uC,dC)$，得到
+ \item 令 $W=\sum_k w_k$ 为经济中的总财富。将各人的当期需求相加，当期出清要求
  \[
- \phi_a=\frac{\rho\pi}{u},\quad\phi_b=\frac{\rho(1-\pi)}d,\qquad
- B=\rho\left(\frac\pi u+\frac{1-\pi}d\right),\quad S=\rho C.
+ C=\sum_k c_{k,0}=\frac{W}{1+\rho},
+ \qquad W=(1+\rho)C.
  \]
 
- 代回需求，$c_{k,0}=s_kC$、$c_{k,a}=s_kuC$、$c_{k,b}=s_kdC$。因此 $h_{B,k}=0$、$h_{S,k}=s_k$，每人保留初始持仓，净交易量为零。
+ 将两种状态下的个人需求分别相加，再代入 $W$，得到
+ \[
+ \begin{aligned}
+ uC &= \sum_k c_{k,a}=\frac{\rho\pi W}{(1+\rho)\phi_a}
+     =\frac{\rho\pi C}{\phi_a},\\
+ dC &= \sum_k c_{k,b}=\frac{\rho(1-\pi)W}{(1+\rho)\phi_b}
+     =\frac{\rho(1-\pi)C}{\phi_b}.
+ \end{aligned}
+ \]
+
+ 所以 $\phi_a=\rho\pi/u$、$\phi_b=\rho(1-\pi)/d$。按各状态的支付定价，
+ \[
+ B=\phi_a+\phi_b=\rho\left(\frac\pi u+\frac{1-\pi}d\right),
+ \qquad S=\phi_a uC+\phi_b dC=\rho C.
+ \]
+
+ 此时按禀赋计算的总财富为 $C+S=(1+\rho)C$，与当期出清求出的 $W$ 一致。
+
+ 代回需求，$c_{k,0}=s_kC$、$c_{k,a}=s_kuC$、$c_{k,b}=s_kdC$。因此 $\theta_{k,B}=\theta_{k,S}=0$，每人保留初始持仓。
 
  \item 二叉树期权定价通常给定债券、股票的\textbf{价格与支付}，再由复制关系确定状态价格。本题同时通过个人最优与市场出清内生求得证券价格，因此状态价格还反映时间偏好和实际概率。价格确定后，复制定价在两种分析中一致。
 \end{enumerate}
@@ -274,13 +290,13 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
- \item 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制期权的债券、股票持仓为
+ \item 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制期权的组合中，债券、股票的数量分别为
  \[
- h_B=\frac{uH_b-dH_a}{u-d},\qquad
- h_S=\frac{H_a-H_b}{C(u-d)}.
+ \theta_B=\frac{uH_b-dH_a}{u-d},\qquad
+ \theta_S=\frac{H_a-H_b}{C(u-d)}.
  \]
 
- 所以 $V=h_BB+h_SS=\phi_aH_a+\phi_bH_b$。按执行价写成
+ 所以 $V=\theta_BB+\theta_SS=\phi_aH_a+\phi_bH_b$。按执行价写成
  \[
  V=\begin{cases}
  \rho C-K\rho(\pi/u+(1-\pi)/d),&K\le dC,\\
@@ -351,10 +367,10 @@
  c_{k,a}=c_{k,0}+d_a,\quad c_{k,b}=c_{k,0}+d_b.
  \]
 
- 实现这组未来消费的总持仓为
+ 初始持仓为 $\bar\theta_k=(0,s_k)^{\mathsf T}$。由 $X(\bar\theta_k+\theta_k)=(c_{k,a},c_{k,b})^{\mathsf T}$，得到债券和股票的净购买量：
  \[
- h_{S,k}=\frac{c_{k,a}-c_{k,b}}{C_{1a}-C_{1b}},\qquad
- h_{B,k}=\frac{C_{1a}c_{k,b}-C_{1b}c_{k,a}}{C_{1a}-C_{1b}}.
+ \theta_{k,B}=\frac{C_{1a}c_{k,b}-C_{1b}c_{k,a}}{C_{1a}-C_{1b}},\qquad
+ \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C_{1a}-C_{1b}}-s_k.
  \]
 
  \item 将消费关系对各人求和，出清给出 $Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$。因此
@@ -370,10 +386,9 @@
  c_{k,b}=C_{1b}/K+\delta_k.
  \]
 
- 代回复制持仓，得到
+ 代回净购买量，得到
  \[
- \underbrace{h_{B,k}=\delta_k,\quad h_{S,k}=1/K}_{\text{总持仓}},\qquad
- \underbrace{\theta_{B,k}=\delta_k,\quad\theta_{S,k}=1/K-s_k}_{\text{净交易}}.
+ \theta_{k,B}=\delta_k,\qquad \theta_{k,S}=1/K-s_k.
  \]
 
  因 $\sum_k\delta_k=0$，债券总持仓为零，股票总持仓为1，净交易总量均为零。上述消费若均严格为正，就给出非负消费模型的内点均衡。

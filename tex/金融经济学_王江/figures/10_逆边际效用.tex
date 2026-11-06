@@ -1,0 +1,28 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 定理 10.2 的教学补图：固定个人预算乘子，以对数效用示意递减反函数。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=2.15cm,y=1.9cm]
+ \draw[->] (0,0)--(3.55,0) node[right] {边际效用 $z$};
+ \draw[->] (0,0)--(0,1.85) node[above] {消费 $c$};
+ \draw[blue!70!black,very thick,domain=.60:3.4,samples=80]
+   plot (\x,{1/\x});
+ \node[blue!70!black,anchor=south west] at (1.65,.72)
+   {$c=(u'_{k,1})^{-1}(z)=1/z$};
+ \draw[densely dashed,gray] (1,0)--(1,1)--(0,1);
+ \draw[densely dashed,gray] (2.5,0)--(2.5,.4)--(0,.4);
+ \fill[blue!70!black] (1,1) circle (1.9pt);
+ \fill[red!70!black] (2.5,.4) circle (1.9pt);
+ \node[below] at (1,0) {$z_{\omega'}$};
+ \node[below] at (2.5,0) {$z_\omega$};
+ \node[left] at (0,1) {$c_{k,1\omega'}$};
+ \node[left] at (0,.4) {$c_{k,1\omega}$};
+\end{tikzpicture}
+\par\smallskip\small
+以对数效用为例。横轴输入 $z_\omega=\lambda_k\phi_\omega/p_\omega$，
+纵轴读出消费 $c_{k,1\omega}$。图中 $z_\omega>z_{\omega'}$，
+对应 $c_{k,1\omega}<c_{k,1\omega'}$。
+\WJFigure{fig:wj-inverse-marginal-utility}{用逆边际效用读出最优消费}
+\end{minipage}
+\end{center}
