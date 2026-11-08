@@ -360,15 +360,15 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \end{solution}
 \end{tcolorbox}
 
-\subsection{内点解与边际替代率}
-\begin{tcolorbox}[knowledge,title=内点最优与边际替代率,breakable=false]
+\subsection{内点解与跨期边际替代率}
+\begin{tcolorbox}[knowledge,title=内点最优与跨期边际替代率,breakable=false]
 由定理~\ref{thm:wj-three-kkt}，最优消费满足互补松弛条件~\eqref{eq:wj-three-kkt-complementarity}，即 $\mu_{ki}c_{ki}=0$。若最优消费 $c_k\gg0$，每一项消费都严格为正，因此对应的非负约束乘子 $\mu_{ki}$ 都为零。代入一阶条件~\eqref{eq:wj-three-kkt-stationarity}，再用 $\phi_0=1$，得到
 \begin{equation}
  DU_k(c_k)=\lambda_k\hat\phi,\qquad
  \partial_0U_k=\lambda_k,\quad\partial_\omega U_k=\lambda_k\phi_\omega.\label{eq:wj-three-interior}
 \end{equation}
 
-因此跨期、跨状态消费的边际替代率满足
+因此，未来状态 $\omega$ 的消费相对于当期消费的\textbf{跨期边际替代率}（也称相对边际效用）满足
 \begin{equation}
  \frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}=\phi_\omega
  \quad\Longleftrightarrow\quad
@@ -396,7 +396,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \mathrm dc_{1\omega}.
 \]
 
-内点处两项消费都为正，沿预算线向两个方向作小幅调整都可行。若括号内的系数为正，就可以增加未来消费来提高效用。若系数为负，就可以反向调整来提高效用。因此内点最优时该系数为零，这正是式~\eqref{eq:wj-three-mrs} 所表达的市场交换比例与个人边际替代率相等。
+内点处两项消费都为正，沿预算线向两个方向作小幅调整都可行。若括号内的系数为正，就可以增加未来消费来提高效用。若系数为负，就可以反向调整来提高效用。因此内点最优时该系数为零，这正是式~\eqref{eq:wj-three-mrs} 所表达的市场交换比例与个人跨期边际替代率相等。
 
 图~\ref{fig:wj-budget-tangency} 左侧的切点对应这个条件。无差异曲线与预算线在该点斜率相同。
 
@@ -520,12 +520,12 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 % 仅有非负禀赋不足以保证严格正价格均衡：禀赋 (1,0)、效用 sqrt(c0)+sqrt(c1) 时未来总资源为零，而任意严格正价格下的最优未来消费均为正。
 
 
-\subsection{均衡中的边际替代率}
-\subsubsection{共同边际估值与互利交易}
-\begin{tcolorbox}[knowledge,title=均衡中的共同边际替代率,breakable=false]
+\subsection{均衡中的跨期边际替代率}
+\subsubsection{共同的跨期边际替代率与互利交易}
+\begin{tcolorbox}[knowledge,title=均衡中的共同跨期边际替代率,breakable=false]
 记 $c_k=(c_{k,0},c_{k,1}^{\mathsf T})^{\mathsf T}$ 为参与者 $k$ 的整个消费计划向量，包含当期消费和未来各状态的消费。
 
-在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足~\eqref{eq:wj-three-mrs}（内点最优时，边际替代率等于状态价格），因而
+在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足~\eqref{eq:wj-three-mrs}（跨期边际替代率等于状态价格），因而
 \begin{equation}
  \frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}
  =\phi_\omega
@@ -533,16 +533,16 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \qquad\forall k,k',\omega.\label{eq:wj-three-common-mrs}
 \end{equation}
 
-式~\eqref{eq:wj-three-common-mrs} 两侧的比值表示，在效用保持不变时，参与者在边际上愿意放弃多少当期消费来换取一单位状态 $\omega$ 的未来消费。市场上，每单位这种未来消费都要用 $\phi_\omega$ 单位当期消费来换。每个人都在各自的内点最优计划上使个人的交换比例等于市场的交换比例，因此即使偏好和消费计划不同，对同一状态消费的边际估值也相同。
+式~\eqref{eq:wj-three-common-mrs} 两侧分别是参与者 $k$ 和 $k'$ 对同一状态 $\omega$ 的跨期边际替代率。在各自的内点最优计划上，两人愿意为一单位该状态的未来消费放弃的当期消费量，都等于市场价格 $\phi_\omega$。因此即使偏好和消费计划不同，两人的跨期边际替代率也相同。
 \end{tcolorbox}
 
 % 来源：教材印刷第 42 页、PPT 第 22 页；展开双方交易的可行性与效用变化。
-记参与者 $k$ 对状态 $\omega$ 消费的边际估值为
+为了看出跨期边际替代率的差异怎样带来互利交易的机会，考虑两位参与者 $k$ 和 $k'$，从一组可行的内点消费计划出发。参与者 $k$ 对状态 $\omega$ 的跨期边际替代率记为
 \[
  m_{k,\omega}=\frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}.
 \]
 
-取两位当前消费计划均为内点的参与者 $k$ 和 $k'$，假设 $m_{k,\omega}>\phi_\omega>m_{k',\omega}$。成交价低于 $k$ 的边际估值，所以他愿意买入。成交价高于 $k'$ 的边际估值，所以他愿意卖出。
+在交易中，$m_{k,\omega}$ 衡量参与者对该状态未来消费的边际估值。设 $k$ 的估值较高，并取一个介于两人估值之间的成交价 $\phi_\omega$，即 $m_{k,\omega}>\phi_\omega>m_{k',\omega}$。成交价低于 $k$ 的边际估值，所以他愿意买入。成交价高于 $k'$ 的边际估值，所以他愿意卖出。
 
 每份状态 $\omega$ 证券今天售价为 $\phi_\omega$，到期仅在状态 $\omega$ 支付一单位消费品。若 $k$ 向 $k'$ 买入 $t>0$ 份，今天由 $k$ 向 $k'$ 支付 $\phi_\omega t$，未来在状态 $\omega$ 则由 $k'$ 向 $k$ 转移 $t$ 单位消费品。因此
 \[
@@ -552,26 +552,33 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \end{aligned}
 \]
 
-这些消费变化由证券的价格和支付决定。式~\eqref{eq:wj-three-common-mrs} 则描述均衡时双方的边际估值都等于状态价格。其余状态消费保持不变，双方各自的消费变化按当期价格计值为零，且在每个日期和状态相互抵消。因此交易保持个人预算和总资源可行性。由于双方的初始消费均为内点，$t$ 足够小时，双方消费仍为正。
+对买方，消费变化按当期价格计值为 $-\phi_\omega t+\phi_\omega t=0$。卖方的变化正好相反，计值也为零。因此交易前后各人的消费支出相同。两人的消费变化还在每个日期和状态相互抵消，所以总资源保持不变。由于双方的初始消费均为内点，$t$ 足够小时，交易后的各项消费仍为正。
 
-\Needspace{12\baselineskip}
-记交易 $t$ 份后的消费计划为 $c_k(t)$ 和 $c_{k'}(t)$，其中 $c_k(0)=c_k$、$c_{k'}(0)=c_{k'}$。例如，买方的两项消费变为 $c_{k,0}(t)=c_{k,0}-\phi_\omega t$ 和 $c_{k,1\omega}(t)=c_{k,1\omega}+t$，所以它们对 $t$ 的导数分别为 $-\phi_\omega$ 和 $1$。卖方的两项导数分别为 $\phi_\omega$ 和 $-1$。
+接下来考察这笔可行交易如何改变双方的效用。记交易 $t$ 份后的消费计划为 $c_k(t)$ 和 $c_{k'}(t)$，其中 $c_k(0)=c_k$、$c_{k'}(0)=c_{k'}$。例如，买方的两项消费变为 $c_{k,0}(t)=c_{k,0}-\phi_\omega t$ 和 $c_{k,1\omega}(t)=c_{k,1\omega}+t$，所以它们对 $t$ 的导数分别为 $-\phi_\omega$ 和 $1$。卖方的两项导数分别为 $\phi_\omega$ 和 $-1$。
 
-链式法则把每项消费对 $t$ 的变化率乘以该项的边际效用，再将各项相加。其他状态的消费量固定，对 $t$ 的导数均为零。下式中的撇号表示对 $t$ 求导。取 $t=0$ 时，边际效用在交易前的消费计划上取值。
+链式法则把每项消费对 $t$ 的变化率乘以该项的边际效用，再将各项相加。其他状态的消费量固定，对 $t$ 的导数均为零。下式中消费变量上的撇号表示对 $t$ 求导。取 $t=0$ 时，边际效用在交易前的消费计划上取值。
+
+买方的效用变化率为
 \[
  \begin{aligned}
  \left.\frac{\mathrm d}{\mathrm dt}U_k(c_k(t))\right|_{t=0}
  &=\partial_0U_k(c_k)c'_{k,0}(0)+\partial_\omega U_k(c_k)c'_{k,1\omega}(0)\\
- &=(-\phi_\omega)\partial_0U_k(c_k)+1\cdot\partial_\omega U_k(c_k)\\
- &=\partial_0U_k(c_k)(m_{k,\omega}-\phi_\omega)>0,\\[.35em]
+ &=\partial_0U_k(c_k)\cdot(-\phi_\omega)+\partial_\omega U_k(c_k)\cdot1\\
+ &=\partial_0U_k(c_k)(m_{k,\omega}-\phi_\omega)>0.
+ \end{aligned}
+\]
+
+卖方的效用变化率为
+\[
+ \begin{aligned}
  \left.\frac{\mathrm d}{\mathrm dt}U_{k'}(c_{k'}(t))\right|_{t=0}
  &=\partial_0U_{k'}(c_{k'})c'_{k',0}(0)+\partial_\omega U_{k'}(c_{k'})c'_{k',1\omega}(0)\\
- &=\phi_\omega\partial_0U_{k'}(c_{k'})+(-1)\partial_\omega U_{k'}(c_{k'})\\
+ &=\partial_0U_{k'}(c_{k'})\cdot\phi_\omega+\partial_\omega U_{k'}(c_{k'})\cdot(-1)\\
  &=\partial_0U_{k'}(c_{k'})(\phi_\omega-m_{k',\omega})>0.
  \end{aligned}
 \]
 
-最后一步用边际估值的定义，将未来消费的边际效用写成边际估值乘以当期消费的边际效用。当期边际效用为正，且价格介于两人的边际估值之间，所以两个导数都为正。因此，存在足够小的正交易量使双方效用都严格提高。均衡时共同状态价格与各人的边际估值一致，这类进一步交易的动机随之消失。
+两组推导的最后一行都用边际估值的定义提取了当期消费的边际效用。由于当期边际效用为正，且成交价介于两人的边际估值之间，两个导数都为正。因此，只要交易量足够小，这笔可行交易就能严格提高双方的效用。在式~\eqref{eq:wj-three-common-mrs} 描述的内点均衡中，两人的边际估值都等于共同的状态价格，由估值差异产生的这类互利交易机会随之消失。
 
 \subsubsection{两状态经济的均衡}
 % 来源：教材印刷第 42—43 页，PPT 第 24 页。
@@ -591,13 +598,15 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 求均衡状态价格、消费配置和证券净交易量。
 \end{question}
 \begin{solution}
-在市场上存在一组完全的状态或有证券可以交易。因为有两个状态，因而只有两个状态或有证券。
-
-现在我们开始分析这个经济的均衡。从给定交易证券价格下参与者的最优化问题开始。记 $\phi=\begin{bmatrix}\phi_{a} \\ \phi_{b}\end{bmatrix}$ 为状态价格（向量），即两个状态或有证券的价格。我们可以定义每个参与者的财富为 $w=\hat{\phi}^{\top}e$，这里 $\hat{\phi}=\begin{bmatrix}1 \\ \phi\end{bmatrix}$，而 $e$ 是他的禀赋。这时，最优化问题变成了：
+两只状态证券分别在状态 $a$ 和 $b$ 支付一单位消费品。以 0 期消费品为计价单位，状态价格为 $\phi=(\phi_a,\phi_b)^{\mathsf T}$，禀赋 $e$ 的现值为 $w=\hat\phi^{\mathsf T}e$，其中 $\hat\phi=(1,\phi_a,\phi_b)^{\mathsf T}$。效用随消费增加，最优计划会用尽这笔财富。对数效用还要求三个消费量都严格为正。
 \[
     \begin{aligned}
         \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
-        \mathrm{s.t.}\quad &c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}=w
+        \mathrm{s.t.}\quad &
+        \left\{\begin{aligned}
+            c_{0}+\phi_{a}c_{a}+\phi_{b}c_{b}&=w,\\
+            c_{0},c_{a},c_{b}&>0.
+        \end{aligned}\right.
     \end{aligned}
 \]
 
@@ -630,7 +639,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     4\phi_{a}+\phi_{b}=2.
 \]
 
-\textbf{1 期·状态 $a$ 商品市场出清}（状态 $a$ 下总消费 $200$）。由 $c_{k,a}^{*}=\tfrac14 w_{k}/\phi_{a}$，
+\textbf{第 1 期状态 $a$ 商品市场出清}（状态 $a$ 下总消费 $200$）。由 $c_{k,a}^{*}=\tfrac14 w_{k}/\phi_{a}$，
 \[
     c_{1,a}^{*}+c_{2,a}^{*}=\tfrac{w_{1}}{4\phi_{a}}+\tfrac{w_{2}}{4\phi_{a}}
     =\frac{w_{1}+w_{2}}{4\phi_{a}}=200
@@ -646,7 +655,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     \end{aligned}
 \]
 
-将消费代回边际替代率，可逐状态检验均衡的一阶条件。对 $k=1,2$，都有
+由内点最优条件~\eqref{eq:wj-three-mrs}，每个人在最优消费计划上的跨期边际替代率应等于相应的状态价格。本例中，未来状态 $\omega$ 的边际效用为 $1/(2c_{k,\omega}^*)$，当期边际效用为 $1/c_{k,0}^*$，两者之比为 $m_{k,\omega}=c_{k,0}^*/(2c_{k,\omega}^*)$。对 $k=1,2$，分别代入两个状态的消费量，得到
 \[
  \begin{aligned}
  m_{k,a}&=\frac{1/(2c_{k,a}^*)}{1/c_{k,0}^*}
@@ -656,7 +665,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \end{aligned}
 \]
 
-两人在每个状态的边际估值相同，并分别等于该状态的市场价格。
+两人在每个状态的跨期边际替代率相同，并分别等于该状态的价格，验证了式~\eqref{eq:wj-three-common-mrs}。
 
 初始状态证券持仓分别为 $(0,0)^{\mathsf T}$ 与 $(200,50)^{\mathsf T}$，因此
 \[
@@ -671,38 +680,67 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \end{tcolorbox}
 
 
+\Needspace{9\baselineskip}
 \subsubsection{证券缺失与交易成本}
-% 来源：教师 PPT 第 22 页关于不完全市场的讨论。
-若一般证券市场的支付矩阵为 $X$、证券价格为 $S$，在内点、无交易限制下，对净交易量求一阶条件只得到
+% 来源：教材印刷第 44 页、PPT 第 22 页。逐证券推导、价差模型及数字例子为讲义补充。
+式~\eqref{eq:wj-three-common-mrs} 中，参与者可以按同一个价格自由买卖每个状态的单位支付。证券缺失会限制哪些消费转移可以实现，买卖价差则会改变这种转移的成本。
+
+\textbf{证券缺失与可复制的支付。}设第 $n$ 只证券的当期价格为 $S_n$，未来各状态的支付向量为 $x_n$，所有证券的支付向量构成矩阵 $X$。净买入量每增加一份，当期消费减少 $S_n$，未来消费向量增加 $x_n$。沿用前面交易推导的链式法则，效用对该证券净买入量的变化率为
 \[
- X^{\mathsf T}m_k=S,\qquad
- (m_k)_\omega=\frac{\partial_\omega U_k}{\partial_0U_k}.
+ -S_n\partial_0U_k+\sum_{\omega=1}^{\Omega}x_{\omega n}\partial_\omega U_k
+ =\partial_0U_k\bigl(x_n^{\mathsf T}m_k-S_n\bigr),
+ \qquad m_k=(m_{k,1},\ldots,m_{k,\Omega})^{\mathsf T}.
 \]
 
-两人之差满足 $X^{\mathsf T}(m_k-m_{k'})=0$。当 $X$ 行满秩时，其转置的零空间只有零向量，故边际替代率向量相同；市场不完全时，未被证券支付覆盖的方向仍可能存在估值差异。这说明完全性在消除进一步交易动机中的作用。
+在无价差、消费为内点且持仓可自由调整时，净买入量可以略增或略减。最优时上述导数为零。由于 $\partial_0U_k>0$，每只证券都满足 $x_n^{\mathsf T}m_k=S_n$，合起来就是 $X^{\mathsf T}m_k=S$。因此，两位参与者的估值差满足 $X^{\mathsf T}(m_k-m_{k'})=0$，即他们对每只可交易证券及其组合的支付估值都相同。
 
-% 来源：教材印刷第 44 页、PPT 第 22 页；用买卖价差说明交易成本的影响。
+由第~\ref{sec:wj-three-rank}~节的行满秩判据，若 $X$ 行满秩，每个状态的单位支付 $\mathbf e_\omega$ 都能由某个证券组合 $h$ 复制，即 $Xh=\mathbf e_\omega$。两人对该组合的估值相同，就意味着 $\mathbf e_\omega^{\mathsf T}(m_k-m_{k'})=0$，也就是对状态 $\omega$ 的消费估值相同。
+
+例如，若只有一只在两个状态都支付 $1$ 的债券，且价格为 $1$，两人的跨期边际替代率可以分别是 $(0.4,0.6)^{\mathsf T}$ 和 $(0.6,0.4)^{\mathsf T}$。两人对这只债券的估值都是 $1$，但对各状态单独消费的估值不同。交易这只债券只会同时改变两个状态的消费，因而这项交易工具无法消除逐状态的估值差异。
+
 \textbf{交易成本与无交易区间。}即使某状态证券可以交易，买卖价差也会改变上述条件。设买入一份须付 $\phi_\omega^{\mathrm{ask}}$，卖出一份只能得到 $\phi_\omega^{\mathrm{bid}}$，且
 \[
  0<\phi_\omega^{\mathrm{bid}}\le\phi_\omega^{\mathrm{ask}}.
 \]
 
-仅考虑这种单位交易成本，且没有持仓限制。对消费为内点的参与者，增加少量买入带来的边际效用为 $\partial_0U_k(m_{k,\omega}-\phi_\omega^{\mathrm{ask}})$，增加少量卖出带来的边际效用为 $\partial_0U_k(\phi_\omega^{\mathrm{bid}}-m_{k,\omega})$。因此两种方向均无严格的一阶改善，需要
+固定其他证券的持仓，考察在当前内点消费计划上额外买入或卖出少量状态 $\omega$ 证券。设买卖报价固定，且持仓可自由调整。买入时，每份证券让当期消费减少 $\phi_\omega^{\mathrm{ask}}$，状态 $\omega$ 的消费增加 $1$。卖出时，每份证券让当期消费增加 $\phi_\omega^{\mathrm{bid}}$，状态 $\omega$ 的消费减少 $1$。由链式法则，两个方向的效用变化率分别为
+\[
+ \begin{aligned}
+ \text{买入}\quad&
+ -\phi_\omega^{\mathrm{ask}}\partial_0U_k+\partial_\omega U_k
+ =\partial_0U_k(m_{k,\omega}-\phi_\omega^{\mathrm{ask}}),\\
+ \text{卖出}\quad&
+ \phi_\omega^{\mathrm{bid}}\partial_0U_k-\partial_\omega U_k
+ =\partial_0U_k(\phi_\omega^{\mathrm{bid}}-m_{k,\omega}).
+ \end{aligned}
+\]
+
+由于 $\partial_0U_k>0$，买入方向无一阶改善要求 $m_{k,\omega}\le\phi_\omega^{\mathrm{ask}}$，卖出方向无一阶改善要求 $m_{k,\omega}\ge\phi_\omega^{\mathrm{bid}}$。两者合起来得到
 \[
  \underbrace{\phi_\omega^{\mathrm{bid}}\le m_{k,\omega}\le\phi_\omega^{\mathrm{ask}}}_{\text{边际上的无交易区间}}.
 \]
 
-不同参与者的边际估值可以位于这个区间的不同位置，而都没有增加交易的边际动机。若效用为凹函数，这些方向条件也足以保证单独交易该证券无法提高效用。无价差时，区间收缩为一个价格，便恢复~\eqref{eq:wj-three-common-mrs} 的等式条件。
+例如，若买入一份须付 $1.1$，卖出一份只能收到 $0.9$，边际估值分别为 $0.95$ 和 $1.05$ 的两人都觉得买入太贵、卖出所得太少。两人的估值不同，却都没有买入或卖出的边际动机。
 
-% 来源：教师 PPT 第 28 页；将共同边际估值与可复制证券定价相连。
+若效用为凹函数，在固定其他持仓时，沿买入或卖出方向的效用都是交易量的凹函数。因此从零开始的两个方向导数都非正时，单独交易该证券就无法提高效用。某一状态证券的价差消失时，该状态的区间收缩为一个价格。每个状态的证券都可无价差交易时，便恢复式~\eqref{eq:wj-three-common-mrs} 的逐状态等式。
+
+% 来源：教师 PPT 第 28 页、教材第 42 页式 (3.9) 及第 56—57 页的一价定律与定价公式。
 \subsubsection{状态价格与证券定价}
-在完全的状态证券市场中，证券 $n$ 在未来各状态的支付为 $x_n=(x_{1n},\ldots,x_{\Omega n})^{\mathsf T}$。持有 $x_{\omega n}$ 份状态 $\omega$ 的阿罗证券，便能复制其支付，因此在无摩擦、一价定律下，
+记 $S_n$ 为第 $n$ 只证券每份在第 0 期的价格，以当期消费品计量。它在未来各状态的支付组成向量 $x_n=(x_{1n},\ldots,x_{\Omega n})^{\mathsf T}$。
+
+在完全的状态证券市场中，对每个状态 $\omega$ 持有 $x_{\omega n}$ 份相应的阿罗证券，就能复制该证券在所有状态的支付。这 $x_{\omega n}$ 份阿罗证券的当期成本为 $\phi_\omega x_{\omega n}$。在无摩擦市场中，由一价定律，相同的未来支付具有相同的当期价格，因此
 \[
- S_n=\underbrace{\phi^{\mathsf T}x_n}_{\text{复制组合的成本}}
- =\sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}.
+ S_n=\underbrace{\sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}}_{\text{复制组合的成本}}
+ =\phi^{\mathsf T}x_n.
 \]
 
-均衡条件~\eqref{eq:wj-three-common-mrs}（各参与者的边际替代率共同等于状态价格）进一步把这里的状态价格与各参与者的边际替代率联系起来。资产价格由各状态支付按状态价格加权求和得到，而状态价格综合反映偏好、状态概率与资源稀缺性。
+由内点均衡条件~\eqref{eq:wj-three-common-mrs}，参与者 $k$ 的跨期边际替代率 $m_{k,\omega}$ 等于状态价格 $\phi_\omega$。将这一关系逐状态代入定价式，得到
+\[
+ S_n=\sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}
+ =\underbrace{\sum_{\omega=1}^{\Omega}m_{k,\omega}x_{\omega n}}_{\text{按参与者 }k\text{ 的边际估值计价}}.
+\]
+
+因此，按市场上的复制成本计价，和按任一参与者在均衡点对各状态支付的边际估值计价，得到的是同一个证券价格。状态价格综合反映偏好、状态概率与资源稀缺性。
 
 \subsection{均衡配置的效率}
 \label{sec:wj-three-welfare}
@@ -712,24 +750,40 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \end{equation}
 \begin{tcolorbox}[knowledge]
 \WJThreeTheorem{thm:wj-three-welfare}在本章无摩擦、完全的状态证券市场中，若偏好满足不满足性（公理~\ref{axiom:wj-two-1}，喜多厌少），则竞争均衡配置是 \textbf{\hyperref[def:wj-two-9]{Pareto 最优的}}：不存在另一可行配置，使所有人至少一样好、至少一人严格更好。
+
+这就是\textbf{福利经济学第一定理}。它说明在完全、无摩擦的竞争市场中，分散的个人选择可以实现资源在不同时期、不同状态下的有效配置。下面的证明直接比较各消费计划的预算成本，适用于包含角点消费的均衡配置。
 \end{tcolorbox}
-\textbf{证明。}记均衡价格为 $\hat\phi\gg0$，均衡配置为 $\{c_k\}$，$w_k=\hat\phi^{\mathsf T}e_k=\hat\phi^{\mathsf T}c_k$。反设存在 Pareto 改善的可行配置 $\{a_k\}$。
+\textbf{证明。}记均衡价格为 $\hat\phi\gg0$，均衡消费配置为 $\{c_k\}$。按这组价格计价，第 $k$ 位参与者的禀赋财富是 $w_k=\hat\phi^{\mathsf T}e_k$。他在这一预算内选择最优消费计划 $c_k$。由不满足性，最优时用尽预算，所以 $\hat\phi^{\mathsf T}c_k=w_k$。
 
-先证每个弱改善者均有 $\hat\phi^{\mathsf T}a_k\ge w_k$。若其成本小于 $w_k$，令剩余预算为 $b=w_k-\hat\phi^{\mathsf T}a_k>0$，取
+反设存在另一个可行配置 $\{a_k\}$，使每个人都有 $a_k\succeq_k c_k$，且至少有一位参与者 $j$ 满足 $a_j\succ_j c_j$。下面用同一组均衡价格给新配置计价，先看每个人的消费需要花多少钱，再比较全体的总成本。
+
+\Needspace{6\baselineskip}
+\textbf{至少一样好的计划，成本至少为原预算。}任取一位参与者 $k$。假设新计划 $a_k$ 至少和 $c_k$ 一样好，而且成本低于 $w_k$，就会剩下 $b=w_k-\hat\phi^{\mathsf T}a_k>0$。用其中一半在每个日期、每个状态都增加相同数量的消费，可以取
 \[
- d=\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}(1,\ldots,1)^{\mathsf T}\gg0.
+ d=\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}(1,\ldots,1)^{\mathsf T}\gg0,
+ \qquad
+ \hat\phi^{\mathsf T}d
+ =\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}\sum_{i=0}^{\Omega}\phi_i
+ =\frac b2.
 \]
-则 $a_k+d$ 的成本为 $w_k-b/2<w_k$，仍在预算内。由不满足性，$a_k+d\succ_k a_k\succeq_k c_k$，与 $c_k$ 最优矛盾。
 
-对严格改善者 $j$，必有 $\hat\phi^{\mathsf T}a_j>w_j$；否则 $a_j$ 本来就在预算内，却严格优于 $c_j$，同样矛盾。因此
+加上这份额外消费后，$a_k+d$ 的成本为 $(w_k-b)+b/2=w_k-b/2<w_k$，仍然买得起。由于每一项消费都增加了，由不满足性可得 $a_k+d\succ_k a_k$。又因为 $a_k\succeq_k c_k$，所以 $a_k+d\succ_k c_k$，与 $c_k$ 是预算内最优选择矛盾。因此，对每个人都有 $\hat\phi^{\mathsf T}a_k\ge w_k$。
+
+\textbf{严格更好的计划，成本必定超过原预算。}对严格变好的参与者 $j$，如果 $\hat\phi^{\mathsf T}a_j\le w_j$，那么 $a_j$ 本身就买得起，而他又严格偏好 $a_j$，这与 $c_j$ 最优矛盾。因此 $\hat\phi^{\mathsf T}a_j>w_j$。
+
+\textbf{加总后与资源可行性矛盾。}每个人的新计划成本都至少等于原预算，且至少有一项严格超过原预算。将这些不等式相加，得到
 \[
  \underbrace{\hat\phi^{\mathsf T}\sum_k a_k}_{\text{改善配置的总成本}}
  >\sum_k w_k
- =\underbrace{\hat\phi^{\mathsf T}\sum_k e_k}_{\text{总禀赋价值}},
+ =\underbrace{\hat\phi^{\mathsf T}\sum_k e_k}_{\text{总禀赋价值}}.
 \]
-与可行性 $\sum_k a_k=\sum_k e_k$ 矛盾。故均衡配置 Pareto 最优。
 
-定理~\ref{thm:wj-three-welfare} 即\textbf{福利经济学第一定理}。它说明分散的个人选择可以在完全、无摩擦的竞争市场中达到跨期、跨状态配置效率。这一证明直接比较可行配置的预算成本，适用于包括角点消费在内的均衡配置。
+另一方面，新配置可行，意味着每个日期、每个状态的总消费量都等于相应的总禀赋。把式~\eqref{eq:wj-three-feasibility-value} 的计价关系用到新配置上，得到
+\[
+ \hat\phi^{\mathsf T}\sum_k a_k=\hat\phi^{\mathsf T}\sum_k e_k.
+\]
+
+总成本不可能同时严格超过又等于总禀赋价值。因此不存在这样的 Pareto 改善，竞争均衡配置是 Pareto 最优的。
 
 \begin{tcolorbox}[knowledge,title=效率与分配]
 Pareto 效率排除了使所有人不受损、至少一人受益的进一步调整，但有效配置仍可对应不同的福利分配。第二福利定理研究在附加条件下，如何通过一次性财富再分配支持给定的有效配置；这一问题将在完全市场的资源配置章节进一步讨论。

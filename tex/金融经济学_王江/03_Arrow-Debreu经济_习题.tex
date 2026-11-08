@@ -84,31 +84,39 @@
             c_{1b}^{*}&=\frac{2\phi_{a}+\phi_{b}+\phi_{a}\log(2\phi_{a})-\log(2\phi_{b})-\phi_{a}\log(2\phi_{b})}{1+\phi_{a}+\phi_{b}}
         \end{aligned}
     \]
-    \item 由一阶条件，$c_{1a}^{*}=c_{0}^{*}-\log(2\phi_{a})$，$c_{1b}^{*}=c_{0}^{*}-\log(2\phi_{b})$。记
+    \item 设状态 $j$ 的价格 $\phi_j$ 变动，另一状态的价格 $\phi_k$ 固定。由 (d) 的一阶条件 $c_{1j}^{*}=c_0^{*}-\log(2\phi_j)$ 和 $c_{1k}^{*}=c_0^{*}-\log(2\phi_k)$ 得
     \[
-        N=2\phi_{a}+\phi_{b}+\phi_{a}\log(2\phi_{a})+\phi_{b}\log(2\phi_{b}),\qquad
-        D=1+\phi_{a}+\phi_{b},
-    \]
-    则 $c_{0}^{*}=N/D$。直接求导得
-    \[
-        \frac{\partial c_{0}^{*}}{\partial\phi_{a}}
-        =\frac{3+\phi_{a}+\log(2\phi_{a})+\phi_{b}\bigl(2+\log(\phi_{a}/\phi_{b})\bigr)}{D^{2}},
+        \frac{\partial c_{1k}^{*}}{\partial\phi_j}
+        =\frac{\partial c_0^{*}}{\partial\phi_j},
         \qquad
-        \frac{\partial c_{1a}^{*}}{\partial\phi_{a}}
-        =\frac{\partial c_{0}^{*}}{\partial\phi_{a}}-\frac{1}{\phi_{a}},
+        \frac{\partial c_{1j}^{*}}{\partial\phi_j}
+        =\frac{\partial c_0^{*}}{\partial\phi_j}-\frac{1}{\phi_j}.
     \]
-    并且 $\partial c_{1b}^{*}/\partial\phi_{a}=\partial c_{0}^{*}/\partial\phi_{a}$。$\phi_{a}$ 上升时，禀赋价值 $w=2\phi_{a}+\phi_{b}$ 增加，同时状态 $a$ 的消费相对变贵；二者的相对强弱取决于价格，符号由分子决定。若 $2\phi_{a}\ge e^{-1}$ 且 $\phi_{a}\ge\phi_{b}$，分子为正，$c_{0}^{*}$ 与 $c_{1b}^{*}$ 上升；$c_{1a}^{*}$ 上升还要求 $\partial c_{0}^{*}/\partial\phi_{a}>1/\phi_{a}$。例如 $\phi_{a}=\phi_{b}=0.1$ 时分子为 $3.3+\log 0.2>0$，但导数约为 $1.17<10=1/\phi_{a}$，故 $c_{1a}^{*}$ 下降。若 $\phi_{a}=0.01$、$\phi_{b}=1$，分子为 $5.01+\log 0.02+\log 0.01<0$，$c_{0}^{*}$ 与 $c_{1b}^{*}$ 随 $\phi_{a}$ 上升而下降。
 
-    对 $\phi_{b}$ 同样有
+    对预算等式 $c_0^*+\phi_a c_{1a}^*+\phi_b c_{1b}^*=2\phi_a+\phi_b$ 关于 $\phi_j$ 求导，再用上面两式将未来消费的导数写成当期消费的导数。沿用 (d) 的 $S=1+\phi_a+\phi_b$，得到
     \[
-        \frac{\partial c_{0}^{*}}{\partial\phi_{b}}
-        =\frac{2+\phi_{b}+\log(2\phi_{b})+\phi_{a}\log(\phi_{b}/\phi_{a})}{D^{2}},
-        \qquad
-        \frac{\partial c_{1b}^{*}}{\partial\phi_{b}}
-        =\frac{\partial c_{0}^{*}}{\partial\phi_{b}}-\frac{1}{\phi_{b}},
+        S\frac{\partial c_0^*}{\partial\phi_j}
+        +\underbrace{c_{1j}^*}_{\text{原消费的支出增量}}
+        -\underbrace{1}_{\text{相对消费减少所节省的支出}}
+        =\underbrace{e_{1j}}_{\text{禀赋增值}},
+        \qquad e_{1a}=2,\quad e_{1b}=1.
     \]
-    且 $\partial c_{1a}^{*}/\partial\phi_{b}=\partial c_{0}^{*}/\partial\phi_{b}$。若 $2\phi_{b}\ge e^{-1}$ 且 $\phi_{b}\ge\phi_{a}$，则 $c_{0}^{*}$ 与 $c_{1a}^{*}$ 不减。
-    \item 当 $\phi_{a}=\phi_{b}=0.1$ 时，$w=0.3$，$D=1.2$，
+
+    当期消费与价格未变的状态消费同向变化。$\phi_a$ 上升时，$c_0^*$ 与 $c_{1b}^*$ 的变化方向由 $(3-c_{1a}^*)/S$ 的符号决定。$\phi_b$ 上升时，$c_0^*$ 与 $c_{1a}^*$ 的变化方向由 $(2-c_{1b}^*)/S$ 的符号决定。价格上升的状态还要从当期消费的导数中扣去 $1/\phi_j$，差值为正时，该状态的消费才会上升。
+
+    例如，固定 $\phi_b$，小幅提高 $\phi_a$。在下表的两组价格处，偏导数的正负分别表示对应的消费量上升或下降。
+    \begin{center}
+        \begin{tabular}{@{}crrr@{}}
+            $(\phi_a,\phi_b)$ &
+            $\partial c_0^*/\partial\phi_a$ &
+            $\partial c_{1a}^*/\partial\phi_a$ &
+            $\partial c_{1b}^*/\partial\phi_a$ \\
+            \hline
+            $(0.1,0.1)$ & $1.17$ & $-8.83$ & $1.17$ \\
+            $(0.01,1)$  & $-0.87$ & $-100.87$ & $-0.87$
+        \end{tabular}
+    \end{center}
+    \item 当 $\phi_{a}=\phi_{b}=0.1$ 时，$w=0.3$，$S=1.2$，
     \[
         c_{0}^{*}=\frac{0.3+0.2\log(0.2)}{1.2}\approx -0.0182<0.
     \]
@@ -136,9 +144,12 @@
 \end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 设 $\rho>0$、$1+r_F>0$。以 $\theta$ 表示债券净买入量，对数效用要求 $-1/(1+r_F)<\theta<100$。在此区间内求解
+    \item 设 $\rho>0$、$1+r_F>0$。以 $\theta$ 表示债券净买入量。对数效用要求 $100-\theta>0$ 和 $1+\theta(1+r_F)>0$，分别限制了储蓄的上限和借款的上限。
     \[
-        \max_{\theta}\bigl\{\log(100-\theta)+\rho\log\bigl(1+\theta(1+r_{F})\bigr)\bigr\}
+        \begin{aligned}
+            \max_{\theta}\quad &\log(100-\theta)+\rho\log\bigl(1+\theta(1+r_F)\bigr)\\
+            \text{s.t.}\quad &-\frac{1}{1+r_F}<\theta<100.
+        \end{aligned}
     \]
 
     一阶条件
@@ -159,10 +170,22 @@
 
     在给定参数条件下，两项消费均严格为正，满足对数效用的定义域；目标函数严格凹，故该一阶条件解为唯一最优解。
     \item 由于市场上只有一个参与者，因而市场出清条件是 $\theta^{*}=0$；
-    \item 由上面的市场出清条件，我们可以求得均衡利率为 $r_{F}=\dfrac{1}{100\rho}-1$；
-    \item 在均衡时，$r_F=1/(100\rho)-1$ 随 $\rho$ 增大而下降。题中证券的当期价格固定为 $1$，其支付为 $R=1+r_F$；每单位未来支付的当期价格是 $q=1/R$。均衡时
+    \item 记均衡利率为 $r_F^{*}$。它要使参与者的最优净买入量恰好为零。将 (a) 求得的证券需求代入 (b) 的出清条件，得到
     \[
-      q=100\rho,\qquad R=\frac1{100\rho}.
+        \theta^{*}(r_F^{*})=\frac{100\rho(1+r_F^{*})-1}{(1+\rho)(1+r_F^{*})}=0.
+    \]
+
+    由于 $\rho>0$ 且 $1+r_F^{*}>0$，分母严格为正。因此，出清条件等价于
+    \[
+        100\rho(1+r_F^{*})-1=0
+        \quad\Longrightarrow\quad 1+r_F^{*}=\frac{1}{100\rho}
+        \quad\Longrightarrow\quad r_F^{*}=\frac{1}{100\rho}-1.
+    \]
+
+    这个解满足 $1+r_F^{*}>0$。在该利率下，参与者最优地选择 $\theta^{*}=0$，所以均衡消费就是初始禀赋 $(c_0^{*},c_1^{*})=(100,1)$。
+    \item 均衡利率 $r_F^{*}=1/(100\rho)-1$ 随 $\rho$ 增大而下降。题中证券的当期价格固定为 $1$，其支付为 $R=1+r_F$。每单位未来支付的当期价格是 $q=1/R$。均衡时
+    \[
+      q^{*}=100\rho,\qquad R^{*}=\frac1{100\rho}.
     \]
     未来消费的相对权重提高，使参与者在给定利率下更愿意储蓄；均衡时单位未来支付的价格上升，相应的利率下降。
 \end{enumerate}
@@ -183,9 +206,12 @@
 \end{minipage}\par
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-    \item 仍设 $\rho>0$、$1+r_F>0$。参与者 2 在 $-100/(1+r_F)<\theta<1$ 内求解
+    \item 仍设 $\rho>0$、$1+r_F>0$。参与者 2 的当期消费为 $1-\theta$，未来消费为 $100+\theta(1+r_F)$。令这两项严格为正，就得到本题的债券头寸区间。
     \[
-        \max_{\theta}\bigl\{\log(1-\theta)+\rho\log\bigl(100+\theta(1+r_{F})\bigr)\bigr\}
+        \begin{aligned}
+            \max_{\theta}\quad &\log(1-\theta)+\rho\log\bigl(100+\theta(1+r_F)\bigr)\\
+            \text{s.t.}\quad &-\frac{100}{1+r_F}<\theta<1.
+        \end{aligned}
     \]
 
     一阶条件 $\dfrac{1}{1-\theta}=\rho\dfrac{1+r_{F}}{100+\theta(1+r_{F})}$ 给出证券需求
