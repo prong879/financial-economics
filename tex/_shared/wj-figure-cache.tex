@@ -1,0 +1,18 @@
+% 只在独立图源中缓存 TikZ 图面，原位处理图注、编号和外层排版。
+\IfFileExists{wj-figure-cache-context.tex}{\input{wj-figure-cache-context.tex}}{}
+\ifdefined\WJFigureCacheContext
+  \usepackage[extract=no]{memoize}
+  \mmzset{disable,no memo dir}
+  \makeatletter
+  \newcommand{\WJInputFigure}[1]{%
+    \begingroup
+    \mmzset{enable,context/.expanded={\WJFigureCacheContext,\fmtversion,\pgfversion,%
+      \pdf@filemdfivesum{tex/金融经济学_王江/figures/#1.tex},%
+      \the\linewidth,\f@encoding,\f@family,\f@series,\f@shape,\f@size}}%
+    \input{tex/金融经济学_王江/figures/#1.tex}%
+    \endgroup
+  }
+  \makeatother
+\else
+  \newcommand{\WJInputFigure}[1]{\input{tex/金融经济学_王江/figures/#1.tex}}
+\fi
