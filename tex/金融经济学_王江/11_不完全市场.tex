@@ -86,12 +86,20 @@
 \subsection{Euler方程与状态价格}
 设效用严格递增、严格凹，采用时间可加的期望效用。个人优化问题为
 \[
- \max_{\theta_k}\left\{
- u_{k,0}(e_{k,0}-S^{\mathsf T}\theta_k)
- +\mathrm E[u_{k,1}(\widetilde e_{k,1}+\widetilde X^{\mathsf T}\theta_k)]
- \right\},
+ \begin{aligned}
+ \max_{\theta_k}\quad &u_{k,0}(e_{k,0}-S^{\mathsf T}\theta_k)
+ +\mathrm E[u_{k,1}(\widetilde e_{k,1}+\widetilde X^{\mathsf T}\theta_k)]\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ e_{k,0}-S^{\mathsf T}\theta_k&\ge0,\\
+ e_{k,1}+X\theta_k&\ge0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
-其中 $\widetilde X$ 为随机证券支付列向量。记大括号内的目标为 $U_k(\theta_k)$。对第 $n$ 只证券的净购买量求导，有
+
+其中 $\widetilde X$ 为随机证券支付列向量。第一条约束要求扣除净交易成本后，当期仍有非负消费。第二条要求加上证券支付后，未来每个状态的消费都非负。由于同一个 $\theta_k$ 决定两期的变化，未来消费还必须由现有证券的支付实现。
+
+将目标函数记为 $U_k(\theta_k)$。对第 $n$ 只证券的净购买量求导，有
 \[
  \frac{\partial U_k}{\partial\theta_{k,n}}
  =-\underbrace{S_nu'_{k,0}(c_{k,0})}_{\text{当期边际效用成本}}

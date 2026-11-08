@@ -232,7 +232,15 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-MVP求解 $\min_z z^{\mathsf T}\Sigma z/2$，约束为 $\iota^{\mathsf T}z=1$。一阶条件为 $\Sigma z=\lambda\iota$；代入预算约束得 $\lambda=1/c$。正定性保证解唯一，故
+把投资总额归一为 $1$，组合各项权重之和便等于 $1$。最小方差组合在满足这一预算条件的组合中选取方差最小者。
+\[
+ \begin{aligned}
+ \min_z\quad &\tfrac12 z^{\mathsf T}\Sigma z\\
+ \text{s.t.}\quad &\iota^{\mathsf T}z=1.
+ \end{aligned}
+\]
+
+一阶条件为 $\Sigma z=\lambda\iota$，代入预算约束得 $\lambda=1/c$。正定性保证解唯一，故
 \[
  z_{\mathrm{MVP}}=\frac{\Sigma^{-1}\iota}{\iota^{\mathsf T}\Sigma^{-1}\iota}.
 \]

@@ -89,13 +89,19 @@
 \subsection{最优消费与状态价格密度}
 以下采用时间可加的期望效用。$u_{k,0}$ 衡量当期消费的效用，$u_{k,1}$ 衡量未来消费的效用，同一个 $u_{k,1}$ 用于各状态。状态概率 $p_\omega$ 用来计算未来效用的期望，状态价格 $\phi_\omega$ 用来计算购买未来消费的成本。效用严格递增、严格凹。先讨论消费约束不绑定的内点：
 \begin{equation}
- \max_{c_{k,0},c_{k,1}}\left\{u_{k,0}(c_{k,0})+
- \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\right\},\qquad
- c_{k,0}+\sum_\omega\phi_\omega c_{k,1\omega}=w_k.
+ \begin{aligned}
+ \max_{c_{k,0},c_{k,1}}\quad &u_{k,0}(c_{k,0})+
+ \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_{k,0}+\sum_\omega\phi_\omega c_{k,1\omega}&=w_k,\\
+ c_{k,0},c_{k,1}&\ge0.
+ \end{aligned}\right.
+ \end{aligned}
  \label{eq:wj-10-1}
 \end{equation}
 
-给价值预算加上乘子 $\lambda_k$，得到拉格朗日函数
+当期消费与各状态的未来消费都以 0 期商品计价。由于效用严格递增，最优时总支出恰好等于禀赋现值 $w_k$。非负约束逐项适用，在这里讨论的内点均为严格不等式。给价值预算加上乘子 $\lambda_k$，得到拉格朗日函数
 \[
  \mathcal L_k=u_{k,0}(c_{k,0})+\sum_\omega p_\omega u_{k,1}(c_{k,1\omega})
  +\lambda_k\left(w_k-c_{k,0}-\sum_\omega\phi_\omega c_{k,1\omega}\right).
@@ -362,9 +368,15 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTenTheorem{thm:wj-ten-4}{} 若一组可行配置解出某个正权重 $\mu_k>0$ 的规划问题，则该配置是帕累托最优的：
 \begin{equation}
- \max_{\{c_k\}}\sum_k\mu_k\left[u_{k,0}(c_{k,0})+
- \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\right],\qquad
- \sum_k c_k=C.
+ \begin{aligned}
+ \max_{\{c_k\}}\quad &\sum_k\mu_k\left[u_{k,0}(c_{k,0})+
+ \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\right]\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ \sum_k c_k&=C,\\
+ c_k&\ge0\quad(\forall k).
+ \end{aligned}\right.
+ \end{aligned}
  \label{eq:wj-10-7}
 \end{equation}
 \end{tcolorbox}
@@ -375,7 +387,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \]
 因为每个效用差都非负，且严格为正的效用差乘以正权重后仍为正。这意味着 $\widehat c$ 的目标值高于 $c^*$，与 $c^*$ 解出规划问题矛盾。
 
-规划者在给定总资源 $C=(C_0,C_1)$ 的条件下，为所有参与者分配每一期、每一状态的消费。正权重 $\mu_k$ 衡量规划者对第 $k$ 人效用的相对重视程度。所有权重同时乘以同一个正常数，只会改变目标函数的尺度，最优配置保持不变。
+资源等式 $\sum_k c_k=C$ 对每一期和每个状态分别成立，表示各人的非负消费恰好分完该项总资源。正权重 $\mu_k$ 衡量规划者对第 $k$ 人效用的相对重视程度。所有权重同时乘以同一个正常数，只会改变目标函数的尺度，最优配置保持不变。
 
 给当期资源约束配上乘子 $\phi'_0$，给未来每个状态的资源约束分别配上乘子 $\phi'_\omega$。规划者的拉格朗日函数为
 \[
@@ -668,11 +680,16 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 严格不等号来自 $\sum_k f_k'(C)=1$，所以至少有一项 $[f_k'(C)]^2$ 为正。分别代回当期和未来期的效用及分享规则，就得到 $u_0''(C_0)<0$、$u_1''(C_{1\omega})<0$。由于各状态概率为正，式~\eqref{eq:wj-10-13} 的跨期效用也保留各分量的严格递增性和严格凹性。
 
 \subsection{均衡定价的等价性}
-给定状态价格 $\phi$，代表性参与者以总禀赋 $C$ 的现值作为财富，选择消费计划 $(c_0,c_1)$：
+给定状态价格 $\phi$，代表性参与者把总禀赋 $C$ 的现值当作自己的财富。与个人选择问题~\eqref{eq:wj-10-1} 一样，各项消费须非负，效用递增使最优计划用尽预算。
 \[
- \max_{c_0,c_1}\left\{u_0(c_0)+\sum_\omega p_\omega u_1(c_{1\omega})\right\},
- \qquad
- c_0+\phi^{\mathsf T}c_1=C_0+\phi^{\mathsf T}C_1.
+ \begin{aligned}
+ \max_{c_0,c_1}\quad &u_0(c_0)+\sum_\omega p_\omega u_1(c_{1\omega})\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_0+\phi^{\mathsf T}c_1&=C_0+\phi^{\mathsf T}C_1,\\
+ c_0,c_1&\ge0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 在内点，设其预算乘子为 $\lambda$。当期和未来状态 $\omega$ 的一阶条件分别为 $u'_0(c_0)=\lambda$、$p_\omega u'_1(c_{1\omega})=\lambda\phi_\omega$。将后者除以前者消去 $\lambda$。由于这个经济只有一个参与者，商品出清要求 $c_0=C_0$ 且 $c_{1\omega}=C_{1\omega}$，故均衡状态价格为
@@ -778,9 +795,9 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \end{tcolorbox}
 
 % 教材印刷第 155--156 页。教材记作 mu 的聚合尺度，此处写为 A(mu)。
-\textbf{证明：}给定总资源 $C$ 和正权重 $\mu$，聚合效用是单项规划问题的最优值：
+\textbf{证明：}给定总资源 $C$ 和正权重 $\mu$，规划者把 $C$ 分给各人。个人消费还须满足 $d_k+c_k>0$，使平移后的消费落在幂效用的定义域内。
 \[
- u(C)=\max_{\sum_k c_k=C}
+ u(C)=\max_{\substack{\sum_k c_k=C\\ d_k+c_k>0\;(\forall k)}}
        \sum_k\mu_k\frac{(d_k+c_k)^{1-\gamma}}{1-\gamma}.
 \]
 

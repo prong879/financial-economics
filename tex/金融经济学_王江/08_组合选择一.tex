@@ -87,12 +87,17 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 对数效用的定义域为正消费。消费趋近零时，效用趋于 $-\infty$；在存在正消费可行方案的例子中，这一性质把最优解留在定义域内部。
 
 \subsection{Euler 方程与最优条件}
-把预算约束代入目标函数，先写为
+把式~\eqref{eq:wj-8-1} 的两条预算关系代入效用函数后，只需选择净购买向量 $\theta$。当期禀赋扣除净交易成本后的余额，以及未来各状态的禀赋加上净交易支付后的余额，都必须非负。
 \[
- \max_\theta\left\{
- u_0(e_0-S^{\mathsf T}\theta)
- +\sum_{\omega=1}^{\Omega}p_\omega u_1(e_{1\omega}+(X\theta)_\omega)
- \right\}.
+ \begin{aligned}
+ \max_\theta\quad &u_0(e_0-S^{\mathsf T}\theta)
+ +\sum_{\omega=1}^{\Omega}p_\omega u_1(e_{1\omega}+(X\theta)_\omega)\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ e_0-S^{\mathsf T}\theta&\ge0,\\
+ e_1+X\theta&\ge0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 若最优消费位于内点，效用可微且 $u_0'>0$，对第 $n$ 只证券的数量求导，一阶条件为
@@ -219,21 +224,37 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  w=e_0-c_0=S^{\mathsf T}\theta.\label{eq:wj-8-5}
 \end{equation}
 
-这里 $w$ 是扣除当前消费后投入证券的\textbf{金融财富}。给定 $w$，最优组合能达到的期望效用称为\textbf{间接效用函数}：
+这里 $w$ 是扣除当前消费后投入证券的\textbf{金融财富}。给定 $w$，证券组合的净成本必须等于 $w$，而未来禀赋与交易支付之和在每个状态都须非负。可行组合能达到的最高期望效用记为\textbf{间接效用函数} $v_1(w)$。
 \begin{equation}
- v_1(w)=\max_{\theta:S^{\mathsf T}\theta=w}
-       \mathrm E[u_1(\tilde e_1+\widetilde X\theta)].\label{eq:wj-8-6}
+ \begin{aligned}
+ v_1(w)=\max_{\theta}\quad &\mathrm E[u_1(\tilde e_1+\widetilde X\theta)]\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ S^{\mathsf T}\theta&=w,\\
+ e_1+X\theta&\ge0.
+ \end{aligned}\right.
+ \end{aligned}\label{eq:wj-8-6}
 \end{equation}
 \end{tcolorbox}
 
-其中 $\widetilde X$ 是随机状态实现下的支付行向量，可行组合满足非负消费约束。完整问题等价于
+其中 $\widetilde X$ 是随机状态实现下的支付行向量。记 $\mathcal W$ 为式~\eqref{eq:wj-8-6} 中至少存在一个可行组合的投资额集合。选择 $w$ 时，还需满足 $w\le e_0$，因为留给当期的消费 $e_0-w$ 必须非负。
 \begin{equation}
- \max_w\{u_0(e_0-w)+v_1(w)\}.\label{eq:wj-8-7}
+ \begin{aligned}
+ \max_{w\in\mathcal W}\quad &u_0(e_0-w)+v_1(w)\\
+ \text{s.t.}\quad &w\le e_0.
+ \end{aligned}\label{eq:wj-8-7}
 \end{equation}
 
-内层解决“同样的钱怎样投”，外层解决“今天消费多少、留下多少投资”。后文设 $e_1=0$，略去时间下标，重点研究
+内层解决“同样的钱怎样投”，外层解决“今天消费多少、留下多少投资”。后文设 $e_1=0$，未来消费全部来自证券支付，故非负消费条件简化为 $X\theta\ge0$。
 \begin{equation}
- v(w)=\max_{\theta:S^{\mathsf T}\theta=w}\mathrm E[u(\widetilde X\theta)].\label{eq:wj-8-8}
+ \begin{aligned}
+ v(w)=\max_{\theta}\quad &\mathrm E[u(\widetilde X\theta)]\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ S^{\mathsf T}\theta&=w,\\
+ X\theta&\ge0.
+ \end{aligned}\right.
+ \end{aligned}\label{eq:wj-8-8}
 \end{equation}
 
 未来不可交易收入通过 $\tilde e_1$ 进入各状态消费；$w$ 表示当期可用于证券投资的金融财富。
@@ -295,16 +316,15 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 记 $a=(a_1,\ldots,a_{N-1})^{\mathsf T}$，$\iota$ 为全 1 列向量，组合问题变成
 \begin{equation}
  \begin{aligned}
- &\max_{a_1,\ldots,a_{N-1}}\ \mathrm E\!\left[
- u\!\left(w(1+r_F)+
- \underbrace{\sum_{n=1}^{N-1}a_n(\tilde r_n-r_F)}_{a^{\mathsf T}(\tilde r-r_F\iota)}\right)\right]\\
- &\qquad=\max_a\ \mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr].
+ \max_a\quad &\mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr]\\
+ \text{s.t.}\quad &w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota)\ge0
+ \quad\text{（逐状态）}.
 \end{aligned}\label{eq:wj-8-12}
 \end{equation}
 
-无风险投资为 $a_N=w-\sum_{n<N}a_n$；负数表示借款。
+无风险头寸 $a_N=w-\sum_{n<N}a_n$ 吸收风险投资后剩余的资金，因此总投资额恒等于 $w$。$a_N<0$ 表示借款，偿还后各状态的期末财富仍须非负。
 \begin{tcolorbox}[knowledge,title=风险证券投资金额的最优条件]
-无约束内点解满足
+若最优头寸处各状态的财富约束均不绑定，则满足
 \begin{equation}
  \mathrm E\!\left[u'\!\left(
  \underbrace{w(1+r_F)+\sum_{j=1}^{N-1}a_j(\tilde r_j-r_F)}_{\tilde w}
@@ -322,11 +342,13 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 \end{tcolorbox}
 
 \subsubsection{风险溢价与最优头寸}
-单只风险证券下，将期末财富写入目标函数：
+只有一只风险证券时，式~\eqref{eq:wj-8-12} 中的投资金额变成标量 $a$，期末财富仍须逐状态非负。
 \[
- \max_a\ \mathrm E\!\left[u\!\left(
-   \underbrace{w(1+r_F)+a(\tilde r-r_F)}_{\tilde w\text{：期末财富}}
- \right)\right].
+ \begin{aligned}
+ \max_a\quad &\mathrm E[u(\tilde w)]\\
+ \text{s.t.}\quad &\tilde w=w(1+r_F)+a(\tilde r-r_F)\ge0
+ \quad\text{（逐状态）}.
+ \end{aligned}
 \]
 
 将期望效用记为 $F(a)$。给定 $w$，关于投资金额 $a$ 求导：

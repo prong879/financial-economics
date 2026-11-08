@@ -69,10 +69,17 @@
  +\underbrace{v_k(y_{k,0})}_{\text{生产创造的净值}}.\label{eq:wj-15-3}
 \end{equation}
 
-完全市场使消费、证券交易和生产的联合选择等价于
+完全市场允许用证券交易实现按状态价格计价可负担的消费计划。因此，消费的现值至多等于禀赋现值加上生产净值 $w_k$。技术允许零投入，本节在各期、各状态消费都严格为正的计划中选择。
 \begin{equation}
- \max_{y_{k,0}\ge0,\ c_k>0}U_k(c_k),\qquad
- c_{k,0}+\phi^{\mathsf T}c_{k,1}\le w_k.
+ \begin{aligned}
+ \max_{y_{k,0},\,c_k}\quad &U_k(c_k)\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_{k,0}+\phi^{\mathsf T}c_{k,1}&\le w_k,\\
+ y_{k,0}&\ge0,\\
+ c_k&>0.
+ \end{aligned}\right.
+ \end{aligned}
  \label{eq:wj-15-4}
 \end{equation}
 

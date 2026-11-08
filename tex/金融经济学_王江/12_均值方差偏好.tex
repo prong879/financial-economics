@@ -317,7 +317,15 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
  \bar r_p-r_F=z^{\mathsf T}\eta,\quad \sigma_p^2=z^{\mathsf T}\Sigma z.
 \]
 
-设 $K=\eta^{\mathsf T}\Sigma^{-1}\eta>0$，给定期望超额收益 $\bar\eta_p$，最小化方差的约束为 $z^{\mathsf T}\eta=\bar\eta_p$。拉格朗日条件给出 $\Sigma z=\lambda\eta$，故
+由上式，风险权重 $z$ 带来的期望超额收益为 $z^{\mathsf T}\eta$。把它固定在目标 $\bar\eta_p$，便可在收益相同的组合中比较方差。风险权重之和留下的余额由无风险证券承接。
+\[
+ \begin{aligned}
+ \min_z\quad &\tfrac12 z^{\mathsf T}\Sigma z\\
+ \text{s.t.}\quad &z^{\mathsf T}\eta=\bar\eta_p.
+ \end{aligned}
+\]
+
+设 $K=\eta^{\mathsf T}\Sigma^{-1}\eta>0$。拉格朗日条件给出 $\Sigma z=\lambda\eta$，故
 \begin{equation}
  z_p=\frac{\bar\eta_p}{K}\Sigma^{-1}\eta,\qquad
  \sigma_p^2=\frac{\bar\eta_p^2}{K}.

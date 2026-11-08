@@ -248,14 +248,22 @@
 \begin{solution}
 
 \begin{enumerate}[label=(\alph*)]
-\item 使用上一题的规划权重 $\eta_k$，每期聚合效用为
+\item 使用上一题的规划权重 $\eta_k$。给定某一期或状态的总消费 $C$，两人的分配须加总为 $C$，且各自的消费都在对数效用的正值定义域内。
 \[
- \max_{c_1+c_2=C}\sum_k\eta_k\log c_k
+ \max_{\substack{c_1+c_2=C\\c_1,c_2>0}}\sum_k\eta_k\log c_k
  =\log C+\sum_k\eta_k\log\eta_k.
 \]
 
 舍去不影响选择的常数，代表性参与者效用为 $\log C_0+\sum_\omega\pi_\omega\log C_\omega$。
-\item 总资源约束为 $C_0=e_0-I$、$C_\omega=\lambda_\omega I^\alpha$。最大化代表性效用，得
+\item 当期总消费 $C_0=e_0-I$ 必须为正，所以 $I<e_0$。未来各状态的总消费 $C_\omega=\lambda_\omega I^\alpha$ 也须为正，因此 $I>0$。把这两条资源关系代入代表性效用，得到
+\[
+ \begin{aligned}
+ \max_I\quad &\log(e_0-I)+\sum_\omega\pi_\omega\log(\lambda_\omega I^\alpha)\\
+ \text{s.t.}\quad &0<I<e_0.
+ \end{aligned}
+\]
+
+一阶条件给出
 \[
  -\frac1{e_0-I}+\frac\alpha I=0,
  \qquad I^*=\frac{\alpha e_0}{1+\alpha}.
@@ -298,14 +306,16 @@
 % 原题股票支付为全部产出lambda I^alpha，非扣债后的剩余支付；按题设沿用，发行者承担债务偿付。
 令 $R=1+r_F>0$，$B=1/R$。以 $D$ 表示到期支付1的公司债发行量，$s$ 表示出售的总产出份额。依题设，发行者保留 $(1-s)\lambda_\omega I^\alpha$，并从中偿付债务。
 \begin{enumerate}[label=(\alph*)]
-\item 给定 $R,S$，优化问题为
+\item 给定 $R,S$，当期消费来自债券筹资 $BD$ 和股票筹资 $Ss$ 扣除投入 $I$ 后的余额。未来消费是保留的产出扣除债务偿付后的余额。投入量可以为零，对数效用则要求当期和每个未来状态的消费都严格为正。
 \[
  \begin{aligned}
  \max_{I,D,s}\quad &\log c_{1,0}+\sum_\omega\pi_\omega\log c_{1,\omega}\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
  c_{1,0}&=BD+Ss-I,\\
- c_{1,\omega}&=(1-s)\lambda_\omega I^\alpha-D>0.
+ c_{1,\omega}&=(1-s)\lambda_\omega I^\alpha-D,\\
+ c_{1,0},c_{1,\omega}&>0\quad(\forall\omega),\\
+ I&\ge0.
  \end{aligned}\right.
  \end{aligned}
 \]
