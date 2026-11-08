@@ -1,0 +1,40 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[
+ >=Stealth,font=\small,
+ x={(4.0cm,-.65cm)},y={(-2.05cm,-1.24cm)},z={(0cm,1.34cm)},
+ declare function={
+  wjextremebump(\dx,\dy,\rad)=max(0,1-((\dx)^2+(\dy)^2)/(\rad)^2)^2;
+  wjextremeheight(\u,\v)=.87+1.33*wjextremebump(\u-.56,\v-.44,.21)
+   -.68*wjextremebump(\u-.18,\v-.23,.15)+.53*wjextremebump(\u-.12,\v-.68,.14)
+   +.49*wjextremebump(\u-.80,\v-.12,.13)-.35*wjextremebump(\u-.44,\v-.12,.12);
+ }]
+ \filldraw[fill=blue!6,draw=blue!55!black] (0,0,0)--(1,0,0)--(0,1,0)--cycle;
+ \draw[->,gray!80!black] (0,0,0)--(1.12,0,0) node[right] {$c_0$};
+ \draw[->,gray!80!black] (0,0,0)--(0,1.12,0) node[left] {$c_1$};
+ \draw[->,gray!80!black] (0,0,0)--(0,0,2.12) node[above] {$f(c_0,c_1)$};
+ % r is distance from the origin in budget shares; s divides that budget between the goods.
+ \foreach \i in {0,...,23} {
+  \pgfmathsetmacro{\rNear}{\i/24}
+  \pgfmathsetmacro{\rFar}{(\i+1)/24}
+  \foreach \j in {0,...,23} {
+   \pgfmathsetmacro{\sLeft}{\j/24}
+   \pgfmathsetmacro{\sRight}{(\j+1)/24}
+   \pgfmathsetmacro{\tone}{min(76,14+29*wjextremeheight((\rNear+\rFar)/2*(\sLeft+\sRight)/2,
+       (\rNear+\rFar)/2*(1-(\sLeft+\sRight)/2)))}
+   \filldraw[fill=blue!\tone!cyan!38!white,draw=blue!46!black,line width=.12pt]
+    ({\rNear*\sLeft},{\rNear*(1-\sLeft)},{wjextremeheight(\rNear*\sLeft,\rNear*(1-\sLeft))})--
+    ({\rFar*\sLeft},{\rFar*(1-\sLeft)},{wjextremeheight(\rFar*\sLeft,\rFar*(1-\sLeft))})--
+    ({\rFar*\sRight},{\rFar*(1-\sRight)},{wjextremeheight(\rFar*\sRight,\rFar*(1-\sRight))})--
+    ({\rNear*\sRight},{\rNear*(1-\sRight)},{wjextremeheight(\rNear*\sRight,\rNear*(1-\sRight))})--cycle;
+  }
+ }
+ \coordinate (surfaceMax) at (.56,.44,{wjextremeheight(.56,.44)});
+ \coordinate (surfaceMin) at (.18,.23,{wjextremeheight(.18,.23)});
+ \draw[red!70!black,densely dashed] (surfaceMax)--(.56,.44,0);
+ \fill[red!75!black] (.56,.44,0) circle (1.5pt);
+ \fill[red!75!black] (surfaceMax) circle (2pt) node[above right] {全局最大值};
+ \fill[red!75!black] (surfaceMin) circle (2pt);
+ \draw[red!75!black] (surfaceMin)--([xshift=-13mm,yshift=-7mm]surfaceMin)
+   node[below,fill=white,inner sep=1pt] {全局最小值};
+ \node[blue!55!black,below right] at (.66,.34,0) {预算边界};
+\end{tikzpicture}

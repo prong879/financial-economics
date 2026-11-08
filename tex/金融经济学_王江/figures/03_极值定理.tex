@@ -1,0 +1,36 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学示意。曲面的五个圆形起伏区域互不重叠，故全局最值恰在最高峰、最低谷的中心。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}[t]{.42\linewidth}
+\centering
+\small （a）一元连续函数\par\smallskip
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=1cm]
+ \path[use as bounding box] (-.35,-.65) rectangle (4.65,3.7);
+ \coordinate (low) at (.55,.42);
+ \coordinate (high) at (2.95,2.68);
+ \draw[->,gray!80!black] (0,0)--(4.38,0) node[right] {$x$};
+ \draw[->,gray!80!black] (0,0)--(0,3.16) node[above] {$f(x)$};
+ \draw[gray,densely dotted] (low)--(.55,0);
+ \draw[gray,densely dotted] (3.98,1.55)--(3.98,0);
+ \draw[blue!65!black,thick] (low)
+  .. controls (.87,.42) and (.83,1.72) .. (1.32,1.72)
+  .. controls (1.7,1.72) and (1.73,.94) .. (2.02,.94)
+  .. controls (2.40,.94) and (2.45,2.68) .. (high)
+  .. controls (3.42,2.68) and (3.54,1.50) .. (3.98,1.55);
+ \fill[blue!65!black] (3.98,1.55) circle (1.6pt);
+ \fill[red!75!black] (high) circle (2pt) node[above] {全局最大值};
+ \fill[red!75!black] (low) circle (2pt) node[right,xshift=2pt] {全局最小值};
+ \node[below] at (.55,0) {$a$};
+ \node[below] at (3.98,0) {$b$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.55\linewidth}
+\centering
+\small （b）二元连续函数\par\smallskip
+\input{tex/金融经济学_王江/figures/03_极值定理_曲面.tex}%
+\end{minipage}
+\WJFigure{fig:wj-three-extreme-value}{闭区间和预算三角形上的全局最大值与最小值}
+\end{minipage}
+\end{center}
