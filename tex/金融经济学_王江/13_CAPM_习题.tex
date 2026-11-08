@@ -366,9 +366,14 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制；$\t
 
 记 $q_\omega=\phi_\omega/\pi_\omega$、$Q=\sum_\omega\phi_\omega q_\omega=\mathrm E[q^2]$。在给定总期望收益 $M=1+\bar r_p$ 时，最小方差等价于最小化支付的二阶矩：
 \[
- \min_w\frac12\sum_\omega\pi_\omega\left(\frac{w_\omega}{\phi_\omega}\right)^2,
- \quad\sum_\omega\pi_\omega\frac{w_\omega}{\phi_\omega}=M,
- \quad\sum_\omega w_\omega=1.
+ \begin{aligned}
+ \min_w\quad &\frac12\sum_\omega\pi_\omega\left(\frac{w_\omega}{\phi_\omega}\right)^2\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ \sum_\omega\pi_\omega\frac{w_\omega}{\phi_\omega}&=M,\\
+ \sum_\omega w_\omega&=1.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 一阶条件为

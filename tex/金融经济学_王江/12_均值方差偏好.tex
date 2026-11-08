@@ -106,8 +106,14 @@
 \begin{tcolorbox}[knowledge,breakable=false]
 达到给定期望收益率 $\bar r_p$ 而方差最小的组合称为\textbf{均值--方差前沿组合}（MVF组合），由下列问题确定：
 \begin{equation}
- \min_z\frac12z^{\mathsf T}\Sigma z,
- \qquad z^{\mathsf T}\bar r=\bar r_p,\quad z^{\mathsf T}\iota=1.
+ \begin{aligned}
+ \min_z\quad &\frac12 z^{\mathsf T}\Sigma z\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ z^{\mathsf T}\bar r&=\bar r_p,\\
+ z^{\mathsf T}\iota&=1.
+ \end{aligned}\right.
+ \end{aligned}
  \label{eq:wj-12-2}
 \end{equation}
 \end{tcolorbox}

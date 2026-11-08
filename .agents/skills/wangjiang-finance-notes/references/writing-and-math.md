@@ -35,6 +35,34 @@
 
 按语义分段：若公式后的文字继续原句或紧接着解释其中的符号，可保持同一段。空行放在整个行间公式环境结束之后，不放进 `equation`、`align` 或内部的 `aligned` 等数学环境。编译后检查实际缩进和段距。
 
+## 优化问题的约束排版
+
+多条约束用 `aligned` 分行，并用 `\left\{` 和 `\right.` 生成左大括号。
+
+```latex
+\[
+\begin{aligned}
+ \min_z\quad &\frac12 z^{\mathsf T}\Sigma z\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ z^{\mathsf T}\bar r&=\bar r_p,\\
+ z^{\mathsf T}\iota&=1.
+ \end{aligned}\right.
+\end{aligned}
+\]
+```
+
+单条约束与 `s.t.` 同行。
+
+```latex
+\[
+\begin{aligned}
+ \min_z\quad &\frac12 z^{\mathsf T}\Sigma z\\
+ \text{s.t.}\quad &z^{\mathsf T}\iota=1.
+\end{aligned}
+\]
+```
+
 ## underbrace 的教学作用
 
 目的在于建立“公式中的这一块是什么、为什么在这里”的对应关系。已有用法包括：消费等于禀赋加减证券交易支付；将直接禀赋与初始证券支付合并为总禀赋；识别证券和商品市场出清；从组合收益中认出已构造基金的收益。

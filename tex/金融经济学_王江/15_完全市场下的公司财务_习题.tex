@@ -38,8 +38,14 @@
 \begin{enumerate}[label=(\alph*)]
 \item 设发行债券的到期偿付额为 $D$，0期筹资为 $D/R$，则
 \[
- \max_{I>0,c_0>0,D}\ \log c_0+\sum_\omega\pi_\omega\log c_\omega,
- \qquad c_0=D/R-I,\quad c_\omega=\lambda_\omega I^\alpha-D>0.
+ \begin{aligned}
+ \max_{I>0,c_0>0,D}\quad &\log c_0+\sum_\omega\pi_\omega\log c_\omega\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_0&=D/R-I,\\
+ c_\omega&=\lambda_\omega I^\alpha-D>0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 消去 $D$，即 $c_\omega=\lambda_\omega I^\alpha-R(c_0+I)$。
@@ -294,9 +300,14 @@
 \begin{enumerate}[label=(\alph*)]
 \item 给定 $R,S$，优化问题为
 \[
- \max_{I,D,s}\ \log c_{1,0}+\sum_\omega\pi_\omega\log c_{1,\omega},\qquad
- c_{1,0}=BD+Ss-I,\quad
- c_{1,\omega}=(1-s)\lambda_\omega I^\alpha-D>0.
+ \begin{aligned}
+ \max_{I,D,s}\quad &\log c_{1,0}+\sum_\omega\pi_\omega\log c_{1,\omega}\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_{1,0}&=BD+Ss-I,\\
+ c_{1,\omega}&=(1-s)\lambda_\omega I^\alpha-D>0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 正投入、正消费的内点条件为

@@ -38,8 +38,12 @@
 \begin{equation}
 \begin{aligned}
  \max_\theta\quad &u_0(c_0)+\sum_{\omega=1}^{\Omega}p_\omega u_1(c_{1\omega})\\
- \text{s.t.}\quad &c_0=e_0-S^{\mathsf T}\theta,\qquad c_1=e_1+X\theta,\\
- &c_0\ge0,\qquad c_1\ge0.
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_0&=e_0-S^{\mathsf T}\theta,\\
+ c_1&=e_1+X\theta,\\
+ c_0,c_1&\ge0.
+ \end{aligned}\right.
 \end{aligned}\label{eq:wj-8-1}
 \end{equation}
 \end{tcolorbox}
