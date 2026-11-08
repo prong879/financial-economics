@@ -338,16 +338,49 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
  U(\alpha a+(1-\alpha)b)\ge\underbrace{\alpha U(a)+(1-\alpha)U(b)}_{\text{端点效用的加权平均}},
 \]
 
-则称 $U$ 为凹函数。一元函数的图像表现为曲线不低于连接任意两端点的弦，图（c）以消费量 $x$ 为横轴说明这一点；多元函数要求沿任意消费线段都满足相同的不等式。加权平均总不低于较小值，故\textbf{凹性蕴含拟凹性}。例如两端效用为 $1$ 和 $9$，各取一半时，拟凹性只要求混合计划的效用至少为 $1$，凹性则要求至少为 $5$。
+则称 $U$ 为凹函数。图~\ref{fig:wj-convex-preference-curvature}（c）画出一元函数的情形，曲线不低于连接任意两端点的弦。多元函数要求沿任意消费线段都满足相同的不等式。加权平均总不低于较小值，故\textbf{凹性蕴含拟凹性}。例如两端效用为 $1$ 和 $9$，各取一半时，拟凹性只要求混合计划的效用至少为 $1$，凹性则要求至少为 $5$。
+\end{tcolorbox}
 
-\textbf{拟凹未必凹：一个数值反例。}
-在正消费域上，$V(c_0,c_1)=c_0c_1$ 与凹函数 $W(c_0,c_1)=\log c_0+\log c_1$ 满足 $V=e^W$。指数变换严格递增，故两者表示同一套凸偏好，$V$ 也拟凹。但取 $P=(1,1)$、$Q=(3,3)$，其中点为 $N=(2,2)$，有
+% 板书截图的三种判别法。术语对照参见中国矿业大学《高等数学 A（1）》
+% 教案“曲线的凹凸性及拐点”及 Boyd & Vandenberghe, Convex Optimization, §3.1。
+\begin{tcolorbox}[knowledge,unbreakable,title=凹凸函数的判别]
+部分高数教材用“凹弧”和“凸弧”来描述曲线的弯曲方向。同一条曲线在本讲义中的函数术语见下表。
+设 $f$ 定义在一个区间上，任取不同的两点 $x_1,x_2$，令 $m=\lambda x_1+(1-\lambda)x_2$，其中 $0<\lambda<1$。法 2 比较弦和曲线在 $m$ 处的高度，法 3 比较在 $x_0$ 处所作的切线和曲线在任意 $x$ 处的高度。
+
+{\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\noindent\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccccc@{}}
+\toprule
+\makecell{部分高数\\教材用语} &
+\makecell{本讲义\\用语} &
+\makecell{法 1：二阶导数\\（二阶可导）} &
+法 2：弦 &
+\makecell{法 3：切线\\（可导）} \\
+\midrule
+凹弧 & \makecell{凸函数\\（convex）} &
+$f''(x)\ge 0$ &
+\makecell{$f(m)\le\lambda f(x_1)+(1-\lambda)f(x_2)$\\弦不低于曲线} &
+\makecell{$f(x_0)+f'(x_0)(x-x_0)\le f(x)$\\切线不高于曲线} \\
+\addlinespace[2pt]
+凸弧 & \makecell{凹函数\\（concave）} &
+$f''(x)\le 0$ &
+\makecell{$f(m)\ge\lambda f(x_1)+(1-\lambda)f(x_2)$\\弦不高于曲线} &
+\makecell{$f(x_0)+f'(x_0)(x-x_0)\ge f(x)$\\切线不低于曲线} \\
+\bottomrule
+\end{tabular*}\par}
+
+若区间含端点，使用导数判别时假设 $f$ 在端点连续。法 1 的符号条件须对所有内点成立，处处为正或为负分别是严格凸或严格凹的充分条件。法 3 可任选内点 $x_0$ 作切点。图~\ref{fig:wj-convexity-tests} 取 $x_0=m$，在两种曲线上分别画出弦和切线。
+
+\WJInputFigure{02_凹凸函数的判别}
+\end{tcolorbox}
+
+正消费域上的 $V(c_0,c_1)=c_0c_1$ 是一个拟凹而不凹的例子。设 $W(c_0,c_1)=\log c_0+\log c_1$，则 $W$ 是凹函数，且 $V=e^W$。指数变换严格递增，所以两者表示同一套凸偏好，$V$ 也拟凹。取 $P=(1,1)$、$Q=(3,3)$，其中点为 $N=(2,2)$，有
 \[
  V(P)=1,\qquad V(Q)=9,\qquad V(N)=4<\frac{1+9}{2}=5.
 \]
 
 中点效用虽不低于较低端点 $1$，却低于端点效用的平均数 $5$，所以 $V$ 不凹。\textbf{拟凹性取决于偏好排序；凹性还取决于效用数值的尺度。}一个反例即可否定凹性；拟凹性或凹性的成立则要求相应条件对任意两计划及任意混合比例都成立。
-\end{tcolorbox}
 
 \WJInputFigure{02_凸偏好与效用曲率}
 

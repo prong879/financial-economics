@@ -1,0 +1,61 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 两图取 x_1=0.55、x_2=4.25、m=x_0=2.4，分别绘制平方和平方根函数。
+\par\smallskip
+{\centering
+\begin{tikzpicture}[
+    >=Stealth,
+    font=\footnotesize,
+    curve/.style={blue!70!black,very thick},
+    chord/.style={red!75!black,thick,densely dashed},
+    tangent/.style={teal!70!black,thick,dash dot},
+    guide/.style={gray!75,densely dotted}
+]
+  \begin{scope}[y=.166cm]
+    \draw[->] (0,0)--(4.78,0) node[right] {$x$};
+    \draw[->] (0,0)--(0,21.5) node[above] {$f(x)$};
+    \coordinate (a) at (.55,{.55^2});
+    \coordinate (b) at (4.25,{4.25^2});
+    \coordinate (p) at (2.4,{2.4^2});
+    \coordinate (q) at ($(a)!.5!(b)$);
+    \draw[guide] (.55,0)--(a) (2.4,0)--(q) (4.25,0)--(b);
+    \draw[tangent,domain=1.25:4.48] plot (\x,{2.4^2+4.8*(\x-2.4)});
+    \draw[curve,domain=.34:4.48,samples=50] plot (\x,{\x^2});
+    \draw[chord] (a)--(b);
+    \fill[blue!70!black] (a) circle(1.5pt) (b) circle(1.5pt)
+      (p) circle(1.7pt) node[below right] {$f(m)$};
+    \fill[red!75!black] (q) circle(1.7pt) node[above left] {弦上的值};
+  \end{scope}
+  \node at (2.4,4.04) {（a）凸函数 $f(x)=x^2$};
+
+  \begin{scope}[xshift=5.72cm]
+    \begin{scope}[y=1.65cm]
+      \draw[->] (0,0)--(4.78,0) node[right] {$x$};
+      \draw[->] (0,0)--(0,2.17) node[above] {$f(x)$};
+      \coordinate (a) at (.55,{sqrt(.55)});
+      \coordinate (b) at (4.25,{sqrt(4.25)});
+      \coordinate (p) at (2.4,{sqrt(2.4)});
+      \coordinate (q) at ($(a)!.5!(b)$);
+      \draw[guide] (.55,0)--(a) (2.4,0)--(p) (4.25,0)--(b);
+      \draw[tangent,domain=.34:4.48] plot (\x,{sqrt(2.4)+(\x-2.4)/(2*sqrt(2.4))});
+      \draw[curve,domain=.34:4.48,samples=50] plot (\x,{sqrt(\x)});
+      \draw[chord] (a)--(b);
+      \fill[blue!70!black] (a) circle(1.5pt) (b) circle(1.5pt)
+        (p) circle(1.7pt) node[above left] {$f(m)$};
+      \fill[red!75!black] (q) circle(1.7pt) node[below right] {弦上的值};
+    \end{scope}
+    \node at (2.4,4.04) {（b）凹函数 $f(x)=\sqrt{x}$};
+  \end{scope}
+
+  \foreach \shift in {0cm,5.72cm}{
+    \begin{scope}[xshift=\shift]
+      \node[below] at (.55,0) {$x_1$};
+      \node[below] at (2.4,0) {$m=x_0$};
+      \node[below] at (4.25,0) {$x_2$};
+    \end{scope}
+  }
+  \draw[curve] (1.5,-.77)--(2.2,-.77) node[right] {函数曲线};
+  \draw[chord] (4.1,-.77)--(4.8,-.77) node[right] {法 2 的弦};
+  \draw[tangent] (6.9,-.77)--(7.6,-.77) node[right] {法 3 的切线};
+\end{tikzpicture}
+\WJFigure{fig:wj-convexity-tests}{用弦和切线判别函数的凹凸性}
+}
