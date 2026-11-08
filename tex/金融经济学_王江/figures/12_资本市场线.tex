@@ -1,0 +1,23 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教材图12.2；参考431计算讲义最大Sharpe比的候选射线布局。
+% 解析前沿sigma=sqrt(1+t^2), r=1.8+.7t，rF=.9。
+% 切点t=7/9，sigmaT=sqrt(130)/9，rT=211/90；切线斜率sqrt(1.3)。
+\begin{tikzpicture}[>=Stealth,x=1.65cm,y=1.1cm,font=\small]
+ \draw[->] (0,0)--(4,0) node[right] {$\sigma$（风险）};
+ \draw[->] (0,0)--(0,4.8) node[above] {$\bar r$（预期收益）};
+ \draw[gray!65,thick,domain=-1.6:0,samples=50,variable=\t]
+   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
+ \draw[red!70!black,very thick,domain=0:3.1,samples=75,variable=\t]
+   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
+ \draw[gray!70,densely dashed] (0,.9)--(3.6,4.32);
+ \draw[gray!70,densely dashed] (0,.9)--(1.85,3.5825);
+ \node[gray!80,above left] at (1.85,3.5825) {过高斜率：不可达};
+ \node[gray!80,right] at (3.4,4.13) {较低斜率};
+ \draw[blue!70!black,very thick] (0,.9)--(3,4.32053);
+ \node[blue!70!black,above] at (2.75,4.05) {CML};
+ \fill (0,.9) circle(2pt) node[left] {$r_F$};
+ \fill (1,1.8) circle(1.8pt) node[below right] {MVP};
+ \fill (1.26686,2.34444) circle(2pt) node[above left] {$T$};
+ \draw[dotted,gray] (1.26686,0) node[below] {$\sigma_T$}--(1.26686,2.34444)--(0,2.34444) node[left] {$\bar r_T$};
+ \node[red!70!black,below right] at (2.65,3.52) {风险资产有效前沿};
+\end{tikzpicture}

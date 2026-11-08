@@ -244,27 +244,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 图~\ref{fig:wj-twelve-1} 中，同标准差的前沿点 $E$ 比 $D$ 均值更高，因此风险厌恶且偏好较高均值的参与者选择有效上半支。
 
 \begin{center}
-% 来源：教材图12.1；布局与配色参考431计算讲义有效前沿图。
-% 用解析双曲线绘制，红色上支有效，灰色下支无效。
-\begin{tikzpicture}[>=Stealth,x=1.65cm,y=1.1cm,font=\small]
- \fill[blue!5] plot[domain=-2:2.3,samples=85,variable=\t]
-   ({sqrt(1+\t*\t)},{1.8+.7*\t})--(3.5,3.41)--(3.5,.4)--cycle;
- \draw[->] (0,0)--(4,0) node[right] {$\sigma$（风险）};
- \draw[->] (0,0)--(0,3.9) node[above] {$\bar r$（预期收益）};
- \draw[gray!65,thick,domain=-2:0,samples=60,variable=\t]
-   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
- \draw[red!70!black,very thick,domain=0:2.3,samples=60,variable=\t]
-   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
- \draw[densely dotted,gray] (0,1.8) node[left] {$a/c$}--(1,1.8)--(1,0) node[below] {$1/\sqrt c$};
- \fill (1,1.8) circle(2pt) node[above left] {MVP};
- \draw[dotted,gray] (1.72047,.82)--(1.72047,2.78);
- \fill[red!70!black] (1.72047,2.78) circle(1.8pt) node[above left] {$E$};
- \fill[gray] (1.72047,.82) circle(1.8pt) node[below left] {$D$};
- \draw[->,black!60] (1.85,1.05)--(1.85,2.55);
- \node[red!70!black,above] at (2.5,3.4) {有效前沿 MVE};
- \node[gray] at (2.6,.55) {无效下半支};
- \node[blue!60!black,align=center] at (2.9,1.85) {可行组合\\可能所在区域};
-\end{tikzpicture}
+\input{tex/金融经济学_王江/figures/12_均值方差前沿.tex}%
 \WJTwelveFigure{fig:wj-twelve-1}{均值--方差前沿、有效上半支与MVP}
 \end{center}
 
@@ -403,28 +383,7 @@ $\Sigma$ 正定使目标严格凸，故对每个目标均值，所得组合唯�
 \hypertarget{wj-capital-market-line}{}上方射线是有效前沿，称为\textbf{资本市场线}（CML）；其斜率为切点组合的Sharpe比。下方射线与上方射线同标准差而均值较低。切点及不同斜率射线的比较见图~\ref{fig:wj-twelve-2}。
 
 \begin{center}
-% 来源：教材图12.2；参考431计算讲义最大Sharpe比的候选射线布局。
-% 解析前沿sigma=sqrt(1+t^2), r=1.8+.7t，rF=.9。
-% 切点t=7/9，sigmaT=sqrt(130)/9，rT=211/90；切线斜率sqrt(1.3)。
-\begin{tikzpicture}[>=Stealth,x=1.65cm,y=1.1cm,font=\small]
- \draw[->] (0,0)--(4,0) node[right] {$\sigma$（风险）};
- \draw[->] (0,0)--(0,4.8) node[above] {$\bar r$（预期收益）};
- \draw[gray!65,thick,domain=-1.6:0,samples=50,variable=\t]
-   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
- \draw[red!70!black,very thick,domain=0:3.1,samples=75,variable=\t]
-   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
- \draw[gray!70,densely dashed] (0,.9)--(3.6,4.32);
- \draw[gray!70,densely dashed] (0,.9)--(1.85,3.5825);
- \node[gray!80,above left] at (1.85,3.5825) {过高斜率：不可达};
- \node[gray!80,right] at (3.4,4.13) {较低斜率};
- \draw[blue!70!black,very thick] (0,.9)--(3,4.32053);
- \node[blue!70!black,above] at (2.75,4.05) {CML};
- \fill (0,.9) circle(2pt) node[left] {$r_F$};
- \fill (1,1.8) circle(1.8pt) node[below right] {MVP};
- \fill (1.26686,2.34444) circle(2pt) node[above left] {$T$};
- \draw[dotted,gray] (1.26686,0) node[below] {$\sigma_T$}--(1.26686,2.34444)--(0,2.34444) node[left] {$\bar r_T$};
- \node[red!70!black,below right] at (2.65,3.52) {风险资产有效前沿};
-\end{tikzpicture}
+\input{tex/金融经济学_王江/figures/12_资本市场线.tex}%
 \WJTwelveFigure{fig:wj-twelve-2}{无风险证券、切点组合与资本市场线}
 \end{center}
 

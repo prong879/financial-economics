@@ -1,0 +1,34 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tabular}{@{}cccc@{}}
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (0.22,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0.32:2.15, samples=50, smooth] plot (\x,{0.95+0.62*ln(\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0.22,0) -- (0.22,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0.34:2.15, samples=50, smooth] plot (\x,{1.42-0.40/\x});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (0,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0:2.15, samples=40, smooth] plot (\x,{1.32-1.12*exp(-\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[baseline=(current bounding box.center), x=1cm, y=1cm]
+    \path (-0.28,-0.42) rectangle (2.62,1.72);
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (2.32,0) node[below left, inner sep=1pt] {$x$};
+    \draw[-{Stealth[length=1.5mm]}, thin] (0,0) -- (0,1.48) node[above left, inner sep=1pt] {$u$};
+    \draw[blue!65!black, thick, domain=0:2, samples=40, smooth] plot ({1.05*\x},{2.4*(\x-0.5*\x*\x)});
+    \draw[dashed, black!45] (1.05,0) -- (1.05,1.2);
+    \node[below, inner sep=1pt] at (1.05,0) {$1/a$};
+\end{tikzpicture}
+\\[0.15em]
+对数 $\log x$ & 幂 $\dfrac{x^{1-\gamma}}{1-\gamma}$ & 负指数 $-e^{-ax}$ & 二次 $x-\tfrac12 ax^{2}$
+\end{tabular}

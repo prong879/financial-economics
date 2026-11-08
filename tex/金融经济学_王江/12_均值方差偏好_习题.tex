@@ -196,20 +196,7 @@ Hessian负定，所以 $v$ 对均值和标准差联合严格凹。
 
 在均值--标准差平面上为双曲线。以下以 $\bar r_1=1,\bar r_2=2,\sigma_1=1,\sigma_2=2$ 示意三类形状，圆点标出两只原证券。
 \begin{center}
-\begin{tikzpicture}[x=.76cm,y=1cm,font=\small]
- \foreach \j/\rr in {0/-1,1/0,2/1}{
-  \begin{scope}[xshift=4.9cm*\j]
-   \draw[->] (0,-.6)--(3.7,-.6) node[right] {$\sigma$};
-   \draw[->] (0,-.6)--(0,2.8) node[above] {$\bar r$};
-   \pgfmathsetmacro{\tmax}{ifthenelse(\rr==1,2.5,1.8)}
-   \node at (1.8,3.25) {$\rho_{12}=\rr$};
-   \draw[thick,domain=-.2:\tmax,samples=100,variable=\t]
-     plot ({sqrt(max(0,\t*\t+4*(1-\t)*(1-\t)+4*\rr*\t*(1-\t)))},{2-\t});
-   \fill (1,1) circle(1.3pt) node[right] {1};
-   \fill (2,2) circle(1.3pt) node[right] {2};
-  \end{scope}
- }
-\end{tikzpicture}
+\input{tex/金融经济学_王江/figures/12_两资产相关性与前沿形状.tex}%
 \end{center}
 
 若 $\bar r_1=\bar r_2=m_0$，所有组合均值都等于 $m_0$，MVF在均值--标准差平面仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere

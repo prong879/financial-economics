@@ -1,0 +1,22 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 来源：教材图12.1；布局与配色参考431计算讲义有效前沿图。
+% 用解析双曲线绘制，红色上支有效，灰色下支无效。
+\begin{tikzpicture}[>=Stealth,x=1.65cm,y=1.1cm,font=\small]
+ \fill[blue!5] plot[domain=-2:2.3,samples=85,variable=\t]
+   ({sqrt(1+\t*\t)},{1.8+.7*\t})--(3.5,3.41)--(3.5,.4)--cycle;
+ \draw[->] (0,0)--(4,0) node[right] {$\sigma$（风险）};
+ \draw[->] (0,0)--(0,3.9) node[above] {$\bar r$（预期收益）};
+ \draw[gray!65,thick,domain=-2:0,samples=60,variable=\t]
+   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
+ \draw[red!70!black,very thick,domain=0:2.3,samples=60,variable=\t]
+   plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
+ \draw[densely dotted,gray] (0,1.8) node[left] {$a/c$}--(1,1.8)--(1,0) node[below] {$1/\sqrt c$};
+ \fill (1,1.8) circle(2pt) node[above left] {MVP};
+ \draw[dotted,gray] (1.72047,.82)--(1.72047,2.78);
+ \fill[red!70!black] (1.72047,2.78) circle(1.8pt) node[above left] {$E$};
+ \fill[gray] (1.72047,.82) circle(1.8pt) node[below left] {$D$};
+ \draw[->,black!60] (1.85,1.05)--(1.85,2.55);
+ \node[red!70!black,above] at (2.5,3.4) {有效前沿 MVE};
+ \node[gray] at (2.6,.55) {无效下半支};
+ \node[blue!60!black,align=center] at (2.9,1.85) {可行组合\\可能所在区域};
+\end{tikzpicture}

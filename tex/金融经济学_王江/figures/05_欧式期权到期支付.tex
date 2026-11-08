@@ -1,0 +1,20 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[x=.85cm,y=.8cm,font=\small]
+ \begin{scope}
+ \draw[->] (0,0)--(5.2,0) node[right] {$\tilde X$};
+ \draw[->] (0,0)--(0,3.2) node[above] {支付};
+ \draw[blue!70!black,very thick] (0,0)--(2,0)--(4.8,2.8);
+ \draw (2,0)--(2,-.08) node[below] {$K$};
+ \node[blue!70!black] at (3.8,2.4) {$[\tilde X-K]_+$};
+ \node at (2.5,-.8) {看涨期权};
+ \end{scope}
+ \begin{scope}[xshift=7cm]
+ \draw[->] (0,0)--(5.2,0) node[right] {$\tilde X$};
+ \draw[->] (0,0)--(0,3.2) node[above] {支付};
+ \draw[blue!70!black,very thick] (0,2)--(2,0)--(4.8,0);
+ \node[left] at (0,2) {$K$};
+ \draw (2,0)--(2,-.08) node[below] {$K$};
+ \node[blue!70!black] at (2.3,1.9) {$[K-\tilde X]_+$};
+ \node at (2.5,-.8) {看跌期权};
+ \end{scope}
+\end{tikzpicture}

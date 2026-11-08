@@ -44,25 +44,7 @@
 图~\ref{fig:wj-five-option-payoffs} 展示看涨与看跌的到期支付如何随标的支付变化。
 % 来源：教材图 5.1、PPT 第 4 页。横轴统一为到期标的支付。
 \begin{center}
-\begin{tikzpicture}[x=.85cm,y=.8cm,font=\small]
- \begin{scope}
- \draw[->] (0,0)--(5.2,0) node[right] {$\tilde X$};
- \draw[->] (0,0)--(0,3.2) node[above] {支付};
- \draw[blue!70!black,very thick] (0,0)--(2,0)--(4.8,2.8);
- \draw (2,0)--(2,-.08) node[below] {$K$};
- \node[blue!70!black] at (3.8,2.4) {$[\tilde X-K]_+$};
- \node at (2.5,-.8) {看涨期权};
- \end{scope}
- \begin{scope}[xshift=7cm]
- \draw[->] (0,0)--(5.2,0) node[right] {$\tilde X$};
- \draw[->] (0,0)--(0,3.2) node[above] {支付};
- \draw[blue!70!black,very thick] (0,2)--(2,0)--(4.8,0);
- \node[left] at (0,2) {$K$};
- \draw (2,0)--(2,-.08) node[below] {$K$};
- \node[blue!70!black] at (2.3,1.9) {$[K-\tilde X]_+$};
- \node at (2.5,-.8) {看跌期权};
- \end{scope}
-\end{tikzpicture}
+\input{tex/金融经济学_王江/figures/05_欧式期权到期支付.tex}%
 \WJFigure{fig:wj-five-option-payoffs}{欧式看涨与看跌的到期支付}
 \end{center}
 
