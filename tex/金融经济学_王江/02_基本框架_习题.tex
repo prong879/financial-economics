@@ -9,18 +9,16 @@
 \WJTwoProblem{prob:wj-two-1}{} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
 \end{problem}
 \begin{solution}
-\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-two-4}\else 教材定义 2.4\fi：效用函数表示偏好 $\succeq$，是指对任意两个消费计划，$U(c_{1})\ge U(c_{2})$ 当且仅当 $c_{1}\succeq c_{2}$。两个效用函数表示相同偏好，就是它们给出完全一样的排序。正单调变换不改变不等号的方向，所以 $V=f(U)$ 与 $U$ 排序相同。
+\textbf{正单调变换}是指用严格递增的函数 $f$ 对原效用值作变换。也就是说，对 $f$ 定义域内任意 $u<v$，都有 $f(u)<f(v)$。因此，较大的效用值变换后仍然较大，相等的效用值变换后仍然相等。
 
-假设 $U(c)$ 表示的偏好关系为 $\succeq$，那么 $\forall\, c_{1},\,c_{2}\in\mathrm{R}_{+}^{N}$ 有
+设 $U$ 表示偏好 $\succeq$。对任意两个消费计划 $c_1,c_2$，结合上述性质与\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-two-4}\else 教材定义 2.4\fi，有
 \[
-    U(c_{1})\ge U(c_{2})\Leftrightarrow c_{1}\succeq c_{2}
-\]
-而 $f(\cdot)$ 是正单调函数，因而
-\[
-    V(c_{1})=f(U(c_{1}))\ge f(U(c_{2}))=V(c_{2})\Leftrightarrow U(c_{1})\ge U(c_{2})
+    V(c_1)\ge V(c_2)
+    \iff U(c_1)\ge U(c_2)
+    \iff c_1\succeq c_2.
 \]
 
-因此 $V(c_{1})\ge V(c_{2})\Leftrightarrow c_{1}\succeq c_{2}$，即 $V(c)$ 表示的偏好也是 $\succeq$。
+所以 $V$ 也表示偏好 $\succeq$。
 \end{solution}
 
 \begin{problem}
@@ -232,7 +230,9 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \WJTwoProblem{prob:wj-two-5}{} 在练习~\ref{prob:wj-two-4} 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
 \end{problem}
 \begin{solution}
-无摩擦，允许卖空。预算集是花费不超过禀赋市值的那些 1 期支付：
+设 $\theta_i$ 为证券 $i$ 的初始持有量，$\alpha_i$ 为交易后的持有量，则净买入量为 $\alpha_i-\theta_i$。本题的禀赋全为证券，初始组合市值减去新组合市值的差额可用于 0 期消费。差额须非负，因此 $\alpha_1S_1+\alpha_2S_2\le\theta_1S_1+\theta_2S_2$。
+
+交易后的组合在 1 期提供支付 $C=\alpha_1X_1+\alpha_2X_2$。三个状态下的消费都须非负，因此要求 $C\in\mathrm{R}_+^3$。市场允许卖空，所以单只证券的持有量 $\alpha_i$ 可以为负。由此得到可实现的 1 期消费向量集合
 \[
     B_{12}=\Bigl\{C\in\mathrm{R}_{+}^{3}:
     C=\alpha_{1}X_{1}+\alpha_{2}X_{2},\;
@@ -299,7 +299,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{enumerate}
 \end{problem}
 \begin{solution}
-禀赋 $e_0=100$、$e_1=1$。无风险证券：0 期价格 $1$，1 期支付 $1+r_F$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额；$S<0$ 表示借贷）。
+禀赋 $e_0=100$、$e_1=1$。无风险证券的 0 期价格为 $1$，1 期支付为 $1+r_F>0$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额，$S<0$ 表示借款）。
 
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{不能交易（自给自足）：}只能消费禀赋，
@@ -312,7 +312,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     \begin{itemize}
         \item \textbf{预算集与财富 $w$。}买卖证券等价于在两期之间转移消费：0 期少消费 $S$ 用于储蓄，1 期增加 $S(1+r_F)$。故
         \[
-            c_0=100-S,\qquad c_1=1+S(1+r_F),\qquad S\in\mathrm{R}.
+            c_0=100-S,\qquad c_1=1+S(1+r_F),\qquad S\in\mathrm{R},\qquad c_0,c_1\ge0.
         \]
 
         以 0 期消费为计价单位，把 1 期禀赋折现到 0 期（用市场利率 $r_F$）：
@@ -320,12 +320,21 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
             w=100+\frac{1}{1+r_F}.
         \]
 
-        这是参与者按市价出售全部禀赋后可在 0 期支配的\textbf{总财富}（现值）。任意满足上述两式的 $(c_0,c_1)$ 都在预算集内。
+        这是参与者以 0 期消费计量的\textbf{总财富}。
 
-        \item \textbf{优化问题。}在预算集上最大化对数效用：
+        \item \textbf{优化问题。}将两期预算式代入效用函数。对数的自变量必须为正，因此两期消费都要严格为正。
         \[
-            \max_{S\in\mathrm{R}}\ \log(100-S)+\rho\log\bigl[1+S(1+r_F)\bigr].
+            \begin{aligned}
+                \max_{S\in\mathrm{R}}\quad &\log(100-S)+\rho\log\bigl[1+S(1+r_F)\bigr]\\
+                \text{s.t.}\quad &
+                \left\{\begin{aligned}
+                    100-S&>0,\\
+                    1+S(1+r_F)&>0.
+                \end{aligned}\right.
+            \end{aligned}
         \]
+
+        由于 $1+r_F>0$，两条约束合起来给出 $-\dfrac{1}{1+r_F}<S<100$。
 
         一阶条件（边际效用替代率 = 跨期相对价格）：
         \[
@@ -386,15 +395,15 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 
     \item \textbf{$U^{b}\ge U^{a}$。}不能交易时只能消费禀赋，\((c_0,c_1)=(100,1)\)，效用为 \(U^{a}=\log 100\)。
     
-    能交易时储蓄 \(S\) 可任取，其中 \(S=0\) 仍可行，对应的消费还是 \((100,1)\)，效用仍是 \(\log 100=U^{a}\)。\(U^{b}\) 是所有可行储蓄里的最大效用，而 \(S=0\) 只是其中一个可行点，最大值不会低于这一点：
+    能交易时 \(S=0\) 仍可行，对应的消费还是 \((100,1)\)，效用仍是 \(\log 100=U^{a}\)。\(U^{b}\) 是所有可行储蓄里的最大效用，而 \(S=0\) 只是其中一个可行点，最大值不会低于这一点：
     \[
-        U^{b}=\max_{S\in\mathrm{R}}\,U\bigl(100-S,\,1+S(1+r_F)\bigr)
+        U^{b}=\max_{-1/(1+r_F)<S<100}\,U\bigl(100-S,\,1+S(1+r_F)\bigr)
         \ge U(100,1)=U^{a}.
     \]
 
     等号当且仅当最优储蓄恰好是 \(S^{*}=0\)，即 \(100\rho(1+r_F)=1\)。
 
-    \item \textbf{交易益处 $g$。}定义 $U^{b}(w-g)=U^{a}$：$w-g$ 是与交易后最优效用相同、但用一条 0 期财富数字表示的\textbf{确定性等价财富}；$g=w-(w-g)$ 即为因能交易而多出来的等价 0 期资源。
+    \item \textbf{交易益处 $g$。}记 $U^b(z)$ 为拥有 0 期财富 $z$ 时，通过交易可达到的最高效用。令 $\hat w$ 满足 $U^b(\hat w)=U^a$，即允许交易时，只需财富 $\hat w$ 就能达到自给自足的效用。交易益处 $g=w-\hat w$ 衡量在保有交易机会的情况下，可以放弃多少 0 期财富而仍达到 $U^a$。
 
     将 $U^{a}=\log 100$ 与上式 $U^{b}$ 联立，记 $w-g=\hat w$，则
     \[
@@ -416,7 +425,21 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         100^{\frac{1}{1+\rho}}(1+\rho).
     \]
 
-    $g$ 随 $\rho$、$r_F$ 增加而增加：二者都提高把消费从 0 期转到 1 期」的动机，能在市场上做跨期配置带来的等价收益更大。
+    % 学生版不写入隐藏图注的标签。
+    \IfRefUndefinedExpandable{fig:wj-gains-from-trade}{}{图~\ref{fig:wj-gains-from-trade} 中，先从 $U^a$ 水平移到 $U^b(z)$ 曲线，再向下读出 $\hat w$。横轴上 $\hat w$ 到 $w$ 的距离就是 $g$。}
+
+    \WJInputFigure{02_交易益处}
+
+    \textbf{比较静态。}分别对 $\rho>0$ 和 $r_F$ 求偏导，注意 $w=100+1/(1+r_F)$ 也随利率变化，得到
+    \[
+        \frac{\partial g}{\partial \rho}
+        =\frac{\hat w\log\!\bigl[100\rho(1+r_F)\bigr]}{(1+\rho)^2},
+        \qquad
+        \frac{\partial g}{\partial r_F}
+        =\frac{\bigl[100\rho(1+r_F)\bigr]^{1/(1+\rho)}-1}{(1+r_F)^2}.
+    \]
+
+    当 $100\rho(1+r_F)<1$ 时，参与者最优选择借款，单独提高 $\rho$ 或 $r_F$ 会使 $g$ 下降，直到 $100\rho(1+r_F)=1$。此时最优选择恰好是不交易，$g=0$。越过这一点后，参与者选择储蓄，继续提高任一参数会使 $g$ 上升。
 \end{enumerate}
 \end{solution}
 

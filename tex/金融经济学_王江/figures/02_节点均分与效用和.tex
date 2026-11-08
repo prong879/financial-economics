@@ -1,0 +1,28 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：例 2.5 的单节点效用和。绘图坐标分别以 E 和 \sqrt E 为单位。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[x=7.2cm,y=1.9cm,>=Stealth,font=\footnotesize]
+  \draw[->] (0,0) -- (1.11,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,1.62) node[above] {节点效用和};
+
+  \coordinate (peak) at (.5,{sqrt(2)});
+  \draw[gray,densely dashed] (0,{sqrt(2)}) -- (peak) -- (.5,0);
+  \draw[gray,densely dashed] (1,1) -- (1,0);
+  \draw[blue!70!black,thick,domain=0:1,samples=121]
+    plot (\x,{sqrt(\x)+sqrt(1-\x)});
+
+  \fill[blue!70!black] (0,1) circle (1.4pt) (1,1) circle (1.4pt);
+  \fill[red!70!black] (peak) circle (2pt)
+    node[above right] {均分 $(E/2,E/2)$};
+  \node[left] at (0,{sqrt(2)}) {$2\sqrt{E/2}$};
+  \node[left] at (0,1) {$\sqrt E$};
+  \node[below left] at (0,0) {$0$};
+  \node[below] at (.5,0) {$E/2$};
+  \node[below] at (1,0) {$E$};
+  \node[blue!70!black] at (.74,.78) {$\sqrt{x}+\sqrt{E-x}$};
+\end{tikzpicture}
+\WJFigure{fig:wj-node-equal-split}{固定节点总资源时的两人效用和}
+\end{minipage}
+\end{center}

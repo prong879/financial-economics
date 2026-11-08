@@ -1,0 +1,26 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：例示 g>0。横坐标按 \hat w 缩放，纵坐标为相对 U^a 的效用差除以 1+\rho。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[x=4.65cm,y=2.35cm,>=Stealth,font=\footnotesize]
+  \draw[->] (.44,-.52) -- (1.99,-.52) node[right] {0 期财富 $z$};
+  \draw[->] (.44,-.52) -- (.44,.76) node[above] {效用};
+
+  \coordinate (equivalent) at (1,0);
+  \coordinate (actual) at (1.62,{ln(1.62)});
+  \draw[gray,densely dashed]
+    (.44,0) node[left] {$U^a$} -- (equivalent) -- (1,-.52)
+    (.44,{ln(1.62)}) node[left] {$U^b(w)$} -- (actual) -- (1.62,-.52);
+  \draw[blue!70!black,thick,domain=.66:1.88,samples=70]
+    plot (\x,{ln(\x)}) node[above] {$U^b(z)$};
+
+  \fill[blue!70!black] (equivalent) circle (1.7pt) (actual) circle (1.7pt);
+  \node[below] at (1,-.52) {$\hat w$};
+  \node[below] at (1.62,-.52) {$w$};
+  \draw[<->,red!70!black,thick] (1,-.82) -- (1.62,-.82)
+    node[midway,below] {$g=w-\hat w$};
+\end{tikzpicture}
+\WJFigure{fig:wj-gains-from-trade}{以 0 期财富计量交易益处（$g>0$）}
+\end{minipage}
+\end{center}
