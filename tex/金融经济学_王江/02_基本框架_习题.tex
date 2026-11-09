@@ -1,12 +1,12 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 02_基本框架 课后习题（由章节文件拆分）
+% 教材第 2 章练习 1—7，印刷第 29—31 页（PDF 第 44—46 页）。
 
 \newcounter{wjTwoExercise}
 \renewcommand{\thewjTwoExercise}{\thechapter.\arabic{wjTwoExercise}}
 \newcommand{\WJTwoProblem}[2]{\refstepcounter{wjTwoExercise}\label{#1}\problemno{\thewjTwoExercise#2}}
 
 \begin{problem}
-\WJTwoProblem{prob:wj-two-1}{} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{n}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
+\WJTwoProblem{prob:wj-two-1}{} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{N}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
 \end{problem}
 \begin{solution}
 \textbf{正单调变换}是指用严格递增的函数 $f$ 对原效用值作变换。也就是说，对 $f$ 定义域内任意 $u<v$，都有 $f(u)<f(v)$。因此，较大的效用值变换后仍然较大，相等的效用值变换后仍然相等。
@@ -21,8 +21,9 @@
 所以 $V$ 也表示偏好 $\succeq$。
 \end{solution}
 
+\Needspace{4\baselineskip}
 \begin{problem}
-\WJTwoProblem{prob:wj-two-2}{*} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
+\WJTwoProblem{prob:wj-two-2}{} 在 1 期，经济有两个可能状态 $a$ 和 $b$，它们的发生概率相等：
 \begin{center}
 \WJEventTree{a,b}
 \end{center}
@@ -38,19 +39,19 @@
 证明它们满足：不满足性、连续性和凸性。
 \end{problem}
 \begin{solution}
-三个效用函数都具有形式 $U(c)=u(c_{0})+\tfrac12\bigl(u(c_{1a})+u(c_{1b})\bigr)$。对数与幂效用要求底数为正，指数效用 $u(x)=-e^{-ax}$ 在 $a>0$ 时于整个实数轴上有定义。下面统一在严格正消费集
+三个效用函数都具有形式 $U(c)=u(c_{0})+\tfrac12\bigl(u(c_{1a})+u(c_{1b})\bigr)$。对数效用要求消费严格为正，幂效用也取正的底数。指数效用在整个实数轴上有定义。为在同一个消费集上比较三种偏好，统一取
 \[
     C=\bigl\{c\in\mathrm{R}^{3}:c_{0}>0,\;c_{1a}>0,\;c_{1b}>0\bigr\}
 \]
 
-上证明；并设幂效用中 $\gamma>0$、$\gamma\neq 1$，指数效用中 $a>0$。对应的期效用为
+三种期效用分别为
 \[
     u(x)=\log x,\qquad
     u(x)=\frac{x^{1-\gamma}}{1-\gamma},\qquad
     u(x)=-e^{-ax},\qquad x>0.
 \]
 
-三者都满足 $u'(x)>0$、$u''(x)<0$，因而严格递增且严格凹：
+幂效用取 $\gamma\ge 0$ 且 $\gamma\ne 1$，指数效用取 $a>0$。若 $\gamma=1$，幂效用的原式无定义。若 $a=0$，指数效用为常数。在上述参数条件下，一阶导数均为正，二阶导数均非正，其中 $\gamma=0$ 时幂效用为线性函数。
 \[
     (\log x)'=\frac1x,\quad (\log x)''=-\frac1{x^{2}},
 \]
@@ -63,7 +64,7 @@
 \]
 
 \begin{enumerate}[label=(\alph*)]
-    \item 不满足性（喜多厌少）。设 $c,c'\in C$ 且 $c\ge c'$。由 $u$ 在 $(0,\infty)$ 上递增，$u(c_{i})\ge u(c_{i}')$，故 $U(c)\ge U(c')$。
+    \item 不满足性（喜多厌少）。设 $c,c'\in C$ 且 $c>c'$，即各分量满足 $c_i\ge c_i'$，且至少有一个严格不等式。由 $u$ 严格递增，$u(c_i)\ge u(c_i')$，且至少一项严格较大。各项权重均为正，因此 $U(c)>U(c')$。
     \item 连续性。要证：若 $\{c^{(n)}\}\subset C$ 且 \(\lim_{n\to\infty}c^{(n)}=c\in C\)，则
     \[
         \lim_{n\to\infty}U\bigl(c^{(n)}\bigr)=U(c).
@@ -84,16 +85,18 @@
             =U(c).
         \end{aligned}
     \]
-    \item 凸性。$u$ 严格凹，故对 $\alpha\in(0,1)$ 与 $c,c'\in C$，
+    \item 凸性。$u$ 是凹函数，故对 $\alpha\in[0,1]$ 与 $c,c'\in C$，
     \[
         u\bigl(\alpha c_{i}+(1-\alpha)c_{i}'\bigr)\ge\alpha u(c_{i})+(1-\alpha)u(c_{i}'),
     \]
     且凸组合仍在 $C$ 中。因此
     \[
-        U\bigl(\alpha c+(1-\alpha)c'\bigr)\ge\alpha U(c)+(1-\alpha)U(c').
+        U\bigl(\alpha c+(1-\alpha)c'\bigr)
+        \ge\alpha U(c)+(1-\alpha)U(c')
+        \ge\min\{U(c),U(c')\}.
     \]
 
-    若 $U(c)>U(c')$，则右端严格大于 $U(c')$，即 $U\bigl(\alpha c+(1-\alpha)c'\bigr)>U(c')$。
+    因此，混合消费计划至少和两者中效用较低的计划一样好，偏好满足凸性。
 \end{enumerate}
 \end{solution}
 
@@ -101,11 +104,9 @@
 \WJTwoProblem{prob:wj-two-3}{} $U(c)=c-\tfrac12 a c^{2}$ 是一可能的效用函数，其中 $c\in\mathrm{R}_{+}$，$a$ 是非负的系数。$U(c)$ 具有不满足性吗？如果不是，那么 $a$ 取什么值和/或 $c$ 在什么范围内时 $U(c)$ 具有不满足性？
 \end{problem}
 \begin{solution}
-不一定，比如当 $a=1$ 时，$U(\tfrac12)=\tfrac38<U(1)=\tfrac12>U(3)=-1.5$。$U(c)$ 不具有不满足性。
+由 $U'(c)=1-ac$ 可知，$a=0$ 时 $U(c)=c$ 在整个非负消费域上严格递增。
 
-当 $a=0$ 时，$U(c)=c$ 具有不满足性；
-
-当 $a>0$ 时，当 $c\in[0,\tfrac{1}{a}]$ 时 $U(c)$ 具有不满足性。
+若 $a>0$，则 $U$ 在 $[0,1/a]$ 上严格递增。由中值定理，即使取右端点 $1/a$，区间内任意两点的割线斜率仍等于某个正的导数值。超过 $1/a$ 后，$U'(c)<0$，消费越多，效用越低。例如 $a=1$ 时，$U(3)=-3/2<U(1)=1/2$。
 
 \begin{center}
 \footnotesize
@@ -207,7 +208,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         M=\bigl\{Y\in\mathrm{R}^{3}: Y=X\theta=[X_1,\,X_2]\begin{bmatrix}\theta_1 \\ \theta_2\end{bmatrix}=\theta_1 X_1+\theta_2 X_2,\;\theta_1,\theta_2\in\mathrm{R}\bigr\},
     \]
 
-    即 $X_1,X_2$ 张成的二维子空间（只有两只证券，维度 $\le 2$）。
+    $M$ 由两只证券的支付向量张成，维数至多为 $2$。由于 $X_1$ 的三个分量相等，而 $X_2$ 的三个分量不同，两列不成比例，故 $M$ 的维数恰为 $2$。
 
     \item \textbf{禁止卖空：}仅允许 $\theta_1,\theta_2\ge 0$，为 $X_1,X_2$ 的\textbf{非负}线性组合：
     \[
@@ -219,9 +220,9 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         X'=\begin{bmatrix}1&1&0\\1&2&0\\1&3&1\end{bmatrix}=[X_1,\,X_2,\,X_3].
     \]
 
-    三列线性无关，可表示任意 $Y\in\mathrm{R}^{3}$，故（允许卖空时）
+    沿第三列展开得 $\det X'=1\cdot(2-1)=1$，故三列线性无关，构成 $\mathrm{R}^3$ 的一组基。允许卖空时，持仓系数可以取任意实数，所以任意 $Y\in\mathrm{R}^3$ 都可由这三只证券的组合复制。市场化支付集合为
     \[
-        M=\bigl\{Y\in\mathrm{R}^{3}: Y=\theta_1 X_1+\theta_2 X_2+\theta_3 X_3,\;\theta_1,\theta_2,\theta_3\in\mathrm{R}\bigr\}=\mathrm{R}^{3}.
+        M'=\bigl\{Y\in\mathrm{R}^{3}: Y=\theta_1 X_1+\theta_2 X_2+\theta_3 X_3,\;\theta_1,\theta_2,\theta_3\in\mathrm{R}\bigr\}=\mathrm{R}^{3}.
     \]
 \end{enumerate}
 \end{solution}
@@ -230,52 +231,40 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \WJTwoProblem{prob:wj-two-5}{} 在练习~\ref{prob:wj-two-4} 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
 \end{problem}
 \begin{solution}
-设 $\theta_i$ 为证券 $i$ 的初始持有量，$\alpha_i$ 为交易后的持有量，则净买入量为 $\alpha_i-\theta_i$。本题的禀赋全为证券，初始组合市值减去新组合市值的差额可用于 0 期消费。差额须非负，因此 $\alpha_1S_1+\alpha_2S_2\le\theta_1S_1+\theta_2S_2$。
+设 $\theta_i$ 为证券 $i$ 的初始持有量，$\alpha_i$ 为交易后的持有量，则净买入量为 $\alpha_i-\theta_i$。本题的禀赋全为证券。初始组合市值为 $w=\theta_1S_1+\theta_2S_2$，扣除新组合市值后的余额用于 0 期消费。要求 $c_0\ge0$，等价于 $\alpha_1S_1+\alpha_2S_2\le w$。
 
-交易后的组合在 1 期提供支付 $C=\alpha_1X_1+\alpha_2X_2$。三个状态下的消费都须非负，因此要求 $C\in\mathrm{R}_+^3$。市场允许卖空，所以单只证券的持有量 $\alpha_i$ 可以为负。由此得到可实现的 1 期消费向量集合
+交易后的组合在 1 期提供支付 $c_1=\alpha_1X_1+\alpha_2X_2$。三个状态下的消费都须非负，即 $c_1\in\mathrm{R}_+^3$。市场允许卖空，所以单只证券的持有量 $\alpha_i$ 可以为负。完整的两期预算集为
 \[
-    B_{12}=\Bigl\{C\in\mathrm{R}_{+}^{3}:
-    C=\alpha_{1}X_{1}+\alpha_{2}X_{2},\;
-    \alpha_{1}S_{1}+\alpha_{2}S_{2}\le\theta_{1}S_{1}+\theta_{2}S_{2},\;
-    \alpha_{1},\alpha_{2}\in\mathrm{R}\Bigr\}.
+    B_{12}=\Bigl\{(c_0,c_1)\in\mathrm{R}_{+}\times\mathrm{R}_{+}^{3}:
+    \begin{aligned}
+        c_0&=w-\alpha_1S_1-\alpha_2S_2,\\
+        c_1&=\alpha_1X_1+\alpha_2X_2,\qquad \alpha_1,\alpha_2\in\mathrm{R}
+    \end{aligned}
+    \Bigr\}.
 \]
+
+若只考察可实现的未来消费，可消去 $c_0$，只保留满足上述成本上限和逐状态非负约束的 $c_1$。这就是预算集在 1 期消费上的投影。
 \end{solution}
 
 \begin{problem}
 \WJTwoProblem{prob:wj-two-6}{} 在上面的练习中引入练习~\ref{prob:wj-two-4} 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
 \end{problem}
 \begin{solution}
-证券 3 上的禀赋为 $0$，可交易财富仍是 $\theta_{1}S_{1}+\theta_{2}S_{2}$。预算集为
+证券 3 上的禀赋为 $0$，初始持仓的市值仍为 $w=\theta_1S_1+\theta_2S_2$。允许卖空时，加入证券 3 后的预算集为
 \[
-    B_{123}=\Bigl\{C\in\mathrm{R}_{+}^{3}:
-    C=\alpha_{1}X_{1}+\alpha_{2}X_{2}+\alpha_{3}X_{3},\;
-    \alpha_{1}S_{1}+\alpha_{2}S_{2}+\alpha_{3}S_{3}\le\theta_{1}S_{1}+\theta_{2}S_{2},\;
-    \alpha_{1},\alpha_{2},\alpha_{3}\in\mathrm{R}\Bigr\}.
+    B_{123}=\Bigl\{(c_0,c_1)\in\mathrm{R}_{+}\times\mathrm{R}_{+}^{3}:
+    \begin{aligned}
+        c_0&=w-\alpha_1S_1-\alpha_2S_2-\alpha_3S_3,\\
+        c_1&=\alpha_1X_1+\alpha_2X_2+\alpha_3X_3,\qquad \alpha_1,\alpha_2,\alpha_3\in\mathrm{R}
+    \end{aligned}
+    \Bigr\}.
 \]
 
-练习~\ref{prob:wj-two-5} 的预算集是
-\[
-    B_{12}=\Bigl\{C\in\mathrm{R}_{+}^{3}:
-    C=\alpha_{1}X_{1}+\alpha_{2}X_{2},\;
-    \alpha_{1}S_{1}+\alpha_{2}S_{2}\le\theta_{1}S_{1}+\theta_{2}S_{2},\;
-    \alpha_{1},\alpha_{2}\in\mathrm{R}\Bigr\}.
-\]
-
-设 $C\in B_{12}$，对应头寸为 $\alpha_{1},\alpha_{2}$。取 $\alpha_{3}=0$，则
-\[
-    C=\alpha_{1}X_{1}+\alpha_{2}X_{2}+\alpha_{3}X_{3},
-\]
-
-并且
-\[
-    \alpha_{1}S_{1}+\alpha_{2}S_{2}+\alpha_{3}S_{3}=\alpha_{1}S_{1}+\alpha_{2}S_{2}\le\theta_{1}S_{1}+\theta_{2}S_{2}.
-\]
-
-故 $C\in B_{123}$，即 $B_{12}\subseteq B_{123}$。
+任取 $(c_0,c_1)\in B_{12}$，设实现该计划的持仓为 $(\alpha_1,\alpha_2)$。在新市场取 $\alpha_3=0$，则 $\alpha_3S_3=0$、$\alpha_3X_3=0$，所以买入成本和到期支付都与原组合相同，仍可实现同一个 $(c_0,c_1)$。因此 $B_{12}\subseteq B_{123}$。
 \end{solution}
 
 \begin{problem}
-\WJTwoProblem{prob:wj-two-7}{*} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
+\WJTwoProblem{prob:wj-two-7}{} 考虑一个在 1 期只有一个可能状态的经济。（在这种情况下不存在不确定性。）参与者 1 的 0 期禀赋为 100 而 1 期禀赋为 1，即他的禀赋向量为 $\begin{bmatrix}100 \\ 1\end{bmatrix}$。他的偏好可以表示成如下形式：
 \[
     U(c_{0},c_{1})=\log c_{0}+\rho\log c_{1}.
 \]
@@ -299,7 +288,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{enumerate}
 \end{problem}
 \begin{solution}
-禀赋 $e_0=100$、$e_1=1$。无风险证券的 0 期价格为 $1$，1 期支付为 $1+r_F>0$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额，$S<0$ 表示借款）。
+设 $\rho>0$。禀赋 $e_0=100$、$e_1=1$。无风险证券的 0 期价格为 $1$，1 期支付为 $1+r_F>0$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额，$S<0$ 表示借款）。
 
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{不能交易（自给自足）：}只能消费禀赋，
@@ -336,10 +325,10 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 
         由于 $1+r_F>0$，两条约束合起来给出 $-\dfrac{1}{1+r_F}<S<100$。
 
-        一阶条件（边际效用替代率 = 跨期相对价格）：
+        储蓄增加一单位，会少消费一单位当期商品，并增加 $1+r_F$ 单位未来消费。一阶条件为
         \[
             \underbrace{\frac{1}{100-S}}_{\text{0 期边际效用}}
-            =\rho\underbrace{\frac{1+r_F}{1+S(1+r_F)}}_{\text{1 期边际效用}\times\text{价格比}}.
+            =(1+r_F)\underbrace{\frac{\rho}{1+S(1+r_F)}}_{\text{1 期边际效用}}.
         \]
 
         整理得 $\bigl[1+S(1+r_F)\bigr]=\rho(1+r_F)(100-S)$，即
@@ -352,7 +341,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
             S^{*}=\frac{100\rho(1+r_F)-1}{(1+\rho)(1+r_F)}.
         \]
 
-        预算约束是前面的两式 \(c_0=100-S\)、\(c_1=1+S(1+r_F)\)，其中 \(c_0,c_1,S\) 仍是可行选择，不是最优值。把 \(S^{*}\) 代回去，得到最优消费 \(c_0^{*},c_1^{*}\)：
+        对任意可行的储蓄量 $S$，两期预算约束为 $c_0=100-S$ 和 $c_1=1+S(1+r_F)$。将 $S^*$ 代入两式，得到最优消费
         \[
             \begin{aligned}
                 c_0^{*}&=100-S^{*}
@@ -370,12 +359,12 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
             c_1^{*}=\frac{\rho(1+r_F)}{1+\rho}\,w.
         \]
 
-        两式相除，零期与一期的最优消费只差偏好权重和总收益：
+        两式相除，得到两期最优消费的关系
         \[
             c_1^{*}=\rho(1+r_F)\,c_0^{*}.
         \]
 
-        因此最优现期消费占财富 $\dfrac{1}{1+\rho}$，这个份额不随 \(r_F\) 改变；最优 1 期消费占 \(\dfrac{\rho(1+r_F)}{1+\rho}\)，是在该份额上再乘以 \(\rho(1+r_F)\)。这是对数效用下的固定支出份额。最优效用
+        两期消费均严格为正，且目标函数严格凹，因此这是唯一最优解。按 0 期消费计价，两期的支出份额分别是 $c_0^*/w=1/(1+\rho)$ 和 $[c_1^*/(1+r_F)]/w=\rho/(1+\rho)$，只取决于 $\rho$。代入效用函数得到
         \[
             U^{b}=\log\Bigl(\frac{w}{1+\rho}\Bigr)+\rho\log\Bigl(\frac{\rho(1+r_F)}{1+\rho}\,w\Bigr).
         \]
@@ -388,9 +377,9 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         \]
         \(r_F\) 只出现在 \(c_0^{*}\) 的 \(1/(1+r_F)\) 里，故 \(r_F\) 上升时 \(c_0^{*}\) 下降；\(\rho\) 在分母，\(\rho\) 上升时 \(c_0^{*}\) 也下降。
         
-        \(c_1^{*}\) 的分子含 \(\rho(1+r_F)\)，分母是 \(1+\rho\)，两项都使 \(c_1^{*}\) 随 \(r_F\)、\(\rho\) 上升。
+        把 $c_1^*$ 写成 $\frac{\rho}{1+\rho}[100(1+r_F)+1]$。固定 $\rho$ 时，后一个因子随 $r_F$ 增大。固定 $r_F$ 时，前一个因子随 $\rho$ 增大。因此，单独提高任一参数都会使 $c_1^*$ 上升。
         
-        直觉：\(r_F\) 升高提高储蓄回报，\(\rho\) 升高加重未来消费权重，都会促使少消费于 0 期、多留于 1 期。
+        由 $S^*=100-c_0^*$，提高任一参数都会增加最优储蓄。利率升高提高了储蓄回报，$\rho$ 升高则提高了未来消费的权重。
     \end{itemize}
 
     \item \textbf{$U^{b}\ge U^{a}$。}不能交易时只能消费禀赋，\((c_0,c_1)=(100,1)\)，效用为 \(U^{a}=\log 100\)。
@@ -401,7 +390,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         \ge U(100,1)=U^{a}.
     \]
 
-    等号当且仅当最优储蓄恰好是 \(S^{*}=0\)，即 \(100\rho(1+r_F)=1\)。
+    由最优解的唯一性，等号当且仅当 $S^*=0$，即 $100\rho(1+r_F)=1$。
 
     \item \textbf{交易益处 $g$。}记 $U^b(z)$ 为拥有 0 期财富 $z$ 时，通过交易可达到的最高效用。令 $\hat w$ 满足 $U^b(\hat w)=U^a$，即允许交易时，只需财富 $\hat w$ 就能达到自给自足的效用。交易益处 $g=w-\hat w$ 衡量在保有交易机会的情况下，可以放弃多少 0 期财富而仍达到 $U^a$。
 
@@ -430,7 +419,13 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 
     \WJInputFigure{02_交易益处}
 
-    \textbf{比较静态。}分别对 $\rho>0$ 和 $r_F$ 求偏导，注意 $w=100+1/(1+r_F)$ 也随利率变化，得到
+    \textbf{比较静态。}由上面的效用等式，
+    \[
+        \log\hat w=\log(1+\rho)
+        +\frac{\log 100-\rho\log[\rho(1+r_F)]}{1+\rho}.
+    \]
+
+    对右边求偏导，再乘以 $\hat w$，得到 $\hat w$ 的偏导。由 $g=w-\hat w$ 及 $w=100+1/(1+r_F)$，可得
     \[
         \frac{\partial g}{\partial \rho}
         =\frac{\hat w\log\!\bigl[100\rho(1+r_F)\bigr]}{(1+\rho)^2},

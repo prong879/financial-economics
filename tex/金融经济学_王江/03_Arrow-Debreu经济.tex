@@ -33,7 +33,7 @@
 \begin{tcolorbox}[knowledge]
 \WJThreeDefinition{def:wj-three-claim}状态 $\omega$ \textbf{或有要求权}（state-$\omega$ contingent claim）是在 1 期状态为 $\omega$ 时支付 $1$ 单位消费品、其他状态下支付 $0$ 的证券，也称状态 $\omega$ 的 Arrow-Debreu 证券。
 \end{tcolorbox}
-若以 $\omega'$ 表示实际实现的状态，其支付为
+记 $\omega'$ 为实际实现的状态。这只证券的支付可以用示性函数写成
 \[
  x(\omega')=\mathbf{1}_{\{\omega\}}(\omega')=
  \begin{cases}1,&\omega'=\omega,\\0,&\omega'\ne\omega.\end{cases}
@@ -46,13 +46,17 @@
 \]
 \end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=Arrow-Debreu 市场与单位支付矩阵,breakable=false]
-每个可能状态对应一只状态证券，共有 $\Omega$ 只。由它们的完全集合构成的市场称为 \textbf{Arrow-Debreu 证券市场}。按状态顺序排列证券时，支付矩阵为
+每个可能状态对应一只状态证券，共有 $\Omega$ 只。由它们的完全集合构成的市场称为 \textbf{Arrow-Debreu 证券市场}。例如，把上面两只证券的支付向量按列并排，得到
 \[
- X^{A\text{-}D}=I_\Omega.
+ \begin{bmatrix}x_a & x_b\end{bmatrix}
+ =\begin{bmatrix}1&0\\0&1\end{bmatrix}=I_2.
 \]
-\end{tcolorbox}
-
+一般地，行与列按相同的状态顺序排列，支付矩阵为
+\[
+ X^{A\text{-}D}=I_\Omega,
+\]
 其中第 $\omega$ 列只在第 $\omega$ 行取 $1$，直接对应状态 $\omega$ 的单位支付。
+\end{tcolorbox}
 
 \section{状态价格}
 \label{sec:wj-three-prices}
@@ -71,6 +75,7 @@
 \begin{equation}
  \phi\gg0.\label{eq:wj-three-positive-price}
 \end{equation}
+这表示每个状态的价格都严格为正，即 $\phi_\omega>0$ 对所有 $\omega$ 成立。
 \end{tcolorbox}
 
 若某个 $\phi_\omega\le0$，买入一份该证券的当期净支出非正，未来支付非负且以正概率为正，构成套利。状态价格同时反映时间价值与相应状态下资源的稀缺性，其总和一般不为 $1$。在一价定律下，支付向量 $x$ 的复制成本为 $\phi^{\mathsf T}x$；实际概率则描述各状态发生的可能性。
@@ -200,7 +205,17 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 在 Arrow-Debreu 市场中，选定未来消费 $c_1$ 后，所需的证券净交易就由 $\theta=c_1-e_1$ 确定。因此，参与者可以直接在式~\eqref{eq:wj-three-budget} 给出的预算范围内，选择使效用最大的消费计划。
 
 \begin{tcolorbox}[knowledge,title=扩展价格与消费优化,breakable=false]
-状态价格向量 $\phi$ 给出未来各状态下消费的当期价格。以当期消费品为计价单位，其价格为 $\phi_0=1$。把这个价格放在 $\phi$ 前面，得到扩展价格向量 $\hat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，就能用同一个向量给整个消费计划 $c$ 和禀赋 $e$ 计价。参与者的问题为
+以当期消费品为计价单位，其价格为 $\phi_0=1$。把这个价格放在状态价格向量 $\phi$ 前面，得到扩展价格向量 $\hat\phi$。整个消费计划的当期价值为
+\[
+ \hat\phi=\begin{bmatrix}1\\\phi\end{bmatrix},
+ \qquad
+ \hat\phi^{\mathsf T}c
+ =\begin{bmatrix}1&\phi^{\mathsf T}\end{bmatrix}
+   \begin{bmatrix}c_0\\c_1\end{bmatrix}
+ =c_0+\sum_{\omega=1}^{\Omega}\phi_\omega c_{1\omega}.
+\]
+
+同样，禀赋的当期价值为 $w=\hat\phi^{\mathsf T}e$，所以 $\hat\phi^{\mathsf T}(e-c)=w-\hat\phi^{\mathsf T}c$ 就是购入消费计划后的预算余额。参与者的问题为
 \begin{equation}
  \begin{aligned}
  \max_{c\in\mathrm R_+^{1+\Omega}}\quad&U(c)\\
@@ -226,7 +241,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 \textbf{非空。}由于 $w\ge0$，零消费计划 $c=0$ 的支出不超过预算，所以 $B$ 至少包含这个计划。
 
-\textbf{有界。}每项消费的价格为正，消费量非负，因此第 $i$ 项的支出 $\phi_i c_i$ 不超过总支出，也就不超过 $w$。即使把全部财富都花在第 $i$ 项上，最多也只能买 $w/\phi_i$，所以
+\textbf{有界。}逐项计算时，用 $c_i$ 表示第 $i$ 个消费坐标。$i=0$ 对应当期消费，$i=\omega\ge1$ 对应未来状态 $\omega$ 的消费量 $c_{1\omega}$。每项消费的价格为正，消费量非负，因此第 $i$ 项的支出 $\phi_i c_i$ 不超过总预算 $w$。所以
 \[
  0\le c_i\le\frac{w}{\phi_i}\le\frac{w}{\min_{0\le j\le\Omega}\phi_j},
  \qquad i=0,\ldots,\Omega,
@@ -248,7 +263,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  DU(c)=(\partial_0U(c),\ldots,\partial_\Omega U(c))^{\mathsf T}.\label{eq:wj-three-marginal-utility}
 \end{equation}
 
-其中 $\partial_0U$ 表示当期消费的边际效用，$\partial_\omega U$ 表示未来状态 $\omega$ 消费的边际效用。
+其中 $\partial_0U=\partial U/\partial c_0$ 是当期消费的边际效用，$\partial_\omega U=\partial U/\partial c_{1\omega}$ 是未来状态 $\omega$ 消费的边际效用。
 \end{tcolorbox}
 
 % 教材印刷第 38 页及 PPT 第 16 页的 (3.6a) 使用 +mu，按非负乘子约定改为 -mu。
@@ -347,7 +362,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  U(1-c_1,c_1)=2-c_1,\qquad 0\le c_1\le1.
 \]
 
-沿预算线每增加一单位未来消费，就必须减少一单位当期消费，效用净减少 $1$。因此最优时取 $c_1^*=0$，从而 $c_0^*=1$。这就是图~\ref{fig:wj-budget-tangency} 右图的角点。
+沿预算线每增加一单位未来消费，效用就减少 $1$。因此最优点为 $c_1^*=0$、$c_0^*=1$，对应图~\ref{fig:wj-budget-tangency} 右图的角点。
 
 \textbf{求乘子并核验。}由~\eqref{eq:wj-three-kkt-stationarity}，两项消费分别满足
 \[
@@ -356,7 +371,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 由于 $c_0^*=1>0$，互补松弛要求 $\mu_0=0$。代入第一式得 $\lambda=2$，再代入第二式得 $\mu_1=1$。此时 $\lambda>0$、$\mu_0,\mu_1\ge0$，预算余额 $1-(c_0^*+c_1^*)=0$，且 $\mu_0 c_0^*=0\cdot1=0$、$\mu_1 c_1^*=1\cdot0=0$，三个条件均满足。
 
-这里 $\mu_1=1$ 正好是两项消费的单位支出边际效用之差。把支出从当期消费挪到未来消费会降低效用，因此未来消费停在非负约束的边界 $c_1=0$。
+这里 $\mu_1=1$ 正好等于当期与未来消费的单位支出边际效用之差。
 \end{solution}
 \end{tcolorbox}
 
@@ -486,6 +501,8 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \[
  c_k\in\operatorname*{arg\,max}_{c\ge0,\ \hat\phi^{\mathsf T}c\le\hat\phi^{\mathsf T}e_k}U_k(c).
  \]
+
+ 其中 $\arg\max$ 表示给定价格和禀赋时，所有能使效用达到最大值的可行消费计划。$c$ 是待比较的计划，$c_k$ 是参与者 $k$ 选出的最优计划。
  \item 当期及未来每个状态的商品市场分别出清：
  \[
  \underbrace{\sum_k c_{k,0}=\sum_k e_{k,0}}_{\text{当期商品出清}},\qquad
@@ -494,7 +511,13 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \]
 \end{enumerate}
 \end{tcolorbox}
-这里的 $1+\Omega$ 种商品分别是当期消费品与未来各状态的或有消费品。上述定义正是\textbf{瓦尔拉斯均衡}（竞争均衡）在本模型中的形式。
+这里的 $1+\Omega$ 种商品分别是当期消费品与未来各状态的或有消费品。上述定义正是\textbf{瓦尔拉斯均衡}（竞争均衡）在本模型中的形式。在 Arrow-Debreu 市场上，每净买入一份状态 $\omega$ 的证券，就增加该状态的一单位消费。因此
+\[
+ \sum_k\theta_{k,\omega}
+ =\sum_k(c_{k,1\omega}-e_{k,1\omega}).
+\]
+
+右侧为零表示该状态的商品市场出清，左侧为零表示该状态证券的净买入与净卖出相抵。两种出清写法等价。
 
 \begin{tcolorbox}[knowledge,title=Walras 法则,breakable=false]
 在不满足性下，各参与者花光预算。令 $z=\sum_k(c_k-e_k)$，加总预算等式即得 \textbf{Walras 法则}：
@@ -533,7 +556,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \qquad\forall k,k',\omega.\label{eq:wj-three-common-mrs}
 \end{equation}
 
-式~\eqref{eq:wj-three-common-mrs} 两侧分别是参与者 $k$ 和 $k'$ 对同一状态 $\omega$ 的跨期边际替代率。在各自的内点最优计划上，两人愿意为一单位该状态的未来消费放弃的当期消费量，都等于市场价格 $\phi_\omega$。因此即使偏好和消费计划不同，两人的跨期边际替代率也相同。
+给定同一个状态 $\omega$，两人愿意为一单位该状态的未来消费放弃的当期消费量，都等于市场价格 $\phi_\omega$。换到另一个状态，状态价格可以不同，同一个人的跨期边际替代率也可以随之改变。
 \end{tcolorbox}
 
 % 来源：教材印刷第 42 页、PPT 第 22 页；展开双方交易的可行性与效用变化。
@@ -579,6 +602,8 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \]
 
 两组推导的最后一行都用边际估值的定义提取了当期消费的边际效用。由于当期边际效用为正，且成交价介于两人的边际估值之间，两个导数都为正。因此，只要交易量足够小，这笔可行交易就能严格提高双方的效用。在式~\eqref{eq:wj-three-common-mrs} 描述的内点均衡中，两人的边际估值都等于共同的状态价格，由估值差异产生的这类互利交易机会随之消失。
+
+如果这笔交易无法实施，或者估值差不足以覆盖交易成本，同一状态的边际替代率仍可能因人而异。第~\ref{sec:wj-three-trade-frictions}~节会分别说明这两种情形。
 
 \subsubsection{两状态经济的均衡}
 % 来源：教材印刷第 42—43 页，PPT 第 24 页。
@@ -646,7 +671,13 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     \quad\Longrightarrow\quad w_{1}+w_{2}=800\phi_{a}.
 \]
 
-与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。状态 $b$ 出清 $\dfrac{w_{1}+w_{2}}{4\phi_{b}}=50$ 自动成立。此时 $w_{1}=w_{2}=100$，最优消费为
+与 $w_{1}+w_{2}=200$ 联立得 $\phi_{a}=\dfrac14$，从而 $\phi_{b}=1$。当期和状态 $a$ 已经出清，且 $\phi_b>0$，由 Walras 法则，状态 $b$ 也出清。将价格和总财富代回状态 $b$ 的消费式，可直接核验
+\[
+ c_{1,b}^{*}+c_{2,b}^{*}
+ =\frac{w_1+w_2}{4\phi_b}=\frac{200}{4\cdot 1}=50.
+\]
+
+此时 $w_{1}=w_{2}=100$，最优消费为
 \[
     \begin{aligned}
         c_{1,0}^{*}=c_{2,0}^{*}&=50\\
@@ -665,7 +696,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \end{aligned}
 \]
 
-两人在每个状态的跨期边际替代率相同，并分别等于该状态的价格，验证了式~\eqref{eq:wj-three-common-mrs}。
+在状态 $a$，两人的跨期边际替代率都是 $1/4$。在状态 $b$，两人都是 $1$。这样便验证了式~\eqref{eq:wj-three-common-mrs} 中对同一状态的比较。
 
 初始状态证券持仓分别为 $(0,0)^{\mathsf T}$ 与 $(200,50)^{\mathsf T}$，因此
 \[
@@ -682,6 +713,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 \Needspace{9\baselineskip}
 \subsubsection{证券缺失与交易成本}
+\label{sec:wj-three-trade-frictions}
 % 来源：教材印刷第 44 页、PPT 第 22 页。逐证券推导、价差模型及数字例子为讲义补充。
 式~\eqref{eq:wj-three-common-mrs} 中，参与者可以按同一个价格自由买卖每个状态的单位支付。证券缺失会限制哪些消费转移可以实现，买卖价差则会改变这种转移的成本。
 
