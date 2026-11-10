@@ -1,6 +1,6 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 来源：教材印刷页223—225，PDF物理页238—240；保留题号与数据。
-% 原题14.1、14.3的不相关条件限于n不等于n'；14.3以列向量b_n和转置统一维度，变换后载荷为b'_n。
+% 14.1、14.3沿用原题，剩余项互不相关的下标范围及14.3变换后的载荷在解答中说明。
 % 14.2公式恢复教材15章之前的原编号14.9—14.11，修正旧解漏写a_C；14.1有限N保留剩余方差项。
 
 \Needspace{10\baselineskip}
@@ -10,7 +10,7 @@
 \[
     \tilde{r}_{n}=\bar{r}_{n}+b_{n}\tilde{f}+\tilde{u}_{n},\quad n=1,2,\ldots
 \]
-这里 $\mathrm{E}[\tilde{f}]=0$；$\forall\,n,n'$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$；$\operatorname{Var}[\tilde{u}_{n}]\le\sigma^{2}$；以及 $\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$（$n\ne n'$）。一个组合由 $\{w_{1},w_{2},\ldots\}$ 给定。如当 $N$ 很大时，
+其中 $\mathrm{E}[\tilde{f}]=0$；$\forall\,n,n'$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$；$\operatorname{Var}[\tilde{u}_{n}]\le\sigma^{2}$；以及 $\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$。一个组合由 $\{w_{1},w_{2},\ldots\}$ 给定。当 $N$ 很大时，
 \[
     \sum_{n}^{N}w_{n}^{2}\simeq O(N^{-1})
 \]
@@ -24,9 +24,10 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
+题中的剩余项不相关条件按 $n\ne n'$ 理解。若也令 $n=n'$，便会要求每个剩余项的方差都为零。用 $w^{(N)}$ 表示随 $N$ 变化的一列组合。先考察每个组合只持有 $N$ 只证券的情形，把所持证券重编号为 $1,\ldots,N$，并将该组合的权重简记为 $w_n$。
 
 \begin{enumerate}[label=(\alph*)]
-\item 对由前 $N$ 只证券构成的组合，记 $\bar r_{p,N}=\sum_{n=1}^Nw_n\bar r_n$、$b_{p,N}=\sum_{n=1}^Nw_nb_n$，并令 $\widetilde u_{p,N}=\sum_{n=1}^Nw_n\widetilde u_n$。于是
+\item 记 $\bar r_{p,N}=\sum_{n=1}^Nw_n\bar r_n$、$b_{p,N}=\sum_{n=1}^Nw_nb_n$，并令 $\widetilde u_{p,N}=\sum_{n=1}^Nw_n\widetilde u_n$。于是
 \[
  \widetilde r_{p,N}=\sum_{n=1}^N w_n\widetilde r_n
  =\bar r_{p,N}+b_{p,N}\widetilde f+\widetilde u_{p,N}.
@@ -39,9 +40,17 @@
  \qquad 0\le\operatorname{Var}(\widetilde u_{p,N})\le\sigma^2\sum_{n=1}^Nw_n^2=O(N^{-1}).
 \]
 
-因此 $\operatorname{Var}(\widetilde r_{p,N})=b_{p,N}^2\sigma_f^2+O(N^{-1})$。
+因此 $\operatorname{Var}(\widetilde r_{p,N})=b_{p,N}^2\sigma_f^2+O(N^{-1})$。例如等权配置时 $\sum_nw_n^2=1/N$，剩余方差至多为 $\sigma^2/N$。
 \item 任一入选证券对剩余方差的贡献为 $w_n^2\operatorname{Var}(\widetilde u_n)$，它非负且不超过总剩余方差。由 (a)，总剩余方差以 $O(N^{-1})$ 的速度趋于零，所以单只证券的贡献也趋于零。又因 $\mathrm E[\widetilde u_{p,N}]=0$，有 $\mathrm E[\widetilde u_{p,N}^2]=\operatorname{Var}(\widetilde u_{p,N})\to0$，即剩余项在均方意义下消失。
-\item 因子方差和组合载荷共同决定保留的系统风险。若 $b_{p,N}\to b_p$，则组合方差趋于 $b_p^2\sigma_f^2$；若组合载荷也趋于零，则总方差趋于零。\qedhere
+\item 因子方差和组合载荷共同决定保留的系统风险。若 $b_{p,N}\to b_p$，则组合方差趋于 $b_p^2\sigma_f^2$。若正负载荷相抵使组合载荷趋于零，则总方差也趋于零。多因子情形下，系统方差相应为 $b_{p,N}^{\mathsf T}\Sigma_f b_{p,N}$，其中 $\Sigma_f$ 是因子协方差阵。
+
+若 $N$ 只统计绝对权重最大的 $N$ 项，将权重按绝对值从大到小排列。由于 $N|w_N|^2\le\sum_{n\le N}w_n^2=O(N^{-1})$，有 $|w_N|=O(N^{-1})$。若每个组合的总绝对权重 $\sum_n|w_n|$ 有统一上界，则
+\[
+ \sum_{n>N}w_n^2\le |w_N|\sum_{n>N}|w_n|=O(N^{-1}).
+\]
+此时前 $N$ 项与尾部加总，仍能得到同样的剩余方差上界。完全投资且禁止卖空时，总绝对权重为 $1$，满足这个条件。
+
+若多空头寸可以无限扩大，取 $N^2$ 个绝对权重都为 $1/N$ 的头寸，其中多头比空头多 $N$ 个，净权重就是 $1$。前 $N$ 项的平方和为 $1/N$，全部平方和却等于 $1$。若各剩余项方差均为 $1$，组合的剩余方差就一直为 $1$。因此，要把结论推广到持仓多于 $N$ 只证券的情形，需要控制全部权重或尾部贡献。对无限持仓，总方差公式还要求组合载荷 $\sum_n w_nb_n$ 收敛。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -62,18 +71,16 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 
-令 $a=(a_A,a_B,a_C)^{\mathsf T}$，$B$ 的三行为各资产的两因子载荷，$\iota$ 为全1列向量，$R=1+r_F$。无套利要求存在因子溢价 $\lambda=(\lambda_1,\lambda_2)^{\mathsf T}$，满足
-\[
- \boxed{a-r_F\iota=B\lambda},\qquad
- a_i-r_F=b_{i,1}\lambda_1+b_{i,2}\lambda_2,\quad i=A,B,C.
-\]
-
-\textbf{推导：}取风险资产投资金额向量 $z$，并用无风险证券融资。其零成本终期支付为
+令 $a=(a_A,a_B,a_C)^{\mathsf T}$，$B$ 的三行为各资产的两因子载荷，$\iota$ 为全 1 列向量，$R=1+r_F>0$。在允许自由卖空和借贷时，任取风险资产投资金额向量 $z$，用无风险证券承接 $-\iota^{\mathsf T}z$，使组合初始成本为零。风险资产的终期支付为 $z^{\mathsf T}(\iota+a+B\widetilde f)$，无风险头寸的支付为 $-R\iota^{\mathsf T}z$。相加后得到
 \[
  z^{\mathsf T}(a-r_F\iota)+(B^{\mathsf T}z)^{\mathsf T}\widetilde f.
 \]
 
-若 $B^{\mathsf T}z=0$，支付为常数；无套利要求 $z^{\mathsf T}(a-r_F\iota)=0$。因此 $a-r_F\iota\in(\ker B^{\mathsf T})^\perp=\operatorname{col}B$，即上式。
+若 $B^{\mathsf T}z=0$，终期支付为常数。若该常数非零，取原头寸或其相反头寸即可获得严格正的支付。因此每个消去因子暴露的头寸都必须满足 $z^{\mathsf T}(a-r_F\iota)=0$。也就是说，$a-r_F\iota$ 与 $\ker B^{\mathsf T}$ 正交，因而在 $B$ 的列空间中。这给出无套利的线性必要条件\ifdefined\WJHandoutKnowledge（精确因子模型的定价关系，见定理~\ref{thm:wj-fourteen-2}）\fi
+\[
+ \boxed{a-r_F\iota=B\lambda},\qquad
+ a_i-r_F=b_{i,1}\lambda_1+b_{i,2}\lambda_2,\quad i=A,B,C.
+\]
 
 也可直接展开风险资产权重为 $(x_1,x_2,1-x_1-x_2)$ 的组合收益：
 \begin{align*}
@@ -85,13 +92,19 @@
 \end{align*}
 若 $\ell_1=\ell_2=0$ 有解，对每个这样的解，第一行的常数项都必须等于 $r_F$，否则可与无风险证券互作多空来套利。若这两条方程无解，三只风险资产单独无法构成成本为 1 的零载荷组合。上面的无风险融资推导仍适用，因为它直接检查任意成本的风险资产头寸，包括成本为零的头寸。
 
-因子收益分布还决定带有因子风险的头寸是否可能形成套利。若 $\widetilde f$ 在 $\mathbb R^2$ 上有完全支持，上述条件也充分：非零因子载荷的支付有正、负两种可能，零因子载荷的零成本支付为零。一般分布下，完整无套利条件可表为存在严格正定价核 $m$，满足
+线性条件排除了因子暴露为零的套利。有因子暴露的零成本头寸能否套利，还取决于因子可能取到哪些值。例如两个因子独立地以相同概率取 $1$ 和 $-1$，取 $r_F=0$、$a=(1,0,0)^{\mathsf T}$，令三项资产的载荷分别为 $(1,0)$、$(0,1)$、$(0,0)$。线性关系以 $\lambda=(1,0)^{\mathsf T}$ 成立，但买入资产 $A$ 并以无风险证券融资，支付为 $1+\widetilde f_1$，恒非负且以一半概率为正。
+
+若 $\widetilde f$ 在 $\mathbb R^2$ 上有完全支持，线性关系也充分。代入 $a-r_F\iota=B\lambda$，零成本支付化为 $(B^{\mathsf T}z)^{\mathsf T}(\lambda+\widetilde f)$。若 $B^{\mathsf T}z=0$，支付恒为零；否则这个线性表达式在两个开放区域分别为正、为负，完全支持保证两种结果均有正概率，因而没有套利。
+
+若因子协方差 $\Sigma_f=\operatorname{Var}(\widetilde f)$ 奇异，还可能有 $B^{\mathsf T}z\ne0$ 的确定支付。此时零成本支付的方差为 $z^{\mathsf T}B\Sigma_f B^{\mathsf T}z$，其为零等价于 $\Sigma_f B^{\mathsf T}z=0$。用同样的正交论证，可得较强的必要条件 $a-r_F\iota\in\operatorname{col}(B\Sigma_f)$。
+
+对于给定的因子分布，完整无套利条件可表为存在严格正的定价核 $m$，使各资产的单位成本等于贴现支付的期望。将无风险资产及 $\widetilde r=a+B\widetilde f$ 分别代入，得到
 \[
  \mathrm E[m]=R^{-1},\qquad
  B\,\mathrm E[m\widetilde f]=-R^{-1}(a-r_F\iota).
 \]
 
-它同时约束预期收益、因子载荷和因子支付的支持集。\qedhere
+这里要求 $m$ 和 $m\widetilde f$ 可积。若 $m>0$，任何非负且以正概率为正的支付，其贴现期望都严格为正，所以它的初始成本也必须为正。因子的分布决定上述方程能否用严格正的 $m$ 实现。\qedhere
 \end{solution}
 
 \Needspace{10\baselineskip}
@@ -101,15 +114,15 @@
 \[
     \tilde{r}_{n}=\bar{r}_{n}+b_{n}^{\mathsf T}\tilde{f}+\tilde{u}_{n},\quad n=1,2,\ldots
 \]
-其中 $\tilde{f}=\begin{bmatrix}\tilde{f}_{1} \\ \ldots \\ \tilde{f}_{K}\end{bmatrix}$ 是因子向量，$b_{n}=\begin{bmatrix}b_{n,1} \\ \ldots \\ b_{n,K}\end{bmatrix}$ 是资产 $n$ 的因子载荷向量，而 $\forall\,n,n'$，$\mathrm{E}[\tilde{f}]=0$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{f}^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$（$n\ne n'$），其中 $I$ 是单位阵。考虑另外一组因子 $\tilde{f}'$，它们是 $\tilde{f}$ 的线性变换：
+其中 $\tilde{f}=\begin{bmatrix}\tilde{f}_{1} \\ \ldots \\ \tilde{f}_{K}\end{bmatrix}$ 是因子向量，$b_{n}=\begin{bmatrix}b_{n,1} \\ \ldots \\ b_{n,K}\end{bmatrix}$ 是资产 $n$ 的因子载荷向量，而 $\forall\,n,n'$，$\mathrm{E}[\tilde{f}]=0$，$\mathrm{E}[\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{f}\tilde{f}^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}\tilde{u}_{n}]=0$，$\mathrm{E}[\tilde{u}_{n}\tilde{u}_{n'}]=0$，其中 $I$ 是单位阵。考虑另外一组因子 $\tilde{f}'$，它们是 $\tilde{f}$ 的线性变换：
 \[
-    \tilde{f}'=\mathrm{A}\tilde{f}
+    \tilde{f}'=A\tilde{f}
 \]
-这里 $\mathrm{A}$ 是一个 $(K\times K)$ 的矩阵。
+这里 $A$ 是一个 $(K\times K)$ 的矩阵。
 \begin{enumerate}[label=(\alph*)]
     \item 证明存在 $\tilde{f}'$ 使得
     \[
-        \tilde{r}_{n}=\bar{r}_{n}+b'_{n}{}^{\mathsf T}\tilde{f}'+\tilde{u}_{n},\quad n=1,2,\ldots
+        \tilde{r}_{n}=\bar{r}_{n}+b_{n}^{\mathsf T}\tilde{f}'+\tilde{u}_{n},\quad n=1,2,\ldots
     \]
     其中 $\mathrm{E}[\tilde{f}']=0$，$\mathrm{E}[\tilde{f}'\tilde{f}'^{\mathrm{T}}]=I$，$\mathrm{E}[\tilde{f}'\tilde{u}_{n}]=0$，$\forall\,n$。因此，因子模型不是唯一的。
     \item 证明因子模型有许多因子不同但却等价的表述形式。
@@ -118,20 +131,20 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
+和练习~\ref{exer:wj-fourteen-1} 一样，剩余项不相关指 $n\ne n'$。原题 (a) 沿用了载荷记号 $b_n$。若载荷保持不变，等价表示要求 $(A^{\mathsf T}b_n-b_n)^{\mathsf T}\widetilde f=0$。由于原因子的协方差为 $I$，左边的方差等于 $\|A^{\mathsf T}b_n-b_n\|^2$，故必须有 $A^{\mathsf T}b_n=b_n$。若原载荷张成 $\mathbb R^K$，这只允许 $A=I$。下面将换坐标后的载荷记为 $b'_n$。
 
 \begin{enumerate}[label=(\alph*)]
-\item 任取正交阵 $A$，令 $\widetilde f'=A\widetilde f$、$b'_n=Ab_n$。则
+\item 要保持因子的单位协方差，必须有
 \[
- b'_n{}^{\mathsf T}\widetilde f'
- =b_n^{\mathsf T}A^{\mathsf T}A\widetilde f=b_n^{\mathsf T}\widetilde f,
+ \operatorname{Cov}(\widetilde f')=AIA^{\mathsf T}=I .
 \]
+因此方阵 $A$ 必须正交，逆矩阵为 $A^{\mathsf T}$。将 $\widetilde f=A^{\mathsf T}\widetilde f'$ 代入原来的因子收益，
 \[
- \mathrm E[\widetilde f']=0,\quad
- \mathrm E[\widetilde f'\widetilde f'{}^{\mathsf T}]=AA^{\mathsf T}=I,\quad
- \mathrm E[\widetilde f'\widetilde u_n]=A\mathrm E[\widetilde f\widetilde u_n]=0.
+ b_n^{\mathsf T}\widetilde f=b_n^{\mathsf T}A^{\mathsf T}\widetilde f'
+ =(Ab_n)^{\mathsf T}\widetilde f'.
 \]
 
-因子、载荷同时旋转，收益支付及其协方差保持不变。反过来，若 $\widetilde f'=A\widetilde f$ 仍有单位协方差，则 $AIA^{\mathsf T}=I$，所以方阵 $A$ 必须是正交阵。
+所以应取 $b'_n=Ab_n$。同时 $\mathrm E[\widetilde f']=A\mathrm E[\widetilde f]=0$，$\mathrm E[\widetilde f'\widetilde u_n]=A\mathrm E[\widetilde f\widetilde u_n]=0$。这样的变换保留标准化条件，而且每只证券在每个状态下的因子收益都保持相同，整个收益及其协方差也保持相同。
 \item 当 $K\ge2$ 时，可以在前两个坐标上使用旋转矩阵
 \[
  \begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix},
@@ -144,7 +157,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFourteenExercise{exer:wj-fourteen-4}{*} 给定练习~\ref{exer:wj-fourteen-3} 描述的因子模型，APT 要求
+\WJFourteenExercise{exer:wj-fourteen-4}{} 给定练习~\ref{exer:wj-fourteen-3} 描述的因子模型，APT 要求
 \[
     \bar{r}_{n}-r_{F}=\lambda^{\mathrm{T}}b_{n}
 \]
@@ -154,7 +167,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 
-若 $\lambda=0$，取 $\widetilde f^*=\widetilde f$、$b_n^*=b_n$ 即可。以下设 $\lambda\ne0$，令 $q_1=\lambda/\|\lambda\|$，将其补成一组正交单位基，组成正交阵 $Q=(q_1,\ldots,q_K)$。
+沿用上一题的正交换坐标。若 $\lambda=0$，取 $\widetilde f^*=\widetilde f$、$b_n^*=b_n$、$\lambda^*=0$，此时所有因子溢价均为零。若 $\lambda\ne0$，把溢价向量的方向选为第一条坐标轴，令 $q_1=\lambda/\|\lambda\|$。将其补成一组正交单位基，组成正交阵 $Q=(q_1,\ldots,q_K)$。
 
 定义 $\widetilde f^*=Q^{\mathsf T}\widetilde f$、$b_n^*=Q^{\mathsf T}b_n$、$\lambda^*=Q^{\mathsf T}\lambda$。由 $QQ^{\mathsf T}=I$，
 \[
@@ -163,9 +176,10 @@
 \]
 又因 $q_1^{\mathsf T}\lambda=\lambda^{\mathsf T}\lambda/\|\lambda\|=\|\lambda\|$，而对 $j\ge2$ 有 $q_j^{\mathsf T}\lambda=\|\lambda\|q_j^{\mathsf T}q_1=0$，所以
 \[
- \boxed{\lambda^*=(\|\lambda\|,0,\ldots,0)^{\mathsf T}}.
+ \boxed{\lambda^*=(\|\lambda\|,0,\ldots,0)^{\mathsf T}},\qquad
+ \bar r_n-r_F=\lambda^{*\mathsf T}b_n^*=\|\lambda\|b_{n,1}^* .
 \]
 
-正交变换保留单位因子协方差及与剩余项的不相关性。新坐标的第一个方向与风险溢价向量平行，其余方向与之正交，因此风险价格为零；这些方向的因子方差仍为1。共同风险的大小与其价格由此分别体现。\qedhere
+正交变换保留单位因子协方差及与剩余项的不相关性。记组合的载荷为 $b_p^*=\sum_n w_nb_n^*$，则其预期超额收益为 $\|\lambda\|b_{p,1}^*$，系统方差却是 $\sum_{j=1}^K(b_{p,j}^*)^2$。因此第 $j\ge2$ 个因子虽没有风险溢价，只要组合对它仍有暴露，就仍会贡献系统方差。分散化压低的是剩余风险，这些因子风险要靠调整相应载荷才能消除。\qedhere
 \end{solution}
 
