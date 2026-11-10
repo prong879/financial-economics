@@ -1,5 +1,5 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 09_组合选择二 课后习题（由章节文件拆分）
+% 来源：教材印刷第 138—140 页（PDF 第 153—155 页），练习 9.1—9.9。
 
 \begin{problem}
 \WJNineExercise{exer:wj-nine-1}{} 假设有四个等概率的可能状态。状态空间是 $\Omega=\{\omega_{1},\cdots,\omega_{4}\}$。考虑风险资产 $A$ 和 $B$，它们的收益率如下：
@@ -15,6 +15,7 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
+记 $F_A(x)$ 和 $F_B(x)$ 为净收益率不超过 $x$ 的概率。四个状态等概率，同一收益值出现两次时，分布函数在该点跳升 $1/2$。
 \[
     F_{A}(x)=\begin{cases}
         0 & x<0.5\\
@@ -31,6 +32,8 @@
         1 & 0.9\le x
     \end{cases}
 \]
+
+逐段累加 $F_A-F_B$ 的有符号面积。例如 $0.4\le y<0.5$ 时，$F_A-F_B=-0.5$，所以 $S(y)=S(0.4)-0.5(y-0.4)$，其中 $S(0.4)=-0.25(0.4-0.3)=-0.025$。
 \[
     S(y)=\int_{-\infty}^{y}\bigl(F_{A}(x)-F_{B}(x)\bigr)\,dx=\begin{cases}
         0 & y<0.3\\
@@ -43,9 +46,9 @@
     \end{cases}
 \]
 
-这里 $F_A,F_B$ 是净收益率的分布函数；给两个收益率同时加上 $1$，占优关系保持不变。
+给两个净收益率同时加上 $1$，占优关系保持不变。
 
-在 $x=0.4$ 时 $F_A<F_B$，在 $x=0.7$ 时 $F_A>F_B$，两条分布函数交叉，故两个方向的一阶随机占优均不成立。又有
+在 $x=0.4$ 时 $F_A<F_B$，在 $x=0.7$ 时 $F_A>F_B$，两条分布函数交叉，故两个方向的一阶随机占优均不成立。累计积分先下降至 $S(0.5)=-0.075$，在 $[0.5,0.7]$ 上保持不变，再上升至 $S(0.9)=0$，故
 \[
  \mathrm E[\tilde r_A]=\mathrm E[\tilde r_B]=0.6,\qquad S(y)\le0\quad(\forall y),
 \]
@@ -55,7 +58,7 @@
 
 \Needspace{18\baselineskip}
 \begin{problem}
-\WJNineExercise{exer:wj-nine-2}{*} 两只风险资产的收益率分别为 $\tilde{r}_{A}$ 和 $\tilde{r}_{B}$。考虑一个投资者，他的初始财富为 $w=1$、效用函数为 $u(\cdot)$，其中 $u'(\cdot)>0$ 且 $u''(\cdot)<0$。他最大化期望效用 $E[u(\tilde{w})]$。令他的最优组合为 $[a,1-a]$。
+\WJNineExercise{exer:wj-nine-2}{} 两只风险资产的收益率分别为 $\tilde{r}_{A}$ 和 $\tilde{r}_{B}$。考虑一个投资者，他的初始财富为 $w=1$、效用函数为 $u(\cdot)$，其中 $u'(\cdot)>0$ 且 $u''(\cdot)<0$。他最大化期望效用 $E[u(\tilde{w})]$。令他的最优组合为 $[a,1-a]$。
 \begin{enumerate}[label=(\alph*)]
     \item 假设 $\tilde{r}_{A}=\tilde{x}$，$\tilde{r}_{B}=\tilde{x}+\tilde{e}$，其中 $\tilde{e}$ 和 $\tilde{x}$ 互相独立且 $E[\tilde{e}]=0$。
     \begin{itemize}
@@ -65,7 +68,7 @@
     \item 假设 $\tilde{r}_{A}=\tilde{x}$，$\tilde{r}_{B}=\tilde{y}+\tilde{e}$，$\tilde{x}$、$\tilde{y}$、$\tilde{e}$ 互相独立，$\tilde{x}\sim_{d}\tilde{y}$ 且 $E[\tilde{e}]=0$。
     \begin{itemize}
         \item $\tilde{r}_{A}$ 是否二阶随机占优于 $\tilde{r}_{B}$？
-        \item 证明投资者在资产 $A$ 上的投资额要大于他资产 $B$ 上的投资额，即 $a>1/2$。
+        \item 证明投资者在资产 $A$ 上的投资额要大于他在资产 $B$ 上的投资额，即 $a>1/2$。
     \end{itemize}
     \item 解释上面两种情形下结论之间的差异。
 \end{enumerate}
@@ -77,7 +80,9 @@
  \tilde w=1+a\tilde r_A+(1-a)\tilde r_B.
 \]
 \begin{enumerate}[label=(\alph*)]
- \item $\tilde r_B=\tilde x+\tilde e$ 且 $\mathrm E[\tilde e\mid\tilde x]=0$，所以 $A\succeq_{\mathrm{SSD}}B$。对任意可行的 $a$，条件 Jensen 不等式给出
+ \item 由独立性，$\mathrm E[\tilde e\mid\tilde x]=0$，所以 $\tilde r_B=\tilde x+\tilde e$ 是 $\tilde r_A=\tilde x$ 的均值保持扩散。由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-nine-3}（均值保持扩散判据）\else 二阶随机占优的均值保持扩散判据\fi，$A\succeq_{\mathrm{SSD}}B$。
+
+ 代入期末财富式，得到 $\tilde w=1+\tilde x+(1-a)\tilde e$，给定 $\tilde x$ 时的条件均值为 $1+\tilde x$。对任意可行的 $a$，条件 Jensen 不等式给出
  \[
  \begin{aligned}
  \mathrm E[u(\tilde w)]
@@ -88,7 +93,7 @@
 
  全部投资于 $A$（$a=1$）达到上界。若 $\tilde e$ 非退化，严格凹性使 $a\ne1$ 时不等式严格，故 $a^*=1$ 唯一；若 $\tilde e=0$，两资产收益相同，任意可行配置均最优。
 
- \item 由独立性，$\tilde y+\tilde e$ 是 $\tilde y$ 的均值保持扩散，而 $\tilde x\sim_d\tilde y$，故仍有 $A\succeq_{\mathrm{SSD}}B$。记
+ \item 由独立性，$\mathrm E[\tilde e\mid\tilde y]=0$，所以 $\tilde y+\tilde e$ 是 $\tilde y$ 的均值保持扩散。又因 $\tilde x\sim_d\tilde y$，仍有 $A\succeq_{\mathrm{SSD}}B$。记
  \[
  V(a)=\mathrm E[u(1+a\tilde x+(1-a)\tilde y+(1-a)\tilde e)],
  \]
@@ -100,24 +105,26 @@
  \end{aligned}
  \]
 
- 令 $S=\tilde x+\tilde y$。给定 $(S,\tilde e)$ 后，$\tilde x,\tilde y$ 的交换对称性给出 $\mathrm E[\tilde x-\tilde y\mid S,\tilde e]=0$。因此
+ 令 $S=\tilde x+\tilde y$。在 $a=1/2$ 时，财富 $1+S/2+\tilde e/2$ 只取决于 $S$ 和 $\tilde e$。交换 $\tilde x$ 和 $\tilde y$，两者的联合分布不变，$S$ 和 $\tilde e$ 也不变，因此 $\mathrm E[\tilde x-\tilde y\mid S,\tilde e]=0$。又因 $\tilde e$ 独立于 $S$ 且均值为零，$\mathrm E[\tilde e\mid S]=0$，故
  \[
  \begin{aligned}
  V'(\tfrac12)
  &=-\mathrm E[u'(1+S/2+\tilde e/2)\tilde e]\\
  &=-\mathrm E\!\left[\operatorname{Cov}
-   \bigl(u'(1+S/2+\tilde e/2),\tilde e\mid S\bigr)\right]>0.
+   \bigl(u'(1+S/2+\tilde e/2),\tilde e\mid S\bigr)\right].
  \end{aligned}
  \]
 
- 最后的严格不等式使用 $\tilde e$ 非退化、独立于 $S$，以及 $u'$ 严格递减。另一方面，若 $\tilde x$ 非退化，
+ 固定 $S$ 后，$\tilde e$ 越大，财富越高，边际效用 $u'$ 越低。若 $\tilde e$ 非退化，由于它独立于 $S$，该条件协方差严格为负，故 $V'(1/2)>0$。另一方面，在 $a=1$ 处，$\tilde w=1+\tilde x$，且 $\mathrm E[\tilde y+\tilde e\mid\tilde x]=\mathrm E[\tilde x]$，故若 $\tilde x$ 非退化，
  \[
  V'(1)=\operatorname{Cov}(u'(1+\tilde x),\tilde x)<0.
  \]
 
- 当区间 $[0,1]$ 上的财富在效用定义域内、上述期望有限时，严格凹性给出唯一的 $a^*\in(1/2,1)$。原题的严格比较以这些非退化条件为前提；例如 $\tilde e=0$ 且 $\tilde x$ 非退化时，最优配置为 $a^*=1/2$。
+ 若 $[0,1]$ 内的配置均可行，且 $\tilde x$ 与 $\tilde e$ 都非退化，则 $V''<0$，所以 $V'$ 严格递减。由于 $V'(1/2)>0>V'(1)$，$V'$ 在 $(1/2,1)$ 内恰有一个零点，即唯一的最优权重 $a^*$。
 
- \item 第一种情形中，两资产共享完全相同的基础收益，持有 $B$ 只增加零均值噪声，因此最优选择为全部投资 $A$。第二种情形中，独立的基础收益带来分散化收益，而额外噪声降低了 $B$ 的吸引力，最优权重因而偏向 $A$。
+ 若 $\tilde x$ 为常数而 $\tilde e$ 非退化，全部投资 $A$ 最优，仍有 $a^*>1/2$。若 $\tilde e=0$ 而 $\tilde x$ 非退化，交换对称性给出 $a^*=1/2$；若两者均退化，所有可行权重等效。因此题目的严格比较需要额外噪声非退化。
+
+ \item 当额外噪声非退化时，第一种情形的两资产共享同一个基础收益，持有 $B$ 只会增加噪声，因此最优选择是全部投资 $A$。第二种情形的基础收益相互独立，可以通过持有两只资产分散基础风险，而 $B$ 的额外噪声使最优权重偏向 $A$。
 \end{enumerate}
 \end{solution}
 
@@ -126,17 +133,17 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-设新证券加入前后的可行组合集合分别为 $\mathcal A_0\subseteq\mathcal A_1$，则
+设旧证券的价格和交易条件不变，且新旧市场均有最优解。给旧组合补上 $M$ 个零权重，所得组合在新市场仍可行，并实现同样的期末财富。记 $\mathcal W_0$ 和 $\mathcal W_1$ 分别为旧、新市场可实现的期末财富集合，则 $\mathcal W_0\subseteq\mathcal W_1$，因而
 \[
- \max_{a\in\mathcal A_1}\mathrm E[u(\tilde w(a))]
- \ge\max_{a\in\mathcal A_0}\mathrm E[u(\tilde w(a))].
+ \max_{\tilde w\in\mathcal W_1}\mathrm E[u(\tilde w)]
+ \ge\max_{\tilde w\in\mathcal W_0}\mathrm E[u(\tilde w)].
 \]
 
-可行集扩大使最优福利至少保持原水平。只有原有组合都达不到新可行集中的最优福利时，福利才严格提高。
+可行集扩大使最优福利至少保持原水平。福利严格提高，当且仅当原有组合都达不到新可行集中的最优福利。
 
 例如，新证券与原有证券的价格和支付完全相同。投资者可以把原持仓的一部分换成新证券，期末财富与期望效用保持不变，尽管新组合中持有新证券。
 
-若新市场中最优的期末财富唯一，并且旧证券组合无法实现这一财富，则福利严格提高。否则，旧市场最优组合也会在新市场最优，与上述唯一性及不可实现性矛盾。练习~\ref{exer:wj-nine-8} 在正定协方差条件下给出严格改善的具体计算。
+练习~\ref{exer:wj-nine-8} 给出了最优福利增量的具体计算。
 \end{solution}
 
 \begin{problem}
@@ -144,42 +151,35 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-假设参与者采用共同概率信念（原题未明写此条件），记 $\bar r_{\max}=\max_i\mathrm E[\tilde r_i]$，并令
+沿用本章的共同概率信念，记 $\bar r_{\max}=\max_i\mathrm E[\tilde r_i]$，并令
 \[
  I=\{i:\mathrm E[\tilde r_i]=\bar r_{\max}\},\qquad m=|I|.
 \]
 
-风险中性且禁止卖空时，最优权重集合为
+风险中性者最大化 $\mathrm E[\tilde w]=w(1+\sum_i z_i\mathrm E[\tilde r_i])$。禁止卖空时，组合期望收益率是各证券期望收益率的加权平均，只有把权重全部放在 $I$ 中才能达到 $\bar r_{\max}$。因此最优权重集合为
 \[
  \mathcal Z^*=\left\{z:z_i\ge0,\ \sum_i z_i=1,\ z_i=0\ (i\notin I)\right\}.
 \]
 
-按\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-nine-4}\else 共同基金分离的定义\fi（每人均可选择一个由共同基金构成的最优组合），只需为每人选择一个共同基金中的最优组合。任选 $j\in I$，所有人全部投资于证券 $j$ 即可，故单基金分离成立，也可用包含它的 $K$ 只基金实现分离。
+按\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-nine-4}\else 共同基金分离的定义\fi，只需每人都能从共同基金中选到一个最优组合。任选 $j\in I$，所有人都可把全部财富投于证券 $j$，所以单基金已经足够。用 $K$ 只基金时，可将其余基金的权重取为零。
 
-若要求表示\textbf{全部}最优组合，则 $\mathcal Z^*$ 是由 $m$ 个最优证券顶点生成的 $m-1$ 维单纯形，最少需要 $m$ 只基金。因此用至多 $K$ 只基金覆盖全部最优组合的条件是 $m\le K$；最少基金数恰为 $K$ 的条件是 $m=K$。
+若要表示全部最优组合，直接取 $m$ 只并列证券作为基金即可。由于最优权重集合是 $m-1$ 维单纯形，而 $K$ 只基金最多张成 $K-1$ 维的仿射空间，覆盖全部最优组合所需的最少基金数是 $m$。因此，至多用 $K$ 只基金覆盖的条件是 $m\le K$。
 \end{solution}
 
+\Needspace{7\baselineskip}
 \begin{problem}
 \WJNineExercise{exer:wj-nine-5}{} 假设在市场上有 $N$ 只证券，它们的收益率是独立同分布的。证明单基金分离成立。
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-假设参与者效用凹、采用共同概率，且可行集合对证券置换和取平均封闭。对任意可行权重 $z$，将其全部 $N!$ 个置换取平均，得到
-\[
- \frac1{N!}\sum_{\pi}z_{\pi}=\frac{\iota}{N}.
-\]
-独立同分布使各置换组合的收益分布相同；由 Jensen 不等式，任意可行权重组合的期望效用均不超过等权组合：
-\[
- \mathrm E\!\left[u\!\left(w\left(1+\sum_{i=1}^N z_i\tilde r_i\right)\right)\right]
- \le\mathrm E\!\left[u\!\left(w\left(1+\frac1N\sum_{i=1}^N\tilde r_i\right)\right)\right].
-\]
+沿用本章的共同概率信念和凹效用设定。由练习~\ref{exer:wj-eight-1}，在可行集合对证券置换和取平均封闭时，等权组合是每位参与者的最优组合之一。独立同分布使权重置换后的组合收益分布相同，对这些权重取平均得到等权组合，凹效用保证取平均后的期望效用至少保持原水平。
 
-因此，每位参与者都可以选择同一只等权基金 $z_f=\iota/N$，单基金分离成立。若效用严格凹，且不同可行权重对应的期末财富以正概率不同，则等权组合还是唯一最优解。
+因此，每位参与者都可以选择同一只等权基金 $z_f=\iota/N$，单基金分离成立。选择该基金的参与者在每只证券上投资 $w_k/N$，持有的权重相同，投资金额随财富而变。
 \end{solution}
 
 \begin{samepage}
 \begin{problem}
-\WJNineExercise{exer:wj-nine-6}{*} 证券市场由一只无风险债券和 $N$ 只风险证券组成。无风险证券的收益率为 $r_{F}$ 而风险证券的收益率向量为 $\tilde{r}=\begin{bmatrix}\tilde{r}_{1} \\ \ldots \\ \tilde{r}_{N}\end{bmatrix}$。另外，$E[\tilde{r}]=\bar{r}=\begin{bmatrix}\bar{r}_{1} \\ \ldots \\ \bar{r}_{N}\end{bmatrix}$ 且 $E[(\tilde{r}-\bar{r})(\tilde{r}-\bar{r})^{\top}]=\Sigma$（$\Sigma$ 是风险证券收益率的协方差阵）。考虑一个财富为 $w$ 的参与者的投资问题。假设他具有二次效用函数 $u(\tilde{w})=E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。
+\WJNineExercise{exer:wj-nine-6}{} 证券市场由一只无风险债券和 $N$ 只风险证券组成。无风险证券的收益率为 $r_{F}$ 而风险证券的收益率向量为 $\tilde{r}=\begin{bmatrix}\tilde{r}_{1} \\ \ldots \\ \tilde{r}_{N}\end{bmatrix}$。另外，$E[\tilde{r}]=\bar{r}=\begin{bmatrix}\bar{r}_{1} \\ \ldots \\ \bar{r}_{N}\end{bmatrix}$ 且 $E[(\tilde{r}-\bar{r})(\tilde{r}-\bar{r})^{\top}]=\Sigma$（$\Sigma$ 是风险证券收益率的协方差阵）。考虑一个财富为 $w$ 的参与者的投资问题。假设他具有二次效用函数 $u(\tilde{w})=E[\tilde{w}]-\tfrac12 a E[\tilde{w}^{2}]$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解他的最优投资组合。
     \item 证明对于具有二次效用函数的参与者，两基金货币分离成立。
@@ -190,35 +190,46 @@
 \begin{solution}
 原题的 $E[\tilde w]-aE[\tilde w^2]/2$ 表示期望效用，其财富效用为 $u(t)=t-at^2/2$。设 $w>0$、$a>0$，且 $\Sigma$ 正定；交易允许自由借贷和卖空。二次效用递增区间为 $t<1/a$，下式求解无额外财富约束的二次目标。
 \begin{enumerate}[label=(\alph*)]
-    \item 令风险资产权重为 $x$，并把期末财富写成与练习~\ref{exer:wj-eight-2} 相同的形式
+    \item 把练习~\ref{exer:wj-eight-2}（单只风险证券下的二次效用问题）推广到 $N$ 只风险证券。令风险资产权重为 $x$，$\iota$ 为元素全为 1 的 $N$ 维列向量。预算要求权重和为 $1$，故无风险债券权重为 $1-\iota^{\mathsf T}x$。代入两类权重，期末财富为
     \[
-        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr)
+        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr).
     \]
 
-    记 $\mu=\bar{r}-r_{F}\iota$。则 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，且
+    记 $R_F=1+r_F$，$\mu=\bar{r}-r_F\iota$。由 $\mathrm E[\tilde w^2]=(\mathrm E[\tilde w])^2+\operatorname{Var}(\tilde w)$，得
     \[
-        E[\tilde{w}^{2}]=w^{2}\bigl[(1+r_{F}+x^{\top}\mu)^{2}+x^{\top}\Sigma x\bigr]
+        \mathrm E[\tilde w]=w(R_F+x^{\mathsf T}\mu),\qquad
+        \mathrm E[\tilde w^2]=w^2[(R_F+x^{\mathsf T}\mu)^2+x^{\mathsf T}\Sigma x].
     \]
 
-    对 $x$ 求导，一阶条件为
+    将两项代回期望效用，得到目标函数
     \[
-        w\mu-aw^{2}\bigl[(1+r_{F}+x^{\top}\mu)\mu+\Sigma x\bigr]=0
+        J(x)=w(R_F+x^{\mathsf T}\mu)
+        -\frac a2 w^2[(R_F+x^{\mathsf T}\mu)^2+x^{\mathsf T}\Sigma x].
     \]
-    目标函数的 Hessian 为 $-aw^2(\mu\mu^{\mathsf T}+\Sigma)\prec0$，故一阶条件给出唯一最大值。即 $\bigl[1-aw(1+r_{F})\bigr]\mu=aw(\mu\mu^{\top}+\Sigma)x$，解得最优权重
+
+    预算已通过债券权重代入，且允许借贷与卖空，所以可直接对 $x\in\mathrm R^N$ 求导。记 $H=\Sigma+\mu\mu^{\mathsf T}$，则
     \[
-        x^{*}=\frac{1-aw(1+r_{F})}{aw}\bigl[(\bar{r}-r_{F}\iota)(\bar{r}-r_{F}\iota)^{\top}+\Sigma\bigr]^{-1}(\bar{r}-r_{F}\iota)
+        \nabla J(x)=w(1-awR_F)\mu-aw^2Hx=0
+        \qquad\text{（一阶条件）}.
     \]
-    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。风险组合中各资产的相对权重由 $(\mu\mu^{\top}+\Sigma)^{-1}\mu$ 决定，与财富、风险厌恶的水平只差一个共同标量。
 
-    \item 记 $d=(\mu\mu^{\mathsf T}+\Sigma)^{-1}\mu$，所有人的风险头寸均为 $d$ 的标量倍数。若 $D=\iota^{\mathsf T}d\ne0$，定义仅由风险证券构成的基金 $z_R=d/D$，每人便在 $z_R$ 与无风险证券之间配置，得到两基金货币分离。
+    由于 $\Sigma$ 正定，Hessian $-aw^2H$ 负定。解一阶条件得到唯一的最优风险资产权重
+    \[
+        x^*=\frac{1-awR_F}{aw}H^{-1}\mu.
+    \]
+    对应的债券权重为 $1-\iota^{\mathsf T}x^*$。
 
-    若 $d=0$，最优选择为全部投资于无风险证券。若 $d\ne0$ 而 $D=0$，共同方向是零成本风险头寸，可用无风险证券 $F$ 与单位成本基金 $F+(d,0)$ 实现一般两基金分离；此时风险头寸本身的净投资额为零，无法按 $d/D$ 归一化为纯风险基金。
+    \item 记 $d=H^{-1}\mu$，$k=(1-awR_F)/(aw)$。每个人的风险权重都是 $kd$，差别只在倍数 $k$。记 $D=\iota^{\mathsf T}d$，则风险证券的净权重为 $kD$，债券权重为 $1-kD$。若 $D\ne0$，把 $d$ 除以 $D$，得到内部权重之和为 $1$ 的纯风险基金 $z_R=d/D$。按权重 $kD$ 持有该基金，就能得到所需的风险权重 $(kD)z_R=kd$，从而实现两基金货币分离\ifdefined\WJHandoutKnowledge（定义~\ref{def:wj-nine-5}）\fi。
+
+    若 $d=0$，全投债券即可。若协方差正定、$D=0$ 且有人持有非零的 $kd$，该风险头寸的多空权重加总为零，无法由一只权重和为 $1$ 的纯风险基金按比例复制。此时仍可实现一般两基金分离。按风险证券在前、债券在后的顺序，取 $F=(0,\ldots,0,1)^{\mathsf T}$，第二只基金在全投债券的基础上叠加零成本头寸，记为 $F+\binom{d}{0}$。两只基金分别取权重 $1-k$ 和 $k$，便得到所需组合 $F+k\binom{d}{0}$。
 \end{enumerate}
+
+协方差矩阵奇异时。仍可取 $x^*=kd$，其中 $d$ 满足 $Hd=\mu$。若 $H$ 也奇异，其零空间中的方向既没有超额收益均值，也没有方差，所以 $\mu$ 与 $\ker H$ 正交。由 $H$ 对称可知 $Hd=\mu$ 有解。选取同一个解 $d$，即可沿用 (b) 的基金构造。不同最优权重之间相差的是不改变期末财富的零支付头寸。
 \end{solution}
 
 \Needspace{11\baselineskip}
 \begin{problem}
-\WJNineExercise{exer:wj-nine-7}{*} 考虑练习~\ref{exer:wj-nine-6} 中描述的市场。另外，我们假设风险收益率是联合正态分布的且参与者的绝对风险厌恶系数恒为 $a$。
+\WJNineExercise{exer:wj-nine-7}{} 考虑练习~\ref{exer:wj-nine-6} 中描述的市场。另外，我们假设风险收益率是联合正态分布的且参与者的绝对风险厌恶系数恒为 $a$。
 \begin{enumerate}[label=(\alph*)]
     \item 求解他的最优投资组合。
     \item 证明对于具有常数绝对风险厌恶的参与者，两基金货币分离成立。
@@ -228,48 +239,55 @@
 \begin{solution}
 设 $w>0$、$a>0$，且 $\Sigma$ 正定；交易允许自由借贷和卖空。
 \begin{enumerate}[label=(\alph*)]
-    \item 仍令风险资产权重为 $x$，
+    \item 沿用练习~\ref{exer:wj-nine-6} 的预算关系。风险资产权重为 $x$，债券权重为 $1-\iota^{\mathsf T}x$，代入得
     \[
-        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr)
-    \]
-    $\tilde{r}$ 联合正态则 $\tilde{w}$ 正态。与练习~\ref{exer:wj-eight-3}（指数效用下正态财富的期望效用计算）相同，
-    \[
-        E\bigl[-e^{-a\tilde{w}}\bigr]=-\exp\Bigl(-aE[\tilde{w}]+\tfrac12 a^{2}\operatorname{Var}(\tilde{w})\Bigr)
-    \]
-    其中 $E[\tilde{w}]=w(1+r_{F}+x^{\top}\mu)$，$\operatorname{Var}(\tilde{w})=w^{2}x^{\top}\Sigma x$，$\mu=\bar{r}-r_{F}\iota$。最大化期望效用等价于最大化确定性等价
-    \[
-      CE=w(1+r_F)+wx^{\mathsf T}\mu-\frac a2w^2x^{\mathsf T}\Sigma x.
-    \]
-    其 Hessian 为 $-aw^2\Sigma\prec0$，因此最优解唯一。对 $x$ 的一阶条件为
-    \[
-        w\mu-aw^{2}\Sigma x=0
+        \tilde{w}=w\bigl(1+r_{F}+x^{\top}(\tilde{r}-r_{F}\iota)\bigr).
     \]
 
-    因而最优权重为
+    联合正态收益的线性组合仍服从正态分布。取指数效用 $u(t)=-e^{-at}$，沿用练习~\ref{exer:wj-eight-3}（指数效用下正态财富的期望效用计算），得到
     \[
-        x^{*}=\frac{1}{aw}\Sigma^{-1}(\bar{r}-r_{F}\iota)
+        \mathrm E[u(\tilde w)]
+        =-\exp\Bigl(-a\mathrm E[\tilde w]+\tfrac12 a^2\operatorname{Var}(\tilde w)\Bigr).
     \]
-    其中，$\iota$ 是元素全为 1 的 $N$ 维列向量。相对权重由 $\Sigma^{-1}\mu$ 决定，与 $a$、$w$ 无关。
 
-    \item 记 $d=\Sigma^{-1}\mu$，所有人的风险头寸均为 $d$ 的标量倍数。若 $D=\iota^{\mathsf T}d\ne0$，定义仅由风险证券构成的基金 $z_R=d/D$，每人便在 $z_R$ 与无风险证券之间配置，得到两基金货币分离。
+    确定性等价 $CE$ 满足 $u(CE)=\mathrm E[u(\tilde w)]$。因 $u$ 严格递增，最大化期望效用等价于最大化 $CE$。对照指数项，并代入财富的均值与方差，得
+    \[
+      CE=\mathrm E[\tilde w]-\frac a2\operatorname{Var}(\tilde w)
+        =w(1+r_F)+wx^{\mathsf T}\mu-\frac a2w^2x^{\mathsf T}\Sigma x,
+    \]
+    其中 $\mu=\bar r-r_F\iota$。预算已代入，直接对 $x$ 求导
+    \[
+        w\mu-aw^{2}\Sigma x=0\qquad\text{（一阶条件）}.
+    \]
 
-    若 $d=0$，最优选择为全部投资于无风险证券。若 $d\ne0$ 而 $D=0$，共同方向是零成本风险头寸，可用无风险证券 $F$ 与单位成本基金 $F+(d,0)$ 实现一般两基金分离；此时风险头寸本身的净投资额为零，无法按 $d/D$ 归一化为纯风险基金。
+    Hessian $-aw^2\Sigma$ 负定，解得唯一的最优风险资产权重及投资金额
+    \[
+        x^*=\frac{\Sigma^{-1}\mu}{aw},\qquad
+        wx^*=\frac{\Sigma^{-1}\mu}{a}.
+    \]
+    债券权重为 $1-\iota^{\mathsf T}x^*$。风险资产的持仓方向由 $\Sigma^{-1}\mu$ 决定。给定 $a$，财富增加时各风险证券的投资金额保持不变，持仓权重的绝对值随之缩小。
+
+    \item 记 $d=\Sigma^{-1}\mu$。若 $D=\iota^{\mathsf T}d\ne0$，沿用上一题的构造，纯风险基金 $d/D$ 与债券的权重分别为 $D/(aw)$ 和 $1-D/(aw)$，得到两基金货币分离。
+
+    若 $d=0$，全投债券即可。若 $d\ne0$ 而 $D=0$，仍可用 $F$ 与 $F+(d,0)$ 实现一般两基金分离。例如两只独立正态风险证券的方差相等、超额收益均值一正一负且互为相反数时，最优风险权重一正一负、恰好相抵，因而无法归一化成一只纯风险基金。
 \end{enumerate}
+
+协方差矩阵奇异时。若 $\Sigma d=\mu$ 有解，可选同一个 $d$ 并取 $x^*=d/(aw)$。若无解，则存在一个方差为零、预期超额收益非零的方向，可沿获利方向扩大头寸，因而不存在有限最优组合。
 \end{solution}
 
 \begin{problem}
-\WJNineExercise{exer:wj-nine-8}{*} 继续练习~\ref{exer:wj-nine-7} 中的问题。
+\WJNineExercise{exer:wj-nine-8}{} 继续练习~\ref{exer:wj-nine-7} 中的问题。
 \begin{enumerate}[label=(\alph*)]
     \item 计算在最优投资组合下参与者的期望效用。
-    \item 假设现在有 $M$ 支新风险证券加入到证券市场中。（现有 $N$ 只证券的收益率不能生成新证券的收益率。）所有风险证券的收益率都是联合正态分布的。证明，如果参与者的最优投资组合中含有新的证券，无论 $M$ 只新证券的收益率分布如何，参与者的福利总是增加。
+    \item 假设现在有 $M$ 只新风险证券加入到证券市场中。（现有 $N$ 只证券的收益率不能生成新证券的收益率。）所有风险证券的收益率都是联合正态分布的。证明，如果参与者的最优投资组合中含有新的证券，无论 $M$ 只新证券的收益率分布如何，参与者的福利总是增加。
     \item 当引入新证券后，计算他的福利增加的确定性等价值。
 \end{enumerate}
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-设 $w>0$、$a>0$，并假设加入新证券后的风险收益协方差矩阵正定。记各风险证券的超额收益均值为 $\mu$。
+沿用练习~\ref{exer:wj-nine-7} 的无约束交易设定，取 $w>0$、$a>0$，假设原有风险证券的协方差矩阵正定。记各风险证券的超额收益均值为 $\mu$。
 \begin{enumerate}[label=(\alph*)]
- \item 由练习~\ref{exer:wj-nine-7}（指数效用与联合正态收益下的最优风险资产权重），$x^*=\Sigma^{-1}\mu/(aw)$。代回指数效用，得
+ \item 由练习~\ref{exer:wj-nine-7}（指数效用与联合正态收益下的最优风险资产权重），$x^*=\Sigma^{-1}\mu/(aw)$。于是 $aw{x^*}^{\mathsf T}\mu$ 和 $a^2w^2{x^*}^{\mathsf T}\Sigma x^*$ 都等于 $\mu^{\mathsf T}\Sigma^{-1}\mu$。代回期望效用得
  \[
  \begin{aligned}
  \mathrm E[u(\tilde w^*)]
@@ -285,38 +303,57 @@
  \Sigma=\begin{bmatrix}A&C\\C^{\mathsf T}&B\end{bmatrix}.
  \]
 
- 原题所述新证券不能由旧证券生成，未必排除新证券之间冗余；这里的扩充协方差正定是更强的条件。定义新收益剔除旧收益线性成分后的协方差及超额收益均值：
+ 记旧、新证券的超额收益向量为 $\tilde r_0^e,\tilde r_1^e$，权重为 $x_0,x_1$。给定新证券的权重 $x_1$，对练习~\ref{exer:wj-nine-7} 的确定性等价目标按 $x_0$ 求导，得到
  \[
- S=B-C^{\mathsf T}A^{-1}C\succ0,\qquad
- \delta=\mu_1-C^{\mathsf T}A^{-1}\mu_0.
+ aw(Ax_0+Cx_1)=\mu_0
+ \qquad\text{（旧证券权重的一阶条件）}.
+ \]
+ 因此 $x_0=A^{-1}\mu_0/(aw)-A^{-1}Cx_1$。第一项是只交易旧证券时的最优权重，第二项是加入 $x_1$ 后为对冲旧证券风险敞口所作的调整。代回组合的超额收益，
+ \[
+ \begin{aligned}
+ x_0^{\mathsf T}\tilde r_0^e+x_1^{\mathsf T}\tilde r_1^e
+ &=\left(\frac{A^{-1}\mu_0}{aw}\right)^{\mathsf T}\tilde r_0^e
+   +x_1^{\mathsf T}\bigl(\tilde r_1^e-C^{\mathsf T}A^{-1}\tilde r_0^e\bigr).
+ \end{aligned}
  \]
 
- 由分块一阶方程，先消去旧证券权重，得到 $awSx_1^*=\delta$。分块求逆进一步给出
+ 括号内的向量是对冲后的新证券超额收益，与旧证券的协方差为 $C-AA^{-1}C=0$。它的均值和协方差分别为
  \[
- \mu^{\mathsf T}\Sigma^{-1}\mu
- =\mu_0^{\mathsf T}A^{-1}\mu_0+\delta^{\mathsf T}S^{-1}\delta,
- \qquad x_1^*=\frac1{aw}S^{-1}\delta.
+ \delta=\mu_1-C^{\mathsf T}A^{-1}\mu_0,\qquad
+ S=B-C^{\mathsf T}A^{-1}C.
+ \]
+ 两部分的期末财富增量互不相关，方差可直接相加。由 $CE=\mathrm E[\tilde w]-\tfrac a2\operatorname{Var}(\tilde w)$，加入新证券后的确定性等价等于旧市场的最优确定性等价加上
+ \[
+ w x_1^{\mathsf T}\delta-\frac a2 w^2x_1^{\mathsf T}Sx_1.
  \]
 
- 新证券的最优权重向量非零，当且仅当 $\delta\ne0$；此时 $\delta^{\mathsf T}S^{-1}\delta>0$，期望效用严格提高。这个结果把新证券提供的收益机会与它们在旧证券之外增加的风险联系起来。
+ 若扩充协方差矩阵正定，则任一非零的新证券头寸在对冲后仍有正方差，所以 $S$ 正定。对 $x_1$ 的一阶条件 $awSx_1^*=\delta$ 给出
+ \[
+ x_1^*=\frac1{aw}S^{-1}\delta.
+ \]
 
- \item 由 $-e^{-aCE}=\mathrm E[-e^{-a\tilde w^*}]$，最优财富的确定性等价为
+ 此时 $x_1^*\ne0$ 等价于 $\delta\ne0$。将 $x_1^*$ 代回增量式，得 $\delta^{\mathsf T}S^{-1}\delta/(2a)$。该增量在 $\delta\ne0$ 时为正，确定性等价与期望效用都严格提高。
+
+ 原题的不可生成条件仍允许新证券彼此冗余。例如新增两只收益完全相同的证券，收益与旧资产独立且超额收益均值为零。最优的新证券净头寸为零，但一买一卖也能构成含新证券的最优组合，福利不变。
+
+ \item 当扩充后的协方差矩阵正定时，$S$ 正定。由 (a) 的最优期望效用和 $-e^{-aCE}=\mathrm E[-e^{-a\tilde w^*}]$，最优财富的确定性等价为
  \[
  CE=w(1+r_F)+\frac1{2a}\mu^{\mathsf T}\Sigma^{-1}\mu.
  \]
 
- 因而福利增加的确定性等价值为
+ 对新旧两个市场分别使用这一表达式，二者的差正是 (b) 求出的增量
  \[
- \boxed{\Delta CE=\frac1{2a}
- \left(\mu_{\mathrm{new}}^{\mathsf T}\Sigma_{\mathrm{new}}^{-1}\mu_{\mathrm{new}}
-       -\mu_{\mathrm{old}}^{\mathsf T}\Sigma_{\mathrm{old}}^{-1}\mu_{\mathrm{old}}\right)
- =\frac1{2a}\delta^{\mathsf T}S^{-1}\delta.}
+ \Delta CE=\frac1{2a}\delta^{\mathsf T}S^{-1}\delta
+ =\frac1{2a}\bigl(\mu^{\mathsf T}\Sigma^{-1}\mu
+       -\mu_0^{\mathsf T}A^{-1}\mu_0\bigr).
  \]
+
+ 若 $S$ 奇异，只要 $Sh=\delta$ 有解，取 $x_1^*=h/(aw)$，代入 (b) 的目标增量得 $\Delta CE=\delta^{\mathsf T}h/(2a)$，与所选的 $h$ 无关，且仅当 $\delta\ne0$ 时严格为正。若 $Sh=\delta$ 无解，则存在零方差但超额收益非零的方向，因而不存在有限最优组合。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\WJNineExercise{exer:wj-nine-9}{*} 在练习~\ref{exer:wj-nine-7} 中，假设只有一只新证券（即 $M=1$），它的收益率是 $\tilde{r}_{N+1}$。令 $\bar{r}_{N+1}$ 为它的预期收益率、$\sigma_{N+1}$ 为收益率波动率而 $\sigma_{\cdot,N+1}$ 为它与 $N$ 只原有证券之间的协方差向量。另外，证券 $N+1$ 上的最优组合权重记作 $z_{N+1}$。
+\WJNineExercise{exer:wj-nine-9}{} 在练习~\ref{exer:wj-nine-7} 中，假设只有一只新证券（即 $M=1$），它的收益率是 $\tilde{r}_{N+1}$。令 $\bar{r}_{N+1}$ 为它的预期收益率、$\sigma_{N+1}$ 为收益率波动率而 $\sigma_{\cdot,N+1}$ 为它与 $N$ 只原有证券之间的协方差向量。另外，证券 $N+1$ 上的最优组合权重记作 $z_{N+1}$。
 \begin{enumerate}[label=(\alph*)]
     \item 假设 $\bar{r}_{N+1}-r_{F}>(<)\,0$。我们能得到结论 $z_{N+1}>(<)\,0$ 吗？给出解释。
     \item 假设 $\bar{r}_{N+1}<\bar{r}_{n}$ 且 $\sigma_{N+1}>\sigma_{n}$，$\forall\,n=1,\ldots,N$。也就是说，其它所有证券在收益率和方差上都优于证券 $N+1$。这是否意味着 $z_{N+1}=0$ 即最优组合不应含有证券 $N+1$？给出解释。
@@ -324,16 +361,20 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}
-记 $A$ 为原有风险证券的协方差矩阵，$c=\sigma_{\cdot,N+1}$，$\mu_0$ 为原有证券的超额收益均值，$\mu_1=\bar r_{N+1}-r_F$。假设扩充后的协方差矩阵正定，$a,w>0$。
+沿用练习~\ref{exer:wj-nine-7} 的指数效用与联合正态收益模型，取练习~\ref{exer:wj-nine-8} 中 $M=1$ 的情形。记 $A$ 为原有风险证券的协方差矩阵，$c=\sigma_{\cdot,N+1}$ 为新证券与原有证券的协方差向量，$\mu_0$ 为原有证券的超额收益均值向量，$\mu_1=\bar r_{N+1}-r_F$。假设扩充后的协方差矩阵正定，$a,w>0$。
+
+\Needspace{10\baselineskip}
 \begin{enumerate}[label=(\alph*)]
- \item 由练习~\ref{exer:wj-nine-8} 的分块公式（剔除旧资产线性成分后，新资产最优权重的表达式），
+ \item 由上一题 (b)，新证券权重每增加一单位，旧证券权重相应调整 $-A^{-1}c$。将上一题的 $C$ 换成 $c$、$B$ 换成 $\sigma_{N+1}^2$，得到
  \[
- \boxed{z_{N+1}=\frac{\mu_1-c^{\mathsf T}A^{-1}\mu_0}
- {aw\left(\sigma_{N+1}^2-c^{\mathsf T}A^{-1}c\right)}.}
+ z_{N+1}=
+ \frac{\underbrace{\mu_1-c^{\mathsf T}A^{-1}\mu_0}_{\text{对冲后的平均超额收益}}}
+ {aw\bigl(\underbrace{\sigma_{N+1}^2-c^{\mathsf T}A^{-1}c}_{\text{对冲后的方差}}\bigr)}.
  \]
 
- 分母为正，持仓方向由剔除旧资产风险敞口后的超额收益
- $\mu_1-c^{\mathsf T}A^{-1}\mu_0$ 决定。因此仅凭 $\mu_1$ 的正负，无法确定 $z_{N+1}$ 的正负。例如一只旧资产取 $\mu_0=0.10$、方差 $0.04$，新资产取 $\mu_1=0.05$、方差 $0.09$，协方差 $0.04$。协方差矩阵行列式为 $0.002>0$，但残差超额收益为 $0.05-(0.04/0.04)0.10=-0.05$，故新资产最优权重为负。
+ 分子是对冲后的平均超额收益，分母是对冲后的方差乘以 $aw$。在正定条件下分母为正，所以买入还是卖空由分子决定。
+
+ 例如一只旧资产取 $\mu_0=0.10$、方差 $0.04$，新资产取 $\mu_1=0.05$、方差 $0.09$，协方差 $0.04$。协方差矩阵行列式为 $0.002>0$，但对冲后的平均超额收益为 $0.05-(0.04/0.04)0.10=-0.05$，故新资产最优权重为负。若把两个超额收益均值同时反号而保持协方差不变，则新资产的超额收益均值为负，最优权重却为正。
 
  \item 均值和标准差的单独比较没有包含协方差信息。只要
  $\mu_1-c^{\mathsf T}A^{-1}\mu_0\ne0$，新证券就有非零最优持仓。
@@ -343,7 +384,7 @@
  z_{N+1}=\frac{0.05}{aw\cdot0.09}>0.
  \]
 
- 它提供了独立的正超额收益来源，持有它有助于分散风险。
+ 它提供了旧组合之外的独立正超额收益机会。
 \end{enumerate}
 \end{solution}
 
