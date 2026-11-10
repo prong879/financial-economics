@@ -5,8 +5,11 @@
    \draw[->] (0,-.6)--(3.7,-.6) node[right] {$\sigma$};
    \draw[->] (0,-.6)--(0,2.8) node[above] {$\bar r$};
    \pgfmathsetmacro{\tmax}{ifthenelse(\rr==1,2.5,1.8)}
+   \pgfmathsetmacro{\tmvp}{(4-2*\rr)/(5-4*\rr)}
    \node at (1.8,3.25) {$\rho_{12}=\rr$};
-   \draw[thick,domain=-.2:\tmax,samples=100,variable=\t]
+   \draw[thick,domain=-.2:\tmvp,samples=100,variable=\t]
+     plot ({sqrt(max(0,\t*\t+4*(1-\t)*(1-\t)+4*\rr*\t*(1-\t)))},{2-\t});
+   \draw[dashed,domain=\tmvp:\tmax,samples=100,variable=\t]
      plot ({sqrt(max(0,\t*\t+4*(1-\t)*(1-\t)+4*\rr*\t*(1-\t)))},{2-\t});
    \fill (1,1) circle(1.3pt) node[right] {1};
    \fill (2,2) circle(1.3pt) node[right] {2};
