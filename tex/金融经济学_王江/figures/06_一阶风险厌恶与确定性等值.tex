@@ -1,0 +1,43 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：折点取自教材印刷第 95 页与第 6 章课件第 20 页；
+% 弦与 CE 的作图方法参照第 7 章课件第 12 页。以 \varepsilon 为横向单位。
+\begin{tikzpicture}[>=Stealth,font=\small,x=3.3cm,y=.95cm,
+    guide/.style={densely dotted,gray},
+    ce/.style={red!65!black}]
+ \coordinate (loss) at (-1,-2);
+ \coordinate (gain) at (1,1);
+ \coordinate (kink) at (0,0);
+ \coordinate (mean) at (0,-.5);
+ \coordinate (equivalent) at (-.25,-.5);
+
+ \draw[->] (-1.55,-2.65)--(1.5,-2.65) node[right] {$c$};
+ \draw[->] (-1.55,-2.65)--(-1.55,1.65) node[above] {$u(c)$};
+ \draw[guide] (loss)--(-1,-2.65) (gain)--(1,-2.65)
+   (mean)--(0,-2.65) (-1.55,0)--(kink);
+ \draw[guide] (-1.55,-2) node[left,blue!70!black] {$u(\bar c-\varepsilon)=-a_-\varepsilon$} -- (loss)
+   (-1.55,1) node[left,blue!70!black] {$u(\bar c+\varepsilon)=a_+\varepsilon$} -- (gain);
+ \draw[guide] (-1.55,-.5)--(equivalent);
+ \draw[blue!70!black,semithick,|-|] (-1.4,0)--node[midway,right] {$a_+\varepsilon$} (-1.4,1);
+ \draw[blue!70!black,semithick,|-|] (-1.4,0)--node[midway,right] {$a_-\varepsilon$} (-1.4,-2);
+ \draw[gray,thick,dashed] (loss)--(gain);
+ \draw[blue!70!black,very thick] (-1.21,-2.42)--(kink)--(1.38,1.38);
+ \draw[ce,thick] (kink)--(mean);
+ \draw[ce,thin] (0,-.25)--(.18,-.72)--(.23,-.72) node[right] {效用损失};
+ \draw[ce,thick,->] (mean)--(equivalent);
+ \draw[ce,dashed,->] (equivalent)--(-.25,-2.65);
+ \draw[blue!70!black,semithick,|-|] (-1,-2.37)--node[midway,above] {$-\varepsilon$} (0,-2.37);
+ \draw[blue!70!black,semithick,|-|] (0,-2.37)--node[midway,above] {$+\varepsilon$} (1,-2.37);
+
+ \fill[blue!70!black] (loss) circle(1.65pt) (gain) circle(1.65pt) (kink) circle(1.65pt);
+ \fill[ce] (mean) circle(1.65pt) (equivalent) circle(1.65pt);
+ \node[left] at (-1.55,0) {$0$};
+ \node[left,ce] at (-1.55,-.5) {期望效用 $\mathrm E[u(\bar c\pm\varepsilon)]$};
+ \node[above left,blue!70!black] at (kink) {折点};
+ \node[above left,blue!70!black] at (-.61,-1.22) {斜率 $a_-$};
+ \node[above,blue!70!black] at (.88,.95) {斜率 $a_+$};
+ \node[below] at (-1,-2.65) {$\bar c-\varepsilon$};
+ \node[below,ce] at (-.25,-2.65) {$CE$};
+ \node[below] at (0,-2.65) {$\bar c$};
+ \node[below] at (1,-2.65) {$\bar c+\varepsilon$};
+ \draw[ce,semithick,|-|] (-.25,-3.18)--node[midway,below] {风险溢价 $\bar c-CE$} (0,-3.18);
+\end{tikzpicture}

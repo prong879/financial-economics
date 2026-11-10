@@ -1,8 +1,7 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 来源：教材印刷第 96—97 页（PDF 第 111—112 页），练习 6.1—6.4。
-% 概率 p_omega 对应原题 pi_omega，沿用正文约定；题号和星号保留。
-% 6.3 明确原题“强凸性”的严格比较条件；第二讲现行公理 3 已采用弱凸形式。
-% 6.4 教材原题断言两期效用均凹，答案参考指出只能推出拟凹。保留原命题作为待检验结论。
+% 6.3 的“强凸性”沿用教材印刷第 15 页公理 3 的严格比较条件。
+% 6.4 保留原题关于凹性的命题，作为待判断的结论。
 \newcounter{wjSixExercise}
 \renewcommand{\thewjSixExercise}{\thechapter.\arabic{wjSixExercise}}
 \newcommand{\WJSixProblem}[1]{\refstepcounter{wjSixExercise}\label{prob:wj-six-\arabic{wjSixExercise}}\problemno{\thewjSixExercise#1}}
@@ -10,42 +9,40 @@
 \begin{problem}
 \WJSixProblem{} 证明如下形式的期望效用函数：
 \[
-    U(c)=u_{0}(c_{0})+\sum_{\omega\in\Omega}p_{\omega}u_{1}(c_{1\omega})
+    U(c)=u_{0}(c_{0})+\sum_{\omega\in\Omega}\pi_{\omega}u_{1}(c_{1\omega})
 \]
 满足独立性公理。
 \end{problem}
 \begin{solution}
-设两个计划 $c,c'$ 在状态 $\omega'$ 的消费路径同为 $(c_0,x)$，并且 $c\succeq c'$。由效用表示，
+独立性公理\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-six-independence}）\fi{}要求，在两个计划中同时替换共同状态的消费后，原有排序保持不变。题中的 $\pi_\omega$ 表示状态 $\omega$ 的真实概率\ifdefined\WJHandoutKnowledge，正文记为 $p_\omega$\fi。固定当前消费 $c_0$，设两个计划 $c,c'$ 在状态 $\omega'$ 的未来消费同为 $x$。比较时，共同的 $u_0(c_0)$ 和 $\pi_{\omega'}u_1(x)$ 相消，得到
 \[
  U(c)-U(c')=
- \sum_{\omega\ne\omega'}p_\omega
- \bigl[u_1(c_{1\omega})-u_1(c'_{1\omega})\bigr]\ge0.
+ \sum_{\omega\ne\omega'}\pi_\omega
+ \bigl[u_1(c_{1\omega})-u_1(c'_{1\omega})\bigr].
 \]
 
-把共同路径换成 $(c_0,y)$，记新计划为 $d,d'$。两边共同的 $u_0(c_0)$ 和 $p_{\omega'}u_1(y)$ 仍抵消，故
+把共同消费 $x$ 换成 $y$，记新计划为 $d,d'$。共同项 $\pi_{\omega'}u_1(y)$ 同样相消，其余状态的消费不变，故
 \[
- U(d)-U(d')=U(c)-U(c')\ge0.
+ U(d)-U(d')=U(c)-U(c').
 \]
 
-因此 $d\succeq d'$，排序保持不变，独立性公理成立。
+效用差的符号保持不变，因此原来的严格偏好或无差异都保留下来。若同时替换多个共同状态的消费，这些状态的效用项也都相消。
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{*} 对于由练习~\ref{prob:wj-six-1}（当期效用与未来期望效用相加）给出的效用函数表示的偏好，证明在本书的喜多厌少条件下，偏好连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
+\WJSixProblem{} 对于由练习~\ref{prob:wj-six-1} 给出的效用函数表示的偏好，证明连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
 \end{problem}
 \begin{solution}
-沿用本书的非负消费域：当前消费与各状态未来消费可独立变化。由喜多厌少，$u_0,u_1$ 严格递增，且 $\sum_\omega p_\omega=1$。
-
-考虑未来各状态消费均为 $y$ 的计划，其效用为
+沿用第二讲的非负消费域与不满足性公理\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-two-1}，增加消费会使计划严格更受偏好）\fi。考虑当前消费为 $x$、未来各状态消费均为 $y$ 的计划。由于 $\sum_\omega\pi_\omega=1$，其效用为
 \[
  F(x,y)=u_0(x)+u_1(y).
 \]
 
-原偏好限制在这些计划上仍连续。下面证明：若 $F(x,y)=f(x)+g(y)$ 表示连续偏好，且 $f,g$ 严格递增，则 $f$ 连续。
+固定 $y$ 增加 $x$，由不满足性知 $u_0$ 严格递增。固定 $x$ 增加 $y$，由同一公理知 $u_1$ 严格递增。偏好连续性\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-two-2}，上下等值集均为闭集）\fi{}则保证，对同一个基准计划，一列计划若都不劣于它，极限仍不劣于它。若都不优于它，极限仍不优于它。
 
-单调函数在内点具有左右极限，且只有至多可数个不连续点。取 $g$ 的一个内点连续点 $y$。
+把 $F$ 写成 $f(x)+g(y)$。如果 $f$ 有跳跃，可以小幅调整另一期的消费，使 $g$ 的效用变化小于这个跳跃，再利用偏好连续性取极限。因为单调函数至多有可数个不连续点，可以选取 $g$ 的一个内点连续点 $y$。
 \begin{enumerate}[label=(\roman*)]
-\item 若 $f$ 在 $x$ 有左跳跃，记 $\delta=f(x)-f(x-)>0$。由 $g$ 在 $y$ 连续且严格递增，可取 $h>0$ 使
+\item 若 $f$ 在内点 $x>0$ 有左跳跃，记 $\delta=f(x)-f(x-)>0$。由 $g$ 在 $y$ 连续且严格递增，可取 $0<h<y$ 使
 \[
  0<g(y)-g(y-h)<\delta.
 \]
@@ -55,41 +52,43 @@
  F(x_n,y)\le f(x-)+g(y)<f(x)+g(y-h)=F(x,y-h).
 \]
 
-由下等值集闭性，令 $n\to\infty$ 得 $(x,y)\preceq(x,y-h)$，与 $g$ 严格递增矛盾。
-\item 若 $f$ 在 $x$ 有右跳跃，记 $\delta=f(x+)-f(x)>0$。取 $h>0$ 使
+所以 $(x_n,y)\preceq(x,y-h)$。由下等值集闭性，令 $n\to\infty$ 得 $(x,y)\preceq(x,y-h)$，与 $g$ 严格递增矛盾。
+\item 若 $f$ 在 $x\ge0$ 有右跳跃，记 $\delta=f(x+)-f(x)>0$。取 $h>0$ 使 $0<g(y+h)-g(y)<\delta$。对 $x_n\downarrow x$，有
 \[
- 0<g(y+h)-g(y)<\delta.
+ F(x_n,y)\ge f(x+)+g(y)>f(x)+g(y+h)=F(x,y+h).
 \]
 
-对 $x_n\downarrow x$，有 $F(x_n,y)>F(x,y+h)$。上等值集闭性推出 $(x,y)\succeq(x,y+h)$，同样矛盾。
+所以 $(x_n,y)\succeq(x,y+h)$。由上等值集闭性，令 $n\to\infty$ 得 $(x,y)\succeq(x,y+h)$，与 $g$ 严格递增矛盾。这个论证也适用于下端点 $x=0$。
 \end{enumerate}
-所以内点的左右跳跃均不存在。在下端点 $x=0$，若 $f(0+)>f(0)$，同样取 $h>0$ 使 $0<g(y+h)-g(y)<f(0+)-f(0)$。取 $x_n\downarrow0$，则 $(x_n,y)\succ(0,y+h)$；上等值集闭性给出 $(0,y)\succeq(0,y+h)$，矛盾。因此 $f$ 在下端点也右连续。令 $(f,g)=(u_0,u_1)$ 得 $u_0$ 连续；交换二者，得 $u_1$ 连续。
+单调函数在内点有左右极限，因此排除了跳跃就得到连续性。取 $(f,g)=(u_0,u_1)$，得到 $u_0$ 连续。交换两个坐标和相应的效用函数，同样得到 $u_1$ 连续。
+
+原题沿用了不满足性公理。若只要求偏好连续，取 $u_1\equiv0$、$u_0(x)=x+\mathbf 1_{\{x\ge1\}}$，所得偏好只按当前消费排序，可由连续函数 $c_0$ 表示，但给定的 $u_0$ 在 $1$ 处跳跃。
 
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{**} 若 $a\succeq b$ 意味着对任意 $\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，则称偏好为\textbf{弱凸的}（weakly convex）。本题称以下条件为强凸性：若 $a\succ b$，则对任意 $0<\alpha<1$ 有 $\alpha a+(1-\alpha)b\succ b$。假设偏好连续，并有练习~\ref{prob:wj-six-1}（当期效用与未来期望效用相加）的连续期望效用表示，证明强凸性蕴含弱凸性。
+\WJSixProblem{} 若 $a\succeq b$ 意味着对任意 $\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，则称偏好关系 $\succeq$ 是\textbf{弱凸的}（weakly convex）。这与教材第 2 章中的强凸性有所不同。假设偏好关系连续，并由练习~\ref{prob:wj-six-1} 给出的期望效用函数表示（因而 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是连续函数）。证明此时强凸性蕴含弱凸性。
 \end{problem}
 \begin{solution}
-按本题的强凸性条件，若 $a\succ b$，则对任意 $0<\alpha<1$，有
+本题的强凸性沿用教材第 15 页公理 3\ifdefined\WJHandoutKnowledge。现行讲义第二讲的公理~\ref{axiom:wj-two-3} 采用的是题中所说的弱凸性\fi。按教材的条件，若 $a\succ b$，则对任意 $0<\alpha<1$，有
 \[
  \alpha a+(1-\alpha)b\succ b.
 \]
 
-要证弱凸性，只须补上 $a\sim b$ 的情形；$\alpha=0,1$ 以及 $a\succ b$ 的情形都已成立。
+当 $\alpha=0,1$ 时，混合计划就是 $b$ 或 $a$，均不劣于 $b$。当 $0<\alpha<1$ 且 $a\succ b$ 时，由强凸性可直接得到结论。剩下的是 $a\sim b$。
 
 设 $a\sim b$，$0<\alpha<1$，记 $m=\alpha a+(1-\alpha)b$。反设 $m\prec b$，则
 \[
  U(m)<U(a)=U(b).
 \]
 
-由于 $U$ 连续，沿着从 $a$ 到 $m$ 的线段，由介值定理可取
+由练习~\ref{prob:wj-six-2}，$u_0$ 和 $u_1$ 连续，故有限状态下的 $U$ 连续。沿着从 $a$ 到 $m$ 的线段，由介值定理可取
 \[
  d=(1-t)a+tm,\quad 0<t<1,\qquad
  U(m)<U(d)<U(b).
 \]
 
-于是 $b\succ d$。另一方面，$m$ 位于 $d$ 与 $b$ 之间。具体地，令
+于是 $b\succ d$。因为 $d$ 在 $a$ 与 $m$ 之间，沿着线段从 $a$ 走向 $b$，依次经过 $d$、$m$。要对 $b$ 和 $d$ 应用强凸性，把 $m$ 写成二者的混合。将 $m$ 代入 $d=(1-t)a+tm$，得到 $d$ 中 $a$ 的权重为 $1-t+t\alpha$。令它乘以 $\beta$ 后等于 $m$ 中 $a$ 的权重 $\alpha$，得到
 \[
  \beta=\frac{\alpha}{1-t+t\alpha}\in(0,1),
  \qquad m=\beta d+(1-\beta)b.
@@ -100,36 +99,32 @@
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{**} 假设定义在随机支付上的效用函数具有练习~\ref{prob:wj-six-1} 中的形式，其中 $\Omega$ 是任意状态空间，$P$ 是相应概率测度。一般地写为 $U(c_0,\widetilde c_1)=u_0(c_0)+\mathrm E^P[u_1(\widetilde c_1)]$，并且偏好满足弱凸性。检验命题：“$u_0$ 和 $u_1$ 都是凹函数”。
-\begin{enumerate}[label=(\alph*)]
-    \item 证明 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是拟凹的。
-    \item 它们是否必为凹的？若否，给出反例。
-\end{enumerate}
+\WJSixProblem{} 判断教材中的下述命题。假设定义在随机支付上的效用函数具有练习~\ref{prob:wj-six-1} 中的形式，其中 $\Omega$ 是任意状态空间，$P$ 是相应概率测度。如果偏好还满足弱凸性，那么 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是凹的。
 \end{problem}
 \begin{solution}
-\begin{enumerate}[label=(\alph*)]
-    \item 函数 $u$ 拟凹是指 $u(\lambda x+(1-\lambda)y)\ge\min\{u(x),u(y)\}$。固定当前消费 $c_0$，令两计划的未来消费分别在\emph{所有状态}确定为 $x$ 与 $y$。若 $u_1(x)\ge u_1(y)$，则 $U(a)\ge U(b)$。弱凸性给出
-    \[
-      u_0(c_0)+u_1(\lambda x+(1-\lambda)y)
-      \ge u_0(c_0)+u_1(y),
-    \]
+命题不成立。弱凸性要求混合计划的效用至少达到两个端点中较低的效用，这是拟凹性。凹性则要求混合计划的效用至少达到两个端点效用的加权平均。
 
-    因为常数的期望等于该常数，抵消 $u_0(c_0)$ 即得 $u_1$ 拟凹。再固定同一未来消费，改变当前消费 $x,y$，用同一论证得到 $u_0$ 拟凹。该证明适用于任意概率空间。
+写成期望形式有 $U(c_0,\widetilde c_1)=u_0(c_0)+\mathrm E^P[u_1(\widetilde c_1)]$。固定 $c_0$，比较未来各状态消费恒为 $x$ 或恒为 $y$ 的两个计划。常数的期望等于自身，因此两计划的效用分别为 $u_0(c_0)+u_1(x)$ 和 $u_0(c_0)+u_1(y)$。任取 $\lambda\in[0,1]$，混合计划的效用至少达到两者中较低的一个。消去共同的 $u_0(c_0)$，得到
+\[
+ u_1(\lambda x+(1-\lambda)y)\ge\min\{u_1(x),u_1(y)\}.
+\]
 
-    \item 题设允许任意状态空间。取只有一个状态的经济，在 $x=c_0\ge0$、$y=c_1\ge0$ 上令
-    \[
-      u_0(x)=e^x,\qquad u_1(y)=-e^{-y},\qquad U(x,y)=e^x-e^{-y}.
-    \]
+所以 $u_1$ 拟凹。固定同一未来消费、只改变当前消费，也可得到 $u_0$ 拟凹。
 
-    两函数均连续、严格递增，但 $u_0''(x)=e^x>0$。下面验证整个偏好仍弱凸。由于 $U\ge0$，水平 $k\le0$ 的上等值集为整个非负消费域。对 $k>0$，
-    \[
-      U(x,y)\ge k\quad\Longleftrightarrow\quad x\ge f_k(y):=\ln(k+e^{-y}),
-      \qquad f_k''(y)=\frac{k e^{-y}}{(k+e^{-y})^2}>0.
-    \]
+\Needspace{13\baselineskip}
+题设允许只有一个状态。取 $x=c_0\ge0$、$y=c_1\ge0$，令
+\[
+ u_0(x)=e^x,\qquad u_1(y)=-e^{-y},\qquad U(x,y)=e^x-e^{-y}.
+\]
 
-    上等值集是凸函数 $f_k$ 的上图集与非负消费域的交，因而是凸集，偏好弱凸。交换两期的角色，还可得到 $u_1$ 非凹的反例。故弱凸性推出各项拟凹，一般不足以推出各项凹。
+两个单期效用均连续、严格递增，而 $u_0''(x)=e^x>0$，所以 $u_0$ 不凹。要验证偏好弱凸，考察任一效用水平 $k$ 的上等值集。由于 $U\ge0$，当 $k\le0$ 时，整个非负消费域都在集合中。当 $k>0$ 时，
+\[
+ U(x,y)\ge k\quad\Longleftrightarrow\quad x\ge f_k(y):=\ln(k+e^{-y}),
+ \qquad f_k''(y)=\frac{k e^{-y}}{(k+e^{-y})^2}>0.
+\]
 
-    本题允许两期采用不同的 $u_0,u_1$；\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-six-4}\else 两期共同单期效用形式\fi 还要求 $u_1=\rho u_0$，对两期效用的关系施加了进一步限制。
-\end{enumerate}
+任取两个满足 $x\ge f_k(y)$ 的计划，它们的混合记为 $(\bar x,\bar y)$。两个计划的 $x$ 各自不小于其边界值，所以 $\bar x$ 不小于两个边界值的加权平均。由 $f_k$ 的凸性，这个加权平均又不小于 $f_k(\bar y)$。因此混合计划仍在上等值集中，偏好弱凸。交换两期的角色，还可得到 $u_1$ 不凹的反例。
+
+本题允许两期采用不同的 $u_0,u_1$。两期采用共同单期效用的形式\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-six-4}）\fi{}还要求 $u_1=\rho u_0$。
 \end{solution}
 

@@ -1,0 +1,46 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 沿用上一图的折点效用。横坐标以 c=100 为原点，每单位代表 4 单位消费；
+% 纵坐标每单位代表 4 单位效用。两图的坐标尺度和绘制范围完全相同。
+\begin{tikzpicture}[>=Stealth,font=\small,x=2.04cm,y=1.04cm,
+    guide/.style={densely dotted,gray},ce/.style={red!65!black}]
+ \foreach \panelOffset/\spread/\amplitude/\lowerConsumption/\upperConsumption/\expectedUtility/\premium in
+   {0cm/1/4/96/104/-2/1,6.6cm/.5/2/98/102/-1/0.5} {
+  \begin{scope}[xshift=\panelOffset]
+   \pgfmathtruncatemacro{\lowerUtility}{-2*\amplitude}
+   \coordinate (kink) at (0,0);
+   \coordinate (lower) at ({-\spread},{-2*\spread});
+   \coordinate (upper) at (\spread,\spread);
+   \coordinate (mean) at (0,{-.5*\spread});
+   \coordinate (equivalent) at ({-.25*\spread},{-.5*\spread});
+   \coordinate (ce-axis) at ({-.25*\spread},-2.62);
+   \coordinate (reference-axis) at (0,-2.62);
+
+   \node at (0,1.94) {波动幅度 $\varepsilon=\amplitude$};
+   \draw[->] (-1.42,-2.62)--(1.43,-2.62) node[right] {$c$};
+   \draw[->] (-1.42,-2.62)--(-1.42,1.47) node[above] {$u(c)$};
+   \draw[guide] (-1.42,0) node[left,black] {$0$} -- (kink)
+     (-1.42,{-.5*\spread}) node[left,ce] {$\expectedUtility$} -- (equivalent)
+     (-1.42,{-2*\spread}) node[left,blue!70!black] {$\lowerUtility$} -- (lower)
+     (-1.42,\spread) node[left,blue!70!black] {$\amplitude$} -- (upper)
+     (lower)--({-\spread},-2.62) (upper)--(\spread,-2.62)
+     (mean)--(reference-axis);
+   \draw[gray,thick,dashed] (lower)--(upper);
+   \draw[blue!70!black,very thick] (-1.22,-2.44)--(kink)--(1.25,1.25);
+   \draw[ce,thick] (kink)--(mean)--(equivalent);
+   \draw[ce,dashed] (equivalent)--(ce-axis);
+   \draw[ce,thick,|-|] ({-.25*\spread},-2.28)--node[midway,above] {$\pi$} (0,-2.28);
+   \draw[blue!70!black,thick,|-|] ({-\spread},-2.48)--node[midway,above] {$\varepsilon$} (0,-2.48);
+   \fill[blue!70!black] (lower) circle(1.45pt) (upper) circle(1.45pt) (kink) circle(1.45pt);
+   \fill[ce] (mean) circle(1.35pt) (equivalent) circle(1.35pt);
+
+   \node[below] at ({-\spread},-2.62) {$\lowerConsumption$};
+   \node[below] at (reference-axis) {$100$};
+   \node[below] at (\spread,-2.62) {$\upperConsumption$};
+   \node[below] at (0,-3.21)
+     {$\frac{\textcolor{red!65!black}{\pi}}{\textcolor{blue!70!black}{\varepsilon}}
+      =\frac{\textcolor{red!65!black}{\premium}}{\textcolor{blue!70!black}{\amplitude}}$};
+  \end{scope}
+ }
+ \node[below] at ([xshift=3.3cm]0,-3.88)
+   {$\pi/\varepsilon$ 是风险溢价 $\pi$ 对波动幅度 $\varepsilon$ 的斜率，两图均为 $\tfrac14$};
+\end{tikzpicture}

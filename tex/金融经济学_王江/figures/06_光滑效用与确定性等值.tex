@@ -1,0 +1,44 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 对照图 6.1。沿用第七讲的二次效用示例：c=100+4x，纵坐标为 u(c)/4。
+\begin{tikzpicture}[>=Stealth,font=\small,x=3.3cm,y=1.55cm,
+    guide/.style={densely dotted,gray},
+    tangent/.style={teal!70!black},
+    ce/.style={red!65!black}]
+ \pgfmathsetmacro{\ceOffset}{(5-sqrt(41))/4}
+ \coordinate (base) at (0,0);
+ \coordinate (lower) at (-1,-1.4);
+ \coordinate (upper) at (1,.6);
+ \coordinate (mean) at (0,-.4);
+ \coordinate (equivalent) at (\ceOffset,-.4);
+
+ \draw[->] (-1.55,-1.91)--(1.5,-1.91) node[right] {$c$};
+ \draw[->] (-1.55,-1.91)--(-1.55,1.25) node[above] {$u(c)$};
+ \draw[guide] (-1,-1)--(-1,-1.91) (1,1)--(1,-1.91) (mean)--(0,-1.91)
+   (-1.55,1)--(1,1) (-1.55,-1)--(-1,-1);
+ \draw[guide] (-1.55,0) node[left] {$u(\bar c)$} -- (base)
+   (-1.55,-.4) node[left,ce] {$\mathrm E[u(\tilde c)]$} -- (equivalent)
+   (-1.55,-1.4) node[left,blue!70!black] {$u(\bar c-\varepsilon)$} -- (lower)
+   (-1.55,.6) node[left,blue!70!black] {$u(\bar c+\varepsilon)$} -- (upper);
+
+ \draw[tangent,semithick,|-|] (-1.4,0)--node[pos=.29,right] {$+u'(\bar c)\varepsilon$} (-1.4,1);
+ \draw[tangent,semithick,|-|] (-1.4,0)--node[pos=.73,right] {$-u'(\bar c)\varepsilon$} (-1.4,-1);
+ \draw[tangent,dashed] (-1,-1)--node[pos=.84,above left] {$\bar c$ 处的切线} (1,1);
+ \fill[tangent] (-1,-1) circle(1.35pt) (1,1) circle(1.35pt);
+ \draw[gray,thick,dashed] (lower)--(upper);
+ \draw[blue!70!black,very thick,domain=-1.18:1.2,samples=48] plot (\x,{\x-.4*\x*\x});
+ \fill[blue!70!black] (lower) circle(1.65pt) (upper) circle(1.65pt) (base) circle(1.65pt);
+
+ \draw[ce,thick] (base)--(mean);
+ \draw[ce,thin] (0,-.2)--(.21,-.67) node[right] {效用损失};
+ \draw[ce,thick,->] (mean)--(equivalent);
+ \draw[ce,dashed,->] (equivalent)--(\ceOffset,-1.91);
+ \fill[ce] (mean) circle(1.5pt) (equivalent) circle(1.5pt);
+
+ \draw[blue!70!black,semithick,|-|] (-1,-1.73)--node[midway,above] {$-\varepsilon$} (0,-1.73);
+ \draw[blue!70!black,semithick,|-|] (0,-1.73)--node[midway,above] {$+\varepsilon$} (1,-1.73);
+ \node[below] at (-1,-1.91) {$\bar c-\varepsilon$};
+ \node[below,ce] at (\ceOffset,-1.91) {$CE$};
+ \node[below] at (0,-1.91) {$\bar c$};
+ \node[below] at (1,-1.91) {$\bar c+\varepsilon$};
+ \draw[ce,semithick,|-|] (\ceOffset,-2.22)--node[midway,below] {风险溢价 $\bar c-CE$} (0,-2.22);
+\end{tikzpicture}
