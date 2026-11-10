@@ -35,7 +35,7 @@
 \begin{tcolorbox}[knowledge]
 \WJFiveDefinition{def:wj-five-european}\textbf{欧式看涨期权}（European call）赋予买方在到期日以执行价格 $K$ 买入一单位标的证券的权利；\textbf{欧式看跌期权}（European put）赋予买方在到期日以 $K$ 卖出一单位标的证券的权利。
 \end{tcolorbox}
-到期日（maturity date）为 1 期，$K$ 称为执行价格（exercise price）。买方选择行权或放弃，故到期支付分别为
+到期日（maturity date）为 1 期，$K$ 称为执行价格（exercise price）。买方有权按 $K$ 交易，也可以放弃。到期时，看涨买方若行权，要付 $K$ 换取价值为 $\tilde X$ 的标的，净所得为 $\tilde X-K$。看跌买方若行权，则交付价值为 $\tilde X$ 的标的，收到 $K$，净所得为 $K-\tilde X$。因为放弃行权的支付为零，买方会在行权所得和零之间取较大者，因此两类期权的到期支付分别为
 \begin{equation}
  \tilde c=[\tilde X-K]_+,\qquad \tilde p=[K-\tilde X]_+,
  \qquad [x]_+=\max\{0,x\}.
@@ -52,7 +52,7 @@
 \begin{tcolorbox}[knowledge]
 \WJFiveDefinition{def:wj-five-american}执行价格为 $K$、到期日为 $t$ 的\textbf{美式看涨（看跌）期权}允许买方在到期日及此前任一可执行日期，以 $K$ 买入（卖出）一单位标的证券。
 \end{tcolorbox}
-美式期权的选择包括执行日期和是否执行。到期仍未执行时，其支付与相应欧式期权相同。
+美式期权的买方可以选择是否行权以及何时行权，因此实际支付的金额和时间都可能随行权决策而变。若一直持有到到期日，届时的支付与相应欧式期权相同。
 
 \subsection{内在价值与投资损益}
 \begin{tcolorbox}[knowledge,title=内在价值与实值、平值、虚值,breakable=false]
@@ -62,7 +62,7 @@
 % 来源：教师 PPT 第 3、5 页。使用其假设数据，不保留具体交易日期或指数点位类比。
 \begin{tcolorbox}[example,title=课堂例题：ETF 期权的支付与损益]
 \begin{question}
-一份 ETF 看涨合约的执行价为 $3.00$ 元，合约单位为 $10{,}000$ 份，权利金为每份 $0.0800$ 元。忽略融资和交易费用，求到期价格为 $3.20$ 元时的行权支付、净利润、权利金收益率，以及盈亏平衡价和最大损失。
+ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.00$ 元，合约单位为 $10{,}000$ 份，权利金为每份 $0.0800$ 元。记 ETF 的到期价格为 $S_T$。忽略融资和交易费用，求 $S_T=3.20$ 元时的行权支付、净利润、权利金收益率，以及盈亏平衡价和最大损失。
 \end{question}
 \begin{solution}
 初始支付权利金 $10{,}000\times0.0800=800$ 元。到期净损益为
@@ -70,7 +70,7 @@
  \underbrace{10{,}000[S_T-3.00]_+}_{\text{行权支付}}-\underbrace{800}_{\text{初始权利金}}.
 \]
 
-当 $S_T=3.20$ 时，行权支付为 $2{,}000$ 元，净利润为 $1{,}200$ 元，权利金收益率为 $150\%$。盈亏平衡价为 $3.08$ 元，最大净损失为 $800$ 元。名义本金与权利金之比为 $30{,}000/800=37.5$；期权价格对标的价格的敏感度将在复制组合中用对冲比表示。
+当 $S_T=3.20$ 时，行权支付为 $2{,}000$ 元，净利润为 $1{,}200$ 元，权利金收益率为 $150\%$。盈亏平衡价为 $3.08$ 元，最大净损失为 $800$ 元。按初始价格计算，合约对应的标的名义金额为 $3.00\times10{,}000=30{,}000$ 元，是权利金的 $37.5$ 倍。
 \end{solution}
 \end{tcolorbox}
 
@@ -179,9 +179,9 @@
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-6}存在上述无风险债券时，$c(S,K)\ge[S-K/R]_+$。
 \end{tcolorbox}
-\textbf{证明。}买入一股股票、卖出 $K$ 份单位债券，组合的当期成本和到期支付分别为
+\textbf{证明。}买入一股股票、卖出 $K$ 份单位债券。卖出债券相当于 0 期借入 $K/R$、1 期偿还 $K$，因此这个比较组合的当期成本和到期支付分别为
 \[
- \underbrace{S-\frac K R}_{\text{当期复制成本}},\qquad
+ \underbrace{S-\frac K R}_{\text{比较组合的 0 期成本}},\qquad
  \underbrace{\tilde X-K}_{\text{到期组合支付}}.
 \]
 
@@ -226,7 +226,12 @@
 \end{array}
 \]
 
-两组合逐状态支付相同，\hyperref[thm:wj-four-3]{一价定律}要求其当期成本相同，得到~\eqref{eq:wj-five-3}。
+两组合在每个状态都支付 $\max\{\tilde X,K\}$。每份单位债券今天花 $1/R$、到期支付 $1$，所以 $K$ 份债券今天花 $K/R$。由\hyperref[thm:wj-four-3]{一价定律}，两组当期成本相等：
+\[
+ \underbrace{c(S,K)+K/R}_{\text{看涨期权加债券的成本}}
+ =\underbrace{p(S,K)+S}_{\text{看跌期权加股票的成本}}.
+\]
+这就是式~\eqref{eq:wj-five-3} 的平价关系。
 
 \begin{tcolorbox}[knowledge,title=欧式看跌的价格界,breakable=false]
 由平价与看涨的界，还可得看跌的界
@@ -240,7 +245,7 @@
 \section{美式期权以及提前执行}\label{sec:wj-five-early}
 \subsection{执行机会与期权价值}
 \begin{tcolorbox}[knowledge,title=两时点模型的最优执行,breakable=false]
-本节采用两个执行时点：现在（0 期）或到期（1 期）。提前执行时取得立即行权价值，继续持有则取得相应欧式期权的价值。最优选择给出
+本节只有两个可行权时点，即 0 期和 1 期。若 0 期继续持有，下一次行权机会就是到期日，因此继续持有价值等于相应欧式期权的价格。将它与立即行权价值比较，得到
 \[
  C(S,K)=\max\{[S-K]_+,c(S,K)\},\qquad
  P(S,K)=\max\{[K-S]_+,p(S,K)\}.
@@ -279,19 +284,24 @@
 提前执行会提前支付执行价格，并放弃到期时按实际股价选择是否执行的权利。正利率下，推迟支付 $K$ 具有时间价值；到期保留放弃执行的选择，则使 $[\tilde X-K]_+$ 不低于无条件交易所得 $\tilde X-K$。
 
 \subsubsection{美式看跌}
-由式~\eqref{eq:wj-five-3}（欧式看涨—看跌平价），
+立即执行看跌期权可得 $K-S$，继续持有的价值为 $p(S,K)\ge0$。由式~\eqref{eq:wj-five-3}（欧式看涨—看跌平价），
 \[
- P(S,K)=\max\left\{K-S,\frac K R-S+c(S,K)\right\}.
+ P(S,K)=\max\{K-S,p(S,K)\}
+ =\max\left\{K-S,\frac K R-S+c(S,K)\right\}.
 \]
 
-立即执行严格更优的条件为
+如果承诺到期以 $K$ 卖出股票，支付是 $K-\tilde X$。看跌期权在 $\tilde X>K$ 时可以放弃交易，从而避开这项承诺的负支付。两种支付的差额为
 \[
- K-S>\frac K R-S+c(S,K)
- \quad\Longleftrightarrow\quad
- \frac{r_F}{R}K>c(S,K).
+ [K-\tilde X]_+-(K-\tilde X)=[\tilde X-K]_+.
+\]
+右端是看涨期权的到期支付，所以这项选择权值 $c(S,K)$。立即执行严格更优的条件 $K-S>p(S,K)$ 可改写为
+\[
+ \underbrace{K-\frac K R}_{\text{提前收款的时间价值}}
+ =\frac{r_F}{R}K
+ >\underbrace{c(S,K)}_{\text{保留到期选择的价值}}.
 \]
 
-行权可立即收到执行价格，同时放弃股价进一步下跌时增加行权所得的机会。在正利率、看跌深度实值且相应看涨价值很小时，立即收款的好处可能占优。
+正利率下，看跌期权若深度实值、放弃到期行权的选择价值很小，提前收款的好处就可能占优。
 
 \subsection{股利与含息、除息价格}
 \subsubsection{当前分红与行权选择}
@@ -312,10 +322,12 @@
 \[
  S^++D-K>c(S^+,K)
  \quad\Longleftrightarrow\quad
- D>p(S^+,K)+\frac{r_F}{R}K.
+ \underbrace{D}_{\text{提前行权取得的股利}}
+ >\underbrace{p(S^+,K)}_{\text{放弃的到期选择价值}}
+  +\underbrace{\frac{r_F}{R}K}_{\text{提前付款的时间成本}}.
 \]
 
-右边分别是放弃的看跌保护价值与提前支付执行价格的时间成本。
+若承诺到期以 $K$ 买入股票，支付为 $\tilde X-K$。继续持有看涨期权保留了到期不买的选择，相比这项承诺多出支付 $[K-\tilde X]_+$，其价值是 $p(S^+,K)$。
 
 \subsubsection{有股利时的欧式平价}
 比较两个在除息前建立的组合。组合一买入一份看涨期权和 $K+RD$ 份单位债券，债券的 0 期成本为 $K/R+D$。组合二买入一份看跌期权和一股含息股票，收到 0 期股利 $D$ 后将其投入无风险债券，1 期得到 $RD$。两组组合在 1 期的支付分别为 $[\tilde X-K]_++K+RD$ 和 $[K-\tilde X]_++\tilde X+RD$，逐状态比较有
@@ -388,7 +400,7 @@
  \phi_d=\frac1R\frac{u-R}{u-d}.
 \]
 
-两分量严格为正恰好对应 $d<R<u$。令 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$，则
+两分量严格为正恰好对应 $d<R<u$。用 $c_1=\tilde c$ 表示看涨期权的到期支付，其在上涨和下跌状态分别取值 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$。按状态价格加权，得到
 \begin{equation}
  c=\phi_u c_u+\phi_d c_d.
  \label{eq:wj-five-5}
@@ -405,7 +417,7 @@
  \theta_S=\frac{c_u-c_d}{(u-d)S},\qquad
  \theta_B=\frac{uc_d-dc_u}{u-d}.
 \]
-$\theta_S$ 称为\textbf{对冲比}（hedge ratio，期权的 $\delta$）。
+$\theta_S$ 称为\textbf{对冲比}（hedge ratio，也记作期权的 $\delta$）。分子是期权在上涨与下跌状态的支付差，分母是每股股票在两状态的支付差。卖出一份期权再持有 $\theta_S$ 股股票时，两者的支付差恰好相抵，余下的支付可用无风险债券补齐。
 \end{tcolorbox}
 
 复制组合的价格为
@@ -425,9 +437,16 @@ $\theta_S$ 称为\textbf{对冲比}（hedge ratio，期权的 $\delta$）。
  1-q=\frac{\phi_d}{B}=\frac{u-R}{u-d}.
  \label{eq:wj-five-q}
 \end{equation}
-$q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 $R$，期权价格为
+
+$q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并约去 $S>0$，得到
 \[
- c=\frac{qc_u+(1-q)c_d}{R}=\frac{\mathrm E^Q[c_1]}R.
+ S=\frac{quS+(1-q)dS}{R}
+ \quad\Longrightarrow\quad qu+(1-q)d=R.
+\]
+
+因此，股票在 $Q$ 下的期望总收益率等于无风险总收益率 $R$。对看涨期权作同样的替换，式~\eqref{eq:wj-five-5} 化为
+\[
+ c=\frac1R\underbrace{\bigl[qc_u+(1-q)c_d\bigr]}_{\mathrm E^Q[c_1]}.
 \]
 
 真实概率 $\pi$ 描述上涨发生的可能性；定价概率 $q$ 由当前股价、未来支付和利率确定。
@@ -446,7 +465,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
 设交易日期为 $t=0,1,\ldots,T$，股票无股利，$S_0>0$，每期使用相同的参数 $0<d<R<u$，且每个节点的两条后续分支均有正条件概率。各节点股价 $S_t>0$，股票与一期债券的支付矩阵均满秩，所以每个节点都可复制下一期的任意两种支付。每个节点使用~\eqref{eq:wj-five-q} 的同一风险中性概率 $q$。
 % 单期模型可取 d=0；这里采用教材练习 5.8 的 d>0，以保证每个后续节点股价为正、局部市场完全。
 \begin{tcolorbox}[knowledge,title=逐节点定价与执行]
-到期支付为 $g(S_T)$，终端条件为 $V_T^{\mathrm E}=V_T^{\mathrm A}=g(S_T)$。从 $T-1$ 期逐期倒推至 0 期，继续持有价值与期权价值分别满足
+设 $g(S_t)$ 为在股价 $S_t$ 时立即行权的价值，例如看涨期权为 $[S_t-K]_+$。到期时 $V_T^{\mathrm E}=V_T^{\mathrm A}=g(S_T)$。令 $V_{t+1}^{u}$、$V_{t+1}^{d}$ 为下一期两个节点的期权价值。从 $T-1$ 期倒推到 0 期，继续持有价值与期权价值分别满足
 \begin{equation}
  \begin{aligned}
  H_t&=\frac{qV_{t+1}^{u}+(1-q)V_{t+1}^{d}}R,\\
@@ -456,7 +475,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
  \label{eq:wj-five-backward}
 \end{equation}
 
-递推时，右边的未来价值使用相应欧式或美式期权的节点价值。
+给欧式或美式期权定价时，右边分别代入相应的节点价值。只有下一期就是到期日时，才直接代入到期支付。
 \end{tcolorbox}
 对欧式期权，在 $t$ 期节点持有 $\theta_{S,t}$ 股股票和 $\theta_{B,t}$ 份下一期支付 $1$ 的债券。要求下一期组合价值分别等于 $V_{t+1}^{u}$、$V_{t+1}^{d}$，解得
 \[
@@ -522,7 +541,7 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
 
 \subsection{状态指数证券与市场完全化}
 \begin{tcolorbox}[knowledge,title=状态分离与状态指数证券]
-若证券在任意两个不同状态下的支付均不同，称其支付具有\textbf{状态分离}（state separating）性质，该证券称为\textbf{状态指数证券}（state-index security）。按支付大小排序，记为 $X_1<X_2<\cdots<X_\Omega$。
+若证券在任意两个不同状态下的支付均不同，就能根据它的到期支付辨认实现了哪个状态。这叫\textbf{状态分离}（state separating），具有这一性质的证券称为\textbf{状态指数证券}（state-index security）。以下按支付从低到高给状态编号，记为 $X_1<X_2<\cdots<X_\Omega$。这个顺序让不同执行价的看涨期权可以在不同状态开始产生支付。
 \end{tcolorbox}
 假设指数证券的支付非负，并且下述相同到期日、相应执行价的欧式看涨期权均可交易。以它为标的、执行价为 $X_\omega$ 的看涨支付为
 \[
@@ -556,16 +575,16 @@ $q\in(0,1)$，且 $qu+(1-q)d=R$。风险中性下股票的期望总收益率为 
  \end{bmatrix}.
 \]
 
-第一只\hyperref[def:wj-three-claim]{状态证券}可由
+记 $\mathbf e_i$ 为第 $i$ 个分量是 $1$、其余分量是 $0$ 的支付向量，即只在状态 $i$ 支付一单位的\hyperref[def:wj-three-claim]{阿罗证券}的支付。先用相邻执行价的看涨价差构造状态 $1$ 的支付
 \[
- C_0-2C_1+C_2
+ C_0-2C_1+C_2=(C_0-C_1)-(C_1-C_2)
  =[\delta,\delta,\ldots,\delta]^{\mathsf T}
   -[0,\delta,\ldots,\delta]^{\mathsf T}
  =\delta\mathbf e_1
 \]
-构造。一般地，中心执行价为 $i\delta$ 的蝴蝶组合只在状态 $i$ 支付 $\delta$，故
+因此，持有该蝴蝶组合的 $1/\delta$ 份即可复制 $\mathbf e_1$。一般地，中心执行价为 $i\delta$ 的蝴蝶组合只在状态 $i$ 支付 $\delta$，故
 \[
- \underbrace{\frac{C_{i-1}-2C_i+C_{i+1}}\delta}_{\text{单位阿罗证券的复制组合}}
+ \underbrace{\frac{C_{i-1}-2C_i+C_{i+1}}\delta}_{\text{复制组合的到期支付}}
  =\mathbf e_i.
 \]
 
@@ -610,12 +629,15 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
 对在状态 $i$ 支付 $y_i$ 的证券，价格可写为
 \[
  V(y)=\sum_i\phi_i y_i
- =\sum_i\frac{c(K_i-\delta)-2c(K_i)+c(K_i+\delta)}{\delta^2}\,y_i\delta.
+ =\sum_i\underbrace{\frac{c(K_i-\delta)-2c(K_i)+c(K_i+\delta)}{\delta^2}}_{\phi_i/\delta\ \text{（单位区间的状态价格）}}\,y_i
+         \underbrace{\delta}_{\text{区间宽度}}.
 \]
 
-这是由状态价格加权的和式，亦为连续密度定价的离散形式。
+这就把状态价格定价写成了用期权报价计算的和式。连续情形下，对应的是状态价格密度乘以支付的积分。
 
 \subsubsection{连续状态价格密度}
+在等间距构造中，中心执行价 $K_i=i\delta$ 等于指数证券在状态 $i$ 的到期支付 $X_i$。因此可以用这个到期值标记状态。连续情形下，$y(K)$ 表示当指数证券的到期支付为 $K$ 时，待定价证券的支付。
+
 \begin{tcolorbox}[knowledge,title=连续模型的条件]
 设状态指数证券的到期支付 $x>0$ 连续分布，状态价格具有连续密度 $\varphi(x)$，以下价格积分均绝对收敛。固定到期日，考察看涨价格 $c(K)$ 随执行价的变化。
 \end{tcolorbox}
@@ -624,13 +646,18 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
  c(K)=\int_K^\infty(x-K)\varphi(x)\,\mathrm dx.
 \]
 \begin{tcolorbox}[knowledge,title=状态价格密度与 Breeden--Litzenberger 公式,breakable=false]
-对 $K$ 求导：下限处的 $(x-K)$ 为零，所以
+提高执行价 $K$ 会缩小实值状态的范围，并降低这些状态的行权所得。对积分按 $K$ 求导时，移动下限产生的边界项在 $x=K$ 处为零，所以
 \[
- c'(K)=-\int_K^\infty\varphi(x)\,\mathrm dx,
- \qquad c''(K)=\varphi(K).
+ \begin{aligned}
+ c'(K)&=-\underbrace{(K-K)\varphi(K)}_{\text{移动下限的边界项}}
+         -\int_K^\infty\varphi(x)\,\mathrm dx
+        =-\int_K^\infty\varphi(x)\,\mathrm dx,\\
+ c''(K)&=-\frac{\mathrm d}{\mathrm dK}\int_K^\infty\varphi(x)\,\mathrm dx
+        =\varphi(K).
+ \end{aligned}
 \]
 
-一阶导数给出尾部状态价格的负值，二阶导数给出局部状态价格密度。因而，对依赖该状态指数的支付 $y(x)$，
+$-c'(K)$ 是一笔只在标的到期值超过 $K$ 时支付一单位的合约的价格。再求一次导数，就得到阈值 $K$ 附近每单位区间的状态价格密度。因而，对依赖该状态指数的支付 $y(x)$，
 \begin{equation}
  V(y)=\int_0^\infty c''(K)y(K)\,\mathrm dK.
  \label{eq:wj-five-bl}
@@ -646,7 +673,7 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
  B=\int_0^\infty c''(K)\,\mathrm dK=\frac1R.
 \]
 \begin{tcolorbox}[knowledge,title=风险中性密度与定价,breakable=false]
-规范化状态价格密度，得到风险中性概率密度
+将状态价格密度除以债券价格 $B$，使密度的积分等于 $1$，得到风险中性概率密度
 \begin{equation}
  \underbrace{c''(K)}_{\text{状态价格密度}}
  =\underbrace{Bq(K)}_{\text{折现的风险中性密度}},\qquad
@@ -655,6 +682,8 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
  \label{eq:wj-five-density}
 \end{equation}
 \end{tcolorbox}
+上式右端是 $Q$ 下的期望支付 $\mathrm E^Q[y(\tilde X)]$。单位债券到期支付 $1$，所以它也是到期价值按债券计价的期望。左端 $V(y)/B$ 是 0 期的债券计价，这与第~\ref{chap:wj-four} 章式~\eqref{eq:wj-four-10} 的两期关系一致。
+
 % 来源：教师 PPT 第 37 页。将隐含分布解释为风险中性分布，明确其与真实概率的口径。
 应用时，收集同一到期日、不同执行价的欧式看涨价格，拟合满足单调性和凸性的价格曲线，再求二阶导并乘以 $R$。所得 $q$ 描述价格隐含的风险中性权重，可用于比较尾部支付的估值以及为依赖该标的的支付定价。真实概率密度描述实际发生频率；定价密度还包含投资者对各状态消费的估值。
 
