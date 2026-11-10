@@ -63,10 +63,14 @@
  v_k(y_{k,0})=\phi^{\mathsf T}y_{k,1}(y_{k,0})-y_{k,0}.\label{eq:wj-15-2}
 \end{equation}
 
-第一项是未来产出的现值，第二项是当期投入。个人财富为
+第一项是未来产出的现值，第二项是当期投入。生产把当期可用资源减去投入、把未来各状态的可用资源加上产出。按状态价格折算，个人财富为
 \begin{equation}
- w_k=\underbrace{e_{k,0}+\phi^{\mathsf T}e_{k,1}}_{\text{原有禀赋的市场价值}}
- +\underbrace{v_k(y_{k,0})}_{\text{生产创造的净值}}.\label{eq:wj-15-3}
+ \begin{aligned}
+ w_k&=(e_{k,0}-y_{k,0})+\phi^{\mathsf T}\bigl[e_{k,1}+y_{k,1}(y_{k,0})\bigr]\\
+ &=\underbrace{e_{k,0}+\phi^{\mathsf T}e_{k,1}}_{\text{原有禀赋的市场价值}}
+ +\underbrace{v_k(y_{k,0})}_{\text{生产创造的净值}}.
+ \end{aligned}
+ \label{eq:wj-15-3}
 \end{equation}
 
 完全市场允许用证券交易实现按状态价格计价可负担的消费计划。因此，消费的现值至多等于禀赋现值加上生产净值 $w_k$。技术允许零投入，本节在各期、各状态消费都严格为正的计划中选择。
@@ -121,21 +125,25 @@
 
 \textbf{证明：}边际NPV的符号与 $v'(y_0)$ 相同。其为正时增加投资提高净值，为负时减少投资提高净值；严格凹性使导数为零处达到唯一最大值。这与式~\eqref{eq:wj-15-5} 一致。\hfill$\square$
 
-对支付为 $\widetilde Y_i$、投入为 $\delta_i$ 的项目，使用式~\eqref{eq:wj-10-16}（证券价格等于定价核与支付乘积的期望）中的定价核，
+对支付为 $\widetilde Y_i$、投入为 $\delta_i$ 的项目，记未来支付的市场现值为 $P_i=\mathrm E[\widetilde m\widetilde Y_i]$。沿用式~\eqref{eq:wj-10-18}（无风险折现与协方差调整），可将项目现值分解为
 \[
- P_i=\mathrm E[\widetilde m\widetilde Y_i],\qquad
- \operatorname{NPV}_i=P_i-\delta_i
- =\frac{\mathrm E[\widetilde Y_i]}{1+\mu_i}-\delta_i,
- \qquad 1+\mu_i=\frac{\mathrm E[\widetilde Y_i]}{P_i}.
+ P_i=\underbrace{\frac{\mathrm E[\widetilde Y_i]}{1+r_F}}_{\text{无风险折现值}}
+     +\underbrace{\operatorname{Cov}(\widetilde m,\widetilde Y_i)}_{\text{风险调整}}.
 \]
 
-对于非负且并非处处为零的项目支付，$P_i>0$ 且 $\mathrm E[\widetilde Y_i]>0$，可以定义上述风险调整折现率 $\mu_i$。由 $\mathrm E[m]=1/(1+r_F)$，还可写成
+当支付非负且以正概率为正时，$P_i>0$、$\mathrm E[\widetilde Y_i]>0$。以市场价格 $P_i$ 买入这笔未来支付，期望净收益率为 $\mu_i=\mathrm E[\widetilde Y_i/P_i-1]$，所以也可用 $\mu_i$ 折现期望支付：
+\[
+ \operatorname{NPV}_i=P_i-\delta_i
+ =\frac{\mathrm E[\widetilde Y_i]}{1+\mu_i}-\delta_i.
+\]
+
+从 $P_i$ 的分解中提出 $\mathrm E[\widetilde m]\mathrm E[\widetilde Y_i]$，再用 $\mathrm E[\widetilde m]=1/(1+r_F)$ 及 $1+\mu_i=\mathrm E[\widetilde Y_i]/P_i$，得到风险调整折现率
 \[
  1+\mu_i=\frac{1+r_F}
- {1+\operatorname{Cov}\!\left(m/\mathrm E[m],\widetilde Y_i/\mathrm E[\widetilde Y_i]\right)}.
+ {1+\operatorname{Cov}\!\left(\widetilde m/\mathrm E[\widetilde m],\widetilde Y_i/\mathrm E[\widetilde Y_i]\right)}.
 \]
 
-未来支付越集中在边际效用高的状态，保险价值越高，相应折现率越低。
+期望支付相同时，支付越集中在边际效用高的状态，协方差调整越大，市场现值越高，相应的折现率越低。
 
 \Needspace{14\baselineskip}
 \begin{tcolorbox}[example]
@@ -190,22 +198,42 @@
 
 产生矛盾，故均衡为帕累托最优。
 
-在内点均衡取 $\mu_k=1/u'_{k,0}(c_{k,0}^*)>0$。式~\eqref{eq:wj-15-6}（个人消费选择的内点一阶条件）使加权边际效用在每期、每个状态一致；生产的互补条件同时给出规划问题的生产条件：正投入时边际产出现值等于1，零投入时右边际产出现值不超过1。目标函数凹、资源可行集凸，故这些条件支持全局最优。
-
-按第~\ref{sec:wj-ten-3}~节的方法（在总消费约束下最大化个人效用的正权重加总），对给定总消费 $C_t$ 定义
+在内点均衡取 $\mu_k=1/\nu_k=1/u'_{k,0}(c_{k,0}^*)>0$。按第~\ref{sec:wj-ten-3}~节的方法，先在给定总消费 $C$ 时求最优分享：
 \[
- u_t(C_t)=\max_{\sum_kc_{k,t}=C_t}\sum_k\mu_ku_{k,t}(c_{k,t}).
+ u_t(C)=\max_{\substack{\sum_k c_k=C\\ c_k>0\;(\forall k)}}
+        \sum_k\mu_k u_{k,t}(c_k),\qquad t=0,1.
 \]
 
-包络条件给出 $u_0'(C_0^*)=1$、$\pi_\omega u_1'(C_{1\omega}^*)=\phi_\omega$，即
+每个人的消费还须落在相应效用函数的定义域内。未来期在每个状态分别求这个问题。式~\eqref{eq:wj-15-6} 给出 $\mu_k u'_{k,0}(c_{k,0}^*)=1$ 和 $\mu_k\pi_\omega u'_{k,1}(c_{k,1\omega}^*)=\phi_\omega$，所以均衡消费满足每一期、每一状态的最优分享条件。由包络条件，$u_0'(C_0^*)=1$、$\pi_\omega u_1'(C_{1\omega}^*)=\phi_\omega$，即
 \[
  \phi_\omega=\pi_\omega\frac{u_1'(C_{1\omega}^*)}{u_0'(C_0^*)}.
 \]
 
-代表性参与者再选择生产投入，使总资源在当前消费和未来产出之间最优分配。\hfill$\square$
+代表性参与者再选择投入和总消费：
+\[
+ \begin{aligned}
+ \max_{\{y_{k,0}\},\,C_0,\,C_1}\quad
+ &u_0(C_0)+\sum_\omega\pi_\omega u_1(C_{1\omega})\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ C_0&\le\sum_k e_{k,0}-\underbrace{\sum_k y_{k,0}}_{\text{当期总投入}},\\
+ C_{1\omega}&\le\sum_k e_{k,1\omega}
+           +\underbrace{\sum_k y_{k,1\omega}(y_{k,0})}_{\text{该状态的总产出}}
+           \quad(\forall\omega),\\
+ y_{k,0}&\ge0\quad(\forall k),\qquad C_0,C_{1\omega}>0\quad(\forall\omega).
+ \end{aligned}\right.
+ \end{aligned}
+\]
+
+资源约束允许有资源未使用，生产函数的凹性使可行集为凸集。效用严格递增，故最优时各资源约束均取等号，与式~\eqref{eq:wj-15-7} 的出清条件一致。将等号代入目标函数，对 $y_{k,0}$ 求导，得到
+\[
+ -u_0'(C_0)+\sum_\omega\pi_\omega u_1'(C_{1\omega})y'_{k,1\omega}(y_{k,0}).
+\]
+
+正投入时导数为零，除以 $u_0'(C_0)>0$ 就得到式~\eqref{eq:wj-15-5}。零投入时右导数不超过零，对应边际产出现值不超过 $1$。因此均衡投入和消费满足规划问题的最优条件。目标函数凹、可行集凸，这些条件支持全局最优。\hfill$\square$
 
 \section{公司的投资决策}\label{sec:wj-fifteen-2}
-设公司 $f$ 拥有生产函数 $y_{f,1}(y_{f,0})$，股东 $k$ 的持股比例为 $s_{k,f}\ge0$，且 $\sum_ks_{k,f}=1$。公司净值及股东财富为
+公司选择生产项目及投入规模，称为\textbf{资本预算决策}。设公司 $f$ 拥有生产函数 $y_{f,1}(y_{f,0})$，股东 $k$ 的持股比例为 $s_{k,f}\ge0$，且 $\sum_ks_{k,f}=1$。公司净值及股东财富为
 \[
  v_f=\phi^{\mathsf T}y_{f,1}(y_{f,0})-y_{f,0},\qquad
  w_k=e_{k,0}+\phi^{\mathsf T}e_{k,1}+\sum_fs_{k,f}v_f.
@@ -220,7 +248,7 @@
 
 \section{融资决策}\label{sec:wj-fifteen-3}
 \subsection{融资现金流与债股价值}
-设公司0期投资为 $y_0$，发行债权筹资 $d_0$，其余 $e_0=y_0-d_0$ 由原股东投入。未来产出分为债权支付 $d_1$ 和股权支付 $e_1$，满足 $y_1=d_1+e_1$。公平发行时，$d_0=\phi^{\mathsf T}d_1$。
+公司用哪些证券筹资、各筹多少，决定了公司的\textbf{资本结构}。设公司 0 期投资为 $y_0$，发行债权筹资 $d_0$，其余 $e_0=y_0-d_0$ 由原股东投入。未来产出分为债权支付 $d_1$ 和股权支付 $e_1$，满足 $y_1=d_1+e_1$。公平发行时，$d_0=\phi^{\mathsf T}d_1$。
 
 债权、股权及公司总资产价值分别为
 \[
@@ -242,10 +270,11 @@
 \WJFifteenTheorem{thm:wj-fifteen-4}（Modigliani--Miller）在完全、竞争且无摩擦的证券市场中，固定真实投资和未来总产出，公司的市场价值与融资方式无关。
 \end{tcolorbox}
 
-\textbf{证明：}任意公平定价的债股分割均满足 $D+E=\phi^{\mathsf T}y_1$，而股东净值为 $v=\phi^{\mathsf T}y_1-y_0$。给定 $y_0,y_1$ 和共同状态价格，两者均不随债权支付的选择改变。如果每一种融资安排对每个可行投资都使用同一状态价格、且不改变真实产出和可行投资集合，则各安排面对相同的净值函数，最大化净值的投资计划也相同。\hfill$\square$
+\textbf{证明：}先固定投资 $y_0$、产出 $y_1$ 和共同状态价格。任意公平定价的债股分割都满足 $D+E=\phi^{\mathsf T}y_1$，股东净值为 $v=\phi^{\mathsf T}y_1-y_0$。图~\ref{fig:wj-fifteen-2} 中，改变债务面值会改变债权与股权在各状态的支付，但两项逐状态加总仍是 $y_1$。
+
+再比较投资选择。若各种融资安排对每个可行投资都采用同一组状态价格，并具有相同的生产技术和可行投资集合，则每种安排都最大化同一个净值函数 $v(y_0)=\phi^{\mathsf T}y_1(y_0)-y_0$，因而得到相同的最优投资。\hfill$\square$
 
 融资将同一总支付分配给不同投资者，改变债权与股权各自的风险和收益。完全市场中的\hyperref[thm:wj-four-6]{线性定价}使这些支付分割具有相同的合计价值。
-图~\ref{fig:wj-fifteen-2} 给出普通债务与股权对公司总支付的分割。
 
 \WJInputFigure{15_债股分割}
 
@@ -263,7 +292,7 @@
 公司本身也是协调交易和信息的一种制度安排。公司治理、契约设计以及法律和监管环境，共同影响资源配置效率。这使公司财务从给定价格下的价值最大化，进一步延伸到合同和组织形式的选择。
 
 \WJChapterSummary
-\begin{tcolorbox}[summary,breakable=false]
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 完全市场使最优生产与消费选择分离；内点投资满足边际产出现值等于边际投入。
  \item NPV法则按市场价格衡量项目创造的净值，生产均衡在凹性条件下实现有效资源配置。
