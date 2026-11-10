@@ -39,14 +39,14 @@
 \section{经济环境}
 环境的两个关键维度是\textbf{时间与风险}：0 期交易和消费，1 期自然状态实现，再按该状态兑现支付。不同日期、不同状态的消费是不同的或有商品。
 \begin{tcolorbox}[knowledge,title=状态空间与概率,breakable=false]
-形式上可以用一棵状态树来表示上面描述的经济环境。用 $\omega$ 标识状态，假设总共有 $\Omega$ 个状态，那么表示所有状态可能性的集合 $\Omega$ 称为\textbf{状态空间}。记状态发生的概率为 $p(\omega)$，概率测度记为 $P=\{p_{\omega}, \omega\in\Omega\}$，其中 $p_\omega>0$、$\sum_\omega p_\omega=1$；零概率状态可从状态空间中删去。同一符号 $\Omega$ 在教材中兼指状态集合与状态数，须由上下文区分。
+\textbf{状态空间}是第 $1$ 期所有可能状态的集合。树的起点是尚未知道结果的第 $0$ 期，每条分支表示一种可能的未来情形，届时恰有一个状态实现。设共有 $\Omega$ 个状态，编号为 $\omega=1,\ldots,\Omega$。记状态 $\omega$ 的概率为 $p_\omega=p(\omega)$，全部状态的概率共同确定概率测度 $P$。本讲只列 $p_\omega>0$ 的状态，且 $\sum_\omega p_\omega=1$。沿用教材约定，$\omega\in\Omega$ 中的 $\Omega$ 指状态集合，$\omega=1,\ldots,\Omega$ 中的 $\Omega$ 指状态数。
 \end{tcolorbox}
 
 \begin{enumerate}
 \item 假设经济中只有一种不可储存的商品，且本模型没有参与者可选择的生产技术。因此不能直接把今天的商品储存到明天；证券交易转移的是对各日期、各状态资源的要求权，不改变给定状态下的总资源。
 \item 用事件树表示未来状态及其概率：
 \begin{center}
-\WJEventTree[left={$\Omega$},stem]{
+\WJEventTree[left={第 $0$ 期},stem]{
     \omega=1 \text{，概率为 }p_1,
     \omega=2 \text{，概率为 }p_2,
     \vdots,
@@ -97,7 +97,10 @@
 \end{tcolorbox}
 
 \subsubsection{信息}
-信息具备经济价值。参与者的信息可以分为两种类型：\textbf{公开信息}和\textbf{私有信息}。如果参与者仍然拥有私有信息，信息就是\textbf{不对称}的。信息不对称会导致很多问题，例如道德风险和逆向选择。但在本书中，将假设经济者对于经济，特别是其未来状态发生的可能性，拥有相同的信息。
+% 教材印刷第 10—11 页：信息的经济价值、逆向选择与道德风险。
+\textbf{公开信息}是所有参与者都能取得的信息，例如已公布的市场报价。\textbf{私有信息}只由一个人或一部分人掌握，例如某个参与者提前收到的收成预测。这类信息有经济价值，因为知道收成预测的人可以据此判断未来的支付，调整证券买卖和消费安排。
+
+当交易一方掌握另一方无法观察的相关信息时，就会出现\textbf{信息不对称}。在保险市场上，难以观察的风险类型可能引发逆向选择，难以观察的投保后行为可能引发道德风险，见第~\ref{sec:wj-three-insurance}~节。本讲采用共同信息的假设，用同一个概率测度 $P$ 描述所有人于 $0$ 期对未来状态的判断。
 \subsubsection{生产技术}
 指可以把商品转化为更多商品，或者把现在的商品转化为未来的商品。在本书中，假设所有参与者不拥有任何生产技术。
 
@@ -477,7 +480,12 @@ $f''(x)\le 0$ &
 
 \subsection{证券组合}
 \begin{tcolorbox}[knowledge,title=证券组合与市场组合,breakable=false]
-对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则\textbf{组合}由向量$\theta=\begin{bmatrix}\theta_1 \\ \theta_2 \\ \vdots \\ \theta_N\end{bmatrix}$ 定义；该组合在 1 期的支付向量为 $X\theta$。对每个参与者 $k$，记其交易前的\textbf{初始证券组合}为$\bar{\theta}_k=\begin{bmatrix}\bar{\theta}_{k,1} \\ \bar{\theta}_{k,2} \\ \vdots \\ \bar{\theta}_{k,N}\end{bmatrix}$，所有参与者初始证券组合之和称为\textbf{市场组合}（market portfolio）$\theta_M$，即
+对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则组合由向量 $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$ 表示。在状态 $\omega$，先用每份证券的支付乘以持有数量，再把各证券的支付加起来。对每个状态都做一次，就得到组合的支付向量 $X\theta$：
+    \[
+        (X\theta)_\omega=X_{\omega,\cdot}\theta
+        =\sum_{n=1}^N x_{\omega,n}\theta_n.
+    \]
+对每个参与者 $k$，记其交易前的\textbf{初始证券组合}为 $\bar\theta_k$。将所有参与者的初始持仓按证券分别相加，就得到\textbf{市场组合}（market portfolio）$\theta_M$：
     \[
         \theta_M=\sum_{k=1}^{K}\bar{\theta}_k,
     \]
@@ -501,7 +509,12 @@ $f''(x)\le 0$ &
  X=\begin{bmatrix}200&1\\50&1\end{bmatrix}.
 \]
 
-给定目标支付 $y=[y_a,y_b]^{\mathsf T}$，解 $X\theta=y$ 得
+给定目标支付 $y=[y_a,y_b]^{\mathsf T}$，复制要求好天气和坏天气下的支付分别等于 $y_a$、$y_b$：
+\[
+ 200\theta_{\rm stock}+\theta_{\rm bond}=y_a,\qquad
+ 50\theta_{\rm stock}+\theta_{\rm bond}=y_b.
+\]
+两式相减求出股票持有量，再代回坏天气的支付式求出债券持有量，得到
 \[
  \theta_{\rm stock}=\frac{y_a-y_b}{150},\qquad
  \theta_{\rm bond}=\frac{4y_b-y_a}{3}.
@@ -617,12 +630,16 @@ e_{k,1}=X\bar{\theta}_k
 
     其中 $S^{\mathsf T}\theta_k>0$ 表示净支出、减少当前消费，$S^{\mathsf T}\theta_k<0$ 表示净收入。在只有正价格债券时，买入债券对应储蓄，卖出债券对应借款；在一般证券组合中，$S^{\mathsf T}\theta_k$ 统一表示交易的净支出。
 \begin{tcolorbox}[knowledge,title=预算集,breakable=false]
-所有可达消费计划的集合称为\textbf{预算集}
+\textbf{预算集}是在给定禀赋、证券支付和价格后，能够通过交易实现的消费计划集合。要判断一个计划是否在预算集内，就看是否存在一组净购买量 $\theta_k$，既能在 $0$ 期付清交易支出，也能在 $1$ 期的每个状态兑现该计划的消费。
     \[
-        B(e_k,\{X,S\})=\Bigl\{c\ge 0\;\Big|\;
-        c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\;
-        c_{k,1}=e_{k,1}+X\theta_k,\;
-        \theta_k\in\mathrm{R}^{N}\Bigr\}.
+        B(e_k,\{X,S\})
+        =\biggl\{(c_0,c_1)\ge 0\;\bigg|\;
+        \exists\,\theta_k\in\mathrm{R}^{N}:
+        \begin{aligned}
+         c_0&=e_{k,0}-S^{\mathsf T}\theta_k,\\
+         c_1&=e_{k,1}+X\theta_k
+        \end{aligned}
+        \biggr\}.
     \]
 \end{tcolorbox}
 
