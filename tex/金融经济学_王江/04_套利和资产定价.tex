@@ -57,17 +57,19 @@
 
 \subsection{冗余证券与复制组合}
 \begin{tcolorbox}[knowledge,title=冗余证券]
-若证券 $j$ 的支付列 $x_j$ 可由其余证券的\textbf{复制组合}（replicating portfolio）线性表出，即存在固定组合 $\theta^*_{\setminus j}$ 使得
+记 $X_{\setminus j}$ 为从 $X$ 中删去第 $j$ 列后得到的矩阵，$\theta_{\setminus j}$ 为从持仓 $\theta$ 中删去第 $j$ 项后得到的向量。若存在一组固定持仓 $\theta^*_{\setminus j}$，使其余证券能够复制证券 $j$ 的支付列 $x_j$，
 \[
     x_j=X_{\setminus j}\theta^*_{\setminus j},
 \]
-则称 $j$ 为\textbf{支付意义上的冗余证券}。
+
+则称 $\theta^*_{\setminus j}$ 为\textbf{复制组合}（replicating portfolio），称 $j$ 为\textbf{支付意义上的冗余证券}。
 \end{tcolorbox}
 对任意原组合 $\theta$，
 \[
  X\theta=X_{\setminus j}\theta_{\setminus j}+\theta_jx_j
  =X_{\setminus j}(\theta_{\setminus j}+\theta_j\theta^*_{\setminus j}),
 \]
+
 其中 $\theta^*_{\setminus j}$ 是复制 $x_j$ 的固定配方。这说明删去冗余列不改变可达支付集合。若市场无摩擦且满足一价定律，还必须有
 \[
  S_j=S_{\setminus j}^{\mathsf T}\theta^*_{\setminus j},
@@ -86,36 +88,46 @@
 判断证券 $C$ 是否冗余，并说明其价格与 $A,B$ 的关系。
 \end{question}
 \begin{solution}
-$C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度；无套利价格必须满足 $S_C=2S_A+S_B$。例如原来持有 $aA+bB+cC$，可改为 $(a+2c)A+(b+c)B$，各状态支付与成本均相同。增加独立支付方向才会扩大市场可生成的支付空间。
+删去证券 $C$ 的支付列，只留下 $A,B$。用两份 $A$ 和一份 $B$ 复制 $C$，逐状态的计算为
+\[
+ X_{\setminus C}\theta^*_{\setminus C}
+ =\begin{bmatrix}10&0\\0&10\end{bmatrix}
+  \begin{bmatrix}2\\1\end{bmatrix}
+ =\begin{bmatrix}20\\10\end{bmatrix}=x_C.
+\]
+因此 $C=2A+B$，无套利价格满足 $S_C=2S_A+S_B$。例如原来持有 $aA+bB+cC$，可改为 $(a+2c)A+(b+c)B$，各状态支付与成本均相同。增加独立支付方向才会扩大市场可生成的支付空间。
 \end{solution}
 \end{tcolorbox}
 
 \subsection{证券市场的等价描述}
+上一小节用复制组合替换了一只冗余证券。删去冗余证券后，还可以用原证券的若干组合来描述同一个市场。例如，留下 $A,B$ 后，也可以改用 $A$ 和 $C=2A+B$，因为用 $C-2A$ 就能换回 $B$。
+
 \begin{tcolorbox}[knowledge,title=证券市场的等价基底,breakable=false]
-本小节删去冗余证券，将保留的证券只数仍记为 $N$。此时 $X$ 的各列线性无关，$\operatorname{rank}(X)=N\le\Omega$。任取 $N$ 个线性无关的组合向量 $\theta_1,\dots,\theta_N$，令 $H=[\theta_1,\cdots,\theta_N]$（$N\times N$ 可逆），则新支付矩阵 $X_\theta=XH$ 与原市场\textbf{等价}：原证券列空间不变，$X=X_\theta H^{-1}$，每只原证券都可由新组合复制。
+删去冗余证券后，设原支付矩阵 $X$ 有 $N$ 个独立列，原证券的 0 期价格向量为 $S$。用原证券构造 $N$ 个线性无关的组合 $h_1,\ldots,h_N$。每组持仓有 $N$ 个分量，按列排成 $N\times N$ 矩阵 $H=[h_1,\ldots,h_N]$，列线性无关使 $H$ 可逆。把这 $N$ 个组合当作新证券，就能以同样的成本实现原市场的每一种支付，反过来也成立。
 \end{tcolorbox}
 
-更一般地，原组合 $\theta$ 对应新组合 $H^{-1}\theta$，因为
+第 $j$ 只新证券由原证券按 $h_j$ 配出，支付为 $Xh_j$，组建成本为 $S^{\mathsf T}h_j$。按这个成本为新证券定价，得到新支付矩阵 $X_\theta=XH$ 和新价格向量 $S_\theta=H^{\mathsf T}S$。
+
+记 $\theta$ 为按原证券计的持仓，$\eta$ 为按新证券计的持仓。买入 $\eta_j$ 份新证券 $j$，相当于持有 $\eta_jh_j$ 的原证券。把各项相加，得到原持仓 $\theta=H\eta$。反过来，给定 $\theta$，也能唯一解出 $\eta=H^{-1}\theta$。代入这两个关系，
 \[
- X\theta=XH(H^{-1}\theta)=X_\theta(H^{-1}\theta).
+ \underbrace{X_\theta\eta=X(H\eta)=X\theta}_{\text{1 期各状态支付相同}},
+ \qquad
+ \underbrace{S_\theta^{\mathsf T}\eta=S^{\mathsf T}(H\eta)=S^{\mathsf T}\theta}_{\text{0 期成本相同}}.
 \]
 
-新证券的价格须同时变为 $S_\theta=H^{\mathsf T}S$，于是
+从支付矩阵看，$X_\theta=XH$ 表明新证券的支付由原证券生成，$X=X_\theta H^{-1}$ 则表明原证券的支付也由新证券生成。具体地，$H^{-1}$ 的第 $j$ 列就是用新证券复制第 $j$ 只原证券的持仓。因此两组证券张成同一个支付空间，维数也相同，
 \[
- S_\theta^{\mathsf T}H^{-1}\theta=S^{\mathsf T}\theta.
+ \operatorname{rank}(X_\theta)=\operatorname{rank}(X)=N.
 \]
 
-这一变换同时保持支付与成本，相当于更换支付空间的一组基。秩不变也可由 $X=XHH^{-1}$ 得到
-\[
- \mathrm{rank}(X)\le\mathrm{rank}(XH)\le\mathrm{rank}(X),
- \qquad\mathrm{rank}(XH)=N.
-\]
+这就是支付空间的换基。接下来考察这个空间何时能覆盖全部 $\Omega$ 个状态的支付方向。
 
 \subsection{生成与完全市场}\label{sec:wj-four-complete}
 对一般支付矩阵 $X\in\mathrm R^{\Omega\times N}$，记 $\mathbf{1}_\omega$ 为第 $\omega$ 分量为 1、其余为 0 的列向量（状态 $\omega$ \hyperref[def:wj-three-claim]{阿罗证券}的支付）。若 $\mathrm{rank}(X)=\Omega$ 且 $N\ge\Omega$，则对每一 $\omega$ 存在组合 $\theta_\omega$ 使 $X\theta_\omega=\mathbf{1}_\omega$。当 $X$ 为 $\Omega\times\Omega$ 可逆方阵时，解唯一：
 \[
     \theta_\omega=X^{-1}\mathbf{1}_\omega.
 \]
+
 此时证券支付\textbf{生成}（span）整个状态支付空间，市场与完全的阿罗证券市场具有相同的可达支付集合。
 
 \begin{tcolorbox}[knowledge]
@@ -171,21 +183,28 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
     \item $X\theta\ge 0$（1 期各状态支付非负）；
     \item 上述两式中\textbf{至少有一个严格不等式}成立（0 期严格收入或某状态严格正支付）。
 \end{enumerate}
-等价地，扩展支付向量 $\begin{bmatrix}-S^{\mathsf T}\theta \\ X\theta\end{bmatrix}$ 非负且至少一分量严格为正。
+把价格的负值行 $-S^{\mathsf T}$ 放在未来支付矩阵 $X$ 上方，得到扩展支付矩阵 $A$。它将持仓 $\theta$ 换算成扩展支付向量
+\[
+ A=\begin{bmatrix}-S^{\mathsf T}\\ X\end{bmatrix},
+ \qquad
+ A\theta=\begin{bmatrix}-S^{\mathsf T}\theta\\ X\theta\end{bmatrix}.
+\]
+向量的第一项是 0 期净收入，其余各项是 1 期各状态的净支付。等价地，套利要求 $A\theta\ge0$ 且 $A\theta\ne0$。
 \end{tcolorbox}
 
 \subsection{三类套利与融资方式}
 \begin{tcolorbox}[knowledge,title=三类套利,breakable=false]
-套利分为三类：
+按 0 期净收入和 1 期各状态支付，套利机会分为三类。
 \begin{itemize}
-    \item \textbf{第 1 类套利：}$S^{\mathsf T}\theta<0$ 且 $X\theta=0$——当期净收入为正、未来净支付为零；
-    \item \textbf{第 2 类套利：}$S^{\mathsf T}\theta=0$ 且 $X\theta>0$——\textbf{套利组合}（零成本、未来非负且非零支付）；
-    \item \textbf{第 3 类套利：}$S^{\mathsf T}\theta<0$ 且 $X\theta>0$——0 期收入为正且未来非负、非零。
+    \item \textbf{第 1 类套利}满足 $S^{\mathsf T}\theta<0$ 且 $X\theta=0$。0 期有净收入，1 期支付恒为零。\mbox{即“当期白捡钱”。}
+    \item \textbf{第 2 类套利}满足 $S^{\mathsf T}\theta=0$ 且 $X\theta>0$。0 期净成本为零，1 期各状态支付均非负，且至少有一个状态为正。即“空手套回报”。
+    \item \textbf{第 3 类套利}满足 $S^{\mathsf T}\theta<0$ 且 $X\theta>0$。0 期有净收入，1 期各状态支付均非负，且至少有一个状态为正。即“当期白捡钱，未来还有机会赚钱”。
 \end{itemize}
 \end{tcolorbox}
 
-初始成本为零时，买入恰由卖空收入融资；初始成本为负时，卖空收入支付买入成本后还有余额。这两种交易都由组合本身提供初始资金。
+教材把第 2 类中初始净成本为零的组合也称为\textbf{套利组合}（arbitrage portfolio）。初始净成本为零时，卖空收入恰好覆盖买入成本。初始净成本为负时，卖空收入覆盖买入成本后还有余额。三类套利都无需投入自己的初始资金，也没有负的未来净支付，这就是把套利比作“免费的午餐”的原因。
 
+\Needspace{10\baselineskip}
 \begin{tcolorbox}[example]
 \begin{question}
 \WJFourExample{ex:wj-four-1}三只证券的价格写在树的根上，支付写在各枝：
@@ -201,9 +220,14 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 \end{question}
 \begin{solution}
 
-组合 $\theta_1=[2;\,-1;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $B$ 和 $1$ 单位 $C$。$S^{\mathsf T}\theta_1=-1$，$X\theta_1=0$，为\textbf{第 1 类套利}。支付 $[2;2;2]$ 可由 $2$ 单位 $A$ 以成本 $2$ 复制，也可由 $1$ 单位 $B$ 加 $1$ 单位 $C$ 以成本 $3$ 复制——同支付不同价。
+组合 $\theta_1=[2;\,-1;\,-1]$ 买入 $2$ 单位证券 $A$，卖出 $B,C$ 各 $1$ 单位。组合 $\theta_2=[2;\,0;\,-1]$ 买入 $2$ 单位证券 $A$，卖出 $1$ 单位 $C$。用定义~\ref{def:wj-four-1} 的扩展支付矩阵计算，
+\[
+ A\theta_1=\begin{bmatrix}1\\0\\0\\0\end{bmatrix},
+ \qquad
+ A\theta_2=\begin{bmatrix}0\\0\\2\\2\end{bmatrix}.
+\]
 
-组合 $\theta_2=[2;\,0;\,-1]$：买入 $2$ 单位 $A$、卖出 $1$ 单位 $C$。$S^{\mathsf T}\theta_2=0$，$X\theta_2=[0;\,2;\,2]>0$，为\textbf{第 2 类套利}。
+读每列的第一项可知，$\theta_1$ 当期净收入为 $1$，$\theta_2$ 当期净收入为零。其余三项是未来支付，因此 $\theta_1$ 是第 1 类套利，$\theta_2$ 是第 2 类套利。第 1 类套利来自相同支付的价格差异。支付 $[2;2;2]$ 可由 $2$ 单位证券 $A$ 以成本 $2$ 复制，也可由 $B,C$ 各 $1$ 单位以成本 $3$ 复制。
 \end{solution}
 \end{tcolorbox}
 
@@ -221,11 +245,11 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 % 来源：教材第 54 页、教师 PPT 第 15—20 页。以一次消费改进证明最优性矛盾。
 \textbf{证明。}反设均衡价格下存在套利 $\theta$。给任一参与者原有证券头寸再加上 $\theta$，同时把初始净收入用于 0 期消费，消费可由 $c_k$ 提高为
 \[
- c'_k=c_k+\begin{bmatrix}-S^{\mathsf T}\theta\\X\theta\end{bmatrix}
+ c'_k=c_k+A\theta
  \ge c_k,\qquad c'_k\ne c_k.
 \]
 
-增加的消费非负且非零。取满足定理单调性条件的参与者，便有 $U_k(c'_k)>U_k(c_k)$，与其均衡消费最优矛盾。
+这里 $A\theta$ 是定义~\ref{def:wj-four-1} 中的扩展支付向量，恰好给出两个时期的消费增量。取满足定理单调性条件的参与者，便有 $U_k(c'_k)>U_k(c_k)$，与其均衡消费最优矛盾。
 
 \subsection{价格约束与市场均衡}
 市场均衡同时要求个人最优与市场出清，无套利是其中的必要条件。信息有效性考察价格对信息的反映程度，本章的无套利条件则直接比较逐状态支付与价格。无摩擦描述买卖与融资的交易条件，无套利约束给定支付下的证券价格。例如，例~\ref{ex:wj-four-1} 的市场允许自由交易，但其报价产生套利。
@@ -239,50 +263,75 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
 % PPT 第 19 页的中点报价是调整示意，均衡价格并非由两地初始报价唯一确定。
 
 \section{资产定价基本原理}\label{sec:wj-four-pricing}
+给定各只证券在不同状态下的支付，什么样的报价能排除套利？我们先从一笔可复制的支付入手，看看它的价格如何确定。
+
 \subsection{定价算子与一价定律}
+给定一笔可复制的未来支付 $x$，自然会想到用复制组合的当期成本给它定价。同一笔支付有时可以用不同的组合复制，这些组合的成本会一样吗？
+
+% 教材印刷第 56—57 页及手写批注、教师 PPT 第 21 页：由未来支付映射到当期价格。
 % 原书式 (4.1) 用标量 S 表示单只证券价格，此处用 s 与价格向量 S 区分。
 \begin{tcolorbox}[knowledge,title=定价算子,breakable=false]
-资产定价关系是从支付 $x$ 到价格的映射。记\textbf{定价算子}（估值算子）为 $V$，支付 $x$ 的标量价格为 $s$：
+\textbf{定价算子}（估值算子）$V$ 把一笔可复制的未来支付 $x$ 映射为它的 0 期价格 $s$，即
 \begin{equation}
     s=V(x).
  \label{eq:wj-four-1}
 \end{equation}
 \end{tcolorbox}
 
-在\textbf{可达支付空间} $\mathcal M=\{X\theta:\theta\in\mathrm R^N\}$ 上定义 $V(X\theta)=S^{\mathsf T}\theta$。若同一支付的不同复制组合成本不同，这个映射就没有唯一的值；一价定律正是保证它定义良好的条件。第 $n$ 只证券的价格即 $S_n=V(X_n)$。无套利使该算子具有线性和正性。
+$x$ 列出各个未来状态下的支付金额，$s$ 则是为整笔支付给出的当期价格。由现有证券的组合所能实现的支付构成\textbf{可达支付空间}
+\[
+ \mathcal M=\{X\theta:\theta\in\mathrm R^N\}.
+\]
+
+若 $x=X\theta$，则 $S^{\mathsf T}\theta$ 是组合 $\theta$ 复制支付 $x$ 的当期成本。用复制成本定义 $V(x)$ 的前提是，所有复制 $x$ 的组合成本都相同。
+
+例~\ref{ex:wj-four-1} 中，两份证券 $A$ 与证券 $B,C$ 各一份都产生支付 $(2,2,2)^{\mathsf T}$，当期成本却分别为 $2$ 和 $3$。在这组报价下，同一笔支付的复制成本会随所选组合而变。
 
 \begin{tcolorbox}[knowledge]
-\WJFourTheorem{thm:wj-four-3}\textbf{（一价定律）}无套利时，相同支付具有相同价格：
+\WJFourTheorem{thm:wj-four-3}\textbf{（一价定律）}在无套利市场中，具有相同支付的两个证券（或证券组合）的价格相同。即
 \begin{equation}
     x=y\implies V(x)=V(y).
  \label{eq:wj-four-2}
 \end{equation}
+
+这里的支付相同，是指 1 期每个状态的支付都相同。若两笔支付分别由组合 $\theta$ 和 $\eta$ 复制，那么 $X\theta=X\eta$ 时，两种复制方式的 0 期成本也相同，即 $S^{\mathsf T}\theta=S^{\mathsf T}\eta$。
 \end{tcolorbox}
 
-\textbf{证明。}若 $x=y$ 却 $V(x)>V(y)$，卖出 $x$、买入 $y$，未来净支付为零而初始净收入为正，构成第 1 类套利。因此，同支付同价格排除了第 1 类套利，并给出 $V(0)=0$。对非负、非零支付的价格约束由下面的正性条件给出。
+\textbf{证明。}若 $X\theta=X\eta$ 却 $S^{\mathsf T}\theta>S^{\mathsf T}\eta$，就卖出昂贵的组合 $\theta$，买入便宜的组合 $\eta$。两边的未来支付在每个状态都恰好抵消，当期却赚取了价差，构成第 1 类套利。成本差反向时，交换买卖即可。
+
+因此，在无套利市场中，\textbf{为一笔可达支付定价，只要找到一种复制方式就够了}。可以定义 $V(X\theta)=S^{\mathsf T}\theta$，因为换用另一种复制方式会得到同一个价格。第 $n$ 只证券本身就能实现其支付 $X_n$，所以 $V(X_n)=S_n$。零持仓以零成本实现零支付，所以 $V(0)=0$。
+
+若一笔支付在每个状态都不低于另一笔，它的价格也至少一样高吗？这就要考察定价算子的单调性。
 
 \subsection{正性、单调性与线性}
+先把其中一笔取为零支付。它的价格为零，另一笔如果在各状态下都不低于零、且至少在一个状态下有正支付，价格就必须严格为正。然后再比较任意两笔可达支付。
+
 \begin{tcolorbox}[knowledge]
-\WJFourTheorem{thm:wj-four-4}无套利时，非负、非零支付的证券价格严格为正：
+\WJFourTheorem{thm:wj-four-4}\textbf{正性：}无套利时，非负、非零支付的证券价格严格为正：
 \begin{equation}
     x>0\implies V(x)>0.
  \label{eq:wj-four-3}
 \end{equation}
-
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge]
-\WJFourTheorem{thm:wj-four-5}无套利时，定价算子 $V$ 递增：
+\WJFourTheorem{thm:wj-four-5}\textbf{单调性：}无套利时，定价算子 $V$ 递增：
 \begin{equation}
     x_1\ge x_2\implies V(x_1)\ge V(x_2).
  \label{eq:wj-four-4}
 \end{equation}
+
+两笔可达支付中，若第一笔在每个状态下的支付都不低于第二笔，那么第一笔的当期价格也不低于第二笔。
 \end{tcolorbox}
 
-若 $x>0$ 而 $V(x)\le0$，买入它即为第 2 或第 3 类套利，故必须 $V(x)>0$。若 $x_1\ge x_2$ 却 $V(x_1)<V(x_2)$，买入 $x_1$、卖出 $x_2$，初始净收入为正且未来支付非负，也构成套利。当 $x_1-x_2>0$ 时还有严格结论 $V(x_1)>V(x_2)$。
+\textbf{正性与单调性的证明。}若 $x>0$ 而 $V(x)\le0$，买入它即为第 2 或第 3 类套利，故必须 $V(x)>0$。
+
+若 $x_1\ge x_2$ 却 $V(x_1)<V(x_2)$，买入 $x_1$、卖出 $x_2$，当期赚取价差，未来各状态的净支付也都非负，构成套利。若 $x_1-x_2>0$，两笔支付价格相等也会构成第 2 类套利，因为同一笔交易的当期净成本为零，未来至少在一个状态下有正支付。因此，这时有 $V(x_1)>V(x_2)$。
+
+单调性比较两笔支付的价格。若把几笔支付按比例组合起来，又该如何定价？一价定律让我们可以直接用组成这笔新支付的组合成本来回答。
 
 \begin{tcolorbox}[knowledge]
-\WJFourTheorem{thm:wj-four-6}无摩擦且无套利市场中，可达支付上的定价算子是递增的线性算子：对任意 $a,b\in\mathrm{R}$ 以及支付 $x$、$y$，
+\WJFourTheorem{thm:wj-four-6}\textbf{线性：}无摩擦且无套利市场中，可达支付上的定价算子是递增的线性算子：对任意 $a,b\in\mathrm{R}$ 以及支付 $x$、$y$，
 \begin{equation}
     V(ax+by)=aV(x)+bV(y).
  \label{eq:wj-four-5}
@@ -298,66 +347,139 @@ $C=2A+B$，故第三列虽不同于前两列，却没有增加独立支付维度
  V(x)=v^{\mathsf T}a=\phi^{\mathsf T}Ba=\phi^{\mathsf T}x.
 \]
 
-这一表示把线性定价写成状态支付的加权和。下一定理进一步给出可选取严格正权重的充要条件。
+% 教材印刷第 57 页及教师 PPT 第 22 页：与 Arrow--Debreu 市场的状态价格公式对照。
+这个加权和与第~\ref{sec:wj-three-prices}~节的定价公式形式相同。在 Arrow--Debreu 市场，$\phi_\omega$ 就是\hyperref[def:wj-three-claim]{状态 $\omega$ 的阿罗证券}的价格，这只证券只在状态 $\omega$ 支付一单位。一般证券市场中，若有些阿罗证券既不直接交易，也无法由现有证券复制，就不能逐个用复制成本确定这些权重。无套利能否保证我们仍能找到一组严格为正的状态价格，同时解释所有交易证券的报价？
 
+\Needspace{9\baselineskip}
 \subsection{资产定价基本定理与 Stiemke 引理}
+% 教材印刷第 57—58 页及手写批注、教师 PPT 第 22—23 页：强调同一组状态价格为所有交易证券定价。
 \begin{tcolorbox}[knowledge]
-\WJFourTheorem{thm:wj-four-7}\textbf{（资产定价基本定理）}市场不存在套利机会，当且仅当存在 $\phi\gg 0$，使得每只可交易证券的价格都是
+\WJFourTheorem{thm:wj-four-7}\textbf{（资产定价基本定理）}市场\textbf{无套利}，当且仅当存在一组严格为正的状态价格 $\phi\gg0$，能同时给所有交易证券定价，即 0 期价格向量 $S$ 满足
 \begin{equation}
-    S=X^{\mathsf T}\phi.
+    S=X^{\mathsf T}\phi
+    =[X_{\cdot,1},\,\ldots,\,X_{\cdot,n},\,\ldots,\,X_{\cdot,N}]^{\mathsf T}\phi
+    =\begin{bmatrix}
+        X_{\cdot,1}^{\mathsf T}\\
+        \vdots\\
+        X_{\cdot,n}^{\mathsf T}\\
+        \vdots\\
+        X_{\cdot,N}^{\mathsf T}
+    \end{bmatrix}\phi.
  \label{eq:wj-four-6}
 \end{equation}
+
+状态价格 $\phi_\omega$ 是只在状态 $\omega$ 支付一单位的 0 期价值。支付矩阵 $X$ 的每一列对应一只交易证券。例如，$X_{\cdot,1}$ 是证券 $1$ 在各状态的支付列向量。
+
+证券 $n$ 在状态 $\omega$ 支付 $x_{\omega,n}$ 单位，按每单位 $\phi_\omega$ 计价，这笔支付的现值是 $x_{\omega,n}\phi_\omega$。加总各状态的现值，得到证券 $n$ 的价格 $S_n=\sum_{\omega=1}^{\Omega}x_{\omega,n}\phi_\omega=X_{\cdot,n}^{\mathsf T}\phi$。
+
+$X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同一个 $\phi$ 与 $X^{\mathsf T}$ 的各行相乘，就依次得到全部 $N$ 只证券的价格，组成列向量 $S=(S_1,\ldots,S_N)^{\mathsf T}$。
 % 教材式 (4.6) 写作 S=(phi^T X)^T，与本式等价。
 \end{tcolorbox}
 
+如果能找到满足式~\eqref{eq:wj-four-6} 的严格正状态价格 $\phi$（各未来状态的单位支付现值），一笔未来净支付非负且至少在一个状态下为正的组合就必须付出正成本。反过来，要从无套利推出 $\phi$ 的存在，可以先用 Stiemke 引理得到严格正的权重向量 $y$（$y_0$ 给 0 期净收入加权，$y_1$ 给 1 期各状态的净支付加权），再取 $\phi=y_1/y_0$。
+
+% 在跨页框外缓存图面，避免将框内的 XeTeX 颜色栈指令带入缓存 PDF。
+\newsavebox{\WJStiemkeFigure}
+\sbox{\WJStiemkeFigure}{\WJInputFigure{04_Stiemke引理}}
+
+% 教材引理 4.1（第 57—58 页）的扩展矩阵形式；一般引理证明见教材附录 F。
 \begin{tcolorbox}[knowledge]
 \WJFourLemma{lem:wj-four-stiemke}\textbf{（Stiemke 引理）}设 $m,n$ 为正整数，$A\in\mathrm R^{m\times n}$，以下两种情况恰有一种成立：
 \begin{enumerate}
- \item 存在 $\theta\in\mathrm R^n$，使 $A\theta\ge0$ 且 $A\theta\ne0$；
- \item 存在 $y\in\mathrm R^m$，使 $y\gg0$ 且 $A^{\mathsf T}y=0$。
+ \item \textbf{存在非负且非零的输出向量。}存在 $\theta\in\mathrm R^n$，使 $A\theta\ge0$ 且 $A\theta\ne0$。
+ \item \textbf{存在统一的严格正权重。}存在 $y\in\mathrm R^m$，使 $y\gg0$ 且 $A^{\mathsf T}y=0$。因此对任意 $\theta$，都有 $y^{\mathsf T}A\theta=0$。
 \end{enumerate}
-\end{tcolorbox}
-% 教材引理 4.1（第 57—58 页）的扩展矩阵形式；一般引理证明见教材附录 F。
-\textbf{引理的证明。}若两种情况同时成立，则 $y^{\mathsf T}A\theta$ 既严格为正又等于零，故两者相互排斥。
 
-若第一种情况不成立，令 $L=\operatorname{Im}(A)$，并取单位单纯形
+将引理用于套利问题时，沿用定义~\ref{def:wj-four-1} 中的扩展支付矩阵及对应的现金流向量。
+\[
+ A=\begin{bmatrix}-S^{\mathsf T}\\ X\end{bmatrix},
+ \qquad
+ A\theta=\begin{bmatrix}-S^{\mathsf T}\theta\\ X\theta\end{bmatrix}.
+\]
+
+对这个 $A$，向量 $A\theta$ 的第一项是 0 期净收入，其余各项是 1 期各状态的净支付。情形（1）就是存在套利组合：任何一项都没有净支出，至少一项有净收入。
+
+市场无套利时，情形（2）保证所有组合可以用同一组正权重计价。0 期买入成本和未来各状态的支付按各自权重计值后，恰好相抵。把 0 期权重归一为 $1$，未来各状态的权重就是状态价格。
+\tcbline
+\textbf{证明。}两种情况互相排斥。
+
+若 $A\theta$ 非负且非零，按严格为正的 $y$ 加权，$y^{\mathsf T}A\theta$ 必定大于零。但 $A^{\mathsf T}y=0$ 会使这个加权和等于零。
+
+令 $L=\operatorname{Im}(A)$，它收集所有能够写成 $A\theta$ 的向量。若 $L$ 中有一个非负且非零的向量，把它除以各分量之和，就得到单位单纯形中的一个点
 \[
  K=\{z\in\mathrm R^m:z\ge0,\ \mathbf1^{\mathsf T}z=1\}.
 \]
 
-此时 $L\cap K=\varnothing$。$K$ 紧且 $L$ 为闭子空间，二者的最短距离在某对 $z^*\in K$、$\ell^*\in L$ 处取得，且距离严格为正。令 $y=z^*-\ell^*$。由正交投影性质，$y\perp L$，所以 $A^{\mathsf T}y=0$。对每个 $z\in K$，沿 $z^*+t(z-z^*)$ 作小幅调整仍在 $K$ 内；距离最小的一阶条件给出
+缩放后的点仍属于子空间 $L$。反过来，$L\cap K$ 中的点本身就是 $L$ 中非负且非零的向量。因此，情形（1）不成立等价于 $L\cap K=\varnothing$。$K$ 紧且 $L$ 为闭子空间，二者在某对最近点 $z^*\in K$、$\ell^*\in L$ 处取得严格为正的距离。
+
+图~\ref{fig:wj-stiemke-separation} 给出一个二维示例。灰色虚线经过 $z^*$ 且平行于 $L$，$K$ 整体位于虚线上或箭头 $y$ 指向的一侧。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\usebox{\WJStiemkeFigure}%
+\WJFigure{fig:wj-stiemke-separation}{由 $L$ 与 $K$ 的最近点构造权重向量}
+\end{minipage}
+\end{center}
+
+取从 $\ell^*$ 指向 $z^*$ 的向量 $y=z^*-\ell^*$。由于 $\ell^*$ 是 $z^*$ 在 $L$ 上的正交投影，$y$ 与 $L$ 垂直，所以 $A^{\mathsf T}y=0$。对任意 $z\in K$，沿 $z^*+t(z-z^*)$ 向 $z$ 移动仍在 $K$ 内。到 $\ell^*$ 的距离平方在 $t=0$ 处最小，因此右导数 $2y^{\mathsf T}(z-z^*)$ 非负。由此得到
 \[
  y^{\mathsf T}(z-z^*)\ge0,
- \qquad y^{\mathsf T}z\ge y^{\mathsf T}z^*=\|y\|^2>0.
+ \qquad y^{\mathsf T}z\ge y^{\mathsf T}z^*
+ =y^{\mathsf T}(\ell^*+y)=\|y\|^2>0.
 \]
 
-依次取 $z$ 为各单位向量，得到 $y_i\ge\|y\|^2>0$，即 $y\gg0$。第二种情况成立，引理得证。
+每个单位向量都在 $K$ 里。依次取 $z$ 为各单位向量，上式左端分别给出 $y$ 的各分量，所以 $y_i\ge\|y\|^2>0$。至此得到情形（2）。
 % 上述为教材附录分离结论的有限维几何展开：分离支付子空间与非负单位单纯形。
+\end{tcolorbox}
 
-\textbf{资产定价基本定理的证明。}将引理~\ref{lem:wj-four-stiemke}（Stiemke 引理）用于包含当期现金流的扩展支付矩阵，分别证明两个方向。
+\textbf{资产定价基本定理的证明。}
 
-\textbf{（严格正的定价向量 $\Rightarrow$ 无套利）}若 $S=X^{\mathsf T}\phi$、$\phi\gg0$，则任意组合满足
+\textbf{（存在严格为正的状态价格 $\Rightarrow$ 无套利）}若存在一组严格为正的状态价格 $\phi\gg0$，满足式~\eqref{eq:wj-four-6}（$S=X^{\mathsf T}\phi$），则任意组合 $\theta$ 都满足
 \[
- S^{\mathsf T}\theta=\phi^{\mathsf T}X\theta.
+ \underbrace{S^{\mathsf T}\theta}_{\text{0 期组合成本}}
+ =(X^{\mathsf T}\phi)^{\mathsf T}\theta
+ =\phi^{\mathsf T}X\theta
+ =\underbrace{\sum_{\omega=1}^{\Omega}\phi_\omega(X\theta)_\omega}
+ _{\text{未来净支付的现值}}.
 \]
 
-当 $X\theta=0$ 时成本为零；当 $X\theta\ge0$ 且 $X\theta\ne0$ 时，右端严格为正，成本也严格为正。这分别排除第 1 类和第 2、3 类套利。
+若未来支付全为零，上式给出的当期成本也为零，排除第 1 类套利。若未来支付非负且至少一个状态有正支付，由于每个 $\phi_\omega>0$，右边各项都非负，且至少一项严格为正。因此组合当期必须付出正成本，排除第 2、3 类套利。
 
-\textbf{（无套利 $\Rightarrow$ 严格正的定价向量）}令
+\textbf{（无套利 $\Rightarrow$ 存在严格为正的状态价格）}设市场 \textbf{无套利}。按定义~\ref{def:wj-four-1}（套利机会），将 0 期净收入与 1 期各状态的净支付合在一起，得到
 \[
- A=\begin{bmatrix}-S^{\mathsf T}\\X\end{bmatrix}
- \in\mathrm R^{(1+\Omega)\times N}.
+ A=\begin{bmatrix}-S^{\mathsf T}\\ X\end{bmatrix},
+ \qquad
+ A\theta=\begin{bmatrix}
+ -S^{\mathsf T}\theta\\ X\theta
+ \end{bmatrix}.
 \]
 
-$A\theta$ 正是组合的扩展净现金流。无套利排除引理的第一种情况，故存在 $y\gg0$ 使 $A^{\mathsf T}y=0$。将其分为 $y=(y_0,y_1^{\mathsf T})^{\mathsf T}$，其中 $y_0>0$、$y_1\gg0$，则
+其中 $-S^{\mathsf T}\theta$ 是 0 期净收入，所以 $A\theta\ge0$ 就是要求当期净收入和未来各状态的净支付都非负。在此基础上，$A\theta\ne0$ 要求至少有一项严格为正。存在这样的持仓 $\theta$，恰好就是存在套利。
+
+因此，无套利条件可写为
 \[
- -y_0S+X^{\mathsf T}y_1=0.
+ \text{市场无套利}
+ \quad\Longleftrightarrow\quad
+ \nexists\,\theta\in\mathrm R^N\ \text{使得}\ A\theta\ge0\ \text{且}\ A\theta\ne0 \text{（即不存在持仓 $\theta$ 使 $A\theta>0$）}.
 \]
 
-取 $\phi=y_1/y_0\gg0$，便有 $S=X^{\mathsf T}\phi$，必要性得证。
+在引理~\ref{lem:wj-four-stiemke}（Stiemke 引理）中，取 $m=1+\Omega$、$n=N$，矩阵就取上面的扩展支付矩阵 $A$。它有一行当期净收入、$\Omega$ 行未来各状态的净支付，每一列对应一只证券。引理的情形（1）要求存在这样的持仓 $\theta$，上式中的无套利条件恰好排除了它。两种情形恰有一种成立，因此情形（2）成立，存在 $y\in\mathrm R^{1+\Omega}$，使 $y\gg0$ 且 $A^{\mathsf T}y=0$。
 
-无套利要求所有证券共享同一支严格正的定价向量。市场不完全时，这样的向量可以有多支；每一支都为已有证券给出相同的价格。
+对每个持仓 $\theta$，都有 $y^{\mathsf T}A\theta=(A^{\mathsf T}y)^{\mathsf T}\theta=0$。因此同一组 $y$ 可用于所有组合，使当期与未来的净现金流在加权后恰好相抵。
 
+将 $y$ 写成当期权重 $y_0>0$ 和未来各状态的权重向量 $y_1\gg0$，展开矩阵等式，得到
+\[
+ 0=A^{\mathsf T}y
+ =\begin{bmatrix}-S & X^{\mathsf T}\end{bmatrix}
+ \begin{bmatrix}y_0\\ y_1\end{bmatrix}
+ =-y_0S+X^{\mathsf T}y_1.
+\]
+
+移项得 $y_0S=X^{\mathsf T}y_1$。两边除以 $y_0$，就把当期权重归一为 $1$。令 $\phi=y_1/y_0$，则 $S=X^{\mathsf T}\phi$。由于 $y_0>0$ 且 $y_1$ 的各分量都严格为正，所以 $\phi\gg0$。这就得到一组满足式~\eqref{eq:wj-four-6} 的严格为正的状态价格。
+
+每只证券的报价都对 $\phi$ 加上一条约束。检验市场是否无套利，就是看这些约束能否被同一个严格正向量同时满足。市场不完全时，满足所有约束的向量可以有多个。
+
+\Needspace{5\baselineskip}
 \begin{tcolorbox}[example]
 \begin{question}
 \WJFourExample{ex:wj-four-2}市场依次加入例~\ref{ex:wj-four-1} 的证券 $A$、$B$、$C$。求每一步能为全部已有证券定价的严格正向量集合，并判断是否存在套利。
@@ -385,11 +507,13 @@ $A\theta$ 正是组合的扩展净现金流。无套利排除引理的第一种�
     \Phi_C=\{\phi\gg 0:\phi_1=1\}.
 \]
 
-三者的交集是空集。不存在能为所有证券定价的 $\phi\gg 0$，与例~\ref{ex:wj-four-1} 中构造的套利一致。
+三者的交集是空集：$A,B$ 的报价要求 $\phi_1=\tfrac12$，$C$ 的报价却要求 $\phi_1=1$。这正是例~\ref{ex:wj-four-1} 中的价格冲突：两份 $A$ 与各一份 $B,C$ 的支付相同，报价分别为 $2$ 和 $3$。
 \end{solution}
 \end{tcolorbox}
 
 \subsection{完全市场中的唯一性}
+例~\ref{ex:wj-four-2} 中，只有证券 $A,B$ 时，任何组合在状态 2 和状态 3 的支付都相同。对这两个状态，报价只确定了价格之和 $\phi_2+\phi_3$。同一笔可达支付的价格仍由一价定律确定。若能分别复制这两个状态的阿罗证券，就能用各自的复制成本确定 $\phi_2$ 和 $\phi_3$。完全市场对每个状态都能做到这一点。
+
 \begin{tcolorbox}[knowledge]
 \WJFourTheorem{thm:wj-four-8}无套利的完全市场上，状态价格向量唯一。
 \end{tcolorbox}
@@ -398,24 +522,27 @@ $A\theta$ 正是组合的扩展净现金流。无套利排除引理的第一种�
 
 \section{风险中性定价和鞅}\label{sec:wj-four-risk-neutral}
 \subsection{无风险利率与贴现}
-设可交易证券中有一只无风险债券，1 期支付为 $\iota=[1,\ldots,1]^{\mathsf T}$，价格为 $S_1$。由定理~\ref{thm:wj-four-7}（资产定价基本定理），存在 $\phi\gg 0$ 使
-\[
-    S_1=\phi^{\mathsf T}\iota=\sum_{\omega=1}^{\Omega}\phi_{\omega}.
-\]
+% 教材印刷第 59—60 页、教师 PPT 第 25—27 页：同一笔确定支付的两种定价写法。
+沿用前文的记号，$S_n$ 表示第 $n$ 只证券的 0 期价格。本节将一只无风险债券编号为 $1$，其 0 期价格为 $S_1$。该债券在 1 期的每个状态都支付 $1$ 单位，故其支付向量为 $\iota=[1,\ldots,1]^{\mathsf T}$。
+
+若市场无套利，由定理~\ref{thm:wj-four-7}（资产定价基本定理），存在一组严格为正的状态价格 $\phi$，能为所有交易证券定价。用这组状态价格给债券定价，得到 $S_1=\phi^{\mathsf T}\iota>0$。
+
 \begin{tcolorbox}[knowledge,title=无风险利率与折现因子,breakable=false]
-$1$ 单位债券投资的净收益率称为\textbf{无风险利率} $r_F$：
+买入一份 1 号债券，0 期支付 $S_1$，1 期确定收到 $1$ 单位。将净收益 $1-S_1$ 除以买入成本 $S_1$，得到\textbf{无风险利率} $r_F$
 \[
-    S_1(1+r_F)=1,\qquad r_F=\frac{1-S_1}{S_1}.
+    r_F=\frac{1-S_1}{S_1},\qquad S_1(1+r_F)=1.
 \]
 
-因而
+同一笔确定支付既可以按状态价格逐项加总，也可以按无风险利率折现。两种写法给出同一个债券价格
 \begin{equation}
-    \frac{1}{1+r_F}=\sum_{\omega=1}^{\Omega}\phi_{\omega}.
+    S_1=\phi^{\mathsf T}\iota
+       =\sum_{\omega=1}^{\Omega}\phi_{\omega}
+       =\frac{1}{1+r_F}.
  \label{eq:wj-four-7}
 \end{equation}
 \end{tcolorbox}
 
-用一单位当期消费品买入无风险债券，到期可确定获得 $1+r_F$ 单位消费品。反过来，到期一单位确定支付的现值为 $1/(1+r_F)$。这个折现因子也等于各状态价格之和，因为债券在每个状态都支付一单位。
+投入一单位当期消费品可以买入 $1/S_1$ 份债券，到期确定收到 $1/S_1=1+r_F$ 单位。反过来，要在到期时确定收到 $c$ 单位，可以买入 $c$ 份债券，现值为 $cS_1=c/(1+r_F)$。因此\textbf{折现因子}是把未来确定支付换算成当期价值的系数。\textbf{无风险利率确定了状态价格的总和}。要给随状态变化的支付定价，还需要知道各状态的相对权重。
 
 % 来源：教师 PPT 第 27 页。
 \begin{tcolorbox}[example,title=课堂例题：从状态价格读出利率]
@@ -423,37 +550,87 @@ $1$ 单位债券投资的净收益率称为\textbf{无风险利率} $r_F$：
 设晴、雨两状态价格为 $\phi=(0.3,0.5)^{\mathsf T}$。求单位无风险债券的价格与无风险利率。
 \end{question}
 \begin{solution}
-债券价格为 $S_1=0.3+0.5=0.8$，故 $r_F=1/0.8-1=25\%$。状态价格之和给出折现因子；各状态的相对权重将在下文用于风险支付的估值。
+债券在两种状态下都支付 $1$，故 $S_1=0.3\times1+0.5\times1=0.8$。今天支付 $0.8$，到期确定收到 $1$，所以 $r_F=(1-0.8)/0.8=25\%$，折现因子为 $0.8$。
 \end{solution}
 \end{tcolorbox}
 
 \subsection{风险中性概率与定价公式}\label{sec:wj-four-risk-neutral-probability}
-对其余证券 $n=2,\ldots,N$，支付 $x_n=[x_{1n},\ldots,x_{\Omega n}]^{\mathsf T}$，
+% 教材印刷第 60—61 页、教师 PPT 第 28—29 页：从状态价格推出共同折现与风险中性期望。
+证券 $n$ 的支付向量 $x_n=[x_{1n},\ldots,x_{\Omega n}]^{\mathsf T}$ 列出了所有状态的支付。将同一支付记为 $\tilde{x}_n$ 时，波浪号表示把支付看作随机变量，其在状态 $\omega$ 下的取值为 $\tilde{x}_n(\omega)=x_{\omega n}$。按状态价格计价，
 \[
     S_n=\phi^{\mathsf T}x_n=\sum_{\omega=1}^{\Omega}\phi_{\omega}x_{\omega n}.
 \]
-\begin{tcolorbox}[knowledge,title=风险中性概率]
-将状态价格规范化，定义\textbf{风险中性概率}
+
+\begin{tcolorbox}[knowledge,title=风险中性概率与风险中性测度]
+由式~\eqref{eq:wj-four-7}（无风险折现因子），状态价格之和等于单位无风险债券的价格 $S_1$。将每个状态价格除以这个总和，得到\textbf{风险中性概率}
 \begin{equation}
-    q_{\omega}=\frac{\phi_{\omega}}{\sum_{\omega'}\phi_{\omega'}}.
+    q_{\omega}=\frac{\phi_{\omega}}{\sum_{\omega'}\phi_{\omega'}}
+              =\frac{\phi_\omega}{S_1}.
  \label{eq:wj-four-8}
 \end{equation}
-$q_{\omega}>0$ 且 $\sum q_{\omega}=1$，故 $Q=\{q_{\omega}\}$ 是有限状态空间上的概率测度。
+$\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1 期确定收到一单位的现值。因此，$q_\omega$ 衡量前者占后者的份额，也就是状态 $\omega$ 的相对定价权重。
+
+各状态的权重都为正，加总为 $1$，因此确定了一个概率测度 $Q$，称为\textbf{风险中性测度}。单个状态的概率为 $Q(\{\omega\})=q_\omega$。对由若干状态组成的事件 $A$，将其中各状态的概率相加，就得到 $Q(A)=\sum_{\omega\in A}q_\omega$。
 \end{tcolorbox}
+
+真实概率测度 $P$ 描述各状态实际发生的可能性，风险中性测度 $Q$ 则由状态价格确定，用于计算定价所需的期望支付。例如，上一例中晴天和雨天的状态价格分别为 $0.3$ 和 $0.5$，除以总和 $0.8$，得到晴天和雨天在 $Q$ 下的概率分别为 $3/8$ 和 $5/8$。
+
 \begin{tcolorbox}[knowledge,title=风险中性定价]
-定价公式改写成
+式~\eqref{eq:wj-four-8} 给出 $q_\omega=\phi_\omega/S_1$，可得 $S_1=\frac{\phi_\omega=}{q_\omega}$。再代入式~\eqref{eq:wj-four-7} 的 $S_1=1/(1+r_F)$，就得到状态价格的分解
+\[
+ \phi_\omega=S_1q_\omega
+ =\underbrace{\frac{1}{1+r_F}}_{\text{共同的折现因子}}
+  \underbrace{q_\omega}_{\text{状态 $\omega$ 的相对定价权重}}.
+\]
+
+将上式逐项代入证券 $n=1,\ldots,N$ 的定价式，再提出共同的折现因子，得到
 \begin{equation}
-    S_n=S_1\sum_{\omega}q_{\omega}x_{\omega n},
-    \qquad
-    S_n=\frac{\mathrm{E}^{Q}[\tilde{x}_n]}{1+r_F},\quad n=1,\ldots,N.
+ S_n = \phi^{\mathsf T}x_n
+     = \sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}
+     = \sum_{\omega=1}^{\Omega}\left(\frac{1}{1+r_F}q_\omega\right)x_{\omega n}
+     = \frac{1}{1+r_F}
+       \underbrace{\sum_{\omega=1}^{\Omega}q_\omega x_{\omega n}}_{\mathrm{E}^{Q}[\tilde{x}_n]}.
  \label{eq:wj-four-9}
 \end{equation}
 \end{tcolorbox}
-式~\eqref{eq:wj-four-9}（风险中性期望贴现定价）就是式~\eqref{eq:wj-four-6}（状态价格加权定价）的另一种写法，称为\textbf{风险中性定价}（risk-neutral pricing），$Q$ 称为\textbf{风险中性测度}。对于价格 $S_n>0$ 的证券，定义净收益率 $\tilde r_n=\tilde x_n/S_n-1$，该式给出 $\mathrm E^Q[\tilde r_n]=r_F$。在 $Q$ 下，证券的期望收益率等于无风险利率。
+式~\eqref{eq:wj-four-9} 把式~\eqref{eq:wj-four-6}（状态价格加权定价，$S=X^{\mathsf T}\phi$）分成两步。先用 $Q$ 计算期望支付，再按无风险利率折现。将式~\eqref{eq:wj-four-9} 两边乘以 $1+r_F$，可得
+\[
+\mathrm E^Q[\tilde x_n]=(1+r_F)S_n
+\]
 
-上例中，规范化状态价格得到 $q_1=0.3/0.8=3/8$、$q_2=0.5/0.8=5/8$。
+% 教材印刷第 60—61 页及第 61 页页顶批注、教师 PPT 第 29—31 页。
+有风险和无风险的证券都可以按同一个无风险利率折现其在 $Q$ 下的期望支付，因此这种写法称为\textbf{风险中性定价}（risk-neutral pricing）。风险调整体现在 $Q$ 的权重里，时间价值体现在共同的折现因子里。有风险证券的到期支付及实现收益仍随状态而变。
 
-风险偏好与禀赋影响基础证券的均衡价格。给定这些价格后，无套利通过复制关系确定其他可复制支付的价格，$Q$ 则把价格中的风险调整纳入概率权重。完全市场中 $Q$ 唯一；不完全市场中通常有多支可行 $Q$，它们对可复制支付给出相同价格，对未被复制的支付则可能给出不同估值。
+\Needspace{5\baselineskip}
+给定证券的 0 期价格 $S_n>0$，净收益率的取值由 1 期支付 $\tilde x_n$ 决定，因此也用波浪号标记这个随机变量，记为 $\tilde r_n=\tilde x_n/S_n-1$。在 $Q$ 下取期望，代入式~\eqref{eq:wj-four-9} 给出的期望支付，得
+\[
+ \mathrm E^Q[\tilde r_n]
+ =\frac{\mathrm E^Q[\tilde x_n]}{S_n}-1
+ =(1+r_F)-1=r_F.
+\]
+
+按 $Q$ 计算的期望超额收益 $\mathrm E^Q[\tilde r_n]-r_F$ 为零。
+
+按真实概率 $P$ 计算，证券的期望超额收益称为\textbf{风险溢价}。用上式把 $r_F$ 写成 $\mathrm E^Q[\tilde r_n]$，有
+% 下式由教材式 (4.9) 推出，用于说明例 4.3 中真实概率下的风险溢价。
+\[
+ \mathrm E^P[\tilde r_n]-r_F
+ =\frac{\mathrm E^P[\tilde x_n]-\mathrm E^Q[\tilde x_n]}{S_n}
+ =\frac{\sum_{\omega=1}^{\Omega}(p_\omega-q_\omega)x_{\omega n}}{S_n}.
+\]
+
+风险溢价取决于证券在哪些状态支付，以及真实概率 $p_\omega$ 与定价权重 $q_\omega$ 在这些状态上相差多少。确定支付在各状态都相同，两种权重给出的期望支付相同，因此风险溢价为零。
+
+第~\ref{sec:wj-three-equilibrium} 节讨论证券报价如何在市场均衡中形成，投资者的风险偏好与禀赋会影响这些报价。这里把已有证券的报价 $S$ 和支付矩阵 $X$ 作为已知条件，反过来求能复现这些报价的风险中性权重。令 $q=(q_1,\ldots,q_\Omega)^{\mathsf T}$，将 $\phi=S_1q$ 代入式~\eqref{eq:wj-four-6}，得到
+\[
+ X^{\mathsf T}q=\frac{S}{S_1}=(1+r_F)S,
+ \qquad q_\omega>0\ (\omega=1,\ldots,\Omega),\qquad
+ \sum_{\omega=1}^{\Omega}q_\omega=1.
+\]
+
+方程 $X^{\mathsf T}q=S/S_1$ 要求同一组权重同时复现每只交易证券的报价。可以直接求 $q$，也可以先由 $X^{\mathsf T}\phi=S$ 求状态价格，再按式~\eqref{eq:wj-four-8} 归一化。在无套利的完全市场中，由定理~\ref{thm:wj-four-8}，状态价格向量唯一，因此 $Q$ 也唯一。
+
+用能复现已有报价的 $Q$，也可以为新支付定价。若目标支付能由已有证券复制，它与复制组合在每个状态下的支付都相同。用同一个 $Q$ 对两者的支付加权并折现，得到的价格都等于复制组合的成本。即使不完全市场中有多组可行的 $Q$，每一组也都给出这个复制成本。无法复制的支付则可能因所用的 $Q$ 不同而得到不同估值。下例用两种方法计算可复制支付的价格。
 
 % 来源：教师 PPT 第 30—31 页。
 \begin{tcolorbox}[example,title=课堂例题：套餐支付的价格由复制成本决定]
@@ -461,16 +638,13 @@ $q_{\omega}>0$ 且 $\sum q_{\omega}=1$，故 $Q=\{q_{\omega}\}$ 是有限状态�
 股票 $A$ 价格为 $10$，两状态支付为 $[20,0]^{\mathsf T}$；债券 $B$ 价格为 $5$，支付为 $[5,5]^{\mathsf T}$。衍生证券 $C$ 支付为 $[25,5]^{\mathsf T}$。求其无套利价格，用风险中性定价验证；若 $C$ 报价为 $20$，应如何套利？
 \end{question}
 \begin{solution}
-$C$ 的支付等于 $A+B$，复制成本为 $10+5=15$，所以无套利价格为 $15$。若报价为 $20$，卖出 $C$ 并买入 $A+B$，初始收入 $5$，未来净支付为零，构成第 1 类套利。
+各买一份 $A$ 和 $B$，逐状态加总得到 $[20,0]^{\mathsf T}+[5,5]^{\mathsf T}=[25,5]^{\mathsf T}$，恰好复制 $C$ 的支付。复制成本为 $10+5=15$，所以 $C$ 的无套利价格为 $15$。若报价为 $20$，卖出 $C$ 并买入 $A+B$，初始收入 $5$，未来净支付为零，构成第 1 类套利。
 
-由 $20\phi_1=10$、$5(\phi_1+\phi_2)=5$，得 $\phi_1=\phi_2=1/2$，无风险利率为零，故 $S_C=\mathrm E^Q[\tilde x_C]=(25+5)/2=15$。复制法与风险中性法给出同一价格；这里的 $Q$ 由两只证券的报价确定。
+由 $20\phi_1=10$、$5(\phi_1+\phi_2)=5$，得 $\phi_1=\phi_2=1/2$。状态价格之和为 $1$，故 $r_F=0$，且 $Q=(1/2,1/2)$。用这组权重加总 $C$ 的未来支付，得 $S_C=\mathrm E^Q[\tilde x_C]=(25+5)/2=15$，与复制成本相同。
 \end{solution}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=真实概率与风险中性概率,breakable=false]
-真实概率 $P$ 描述状态发生的可能性；$Q$ 由状态价格规范化得到，用于对支付定价。下面的例子展示两种概率权重的区别。
-\end{tcolorbox}
-
+% 教材印刷第 61 页例 4.3、教师 PPT 第 29 页：比较真实期望支付与风险中性定价。
 \begin{tcolorbox}[example]
 \begin{question}
 \WJFourExample{ex:wj-four-3}1 期有两个等可能状态 $a$、$b$。
@@ -484,63 +658,85 @@ $C$ 的支付等于 $A+B$，复制成本为 $10+5=15$，所以无套利价格为
 比较两只证券在真实概率下的期望支付，求风险中性概率，并验证定价公式。
 \end{question}
 \begin{solution}
-证券 1 是无风险债券，$r_F=0$。在真实概率下两只证券的期望支付都是 $1$，但证券 2 的价格只有证券 1 的一半：期望值相同，确定支付与风险支付的价格不必相同。
+证券 $1$ 是无风险债券，$r_F=0$。在真实概率 $P=(1/2,1/2)$ 下，证券 $1$ 确定支付 $1$，证券 $2$ 的期望支付为 $\tfrac12\cdot2+\tfrac12\cdot0=1$。两只证券的真实期望支付相同，市场价格却分别为 $1$ 和 $1/2$。
 
-由价格得 $\phi_a+\phi_b=1$、$2\phi_a=1/2$，故 $\phi_a=1/4$、$\phi_b=3/4$，$Q=\{1/4,\,3/4\}$。风险中性定价给出
+由两只证券的价格得 $\phi_a+\phi_b=1$、$2\phi_a=1/2$，故 $\phi_a=1/4$、$\phi_b=3/4$。状态价格之和为 $1$，所以归一化后得到 $q_a=1/4$、$q_b=3/4$。用 $Q$ 的权重计算期望支付，再按 $r_F=0$ 折现，得到
 \[
     \frac{\mathrm{E}^{Q}[\tilde{x}_1]}{1+0}
     =\tfrac14\cdot 1+\tfrac34\cdot 1=1,
     \qquad
     \frac{\mathrm{E}^{Q}[\tilde{x}_2]}{1+0}
-    =\tfrac14\cdot 2+\tfrac34\cdot 0=\tfrac12,
+    =\tfrac14\cdot 2+\tfrac34\cdot 0=\tfrac12.
 \]
 
-由此分别得到两只证券的市场价格。
+证券 $1$ 在两种状态下都支付 $1$，改变概率权重仍给出同样的期望支付。证券 $2$ 只在状态 $a$ 支付，而市场价格给这个状态的定价权重 $q_a=1/4$ 低于真实概率 $p_a=1/2$。以 $1/2$ 买入证券 $2$，按 $P$ 计算的期望净收益率是 $1/(1/2)-1=100\%$，比 $r_F=0$ 高 $100$ 个百分点，这个差就是风险溢价。按 $Q$ 计算，期望净收益率则是 $(1/2)/(1/2)-1=0$。两种计算用的是同一只证券，到期仍然是状态 $a$ 支付 $2$、状态 $b$ 支付 $0$。
 \end{solution}
 \end{tcolorbox}
 
 \subsection{债券计价与等价鞅测度}
-因为 $S_1=1/(1+r_F)$ 且债券的 1 期支付 $\tilde{x}_1=1$，式~\eqref{eq:wj-four-9}（风险中性期望贴现定价）也可写成
+% 教材印刷第 61—62 页、教师 PPT 第 32—33 页：债券计价与鞅条件。
+用无风险债券计价，就是把一份证券的价值写成相当于几份债券。0 期，一份证券 $n$ 值 $S_n$ 单位消费品，一份债券值 $S_1$ 单位消费品，所以一份证券值 $S_n/S_1$ 份债券。1 期，两者都已到期。证券支付 $\tilde x_n$，每份债券支付 $\tilde x_1=1$，所以证券的支付相当于 $\tilde x_n/\tilde x_1$ 份债券的到期支付。
+
+式~\eqref{eq:wj-four-9} 可写为 $S_n=S_1\mathrm E^Q[\tilde x_n]$，其中 $S_1=1/(1+r_F)$。两边除以 $S_1$，再利用 $\tilde x_1=1$，就把等式两边都写成了债券单位
 \[
-    \frac{S_n}{S_1}=\mathrm{E}^{Q}\Bigl[\frac{\tilde{x}_n}{\tilde{x}_1}\Bigr].
+ \frac{S_n}{S_1}=\mathrm E^Q[\tilde x_n]
+ =\mathrm E^Q\!\left[\frac{\tilde x_n}{\tilde x_1}\right].
 \]
+
 \begin{tcolorbox}[knowledge,title=债券计价与价格的鞅关系,breakable=false]
-$S_n$、$S_1$ 以现时消费品计价；$S_n/S_1$ 则是以无风险债券计价的价格。用债券做计价单位时，0 期价格是 $S_n/S_1$，1 期价格是 $\tilde{x}_n$（债券在 1 期的价格恒为 $1$）。时间贴现体现在计价单位中，风险调整则包含在 $Q$ 中。记 $\hat{S}_{n,t}=S_{n,t}/S_{1,t}$（$t=0,1$），则
+记证券 $n$ 在 $t$ 期以当期消费品计的价值为 $S_{n,t}$，以债券计的价值为 $\hat S_{n,t}=S_{n,t}/S_{1,t}$。0 期的证券价值是买入价格，1 期的证券价值是到期支付，因此
+\[
+ \hat S_{n,0}=\frac{S_{n,0}}{S_{1,0}}=\frac{S_n}{S_1},
+ \qquad
+ \hat S_{n,1}=\frac{S_{n,1}}{S_{1,1}}=\frac{\tilde{x}_n}{\tilde{x}_1}.
+\]
+
+用这两个记号重写上面的定价式，得到
 \begin{equation}
     \hat{S}_{n,0}=\mathrm{E}^{Q}[\hat{S}_{n,1}].
  \label{eq:wj-four-10}
 \end{equation}
 \end{tcolorbox}
 
+把各期以债券计价的证券价值按时间排列，得到随机过程 $(\hat S_{n,t})$。式~\eqref{eq:wj-four-10} 说明它的 0 期值等于 $Q$ 下的 1 期期望值。鞅定义把这一关系写成给定当期信息时的条件期望。
+
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFourDefinition{def:wj-four-3}设 $\mathcal F_t$ 表示截至 $t$ 期已知的信息。随机过程 $z_t$ 若适应该信息、满足 $\mathrm E^Q|z_t|<\infty$，且
+\WJFourDefinition{def:wj-four-3}设 $\mathcal F_t$ 表示截至 $t$ 期已知的信息。若随机过程 $z_t$ 的每期取值都由当期信息确定（即适应于 $(\mathcal F_t)$），各期均满足 $\mathrm E^Q|z_t|<\infty$，且在每个有下一期的时点满足
 \[
  z_t=\mathrm E^Q[z_{t+1}\mid\mathcal F_t],
 \]
 则称为测度 $Q$ 下的\textbf{鞅}。即在测度 $Q$ 和当前信息下，下一期的预期变动为零；各期实现值仍可随状态变化。
 \end{tcolorbox}
 
-\eqref{eq:wj-four-10} 表明，以债券计价的证券价格在 $Q$ 下是鞅。
+0 期的信息 $\mathcal F_0$ 无法进一步区分未来状态，因此 $\mathrm E^Q[\hat S_{n,1}\mid\mathcal F_0]=\mathrm E^Q[\hat S_{n,1}]$，式~\eqref{eq:wj-four-10} 就是本章的鞅条件。证券的 $Q$ 期望到期价值为 $(1+r_F)S_n$，债券的到期价值为 $(1+r_F)S_1=1$。用债券计价时，共同的因子 $1+r_F$ 在比值中抵消。
+
 \begin{tcolorbox}[knowledge,title=等价鞅测度]
-若 $Q$ 与真实概率测度 $P$ 有相同的零概率集，则称二者\textbf{等价}。在有限状态空间中，这等价于 $p_\omega=0$ 当且仅当 $q_\omega=0$。本章只列出正概率状态，且 $\phi\gg0$ 给出 $q\gg0$，所以 $Q$ 与 $P$ 等价。使债券计价的证券价格成为鞅的 $Q$ 称为\textbf{等价鞅测度}。
+若 $Q$ 与真实概率测度 $P$ 有相同的零概率事件，则称二者\textbf{等价}。在有限状态空间中，这等价于 $p_\omega=0$ 当且仅当 $q_\omega=0$。两种测度保留同一组可能状态，赋给这些状态的概率大小可以不同。本章只列出真实概率为正的状态，且 $\phi\gg0$ 给出 $q\gg0$，所以 $Q$ 与 $P$ 等价。
+
+若一个测度 $Q$ 既与 $P$ 等价，又使以无风险债券计价的证券价格成为鞅，就称它为\textbf{等价鞅测度}。
 \end{tcolorbox}
+
+由定理~\ref{thm:wj-four-7} 可知，在无风险债券价格 $S_1>0$ 的两期市场中，无套利当且仅当存在等价鞅测度。无套利时，把定理给出的严格正状态价格除以 $S_1$，就得到上面的 $Q$。反过来，等价性保证各可能状态的 $q_\omega>0$，鞅条件给出 $S_n=S_1\mathrm E^Q[\tilde x_n]$。于是 $\phi_\omega=S_1q_\omega>0$ 满足式~\eqref{eq:wj-four-6}，由定理可知市场无套利。
 
 % PPT 第 34 页将“低估破产风险后廉价买保险”直接称为套利；改用可复制事件支付给出严格的零成本例子。
 \begin{tcolorbox}[example,title=课堂例题：零概率与状态支付]
 \begin{question}
-设事件 $E$ 满足 $P(E)>0$，且事件支付 $\mathbf1_E$ 可以交易或复制。若以 $Q'(E)=0$ 的概率测度 $Q'$ 代入风险中性定价公式，该支付的价格是多少？是否产生套利？
+设事件 $E$ 满足 $P(E)>0$，一份合约只在 $E$ 发生时支付 $1$，其支付记作 $\mathbf1_E$。用满足 $Q'(E)=0$ 的测度 $Q'$ 估值，算出的价格是多少？若市场按该价格出售这份合约，可以怎样套利？
 \end{question}
 \begin{solution}
-代入定价公式得到
+按 $Q'$ 加权时，$\mathbf1_E$ 的期望支付为 $Q'(E)$，折现后的估值为
 \[
- \frac{\mathrm E^{Q'}[\mathbf1_E]}{1+r_F}=0.
+ \frac{\mathrm E^{Q'}[\mathbf1_E]}{1+r_F}
+ =\frac{Q'(E)}{1+r_F}=0.
 \]
 
-免费买入后，各状态支付非负，事件 $E$ 发生时支付为 $1$，构成第 2 类套利。因此，对这类可交易支付，无套利要求定价权重保留其正概率事件。
+若市场按这个估值出售合约，就能以零成本买入。到期各状态的支付都非负，且在可能发生的事件 $E$ 中支付为 $1$，构成第 2 类套利。
+
+若 $\mathbf1_E$ 可由交易证券复制，并且 $Q'$ 同时复现了这些证券的市场报价，上面的估值也就是复制组合的成本。此时以零成本建立复制组合，同样构成套利。
 \end{solution}
 \end{tcolorbox}
 
-本章只有两个时点，式~\eqref{eq:wj-four-10} 描述 $t=0$ 到 $t=1$ 的关系。多期模型中，相应关系采用各期信息下的条件期望；计价单位与中间现金流须一并纳入价格过程。
+式~\eqref{eq:wj-four-10} 为多期定价提供了同样的思路。每期按当期信息取条件期望，证券有中间现金流时也要将其计入。
 
 \WJChapterSummary
 \begin{tcolorbox}[summary]

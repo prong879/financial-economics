@@ -1,0 +1,23 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：L 的斜率为 -1/2，K 上的最近点为 e_1，其投影为 (4/5,-2/5)。
+\begin{tikzpicture}[>=Stealth,font=\small,x=3.4cm,y=3.4cm]
+ \coordinate (origin) at (0,0);
+ \coordinate (e1) at (1,0);
+ \coordinate (e2) at (0,1);
+ \coordinate (closest) at (.8,-.4);
+
+ \fill[blue!5] (origin) rectangle (1.7,1.15);
+ \draw[->,gray!80!black] (-.55,0)--(1.79,0) node[right] {$z_1$};
+ \draw[->,gray!80!black] (0,-.73)--(0,1.26) node[above] {$z_2$};
+ \node[below left,inner sep=2pt] at (origin) {$O$};
+
+ \draw[gray,dashed] (-.47,.735)--(1.64,-.32);
+ \draw[blue!70!black,thick] (-.52,.26)--(1.46,-.73) node[right] {$L$};
+ \draw[teal!70!black,very thick] (e2)--node[pos=.56,above right] {$K$} (e1);
+
+ \draw[red!70!black,very thick,->] (closest)--node[midway,right,inner sep=3pt] {$y$} (e1);
+ \draw[red!70!black] (.88,-.44)--(.92,-.36)--(.84,-.32);
+ \fill[blue!70!black] (closest) circle (1.6pt) node[below left] {$\ell^*$};
+ \fill[teal!70!black] (e1) circle (1.6pt) node[above right] {$e_1=z^*$};
+ \fill[teal!70!black] (e2) circle (1.6pt) node[left] {$e_2$};
+\end{tikzpicture}
