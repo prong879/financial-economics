@@ -1,16 +1,16 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 07_风险厌恶 课后习题（由章节文件拆分）
+% 来源：教材印刷第 108—109 页（PDF 第 123—124 页），练习 7.1—7.5。
 
 \begin{problem}
-\WJSevenExercise{ex:wj-seven-1}{**} 令 $R(w)\equiv -wu''(w)/u'(w)$ 而
+\WJSevenExercise{ex:wj-seven-1}{} 令 $R(w)\equiv -wu''(w)/u'(w)$ 而
 \[
-    a(w)=\operatorname{ArgMax}E\bigl[u(w+a\tilde{r})\bigr]
+    a(w)=\operatorname*{arg\,max}_{a} E\bigl[u(w+a\tilde{r})\bigr]
 \]
 为相对于效用函数 $u(\cdot)$ 的最优投资选择。假设 $w>0$、$u'(\cdot)>0$、$u''(\cdot)\le 0$ 且 $E[\tilde{r}]>0$。证明以下命题：
 \begin{enumerate}[label=(\alph*)]
     \item 如果 $\lambda>1$，给定效用函数 $u(\cdot)$ 且 $R'(w)\ge 0$。定义
     \[
-        u_{1}(w)\equiv u(\lambda w),\qquad u_{2}\equiv u(w).
+        u_{1}(w)\equiv u(\lambda w),\qquad u_{2}(w)\equiv u(w).
     \]
     那么，$R_{1}(w)\ge R_{2}(w)$。
     \item 给定以上结论，我们有 $a_{1}(w)\le a_{2}(w)$，其中 $a_{1}(w)$ 和 $a_{2}(w)$ 分别是相对于 $u_{1}$ 和 $u_{2}$ 的最优投资选择。
@@ -19,7 +19,15 @@
 最后一个结论说的是，对于具有单调递增的相对风险厌恶的投资者，他在风险资产上的投资额占他财富的比例随着财富的增加而减少。
 \end{problem}
 \begin{solution}
-设最优投资额有限、唯一且为内点，可行投资的期末财富为正，相关期望存在。可行集合随财富同比例缩放。以下由凹目标的一阶条件证明比较结论。
+记初始财富为 $w$ 时的可行投资区间为 $D(w)$。它包含不投资的选择 $a=0$，并要求可行头寸在各可能状态下都使期末财富为正，以便在正财富区间上比较风险厌恶。对 $i=1,2$，用同一可行集求解
+\[
+ \begin{aligned}
+  &\max_a\quad \mathrm E[u_i(w+a\tilde r)]\\
+  &\text{s.t.}\quad a\in D(w).
+ \end{aligned}
+\]
+
+假设期望有限、最优投资额存在且唯一，并且在区间内部可将导数移入期望。最优额是否存在取决于收益分布、效用和可行集。例如，若效用线性、收益确定且为正，投资额又无上限，期望效用就会随投资额一直上升。
 \begin{enumerate}[label=(\alph*)]
 \item 由链式法则，
 \[
@@ -35,7 +43,7 @@
 \]
 其中用到 $z>0$、$\lambda>1$ 和 $R'\ge0$。
 
-\item 记绝对风险厌恶系数为 $A_i(z)=-u_i''(z)/u_i'(z)$。由 (a)，
+\item 要比较两个最优投资额，先比较同一投资额下增加一单位投资带来的边际效用。记绝对风险厌恶系数为 $A_i(z)=-u_i''(z)/u_i'(z)$。由 (a)，
 \[
  A_1(z)=\frac{R_1(z)}{z}\ge\frac{R_2(z)}{z}=A_2(z).
 \]
@@ -51,21 +59,21 @@
  F_i'(a)=E[u_i'(w+a\tilde r)\tilde r].
 \]
 
-由于 $F_i'(0)=u_i'(w)E[\tilde r]>0$，有限的内点最优额为正。令 $a_2=a_2(w)>0$，其一阶条件为 $F_2'(a_2)=0$。当 $\tilde r\ge0$ 时，$h(w+a_2\tilde r)\le h(w)$；当 $\tilde r<0$ 时，不等式反向，但乘以 $\tilde r$ 后又反向。因此逐状态有
+当可行的 $a<0$ 时，由凹效用的切线界，$F_i(a)\le u_i(w)+u_i'(w)aE[\tilde r]<F_i(0)$，所以两个最优额都非负。取任意正的内点投资额 $a$。当 $\tilde r\ge0$ 时，$h(w+a\tilde r)\le h(w)$；当 $\tilde r<0$ 时，不等式反向，但乘以 $\tilde r$ 后又反向。因此逐状态有
 \[
- h(w+a_2\tilde r)\tilde r\le h(w)\tilde r.
+ h(w+a\tilde r)\tilde r\le h(w)\tilde r.
 \]
 
-乘以正数 $u_2'(w+a_2\tilde r)$ 并取期望，得到
+乘以正数 $u_2'(w+a\tilde r)$ 并取期望，得到
 \[
  \begin{aligned}
- F_1'(a_2)
- &=E[h(w+a_2\tilde r)u_2'(w+a_2\tilde r)\tilde r]\\
- &\le h(w)F_2'(a_2)=0.
+ F_1'(a)
+ &=E[h(w+a\tilde r)u_2'(w+a\tilde r)\tilde r]\\
+ &\le h(w)F_2'(a).
  \end{aligned}
 \]
 
-$F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a_2(w)$。
+若 $a_1(w)>a_2(w)$，在两者之间取 $a$。由凹性和最优点的唯一性，$F_1'(a)>0$，因为右侧的 $a_1(w)$ 给出更高的 $F_1$；同理，左侧的 $a_2(w)$ 给出更高的 $F_2$，所以 $F_2'(a)<0$。这与上式矛盾，故 $a_1(w)\le a_2(w)$。取导数的位置始终在两个最优额之间，因此最优额位于可行区间端点时也适用。
 
 \item 若 $w_1=w_2$，结论显然。若 $0<w_1<w_2$，令 $\lambda=w_2/w_1>1$。在初始财富 $w_1$ 下，
 \[
@@ -73,7 +81,7 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  =E[u(w_2+\lambda a\tilde r)].
 \]
 
-用 $b=\lambda a$ 换元，并在可行集随财富同比例缩放的条件下，有
+令 $b=\lambda a$，则 $w_2+b\tilde r=\lambda\cdot(w_1+a\tilde r)$。若可行性只要求期末财富为正，两边同时为正，故 $a\in D(w_1)$ 当且仅当 $b\in D(w_2)$。若另有头寸限制，则这里要求这些限制也随财富同比例缩放，即 $D(w_2)=\lambda D(w_1)$。在这个条件下，$b$ 恰好遍历财富为 $w_2$ 时的全部可行投资额。因此
 \[
  a_1(w_1)=\frac{a(w_2)}{\lambda},\qquad a_2(w_1)=a(w_1).
 \]
@@ -99,28 +107,33 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 \end{enumerate}
 \end{problem}
 \begin{solution}
-常绝对风险厌恶 $a>0$ 对应 $u(x)=-e^{-ax}$。记随机财富的确定性等值为 $CE$，由
+常绝对风险厌恶 $a>0$ 时，可取 $u(x)=-e^{-ax}$，其绝对风险厌恶系数 $-u''(x)/u'(x)$ 恒为 $a$。这个效用在整个实数轴上有定义，因此也适用于期末财富可能为负的正态情形。按风险溢价的定义\ifdefined\WJHandoutKnowledge（定义~\ref{def:wj-seven-4}）\fi，
 \[
- -e^{-aCE}=-e^{-aw}\mathrm E[e^{-a\tilde g}]
-\]
-得到
-\[
- CE=w-\frac1a\ln\mathrm E[e^{-a\tilde g}],\qquad
- \pi=w-CE=\frac1a\ln\mathrm E[e^{-a\tilde g}].
+ \mathrm E[u(w+\tilde g)]=u(w-\pi)=u(w+C),\qquad
+ C=-\pi,\qquad CE=w-\pi=w+C.
 \]
 
-净赌博相对于初始财富的确定性等值为 $CE-w=-\pi$。
+其中 $\pi$ 是为消除风险愿意支付的金额，$C$ 是赌博净额的确定性等价，$CE$ 是期末财富的确定性等价。代入负指数效用，
+\[
+ -e^{-a\cdot(w+C)}=-e^{-aw}\mathrm E[e^{-a\tilde g}]
+\]
+约去共同因子 $-e^{-aw}$ 后取对数，得到
+\[
+ C=-\frac1a\ln\mathrm E[e^{-a\tilde g}].
+\]
+
+若 $a=0$，可取线性效用，三种公平赌博都有 $C=\mathrm E[\tilde g]=0$。以下计算 $a>0$ 的情形。
 \begin{enumerate}[label=(\alph*)]
 \item 公平性使 $-b,b$ 各以 $1/2$ 的概率出现，因此
 \[
  \mathrm E[e^{-a\tilde g}]=\tfrac12(e^{ab}+e^{-ab})=\cosh(ab),
- \qquad CE=w-\frac1a\ln\cosh(ab).
+ \qquad C=-\frac1a\ln\cosh(ab).
 \]
 \item 均匀分布下，
 \[
  \mathrm E[e^{-a\tilde g}]=\frac1{2c}\int_{-c}^ce^{-ax}\,\mathrm dx
  =\frac{\sinh(ac)}{ac},\qquad
- CE=w-\frac1a\ln\frac{\sinh(ac)}{ac}.
+ C=-\frac1a\ln\frac{\sinh(ac)}{ac}.
 \]
 \item 正态密度为 $\frac1{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$。配方得
 \[
@@ -128,11 +141,11 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  =-\frac{(x+a\sigma^2)^2}{2\sigma^2}+\frac{a^2\sigma^2}{2},
 \]
 
-所以 $\mathrm E[e^{-a\tilde g}]=e^{a^2\sigma^2/2}$，从而
+配方后的正态密度以 $-a\sigma^2$ 为均值、方差仍为 $\sigma^2$，积分为 $1$。因此 $\mathrm E[e^{-a\tilde g}]=e^{a^2\sigma^2/2}$，从而
 \[
- CE=w-\frac{a\sigma^2}{2},\qquad\pi=\frac{a\sigma^2}{2}.
+ C=-\frac{a\sigma^2}{2},\qquad\pi=\frac{a\sigma^2}{2}.
 \]
-\item 三种情形的财富确定性等值均随 $w$ 一比一增加；净赌博的确定性等值 $CE-w$ 与风险溢价 $\pi$ 均独立于 $w$。因此 CARA 投资者对同一固定金额赌博的支付意愿与初始财富无关。
+\item 固定赌博的金额及其分布，初始财富因子 $-e^{-aw}$ 已在求 $C$ 时约去。因此净额 $C$ 和消除风险的支付意愿 $\pi=-C$ 均与 $w$ 无关。期末财富的确定性等价 $CE=w+C$ 则随 $w$ 一比一增加。
 \end{enumerate}
 \end{solution}
 
@@ -147,57 +160,46 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 % 原书印刷第 109 页；参考答案采用对数效用，与原题的“绝对”条件不一致，保留原题并分别处理。
 \end{problem}
 \begin{solution}
-绝对风险厌恶系数恒为 $1$，可取 $u(x)=-e^{-x}$。令 $C_R=CE/w$，其中 $w>0$。用上一题的公式，把净风险换成 $w\tilde g$，得到
+绝对风险厌恶系数恒为 $1$，可取 $u(x)=-e^{-x}$。沿用上一题的净额口径，相对确定性等价为 $C_R=C/w$，其中 $w>0$。将 $a=1$、净风险 $w\tilde g$ 代入上一题的公式，得到 $C=-\ln\mathrm E[e^{-w\tilde g}]$。若按期末财富总额计算，对应的比例是 $CE/w=1+C_R$。
 \begin{enumerate}[label=(\alph*)]
 \item 对公平二项风险，
 \[
- CE=w-\ln\cosh(wb),\qquad
- C_R=1-\frac{\ln\cosh(wb)}{w}.
+ C=-\ln\cosh(wb),\qquad
+ C_R=-\frac{\ln\cosh(wb)}{w}.
 \]
 \item 对均匀风险，
 \[
- CE=w-\ln\frac{\sinh(wc)}{wc},\qquad
- C_R=1-\frac1w\ln\frac{\sinh(wc)}{wc}.
+ C=-\ln\frac{\sinh(wc)}{wc},\qquad
+ C_R=-\frac1w\ln\frac{\sinh(wc)}{wc}.
 \]
-\item 两种 $C_R$ 均随 $w$ 严格下降。为统一证明，令
+\item 取 $0<w_1<w_2$，记 $\lambda=w_1/w_2$。两种分布都不是确定支付，因此 $e^{-w_2\tilde g}$ 也不是常数。由于 $x^\lambda$ 在正实数上严格凹，严格 Jensen 不等式给出
 \[
- K(t)=\ln\mathrm E[e^{-t\tilde g}],\qquad K(0)=0.
+ \mathrm E[e^{-w_1\tilde g}]
+ =\mathrm E\!\left[(e^{-w_2\tilde g})^\lambda\right]
+ <\bigl(\mathrm E[e^{-w_2\tilde g}]\bigr)^\lambda.
 \]
 
-定义倾斜概率下的期望 $\mathrm E_t[Y]=\mathrm E[Ye^{-t\tilde g}]/\mathrm E[e^{-t\tilde g}]$。两种分布均有界且非退化，对 $K$ 求导得到
+两边取对数再乘以 $-1/w_1$，不等号反向。由 $\lambda/w_1=1/w_2$，得到
 \[
- K'(t)=-\mathrm E_t[\tilde g],\qquad
- K''(t)=\mathrm E_t[\tilde g^2]-(\mathrm E_t[\tilde g])^2>0.
+ C_R(w_1)=-\frac{\ln\mathrm E[e^{-w_1\tilde g}]}{w_1}
+ >-\frac{\ln\mathrm E[e^{-w_2\tilde g}]}{w_2}=C_R(w_2).
 \]
 
-于是
-\[
- \frac{\mathrm d}{\mathrm dw}\frac{K(w)}w
- =\frac{wK'(w)-K(w)}{w^2}>0,
-\]
-
-因为分子在 $w=0$ 时为零，导数为 $wK''(w)>0$。故 $C_R=1-K(w)/w$ 严格下降，相对风险溢价 $1-C_R$ 严格上升。这与 $R(w)=wA(w)=w$ 随财富上升一致。
+所以财富越高，$C_R$ 越低，愿意为消除风险而支付的财富比例 $-C_R$ 越高。这里赌博的金额 $w\tilde g$ 会随财富放大，比较的是同一比例的风险。这与 $R(w)=wA(w)=w$ 随财富上升一致。
 \end{enumerate}
 
-\textbf{对照：相对风险厌恶系数恒为 $1$。}保持同样的比例风险，改用对数效用 $u(x)=\ln x$，得到
+若改为相对风险厌恶恒为 $1$，可取对数效用。此时 $\ln(w+C)=\mathrm E[\ln(w\cdot(1+\tilde g))]=\ln w+\mathrm E[\ln(1+\tilde g)]$。解得 $C_R=\exp(\mathrm E[\ln(1+\tilde g)])-1$，代入两种分布有
 \[
  C_R=
  \begin{cases}
-  \sqrt{1-b^2},&\text{公平二项风险},\\[3pt]
+  \sqrt{1-b^2}-1,&\text{公平二项风险},\\[3pt]
   \displaystyle\exp\!\left(
-  \frac{(1+c)\ln(1+c)-(1-c)\ln(1-c)-2c}{2c}\right),
+  \frac{(1+c)\ln(1+c)-(1-c)\ln(1-c)-2c}{2c}\right)-1,
   &\text{均匀风险}.
  \end{cases}
 \]
 
-例如二项风险满足
-\[
- \mathrm E[\ln(w(1+\tilde g))]
- =\tfrac12\ln(w(1+b))+\tfrac12\ln(w(1-b))
- =\ln w+\tfrac12\ln(1-b^2).
-\]
-
-这两种相对确定性等值均与 $w$ 无关；净风险的相对确定性等值为 $C_R-1$。财富金额 $CE=wC_R$ 则与初始财富成比例。
+在这一对照情形下，$C_R$ 与 $w$ 无关，期末财富的确定性等值 $CE=w\cdot(1+C_R)$ 与 $w$ 成比例。
 \end{solution}
 
 \begin{problem}
@@ -209,9 +211,11 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 用这两种定义计算风险溢价。它们相等吗？解释所得到的结论。
 \end{problem}
 \begin{solution}
-相对风险厌恶系数为 2，即
+相对风险厌恶系数恒为 $2$，所以
 \[
- -\frac{x u''(x)}{u'(x)}=2.
+ -\frac{x u''(x)}{u'(x)}=2
+ \quad\Longrightarrow\quad
+ \frac{\mathrm d}{\mathrm dx}\ln u'(x)=-\frac2x.
 \]
 
 积分得 $u'(x)=Kx^{-2}$（$K>0$），故可取
@@ -219,9 +223,7 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  u(x)=-\frac1x,\qquad x>0.
 \]
 
-公平二项赌博的两个结果各以 $1/2$ 的概率发生。
-
-\textbf{第一种定义。}由 $E[u(w+\tilde g)]=u(w-\pi_1)$，
+公平二项赌博的两个结果各以 $1/2$ 的概率发生。用 $\pi_1$ 表示为了消除风险愿意支付的金额。由 $\mathrm E[u(w+\tilde g)]=u(w-\pi_1)$，
 \[
  -\frac12\left(\frac1{w+b}+\frac1{w-b}\right)
  =-\frac{w}{w^2-b^2}=-\frac1{w-\pi_1}.
@@ -232,9 +234,10 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
   \pi_1=\frac{b^2}{w}.
 \]
 
-\textbf{第二种定义。}由 $E[u(w+\tilde g+\pi_2)]=u(w)$，
+再用 $\pi_2$ 表示接受风险所需的补偿。由 $\mathrm E[u(w+\tilde g+\pi_2)]=u(w)$，
 \[
- -\frac{w+\pi_2}{(w+\pi_2)^2-b^2}=-\frac1w.
+ -\frac12\left(\frac1{w+\pi_2+b}+\frac1{w+\pi_2-b}\right)
+ =-\frac{w+\pi_2}{(w+\pi_2)^2-b^2}=-\frac1w.
 \]
 
 令 $z=w+\pi_2$，得到 $z^2-wz-b^2=0$。取满足正财富约束的正根，得
@@ -244,18 +247,23 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
  \pi_2=\frac{\sqrt{w^2+4b^2}-w}{2}.
 \]
 
-比较可得
+把第一种风险溢价写成初始财富的函数 $\pi_1(z)$，赌博幅度 $b$ 固定。按第一种定义，在补偿后的财富 $z=w+\pi_2$ 下承担同一风险，其期望效用等于 $u(z-\pi_1(z))$。按第二种定义，这个期望效用也等于 $u(w)$。因为 $u$ 严格递增，$z-\pi_1(z)=w$，所以
 \[
- \pi_2=\frac{2b^2}{\sqrt{w^2+4b^2}+w}
- <\frac{b^2}{w}=\pi_1.
+ \pi_2=\pi_1(w+\pi_2)=\frac{b^2}{w+\pi_2}<\frac{b^2}{w}=\pi_1(w).
 \]
 
-两者不相等。$\pi_1$ 是在财富 $w$ 下为避免风险愿意支付的金额；$\pi_2$ 是为接受风险所需的事前补偿。由于 $A(x)=2/x$ 随财富增加而下降，加入补偿后承担同一风险的绝对风险厌恶程度降低，所以所需补偿小于避免风险的支付意愿。等价地，第二个方程给出 $\pi_2=b^2/(w+\pi_2)<b^2/w$。小风险下两者的一阶非零近似均为 $b^2/w$，但精确值不同。
+在本题中，绝对风险厌恶 $A(x)=2/x$ 随财富增加而下降。补偿先提高了财富，因此在较高的财富水平上衡量同一笔风险，溢价更小。把 $\pi_2$ 的根式有理化，可写成
+\[
+ \pi_2=\frac{b^2}{w}\cdot\frac{2}{1+\sqrt{1+4(b/w)^2}}.
+\]
+
+固定 $w$，当 $b/w$ 趋于零时，第二个因子趋于 $1$，所以两种溢价关于赌博幅度 $b$ 的二阶主导项都是 $b^2/w$。
 
 \end{solution}
 
+\Needspace{26\baselineskip}
 \begin{problem}
-\WJSevenExercise{ex:wj-seven-5}{*} 参与者的初始财富为 $w$ 且是严格风险厌恶的。$\tilde{g}_{1}$ 和 $\tilde{g}_{2}$ 是两个独立的公平赌博，具有相同的、定义于 $\{-b,b\}$ 上的二项分布，其中 $0<b<w/2$。
+\WJSevenExercise{ex:wj-seven-5}{} 参与者的初始财富为 $w$ 且是严格风险厌恶的。$\tilde{g}_{1}$ 和 $\tilde{g}_{2}$ 是两个独立的公平赌博，具有相同的、定义于 $\{-b,b\}$ 上的二项分布，其中 $0<b<w/2$。
 \begin{enumerate}[label=(\alph*)]
     \item 假设他必须承担风险 $\tilde{g}_{1}$，即他的财富变成 $w+\tilde{g}_{1}$。在这种情况下，他的期望效用记为 $V_{1}=E[u(w+\tilde{g}_{1})]$。证明风险使得他的情况恶化，即 $V_{1}<u(w)$。
     \item 现在假设他必须承担的是分散化的风险 $\tilde{g}=\frac12(\tilde{g}_{1}+\tilde{g}_{2})$。记这种情形下的期望效用为 $V_{2}=E[u(w+\tilde{g})]$。$V_{2}$ 是否总是高于 $V_{1}$？
@@ -263,13 +271,13 @@ $F_1$ 为凹函数，故其唯一最优点不在 $a_2$ 右侧，即 $a_1(w)\le a
 \end{problem}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-\item 严格风险厌恶意味着伯努利效用 $u$ 严格凹。由于 $b>0$，$w+b$ 与 $w-b$ 不同，严格 Jensen 不等式给出
+\item 由公平性，$-b$ 和 $b$ 各以 $1/2$ 的概率发生。严格风险厌恶意味着伯努利效用 $u$ 严格凹\ifdefined\WJHandoutKnowledge（见定理~\ref{thm:wj-seven-3}）\fi。由于 $b>0$，两个期末财富 $w+b$ 和 $w-b$ 均为正且不同，严格 Jensen 不等式给出
 \[
  V_1=\tfrac12u(w+b)+\tfrac12u(w-b)
  <u\left(\tfrac12(w+b)+\tfrac12(w-b)\right)=u(w).
 \]
 
-\item 两个赌博独立且各以 $1/2$ 的概率取 $-b,b$，故平均风险的分布为
+\item 两个赌博独立，四种输赢组合各有 $1/4$ 的概率。两次都赢或都输时，平均风险分别为 $b$ 或 $-b$。一赢一输的两条路径上，盈亏相抵，合计有 $1/2$ 的概率得到零。因此
 \[
  \Pr(\tilde g=b)=\tfrac14,\quad
  \Pr(\tilde g=0)=\tfrac12,\quad
