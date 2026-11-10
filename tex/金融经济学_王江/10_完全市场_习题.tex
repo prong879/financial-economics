@@ -1,9 +1,9 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 10_完全市场 课后习题（由章节文件拆分）
+% 来源：教材印刷第 163—166 页（PDF 第 178—181 页），练习 10.1—10.7。
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-1}{*} 考虑一个两期（$t=0,\,1$）、两个状态（$\omega=a,\,b$），存在 $K$ 个参与者的经济。状态 $a$ 发生的概率为 $\pi_{a}$ 而状态 $b$ 发生的概率为 $\pi_{b}$。所有参与者都是不满足的且严格风险厌恶的。他们期望效用有如下形式：
+\WJTenExercise{exer:wj-ten-1}{} 考虑一个两期（$t=0,\,1$）、两个状态（$\omega=a,\,b$），存在 $K$ 个参与者的经济。状态 $a$ 发生的概率为 $\pi_{a}$ 而状态 $b$ 发生的概率为 $\pi_{b}$。所有参与者都是不满足的且严格风险厌恶的。他们期望效用有如下形式：
 \[
     u_{k}(c_{k,0})+\pi_{a}u_{k}(c_{k,a})+\pi_{b}u_{k}(c_{k,b}),\quad k=1,\dots,K.
 \]
@@ -24,32 +24,47 @@
         \item $C_{a}-C_{b}$ 上升（禀赋的风险上升）。
     \end{itemize}
 \end{enumerate}
-比较禀赋风险增加时，保持 $\pi_aC_a+\pi_bC_b$ 不变。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
- \item 均衡由正状态价格 $(\phi_a,\phi_b)$ 与各人消费组成。给定价格，各人最大化原题效用，满足
+ \item 以 0 期消费为计价单位，均衡由正状态价格 $(\phi_a^*,\phi_b^*)$ 与各人消费 $c_k^*$ 组成。给定价格，参与者 $k$ 用禀赋的现值购买各日期、各状态的消费，求解
  \[
- c_{k,0}+\phi_ac_{k,a}+\phi_bc_{k,b}
- \le e_{k,0}+\phi_ae_{k,a}+\phi_be_{k,b},
+ \begin{aligned}
+ \max_{c_k\ge0}\quad &u_k(c_{k,0})+\pi_a u_k(c_{k,a})+\pi_b u_k(c_{k,b})\\
+ \text{s.t.}\quad &c_{k,0}+\phi_ac_{k,a}+\phi_bc_{k,b}
+ \le e_{k,0}+\phi_ae_{k,a}+\phi_be_{k,b}.
+ \end{aligned}
  \]
 
- 并且 $\sum_kc_{k,s}=C_s$（$s=0,a,b$）。在偏好连续、凸、严格单调及个人禀赋严格为正等均衡存在条件下，完全市场存在均衡。严格凹性使给定价格下的个人选择唯一；一般均衡的唯一性还取决于总超额需求。\ifdefined\WJHandoutKnowledge 正文定理~\ref{thm:wj-ten-3} 后给出了多重均衡的例子。\else 完整讲义的均衡存在性讨论中给出了多重均衡的例子。\fi
+ 在均衡价格下，各人的最优消费还须逐项出清，即 $\sum_kc_{k,s}^*=C_s$（$s=0,a,b$）。由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-ten-3}（均衡存在性）\else 完全市场的均衡存在性结论\fi，偏好连续、凸、严格单调且个人禀赋严格为正时，完全市场存在均衡。严格凹性保证给定价格下的个人最优消费唯一，而均衡价格是否唯一，要看使总超额需求为零的价格有几组。
 
- \item 以题设代表性效用 $u$ 保持不变为前提，
+ 即使两期使用同一个 $u_k$，也可出现多重均衡。取 $\pi_a=\pi_b=1/2$，以 $(x,y,x)$ 表示当期、状态 $a$ 和状态 $b$ 的消费，两人禀赋为 $(0.88,4.2,0.88)$、$(3.12,3.8,3.12)$。两组候选为
  \[
- \phi_a=\frac{\pi_au'(C_a)}{u'(C_0)},\quad
- \phi_b=\frac{\pi_bu'(C_b)}{u'(C_0)},\quad
- \frac{\phi_a}{\phi_b}=\frac{\pi_au'(C_a)}{\pi_bu'(C_b)},\qquad
- 1+r_F=\frac{u'(C_0)}{\pi_au'(C_a)+\pi_bu'(C_b)}.
+ \begin{array}{c|cc}
+ (\phi_a^*,\phi_b^*)&(x_1,y_1)&(x_2,y_2)\\\hline
+ (0.15,0.5)&(1,3)&(3,5)\\
+ (0.30,0.5)&(1.1,3.1)&(2.9,4.9)
+ \end{array}
+ \]
+ 两行均满足个人预算和商品出清。令 $u_1'$ 在消费量 $1,1.1,3,3.1$ 处分别为 $2,0.8,0.6,0.48$，$u_2'$ 在 $2.9,3,4.9,5$ 处分别为 $1.5,1.3,0.9,0.39$，并以正的严格递减函数连接。两行的边际效用比分别为 $u_k'(y_k)/u_k'(x_k)=0.3,0.6$，各自等于 $\phi_a^*/\pi_a$，而状态 $b$ 的边际效用比等于 $\phi_b^*/\pi_b=1$。故两行均为均衡。
+
+ \item 固定题设代表性效用 $u$，取 $u'>0$、$u''<0$。代表性参与者的均衡消费等于总禀赋。由内点一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-3}）\fi，状态价格等于该状态消费相对当期消费的边际替代率，即状态概率乘以两项边际效用之比。债券在两状态各支付 1，价格是两状态价格之和，因此
+ \[
+ \begin{aligned}
+ \phi_a^*&=\frac{\pi_au'(C_a)}{u'(C_0)},&
+ \phi_b^*&=\frac{\pi_bu'(C_b)}{u'(C_0)},\\
+ \frac{\phi_a^*}{\phi_b^*}&=\frac{\pi_au'(C_a)}{\pi_bu'(C_b)},&
+ 1+r_F^*&=\frac{1}{\phi_a^*+\phi_b^*}
+          =\frac{u'(C_0)}{\pi_au'(C_a)+\pi_bu'(C_b)}.
+ \end{aligned}
  \]
 
  令 $D=\pi_au'(C_a)+\pi_bu'(C_b)$。由 $u'>0,u''<0,u'''<0$，得到
  \begin{center}
  \begin{tabular}{c|cccc}
- 变化&$\phi_a$&$\phi_b$&$\phi_a/\phi_b$&$r_F$\\\hline
+ 变化&$\phi_a^*$&$\phi_b^*$&$\phi_a^*/\phi_b^*$&$r_F^*$\\\hline
  $C_0$ 增加&上升&上升&不变&下降\\
  $C_a$ 增加&下降&不变&下降&上升\\
  $C_b$ 增加&不变&下降&上升&上升\\
@@ -58,15 +73,15 @@
  \end{tabular}
  \end{center}
 
- 前三行直接来自边际效用递减。第四行中，对 $k>1$ 定义 $F(x)=u'(kx)/u'(x)$，则
+ 前三行直接来自边际效用递减。第四行中，两个未来状态的边际效用都下降。为比较它们各自保留的比例，对增长倍数 $k>1$ 定义 $F(x)=u'(kx)/u'(x)$。增长后的状态价格比除以原来的状态价格比，等于 $F(C_a)/F(C_b)$。相对风险厌恶系数 $R(x)=-xu''(x)/u'(x)$ 衡量消费按比例变化时边际效用的相对变化。由
  \[
  F'(x)=\frac{u'(kx)}{xu'(x)}[R(x)-R(kx)],\qquad
  R'(x)=-\frac{u''}{u'}-\frac{xu'''}{u'}+x\left(\frac{u''}{u'}\right)^2>0.
  \]
 
- 因此 $C_a>C_b>0$ 时 $F(C_a)<F(C_b)$，同比增长后状态价格比下降。两未来状态的边际效用均下降，故 $D$ 下降、$r_F$ 上升。
+ 因此 $C_a>C_b>0$ 时 $F(C_a)<F(C_b)$，同比增长后状态价格比下降。两未来状态的边际效用均下降，故 $D$ 下降、$r_F^*$ 上升。
 
- 最后一行把“风险上升”明确为\textbf{保持期望总禀赋不变}的扩散：
+ 最后一行把“风险上升”理解为均值保持扩散。为了只比较风险，保持未来期望总禀赋 $\pi_aC_a+\pi_bC_b$ 不变，同时提高高状态的禀赋、降低低状态的禀赋，即
  \[
  \pi_a\,dC_a+\pi_b\,dC_b=0,\qquad dC_a>0.
  \]
@@ -76,13 +91,13 @@
  \frac{dD}{dC_a}=\pi_a[u''(C_a)-u''(C_b)]<0,
  \]
 
- 因为 $u'''<0$ 使 $u''$ 严格递减。因此 $r_F$ 上升。只给出差距 $C_a-C_b$ 增加而不规定均值如何变化，尚未确定一种风险比较。
+ 因为 $u'''<0$ 使 $u''$ 严格递减。因此 $r_F^*$ 上升。只给出差距 $C_a-C_b$ 增加而不规定均值如何变化，尚未确定一种风险比较。
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-2}{**} 考虑一个含有参与者 $k=1,\dots,K$ 的 Arrow--Debreu 经济。参与者 $k$ 具有形式为 $u_{k,0}(c_{0})+\mathrm{E}[u_{k,1}(c_{1})]$ 的效用函数，对于所有 $k$，$u_{k,0}$ 和 $u_{k,1}$ 是严格递增和严格凹的。$f_{k}^{0}$ 和 $f_{k}$ 是在给定权重集合 $\lambda=\{\lambda_{1},\dots,\lambda_{K}\}$ 下对于参与者 $k$ 的 Pareto 最优分配规则。定义 $u_{0}$ 和 $u_{1}$ 如下
+\WJTenExercise{exer:wj-ten-2}{} 考虑一个含有参与者 $k=1,\dots,K$ 的 Arrow--Debreu 经济。参与者 $k$ 具有形式为 $u_{k,0}(c_{0})+\mathrm{E}[u_{k,1}(c_{1})]$ 的效用函数，对于所有 $k$，$u_{k,0}$ 和 $u_{k,1}$ 是严格递增和严格凹的。$f_{k}^{0}$ 和 $f_{k}$ 是在给定权重集合 $\lambda=\{\lambda_{1},\dots,\lambda_{K}\}$ 下对于参与者 $k$ 的 Pareto 最优分配规则。定义 $u_{0}$ 和 $u_{1}$ 如下
 \[
     u_{0}'(x)=\lambda_{k}u_{k,0}'(f_{k}^{0}(x)),\qquad u_{1}'(x)=\lambda_{k}u_{k,1}'(f_{k}(x)).
 \]
@@ -96,27 +111,30 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 % 原书练习10.2定义右侧漏写导数；题干已按边际效用校正，题号、其余设定保留。
-对每一期，规划者条件把聚合边际效用与个人\textbf{边际效用}联系起来：
+固定正的规划权重 $\lambda_k$。给定某个未来状态的总消费 $x$，规划者把该状态的资源分给各人，求解\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-12}）\fi
 \[
- u_0'(x)=\lambda_ku_{k,0}'(f_k^0(x)),\qquad
- u_1'(x)=\lambda_ku_{k,1}'(f_k(x)).
+\begin{aligned}
+ V_1(x)=\max_{c_k\ge0}\quad &\sum_k\lambda_ku_{k,1}(c_k)\\
+ \text{s.t.}\quad &\sum_kc_k=x.
+\end{aligned}
 \]
-
-这里权重 $\lambda_k>0$ 固定，采用光滑内点模型，且 $u_k'>0,u_k''<0$。涉及 DARA 的导数时，效用三次可微。
+该状态的概率对所有人是同一个乘数，在求最优分配时可以约去。当期的规划问题同理，用 $u_{k,0}$ 得到 $V_0(x)$。以下在 $u_k'>0$、$u_k''<0$ 的光滑内点上讨论，此时每人的加权边际效用 $\lambda_ku_{k,1}'(f_k(x))$ 等于同一个资源约束乘子，也就是题设的 $u_1'(x)$。
 \begin{enumerate}[label=(\alph*)]
- \item 由规划者条件，右侧对各人相同且为正，故 $u_0',u_1'>0$。分享函数严格递增；例如
+ \item 由规划者条件，右侧对各人相同且为正，故 $u_0',u_1'>0$。以未来一期为例，对边际效用条件求导，并用资源约束 $\sum_k f_k(x)=x$，得到
  \[
- u_1''(x)=\lambda_ku_{k,1}''(f_k(x))f_k'(x)<0.
+ u_1''(x)=\lambda_ku_{k,1}''(f_k(x))f_k'(x),\qquad
+ u_1''(x)\sum_k\frac{1}{\lambda_ku_{k,1}''(f_k(x))}=1.
  \]
 
- 当期效用也满足同样的导数关系，所以两期聚合效用均严格递增、严格凹。
+ 求和项为负，故 $u_1''<0$ 且 $f_k'>0$。当期同理，所以两期聚合效用均严格递增、严格凹。
 
- \item 令 $V_1(x)=\max_{\sum_kc_k=x}\sum_k\lambda_ku_{k,1}(c_k)$。包络定理给出
+ \item 将最优分配代回 $V_1(x)=\sum_k\lambda_ku_{k,1}(f_k(x))$。对 $x$ 用链式法则，再由 $\sum_k f_k'(x)=1$ 得到
  \[
- V_1'(x)=\lambda_ku_{k,1}'(f_k(x))=u_1'(x),
+ V_1'(x)=\sum_k\lambda_ku_{k,1}'(f_k(x))f_k'(x)
+        =u_1'(x)\sum_k f_k'(x)=u_1'(x).
  \]
 
- 故 $u_1$ 与 $V_1$ 相差一个常数；$u_0$ 与当期规划最优值也相差一个常数。因此 $u_0(c_0)+\mathrm E[u_1(c_1)]$ 是代表性参与者的效用。
+ 故 $u_1$ 与 $V_1$ 相差一个常数；$u_0$ 与当期规划最优值 $V_0$ 也相差一个常数。规划问题按日期和未来状态分别分配资源，因此总价值为 $V_0(c_0)+\mathrm E[V_1(c_1)]$。去掉与消费无关的常数，就得到代表性参与者的效用 $u_0(c_0)+\mathrm E[u_1(c_1)]$。
 
  \item 对任一期省略时间下标。记个人和代表性参与者的绝对风险容忍度为
  \[
@@ -124,19 +142,18 @@
  T(x)=-\frac{u'(x)}{u''(x)}.
  \]
 
- 对 $u'(x)=\lambda_ku_k'(f_k(x))$ 求导并相除，得 $f_k'=T_k(f_k)/T$。对各人求和，
+ 对 $u'(x)=\lambda_ku_k'(f_k(x))$ 求导，再除以原等式，得 $f_k'(x)=T_k(f_k(x))/T(x)$。$f_k'(x)$ 是新增一单位总消费时分给第 $k$ 人的份额，各人份额之和为 1，所以
  \[
- T(x)=\sum_kT_k(f_k(x)),\qquad
- T'(x)=\sum_kT_k'(f_k(x))f_k'(x)>0.
+ T(x)=\sum_kT_k(f_k(x)).
  \]
 
- DARA 等价于风险容忍度递增。每人的 $T_k'>0$，且 $f_k'>0$，故代表性参与者也有 $T'>0$，即 $A'(x)=-T'(x)/T(x)^2<0$。
+ 绝对风险厌恶递减（DARA）意味着绝对风险厌恶系数下降，其倒数 $T_k$ 上升。由 (a)，总消费 $x$ 增加时各人的消费 $f_k(x)$ 都增加，因此上式中的各项都上升。于是代表性参与者的绝对风险厌恶系数 $A(x)=1/T(x)$ 也随 $x$ 下降。\qedhere
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-3}{*} 在 1 期，经济有两个可能状态 $a$ 和 $b$。它们的发生的概率分别为 $\pi$ 和 $1-\pi$。市场有两只交易证券，证券 1 和 2，支付如下：
+\WJTenExercise{exer:wj-ten-3}{} 在 1 期，经济有两个可能状态 $a$ 和 $b$。它们的发生概率分别为 $\pi$ 和 $1-\pi$。市场有两只交易证券，证券 1 和 2，支付如下：
 \begin{center}
 \begin{tabular}{@{}c@{\hspace{2.5em}}c@{}}
 证券 1：
@@ -162,23 +179,39 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
- \item 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$，所以市场完全。
+ \item 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$。矩阵行满秩，任意两状态支付都能由这两只证券复制，故市场完全\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节的行满秩判据）\fi。
 
- \item 给定正状态价格，财富为 $w_k=s_kC(1+\phi_au+\phi_bd)$。最优条件为
+ \item 设 $0<\pi<1$。给定正状态价格，参与者 $k$ 的财富为 $w_k=s_kC(1+\phi_au+\phi_bd)$，等于当期禀赋加初始股票持仓的市值。对数效用要求各项消费严格为正，且效用递增使预算取等号，因此
+ \[
+ \begin{aligned}
+ \max_{c_k>0}\quad &U_k(c_k)\\
+ \text{s.t.}\quad &c_{k,0}+\phi_ac_{k,a}+\phi_bc_{k,b}=w_k .
+ \end{aligned}
+ \]
+ 拉格朗日函数为
+ \[
+ \mathcal L_k=U_k(c_k)+\lambda_k(w_k-c_{k,0}-\phi_ac_{k,a}-\phi_bc_{k,b}).
+ \]
+ 对三项消费分别求偏导，得到
  \[
  \frac1{c_{k,0}}=\lambda_k,\quad
  \frac{\rho\pi}{c_{k,a}}=\lambda_k\phi_a,\quad
- \frac{\rho(1-\pi)}{c_{k,b}}=\lambda_k\phi_b.
+ \frac{\rho(1-\pi)}{c_{k,b}}=\lambda_k\phi_b
+ \qquad\text{（一阶条件）}.
  \]
 
- 代入预算得 $\lambda_k=(1+\rho)/w_k$，从而
+ 三条一阶条件给出各项支出 $1/\lambda_k$、$\rho\pi/\lambda_k$、$\rho(1-\pi)/\lambda_k$。加总等于 $w_k$，故 $\lambda_k=(1+\rho)/w_k$，从而
  \[
  c_{k,0}=\frac{w_k}{1+\rho},\qquad
  c_{k,a}=\frac{\rho\pi w_k}{(1+\rho)\phi_a},\qquad
  c_{k,b}=\frac{\rho(1-\pi)w_k}{(1+\rho)\phi_b}.
  \]
 
- 初始持仓为 $\bar\theta_k=(0,s_k)^{\mathsf T}$（按债券、股票排列）。由 $X(\bar\theta_k+\theta_k)=(c_{k,a},c_{k,b})^{\mathsf T}$ 解出净购买量：
+ 这组消费严格为正，严格凹性保证它是唯一最优消费。令 $h_{k,B},h_{k,S}$ 为交易后的债券和股票持仓。两状态消费由证券支付提供，因而
+ \[
+ h_{k,B}+uCh_{k,S}=c_{k,a},\qquad h_{k,B}+dCh_{k,S}=c_{k,b}.
+ \]
+ 两式相减解出股票持仓，再代回求出债券持仓。分别减去初始持仓 $0,s_k$，得到净购买量
  \[
  \theta_{k,B}=\frac{u c_{k,b}-d c_{k,a}}{u-d},\qquad
  \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C(u-d)}-s_k.
@@ -193,30 +226,30 @@
  将两种状态下的个人需求分别相加，再代入 $W$，得到
  \[
  \begin{aligned}
- uC &= \sum_k c_{k,a}=\frac{\rho\pi W}{(1+\rho)\phi_a}
-     =\frac{\rho\pi C}{\phi_a},\\
- dC &= \sum_k c_{k,b}=\frac{\rho(1-\pi)W}{(1+\rho)\phi_b}
-     =\frac{\rho(1-\pi)C}{\phi_b}.
+ uC &= \sum_k c_{k,a}^*=\frac{\rho\pi W}{(1+\rho)\phi_a^*}
+     =\frac{\rho\pi C}{\phi_a^*},\\
+ dC &= \sum_k c_{k,b}^*=\frac{\rho(1-\pi)W}{(1+\rho)\phi_b^*}
+     =\frac{\rho(1-\pi)C}{\phi_b^*}.
  \end{aligned}
  \]
 
- 所以 $\phi_a=\rho\pi/u$、$\phi_b=\rho(1-\pi)/d$。按各状态的支付定价，
+ 所以 $\phi_a^*=\rho\pi/u$、$\phi_b^*=\rho(1-\pi)/d$。按各状态的支付定价，
  \[
- B=\phi_a+\phi_b=\rho\left(\frac\pi u+\frac{1-\pi}d\right),
- \qquad S=\phi_a uC+\phi_b dC=\rho C.
+ B^*=\phi_a^*+\phi_b^*=\rho\left(\frac\pi u+\frac{1-\pi}d\right),
+ \qquad S_0^*=\phi_a^* uC+\phi_b^* dC=\rho C.
  \]
 
- 此时按禀赋计算的总财富为 $C+S=(1+\rho)C$，与当期出清求出的 $W$ 一致。
+ 此时按禀赋计算的总财富为 $C+S_0^*=(1+\rho)C$，与当期出清求出的 $W$ 一致。
 
- 代回需求，$c_{k,0}=s_kC$、$c_{k,a}=s_kuC$、$c_{k,b}=s_kdC$。因此 $\theta_{k,B}=\theta_{k,S}=0$，每人保留初始持仓。
+ 代回需求，$c_{k,0}^*=s_kC$、$c_{k,a}^*=s_kuC$、$c_{k,b}^*=s_kdC$。由 $\sum_k s_k=1$，三项消费分别加总为 $C,uC,dC$。各人的净交易 $\theta_{k,B}^*=\theta_{k,S}^*=0$，证券市场也出清。
 
- \item 二叉树期权定价通常给定债券、股票的\textbf{价格与支付}，再由复制关系确定状态价格。本题同时通过个人最优与市场出清内生求得证券价格，因此状态价格还反映时间偏好和实际概率。价格确定后，复制定价在两种分析中一致。
+ \item 二叉树期权定价通常给定债券、股票的价格与支付，再用复制关系反推出状态价格。本题先由个人最优和市场出清求出状态价格，再代入 $B^*=\phi_a^*+\phi_b^*$ 和 $S_0^*=\phi_a^*uC+\phi_b^*dC$ 得到两只证券的价格。两种方法使用同一组定价关系，已知量和待求量的顺序不同。
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-4}{**} 继续考虑练习~\ref{exer:wj-ten-3}（共同对数效用、两状态股票与债券经济）定义的经济，
+\WJTenExercise{exer:wj-ten-4}{} 继续考虑练习~\ref{exer:wj-ten-3} 定义的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 计算在代表性参与者（即中央计划者）的效用函数中每个参与者的权重。它依赖于什么？为什么？
@@ -231,32 +264,39 @@
 \begin{solution}
 记 $\widetilde G=\widetilde C_1/C_0$，其取值为 $u,d$。本题的 $p$ 表示股票\textbf{净收益率}的风险溢价。
 \begin{enumerate}[label=(\alph*)]
- \item 对数效用的最优分享为 $c_k=\mu_kC/\sum_j\mu_j$。取 $\sum_k\mu_k=1$，由均衡消费 $c_k=s_kC$ 得 $\mu_k=s_k$。聚合效用为
+ \item 沿用练习~\ref{exer:wj-ten-2} 的聚合方法。任取一个日期或状态，总消费为 $x>0$ 时，规划者求解
+ \[
+ \begin{aligned}
+ \max_{c_k>0}\quad &\sum_k\mu_k\log c_k\\
+ \text{s.t.}\quad &\sum_kc_k=x .
+ \end{aligned}
+ \]
+ 未来状态的概率和折现系数对所有人相同，在单独分配该状态的资源时可以约去。由一阶条件 $\mu_k/c_k=\eta$ 和资源约束，得 $c_k=\mu_kx/\sum_j\mu_j$。归一化为 $\sum_k\mu_k=1$ 后，规划权重就是消费份额。为了重现上一题的均衡消费 $c_k^*=s_kx$，取 $\mu_k=s_k$。代回规划目标，得到代表性参与者的效用
  \[
  \log C_0+\rho\bigl[\pi\log C_{1a}+(1-\pi)\log C_{1b}\bigr]
  \]
- 加上一个与消费无关的常数。
+ 加上常数 $(1+\rho)\sum_k s_k\log s_k$，因为 $\log(s_kx)=\log s_k+\log x$。
 
  \item 规划权重为 $\mu_k=s_k$，由个人禀赋份额决定。较高权重对应较高的最优消费份额。
 
  \item 禀赋份额只改变加总中的常数项，代表性参与者的消费排序与 $s_k$ 无关。
 
- \item 随机贴现因子为 $\widetilde m=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item 随机贴现因子为 $\widetilde m^*=\rho\,u'(\widetilde C_1)/u'(C_0)=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
- B=\rho\mathrm E[1/\widetilde G],\qquad
- S=\mathrm E[(\rho/\widetilde G)C\widetilde G]=\rho C.
+ B^*=\rho\mathrm E[1/\widetilde G],\qquad
+ S_0^*=\mathrm E[(\rho/\widetilde G)C\widetilde G]=\rho C.
  \]
 
  \item 债券与股票的期望总收益率分别为
  \[
- 1+r_F=\frac1{\rho\mathrm E[1/\widetilde G]},\qquad
- 1+\bar r_S=\frac{\mathrm E[\widetilde G]}\rho.
+ 1+r_F^*=\frac1{\rho\mathrm E[1/\widetilde G]},\qquad
+ 1+\bar r_S^*=\frac{\mathrm E[\widetilde G]}\rho.
  \]
 
  因此
  \[
  \begin{aligned}
- p=\bar r_S-r_F
+ p=\bar r_S^*-r_F^*
  &=\frac1\rho\left(\mathrm E[\widetilde G]-\frac1{\mathrm E[1/\widetilde G]}\right)\\
  &=\frac{\pi(1-\pi)(u-d)^2}{\rho[\pi d+(1-\pi)u]}>0.
  \end{aligned}
@@ -264,20 +304,22 @@
 
  这是算术均值与调和均值之差；$u=d$ 时风险溢价为零。
 
- \item 给定增长率分布，消费水平 $C$ 按比例改变股票价格与支付，收益率和风险溢价保持不变。增大 $\rho$ 使 $r_F$ 下降，并按 $1/\rho$ 的比例降低风险溢价。
+ \item 给定增长率分布，消费水平 $C$ 按比例改变股票价格与支付，收益率和风险溢价保持不变。增大 $\rho$ 使 $r_F^*$ 下降，并按 $1/\rho$ 的比例降低风险溢价。
 
- 固定状态概率及价差 $u-d$，把两个增长率一起上移，$\mathrm E[1/\widetilde G]$ 下降，故 $r_F$ 上升；上式分母增大，风险溢价下降。固定均值而扩大价差，则构成均值保持扩散。函数 $1/G$ 严格凸，故债券价格上升、无风险利率下降；股票期望收益率保持不变，风险溢价上升。
+ 比较均值与方差时固定状态概率。由 $\operatorname{Var}(\widetilde G)=\pi(1-\pi)(u-d)^2$，固定方差即固定两状态的差 $u-d$。因此提高均值要将 $u,d$ 同时上移相同的幅度，使 $\mathrm E[1/\widetilde G]$ 下降、$r_F^*$ 上升；风险溢价式的分母增大，故溢价下降。
+
+ 固定均值而提高方差，则在保持 $\pi u+(1-\pi)d$ 不变的同时提高 $u$、降低 $d$，构成均值保持扩散。函数 $1/G$ 严格凸，故债券价格上升、无风险利率下降。此时股票现价 $\rho C$ 与期望支付 $C\mathrm E[\widetilde G]$ 均不变，所以风险溢价的上升来自无风险利率下降。
 
  令 $\tilde g=\widetilde G-1$。在其取值较小时，二阶展开给出
  \[
- 1+r_F\approx\frac1{\rho[1-\bar g+\operatorname{Var}(\tilde g)+\bar g^2]},\qquad
+ 1+r_F^*\approx\frac1{\rho[1-\bar g+\operatorname{Var}(\tilde g)+\bar g^2]},\qquad
  p\approx\frac{\operatorname{Var}(\tilde g)}\rho.
  \]
 
- 上式给出债券的总收益率。本模型始终有 $S=\rho C$；保持 $C,\rho$ 不变而增加未来风险时，股票现价保持不变，收益率溢价的上升来自无风险利率下降。
 \end{enumerate}
 \end{solution}
 
+\Needspace{11\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
 \WJTenExercise{exer:wj-ten-5}{} 继续前面练习中的经济。
@@ -290,13 +332,13 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
- \item 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制期权的组合中，债券、股票的数量分别为
+ \item 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制组合满足 $\theta_B+uC\theta_S=H_a$、$\theta_B+dC\theta_S=H_b$。两式相减解出股票数量，再代回得到债券数量：
  \[
  \theta_B=\frac{uH_b-dH_a}{u-d},\qquad
  \theta_S=\frac{H_a-H_b}{C(u-d)}.
  \]
 
- 所以 $V=\theta_BB+\theta_SS=\phi_aH_a+\phi_bH_b$。按执行价写成
+ 代入练习~\ref{exer:wj-ten-3} 的均衡价格，复制成本为 $V=\theta_BB^*+\theta_SS_0^*=\phi_a^*H_a+\phi_b^*H_b$。当 $K\le dC$ 时，两状态的支付均可写为股价减执行价；当 $dC<K<uC$ 时，只有高状态的支付为正；当 $K\ge uC$ 时，两状态支付均为零。因此
  \[
  V=\begin{cases}
  \rho C-K\rho(\pi/u+(1-\pi)/d),&K\le dC,\\
@@ -305,20 +347,25 @@
  \end{cases}
  \]
 
- \item 用 $\widetilde m=\rho C/\widetilde C_1$ 定价，
+ \item 沿用练习~\ref{exer:wj-ten-4} 的定价核 $\widetilde m^*=\rho C/\widetilde C_1$。按\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}（定价核与支付的乘积取期望）\else 定价核加权的支付定价公式\fi，期权支付 $\tilde H=(\widetilde C_1-K)_+$ 的价格为
  \[
- V=\mathrm E[\widetilde m(\widetilde C_1-K)_+]
+ V=\mathrm E[\widetilde m^*(\widetilde C_1-K)_+]
  =\frac{\rho\pi}{u}(uC-K)_+
   +\frac{\rho(1-\pi)}d(dC-K)_+.
  \]
 
- 这与复制价格对任意执行价都相同，因此消费定价公式同样适用于期权。
+ 这与 (a) 的复制价格相同。若 $V>0$，令 $\tilde r_H=\tilde H/V-1$ 为期权净收益率。将 $V=\mathrm E[\widetilde m^*\tilde H]$ 两边除以 $V$，得 $\mathrm E[\widetilde m^*(1+\tilde r_H)]=1$。再用 $1+r_F^*=1/\mathrm E[\widetilde m^*]$，可写成消费 CAPM 的风险溢价形式\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-21}）\fi
+ \[
+ \mathrm E[\tilde r_H]-r_F^*
+ =-(1+r_F^*)\operatorname{Cov}(\widetilde m^*,\tilde r_H).
+ \]
+ 若 $V=0$，直接用支付定价式即可，此时期权收益率未定义。
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-6}{**} 在 1 期，经济有两个可能状态 $a$ 和 $b$。它们的发生概率分别为 $\pi$ 和 $1-\pi$。市场有两只交易证券，证券 1 和 2，支付如下：
+\WJTenExercise{exer:wj-ten-6}{} 在 1 期，经济有两个可能状态 $a$ 和 $b$。它们的发生概率分别为 $\pi$ 和 $1-\pi$。市场有两只交易证券，证券 1 和 2，支付如下：
 \begin{center}
 \begin{tabular}{@{}c@{\hspace{2.5em}}c@{}}
 证券 1：
@@ -328,12 +375,11 @@
 \WJEventTree{C_{1a},C_{1b}}
 \end{tabular}
 \end{center}
-% 原书沿用前题C、u、d，未在本题定义；按本题支付补足正消费及完全性条件。
-其中 $C_0>0$ 且 $0<C_{1b}<C_{1a}$。因此，证券 1 是无风险债券而证券 2 是风险证券，我们可以称它为股票。经济中有参与者 $k=1,\dots,K$。参与者 $k$ 的禀赋是 $s_{k}C_{0}$ 单位的当期消费、0 单位的证券 1 和 $s_{k}$ 单位的证券 2，其中 $s_{k}>0$ 且 $\sum_{k}s_{k}=1$。所有参与者具有如下的期望效用函数：
+证券 1 是无风险债券，证券 2 是风险证券，我们可以称它为股票。经济中有参与者 $k=1,\dots,K$。参与者 $k$ 的禀赋是 $s_{k}C_{0}$ 单位的当期消费、0 单位的证券 1 和 $s_{k}$ 单位的证券 2，其中 $s_{k}>0$ 且 $\sum_{k}s_{k}=1$。所有参与者具有如下的期望效用函数：
 \[
     U_{k}(c_{k})=-e^{-\alpha c_{k,0}}-\rho\bigl[\pi e^{-\alpha c_{k,1a}}+(1-\pi)e^{-\alpha c_{k,1b}}\bigr]
 \]
-其中 $\rho>0$、$\alpha>0$、$0<\pi<1$。本题按消费非负约束不绑定的内点模型求解。
+其中 $\rho>0$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明证券市场是完全的。
     \item 求解每一参与者的最优消费/投资选择。
@@ -343,29 +389,50 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-% 原书在本题沿用了前题的C、u、d文字，却以C_1a、C_1b给出支付；这里明确实际使用的完全性条件。
-两状态股票支付不同，债券和股票可以复制任意状态支付。以下利用题设内点条件求解个人选择与均衡。
+原书在这里沿用了前题的 $C,u,d$ 条件。本题实际用到的是 $C_0>0$ 和两状态的正支付不同，按图取 $0<C_{1b}<C_{1a}$。取 $\alpha>0$、$0<\pi<1$，先求内点解，再核对非负消费约束。
 \begin{enumerate}[label=(\alph*)]
- \item $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式非零，市场完全。
+ \item 与练习~\ref{exer:wj-ten-3}(a) 一样，支付矩阵 $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式为 $C_{1b}-C_{1a}\ne0$，任意两状态支付都可复制，故市场完全。
 
- \item 给定状态价格，记
+ \item 给定正的状态价格，记
  \[
  B=\phi_a+\phi_b,\quad S=\phi_aC_{1a}+\phi_bC_{1b},\quad
  W=C_0+S,\quad w_k=s_kW.
  \]
 
- 个人最优条件为
+ 个人财富 $w_k$ 是当期禀赋与初始股票持仓的市值之和。指数效用在零消费处有定义，因此需要保留非负约束。又因效用严格递增，最优选择花完预算，故求解
  \[
- \alpha e^{-\alpha c_{k,0}}=\lambda_k,\quad
- \rho\pi\alpha e^{-\alpha c_{k,a}}=\lambda_k\phi_a,\quad
- \rho(1-\pi)\alpha e^{-\alpha c_{k,b}}=\lambda_k\phi_b.
+ \begin{aligned}
+ \max_{c_k}\quad &U_k(c_k)\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_{k,0}+\phi_ac_{k,a}+\phi_bc_{k,b}&=s_kW,\\
+ c_{k,0},c_{k,a},c_{k,b}&\ge0.
+ \end{aligned}\right.
+ \end{aligned}
  \]
 
- 令 $d_a=\alpha^{-1}\log(\rho\pi/\phi_a)$、$d_b=\alpha^{-1}\log(\rho(1-\pi)/\phi_b)$。前后相除得 $c_{k,a}=c_{k,0}+d_a$、$c_{k,b}=c_{k,0}+d_b$。代入预算，
+ 先求三项消费均为正的解。用 $\lambda_k$ 表示预算乘子，对三项消费分别求偏导，得到
+ \[
+ \begin{aligned}
+ \alpha e^{-\alpha c_{k,0}}&=\lambda_k,\\
+ \rho\pi\alpha e^{-\alpha c_{k,a}}&=\lambda_k\phi_a
+     \qquad\text{（内点一阶条件）},\\
+ \rho(1-\pi)\alpha e^{-\alpha c_{k,b}}&=\lambda_k\phi_b .
+ \end{aligned}
+ \]
+
+ 令 $d_a=\alpha^{-1}\log(\rho\pi/\phi_a)$、$d_b=\alpha^{-1}\log(\rho(1-\pi)/\phi_b)$。未来两式分别除以当期的一阶条件，再取对数，得到 $c_{k,a}=c_{k,0}+d_a$、$c_{k,b}=c_{k,0}+d_b$。代入预算 $c_{k,0}+\phi_ac_{k,a}+\phi_bc_{k,b}=s_kW$，
  \[
  c_{k,0}=\frac{s_kW-\phi_ad_a-\phi_bd_b}{1+B},\quad
  c_{k,a}=c_{k,0}+d_a,\quad c_{k,b}=c_{k,0}+d_b.
  \]
+
+ 若所得三项均为正，严格凹性保证这是唯一最优消费。为处理零消费，记 $q=(1,\phi_a,\phi_b)$、$\beta=(1,\rho\pi,\rho(1-\pi))$，下标按 $0,a,b$ 排列。若 $c_{k,s}=0$，只能从零向上增加该项消费，最优时零点的边际效用 $\alpha\beta_s$ 不超过这项支出的边际效用成本 $\lambda_kq_s$。若 $c_{k,s}>0$，两者在最优消费处相等，即 $\alpha\beta_s e^{-\alpha c_{k,s}}=\lambda_kq_s$。合写为
+ \[
+ c_{k,s}=\max\!\left\{0,\frac1\alpha
+             \log\frac{\alpha\beta_s}{\lambda_kq_s}\right\}.
+ \]
+ 给定价格，由 $\sum_s q_sc_{k,s}=s_kW$ 确定 $\lambda_k$。
 
  初始持仓为 $\bar\theta_k=(0,s_k)^{\mathsf T}$。由 $X(\bar\theta_k+\theta_k)=(c_{k,a},c_{k,b})^{\mathsf T}$，得到债券和股票的净购买量：
  \[
@@ -373,31 +440,63 @@
  \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C_{1a}-C_{1b}}-s_k.
  \]
 
- \item 将消费关系对各人求和，出清给出 $Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$。因此
+ \item 先用内点需求求候选均衡。逐项出清要求 $\sum_kc_{k,0}^*=C_0$、$\sum_kc_{k,a}^*=C_{1a}$、$\sum_kc_{k,b}^*=C_{1b}$。在 (b) 中，每人的未来消费比当期分别多 $d_a,d_b$，因此对各人求和后，$Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$。代回 $d_a,d_b$ 的定义，
  \[
- \phi_a=\rho\pi e^{-\frac\alpha K(C_{1a}-C_0)},\qquad
- \phi_b=\rho(1-\pi)e^{-\frac\alpha K(C_{1b}-C_0)}.
+ \phi_a^*=\rho\pi e^{-\frac\alpha K(C_{1a}-C_0)},\qquad
+ \phi_b^*=\rho(1-\pi)e^{-\frac\alpha K(C_{1b}-C_0)}.
  \]
 
- 由此计算 $B,S,W$。令 $\delta_k=(s_k-1/K)W/(1+B)$，均衡消费可简写为
+ 债券和股票的均衡价格分别为 $B^*=\phi_a^*+\phi_b^*$、$S_0^*=\phi_a^*C_{1a}+\phi_b^*C_{1b}$。令 $W^*=C_0+S_0^*$、$\delta_k=(s_k-1/K)W^*/(1+B^*)$。将 $Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$ 代回 (b)，得到
  \[
- c_{k,0}=C_0/K+\delta_k,\quad
- c_{k,a}=C_{1a}/K+\delta_k,\quad
- c_{k,b}=C_{1b}/K+\delta_k.
+ c_{k,0}^*=C_0/K+\delta_k,\quad
+ c_{k,a}^*=C_{1a}/K+\delta_k,\quad
+ c_{k,b}^*=C_{1b}/K+\delta_k.
  \]
 
  代回净购买量，得到
  \[
- \theta_{k,B}=\delta_k,\qquad \theta_{k,S}=1/K-s_k.
+ \theta_{k,B}^*=\delta_k,\qquad \theta_{k,S}^*=1/K-s_k.
  \]
 
- 因 $\sum_k\delta_k=0$，债券总持仓为零，股票总持仓为1，净交易总量均为零。上述消费若均严格为正，就给出非负消费模型的内点均衡。
+ 因 $\sum_k\delta_k=0$，各日期和状态的消费都加总为总禀赋，且两只证券的净交易总量均为零。每个人最终持有 $1/K$ 股股票，承担同样多的总消费风险。禀赋份额高于 $1/K$ 的人将股票持仓降至 $1/K$ 股，并买入债券，使各节点的消费都比平均分配多 $\delta_k$。
+
+ 若每人都满足 $\delta_k>-\min\{C_0,C_{1a},C_{1b}\}/K$，三项消费均严格为正，候选解就是内点均衡。若恰有消费为零且其余均非负，该候选解仍满足 (b) 的最优条件。禀赋份额为正本身不足以保证非负消费。例如取 $K=2$、$\pi=1/2$、$\rho=1$、$\alpha=2\log 2$、$(C_0,C_{1a},C_{1b})=(1,2,1)$，当 $s_1=1/32$ 时，候选解给出 $c_{1,0}^*=c_{1,b}^*=-1/28$。
+
+ 若候选解出现负消费，改用 (b) 含零消费的需求，联立两个未来状态的出清条件求 $\phi_a^*,\phi_b^*$。当期出清由个人预算加总及未来出清推出。求得消费后，再由两状态的支付关系计算净购买量。
+
+沿用上面的参数，试令参与者 1 在当期和状态 $b$ 的消费为零，只在状态 $a$ 消费 $x$。出清要求两人的消费分别为 $(0,x,0)$ 和 $(1,2-x,1)$。参与者 2 的消费为内点，其当期与两个未来状态的一阶条件给出
+\[
+ \phi_b=\tfrac12,\qquad
+ \phi_a=\tfrac12 e^{-\alpha(1-x)}.
+\]
+
+参与者 1 把全部财富用于状态 $a$，其预算为
+\[
+ \phi_a x=\tfrac1{32}(1+2\phi_a+\phi_b)
+ \quad\Longleftrightarrow\quad
+ \tfrac12 e^{-\alpha(1-x)}\left(x-\tfrac1{16}\right)=\tfrac3{64}.
+\]
+
+最后一个等式的左侧在 $[1/16,1/2]$ 上严格递增，由 $0$ 增至 $7/64$，故在该区间内有唯一解 $x\approx0.30739$。在状态 $a$ 的最优条件给出参与者 1 的预算乘子
+\[
+ \lambda_1=\frac{\alpha e^{-\alpha x}}{2\phi_a}
+           =\alpha e^{\alpha(1-2x)}>\alpha.
+\]
+
+因此在当期和状态 $b$，从零开始增加消费的边际效用分别为 $\alpha$ 和 $\alpha/2$，均低于相应的边际支出成本 $\lambda_1$ 和 $\lambda_1\phi_b$。参与者 1 满足零消费的最优条件，参与者 2 的预算由总预算和参与者 1 的预算推出。消费按构造逐项出清，故得到角点均衡
+\[
+ \phi_a\approx0.19141,\qquad
+ B=\phi_a+\phi_b\approx0.69141,\qquad
+ S_0=2\phi_a+\phi_b\approx0.88283.
+\]
+
+由 (b) 的支付关系，参与者 1 的债券和股票净购买量分别为 $-x$ 和 $x-1/32$，参与者 2 持有相反的净头寸。若改为两人各持一半禀赋，内点公式给出 $B^*=0.75$、$S_0^*=1$。总资源未变，价格随禀赋份额变化，说明下题的禀赋分布无关性依赖于内点条件。
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-7}{**} 继续考虑练习~\ref{exer:wj-ten-6}（共同指数效用、两状态股票与债券的内点模型）定义的经济
+\WJTenExercise{exer:wj-ten-7}{} 继续考虑练习~\ref{exer:wj-ten-6} 定义的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 计算在代表性参与者（即中央计划者）的效用函数中每个参与者的权重。它依赖于什么？为什么？
@@ -405,46 +504,57 @@
     \item 用基于消费的 CAPM 为两只证券定价。
     \item 计算无风险收益和股票的风险溢价，现在风险溢价的定义为 $\mathrm{E}[\tilde{S}_{1}]-(1+r_{F})S_{0}$。即一股股票的绝对超额收益。
     \item 利率和股票的风险溢价依赖于什么？解释它们对经济原生变量：当前消费水平、消费增长的期望值 $\mathrm{E}[\tilde{C}_{1}/C_{0}]$、消费增长的波动率 $\mathrm{Var}[\tilde{C}_{1}/C_{0}]$ 以及时间折现系数 $\rho$ 的依赖性？
-    \item 求解以证券 2 为标的资产、执行价格为 $L$ 的看涨期权的价格。
+    \item 求解以证券 2 为标的资产、执行价格为 $K$ 的看涨期权的价格。
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-沿用练习~\ref{exer:wj-ten-6} 的内点模型，令 $a=\alpha/K$、$B=\phi_a+\phi_b$、$W=C_0+S_0$，并记 $\delta_k=(s_k-1/K)W/(1+B)$。
+% 原书题首误指练习 5，题干已改为承接练习 10.6。
+练习~\ref{exer:wj-ten-6} 先从个人需求与市场出清求均衡。本题从同一个均衡构造代表性参与者，再用其边际效用给证券定价。以下采用上一题的内点均衡，令 $a=\alpha/K$、$W^*=C_0+S_0^*$，并记 $\delta_k=(s_k-1/K)W^*/(1+B^*)$。
 \begin{enumerate}[label=(\alph*)]
- \item 均衡中 $c_{k,s}=C_s/K+\delta_k$。规划者边际效用满足
+ \item 依照练习~\ref{exer:wj-ten-2}，给定总消费 $x$，规划者在每个日期或状态分别求解
  \[
- \mu_k\alpha e^{-\alpha c_{k,s}}
- =\alpha\mu_ke^{-\alpha\delta_k}e^{-aC_s}.
+ \begin{aligned}
+ \max_{c_k\ge0}\quad &-\sum_k\mu_k e^{-\alpha c_k}\\
+ \text{s.t.}\quad &\sum_k c_k=x.
+ \end{aligned}
  \]
 
- 取 $\mu_k\propto e^{\alpha\delta_k}$，各人的加权边际效用相等，聚合效用经正比例标准化为
+ 在内点，$\mu_k\alpha e^{-\alpha c_k(x)}=\eta$ 对每个人都成立。取对数，得到 $\log\mu_k-\alpha c_k(x)=\log(\eta/\alpha)$。用该等式减去它在所有参与者上的平均，并代入 $\sum_jc_j(x)=x$，可得
+ \[
+ c_k(x)=\frac{x}{K}
+        +\frac{1}{\alpha}\left(\log\mu_k-\frac1K\sum_j\log\mu_j\right).
+ \]
+ 上一题的均衡消费在每个节点都等于该节点总消费的 $1/K$ 加上 $\delta_k$，且 $\sum_k\delta_k=0$。因此取 $\mu_k\propto e^{\alpha\delta_k}$，就能使括号项除以 $\alpha$ 后恰好等于 $\delta_k$。
+
+ 将 $c_k(x)=x/K+\delta_k$ 代回单节点目标，得到 $-e^{-ax}\sum_k\mu_ke^{-\alpha\delta_k}$。这个正的比例系数在各节点相同，约去后，代表性参与者的效用为
  \[
  -e^{-aC_0}-\rho[\pi e^{-aC_{1a}}+(1-\pi)e^{-aC_{1b}}].
  \]
+ 此指数形式适用于各人的分享均为正的总消费区间。若该分享规则给出负消费，须按非负约束重新分配资源并计算定价。
 
  \item 归一化后的权重可写为
  \[
- \mu_k=\frac{\exp(\alpha Ws_k/(1+B))}
- {\sum_j\exp(\alpha Ws_j/(1+B))}.
+ \mu_k=\frac{\exp(\alpha W^*s_k/(1+B^*))}
+ {\sum_j\exp(\alpha W^*s_j/(1+B^*))}.
  \]
 
- 它随禀赋份额 $s_k$ 上升；正指数中的 $W$ 反映财富单位，比较的对象是个人财富差异。
+ 权重随禀赋份额 $s_k$ 上升。因为禀赋份额越高，均衡消费越多，个人边际效用越低，规划者需要给他更大的权重，才能使各人的加权边际效用相等。
 
- \item 财富份额影响聚合效用的正比例系数，代表性偏好的形状由 $a=\alpha/K$ 决定。因此在本题共同时间折现下，定价与 $s_k$ 无关。
+ \item 在内点区间，财富份额只影响聚合效用的正比例系数。约去该系数后，代表性偏好由 $a=\alpha/K$、$\rho$ 和状态概率决定，所得内点定价与 $s_k$ 无关。
 
- \item 定价核为 $\widetilde m=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item 定价核为 $\widetilde m^*=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
- B=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}],\qquad
- S_0=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}\widetilde C_1].
+ B^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}],\qquad
+ S_0^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}\widetilde C_1].
  \]
 
- \item 无风险\textbf{净}利率为 $r_F=1/B-1$。本题风险溢价为一股股票的\textbf{绝对超额收益}。记 $\Delta=C_{1a}-C_{1b}>0$，则
+ \item 无风险总收益率为 $1+r_F^*=1/B^*$，净利率为 $r_F^*=1/B^*-1$。本题用一股股票的期望支付减去 $S_0^*/B^*$，得到以消费品计量的绝对超额收益。由 $B^*=\phi_a^*+\phi_b^*$，两状态价格分别除以 $B^*$ 后加总为 $1$，就是风险中性概率。于是 $S_0^*/B^*$ 是按风险中性概率计算的一股股票的期望支付。记 $\Delta=C_{1a}-C_{1b}>0$，则
  \[
  \begin{aligned}
- p&=\pi C_{1a}+(1-\pi)C_{1b}-S_0/B\\
- &=\left(\pi-\frac{\phi_a}{B}\right)\Delta\\
+ p&=\pi C_{1a}+(1-\pi)C_{1b}-S_0^*/B^*\\
+ &=\left(\pi-\frac{\phi_a^*}{B^*}\right)\Delta\\
  &=\frac{\pi(1-\pi)(e^{a\Delta}-1)}{\pi+(1-\pi)e^{a\Delta}}\,\Delta>0.
  \end{aligned}
  \]
@@ -453,31 +563,29 @@
 
  \item 给定未来\textbf{增长率分布}，令 $\tilde g=\widetilde C_1/C_0-1$、$\ell=aC_0$。当 $|\ell\tilde g|$ 一致较小时，
  \[
- B\approx\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)],
+ B^*\approx\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)],
  \quad
- r_F\approx\frac1{\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)]}-1.
+ r_F^*\approx\frac1{\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)]}-1.
  \]
 
  展开变量为 $\alpha C_0\tilde g/K$，人均消费增大也会放大边际效用的变化。
 
- $\rho$ 增大使债券价格上升、无风险利率下降；绝对风险溢价中 $\rho$ 相消。固定未来支付差而将两个未来消费水平一起上移，债券价格下降、利率上升，绝对风险溢价保持不变。固定概率和平均未来消费而扩大 $\Delta$，指数函数的凸性使债券价格上升、利率下降，上式的风险溢价则严格增加。
+ $\rho$ 增大使债券价格上升、无风险利率下降；绝对风险溢价中 $\rho$ 相消。固定 $C_0$ 和状态概率，此时 $\operatorname{Var}(\widetilde C_1/C_0)=\pi(1-\pi)(\Delta/C_0)^2$。保持方差不变而提高增长率均值，会使两个未来消费水平一起上移，债券价格下降、利率上升，而绝对风险溢价只取决于 $\Delta$，因此不变。固定均值而提高方差时，$\Delta$ 扩大，指数函数的凸性使债券价格上升、利率下降。式 (e) 中 $\pi-\phi_a^*/B^*$ 也随 $\Delta$ 增加，故风险溢价严格增加。
 
  给定增长率分布改变 $C_0$ 时，利率方向由
  \[
- \frac{\partial r_F}{\partial C_0}
- =\frac{\rho a}{B^2}\mathrm E[\tilde g e^{-aC_0\tilde g}]
+ \frac{\partial r_F^*}{\partial C_0}
+ =\frac{\rho a}{(B^*)^2}\mathrm E[\tilde g e^{-aC_0\tilde g}]
  \]
 
- 决定。与此同时，$\Delta=C_0(g_a-g_b)$ 随消费规模增大，绝对风险溢价也增加。若改为保持未来消费\textbf{水平}不变而提高 $C_0$，则债券价格上升、利率下降，绝对风险溢价不变。这两种比较分别固定增长率与未来水平。
+ 决定。若两个状态的净增长率 $g_a,g_b$ 都为正，利率随 $C_0$ 上升；若都为负，利率下降；若一正一负，方向取决于上式的加权结果。与此同时，$\Delta=C_0(g_a-g_b)$ 随消费规模增大，绝对风险溢价也增加。若保持未来消费水平不变而提高 $C_0$，则债券价格上升、利率下降，绝对风险溢价不变。
 
- \item % 原书本小题执行价也记K，与参与者人数冲突；题干、解答均局部记为L。
-执行价为 $L$ 的看涨期权价格为
+ \item 将执行价记为 $L$，与参与者人数 $K$ 区分。对任意 $L$，用两状态的看涨支付乘以各自的状态价格并相加，就得到复制成本
  \[
- V(L)=\phi_a(C_{1a}-L)_++\phi_b(C_{1b}-L)_+
- =\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}(\widetilde C_1-L)_+].
+ V(L)=\phi_a^*(C_{1a}-L)_++\phi_b^*(C_{1b}-L)_+
+ =\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}(\widetilde C_1-L)_+].\qedhere
  \]
 
- 它与由债券、股票复制该支付的成本相同，适用于全部执行价。
 \end{enumerate}
 \end{solution}
 
