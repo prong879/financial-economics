@@ -46,7 +46,7 @@ CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，�
 因子均值为零、协方差矩阵为 $I$；剩余项均值为零，与全部因子不相关，且两两不相关，$\operatorname{Var}(\widetilde\varepsilon_n)\le\bar\sigma^2$。其中 $b_{n,k}$ 是资产 $n$ 对因子 $k$ 的\textbf{载荷}。
 \end{tcolorbox}
 
-共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。记 $B$ 为 $N\times F$ 的载荷矩阵，$\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
+共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。将式~\eqref{eq:wj-14-1} 与第 $k$ 个因子取协方差，只有第 $k$ 项保留下来。因子方差为 $1$，所以 $b_{n,k}=\operatorname{Cov}(\widetilde r_n,\widetilde f_k)$。记 $B$ 为 $N\times F$ 的载荷矩阵，$\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
 \begin{equation}
  \widetilde r=\bar r+B\widetilde f+\widetilde\varepsilon,
  \qquad \operatorname{Cov}(\widetilde r)=BB^{\mathsf T}+\Sigma_\varepsilon.
@@ -97,6 +97,9 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
  \label{eq:wj-14-4}
 \end{equation}
 若其中一个载荷为零，该资产本身的收益率就是 $r_F$，用另一只资产的超额收益除以其载荷定义 $\lambda$。在两种情形下均有 $\bar r_\ell=r_F+b_\ell\lambda$（$\ell=i,j$）。令 $\omega b_i+(1-\omega)b_j=1$，解得 $\omega_1=(1-b_j)/(b_i-b_j)$。于是 $p_1$ 的期望收益为 $r_F+\lambda[\omega_1b_i+(1-\omega_1)b_j]=r_F+\lambda$，其随机收益为 $r_F+\lambda+\widetilde f$。\hfill$\square$
+
+$p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相对无风险组合 $p_0$ 的期望收益差 $\lambda=\bar r_{p_1}-r_F$ 称为\textbf{因子风险溢价}，表示承担一单位因子暴露获得的期望超额收益。
+
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJFourteenTheorem{thm:wj-fourteen-1} 精确单因子模型中，\hyperref[def:wj-four-2]{无套利}要求
 \begin{equation}
@@ -140,6 +143,8 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
 
 若 $[\iota\ B]$ 列满秩，线性方程 $z^{\mathsf T}\iota=1$、$B^{\mathsf T}z=d$ 对任意 $d\in\mathbb R^F$ 有解。取 $d=0$ 得无风险组合，取 $d=e_k$（第 $k$ 个坐标单位向量）得因子组合 $p_k$。将定价式左乘 $z^{\mathsf T}$，得到组合期望收益 $\lambda_0+d^{\mathsf T}\lambda$，所以 $\lambda_0=r_F$，$\lambda_k=\bar r_{p_k}-r_F$。
 
+式~\eqref{eq:wj-14-6} 排除了成本和因子载荷均为零的头寸产生套利的可能。若头寸仍有因子暴露，还须根据因子的取值判断终期支付能否恒为非负。练习~\ref{exer:wj-fourteen-2} 给出了线性关系成立而仍有套利的例子。
+
 \Needspace{16\baselineskip}
 \section{极限套利和APT}\label{sec:wj-fourteen-3}
 \subsection{极限套利与风险分散}
@@ -155,7 +160,7 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
 则称存在\textbf{极限套利机会}。
 \end{tcolorbox}
 
-其经济含义是：零初始投入的支付逐渐集中于一个正数。若期望趋于无穷而方差趋于零，也可将组合除以其期望，得到期望为1、方差趋于零的组合。
+零初始投入的支付逐渐集中于一个正数。由切比雪夫不等式，终期支付非正的概率趋于零。若期望趋于无穷而方差趋于零，也可将头寸除以其期望，得到期望为 $1$、方差趋于零的组合。
 
 \subsection{有限市场的近似定价}
 固定共同因子数 $F$，逐步增加资产。沿用第~\ref{sec:wj-fourteen-1}~节的剩余项假设。
@@ -168,28 +173,35 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
 
 \textbf{证明：}将 $\bar r^{(n)}$ 正交投影到 $\operatorname{col}[\iota\ B^{(n)}]$：
 \[
- \bar r^{(n)}=\lambda_0^{(n)}\iota+B^{(n)}\lambda^{(n)}+\eta^{(n)},
- \quad \iota^{\mathsf T}\eta^{(n)}=0,\quad B^{(n)\mathsf T}\eta^{(n)}=0.
+ \bar r^{(n)}
+ =\underbrace{\lambda_0^{(n)}\iota+B^{(n)}\lambda^{(n)}}_{\text{APT 拟合的期望收益}}
+ +\underbrace{\eta^{(n)}}_{\text{定价误差}},
+ \qquad \iota^{\mathsf T}\eta^{(n)}=0,\quad B^{(n)\mathsf T}\eta^{(n)}=0.
 \]
 
-记 $Q_n=\|\eta^{(n)}\|^2$，它正是定理左边的误差平方和。若 $Q_n$ 无界，取 $Q_n\to\infty$ 的子列，沿子列构造 $z^{(n)}=h_n\eta^{(n)}$，其中 $h_n>0$。由投影残差的正交性，
+$\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\varepsilon^{(n)}$ 则是收益实现时的随机冲击。记 $Q_n=\|\eta^{(n)}\|^2$，即前 $n$ 只资产可达到的最小误差平方和。新增资产只会增加一项非负的拟合误差，因此 $Q_{n+1}\ge Q_n$。
+
+若 $Q_n$ 无界，便有 $Q_n\to\infty$。对足够大的 $n$，取投资金额向量 $z^{(n)}=\eta^{(n)}/Q_n$。投影残差的两个正交条件给出
 \[
  \underbrace{\iota^{\mathsf T}z^{(n)}}_{\text{初始成本}}
- =h_n\iota^{\mathsf T}\eta^{(n)}=0,\qquad
+ =\frac{\iota^{\mathsf T}\eta^{(n)}}{Q_n}=0,\qquad
  \underbrace{B^{(n)\mathsf T}z^{(n)}}_{\text{因子载荷}}
- =h_n B^{(n)\mathsf T}\eta^{(n)}=0.
+ =\frac{B^{(n)\mathsf T}\eta^{(n)}}{Q_n}=0.
 \]
-记终期支付为 $\widetilde X_n=z^{(n)\mathsf T}\widetilde r^{(n)}$。投影部分与 $\eta^{(n)}$ 正交，共同因子也已被对冲，因此
+
+零成本使各头寸的本金相消，终期支付为 $\widetilde X_n=z^{(n)\mathsf T}\widetilde r^{(n)}$。共同因子已经抵消，且拟合的期望收益与头寸正交。于是期望支付来自定价误差，方差来自剩余项：
 \begin{align*}
  \mathrm E[\widetilde X_n]
- &=h_n\eta^{(n)\mathsf T}\bar r^{(n)}
- =h_n\eta^{(n)\mathsf T}\eta^{(n)}=h_nQ_n,\\
+ &=\frac{\eta^{(n)\mathsf T}\bar r^{(n)}}{Q_n}
+ =\frac{\|\eta^{(n)}\|^2}{Q_n}=1,\\
  \operatorname{Var}(\widetilde X_n)
- &=\operatorname{Var}\bigl(h_n\eta^{(n)\mathsf T}\widetilde\varepsilon^{(n)}\bigr)\\
- &=h_n^2\eta^{(n)\mathsf T}\Sigma_\varepsilon^{(n)}\eta^{(n)}
- \le h_n^2 Q_n\bar\sigma^2.
+ &=\frac{\eta^{(n)\mathsf T}\Sigma_\varepsilon^{(n)}\eta^{(n)}}{Q_n^2}
+ \le\frac{\bar\sigma^2}{Q_n}\longrightarrow0.
 \end{align*}
-教材取 $h_n=Q_n^{-2/3}$，于是期望为 $Q_n^{1/3}\to\infty$，方差至多为 $\bar\sigma^2 Q_n^{-1/3}\to0$。再将头寸除以其期望 $Q_n^{1/3}$，归一化头寸即为 $\eta^{(n)}/Q_n$，期望为 1，方差至多为 $\bar\sigma^2/Q_n\to0$。在相邻两个子列市场之间，可以沿用上一个子列市场的头寸，把新增资产的头寸设为零。这样得到定义~\ref{def:wj-fourteen-1} 所需的整个组合序列，与无极限套利矛盾。因此 $Q_n$ 有统一上界。\hfill$\square$
+
+对其余有限个 $n$ 取零头寸，即得到定义~\ref{def:wj-fourteen-1} 中的极限套利序列，与假设矛盾。因此 $Q_n$ 有统一上界。\hfill$\square$
+
+教材先取 $z^{(n)}=Q_n^{-2/3}\eta^{(n)}$，使期望支付为 $Q_n^{1/3}$，方差至多为 $\bar\sigma^2Q_n^{-1/3}$。将这组头寸再除以其期望支付，就得到上面的归一化头寸。
 
 \subsection{统一系数与定价误差}
 \begin{tcolorbox}[knowledge,breakable=false]
@@ -231,10 +243,10 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
 \end{align*}
 $S_n^{-1}$ 的对角元至少为 $1/(1+\bar\sigma^2)$。由教材引理 A.2，上式有统一正下界意味着存在一个固定向量 $a$，使 $a^{\mathsf T}e_1=1$ 且 $\|X_na\|^2$ 一致有界。把 $a$ 的第一项写成 1，其余项写成定价系数的负值，$X_na$ 就是前 $n$ 项定价误差向量。还原删去的列时，把相应系数取为零即可。
 
-记 $\Delta_i=|\bar r_i-\lambda_0-b_i^{\mathsf T}\lambda|$。对任意 $\epsilon>0$，$\Delta_i>\epsilon$ 的资产至多有 $A/\epsilon^2$ 只，其在前 $n$ 只资产中的比例至多为 $A/(n\epsilon^2)$，趋于零。这给出APT对大多数资产近似成立的具体含义。
+记 $\Delta_i=|\bar r_i-\lambda_0-b_i^{\mathsf T}\lambda|$。对任意 $\epsilon>0$，$\Delta_i>\epsilon$ 的资产至多有 $A/\epsilon^2$ 只，其在前 $n$ 只资产中的比例至多为 $A/(n\epsilon^2)$。前 $n$ 项的均方根误差 $\sqrt{n^{-1}\sum_{i=1}^n\Delta_i^2}$ 也至多为 $\sqrt{A/n}$。两项上界随 $n$ 增大而下降，个别资产仍可有持续的定价偏差。
 
 \section{极限套利和均衡}\label{sec:wj-fourteen-4}
-% 教材印刷页219—220。补明r_F=0的价格归一化，并重新推导而非沿用勘误中存疑的价格。
+% 教材印刷页219—220。先在r_F=0的设定下求解，再对照勘误补出一般利率下的价格。
 \begin{tcolorbox}[example]
 \begin{question}
 设无风险证券价格与支付均为1，$N$ 只风险证券的支付为 $v+\widetilde\varepsilon_n$，其中 $v>\sigma^2>0$，$\widetilde\varepsilon\sim N(0,\sigma^2I)$。经济中只有一位参与者，禀赋为每只风险证券各一单位，终期效用为 $-e^{-c_1}$。求均衡价格，并考察 $N$ 增大时的极限套利。
@@ -259,6 +271,8 @@ $S_n^{-1}$ 的对角元至少为 $1/(1+\bar\sigma^2)$。由教材引理 A.2，�
  =\underbrace{\frac{\sigma^2}{v-\sigma^2}}_{\text{期望超额收益}}
  +\underbrace{\frac{\widetilde\varepsilon_n}{v-\sigma^2}}_{\text{特殊风险}}.
 \]
+
+若按第~\ref{sec:wj-thirteen-5}~节的 CARA--正态模型保留一般无风险总收益率 $R=1+r_F>0$，需求的一阶条件为 $v\iota-Rp-\sigma^2\theta=0$。同样代入 $\theta=\iota$，可得每只风险证券的价格为 $(v-\sigma^2)/(1+r_F)$。本例采用 $r_F=0$。
 
 各风险证券的剩余风险独立，期望超额收益均为正。任一有限市场中的非零风险头寸都有正方差，其正态支付有取负值的可能；纯无风险、零成本头寸的支付为零，故不存在常规套利。
 
@@ -286,7 +300,7 @@ $S_n^{-1}$ 的对角元至少为 $1/(1+\bar\sigma^2)$。由教材引理 A.2，�
 \end{align}
 \end{subequations}
 
-对任意使乘积可积的因子函数 $g$，迭代期望给出 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=\mathrm E[g(\widetilde f)\mathrm E[\widetilde\varepsilon\mid\widetilde f]]=0$。因此，剩余支付也与由因子决定的边际效用正交。第~\ref{sec:wj-fourteen-1}~节的二阶矩条件只要求它与各因子不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
+沿用 $\mathrm E[\widetilde f]=0$，所以 $\bar x=\mathrm E[\widetilde x]$。对任意使乘积可积的因子函数 $g$，迭代期望给出 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=\mathrm E[g(\widetilde f)\mathrm E[\widetilde\varepsilon\mid\widetilde f]]=0$。因此，剩余支付也与由因子决定的边际效用正交。第~\ref{sec:wj-fourteen-1}~节的二阶矩条件只要求它与各因子不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJFourteenTheorem{thm:wj-fourteen-5} 假设：
 \begin{enumerate}
@@ -301,57 +315,53 @@ $S_n^{-1}$ 的对角元至少为 $1/(1+\bar\sigma^2)$。由教材引理 A.2，�
 \end{tcolorbox}
 
 \subsection{消除剩余风险与均衡定价}
-% 教材印刷页221—222。保留条件Jensen及因子组合推导，用Euler与价格加总补足个人预算依据。
+% 教材印刷页221—222。用条件Jensen及剩余支付的价格加总补足个人预算依据。
 \textbf{证明：}由支付结构，$\mathcal M\subseteq\mathcal F+\mathcal E$。由于 $\mathcal F\subseteq\mathcal M$，从每项可交易支付扣掉常数和因子部分，得到的剩余支付仍可交易，即 $\mathcal E\subseteq\mathcal M$。所以 $\mathcal M=\mathcal F+\mathcal E$。将个人终期消费分解为
 \[
  \widetilde c_{k,1}
  =\underbrace{\widetilde c_{k,1}^{\mathcal F}}_{\in\mathcal F}
- +\underbrace{\widetilde e_k}_{\in\mathcal E},
+ +\underbrace{\widetilde\varepsilon_{c,k}}_{\in\mathcal E},
  \qquad
  \mathrm E[\widetilde c_{k,1}\mid\widetilde f]=\widetilde c_{k,1}^{\mathcal F}.
 \]
-最后一个等式用到了 $\mathrm E[\widetilde e_k\mid\widetilde f]=0$。因为 $\widetilde c_{k,1}^{\mathcal F}$ 是因子的函数，迭代期望也给出 $\mathrm E[\widetilde e_k\mid\widetilde c_{k,1}^{\mathcal F}]=0$。由条件 Jensen 不等式，
+其中 $\widetilde\varepsilon_{c,k}$ 是个人消费中的剩余项。式~\eqref{eq:wj-14-7b} 保证它给定因子的条件期望为零。由条件 Jensen 不等式，
 \[
  \mathrm E[u_{k,1}(\widetilde c_{k,1})\mid\widetilde f]
  \le u_{k,1}\bigl(\mathrm E[\widetilde c_{k,1}\mid\widetilde f]\bigr)
  =u_{k,1}(\widetilde c_{k,1}^{\mathcal F}).
 \]
-若剩余项以正概率非零，严格凹性使取无条件期望后的不等式严格。对市场出清式 $\sum_k\widetilde c_{k,1}=\widetilde C_1$ 取条件期望，由 $\widetilde C_1\in\mathcal F$ 得 $\sum_k\widetilde c_{k,1}^{\mathcal F}=\widetilde C_1$，两式相减得到 $\sum_k\widetilde e_k=0$。
+若剩余项以正概率非零，严格凹性使取无条件期望后的不等式严格。对市场出清式 $\sum_k\widetilde c_{k,1}=\widetilde C_1$ 取条件期望，由 $\widetilde C_1\in\mathcal F$ 得 $\sum_k\widetilde c_{k,1}^{\mathcal F}=\widetilde C_1$，两式相减得到 $\sum_k\widetilde\varepsilon_{c,k}=0$。
 
-还需核对剔除剩余项对个人预算的影响。记 $p(\widetilde e_k)$ 为该可交易剩余支付的价格，$u'_{k,0}(c_{k,0})$ 为当前预算的边际效用。沿可交易方向 $\widetilde e_k$ 改变终期消费时，每增加一单位头寸，当前消费减少 $p(\widetilde e_k)$。内点的 Euler 方程给出
+还需核对个人预算。记 $p(\cdot)$ 为可交易支付的价格。由一价定律，价格对支付是线性的，因此 $\sum_k p(\widetilde\varepsilon_{c,k})=p(0)=0$。若还有人持有非零剩余支付，这些人中至少有一人的该项价格非负。
+
+让这位参与者卖出比例 $s\in(0,1)$ 的剩余支付，其当期消费变为 $c_{k,0}+s\,p(\widetilde\varepsilon_{c,k})$，取足够小的 $s$ 即可保持可行，且当期效用不降。未来消费变为 $(1-s)\widetilde c_{k,1}+s\widetilde c_{k,1}^{\mathcal F}$。由凹性和上面的严格 Jensen 比较，其未来期望效用严格上升。这与个人最优矛盾，因此均衡中每个人的剩余消费项均为零，即 $\widetilde c_{k,1}\in\mathcal F$。
+
+令 $\widetilde m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$ 为个人定价核。它是因子的函数，所以 $\mathrm E[\widetilde m_k\widetilde\varepsilon_n]=0$。买入一单位证券 $n$，借入其价格 $S_n$ 融资，Euler 方程给出 $0=\mathrm E[\widetilde m_k(\widetilde x_n-(1+r_F)S_n)]$。对 $S_n\ne0$，除以 $S_n$ 得到 $0=\mathrm E[\widetilde m_k(\widetilde r_n-r_F)]$。这一步把证券的支付换成每元投资的收益率，$B_x$ 的第 $n$ 行也相应除以价格，得到收益率载荷 $b_n^{\mathsf T}=B_{x,n}/S_n$。展开可得
 \[
- u'_{k,0}(c_{k,0})p(\widetilde e_k)
- =\mathrm E[u'_{k,1}(\widetilde c_{k,1})\widetilde e_k]
- =\mathrm E\!\left[\left(u'_{k,1}(\widetilde c_{k,1}^{\mathcal F}+\widetilde e_k)
- -u'_{k,1}(\widetilde c_{k,1}^{\mathcal F})\right)\widetilde e_k\right]\le0.
+ 0=\underbrace{\mathrm E[\widetilde m_k](\bar r_n-r_F)}_{\text{平均超额收益项}}
+ +b_n^{\mathsf T}\mathrm E[\widetilde m_k\widetilde f]
+ +\underbrace{\mathrm E[\widetilde m_k\widetilde\varepsilon_n]/S_n}_{=0}.
 \]
-
-第二个等号利用 $\mathrm E[u'_{k,1}(\widetilde c_{k,1}^{\mathcal F})\widetilde e_k]=0$。边际效用严格递减，括号内的差与 $\widetilde e_k$ 异号，所以非零剩余项使不等式严格。由 $u'_{k,0}(c_{k,0})>0$，每人的剩余支付价格均非正，而价格线性给出 $\sum_k p(\widetilde e_k)=p(0)=0$。因此各价格均为零，严格性进一步推出所有 $\widetilde e_k=0$，即 $\widetilde c_{k,1}\in\mathcal F$。
-
-令 $m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$。它是因子的函数，所以 $\mathrm E[m_k\widetilde\varepsilon_n]=0$。买入一单位证券 $n$，借入其价格 $S_n$ 融资，Euler 方程给出 $0=\mathrm E[m_k(\widetilde x_n-(1+r_F)S_n)]$。对 $S_n\ne0$，除以 $S_n$ 得到 $0=\mathrm E[m_k(\widetilde r_n-r_F)]$。收益率载荷为 $b_n^{\mathsf T}=B_{x,n}/S_n$，展开可得
-\[
- 0=\underbrace{\mathrm E[m_k](\bar r_n-r_F)}_{\text{平均超额收益项}}
- +b_n^{\mathsf T}\mathrm E[m_k\widetilde f]
- +\underbrace{\mathrm E[m_k\widetilde\varepsilon_n]/S_n}_{=0}.
-\]
-由于 $\mathrm E[\widetilde f]=0$，且无风险证券满足 $(1+r_F)\mathrm E[m_k]=1$，整理为
+由于 $\mathrm E[\widetilde f]=0$，且无风险证券满足 $(1+r_F)\mathrm E[\widetilde m_k]=1$，整理为
 \begin{equation}
  \bar r_n-r_F
- =-\operatorname{Cov}\!\left(\frac{m_k}{\mathrm E[m_k]},\widetilde r_n\right)
- =b_n^{\mathsf T}\underbrace{\left[-\operatorname{Cov}\!\left(\frac{m_k}{\mathrm E[m_k]},\widetilde f\right)\right]}_{\lambda}.
+ =-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde r_n\right)
+ =b_n^{\mathsf T}\underbrace{\left[-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde f\right)\right]}_{\lambda}.
  \label{eq:wj-14-8}
 \end{equation}
 
 因子支付 $\widetilde f_j$ 可交易。买入复制它的组合，再投入 $1-p(\widetilde f_j)$ 元于无风险证券，得到成本为 1、终期支付为 $\widetilde f_j+(1+r_F)[1-p(\widetilde f_j)]$ 的因子组合。它的收益载荷为第 $j$ 个单位向量，且没有剩余项，故由式~\eqref{eq:wj-14-8}，
 \[
  \bar r_{p_j}-r_F
- =-\operatorname{Cov}\!\left(\frac{m_k}{\mathrm E[m_k]},\widetilde f_j\right)
+ =-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde f_j\right)
  =\lambda_j.
 \]
 于是 $\lambda_j$ 是由共同证券价格确定的因子组合风险溢价。将它代入 $\bar r_n-r_F=\sum_j b_{n,j}\lambda_j$，即得均衡中的 APT。\hfill$\square$
 
+练习~\ref{exer:wj-fourteen-4} 将因子坐标的第一轴选在非零溢价向量 $\lambda$ 的方向上。换坐标后，期望超额收益只取决于第一项载荷，其他载荷仍会贡献因子方差。因子对组合波动的贡献和它是否带来风险溢价，要分别由式~\eqref{eq:wj-14-2} 与式~\eqref{eq:wj-14-8} 判断。
+
 \WJChapterSummary
-\begin{tcolorbox}[summary,breakable=false]
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 共同因子与剩余风险构成收益的因子结构；充分分散压低剩余风险方差。
  \item 精确因子模型通过复制与无套利得到线性期望收益关系。
