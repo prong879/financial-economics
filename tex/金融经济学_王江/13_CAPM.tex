@@ -37,7 +37,7 @@
  \label{eq:wj-13-1}
 \end{equation}
 
-在\hyperref[def:wj-two-6]{证券市场经济}中，个人未来禀赋来自初始证券持仓，因而市场组合的支付也等于未来总禀赋。市场组合可用证券数量表示，也可用投资价值权重表示。
+在\hyperref[def:wj-two-6]{证券市场经济}中，个人未来禀赋来自初始证券持仓。当市场没有无风险证券，或无风险证券的净供给为零时，未来总禀赋就等于风险证券市场组合的支付。市场组合可用证券数量表示，也可用投资价值权重表示。
 \begin{tcolorbox}[knowledge,breakable=false]
 令 $v_n=P_n\bar\theta_n$ 为证券 $n$ 的市场价值，$v_M=P^{\mathsf T}\theta_M=\sum_n v_n>0$ 为全部风险证券的总市值，则市场组合的权重为
 \begin{equation}
@@ -47,7 +47,13 @@
 \end{equation}
 \end{tcolorbox}
 
-其中 $\iota$ 为元素全为1的列向量。总持仓 $\theta_M$ 描述证券的供给数量，价值权重 $z_M$ 描述每单位市场投资分配到各证券的比例。市场组合覆盖模型中的全部可交易风险证券；指数基金对它的近似程度取决于指数的资产覆盖与权重。
+其中 $\iota$ 为元素全为 $1$ 的列向量。总持仓 $\theta_M$ 描述证券的供给数量，价值权重 $z_M$ 描述每单位市场投资分配到各证券的比例。记 $\widetilde X$ 为风险证券的单位到期支付列向量。在各证券价格非零时，令 $\widetilde r_n=\widetilde X_n/P_n-1$，则市场组合的净收益率可写成
+\[
+ \widetilde r_M=\frac{\theta_M^{\mathsf T}\widetilde X}{v_M}-1
+ =\sum_n z_{n,M}\widetilde r_n.
+\]
+
+第一种写法从市场总支付和总市值出发，第二种按市值权重加总各证券的净收益率。市场组合覆盖模型中的全部可交易风险证券，指数基金对它的近似程度取决于指数的资产覆盖与权重。
 
 \section{市场均衡}\label{sec:wj-thirteen-2}
 \subsection{切点组合需求与市场出清}
@@ -73,7 +79,9 @@
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJThirteenTheorem{thm:wj-thirteen-2} 若市场组合方差 $\sigma_M^2>0$，则对价格非零的任意证券 $n$，CAPM均衡满足
 \begin{equation}
- \bar r_n-r_F=\beta_{n,M}(\bar r_M-r_F),\qquad
+ \bar r_n-r_F
+ =\underbrace{\beta_{n,M}}_{\text{市场贝塔}}\quad
+  \underbrace{(\bar r_M-r_F)}_{\text{基准收益差}},\qquad
  \beta_{n,M}=\frac{\operatorname{Cov}(\widetilde r_n,\widetilde r_M)}{\sigma_M^2}.
  \label{eq:wj-13-3}
 \end{equation}
@@ -88,7 +96,7 @@
 \WJInputFigure{13_CML与SML}
 
 \subsection{系统风险、剩余风险与市场回归}
-将证券超额收益线性投影到市场超额收益上：
+当市场收益方差为正时，可以将证券超额收益率对市场超额收益率作含截距的总体线性回归：
 \begin{equation}
  \widetilde r_n-r_F=\alpha_n+\beta_{n,M}(\widetilde r_M-r_F)+\widetilde\varepsilon_n,
  \qquad \mathrm E[\widetilde\varepsilon_n]=0,
@@ -96,10 +104,10 @@
  \label{eq:wj-13-4}
 \end{equation}
 
-取期望得 $\alpha_n=\bar r_n-r_F-\beta_{n,M}(\bar r_M-r_F)$。因此CAPM在市场回归中对应 $\alpha_n=0$。
+线性投影给出式~\eqref{eq:wj-13-4} 的分解及残差条件。取期望得 $\alpha_n=\bar r_n-r_F-\beta_{n,M}(\bar r_M-r_F)$。再由 CAPM 的期望收益关系~\eqref{eq:wj-13-3}，才得到总体回归截距 $\alpha_n=0$，即资产的期望超额收益全部由市场贝塔项解释。
 
 \begin{tcolorbox}[knowledge,breakable=false]
-资产收益的总风险可分为\textbf{系统风险}和\textbf{剩余风险}（非系统风险）：
+对式~\eqref{eq:wj-13-4} 取方差。由于市场收益与残差的协方差为零，资产收益的总风险可分为\textbf{系统风险}和\textbf{剩余风险}（非系统风险）：
 \[
  \sigma_n^2=\underbrace{\beta_{n,M}^2\sigma_M^2}_{\text{系统风险方差}}
  +\underbrace{\sigma_{\varepsilon_n}^2}_{\text{剩余风险方差}}.
@@ -110,7 +118,7 @@
 \]
 \end{tcolorbox}
 
-方差分解使用贝塔的平方，反映系统风险在总波动中的比重；风险溢价使用带符号的贝塔，反映资产对市场风险的承担方向。正贝塔资产与市场的协方差为正，负贝塔资产与市场负相关，具有对冲作用。剩余收益与市场不相关，并不要求不同证券的剩余收益相互不相关；仅凭这一分解不能断定剩余风险一定能完全分散。
+方差分解使用贝塔的平方，反映系统风险在总方差中的比重。CAPM 的风险溢价只补偿市场风险，并保留贝塔的符号。正贝塔资产与市场的协方差为正，负贝塔资产与市场负相关，具有对冲作用。不同证券的剩余收益仍可能彼此相关，剩余风险能分散多少取决于这些相关性。
 
 \begin{tcolorbox}[example]
 \begin{question}
@@ -133,7 +141,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 资产 $A$ 的全部波动都是剩余风险，故其期望收益等于无风险利率。资产 $B,C$ 的系统风险方差均为 $1.5^2\times0.2^2=0.09$，占总方差 $0.5^2=0.25$ 的 $36\%$；两者剩余风险标准差均为 $\sqrt{0.25-0.09}=40\%$。它们具有相同的总风险和系统风险方差，却因贝塔方向不同而分别取得正、负风险溢价。
 
-资产 $C$ 与市场收益负相关，为持有市场组合的人提供对冲。因此其期望收益低于无风险利率；本例中的 $-8\%$ 期望净收益，体现了持有者为这种市场风险保险支付的代价。\end{solution}
+资产 $C$ 与市场收益负相关，为持有市场组合的人提供对冲。它的期望净收益率为 $-8\%$，比无风险利率 $4\%$ 低 $12$ 个百分点。这 $12$ 个百分点是投资者为对冲市场风险而放弃的期望收益。\end{solution}
 \end{tcolorbox}
 
 \section{不存在无风险资产的CAPM}\label{sec:wj-thirteen-4}
@@ -157,11 +165,13 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
  \bar r_{zcm}=\frac ac-\frac{d}{c^2(\bar r_M-a/c)}.
 \]
 
-唯一性指前沿组合中的唯一性；其他可行组合也可能与市场零协方差。
+若 $M$ 位于 MVP 上方，则 $\bar r_M-a/c>0$，上式给出 $\bar r_{zcm}<a/c$，所以零贝塔组合位于前沿下支。这里的唯一性针对前沿组合，其他可行组合也可能与市场零协方差。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJThirteenTheorem{thm:wj-thirteen-3} 不存在无风险证券时，对非MVP的市场组合 $M$，任意组合 $q$ 满足
 \begin{equation}
- \bar r_q-\bar r_{zcm}=\beta_{q,M}(\bar r_M-\bar r_{zcm}),\qquad
+ \bar r_q-\bar r_{zcm}
+ =\underbrace{\beta_{q,M}}_{\text{市场贝塔}}\quad
+  \underbrace{(\bar r_M-\bar r_{zcm})}_{\text{基准收益差}},\qquad
  \beta_{q,M}=\frac{\operatorname{Cov}(\widetilde r_q,\widetilde r_M)}{\sigma_M^2}.
  \label{eq:wj-13-5}
 \end{equation}
@@ -169,7 +179,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 \textbf{证明：}市场组合的前沿性质已证。取上一讲零贝塔关系~\eqref{eq:wj-12-6}（以零贝塔组合收益为基准的前沿贝塔关系）中 $p=M$，即得结论。\hfill$\square$
 
-零贝塔组合与市场收益不相关，但自身方差为正，其期望收益是本式的基准。有无风险证券的模型则以无风险收益 $r_F$ 为基准，得到式~\eqref{eq:wj-13-3}。
+零贝塔组合的市场协方差为零，自身仍有波动。它的期望收益 $\bar r_{zcm}$ 是式~\eqref{eq:wj-13-5} 中市场贝塔为零时的定价基准。在标准 CAPM 中，无风险证券的市场贝塔为零、收益率为 $r_F$，因此式~\eqref{eq:wj-13-3} 以 $r_F$ 为基准。
 
 \section{作为均衡结果的CAPM}\label{sec:wj-thirteen-5}
 \subsection{二次型效用函数}
@@ -178,7 +188,14 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
  u_{k,1}(c)=-\frac{a_k}{2}(c-\bar c_k)^2,\qquad a_k>0,
 \]
 
-在 $c<\bar c_k$ 的递增区间内求内点选择。买入组合 $q$ 并以无风险证券融资所产生的净支付为 $\widetilde r_q-r_F$，故Euler方程为
+其中 $\bar c_k$ 是边际效用为零的消费水平，$a_k$ 衡量二次效用的曲率。以下在 $c<\bar c_k$ 的递增区间内求内点选择。买入一元组合 $q$，同时按无风险利率借入一元，当期的支出和借款收入恰好抵消。到期收到组合的总支付并偿还借款本息，净支付为
+\[
+ \underbrace{(1+\widetilde r_q)}_{\text{组合到期支付}}
+ -\underbrace{(1+r_F)}_{\text{借款本息}}
+ =\widetilde r_q-r_F.
+\]
+
+沿这笔零成本交易调整头寸，内点最优要求一期净支付带来的期望边际效用变化为零。Euler 方程为
 \[
  0=\mathrm E[u'_{k,1}(\widetilde c_{k,1})(\widetilde r_q-r_F)]
  =-a_k\mathrm E[(\widetilde c_{k,1}-\bar c_k)(\widetilde r_q-r_F)].
@@ -206,9 +223,14 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 \subsection{正态分布的支付}
 \subsubsection{经济设定与个人证券需求}
-设风险证券支付列向量为 $\widetilde v\sim N(\bar v,\Sigma)$，$\Sigma$ 正定，无风险证券净供给为零。参与者 $k$ 的初始证券持仓为 $\bar\theta_k$，风险证券总供给为 $\theta_M=\sum_k\bar\theta_k$。个人1期效用为 $-e^{-a_kc}$，其中 $a_k>0$。
+设风险证券支付列向量为 $\widetilde v\sim N(\bar v,\Sigma)$，$\Sigma$ 正定，无风险证券净供给为零。参与者 $k$ 的初始禀赋由当期消费品 $e_{k,0}$ 和风险证券持仓 $\bar\theta_k$ 构成，风险证券总供给为 $\theta_M=\sum_k\bar\theta_k$。个人一期效用为 $-e^{-a_kc}$，其中 $a_k>0$ 是绝对风险厌恶系数。
 
-给定均衡无风险利率 $r_F$，记 $R=1+r_F>0$，$S$ 为风险证券价格向量，$w_k$ 为扣除0期消费后用于投资的财富。若 $\theta_k$ 表示风险证券总持仓，则1期财富为
+给定均衡无风险利率 $r_F$，记 $R=1+r_F>0$，本节以 $S$ 表示风险证券价格向量。参与者 $k$ 将当期禀赋 $e_{k,0}$ 和初始证券持仓的市值合计，扣除当期消费 $c_{k,0}$，得到投资财富
+\[
+ w_k=e_{k,0}+S^{\mathsf T}\bar\theta_k-c_{k,0}.
+\]
+
+若 $\theta_k$ 表示风险证券总持仓，则一期财富为
 \[
  \widetilde w_k=\underbrace{(w_k-S^{\mathsf T}\theta_k)R}_{\text{无风险证券的支付}}
  +\underbrace{\theta_k^{\mathsf T}\widetilde v}_{\text{风险证券的支付}}.
@@ -244,6 +266,13 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
  \left(\sum_k\frac1{a_k}\right)\Sigma^{-1}(\bar v-RS)=\theta_M,
  \qquad \boxed{S=\frac{\bar v-a\Sigma\theta_M}{R}}.
 \]
+
+把均衡价格代回个人需求，得到
+\[
+ \theta_k^*=\frac{1/a_k}{\sum_j1/a_j}\,\theta_M.
+\]
+
+所有人的风险持仓都是市场组合的同方向倍数，各人持有的份额等于自己的风险容忍度占总风险容忍度的比例。上式的价格关系以均衡无风险利率为给定。若要确定整个两期均衡，还需给定当期效用和禀赋，由跨期消费最优条件与无风险证券出清共同确定 $R$。
 
 设 $\theta_M\ne0$、市场总市值 $v_M=S^{\mathsf T}\theta_M>0$，市场收益为 $\widetilde r_M=\theta_M^{\mathsf T}\widetilde v/v_M-1$。$\Sigma$ 正定保证 $\theta_M^{\mathsf T}\Sigma\theta_M>0$，所以市场方差为正。对价格非零的证券 $n$，
 \[
@@ -295,7 +324,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 与第~\ref{sec:wj-ten-5}~节的消费定价关系相比，CAPM用市场收益的贝塔概括资产的风险溢价。在二次效用的证券市场经济中，边际效用是消费的仿射函数，总消费又等于市场组合支付，消费定价关系因而化为市场贝塔关系。
 
 \WJChapterSummary
-\begin{tcolorbox}[summary,breakable=false]
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 市场组合是全部风险证券的总供给，可用总持仓或市场价值权重表示。
  \item 存在无风险证券时，均值--方差选择与市场出清使市场组合等于切点组合，证券风险溢价由市场贝塔定价。
