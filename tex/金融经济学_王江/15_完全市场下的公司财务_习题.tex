@@ -1,16 +1,16 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
-% 来源：教材印刷页237—239，PDF物理页252—254；保留六题题号、星号与原始数据。
+% 来源：教材印刷页237—239，PDF物理页252—254；保留六题题号与原始数据。
 % 15.1补全显式标度解；15.2补无套利区间、严格正财富与财富补偿的标量求根式。
 % 债券统一按到期支付1、价格B=1/R计数，修正旧解将筹资金额误称债券数量的口径。
 % 15.4的alpha比较静态依赖投入尺度；15.5按原题股票支付总产出处理，并补明(c)中参与者2的来源。
-% 15.5固定S的一阶候选以可行改进反例核验；原题对投资变化的股价约定有歧义，正文分列两种口径。
+% 15.5区分固定股价与固定状态价格，并用原数值反例检验发行量受限时的内点候选。
 % 复核原书15.6：恢复题干的“证明”要求；15.5(a)明确驻点与全局最优的求解顺序。
 % 15.6外部债券持有H与发行D以D-H进入预算，修正原解购买债券的现金流符号。
 
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-1}{*} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi_{a}$ 和 $\pi_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
+\WJFifteenExercise{exer:wj-fifteen-1}{} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi_{a}$ 和 $\pi_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
 \[
     Y=\begin{cases}
         \lambda_{a}I^{\alpha},&\text{状态 }a\\
@@ -36,7 +36,7 @@
 
 记 $R=1+r_F>0$，$\pi_a,\pi_b>0$ 且和为1。
 \begin{enumerate}[label=(\alph*)]
-\item 设发行债券的到期偿付额为 $D$，0期筹资为 $D/R$，则
+\item 设发行债券的到期偿付额为 $D$。参与者没有当期禀赋，0 期筹资 $D/R$ 要同时支付当期消费和生产投入。1 期各状态都要偿还 $D$，故求解
 \[
  \begin{aligned}
  \max_{I>0,c_0>0,D}\quad &\log c_0+\sum_\omega\pi_\omega\log c_\omega\\
@@ -48,19 +48,26 @@
  \end{aligned}
 \]
 
-消去 $D$，即 $c_\omega=\lambda_\omega I^\alpha-R(c_0+I)$。
-\item 令 $q=D/I^\alpha$，并定义
+由当期预算解得 $D=R(c_0+I)$，代入未来消费，得到 $c_\omega=\lambda_\omega I^\alpha-R(c_0+I)$。这样可直接选择 $c_0$ 和 $I$，借款额由两者决定。
+\item 令 $q=D/I^\alpha$，表示每单位 $I^\alpha$ 对应的到期偿付额。因为 $D=R(c_0+I)>0$，且低产出状态的消费必须为正，所以 $0<q<\lambda_b$。各状态消费为 $I^\alpha(\lambda_\omega-q)$，记
 \[
  H(q)=\frac{\pi_a}{\lambda_a-q}+\frac{\pi_b}{\lambda_b-q}.
 \]
 
-消费Euler方程与生产一阶条件分别为
+按 (a) 消去 $D$ 后，对 $c_0$ 求导，得 $1/c_0=R\sum_\omega\pi_\omega/c_\omega$。对 $I$ 求导，则有
+\[
+ \sum_\omega\frac{\pi_\omega}{c_\omega}
+       \bigl(\alpha\lambda_\omega I^{\alpha-1}-R\bigr)=0
+ \qquad\text{（生产的一阶条件）}.
+\]
+把消费写成 $I^\alpha(\lambda_\omega-q)$，并用消费一阶条件替换生产条件中的 $R\sum_\omega\pi_\omega/c_\omega$，得到
 \[
  \frac1{c_0}=R I^{-\alpha}H(q),\qquad
- \frac1{c_0}=\frac\alpha I[1+qH(q)].
+ \frac1{c_0}=\sum_\omega\frac{\pi_\omega\alpha\lambda_\omega I^{\alpha-1}}{c_\omega}
+ =\frac\alpha I[1+qH(q)].
 \]
 
-由第一式得 $c_0=I^\alpha/[RH(q)]$；代入预算 $R(c_0+I)=qI^\alpha$ 和第二条一阶条件，消去 $c_0,I$，得到
+第一式给出 $Rc_0/I^\alpha=1/H(q)$，所以预算 $R(c_0+I)=qI^\alpha$ 化为 $I/c_0=qH(q)-1$。第二条一阶条件则给出 $I/c_0=\alpha[1+qH(q)]$。两式相等，得到
 \[
  qH(q)=\frac{1+\alpha}{1-\alpha}.
 \]
@@ -77,7 +84,7 @@
  c_{1,\omega}^*=(I_1^*)^\alpha(\lambda_\omega-q_0).
 \]
 
-债券头寸为 $-D_1^*=-q_0(I_1^*)^\alpha$，即卖出相应到期支付。对数效用与凹技术使目标严格凹，正消费的一阶解为唯一最优解。
+债券头寸为 $-D_1^*=-q_0(I_1^*)^\alpha$，即卖出相应到期支付。消去 $D$ 后，每个 $c_\omega=\lambda_\omega I^\alpha-R(c_0+I)$ 都是凹函数，正消费可行域为凸集。对 $c_0$ 的对数项及产出对 $I$ 的严格凹性使目标严格凹，因此上述可行的一阶解是唯一最优解。
 \item $q_0$ 与利率无关，故
 \[
  \frac{d\log I_1^*}{d\log R}=-\frac1{1-\alpha}<0.
@@ -98,7 +105,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-2}{*} 在练习~\ref{exer:wj-fifteen-1}（两状态幂生产技术、对数效用且仅能交易无风险债券的模型）描述的经济中，现在假设证券市场还包括一只证券，它在状态 $a$ 支付 $\lambda_{a}$、在状态 $b$ 支付 $\lambda_{b}$ 而它的价格为 $S$。
+\WJFifteenExercise{exer:wj-fifteen-2}{} 在练习~\ref{exer:wj-fifteen-1}描述的经济中，现在假设证券市场还包括一只证券，它在状态 $a$ 支付 $\lambda_{a}$、在状态 $b$ 支付 $\lambda_{b}$ 而它的价格为 $S$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明现在证券市场是完全的。
     \item 用 $r_{F}$ 和 $S$ 表示状态价格。
@@ -106,7 +113,7 @@
     \item 计算他的总财富。证明它总是正的。
     \item 求解他的最优生产、消费和投资选择。
     \item 用 NPV 法则解释他的投资选择。
-    \item 他的生产技术的 NPV 是多少？这个如何随着状态价格的改变而改变？解释所得到的结论。
+    \item 他的生产技术的 NPV 是多少？它如何随着状态价格的改变而改变？解释所得到的结论。
     \item 计算引入风险证券参与者 1 得到的期望效用的增加值，用 0 期财富的确定性等价表示。
 \end{enumerate}
 \end{problem}
@@ -116,31 +123,40 @@
 
 沿用 $R=1+r_F$，令 $B=1/R$。
 \begin{enumerate}[label=(\alph*)]
-\item 两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$，故市场完全。
+\item 两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节）\fi，任意两状态支付都可复制，市场完全。
 \item 状态价格由 $\phi_a+\phi_b=B$、$\lambda_a\phi_a+\lambda_b\phi_b=S$ 决定：
 \[
  \phi_a=\frac{RS-\lambda_b}{R(\lambda_a-\lambda_b)},\qquad
  \phi_b=\frac{\lambda_a-RS}{R(\lambda_a-\lambda_b)}.
 \]
 
-无套利等价于 $\lambda_b<RS<\lambda_a$。以下取这一价格区间。
+无套利要求两个状态价格都严格为正。由于 $R(\lambda_a-\lambda_b)>0$，这等价于两个分子都为正，即 $\lambda_b<RS<\lambda_a$。以下取这一价格区间。
 \item 令债券和风险证券的总持仓为 $\theta_B,\theta_S$，则
 \[
  c_0+I+B\theta_B+S\theta_S=0,\qquad
  c_\omega=\lambda_\omega I^\alpha+\theta_B+\lambda_\omega\theta_S.
 \]
 
-最大化题给的对数期望效用，等价于在预算
+将未来两条消费式分别乘以 $\phi_a,\phi_b$ 后加总。由 (b)，债券与风险证券支付的现值恰好等于它们的交易成本，即
 \[
- c_0+\phi_ac_a+\phi_bc_b=SI^\alpha-I
+ \phi_ac_a+\phi_bc_b=SI^\alpha+B\theta_B+S\theta_S .
+\]
+代入当期预算以消去证券头寸。反过来，因为市场完全，任何满足下式的消费计划都可以用证券复制其相对产出的净支付。因此个人问题为\ifdefined\WJHandoutKnowledge（见式~\eqref{eq:wj-15-4} 的现值预算）\fi
+\[
+ \begin{aligned}
+ \max_{\substack{I\ge0\\c_0,c_a,c_b>0}}\quad
+   &\log c_0+\pi_a\log c_a+\pi_b\log c_b\\
+ \text{s.t.}\quad &c_0+\phi_ac_a+\phi_bc_b=SI^\alpha-I.
+ \end{aligned}
+\]
+\item 技术创造的最大财富为 $w^*=\max_{I\ge0}(SI^\alpha-I)$。将净值写成 $I^\alpha(S-I^{1-\alpha})$。因为 $S>0$、$1-\alpha>0$，充分小的正投入满足 $I^{1-\alpha}<S$，故最大财富 $w^*>0$。
+\item 投入 $I$ 只通过右边的财富影响消费机会。状态价格给定时，财富越高，能够负担的消费越多，所以先选择使 $SI^\alpha-I$ 最大的投入，再分配财富。该净值严格凹，生产条件 $\alpha S(I_2^*)^{\alpha-1}=1$ 给出
+\[
+ I_2^*=(\alpha S)^{1/(1-\alpha)},\qquad w^*=\frac{1-\alpha}{\alpha}I_2^*.
 \]
 
-下联合选择正消费与生产投入。
-\item 技术创造的最大财富为 $w^*=\max_{I\ge0}(SI^\alpha-I)$。因为 $S>0$、$0<\alpha<1$，充分小的正投入满足 $SI^\alpha>I$，故 $w^*>0$。
-\item 生产条件 $\alpha S(I_2^*)^{\alpha-1}=1$ 给出
+再在预算 $c_0+\sum_\omega\phi_\omega c_\omega=w^*$ 下选择消费。令预算乘子为 $\nu$，一阶条件为 $1/c_0=\nu$、$\pi_\omega/c_\omega=\nu\phi_\omega$。消去 $\nu$，得到 $\phi_\omega c_\omega=\pi_\omega c_0$。未来消费支出的现值合计等于 $c_0$，因此
 \[
- I_2^*=(\alpha S)^{1/(1-\alpha)},\qquad
- w^*=\frac{1-\alpha}{\alpha}I_2^*,\qquad
  c_0^*=\frac{w^*}{2},\quad c_\omega^*=\frac{\pi_\omega w^*}{2\phi_\omega}.
 \]
 
@@ -151,22 +167,22 @@
 \]
 
 两式同时复制所需终期消费，0期预算随状态价格条件成立。
-\item $\operatorname{NPV}(I)=SI^\alpha-I$，其导数 $\alpha SI^{\alpha-1}-1$ 随投入下降，正值时增加投资，零点即 $I_2^*$。
+\item 由 NPV 法则\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-1}）\fi，增加一单位投入的边际收益为 $\alpha SI^{\alpha-1}$，边际成本为 $1$。差额为正时增加投入；随着边际产出递减，差额在 $I_2^*$ 处降为零。
 \item 最大NPV等于 $w^*$，且包络定理给出
 \[
  \frac{\partial w^*}{\partial\phi_\omega}=\lambda_\omega(I_2^*)^\alpha>0.
 \]
 
-状态价格上升提高给定产出的现值；重新优化后，投入随 $S=\sum_\omega\phi_\omega\lambda_\omega$ 上升而增加。
+状态价格上升提高给定产出的现值，重新优化后，投入随 $S=\sum_\omega\phi_\omega\lambda_\omega$ 上升而增加。若固定 $r_F$，则 $\phi_a+\phi_b=B$ 不变。沿着提高 $\phi_a$、等量降低 $\phi_b$ 的方向，最大净现值对 $\phi_a$ 的导数为 $(\lambda_a-\lambda_b)(I_2^*)^\alpha$。
 \item 完全市场下的最优效用为
 \[
  U_2^*=2\log\frac{w^*}{2}+\sum_\omega\pi_\omega\log\frac{\pi_\omega}{\phi_\omega}.
 \]
 
-以原债券市场中的0期财富补偿衡量收益。给原参与者额外财富 $z$，其预算变为 $c_0=z+D/R-I$。为计算补偿，沿用练习~\ref{exer:wj-fifteen-1} 中的 $H(q)$，定义
+用 0 期财富衡量开放风险证券带来的效用增益。保持原债券市场的利率，给参与者额外财富 $z$，并允许他重新选择生产、借款和消费。记这样得到的最优效用为 $U_B(z)$，所求补偿 $\Delta w$ 满足 $U_B(\Delta w)=U_2^*$。此时预算为 $c_0=z+D/R-I$。消去 $D$ 后，$z$ 只作为常数进入消费式，因此两条一阶条件与练习~\ref{exer:wj-fifteen-1} 相同。联立 $\frac1{c_0}=RI^{-\alpha}H(q)=\frac{\alpha}{I}[1+qH(q)]$，再代入预算，得
 \[
  \begin{aligned}
- I(q)&=\left[\frac\alpha R\left(q+\frac1{H(q)}\right)\right]^{1/(1-\alpha)},\\
+ I(q)&=\left[\frac{\alpha}{R}\left(q+\frac1{H(q)}\right)\right]^{1/(1-\alpha)},\\
  c_0(q)&=\frac{I(q)^\alpha}{RH(q)},\qquad
  z(q)=I(q)+c_0(q)-\frac{qI(q)^\alpha}{R},\\
  U(q)&=\log c_0(q)+\alpha\log I(q)
@@ -174,14 +190,16 @@
  \end{aligned}
 \]
 
-这些式子由带财富 $z$ 的两条一阶条件和预算得到；$q=q_0$ 时 $z(q_0)=0$。对每个 $z\ge0$，严格凹的消费--生产问题有唯一最优解。求 $q\le q_0$ 使 $U(q)=U_2^*$，并核对 $c_0(q)>0$、$\lambda_\omega-q>0$，则所需确定性财富补偿为 $\Delta w=z(q)\ge0$。新增风险证券扩大可行消费集合，故补偿非负；若原有最优消费已可实现完全市场最优消费，补偿可以为零。\qedhere
+在 $q\le q_0$ 上，令 $M(q)=q+1/H(q)>0$，可将财富写成 $z(q)=I(q)[1+\alpha-2q/M(q)]/\alpha$。由于 $H'>H^2$（严格的柯西--施瓦茨不等式），$M$ 递减。又因 $q/M=qH/(1+qH)$，且 $(qH)'=\sum_\omega\pi_\omega\lambda_\omega/(\lambda_\omega-q)^2>0$，$q/M$ 递增。因此 $z(q)$ 严格下降至 $z(q_0)=0$。当 $q\to-\infty$ 时，$M(q)$ 趋于 $\sum_\omega\pi_\omega\lambda_\omega>0$，故 $z(q)\to\infty$。这给出每个 $z\ge0$ 对应的可行一阶解，严格凹性保证其最优。
+
+新增风险证券扩大可行消费集合，故 $U_2^*\ge U_B(0)=U(q_0)$。$U_B(z)$ 随 $z$ 严格递增，且保持未来消费不变、将新增财富用于当期消费即可使效用无界增长。故可唯一求得 $q\le q_0$ 使 $U(q)=U_2^*$，财富补偿为 $\Delta w=z(q)$。若原最优选择已达到完全市场的最优效用，补偿为零。\qedhere
 \end{enumerate}
 \end{solution}
 
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-3}{**} 考虑练习~\ref{exer:wj-fifteen-1}（生产技术与参与者 1 的偏好设定）描述的经济。现在假设经济中除了那里描述的参与者 1 以外还有一个参与者 2。参与者 2 没有生产技术，但经济赋予了他 $e_{0}$ 单位的 0 期消费。他的效用函数和参与者 1 的一样。证券市场和练习~\ref{exer:wj-fifteen-2}（债券与风险证券构成的完全市场）中的一样。
+\WJFifteenExercise{exer:wj-fifteen-3}{} 考虑练习~\ref{exer:wj-fifteen-1}描述的经济。现在假设经济中除了那里描述的参与者 1 以外还有一个参与者 2。参与者 2 没有生产技术，但经济赋予了他 $e_{0}$ 单位的 0 期消费。他的效用函数和参与者 1 的一样。证券市场和练习~\ref{exer:wj-fifteen-2}中的一样。
 \begin{enumerate}[label=(\alph*)]
     \item 求解两个参与者在给定状态价格下的最优生产、消费和投资选择。
     \item 求解均衡状态价格、总消费和消费配置。
@@ -194,15 +212,19 @@
 
 设 $e_0>0$，且两状态概率均为正。
 \begin{enumerate}[label=(\alph*)]
-\item 参与者1的选择见练习~\ref{exer:wj-fifteen-2}（给定状态价格下的净现值最大化与消费选择）。参与者2的财富为 $e_0$，故
+\item 给定 $\phi_a,\phi_b>0$，记 $S=\sum_\omega\phi_\omega\lambda_\omega$、$B=\sum_\omega\phi_\omega$。沿用练习~\ref{exer:wj-fifteen-2} 的生产净现值最大化，参与者 1 选择 $I(\phi)=(\alpha S)^{1/(1-\alpha)}$，其财富为 $w_1(\phi)=SI(\phi)^\alpha-I(\phi)$。参与者 2 无生产技术，财富为 $w_2=e_0$。按两人的对数消费需求，
 \[
- c_{2,0}=\frac{e_0}{2},\qquad c_{2,\omega}=\frac{\pi_\omega e_0}{2\phi_\omega},\qquad
- \theta_{2,S}=\frac{c_{2,a}-c_{2,b}}{\lambda_a-\lambda_b},\quad
- \theta_{2,B}=c_{2,a}-\lambda_a\theta_{2,S}.
+ c_{k,0}=\frac{w_k}{2},\qquad c_{k,\omega}=\frac{\pi_\omega w_k}{2\phi_\omega}.
 \]
 
-债券按到期支付1计数。两人的证券净供给均为零。
-\item 由0期出清 $c_{1,0}+c_{2,0}+I=e_0$，得 $w_1^*=e_0-2I$。另一方面，生产条件给出 $w_1^*=(1-\alpha)I/\alpha$，所以
+记 $Y_{1,\omega}=\lambda_\omega I(\phi)^\alpha$、$Y_{2,\omega}=0$。用证券复制各人所需的净支付 $x_{k,\omega}=c_{k,\omega}-Y_{k,\omega}$，得到
+\[
+ \theta_{k,S}=\frac{x_{k,a}-x_{k,b}}{\lambda_a-\lambda_b},\qquad
+ \theta_{k,B}=x_{k,a}-\lambda_a\theta_{k,S}.
+\]
+
+债券按到期支付 1 计数。两种证券的净供给都为零。
+\item 当期资源只有参与者 2 的禀赋 $e_0$，既要供两人消费，也要用于生产投入。因此当期出清为 $c_{1,0}^*+c_{2,0}^*+I^*=e_0$。代入 $c_{1,0}^*=w_1^*/2$、$c_{2,0}^*=e_0/2$，得 $w_1^*=e_0-2I^*$。另一方面，生产条件给出 $w_1^*=(1-\alpha)I^*/\alpha$，所以
 \[
  I^*=\frac{\alpha e_0}{1+\alpha},\qquad
  C_0^*=\frac{e_0}{1+\alpha},\qquad
@@ -211,10 +233,10 @@
 
 未来市场出清与两人的消费需求还给出
 \[
- \frac{\pi_\omega(w_1^*+e_0)}{2\phi_\omega}=\lambda_\omega(I^*)^\alpha.
+ \frac{\pi_\omega(w_1^*+e_0)}{2\phi_\omega^*}=\lambda_\omega(I^*)^\alpha.
 \]
 
-令 $\eta_1=(1-\alpha)/2$、$\eta_2=(1+\alpha)/2$，则各人的消费为
+两人面对同样的状态价格且偏好相同，(a) 的需求表明，各节点的消费份额都等于财富份额 $w_k^*/(w_1^*+e_0)$。代入 $w_1^*=(1-\alpha)e_0/(1+\alpha)$，得到 $\eta_1=(1-\alpha)/2$、$\eta_2=(1+\alpha)/2$，所以
 \[
  c_{k,0}^*=\eta_kC_0^*,\qquad c_{k,\omega}^*=\eta_kC_\omega^*,
  \qquad
@@ -222,8 +244,8 @@
  {\lambda_\omega\alpha^\alpha(1+\alpha)^{1-\alpha}}}.
 \]
 
-由 $B^*=\phi_a^*+\phi_b^*$、$S^*=\lambda_a\phi_a^*+\lambda_b\phi_b^*$ 恢复证券价格与 $r_F^*=1/B^*-1$。各人终期消费与技术产出均与 $(\lambda_a,\lambda_b)$ 成比例，因此 $\theta_{1,B}^*=\theta_{2,B}^*=0$，$\theta_{2,S}^*=\eta_2(I^*)^\alpha=-\theta_{1,S}^*$。
-\item 取正规划权重 $\eta_1,\eta_2$。对给定总消费，各时点加权对数效用最大化使个人消费份额为 $\eta_k$。加总后的生产选择为
+由 $B^*=\phi_a^*+\phi_b^*$、$S^*=\lambda_a\phi_a^*+\lambda_b\phi_b^*$ 恢复证券价格与 $r_F^*=1/B^*-1$。代回生产条件可核对 $\alpha S^*(I^*)^{\alpha-1}=1$。各人终期消费与技术产出均与 $(\lambda_a,\lambda_b)$ 成比例，因此 $\theta_{1,B}^*=\theta_{2,B}^*=0$，$\theta_{2,S}^*=\eta_2(I^*)^\alpha=-\theta_{1,S}^*$，两种证券均出清。
+\item 用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-2}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
 \[
  \max_{0<I<e_0}\ \log(e_0-I)+\alpha\log I+\sum_\omega\pi_\omega\log\lambda_\omega.
 \]
@@ -235,7 +257,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-4}{**} 考虑练习~\ref{exer:wj-fifteen-3}（一人拥有生产技术、另一人拥有当期禀赋的两人完全市场经济）中的经济。
+\WJFifteenExercise{exer:wj-fifteen-4}{} 考虑练习~\ref{exer:wj-fifteen-3}中的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 通过求解代表性参与者的优化问题而得到均衡配置。
@@ -248,7 +270,7 @@
 \begin{solution}
 
 \begin{enumerate}[label=(\alph*)]
-\item 使用上一题的规划权重 $\eta_k$。给定某一期或状态的总消费 $C$，两人的分配须加总为 $C$，且各自的消费都在对数效用的正值定义域内。
+\item 沿用上一题得到的规划权重 $\eta_k$ 和分享规则。给定某一期或状态的总消费 $C$，把最优分配 $c_k=\eta_k C$ 代回该节点的加权效用，得到
 \[
  \max_{\substack{c_1+c_2=C\\c_1,c_2>0}}\sum_k\eta_k\log c_k
  =\log C+\sum_k\eta_k\log\eta_k.
@@ -269,8 +291,8 @@
  \qquad I^*=\frac{\alpha e_0}{1+\alpha}.
 \]
 
-总消费由资源约束恢复，个人消费按上一题的 $\eta_k$ 分配。
-\item 边际效用给出
+目标对 $I$ 严格凹，故该内点为唯一最优解。代回资源约束得 $C_0^*=e_0/(1+\alpha)$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，个人消费为 $c_{k,0}^*=\eta_k C_0^*$、$c_{k,\omega}^*=\eta_k C_\omega^*$。
+\item 对代表性参与者的两期消费一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-15-6}）\fi，消去预算乘子。状态价格就等于未来该状态的边际效用 $\pi_\omega/C_\omega^*$ 除以当期的边际效用 $1/C_0^*$，即
 \[
  \phi_\omega^*=\pi_\omega\frac{C_0^*}{C_\omega^*}
  =\frac{\pi_\omega e_0^{1-\alpha}}
@@ -278,26 +300,27 @@
 \]
 \item 提高 $\lambda_\omega$ 按比例增加该状态的产出和消费，并降低其状态价格；$I^*,C_0^*$ 和消费份额保持不变。
 
-提高 $\alpha$ 时，$dI^*/d\alpha=e_0/(1+\alpha)^2>0$，$dC_0^*/d\alpha=-e_0/(1+\alpha)^2<0$；个人份额满足 $d\eta_1/d\alpha=-1/2$、$d\eta_2/d\alpha=1/2$。未来总消费与状态价格的变动为
+提高 $\alpha$ 时，$dI^*/d\alpha=e_0/(1+\alpha)^2>0$，$dC_0^*/d\alpha=-e_0/(1+\alpha)^2<0$；个人份额满足 $d\eta_1/d\alpha=-1/2$、$d\eta_2/d\alpha=1/2$。对 $\log C_\omega^*=\log\lambda_\omega+\alpha\log I^*$ 求导时，要同时考虑指数 $\alpha$ 和投入 $I^*$ 的变化。再用 $\log\phi_\omega^*=\log\pi_\omega+\log C_0^*-\log C_\omega^*$，得到
 \[
  \frac{d\log C_\omega^*}{d\alpha}=\log I^*+\frac1{1+\alpha},\qquad
  \frac{d\log\phi_\omega^*}{d\alpha}=-\log I^*-\frac2{1+\alpha}.
 \]
 
-相应符号由固定单位归一化后的投入水平决定；比较时须保持生产函数的单位约定不变。例如 $I^*>\exp[-2/(1+\alpha)]$ 时，状态价格随 $\alpha$ 上升而下降。\qedhere
+个人当期消费中，$c_{2,0}^*=e_0/2$ 保持不变，$c_{1,0}^*=C_0^*-e_0/2$ 随 $\alpha$ 上升而下降。由于 $c_{k,\omega}^*=\eta_k C_\omega^*$，个人未来消费的对数变化率在总消费的对数变化率上，分别加上 $-1/(1-\alpha)$ 和 $1/(1+\alpha)$。
+
+保持生产函数的计量单位不变。若 $I^*>\exp[-1/(1+\alpha)]$，提高 $\alpha$ 会增加未来总消费；若 $I^*>\exp[-2/(1+\alpha)]$，提高 $\alpha$ 会降低状态价格。低于相应阈值时方向相反，恰等于阈值时相应导数为零。\qedhere
 \end{enumerate}
 \end{solution}
 
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-5}{**} 沿用练习~\ref{exer:wj-fifteen-2} 中的生产技术与偏好（两状态幂生产技术与对数效用）。在这里我们不假设有一组给定的可交易证券，而是假设拥有生产技术的参与者 1 可以成立一个公司、而公司可以到市场上发行债券和股票，但没有其它可交易的证券。一单位（无风险）公司债在 1 期有 1 单位支付，而一股股票在 1 期有 $\hat{\lambda}I^{\alpha}$ 单位支付，在状态 $a$ 和 $b$ 下 $\hat{\lambda}=\lambda_{a}$，$\lambda_{b}$，$I$ 是公司的生产投资。
+\WJFifteenExercise{exer:wj-fifteen-5}{} 沿用练习~\ref{exer:wj-fifteen-2} 中的生产技术与偏好。在这里我们不假设有一组给定的可交易证券，而是假设拥有生产技术的参与者 1 可以成立一个公司、而公司可以到市场上发行债券和股票，但没有其它可交易的证券。一单位（无风险）公司债在 1 期有 1 单位支付，而一股股票在 1 期有 $\hat{\lambda}I^{\alpha}$ 单位支付，在状态 $a$ 和 $b$ 下 $\hat{\lambda}=\lambda_{a}$，$\lambda_{b}$，$I$ 是公司的生产投资。
 \begin{enumerate}[label=(\alph*)]
     \item 给定利率 $r_{F}$ 和股价 $S$，求解参与者 1 的优化问题，即最优的投资额、在市场发行的债券和股票的数量以及他的消费。
     \item 在这种情况下，有无最优负债水平？这和 Modigliani--Miller 定理是否一致？解释原因。
     \item 求解市场均衡，特别地，求解均衡利率、股价、生产水平、发行的债券和股票的数量以及两个参与者的消费配置。
 \end{enumerate}
-\par\smallskip\textit{(c)中的参与者2沿用练习~\ref{exer:wj-fifteen-3} 的禀赋和偏好。}
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
@@ -306,7 +329,7 @@
 % 原题股票支付为全部产出lambda I^alpha，非扣债后的剩余支付；按题设沿用，发行者承担债务偿付。
 令 $R=1+r_F>0$，$B=1/R$。以 $D$ 表示到期支付1的公司债发行量，$s$ 表示出售的总产出份额。依题设，发行者保留 $(1-s)\lambda_\omega I^\alpha$，并从中偿付债务。
 \begin{enumerate}[label=(\alph*)]
-\item 给定 $R,S$，当期消费来自债券筹资 $BD$ 和股票筹资 $Ss$ 扣除投入 $I$ 后的余额。未来消费是保留的产出扣除债务偿付后的余额。投入量可以为零，对数效用则要求当期和每个未来状态的消费都严格为正。
+\item 给定 $R,S$，当期消费来自债券筹资 $BD$ 和股票筹资 $Ss$ 扣除投入 $I$ 后的余额。未来消费是保留的产出扣除债务偿付后的余额。题目未规定债股头寸的上下限，先按头寸可正可负写出问题，其中 $D<0$ 表示持有债券：
 \[
  \begin{aligned}
  \max_{I,D,s}\quad &\log c_{1,0}+\sum_\omega\pi_\omega\log c_{1,\omega}\\
@@ -320,14 +343,22 @@
  \end{aligned}
 \]
 
-正投入、正消费的内点条件为
+先按本问字面，对所有投入都固定同一个 $S>0$。投入越小，每股支付越低，但售价不变。取足够小的 $I>0$，使一股股票的售价 $S$ 高于用债券买到其最高状态支付所需的成本 $B\lambda_a I^\alpha$。若头寸不限，可卖出 $t$ 股，并买入 $t\lambda_a I^\alpha+d$ 单位债券，其中 $d>0$。即取 $s=t$、$D=-t\lambda_a I^\alpha-d$，代入两期预算得到
+\[
+ c_{1,0}=t(S-B\lambda_a I^\alpha)-Bd-I,\qquad
+ c_{1,\omega}=\lambda_\omega I^\alpha+d+t(\lambda_a-\lambda_\omega)I^\alpha.
+\]
+
+当 $t\to\infty$ 时，当期消费趋于无穷，两状态的未来消费始终至少为 $d$，故不存在有限最优选择。这个构造利用了不限量出售股票并持有债券的假设。若将“发行”理解为 $D\ge0$、$0\le s\le1$，则要把这些限制加入可行域。以下保留正投入、正消费时的内点计算，供核查发行限制下的候选解。
+
+当债股发行限制均不绑定时，一阶条件为
 \[
  \frac B{c_{1,0}}=\sum_\omega\frac{\pi_\omega}{c_{1,\omega}},\quad
  \frac S{c_{1,0}}=I^\alpha\sum_\omega\frac{\pi_\omega\lambda_\omega}{c_{1,\omega}},\quad
  \frac1{c_{1,0}}=\alpha(1-s)I^{\alpha-1}\sum_\omega\frac{\pi_\omega\lambda_\omega}{c_{1,\omega}}.
 \]
 
-后两式得 $I=\alpha S(1-s)$。再将前两式按消费支付加总，得 $c_{1,0}=(S-I)/2$。因此，内点驻点可由以下单变量方程求得：
+将投入条件与股票条件相除，得 $I=\alpha S(1-s)$。再将股票条件乘以 $1-s$、债券条件乘以 $D$ 后相减，右侧为 $\sum_\omega\pi_\omega c_{1,\omega}/c_{1,\omega}=1$。因此 $S(1-s)-BD=c_{1,0}$。与当期预算相加，得到 $2c_{1,0}=S-I$。于是可将内点条件化为单变量方程
 \[
  s(I)=1-\frac I{\alpha S},\quad
  D(I)=\frac R{2\alpha}\bigl[(\alpha+2)I-\alpha S\bigr],\quad
@@ -338,14 +369,29 @@
  =\frac2{R(S-I)}.
 \]
 
-固定 $I$ 时，消费是 $(D,s)$ 的仿射函数，对数效用使融资子问题严格凹。先在可行域内求其最优值，再对 $I$ 的一维价值函数求最大值；上述方程给出这一过程中的内点驻点。
-\item 给定 $I>0$，融资子问题的严格凹性使最优债券发行量和出售份额在解存在时唯一。联合选择时，$I=\alpha S(1-s)$ 联系投入与出售份额，最优债务须随投入一并求解。固定投入时，两种证券的支付可以张成两个状态。投入改变时，每股支付随之变化，而题设给定的股价 $S$ 保持固定。若按定理~\ref{thm:wj-fifteen-4}（融资无关）所用的同一组状态价格估值，股价会随每股支付改变。
-\item 先按(a)中固定 $R,S$ 的选择问题求一阶均衡候选。沿用练习~\ref{exer:wj-fifteen-3} 中参与者2的禀赋 $e_0$ 与偏好。他的消费为
+固定 $I>0$ 时，消费是 $(D,s)$ 的仿射函数，对数效用使融资子问题严格凹。若加上发行限制，需先在每个 $I$ 下求融资子问题的最大值，再对 $I$ 求全局最大值，并检查发行限制绑定的解。上述方程只给出无约束一阶条件的候选。
+\item 按固定股价且头寸不限的读法，(a) 没有有限最优解，因此也没有最优债务水平。若限制发行，固定 $I>0$ 时，融资子问题在有解时至多有一个最优债券发行量和出售份额。按 MM 定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-4}）\fi，比较融资安排时，应固定真实投资和总产出。这里改变 $I$ 就会改变每股支付，而报价 $S$ 仍被固定，所以 (a) 的投资问题无法用一组共同状态价格为所有可选支付定价。
+\item 原题在此问引入第二位参与者，以下沿用练习~\ref{exer:wj-fifteen-3} 中参与者 2 的禀赋 $e_0$ 与偏好。按固定 $R,S$ 且头寸不限的读法，均衡必须有 $I>0$ 以满足未来正消费，还必须有 $S>0$，否则参与者 2 可不限量买入正支付的股票。由 (a)，在这样的价格下参与者 1 没有最优选择，故不存在该口径下的均衡。
+
+\textbf{发行受限时的均衡检验。}令发行者满足 $D\ge0$、$0\le s\le1$，参与者 2 可按报价自由交易两种证券，包括净供给为零时。记 $Y_\omega=\lambda_\omega I^\alpha$。证券出清时，参与者 2 的消费为
 \[
- c_{2,0}=e_0-BD-Ss,\qquad c_{2,\omega}=D+s\lambda_\omega I^\alpha.
+ c_{2,0}=e_0-BD-Ss,\qquad c_{2,\omega}=D+sY_\omega.
 \]
 
-给定 $I$，交易的两证券张成两个状态。对数效用使两人的消费在各期按其财富份额分配。未来总资源为 $\lambda_\omega I^\alpha$，故个人未来消费也与 $\lambda_\omega$ 成比例，两状态相减并代回即得 $D^{\dagger}=0$。参与者2的0期消费为 $e_0/2$，从而
+未来总消费为 $Y_\omega$，故 $I>0$。$s=1$ 会使发行者未来消费非正，故 $s<1$。若 $s=0$，发行者须以 $D>0$ 筹资，参与者 2 的未来消费在两态都是 $D$。买方对债券和股票的一阶条件给出 $S=B\mathrm E[\widetilde Y]$。此时发行者的债券选择为内点，满足 $B/c_{1,0}=\mathrm E[1/\widetilde c_1]$，其中 $\widetilde c_1$ 为发行者的未来消费。将两式代入发行者对 $s$ 的边际效用，
+\[
+ \left.\frac{\partial U_1}{\partial s}\right|_{s=0}
+ =\frac{S}{c_{1,0}}-\mathrm E[\widetilde Y/\widetilde c_1]
+ =-\operatorname{Cov}(\widetilde Y,1/\widetilde c_1)>0.
+\]
+
+最后一步是因为 $\widetilde c_1=\widetilde Y-D$，产出越高，消费的倒数越低。因此发行少量股票可提高效用，排除 $s=0$。
+
+若 $D>0$，则发行者对 $D,s$ 的选择均为内点。两只证券的支付线性独立，所以两人的债股一阶条件给出同一组状态价格。两人的对数消费需求使未来消费各按固定比例分享总产出。若参与者 2 的份额为 $\eta_2$，则 $D+sY_\omega=\eta_2Y_\omega$。由于两状态的 $Y_\omega$ 不同，两式相减得 $s=\eta_2$，再代回得 $D=0$，与 $D>0$ 矛盾。
+
+因此只剩 $D=0$、$0<s<1$。两人的未来消费分别为 $(1-s)Y_\omega$ 和 $sY_\omega$，故按个人边际效用计算的两个状态价格向量成比例。双方对股票的一阶条件都将这组价格乘以产出支付后加总为 $S>0$，比例系数只能为 $1$，所以两组状态价格相同。
+
+参与者 2 的现值财富是 $e_0$，按练习~\ref{exer:wj-fifteen-2} 的对数消费需求，当期消费为 $e_0/2$。两人的状态价格相同，也给出相同的未来与当期消费比例，所以总产出的市值等于当期总消费 $e_0-I$。再由发行者对 $I,s$ 的一阶条件，有
 \[
  S^{\dagger}s^{\dagger}=\frac{e_0}{2},\qquad
  S^{\dagger}=e_0-I^{\dagger},\qquad I^{\dagger}=\alpha S^{\dagger}(1-s^{\dagger}).
@@ -371,7 +417,7 @@
  B^{\dagger}=\sum_\omega\phi_\omega^{\dagger},\qquad r_F^{\dagger}=1/B^{\dagger}-1.
 \]
 
-上述候选满足一阶条件和市场出清。接下来在同一组价格下比较发行者的可行选择，检验候选是否使效用达到最大值。
+这是固定股价、发行受限设定下唯一可能的均衡候选。还需在这组报价下检验发行者是否全局最优。
 
 例如取 $\alpha=0.6$、$e_0=10$、$(\lambda_a,\lambda_b)=(0.8,0.3)$、$(\pi_a,\pi_b)=(0.4,0.6)$，候选为
 \[
@@ -383,42 +429,50 @@
  (I,D,s)=(1.88355771,\ 0.00286777,\ 0.61107863),
 \]
 
-效用约为 $-0.25053986$，高于候选配置的效用，因此排除了这组参数下的一阶候选。固定股价时，一般参数下的全局解仍需在债券发行和股票出售的可行范围内求得。
+效用约为 $-0.25053986$，高于候选配置的效用。这次改进满足 $D\ge0$、$0\le s\le1$，各期各状态的消费均为正。因此唯一候选未通过最优性检验，\textbf{该组参数下，固定股价的受限模型不存在均衡}。
 
-\textbf{固定状态价格的情形。}若每个可行投入下的证券都按同一组状态价格 $\phi$ 定价，且允许为实现状态消费而作所需交易，则一股总产出的价格随投入变化
+\textbf{固定状态价格时的均衡。}若交易者接受的是一组给定的状态价格 $\phi$，每个投入下的一股股票都按对应的实际支付定价。只要允许为实现状态消费而作所需交易，股价就随投入变化
 \[
  S(I)=I^\alpha\sum_\omega\phi_\omega\lambda_\omega.
 \]
 
-此时，投入通过净值 $S(I)-I$ 决定可用于消费的财富。最大化该净值，得到练习~\ref{exer:wj-fifteen-3} 的均衡配置，$I^*=\alpha e_0/(1+\alpha)$，公司总产出股价为 $S^*=e_0/(1+\alpha)$，出售份额 $s^*=(1+\alpha)/2$，净债券头寸为零。\qedhere
+此时，最大化净值 $S(I)-I$ 给出与练习~\ref{exer:wj-fifteen-3} 相同的生产条件及状态价格 $\phi_\omega^*=\pi_\omega C_0^*/C_\omega^*$。代入 $C_0^*=e_0-I^*$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，得到
+\[
+ I^*=\frac{\alpha e_0}{1+\alpha},\qquad S^*=C_0^*=\frac{e_0}{1+\alpha},\qquad
+ r_F^*=\frac{1}{\phi_a^*+\phi_b^*}-1 .
+\]
+
+个人消费为 $c_{k,0}^*=\eta_k C_0^*$、$c_{k,\omega}^*=\eta_k C_\omega^*$，其中 $\eta_1=(1-\alpha)/2$、$\eta_2=(1+\alpha)/2$。取 $D^*=0$、$s^*=\eta_2$，参与者 2 买入全部售出的股票，付款 $S^*s^*=e_0/2$，取得 $\eta_2 C_\omega^*$。参与者 1 取得 $S^*s^*-I^*=\eta_1 C_0^*$ 并保留 $\eta_1 C_\omega^*$。这样债股交易均出清，消费加总后恰好等于各期资源。\qedhere
 \end{enumerate}
 \end{solution}
 
 \Needspace{28\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-6}{*} 在练习~\ref{exer:wj-fifteen-5}（公司发行债券与股票、无其他可交易证券的模型）中，现在假设市场上存在一只无风险证券可供参与者交易。证明此时Modigliani--Miller 定理成立，即公司的融资决策不影响它的投资决策和均衡配置。解释这种情形和上述情形之间的差别。
+\WJFifteenExercise{exer:wj-fifteen-6}{} 在练习~\ref{exer:wj-fifteen-5}中，现在假设市场上存在一只无风险证券可供参与者交易。证明此时Modigliani--Miller 定理成立，即公司的融资决策不影响它的投资决策和均衡配置。解释这种情形和上述情形之间的差别。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
 
-令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两者均支付1、价格均为 $B=1/(1+r_F)$，个人预算为
+令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两种债券每单位到期都支付 $1$，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，价格同为 $B=1/(1+r_F)$。公司发债带来当期收入 $BD$ 和未来偿付 $D$，个人买入外部债券则带来当期支出 $BH$ 和未来收入 $H$。因此个人预算为
 \[
- c_{1,0}=B\underbrace{(D-H)}_{\text{净债务支付}}+Ss-I,\qquad
+ c_{1,0}=B\underbrace{(D-H)}_{\text{净负债}}+Ss-I,\qquad
  c_{1,\omega}=(1-s)\lambda_\omega I^\alpha-(D-H).
 \]
 
-给定投入 $I$ 和出售份额 $s$，两种债券对消费的影响由净负债 $L=D-H$ 决定。上一题的净负债就是公司债发行量 $D$。引入外部债券后，只要调整可行，同时增加 $D$ 和 $H$ 同一数量就能维持原来的消费。
+给定投入 $I$ 和出售份额 $s$，两种债券对消费的影响由净负债 $L=D-H$ 决定。上一题的净负债就是公司债发行量 $D$。引入外部债券后，只要调整可行，同时增加 $D$ 和 $H$ 同一数量就能维持原来的消费，因而改变公司债发行量也能保留相同的投资与个人净头寸。
 
-若仍给定股价 $S$，且允许 $H=0$，上一题的效用改进仍可通过同样的头寸实现。
+这一步说明给定 $I$ 时，外部债券怎样抵销公司融资。要进一步比较不同的 $I$，还要为随投入变化的股票支付定价。若仍对所有投入固定同一股价 $S$，取 $H=0$ 就能沿用上一题的效用改进。
 
-\textbf{固定状态价格的情形。}若每个可行投入下的证券都按同一组状态价格 $\phi$ 定价，并允许为实现状态消费而作所需交易，则 $B=\sum_\omega\phi_\omega$、$S(I)=I^\alpha\sum_\omega\phi_\omega\lambda_\omega$。将两期预算加总得
+沿用上一题的状态定价口径，令 $B=\sum_\omega\phi_\omega$、$S(I)=I^\alpha\sum_\omega\phi_\omega\lambda_\omega$。将未来消费按状态价格加总，现值为 $(1-s)S(I)-B(D-H)$。加上当期预算后，净债务的收入与偿付现值相消，售出和保留的产出价值合为 $S(I)$，于是
 \[
  c_{1,0}+\sum_\omega\phi_\omega c_{1,\omega}
  =\underbrace{S(I)-I}_{\text{生产创造的净值}}.
 \]
 
-给定正投入，债券与总产出证券张成两个状态，个人可以交易实现预算允许的消费。各种融资安排对应同一个预算集合，最优投入都由最大化 $S(I)-I$ 决定。在相同禀赋与可交易集合下，均衡消费配置也与练习~\ref{exer:wj-fifteen-3} 一致。\qedhere
+给定正投入，债券与总产出证券张成两个状态。只要个人债券交易可以抵销公司融资的变动，各种融资安排对应同一个预算集合，最优投入都由最大化 $S(I)-I$ 决定。
+
+例如，沿用上一题固定状态价格下的均衡，设新增外部债券的净供给为零，且允许借贷。公司增发 $\Delta$ 单位债券，参与者 1 同时增持 $\Delta$ 单位外部债券。参与者 2 买入全部增发的公司债，同时卖空 $\Delta$ 单位外部债券。两人各自在 0 期和 1 期的新增现金流均相抵，公司债和外部债券也都出清。只要这组头寸可行，投资、股价和两人的均衡消费保持上一题的配置，公司的债务发行量可以改变。\qedhere
 \end{solution}
 
