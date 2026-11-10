@@ -1,0 +1,37 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学示意：以 w=100 为横坐标原点，u(100+x)=x-x^2/10。
+\begin{tikzpicture}[>=Stealth,font=\small,x=.56cm,y=.59cm,
+    guide/.style={densely dotted,gray},ce/.style={red!65!black}]
+ \foreach \panelOffset/\amplitude/\lowerWealth/\upperWealth/\lossSize/\premiumLabel in
+   {0cm/4/96/104/1.6/1.40,6.6cm/2/98/102/0.4/0.39} {
+  \begin{scope}[xshift=\panelOffset]
+   \pgfmathsetmacro{\premium}{sqrt(25+\amplitude*\amplitude)-5}
+   \coordinate (base) at (0,0);
+   \coordinate (loss) at ({-\amplitude},{-\amplitude-\lossSize});
+   \coordinate (gain) at (\amplitude,{\amplitude-\lossSize});
+   \coordinate (mean) at (0,{-\lossSize});
+   \coordinate (equivalent) at ({-\premium},{-\lossSize});
+
+   \node at (0,3.54) {波动幅度 $\varepsilon=\amplitude$};
+   \draw[->] (-5.15,-7.25)--(5.15,-7.25) node[right] {$w$};
+   \draw[->] (-5.15,-7.25)--(-5.15,2.7) node[above] {$u(w)$};
+   \draw[guide] (-5.15,0) node[left] {$0$} -- (base)
+     (loss)--({-\amplitude},-7.25) (gain)--(\amplitude,-7.25)
+     (mean)--(0,-7.25);
+   \draw[gray,thick,dashed] (loss)--(gain);
+   \draw[blue!70!black,very thick,domain=-4.65:4.8,samples=48]
+     plot (\x,{\x-\x*\x/10});
+   \draw[ce,thick] (base)--(mean)--(equivalent);
+   \draw[ce,dashed] (equivalent)--({-\premium},-7.25);
+   \draw[ce,thick,|-|] ({-\premium},-6.24)--node[midway,above] {$\pi$} (0,-6.24);
+   \draw[blue!70!black,thick,|-|] ({-\amplitude},-6.84)--node[midway,above] {$\varepsilon$} (0,-6.84);
+
+   \fill[blue!70!black] (loss) circle(1.45pt) (gain) circle(1.45pt) (base) circle(1.45pt);
+   \fill[ce] (mean) circle(1.35pt) (equivalent) circle(1.35pt);
+   \node[below] at ({-\amplitude},-7.25) {$\lowerWealth$};
+   \node[below] at (0,-7.25) {$100$};
+   \node[below] at (\amplitude,-7.25) {$\upperWealth$};
+   \node[below,ce] at (0,-8.24) {效用损失 $\lossSize$，风险溢价 $\pi\approx\premiumLabel$};
+  \end{scope}
+ }
+\end{tikzpicture}

@@ -1,0 +1,29 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：两条递增曲线共用 (1,2) 和 (3,6) 两端点及弦 2c。
+% 凹函数为 2c+(c-1)(3-c)/2，凸函数为 (c^2+3)/2。
+\begin{tikzpicture}[>=Stealth,font=\small,x=2.3cm,y=.75cm]
+ \draw[->] (.62,1.35)--(3.29,1.35) node[right] {$c$};
+ \draw[->] (.62,1.35)--(.62,6.43) node[above] {效用};
+ \draw[gray,densely dashed] (.62,2)--(3,2) (.62,4)--(2,4) (.62,6)--(3,6);
+ \draw[gray,densely dotted] (1,1.35)--(1,2)
+   (2,1.35)--(2,4.5) (3,1.35)--(3,6);
+ \draw[red!70!black,thick] (1,2)--(3,6);
+ \draw[blue!70!black,very thick,domain=1:3,samples=70]
+   plot (\x,{2*\x+(\x-1)*(3-\x)/2});
+ \draw[teal!75!black,very thick,domain=1:3,samples=70]
+   plot (\x,{(\x*\x+3)/2});
+ \fill (1,2) circle(1.6pt) (3,6) circle(1.6pt);
+ \fill[blue!70!black] (2,4.5) circle(1.8pt) node[above left] {$4.5$};
+ \fill[red!70!black] (2,4) circle(1.8pt);
+ \fill[teal!75!black] (2,3.5) circle(1.8pt) node[below right] {$3.5$};
+ \node[left] at (.62,6) {$6$};
+ \node[left,red!70!black] at (.62,4) {$4$};
+ \node[left] at (.62,2) {$2$};
+ \node[below] at (1,1.35) {$1$};
+ \node[below] at (2,1.35) {$2$};
+ \node[below] at (3,1.35) {$3$};
+ \draw[blue!70!black,very thick] (3.45,5.48)--(3.72,5.48) node[right] {递增凹函数（也拟凹）};
+ \draw[red!70!black,thick] (3.45,4.55)--(3.72,4.55) node[right] {两端点的弦};
+ \draw[teal!75!black,very thick] (3.45,3.62)--(3.72,3.62) node[right] {递增凸函数（拟凹但不凹）};
+ \draw[gray,densely dashed] (3.45,2.69)--(3.72,2.69) node[right] {较低的端点效用};
+\end{tikzpicture}
