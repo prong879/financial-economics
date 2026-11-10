@@ -39,7 +39,7 @@
 \section{一般市场结构}\label{sec:wj-four-market}
 \subsection{复合证券与支付矩阵}
 \begin{tcolorbox}[knowledge,title=复合证券]
-在多个状态下有非零支付的证券称为\textbf{复合证券}。
+在多个状态下有非零支付的证券称为\textbf{复合证券}。在两状态市场里，支付 $(2,1)^{\mathsf T}$ 的一份证券可以看成两份第一状态阿罗证券和一份第二状态阿罗证券合在一起。复合证券把多个状态的支付打包成一份合约。
 \end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=支付矩阵与行列约定,breakable=false]
 设 1 期有 $\Omega$ 个状态，市场上有 $N$ 只证券（$n=1,\dots,N$），第 $n$ 只证券的支付向量为 $X_n=\begin{bmatrix}x_{1,n} \\ \vdots \\ x_{\Omega,n}\end{bmatrix}$，\textbf{支付矩阵}以状态为行、证券为列：
@@ -342,7 +342,7 @@ $x$ 列出各个未来状态下的支付金额，$s$ 则是为整笔支付给出
 
 \textbf{线性的证明：}分别复制 $x$、$y$，再持有 $a$ 倍与 $b$ 倍组合，得到支付 $ax+by$，成本为 $aV(x)+bV(y)$；一价定律要求它等于 $V(ax+by)$。允许负系数用到了卖空不受限的无摩擦假设。
 
-\textbf{向量表示。}在 $\mathcal M$ 中取一组基 $b_1,\ldots,b_r$，令 $B=[b_1,\ldots,b_r]$、$v=(V(b_1),\ldots,V(b_r))^{\mathsf T}$。$B$ 列满秩，故 $B^{\mathsf T}\phi=v$ 有解。任意 $x=Ba\in\mathcal M$ 满足
+\textbf{向量表示。}在 $\mathcal M$ 中取一组基 $b_1,\ldots,b_r$，令 $B=[b_1,\ldots,b_r]$、$v=(V(b_1),\ldots,V(b_r))^{\mathsf T}$。要用状态权重 $\phi$ 给每个基支付定价，就要同时满足 $b_j^{\mathsf T}\phi=V(b_j)$，合起来是 $B^{\mathsf T}\phi=v$。$B$ 的 $r$ 列线性无关，所以 $B^{\mathsf T}$ 的 $r$ 行线性无关，方程可解。任意可达支付 $x=Ba$ 都是这些基支付的线性组合，由线性定价可得
 \[
  V(x)=v^{\mathsf T}a=\phi^{\mathsf T}Ba=\phi^{\mathsf T}x.
 \]
@@ -576,7 +576,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 真实概率测度 $P$ 描述各状态实际发生的可能性，风险中性测度 $Q$ 则由状态价格确定，用于计算定价所需的期望支付。例如，上一例中晴天和雨天的状态价格分别为 $0.3$ 和 $0.5$，除以总和 $0.8$，得到晴天和雨天在 $Q$ 下的概率分别为 $3/8$ 和 $5/8$。
 
 \begin{tcolorbox}[knowledge,title=风险中性定价]
-式~\eqref{eq:wj-four-8} 给出 $q_\omega=\phi_\omega/S_1$，可得 $S_1=\frac{\phi_\omega=}{q_\omega}$。再代入式~\eqref{eq:wj-four-7} 的 $S_1=1/(1+r_F)$，就得到状态价格的分解
+式~\eqref{eq:wj-four-8} 给出 $q_\omega=\phi_\omega/S_1$。两边乘以 $S_1$，得到 $\phi_\omega=S_1q_\omega$。再代入式~\eqref{eq:wj-four-7} 的 $S_1=1/(1+r_F)$，就得到状态价格的分解
 \[
  \phi_\omega=S_1q_\omega
  =\underbrace{\frac{1}{1+r_F}}_{\text{共同的折现因子}}
@@ -595,7 +595,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 \end{tcolorbox}
 式~\eqref{eq:wj-four-9} 把式~\eqref{eq:wj-four-6}（状态价格加权定价，$S=X^{\mathsf T}\phi$）分成两步。先用 $Q$ 计算期望支付，再按无风险利率折现。将式~\eqref{eq:wj-four-9} 两边乘以 $1+r_F$，可得
 \[
-\mathrm E^Q[\tilde x_n]=(1+r_F)S_n
+\mathrm E^Q[\tilde x_n]=(1+r_F)S_n.
 \]
 
 % 教材印刷第 60—61 页及第 61 页页顶批注、教师 PPT 第 29—31 页。
@@ -705,7 +705,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 \[
  z_t=\mathrm E^Q[z_{t+1}\mid\mathcal F_t],
 \]
-则称为测度 $Q$ 下的\textbf{鞅}。即在测度 $Q$ 和当前信息下，下一期的预期变动为零；各期实现值仍可随状态变化。
+则称为测度 $Q$ 下的\textbf{鞅}。因为 $z_t$ 在给定 $\mathcal F_t$ 时已经知道，上式也可写为 $\mathrm E^Q[z_{t+1}-z_t\mid\mathcal F_t]=0$。也就是说，用当前掌握的信息和 $Q$ 的权重预测下一期，平均变动为零，各状态下的实际变动仍可以不同。
 \end{tcolorbox}
 
 0 期的信息 $\mathcal F_0$ 无法进一步区分未来状态，因此 $\mathrm E^Q[\hat S_{n,1}\mid\mathcal F_0]=\mathrm E^Q[\hat S_{n,1}]$，式~\eqref{eq:wj-four-10} 就是本章的鞅条件。证券的 $Q$ 期望到期价值为 $(1+r_F)S_n$，债券的到期价值为 $(1+r_F)S_1=1$。用债券计价时，共同的因子 $1+r_F$ 在比值中抵消。
@@ -736,7 +736,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 \end{solution}
 \end{tcolorbox}
 
-式~\eqref{eq:wj-four-10} 为多期定价提供了同样的思路。每期按当期信息取条件期望，证券有中间现金流时也要将其计入。
+式~\eqref{eq:wj-four-10} 为多期定价提供了同样的思路。若证券有中间支付，就把证券价值和现金流都换成无风险账户单位。每笔现金流按收到时的账户价值换算。到任一时点，将此前和当期收到的各笔现金流的换算值加总，再加上以账户单位表示的当期除息价格。在相应的等价鞅测度 $Q$ 下，这个计入累计支付的过程满足鞅条件，即给定当期信息，下一期的条件期望等于当期值。
 
 \WJChapterSummary
 \begin{tcolorbox}[summary]
