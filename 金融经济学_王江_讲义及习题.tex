@@ -47,6 +47,19 @@
 
 \newcommand{\problemno}[1]{\textbf{#1}\quad}
 
+\newcommand{\WJChapterSummary}{%
+  \section*{本章小结}%
+  \addcontentsline{toc}{section}{本章小结}%
+}
+
+\newcommand{\WJChapterExercises}{%
+  \ifdefined\WJHandoutKnowledge
+    \clearpage
+  \fi
+  \section*{课后习题}%
+  \addcontentsline{toc}{section}{课后习题}%
+}
+
 \input{tex/_shared/wj-tree-styles.tex}
 \input{tex/_shared/wj-figure-styles.tex}
 \input{tex/_shared/wj-figure-cache.tex}
