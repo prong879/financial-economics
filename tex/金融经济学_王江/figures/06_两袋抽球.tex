@@ -1,0 +1,26 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[font=\small,
+    bag/.style={draw=black!65,fill=yellow!10!white,thick,line join=round}]
+ \foreach \bagCenter/\bagName in {0/A,5.6/B} {
+  \begin{scope}[xshift=\bagCenter cm]
+   \draw[bag]
+    (-.52,1.91)--(-.78,2.34)
+    .. controls (-.35,2.26) and (.35,2.26) .. (.78,2.34)
+    --(.52,1.91)
+    .. controls (1.04,1.58) and (1.65,1.08) .. (1.65,.58)
+    .. controls (1.65,.12) and (1.16,.04) .. (.85,.04)
+    --(-.85,.04)
+    .. controls (-1.16,.04) and (-1.65,.12) .. (-1.65,.58)
+    .. controls (-1.65,1.08) and (-1.04,1.58) .. (-.52,1.91)
+    --cycle;
+   \draw[black!65,thick] (-.52,1.91)--(.52,1.91);
+   \node[above,font=\small\bfseries] at (0,2.45) {袋 \bagName};
+  \end{scope}
+ }
+ \fill[red!80!black] (-.62,1.12) circle[radius=.13];
+ \node[anchor=west] at (-.36,1.12) {50 个红球};
+ \fill[black!90] (-.62,.59) circle[radius=.13];
+ \node[anchor=west] at (-.36,.59) {50 个黑球};
+ \node at (5.6,1.12) {共 100 个球};
+ \node at (5.6,.59) {红黑数量未知};
+\end{tikzpicture}

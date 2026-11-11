@@ -1,10 +1,10 @@
 % !TeX root = ../../../金融经济学_王江_讲义及习题.tex
 % 沿用上一图的折点效用。横坐标以 c=100 为原点，每单位代表 4 单位消费；
-% 纵坐标每单位代表 4 单位效用。两图的坐标尺度和绘制范围完全相同。
-\begin{tikzpicture}[>=Stealth,font=\small,x=2.04cm,y=1.04cm,
+% 纵坐标每单位代表 4 单位效用。三幅子图共用坐标尺度和绘制范围。
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=1.04cm,
     guide/.style={densely dotted,gray},ce/.style={red!65!black}]
- \foreach \panelOffset/\spread/\amplitude/\lowerConsumption/\upperConsumption/\expectedUtility/\premium in
-   {0cm/1/4/96/104/-2/1,6.6cm/.5/2/98/102/-1/0.5} {
+ \foreach \panelOffset/\panelLetter/\spread/\amplitude/\lowerConsumption/\upperConsumption/\expectedUtility/\premium in
+   {0cm/a/1/4/96/104/-2/1,5.22cm/b/.5/2/98/102/-1/0.5} {
   \begin{scope}[xshift=\panelOffset]
    \pgfmathtruncatemacro{\lowerUtility}{-2*\amplitude}
    \coordinate (kink) at (0,0);
@@ -15,7 +15,7 @@
    \coordinate (ce-axis) at ({-.25*\spread},-2.62);
    \coordinate (reference-axis) at (0,-2.62);
 
-   \node at (0,1.94) {波动幅度 $\varepsilon=\amplitude$};
+   \node at (0,1.94) {(\panelLetter) 跨折点，$\varepsilon=\amplitude$};
    \draw[->] (-1.42,-2.62)--(1.43,-2.62) node[right] {$c$};
    \draw[->] (-1.42,-2.62)--(-1.42,1.47) node[above] {$u(c)$};
    \draw[guide] (-1.42,0) node[left,black] {$0$} -- (kink)
@@ -41,6 +41,34 @@
       =\frac{\textcolor{red!65!black}{\premium}}{\textcolor{blue!70!black}{\amplitude}}$};
   \end{scope}
  }
- \node[below] at ([xshift=3.3cm]0,-3.88)
-   {$\pi/\varepsilon$ 是风险溢价 $\pi$ 对波动幅度 $\varepsilon$ 的斜率，两图均为 $\tfrac14$};
+ \begin{scope}[xshift=10.44cm]
+  % 消费 96、97、98 的效用依次为 -8、-6、-4。
+  \coordinate (kink) at (0,0);
+  \coordinate (lower) at (-1,-2);
+  \coordinate (upper) at (-.5,-1);
+  \coordinate (equivalent) at (-.75,-1.5);
+  \node at (0,1.94) {(c) 同侧，$\varepsilon=1$};
+  \draw[->] (-1.42,-2.62)--(1.43,-2.62) node[right] {$c$};
+  \draw[->] (-1.42,-2.62)--(-1.42,1.47) node[above] {$u(c)$};
+  \draw[guide] (-1.42,0) node[left,black] {$0$} -- (kink)--(0,-2.62)
+    (-1.42,-2) node[left,blue!70!black] {$-8$} -- (lower)--(-1,-2.62)
+    (-1.42,-1) node[left,blue!70!black] {$-4$} -- (upper)--(-.5,-2.62);
+  \draw[ce,densely dashed] (-1.42,-1.5) node[left] {$-6$}
+    -- (equivalent)--(-.75,-2.62);
+  \draw[blue!70!black,very thick] (-1.22,-2.44)--(kink)--(1.25,1.25);
+  \draw[white,densely dashed] (lower)--(upper);
+  \draw[blue!70!black,thick,|-|] (-1,-2.48)--node[midway,above] {$\varepsilon$} (-.75,-2.48);
+  \draw[ce,thick] (-.75,-2.35)--(-.75,-2.21);
+  \node[ce,right] at (-.75,-2.28) {$\pi=0$};
+  \fill[blue!70!black] (lower) circle(1.45pt) (upper) circle(1.45pt) (kink) circle(1.45pt);
+  \fill[ce] (equivalent) circle(1.45pt);
+  \node[below] at (-1,-2.62) {$96$};
+  \node[below] at (-.5,-2.62) {$98$};
+  \node[below] at (0,-2.62) {$100$};
+  \node[below,ce] at (-.75,-2.93) {$97$};
+  \node[below] at (0,-3.21)
+    {平均消费 $=CE=97$，
+     $\frac{\textcolor{red!65!black}{\pi}}{\textcolor{blue!70!black}{\varepsilon}}
+      =\frac{\textcolor{red!65!black}{0}}{\textcolor{blue!70!black}{1}}$};
+ \end{scope}
 \end{tikzpicture}

@@ -346,7 +346,7 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义~\ref{def:wj-seven-3
 \end{aligned}
 \]
 
-风险缩小时 $CE\to w$，故 $\xi_\varepsilon\to w$，且 $u'(\xi_\varepsilon)\to u'(w)>0$。于是 $\pi_\varepsilon=O(\varepsilon^2)$、$\pi_\varepsilon^2=O(\varepsilon^4)$。右边的二次项比保留的二阶风险项更小，所以
+这里 $O(\varepsilon^2)$ 表示当 $\varepsilon\to0$ 时，该项除以 $\varepsilon^2$ 后仍然有界。风险缩小时 $CE\to w$，故 $\xi_\varepsilon\to w$，且 $u'(\xi_\varepsilon)\to u'(w)>0$。于是 $\pi_\varepsilon=O(\varepsilon^2)$、$\pi_\varepsilon^2=O(\varepsilon^4)$。右边的二次项比保留的二阶风险项更小，所以
 \[
  u(w-\pi_\varepsilon)=u(w)-u'(w)\pi_\varepsilon+o(\varepsilon^2).
 \]
@@ -385,7 +385,7 @@ $w$ 是确定的，$\mathrm{E}[u(w)]=u(w)$，这就是定义~\ref{def:wj-seven-3
 用风险溢价除以方差，就把风险规模的影响剥离出来。比值的两倍在小风险极限下给出该财富点的绝对风险厌恶系数。
 
 \Needspace{21\baselineskip}
-图~\ref{fig:wj-seven-smooth-two-risks} 沿用图~\ref{fig:wj-six-kink-two-risks} 的两种波动幅度，改用光滑效用 $u(100+x)=x-x^2/10$，它在图示区间内递增。初始财富为 $100$，公平赌博的盈亏为 $\pm\varepsilon$。取平均时，线性项 $\pm\varepsilon$ 相抵，效用损失为 $\varepsilon^2/10$。波动幅度从 $4$ 减到 $2$，这个损失就从 $1.6$ 减到 $0.4$。
+图~\ref{fig:wj-seven-smooth-two-risks} 沿用图~\ref{fig:wj-six-kink-two-risks} 前两幅子图的波动幅度，改用光滑效用 $u(100+x)=x-x^2/10$，它在图示区间内递增。初始财富为 $100$，公平赌博的盈亏为 $\pm\varepsilon$。取平均时，线性项 $\pm\varepsilon$ 相抵，效用损失为 $\varepsilon^2/10$。波动幅度从 $4$ 减到 $2$，这个损失就从 $1.6$ 减到 $0.4$。
 
 两图的确定性等值均满足 $u(CE)=\mathrm E[u(100+\tilde g)]$，风险溢价为 $\pi=100-CE$。将 $CE=100-\pi$ 代入二次效用函数，得到 $\pi+\pi^2/10=\varepsilon^2/10$，解得风险溢价分别约为 $1.40$ 和 $0.39$。由于 $u'(100)=1$，式~\eqref{eq:wj-seven-2} 给出的二阶近似分别为 $1.6$ 和 $0.4$，后者恰为前者的四分之一。
 
@@ -653,7 +653,7 @@ $d$ 是风险容忍直线的截距，$1/\gamma$ 是斜率。若零财富属于�
 
 因此 $\gamma>0$ 时，风险容忍度随财富增加而上升，绝对风险厌恶下降。在允许的负参数范围 $-1\le\gamma<0$ 内，风险容忍度随财富增加而下降，绝对风险厌恶上升。平方效用是其中 $\gamma=-1$ 的情形。$d=0$ 给出常相对风险厌恶；$d>0$ 时相对风险厌恶随财富上升，尽管绝对风险厌恶可以同时下降。\textbf{DARA 与 IRRA 可以同时成立。}
 
-这些系数也用于判断财富变化怎样影响风险资产持仓。在给定投资机会、风险溢价为正且最优解为内点等条件下，CARA 对应风险投资金额不随财富变化，CRRA 对应风险投资比例不随财富变化。推导见定理~\ref{thm:wj-eight-3}（投资金额）和定理~\ref{thm:wj-eight-4}（投资比例）。
+这些系数也用于判断财富变化怎样影响风险资产持仓。这里的风险溢价按收益率计量，指风险证券的期望净收益率减去无风险净收益率，即 $\mathrm E[\tilde r]-r_F$。前文的 $\pi$ 则是按财富金额计量的风险补偿。在给定投资机会、上述预期收益差为正且最优解为内点等条件下，CARA 对应风险投资金额不随财富变化，CRRA 对应风险投资比例不随财富变化。推导见定理~\ref{thm:wj-eight-3}（投资金额）和定理~\ref{thm:wj-eight-4}（投资比例）。
 
 从容忍度还可反推效用。因为
 \[
@@ -664,7 +664,13 @@ $d$ 是风险容忍直线的截距，$1/\gamma$ 是斜率。若零财富属于�
 \[
  u(w)=K+\frac{C\gamma}{1-\gamma}(d+w/\gamma)^{1-\gamma};
 \]
-$\gamma=1$ 时为 $u(w)=K+C\ln(d+w)$。这说明不同经典效用来自对风险容忍度结构的不同假设；固定 $d>0$、令 $\gamma\to\infty$ 时，$T(w)\to d$，相应效用在适当正仿射标准化后趋向 CARA 形式。
+$\gamma=1$ 时为 $u(w)=K+C\ln(d+w)$。固定 $d>0$，令 $\gamma\to\infty$，则 $T(w)\to d$。以 $w=0$ 处的边际效用为单位，有
+\[
+ \frac{u'(w)}{u'(0)}
+ =\left(1+\frac{w}{\gamma d}\right)^{-\gamma}
+ \longrightarrow e^{-w/d}.
+\]
+将效用在 $w=0$ 处标准化为零，再对标准化边际效用从 $0$ 积分到 $w$，极限为 $d(1-e^{-w/d})$，与 CARA 的负指数效用相差一个正仿射变换。
 
 \section{风险厌恶的比较}\label{sec:wj-seven-5}
 $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度。设 $u_1$、$u_2$ 在同一财富区间上二阶连续可微且导数为正，$A_1$、$A_2$ 为相应的绝对风险厌恶系数。在某一财富点，若 $A_1(w)>A_2(w)$，则对从该点出发的同一非退化公平风险，风险足够小时 $\pi_1>\pi_2$，因为两人的二阶项系数有严格差异。若在整个相关财富区间比较 $A_1$ 与 $A_2$，则可以得到下面关于所有可行公平赌博的精确排序。
@@ -712,12 +718,12 @@ $A(w)$ 可以用来比较两个人，或同一个人在不同财富上的态度�
 
 $u_1$ 递增，故 $w-\pi_1\le w-\pi_2$，即 $\pi_1\ge\pi_2$。递增凹变换提高风险厌恶程度；Arrow--Pratt 系数更大，为消除同一风险愿意放弃的财富更多。
 
-\textbf{（第 4 条 $\Rightarrow$ 第 1 条）}固定任意财富 $w$，取等概率的 $\pm\varepsilon$ 公平赌博，则
+\textbf{（第 4 条 $\Rightarrow$ 第 1 条）}固定任意内点财富 $w$，取等概率的 $\pm\varepsilon$ 公平赌博 $\tilde g$。此时 $\mathrm E[\tilde g]=0$，$\operatorname{Var}(\tilde g)=\varepsilon^2$。将这一方差代入式~\eqref{eq:wj-seven-2}（小风险的溢价近似），分别对两人得到
 \[
  \pi_i(w,\varepsilon)=\tfrac12A_i(w)\varepsilon^2+o(\varepsilon^2).
 \]
 
-若对所有赌博都有 $\pi_1\ge\pi_2$，两边除以 $\varepsilon^2/2>0$，再令 $\varepsilon\to0$，得到 $A_1(w)\ge A_2(w)$。$w$ 任意，故总体比较成立。对每个财富点取小风险极限，便由所有赌博的溢价排序恢复逐点的系数排序。
+若对所有赌博都有 $\pi_1\ge\pi_2$，两边除以 $\varepsilon^2/2>0$，再令 $\varepsilon\to0$，得到 $A_1(w)\ge A_2(w)$。因此系数排序在共同财富区间的每个内点成立，也由连续性延伸到系数有连续定义的端点。
 
 
 \subsection{确定性等值与风险溢价的比较}
@@ -843,7 +849,7 @@ $\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用�
 \section{风险厌恶度量的应用}\label{sec:wj-seven-7}
 % PPT 第 30–31 页：参与门槛与配置公式，补上所需条件。
 \subsection{一阶风险厌恶与参与门槛}
- 在折点财富 $\bar w$ 处，考虑等概率带来 $\varepsilon\cdot(\mu+\delta)$ 或 $\varepsilon\cdot(\mu-\delta)$ 的小额投资，$\varepsilon>0$、$0<\mu<\delta$。这项投资的期望盈利是 $\varepsilon\mu>0$，但期望效用变化为
+沿用前面的分段线性效用。在折点财富 $\bar w$ 处，考虑等概率带来 $\varepsilon\cdot(\mu+\delta)$ 或 $\varepsilon\cdot(\mu-\delta)$ 的小额投资，$\varepsilon>0$、$0<\mu<\delta$。这项投资的期望盈利是 $\varepsilon\mu>0$，但期望效用变化为
 \[
  \tfrac{\varepsilon}{2}\{a_+\cdot(\mu+\delta)+a_-\cdot(\mu-\delta)\}
  =\tfrac{\varepsilon}{2}\Bigl[
@@ -852,12 +858,14 @@ $\tfrac12(a_--a_+)\delta$；确定财富每减少一元，左侧分支的效用�
    \Bigr].
 \]
 \begin{tcolorbox}[knowledge,title=折点处的参与门槛,breakable=false]
-参与条件为
+在折点两侧均为线性、边际效用分别为 $a_-$ 与 $a_+$ 时，投资至少与不投资一样好的条件为
 \[
  \frac{\mu}{\delta}\ge\frac{a_--a_+}{a_-+a_+}.
 \]
 \end{tcolorbox}
-$\mu/\delta$ 等于期望盈利 $\varepsilon\mu$ 与盈利标准差 $\varepsilon\delta$ 之比，缩小投资规模不会改变这个比值。低于门槛时参与者拒绝投资，恰好等于门槛时参与者无差异。光滑效用且 $u'(w)>0$ 时，同一投资的效用变化为
+$\mu/\delta$ 等于期望盈利 $\varepsilon\mu$ 与盈利标准差 $\varepsilon\delta$ 之比，缩小投资规模不会改变这个比值。在分段线性模型中，低于门槛时参与者拒绝投资，恰好等于门槛时参与者无差异。若效用在折点两侧只有相应的单侧导数，上式给出期望效用变化的一阶项，另外还有 $o(\varepsilon)$ 的余项。恰好等于门槛时，一阶项为零，参与决策取决于余项的符号。
+
+若效用在初始财富 $w$ 附近二阶连续可微且 $u'(w)>0$，同一投资的效用变化为
 \[
  u'(w)\varepsilon\mu+O(\varepsilon^2),
 \]
@@ -916,13 +924,17 @@ $\mu/\delta$ 等于期望盈利 $\varepsilon\mu$ 与盈利标准差 $\varepsilon
 
 \subsubsection{连续时间的 CRRA 配置}
 \begin{tcolorbox}[knowledge,title=连续时间的 CRRA 最优比例,breakable=false]
-单只风险资产服从几何布朗运动、参数恒定、CRRA 偏好、无额外交易限制且无外生劳动收入的经典 Merton 模型中，最优风险投资比例为
+在只选择投资组合、以最大化期末财富的期望效用 $\mathrm E[u(W_T)]$ 为目标的连续时间 Merton 模型中，设单只风险资产服从几何布朗运动、参数恒定、效用为 CRRA，且无额外交易限制和外生劳动收入。最优风险投资比例为
 \[
  \alpha^*=\frac{\mu-r_F}{\gamma\sigma^2}.
 \]
 其中 $\mu$ 是单位时间收益漂移，$\sigma^2$ 是单位时间的瞬时收益方差率，$\gamma>0$ 是相对风险厌恶系数。
 \end{tcolorbox}
-给定同样机会，$\gamma=5$ 时的最优比例是 $\gamma=2$ 时的 $2/5$。
+设 $J(t,w)$ 为时点 $t$、财富为 $w$ 时的最大期望效用。财富过程对初始财富按比例缩放，因此 CRRA 给出 $wJ_{ww}/J_w=-\gamma$。风险比例 $\alpha$ 使财富漂移增加 $w\alpha(\mu-r_F)$，并使财富的瞬时方差率为 $w^2\alpha^2\sigma^2$。动态规划方程中与 $\alpha$ 有关的两项，除以正的 $wJ_w$，即为
+\[
+ \alpha(\mu-r_F)-\tfrac12\gamma\alpha^2\sigma^2.
+\]
+对 $\alpha$ 求导并令导数为零，得到框中的比例。给定同样机会，$\gamma=5$ 时的最优比例是 $\gamma=2$ 时的 $2/5$。
 
 \WJChapterSummary
 \begin{tcolorbox}[summary]

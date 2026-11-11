@@ -1,0 +1,14 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 将 PPT 第 25—26 页的四种彩票按两组比较重新排成共同分支图。
+\begin{tikzpicture}[font=\small,>=Stealth,
+    common/.style={teal!60!black}, choice/.style={blue!70!black}]
+ \foreach \offset/\first/\second/\prize in {0/1/2/100,6.4/4/3/0} {
+  \begin{scope}[xshift=\offset cm]
+   \node (pair) at (0,0) {$P_{\first}$ 与 $P_{\second}$};
+   \draw[->,thick,common] (pair.east)--node[above,sloped] {$89\%$} (2.6,.65);
+   \draw[->,thick,choice] (pair.east)--node[below,sloped] {$11\%$} (2.6,-.65);
+   \node[anchor=west,common] at (2.6,.65) {两者都得 $\prize$};
+   \node[anchor=west,choice] at (2.6,-.65) {$\delta_{100}$ 与 $L^\ast$};
+  \end{scope}
+ }
+\end{tikzpicture}
