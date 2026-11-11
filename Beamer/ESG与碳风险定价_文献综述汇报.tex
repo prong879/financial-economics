@@ -1,0 +1,452 @@
+\documentclass[UTF8,fontset=none,aspectratio=169,10pt]{ctexbeamer}
+\DeclareFontShape{OT1}{cmr}{m}{n}{%
+  <-6>cmr5 <6-7>cmr6 <7-8>cmr7 <8-9>cmr8 <9-10>cmr9
+  <10-12>cmr10 <12-17>cmr12 <17->cmr17}{}
+\usepackage{njust_beamer}
+\AtBeginSection[]{}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,graphicx}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\definecolor{ink}{RGB}{24,49,65}
+\definecolor{accent}{RGB}{31,83,145}
+\definecolor{accentlight}{RGB}{226,235,247}
+\definecolor{gold}{RGB}{190,126,35}
+\definecolor{risk}{RGB}{147,53,52}
+\definecolor{muted}{RGB}{93,108,117}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{frametitle}{fg=ink,bg=white}
+\setbeamercolor{block title}{fg=white,bg=accent}
+\setbeamercolor{block body}{fg=ink,bg=accentlight}
+\setbeamercolor{alerted text}{fg=risk}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{accent}\small$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{gold}\scriptsize$\blacktriangleright$}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setlength{\parskip}{0.30em}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.28}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\tabularxcolumn}[1]{p{#1}}
+% 保持原主题标题位置，仅在存在副标题时显示分隔线。
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=.2ex,leftskip=10pt]{}
+    \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle
+    \ifx\insertframesubtitle\@empty\else
+      ~\textcolor{njustpurple2!50}{\rule[-.2ex]{.08em}{1.8ex}}~
+      \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle
+    \fi
+  \end{beamercolorbox}%
+}
+\makeatother
+\newcommand{\source}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west,inner sep=0pt,text width=.91\paperwidth,
+      align=left,font=\tiny,text=muted]
+    at ([xshift=.035\paperwidth,yshift=.68cm]current page.south west)
+      {文献与口径：#1};
+  \end{tikzpicture}%
+}
+\newcommand{\lead}[1]{{\color{accent}\bfseries #1}\par\vspace{0.10cm}}
+\newcommand{\spaceditems}{\setlength{\itemsep}{0.22cm}}
+\newcommand{\keyline}[1]{%
+  \begin{beamercolorbox}[wd=\linewidth,sep=0.16cm,rounded=true]{block body}
+    \centering\bfseries #1
+  \end{beamercolorbox}
+}
+% 参考文献按 GB/T 7714—2025 顺序编码制著录。
+\newenvironment{gbreferences}[1]{%
+  \setbeamertemplate{enumerate item}{[\insertenumlabel]}
+  \setbeamercolor{enumerate item}{fg=ink}
+  \begin{enumerate}\setcounter{enumi}{#1}\setlength{\itemsep}{.18cm}
+}{\end{enumerate}}
+
+% 固定六项导航，与原 PPT 的内容顺序对应。
+\makeatletter
+\def\njust@insert@subsecminiframes#1#2{}
+\newcount\navactive
+\newcommand{\navtab}[2]{\makebox[.105\paperwidth][c]{\ifnum\navactive=#1\color{white}\bfseries\else\color{white!52!njustpurple2}\fi #2}}
+\def\njust@insert@secbar{%
+  \navactive=1
+  \ifnum\value{framenumber}>4 \navactive=2\fi
+  \ifnum\value{framenumber}>5 \navactive=3\fi
+  \ifnum\value{framenumber}=9 \navactive=4\fi
+  \ifnum\value{framenumber}>11 \navactive=5\fi
+  \ifnum\value{framenumber}>13 \navactive=6\fi
+  \hbox to \njust@secbar{\hfil\heiti\scriptsize
+  \navtab{1}{问题}\navtab{2}{理论}\navtab{3}{实证}\navtab{4}{中国}\navtab{5}{评述}\navtab{6}{文献}\hfil}%
+}
+\makeatother
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.7ex,dp=1.1ex]{section in head/foot}
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[accent] (0,-.08) rectangle ({\paperwidth*\insertframenumber/\inserttotalframenumber},.34);
+    \end{tikzpicture}%
+    \hspace{.035\paperwidth}\makebox[.12\paperwidth][l]{\scriptsize 投资学}%
+    \makebox[.46\paperwidth][c]{\scriptsize ESG 与碳风险定价}%
+    \makebox[.20\paperwidth][r]{\scriptsize 2026 年 11 月}%
+    \makebox[.14\paperwidth][r]{\scriptsize\insertframenumber\ /\ \inserttotalframenumber}
+  \end{beamercolorbox}%
+}
+\newcommand{\study}[1]{\framesubtitle{\small #1}}
+\newcommand{\bodygap}{\par\vspace{.20cm}}
+\title[ESG与碳风险定价]{ESG 是一个定价因子吗？}
+\subtitle{以碳风险与碳 \texorpdfstring{$\beta$}{beta} 为切入点}
+\author[投资学]{投资学课程汇报}
+\date{2026年11月}
+\hypersetup{pdftitle={ESG 是一个定价因子吗？——以碳风险与碳 beta 为切入点},pdfauthor={投资学课程汇报}}
+
+\begin{document}
+
+% 01 封面
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=south west,inner sep=0pt] at (current page.south west)
+ {\includegraphics[width=\paperwidth,height=\paperheight]{cover_background.png}};
+\node[anchor=north west,text=accent,font=\songti\bfseries\large]
+ at ([xshift=.065\paperwidth,yshift=-.065\paperheight]current page.north west) {投资学课程汇报};
+\node[anchor=north west,text=accent,font=\songti\bfseries]
+ at ([xshift=.065\paperwidth,yshift=-.205\paperheight]current page.north west)
+ {\fontsize{25}{32}\selectfont ESG 是一个定价因子吗？};
+\draw[accent,line width=1.3pt] ([xshift=.065\paperwidth,yshift=-.43\paperheight]current page.north west)--([xshift=.58\paperwidth,yshift=-.43\paperheight]current page.north west);
+\draw[accent,line width=3.4pt] ([xshift=.065\paperwidth,yshift=-.43\paperheight]current page.north west)--([xshift=.14\paperwidth,yshift=-.43\paperheight]current page.north west);
+\node[anchor=north west,text=accent,font=\songti\large]
+ at ([xshift=.065\paperwidth,yshift=-.465\paperheight]current page.north west)
+ {以碳风险与碳 $\beta$ 为切入点};
+\node[anchor=south west,text=accent,font=\songti\normalsize]
+ at ([xshift=.065\paperwidth,yshift=.115\paperheight]current page.south west)
+ {2026 年 11 月};
+\end{tikzpicture}
+\note{我们关注 ESG 如何进入投资者要求的回报。碳风险提供了具体切口：企业排放与收益有什么关系，碳 beta 又增加了什么信息？}
+\end{frame}
+
+% 02 目录
+\section{研究问题}\subsection{汇报内容}
+\begin{frame}[t]{汇报内容}
+\vspace{.34cm}
+\renewcommand{\arraystretch}{1.28}
+\begin{tabularx}{\textwidth}{@{}>{\color{accent}\bfseries}l P{3.9cm}Y@{}}
+01 & \textbf{研究背景与核心问题} & 价格影响、收益关联与定价证据\\
+02 & \textbf{理论机制} & 绿色偏好与气候对冲需求\\
+03 & \textbf{实证支持与后续争议} & 碳溢价、ESG 因子、气候对冲与补充研究\\
+04 & \textbf{中国市场证据} & A 股 ESG 因子与规模异质性\\
+05 & \textbf{差异归因与综合判断} & 解释分歧，回答研究问题\\
+06 & \textbf{参考文献} & 五篇核心研究与四篇补充研究\\
+\end{tabularx}
+\note{先讨论定价机制和主要证据，再结合中国市场与后续研究解释分歧。补充研究在中国市场页之后继续。}
+\end{frame}
+
+% 03 问题
+\subsection{研究问题}
+\begin{frame}[t]{ESG 如何影响股票预期收益？}
+\vspace{.30cm}
+气候政策、能源技术与消费需求变化，会改变企业现金流及转型风险。投资者的绿色偏好，也会改变资产需求与资本成本。
+\bodygap
+\lead{本次汇报关注三个问题}
+\begin{itemize}\setlength{\itemsep}{.38cm}
+\item 绿色资产为什么可能具有较低预期收益？
+\item 排放特征与 ESG 组合是否包含额外的收益信息？
+\item 碳 $\beta$ 能否连接转型风险暴露与收益补偿？
+\end{itemize}
+\vspace{.40cm}
+\textcolor{accent}{\textbf{研究重点：}ESG 如何进入定价，以及碳 $\beta$ 为检验转型风险提供了什么信息。}
+\vfill\source{据综述第 1.1--1.3 节及 Pástor 等（2021）的偏好与气候风险机制归纳。}
+\note{综合 ESG 研究提供偏好机制与因子构造方法，碳风险研究进一步聚焦环境维度中的转型风险。}
+\end{frame}
+
+% 04 概念
+\subsection{定价概念}
+\begin{frame}[t]{收益关联、风险暴露与因子价格}
+\vspace{.25cm}
+\begin{tabularx}{\textwidth}{@{}P{2.15cm}P{4.0cm}Y@{}}
+\toprule
+概念 & 含义 & 对应的经验问题\\\midrule
+碳排放特征 & 排放总量、增长或强度 & 排放不同的企业，收益是否不同？\\[.18cm]
+碳 $\beta$ & 收益对指定碳因子的载荷 & 股票如何随碳相关组合共同变动？\\[.18cm]
+因子价格 $\lambda$ & 暴露对应的预期收益差异 & 控制既有因素后，暴露能否解释预期收益？\\
+\bottomrule
+\end{tabularx}\par
+\vspace{.24cm}
+\lead{一个简化的定价表示}
+\[
+E(R_i^e)=\beta_{i,M}\lambda_M+\textcolor{accent}{\beta_{i,C}\lambda_C}
++\sum_{k\in X}\beta_{i,k}\lambda_k
+\]
+\textbf{因子载荷描述收益暴露，因子价格连接暴露与预期收益。}偏好效应也可能进入因子价格。
+\vfill\source{据综述第 4.2--4.3 节及附录 E 归纳。$X$ 表示其他控制因子。}
+\note{该式概括后文的暴露与预期收益关系。因子平均收益、基准模型下的 alpha、横截面因子价格各有含义。还可结合跨越检验、测试资产 alpha 联合检验和样本外表现判断定价能力。}
+\end{frame}
+
+% 05 理论
+\section{理论机制}\subsection{均衡定价}
+\begin{frame}[t]{绿色偏好与气候风险的定价机制}
+\study{Pástor 等（2021）}
+\vspace{.32cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.50\textwidth}
+\lead{绿色偏好影响预期收益}
+在模型的市场 ESG 中性化设定下：
+\[
+\mu_i=\beta_{i,M}\mu_M-\frac{\bar d}{a}g_i
+\]
+其他条件相同，绿色偏好提高绿色资产价格，降低其预期金融收益。
+\bodygap
+{\footnotesize $g_i$：绿色特征\quad $\bar d$：平均绿色偏好\\
+$a$：共同风险厌恶参数}
+\column{.46\textwidth}
+\lead{模型中的 ESG 因子}
+市场与 ESG 因子共同定价。在该模型及标准化下，ESG $\beta=g_i$，绿色减棕色因子的预期溢价为负。
+\bodygap
+\lead{实现收益与对冲价值}
+绿色偏好意外增强时，绿色资产当期可能上涨。在气候坏状态下提供回报的资产，还具有对冲价值。
+\end{columns}
+\vspace{.30cm}
+\textcolor{accent}{\textbf{较低的预期收益与偏好冲击下的当期上涨可以同时出现。}}
+\vfill\source{[1]554,556,561--562，式（9）、（31）--（33）及气候风险扩展。}
+\note{ESG beta 与绿色特征相等是模型及标准化的结果。基准模型中偏好定价与扩展模型中气候对冲分别解释。绿色股票的实际对冲表现由经验研究检验。}
+\end{frame}
+
+% 06 Bolton
+\section{实证证据}\subsection{碳溢价}
+\begin{frame}[t]{碳排放与股票收益}
+\study{Bolton 与 Kacperczyk（2021）}
+\vspace{.32cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.54\textwidth}
+\lead{美国股票，2005—2017 年}
+匹配企业排放、股票收益与基本面数据。
+\bodygap
+\begin{tabularx}{\linewidth}{@{}P{1.55cm}Y@{}}
+\toprule 排放指标 & 作者报告的收益关系\\\midrule
+排放总量 & 较高排放对应较高收益\\[.18cm]
+排放增长 & 较快增长对应较高收益\\[.18cm]
+排放强度 & 未发现同样显著的收益溢价\\\bottomrule
+\end{tabularx}
+\column{.42\textwidth}
+\lead{转型风险补偿解释}
+控制规模、盈利、动量等企业特征，并考察既有因子后，总量与增长的收益关系仍存在。
+\bodygap
+作者将其解释为：投资者要求补偿高排放企业面临的转型风险。
+\bodygap
+\textbf{后续问题：}从企业排放特征出发，进一步检验碳 $\beta$ 与预期收益的关系。
+\end{columns}
+\vfill\source{[2]518,532--540，表 8--10。分别研究 Scope 1、Scope 2 及上游 Scope 3，强度为排放／销售收入。}
+\note{总量与增长存在正向收益关系，强度结果不同，体现各指标的经济信息差异。后续研究考察风险补偿、基本面信息与市场重估。}
+\end{frame}
+
+% 07 Lioui
+\subsection{ESG 因子}
+\begin{frame}[t]{ESG 因子构造与收益证据}
+\study{Lioui 与 Tarelli（2022）}
+\vspace{.14cm}
+\textbf{TS 排序法：}按评级分组，构造高评级减低评级组合。\\[.06cm]
+\textbf{CS 横截面法：}由评级与特征形成权重，匹配 ESG 暴露并控制其他特征。
+\vspace{.12cm}
+\renewcommand{\arraystretch}{1.05}\begin{tabularx}{\textwidth}{@{}P{2.6cm}P{2.3cm}P{3.2cm}Y@{}}
+\toprule 维度 & 月度 $\alpha$ & Newey--West $t$ 值 & 显著性\\\midrule
+\textbf{综合 ESG} & \textbf{0.20\%} & \textbf{1.74} & \textbf{10\% 水平}\\
+环境 E & 0.02\% & 0.14 & 不显著\\
+\textbf{社会 S} & \textbf{0.23\%} & \textbf{2.18} & \textbf{5\% 水平}\\
+治理 G & 0.04\% & 0.55 & 不显著\\\bottomrule
+\end{tabularx}
+{\footnotesize Asset4，2002.12—2020.12。MCS(TS)，六因子调整 $\alpha$，表 2。}
+\vspace{.12cm}
+\keyline{CS 构造更支持部分 ESG 维度的正 $\alpha$}
+\vspace{.14cm}
+{\small 评级来源、因子构造与样本时期影响收益结果。}
+\vfill\source{[3]10--11，表 2 的 MCS(TS) 列。六因子为市场、规模、价值、盈利、投资与动量。}
+\note{MCS(TS) 将多变量 CS 因子的目标评分与 TS 匹配。alpha 衡量相对六因子基准的收益表现。综合 ESG 与 S 为正且显著，E 与 G 不显著。}
+\end{frame}
+
+% 08 Engle
+\subsection{气候对冲}
+\begin{frame}[t]{气候新闻与股票对冲组合}
+\study{Engle 等（2020）}
+\vspace{.26cm}
+提取气候新闻的意外变化，借助企业环境评分构造跟踪组合，并检验样本外表现。
+\vspace{.28cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.54\textwidth}
+\lead{与 WSJ 新闻创新的样本外相关系数}
+\begin{tabularx}{\linewidth}{@{}Y r@{}}
+\toprule 环境评分来源与处理 & 相关系数\\\midrule
+Sustainalytics，评分绝对值 & 0.174\\[.20cm]
+Sustainalytics，评分排序值 & 0.206\\[.20cm]
+MSCI，评分绝对值 & 0.013\\\bottomrule
+\end{tabularx}
+\column{.42\textwidth}
+\lead{从环境信息识别气候暴露}
+环境信息能够帮助构造跟踪组合，跟踪效果随评分来源变化。
+\bodygap
+相关系数衡量组合收益对新闻创新的跟踪程度。
+\bodygap
+该研究为气候对冲及后续风险价格研究提供方法。
+\end{columns}
+\vfill\source{[4]1207--1208，表 4；1211--1212，研究展望及附录方法。}
+\note{正文使用特征驱动的组合构造。新闻可能同时包含物理风险与转型风险，新闻跟踪程度与风险价格分别评价。}
+\end{frame}
+
+% 09 中国
+\section{中国市场}\subsection{中国市场}
+\begin{frame}[t]{A 股 ESG 因子与规模异质性}
+\study{李岩等（2024）}
+\vspace{.18cm}
+2011—2022 年 A 股月度数据。华证 ESG 评级构造因子，彭博评级替换检验。
+\vspace{.20cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.61\textwidth}
+\renewcommand{\arraystretch}{1.12}\begin{tabularx}{\linewidth}{@{}P{2.05cm}Y@{}}
+\toprule 证据 & 作者报告的结果\\\midrule
+平均收益 & 每月约 0.18\%，$t=2.0770$\\[.15cm]
+因子载荷 & 0.2802，$t=25.7696$\\[.15cm]
+汇总拟合 & \makecell[tl]{$\Delta R^2=0.0001$\\$p=0.4460$，改善不显著}\\[.15cm]
+分组表现 & \makecell[tl]{小规模组合改善更明显，\\大规模组合结果不一致}\\\bottomrule
+\end{tabularx}
+\column{.35\textwidth}
+\lead{作者结论与模型比较}
+作者认为拓展四因子模型整体有效，评级替换提供一定稳健性支持。
+\bodygap
+汇总拟合改善有限，分组结果体现企业差异。
+\bodygap
+模型比较同时涉及 ESG 因子与 SMB 构造调整，研究对象为综合 ESG。
+\end{columns}
+\vfill\source{[5]99--102，表 3、4、9 及评级替换检验。拟合增量按作者表 9 汇总口径引用。}
+\note{收益、载荷、拟合与异质性对应不同问题。原文表 8 汇总行与六组简单平均不一致且未明确汇总口径。SMB1、SMB2 构造也发生变化。}
+\end{frame}
+
+% 10 测量与时点
+\section{后续研究}\subsection{测量与时点}
+\begin{frame}[t]{排放测量与信息时点}
+\vspace{.34cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.48\textwidth}
+\lead{使用什么排放数据？}
+\textbf{Aswani 等（2024）[6]}
+\bodygap
+排放与收益的正相关主要集中于数据商估算值。
+\bodygap
+估算排放与规模等基本面高度相关，影响碳溢价的解释。
+\bodygap
+\textcolor{accent}{\textbf{比较要求}}\\
+区分企业披露与数据商估算，检验规模及基本面信息的作用。
+\column{.48\textwidth}
+\lead{投资者何时获得数据？}
+\textbf{Zhang（2025）[7]}
+\bodygap
+按实际发布时点构建信息集后，美国棕色减绿色实现收益为负，全球结果不显著。
+\bodygap
+\textcolor{accent}{\textbf{比较要求}}\\
+区分排放年份、信息发布日期与组合形成日期。
+\end{columns}
+\vspace{.35cm}
+\textcolor{accent}{\textbf{数据来源与信息时点都会影响碳溢价的估计与解释。}}
+\vfill\source{[6] 期刊摘要及第 5 节；[7] 期刊摘要、引言与信息时点讨论。}
+\note{两篇研究对早期碳溢价解释提出实质挑战。Zhang 报告的是棕色减绿色实现收益，其方向与事前预期收益分别解释。}
+\end{frame}
+
+% 11 新证据
+\subsection{碳 \texorpdfstring{$\beta$}{beta} 与异质性}
+\begin{frame}[t]{碳 $\beta$ 定价与企业异质性}
+\vspace{.22cm}
+\lead{Huij 等（2026）：市场暴露与收益补偿 [8]}
+碳 $\beta$ 为控制市场、规模、价值和动量后，股票收益对“污染减清洁”组合的载荷。
+\par\vspace{.08cm}
+高碳 $\beta$ 股票在气候风险实现的月份表现较差。在最严格设定下，碳 $\beta$ 高一个标准差，与年化收益高约\textbf{\textcolor{accent}{ 1.15 个百分点}}相关。
+\par\vspace{.08cm}
+{\small 溢价估计随模型设定变化，低信噪比增加了估计的不确定性。}
+\vspace{.22cm}\hrule height .3pt\vspace{.22cm}
+\lead{Crosignani 等（2025）：排放强度的异质性 [9]}
+作者报告排放强度的正向定价关系。逐步剔除超级排放者后：
+\begin{tabularx}{\textwidth}{@{}P{2.65cm}Y@{}}
+其余样本 & 正系数与显著性增强\\
+超级排放者 & 自身呈负向关系，主要涉及发电企业\\
+\end{tabularx}
+{\small 纽约联储工作论文。}
+\vfill\source{[8] 正式发表版本，定义、气候风险实现结果与表 9；[9] 引言及第 4.2、4.5 节。}
+\note{Huij 简单设定出现负溢价，加入控制与行业固定效应后结果变化。1.15 个百分点来自最严格设定，是条件收益关联。Crosignani 考虑预期强度、强度创新及其与价息比交互项，研究对象为特征定价。}
+\end{frame}
+
+% 12 分歧
+\section{综合评述}\subsection{差异归因}
+\begin{frame}[t]{为什么研究结果会不同？}
+\vspace{.28cm}
+\begin{tabularx}{\textwidth}{@{}P{2.35cm}Y@{}}
+\toprule 差异来源 & 比较文献时需要明确的内容\\\midrule
+研究对象 & 综合 ESG、排放特征、新闻暴露、碳 $\beta$ 分别测量什么？\\[.23cm]
+数据与时点 & 使用披露值还是估算值？形成组合时数据是否已公开？\\[.23cm]
+样本与构造 & 评级、市场、时期、行业及超级排放者如何影响结果？\\[.23cm]
+收益与模型 & 比较实现收益、$\alpha$ 还是因子价格？控制哪些因素？\\\bottomrule
+\end{tabularx}\par
+\vspace{.24cm}
+\lead{比较收益符号前，先统一因子方向与收益口径}
+绿色减棕色与污染减清洁的多空方向相反。偏好重估也可能使样本实现收益偏离事前预期。
+\vfill\source{文献 [1]--[9] 综合归纳，对应综述第五章及附录 E。}
+\note{比较结果时同时核对变量、方向、收益口径和模型。即使方向一致，偏好、现金流与风险补偿也可能叠加。多空方向与具体构造共同决定收益序列。}
+\end{frame}
+
+% 13 综合判断
+\subsection{综合判断}
+\begin{frame}[t]{ESG 与碳风险的定价证据}
+\vspace{.28cm}
+\keyline{理论与部分实证研究支持 ESG 的定价作用\\[.06cm]
+碳 $\beta$ 为连接转型风险暴露与收益补偿提供具体路径}
+\vspace{.28cm}
+\lead{理论：ESG 可以进入均衡定价}
+绿色偏好与气候对冲需求影响预期收益，因子价格可以包含偏好效应。
+\bodygap
+\lead{经验：部分研究支持 ESG 收益与碳风险补偿}
+排放特征、ESG 因子 $\alpha$ 与碳 $\beta$ 研究各有支持性发现，研究对象和证据性质有所不同。
+\bodygap
+\textbf{开放问题：}碳 $\beta$ 的独立解释力与跨样本稳定性仍有争议。
+\bodygap
+\textcolor{accent}{\textbf{后续重点：}完善暴露测量，区分溢价来源，检验跨企业与跨市场的稳定性。}
+\vfill\source{文献 [1]--[9] 综合评价，对应综述第 5.4、6.1--6.2 节。}
+\note{理论中 ESG 进入均衡定价，经验中部分收益与风险补偿证据成立于具体设定。综合 ESG 与碳风险提供不同层次的证据。进一步识别机制与适用范围。}
+\end{frame}
+
+% 14 参考文献
+\section{参考文献}\subsection{参考文献}
+\begin{frame}[t]{参考文献}
+\vspace{.20cm}
+\begin{columns}[T,totalwidth=\textwidth]
+\column{.49\textwidth}
+\lead{核心研究}
+\fontsize{6.8}{9.1}\selectfont
+\begin{gbreferences}{0}
+\item PÁSTOR Ľ, STAMBAUGH R F, TAYLOR L A. \href{https://doi.org/10.1016/j.jfineco.2020.12.011}{Sustainable investing in equilibrium}[J]. Journal of Financial Economics, 2021, 142(2): 550--571.
+\item BOLTON P, KACPERCZYK M. \href{https://doi.org/10.1016/j.jfineco.2021.05.008}{Do investors care about carbon risk?}[J]. Journal of Financial Economics, 2021, 142(2): 517--549.
+\item LIOUI A, TARELLI A. \href{https://doi.org/10.1016/j.jbankfin.2022.106498}{Chasing the ESG factor}[J]. Journal of Banking \& Finance, 2022, 139: 106498.
+\item ENGLE R F, GIGLIO S, KELLY B, et al. \href{https://doi.org/10.1093/rfs/hhz072}{Hedging climate change news}[J]. The Review of Financial Studies, 2020, 33(3): 1184--1216.
+\item 李岩, 何红洁, 牟博佼. ESG投资绩效因子对公司股票资产定价的影响——基于中国A股市场的实证检验[J]. 金融理论与实践, 2024(7): 93--105.
+\end{gbreferences}
+\column{.47\textwidth}
+\lead{补充研究}
+\fontsize{6.8}{9.1}\selectfont
+\begin{gbreferences}{5}
+\item ASWANI J, RAGHUNANDAN A, RAJGOPAL S. \href{https://doi.org/10.1093/rof/rfad013}{Are carbon emissions associated with stock returns?}[J]. Review of Finance, 2024, 28(1): 75--106.
+\item ZHANG S. \href{https://doi.org/10.1111/jofi.13402}{Carbon returns across the globe}[J]. The Journal of Finance, 2025, 80(1): 615--645.
+\item HUIJ J, LAURS D, STORK P, et al. \href{https://doi.org/10.1080/0015198X.2026.2652222}{Carbon beta: a market-based measure of climate transition risk exposure}[J]. Financial Analysts Journal, 2026, 82(3): 111--137.
+\item CROSIGNANI M, OSAMBELA E, PRITSKER M. \href{https://doi.org/10.59576/sr.1161}{Understanding the pricing of carbon emissions: new evidence from the stock market}[R]. Federal Reserve Bank of New York Staff Reports, No. 1161, 2025. 工作论文.
+\end{gbreferences}
+\end{columns}
+\note{参考文献编号与原 PPT 及 15 页文案一致。英文题名附 DOI 超链接。}
+\end{frame}
+
+% 15 结束
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=south west,inner sep=0pt] at (current page.south west)
+ {\includegraphics[width=\paperwidth,height=\paperheight]{cover_background.png}};
+\node[anchor=north west,text=accent,font=\songti\bfseries]
+ at ([xshift=.065\paperwidth,yshift=-.24\paperheight]current page.north west)
+ {\fontsize{29}{36}\selectfont 谢谢聆听};
+\draw[accent,line width=1.3pt] ([xshift=.065\paperwidth,yshift=-.43\paperheight]current page.north west)--([xshift=.43\paperwidth,yshift=-.43\paperheight]current page.north west);
+\draw[accent,line width=3.4pt] ([xshift=.065\paperwidth,yshift=-.43\paperheight]current page.north west)--([xshift=.14\paperwidth,yshift=-.43\paperheight]current page.north west);
+\node[anchor=north west,text=accent,font=\songti\large]
+ at ([xshift=.065\paperwidth,yshift=-.465\paperheight]current page.north west) {欢迎讨论};
+\end{tikzpicture}
+\note{ESG 越好收益是否越高：回到第 5 页讨论预期与实现收益。碳 beta 的测量表现：回到第 11 页讨论市场信息、因子构造和估计精度。}
+\end{frame}
+\end{document}
