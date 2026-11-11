@@ -14,10 +14,13 @@
 *.HEIC
 *.JPG
 *.PNG
+!/Beamer/cover_background.png
 
 # LaTeX generated files
 /build/
 /output/
+/Beamer/build/
+/Beamer/output/
 /tmp/
 *.aux
 *.log

@@ -1,0 +1,17 @@
+本项目保留复制自“高级公司金融/京东方收购彩虹光电股权_投资决策汇报”的字体二进制，不修改字形或字体命名。
+逐文件版本、原始版权声明、嵌入许可与 SHA256 见 font-manifest.json。
+
+Source Han Sans CN：文件嵌入版本 2.000（Regular/Bold/Light/Heavy）。
+上游：https://github.com/adobe-fonts/source-han-sans
+许可证文本：https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/LICENSE.txt
+
+Source Han Serif CN：文件嵌入版本 1.001（Regular/Bold/Light/Heavy）。
+上游：https://github.com/adobe-fonts/source-han-serif
+许可证文本：https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/LICENSE.txt
+
+Garamond-Math：文件嵌入版本 2019-08-16。
+上游：https://github.com/YuanshengZhao/Garamond-Math
+许可证文本：https://github.com/YuanshengZhao/Garamond-Math/blob/master/LICENSE
+
+许可证文件于 2026-11-02 从各项目官方仓库取得。其上游当前年份/版本可能与历史二进制不同，历史文件自己的版权声明完整保留在 manifest 与字体元数据中。
+复制前的下载地址和转换链未留存；不声称二进制与当前上游发行包逐字节一致。此处以实际文件元数据和校验值标识版本。

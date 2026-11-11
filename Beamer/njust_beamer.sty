@@ -1,0 +1,759 @@
+% ================================================================================
+% 南京理工大学Beamer模板 (NJUST Beamer Template)
+% 版本: 2.0 (2024/05/19)
+% ================================================================================
+
+\ProvidesPackage{njust_beamer}[2024/05/19 南京理工大学Beamer模板 v2.0]
+
+% ================================================================================
+% 1. 全局变量与参数定义
+% ================================================================================
+% 字体路径和扩展名全局变量
+\newcommand{\fontpath}{./fonts/}
+\newcommand{\fontext}{.ttf}
+
+% 设置尺寸相关变量
+\newdimen\njust@secbar             % 节导航栏宽度
+\setlength{\njust@secbar}{0.7\paperwidth}
+\newdimen\njust@sectotitleline     % 小节与标题间分隔线长度
+\setlength{\njust@sectotitleline}{\dimexpr\paperwidth-\njust@secbar-15pt\relax}
+
+% ================================================================================
+% 2. 宏包导入
+% ================================================================================
+
+% --- 2.1 核心功能宏包 ---
+\RequirePackage{tikz}              % 提供绘图功能
+\usetikzlibrary{calc}              % tikz计算库
+\usetikzlibrary{shadows}           % tikz阴影库
+\RequirePackage{xcolor}            % 颜色支持
+
+% --- 2.2 数学支持宏包 ---
+\RequirePackage{amsmath}           % 数学公式扩展
+\RequirePackage{amssymb}           % 数学符号扩展
+\RequirePackage{amsfonts}          % 数学字体扩展
+\RequirePackage{amsthm}            % 定理环境支持
+
+% --- 2.3 代码和超链接宏包 ---
+\RequirePackage{verbatim}          % 原样输出环境
+\RequirePackage{hyperref}          % 超链接支持
+\RequirePackage{listings}          % 代码语法高亮显示
+\RequirePackage{tcolorbox}         % 用于创建彩色和圆角盒子
+\tcbuselibrary{breakable, skins}    % 加载tcolorbox的breakable和skins库
+
+% --- 2.4 字体支持宏包 ---
+\RequirePackage{fontspec}          % XeLaTeX字体设置
+
+% --- 2.5 表格与图表宏包 ---
+\RequirePackage{booktabs}          % 专业表格样式（三线表）
+\RequirePackage{multirow}          % 表格中的多行合并
+\RequirePackage{tabularray}        % 现代表格环境
+\RequirePackage{threeparttable}    % 带注释的表格
+\RequirePackage{caption}           % 标题定制
+\RequirePackage{etoolbox}          % 环境钩子工具 (用于\AtBeginEnvironment)
+\RequirePackage{tabularx}
+\RequirePackage{makecell}          % 表格单元格处理
+
+% --- 2.6 脚注与扩展宏包 ---
+\RequirePackage{endnotes}          % 尾注支持
+\RequirePackage{xpatch}            % 宏补丁工具
+\RequirePackage{xunicode-addon}    % Unicode支持扩展
+
+% ================================================================================
+% 3. 颜色定义
+% ================================================================================
+
+% --- 3.1 基本颜色 ---
+% 主色和辅助色定义
+\definecolor{njustpurple}      {HTML}{1F5391}  % 南理工紫色（主色）
+\definecolor{njustpurple2}     {HTML}{245FA3}  % 南理工紫色（辅色）
+\definecolor{njustgray}        {HTML}{4F5F70}  % 南理工灰色
+\definecolor{skyblue}          {HTML}{7BA7C7}  % 天蓝色（辅助色）
+\definecolor{codepurple}       {RGB}{128,0,128}% 代码中字符串的紫色
+
+% --- 3.2 颜色变体 ---
+% 创建主色变体用于不同场景
+\colorlet{njustpurple-light}   {njustpurple!70}    % 浅紫色
+\colorlet{njustpurple-vlight}  {njustpurple!30}    % 非常浅的紫色
+\colorlet{njustpurple-dark}    {njustpurple!120}   % 深紫色
+
+% ================================================================================
+% 4. Beamer颜色主题设置
+% ================================================================================
+
+% --- 4.1 元素颜色 ---
+\setbeamercolor{title}                   {fg=white}
+\setbeamercolor{subtitle}                {fg=white}
+\setbeamercolor{author}                  {fg=white}
+\setbeamercolor{date}                    {fg=white}
+\setbeamercolor{institute}               {fg=white}
+\setbeamercolor{supervisor}              {fg=white}
+
+% --- 4.2 内容颜色 ---
+\setbeamercolor{normal text}             {fg=darkgray, bg=white}
+\setbeamercolor{alerted text}            {fg=njustpurple}
+\setbeamercolor{structure}               {fg=njustpurple}
+
+% --- 4.3 背景颜色 ---
+\setbeamercolor{background canvas}       {bg=white}
+\setbeamercolor{jumbo}                   {bg=njustpurple2} % 标题页背景
+
+% --- 4.4 导航栏颜色 ---
+\setbeamercolor{section in head/foot}    {fg=white, bg=njustpurple2}
+\setbeamercolor{section in head/foot shaded}{fg=white}
+\setbeamercolor{subsection in head/foot} {fg=black, bg=njustpurple2}
+\setbeamercolor{mini frame}              {fg=white, bg=njustpurple2}
+\setbeamercolor{mini frame in current subsection} {fg=njustpurple2, bg=white}
+
+% --- 4.5 页脚颜色 ---
+\setbeamercolor{progress bar}            {fg=njustpurple, bg=njustgray}
+\setbeamercolor{progress bar progress}   {use=progress bar, bg=progress bar.fg}
+\setbeamercolor{page number in head/foot}{fg=white, bg=transparent}
+
+% --- 4.6 帧标题颜色 ---
+\setbeamercolor{frametitle}              {fg=black}
+\setbeamercolor{framesubtitle}           {fg=black!80}
+
+% --- 4.7 区块颜色 ---
+\setbeamercolor{block title}             {use=structure, fg=white, bg=njustpurple2}
+\setbeamercolor{block body}              {use=structure, fg=darkgray, bg=njustpurple2!10}
+
+% --- 4.8 目录颜色设置 ---
+% 定义目录中当前章节和非当前章节的颜色
+\setbeamercolor{section in toc}{fg=njustpurple, bg=}
+\setbeamercolor{section in toc shaded}{fg=njustpurple2!80, bg=}
+\setbeamercolor{subsection in toc}{fg=njustpurple!90, bg=}
+\setbeamercolor{subsection in toc shaded}{fg=njustpurple!75, bg=}
+
+% ================================================================================
+% 5. 带圈数字脚注定义
+% ================================================================================
+\makeatletter
+% --- 5.1 Unicode字符设置 ---
+\xeCJKDeclareCharClass{Default}{"24EA, "2460->"2473, "3251->"32BF}
+
+% --- 5.2 带圈数字字体定义 ---
+\newfontfamily\EnclosedNumbers{Garamond-Math.otf}[
+  Path = \fontpath,
+  Extension = .otf,
+  UprightFont=*,
+  NFSSFamily=EnclosedNumbers
+]
+
+% --- 5.3 带圈数字命令设置 ---
+\AtBeginUTFCommand[textcircled]{\begingroup\EnclosedNumbers}
+\AtEndUTFCommand[textcircled]{\endgroup}
+
+% --- 5.4 脚注编号格式定义 ---
+\renewcommand\thefootnote{\textcircled{\@arabic\c@footnote}}
+
+% --- 5.5 Beamer脚注标签自定义 ---
+\setbeamertemplate{footnote label}{%
+  \textnormal{\EnclosedNumbers\textcircled{\thevalue{footnote}}}%
+  \hspace{0.5em}%
+}
+\makeatother
+
+% ================================================================================
+% 6. 超链接设置
+% ================================================================================
+\AtBeginDocument{%
+  \hypersetup{%
+    linkcolor=njustpurple,
+    anchorcolor=red,
+    citecolor=blue!80,
+    urlcolor=njustpurple2%
+  }%
+}
+
+% ================================================================================
+% 7. 字体设置
+% ================================================================================
+
+% --- 7.2 中文字体设置 ---
+% 设置思源宋体作为主要中文字体
+\setCJKmainfont{Source Han Serif CN}[
+  Path = \fontpath,
+  Extension = \fontext,
+  UprightFont=SourceHanSerifCN-Regular,
+  BoldFont=SourceHanSerifCN-Bold,
+  ItalicFont=SourceHanSerifCN-Light,
+  BoldItalicFont=SourceHanSerifCN-Heavy
+]
+
+% 设置思源黑体作为无衬线字体
+\setCJKsansfont{Source Han Sans CN}[
+  Path = \fontpath,
+  Extension = \fontext,
+  UprightFont=SourceHanSansCN-Regular,
+  BoldFont=SourceHanSansCN-Bold,
+  ItalicFont=SourceHanSansCN-Light,
+  BoldItalicFont=SourceHanSansCN-Heavy
+]
+
+% 设置黑体字体族（用于特定场合调用）
+\setCJKfamilyfont{zhsans}{Source Han Sans CN}[
+  Path = \fontpath,
+  Extension = \fontext,
+  UprightFont=SourceHanSansCN-Regular,
+  BoldFont=SourceHanSansCN-Bold,
+  ItalicFont=SourceHanSansCN-Light,
+  BoldItalicFont=SourceHanSansCN-Heavy
+]
+
+% 设置宋体字体族（用于特定场合调用）
+\setCJKfamilyfont{zhsong}{Source Han Serif CN}[
+  Path = \fontpath,
+  Extension = \fontext,
+  UprightFont=SourceHanSerifCN-Regular,
+  BoldFont=SourceHanSerifCN-Bold,
+  ItalicFont=SourceHanSerifCN-Light,
+  BoldItalicFont=SourceHanSerifCN-Heavy
+]
+
+% 设置等宽字体（使用思源黑体）
+\setCJKmonofont{Source Han Sans CN}[
+  Path = \fontpath,
+  Extension = \fontext,
+  UprightFont=SourceHanSansCN-Regular,
+  BoldFont=SourceHanSansCN-Bold
+]
+
+% 定义切换字体的快捷命令
+\newcommand{\songti}{\CJKfamily{zhsong}}
+\newcommand{\heiti}{\CJKfamily{zhsans}}
+
+% --- 7.3 Beamer字体设置 ---
+\setbeamerfont{title}                  {series=\bfseries, size=\LARGE}
+\setbeamerfont{subtitle}               {series=\bfseries, size=\large}
+\setbeamerfont{author}                 {size=\small}
+\setbeamerfont{date}                   {size=\small}
+\setbeamerfont{institute}              {size=\small}
+\setbeamerfont{supervisor}             {size=\small}
+\setbeamerfont{alerted text}           {series=\bfseries}
+\setbeamerfont{frametitle}             {series=\bfseries}
+\setbeamerfont{framesubtitle}          {series=\bfseries, size=\normalsize}
+\setbeamerfont{footline}               {size=\scriptsize}
+\setbeamerfont{block title}            {size=\normalsize, series=\bfseries}
+\setbeamerfont{block body}             {size=\normalsize}
+
+% 设置目录字体大小
+\setbeamerfont{section in toc}         {size=\large, series=\bfseries}
+\setbeamerfont{section in toc shaded}  {size=\large, series=\bfseries}
+
+% 页眉导航栏字体设置
+\setbeamerfont{section in head/foot}    {series=\mdseries, size=\scriptsize}
+\setbeamerfont{section in head/foot shaded}{series=\bfseries, size=\scriptsize}
+\setbeamerfont{subsection in head/foot} {series=\bfseries, size=\scriptsize}
+\setbeamerfont{mini frames}             {size=\tiny}
+
+% 使用衬线字体主题
+\usefonttheme{serif}
+
+% 标题页使用思源宋体，正文使用思源黑体
+\AtBeginDocument{
+  % 设置标题页完成后自动切换到黑体
+  \let\oldmaketitle\maketitle
+  \renewcommand{\maketitle}{%
+    \oldmaketitle%
+    \heiti % 标题页后切换到黑体
+    \color{darkgray} % 确保后续文本颜色为深灰色
+  }%
+
+  % 为tabularray定义并设置默认主题，以确保字体和颜色
+  \NewTblrTheme{njustdefaulttables}{%
+    \SetCellStyles{body,head}{font=\normalfont\heiti, fg=darkgray} % 设置单元格字体为Heiti，颜色为darkgray
+    % 你可以根据需要为foot行添加类似设置: \SetCellStyles{foot}{font=\normalfont\heiti, fg=darkgray}
+  }%
+  \SetTblrDefault{theme=njustdefaulttables} % 将此主题设为所有tblr环境的默认主题
+}
+
+% 确保标题页内容仍使用思源宋体
+\makeatletter
+\setbeamertemplate{title page}{
+	\begin{picture}(0,0)
+		\put(-15,85){\includegraphics[width=120pt]{source/njust-logo-name}}
+        \put(-5,-60){
+            \begin{beamercolorbox}[wd=1.1\paperwidth,ht=140pt]{jumbo}
+            \end{beamercolorbox}
+        }
+            \put(235,-125){\includegraphics[width=250pt]{source/njust-logo-trans}}
+            % 使用TikZ在底部居中放置校园图片
+            \begin{tikzpicture}[remember picture, overlay]
+                \node[anchor=south] at (current page.south) {
+                    \includegraphics[width=\paperwidth]{source/njust-school}
+                    };
+            \end{tikzpicture}
+            \put(0,10){%
+			\begin{minipage}{300pt}
+				\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par
+				\vspace{10pt}
+				\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+                \vspace{20pt}
+                \usebeamerfont{author}\usebeamercolor[fg]{author}{\heiti 作\njustspace 者：\insertauthor}\par
+                \vspace{2pt}
+                \usebeamerfont{institute}\usebeamercolor[fg]{institute}{\heiti 学\njustspace 院：\insertinstitute}\par
+                \vspace{2pt}
+                \usebeamerfont{supervisor}\usebeamercolor[fg]{supervisor}{\heiti 指导教师：\insertsupervisor}\par
+                \vspace{2pt}
+                \usebeamerfont{date}\usebeamercolor[fg]{date}{\heiti 答辩日期：\insertdate}\par
+            \end{minipage}
+        }
+        \put(270,-150){\includegraphics[width=145pt]{source/njust-door}}
+	\end{picture}
+}
+\makeatother
+
+% 空格辅助命令（用于标题和目录中的视觉对齐）
+\newcommand\njustspace{\protect\hspace{1em}\protect\hspace{1em}}
+
+% ================================================================================
+% 8. 基本设置
+% ================================================================================
+
+% 强制为tabularray(tblr)环境设置字体和颜色
+\AtBeginEnvironment{tblr}{\heiti\color{darkgray}\normalsize}
+
+% --- 8.1 导航与布局设置 ---
+% \setbeamertemplate{navigation symbols}{}  % 取消导航符号 - 此行导致错误，已注释或删除
+\setbeamertemplate{blocks}[rounded]       % 设置区块为圆角样式
+
+% --- 8.2 项目符号设置 ---
+\setbeamertemplate{itemize item}          {\textbullet}
+\setbeamertemplate{itemize subitem}       {\textbullet}
+\setbeamertemplate{itemize subsubitem}    {\textbullet}
+
+% 设置无序列表缩进
+\setlength{\leftmargini}{1em} % 一级列表缩进
+\setlength{\leftmarginii}{1em}  % 二级列表相对一级列表的额外缩进
+\setlength{\leftmarginiii}{1em} % 三级列表相对二级列表的额外缩进
+
+% --- 8.3 段落间距设置 ---
+\setlength{\parskip}{5pt}
+
+% --- 8.4 代码环境设置 ---
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{njustpurple2!50},
+    keywordstyle=\color{njustpurple},
+    numberstyle=\tiny\color{njustgray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+}
+\lstset{style=mystyle}
+
+% ================================================================================
+% 9. 页眉与导航栏设置
+% ================================================================================
+\makeatletter
+
+% --- 9.1 页眉背景底图 ---
+\newsavebox{\njust@headlinebox}
+\begin{lrbox}{\njust@headlinebox}
+  \begin{tikzpicture}
+    % 绘图辅助节点定义
+    \coordinate (LineNorthWest) at (0, -11pt);  % 小节-标题分隔线西北节点
+    \coordinate (LineSouthWest) at (0, -13pt);  % 小节-标题分隔线西南节点
+    \coordinate (LineSouthEast) at (\njust@sectotitleline, -13pt);  % 小节-标题分隔线东南节点
+    \coordinate (SecbarNorthEast) at (\paperwidth, 0);  % 章节栏东北节点
+    \coordinate (SecbarSouthEast) at (\paperwidth, -13pt);  % 章节栏东南节点
+    \coordinate (SecbarSouthWest) at ([xshift=-\njust@secbar]SecbarSouthEast);  % 章节栏西南节点
+    \coordinate (SecbarNorthWest) at ([xshift=-6.5pt, yshift=13pt]SecbarSouthWest);  % 章节栏西北节点
+    \coordinate (AdornDarkNorthWest) at ([xshift=-4pt]SecbarNorthWest);  % 深色装饰西北节点
+    \coordinate (AdornDarkSouthEast) at ([xshift=3.5pt, yshift=-7pt]SecbarNorthWest);  % 深色装饰东南节点
+    \coordinate (AdornLightNorthWest) at ([xshift=-4pt]AdornDarkSouthEast);  % 浅色装饰西北节点
+    \coordinate (AdornLightSouthEast) at ([xshift=2pt, yshift=-4pt]AdornDarkSouthEast);  % 浅色装饰东南节点
+
+    % 颜色图形绘制
+    \fill[njustpurple2] (SecbarNorthEast) -- (SecbarSouthEast)  % 章节栏背景
+      -- (SecbarSouthWest) -- (SecbarNorthWest) -- cycle;
+    \fill[njustpurple] (AdornDarkNorthWest) -- (SecbarNorthWest)  % 深色装饰
+      -- (AdornDarkSouthEast) -- ++ (-4pt, 0) -- cycle;
+    \fill[njustpurple!70] (AdornLightNorthWest) -- (AdornDarkSouthEast)  % 浅色装饰
+      -- (AdornLightSouthEast) -- ++ (-4pt, 0) -- cycle;
+    \fill[njustpurple2] (LineNorthWest) -- (LineSouthWest)  % 小节与标题间分隔线
+      -- (LineSouthEast) -- ++ (-1pt, 2pt) -- cycle;
+  \end{tikzpicture}
+\end{lrbox}
+
+% --- 9.2 导航栏辅助函数 ---
+% 插入章节栏水平导航
+\def\njust@insert@secbar{%
+  \insertsectionnavigationhorizontal{\njust@secbar}{%
+    % 非当前章节样式 (黑体)
+    \begingroup\usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}\endgroup%
+  }{%
+    % 当前章节样式 (黑体)
+    \begingroup\usebeamerfont{section in head/foot shaded}\usebeamercolor[fg]{section in head/foot shaded}\endgroup%
+  }%
+}
+
+% 插入小节标题
+\def\njust@insert@subsec{%
+  \begingroup%
+  \usebeamerfont{subsection in head/foot}%
+  \usebeamercolor[fg]{subsection in head/foot}%
+  \heiti %
+  \insertsubsectionhead%
+  \endgroup%
+}
+
+% 插入小节迷你帧
+\def\njust@insert@subsecminiframes#1#2{%
+  % #1:: baselineskip - 行间距
+  % #2:: mini-frames space - 小圆点间距
+  \setlength{\baselineskip}{#1}%
+  \usebeamercolor[fg]{subsection in head/foot}%
+  \def\sectionentry##1##2##3##4##5{}%
+  \def\slideentry##1##2##3##4##5##6{%
+    % section number, subsection number, slide number, first/last frame,
+    % last subsection, part number
+    \ifnum##6=\c@part\ifnum##1=\c@section\ifnum##2>0\ifnum##3>0%
+      \beamer@link(##4){%
+        \usebeamerfont{mini frames}%
+        \ifnum\c@subsection=##2%
+          \usebeamercolor{mini frame}%
+          \ifnum\c@subsectionslide<##3%
+            \usebeamertemplate{mini frame in current subsection}%
+            \hskip#2%
+          \else%
+            \usebeamertemplate{mini frame}%
+            \hskip#2%
+          \fi%
+        \fi%
+      }%
+      % 这里添加一个负宽度空格，防止换行断开超链接
+        \hskip0pt%
+    \fi\fi\fi\else%
+      \fakeslideentry{##1}{##2}{##3}{##4}{##5}{##6}%
+    \fi%
+    \ignorespaces%
+  }%
+  \setbox\beamer@sectionbox=\hbox{}%
+  \hskip0pt\dohead%
+  \box\beamer@sectionbox%
+}
+
+% --- 9.3 页眉样式定义 ---
+\def\njust@headline{%
+  \ifnum\theframenumber=1
+    % 标题页不显示页眉
+  \else
+    \begin{tikzpicture}[overlay, remember picture]%
+      \heiti % 强制整个页眉使用思源黑体
+      % 绘图辅助节点定义
+      \coordinate (NorthEast) at (current page.north east);  % 东北节点
+      \coordinate (NorthWest) at (current page.north west);  % 西北节点
+
+      % 图形文字绘制
+      \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (NorthWest) {%
+        \usebox{\njust@headlinebox}};  % 绘制headline背景底图
+      \node[left, inner sep=0pt, outer sep=0pt,
+        yshift=-7pt] at (NorthEast) {\njust@insert@secbar};  % 绘制章节栏水平导航
+
+      % 绘制小节标题 - 先绘制，并记录位置
+      \node[right, inner sep=0pt, outer sep=0pt,
+        xshift=9pt, yshift=-5.75pt] at (NorthWest) (Subsec) {\njust@insert@subsec};
+
+      % 测量小节标题的宽度，然后在其右侧绘制迷你帧，确保不重叠
+      \path let \p1 = (Subsec.east) in
+        node[anchor=west, inner sep=0pt, outer sep=0pt,
+          xshift=6pt, yshift=-0.5pt] at (\p1) (MiniFrames) {%
+          \parbox{\dimexpr\njust@sectotitleline-\x1+4pt\relax}{%
+            \raggedright\njust@insert@subsecminiframes{3.8pt}{1.6pt}%
+          }%
+        };
+    \end{tikzpicture}%
+  \fi
+}
+
+% --- 9.4 页眉模板设置 ---
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=15pt,dp=1pt]{}% Reduced ht from 20pt to 15pt
+    \njust@headline%
+  \end{beamercolorbox}%
+}
+
+% --- 9.5 迷你帧样式设置 ---
+\setbeamertemplate{mini frame}{\tikz\draw[fill=njustpurple2, draw=white] circle (0.4ex);}
+\setbeamertemplate{mini frame in current subsection}{\tikz\draw[fill=white, draw=njustpurple2] circle (0.4ex);}
+\makeatother
+
+% ================================================================================
+% 10. 帧标题和底部设置
+% ================================================================================
+
+% --- 10.1 帧标题设置 ---
+\setbeamertemplate{frametitle}{%
+        \ifx\insertframesubtitle\@empty%
+    \begin{beamercolorbox}[wd=\paperwidth,%
+      ht=2.0ex, dp=0.2ex, leftskip=10pt]{} % Adjusted ht and significantly reduced dp
+      \usebeamerfont{frametitle}%
+      \usebeamercolor[fg]{frametitle}%
+      \insertframetitle%
+    \end{beamercolorbox}%
+		\else%
+    \begin{beamercolorbox}[wd=\paperwidth,%
+      ht=2.0ex, dp=0.2ex, leftskip=10pt]{} % Adjusted ht and significantly reduced dp
+      \usebeamerfont{frametitle}%
+      \usebeamercolor[fg]{frametitle}%
+      \insertframetitle~%
+      \textcolor{njustpurple2!50}{\rule[-.2ex]{.08em}{1.8ex}}~%
+      \usebeamerfont{framesubtitle}%
+      \usebeamercolor[fg]{framesubtitle}%
+      \insertframesubtitle%
+    \end{beamercolorbox}%
+  \fi%
+}
+
+% --- 10.2 底部进度条和信息栏 ---
+\defbeamertemplate{footline}{progress bar}{
+	\dimen0=\paperwidth
+    \divide\dimen0 by \inserttotalframenumber
+	\multiply\dimen0 by \insertframenumber
+	\edef\progressbarwidth{\the\dimen0}
+	\leavevmode%
+	\ifnum\theframenumber=1
+	\else
+        % 融合信息栏和进度条
+        \begin{beamercolorbox}[wd=\paperwidth,ht=10pt,dp=3pt]{page number in head/foot}
+            % 首先绘制进度条作为背景
+            \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{13pt}
+                % 未完成部分 - 使用njustpurple2作为背景
+                \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{13pt}}
+                \pgfsetfillcolor{njustpurple2!80}
+                \pgfusepath{fill}
+
+                % 已完成部分 - 使用njustpurple作为进度
+                \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\progressbarwidth}{13pt}}
+                \pgfsetfillcolor{njustpurple}
+                \pgfusepath{fill}
+            \end{pgfpicture}%
+
+            % 然后在进度条上显示信息文本
+            \vskip-13pt% 回到起始位置
+            \usebeamerfont{footline}%
+            \color{white}% 白色文本以确保在紫色背景上清晰可见
+            \vbox to 10pt{\vfil
+              \hbox{%
+                \hspace{3ex}
+                \makebox[0.10\paperwidth][l]{\insertshortauthor}% 作者信息宽度调整
+                \hfill
+                \makebox[0.45\paperwidth][c]{\insertshorttitle}% 标题信息宽度调整
+                \hfill
+                \makebox[0.20\paperwidth][r]{\insertdate}% 日期信息宽度调整
+                \hfill
+                \makebox[0.2\paperwidth][r]{\insertframenumber~/~\inserttotalframenumber}% 页码信息宽度调整
+                \hspace{3ex}
+              }%
+              \vfil}%
+        \end{beamercolorbox}%
+	\fi
+}
+
+\setbeamertemplate{footline}[progress bar]
+
+% ================================================================================
+% 11. 标题页和目录设置
+% ================================================================================
+
+% --- 11.1 标题页模板 ---
+\setbeamertemplate{title page}{
+	\begin{picture}(0,0)
+		\put(-15,85){\includegraphics[width=120pt]{source/njust-logo-name}}
+        \put(-5,-60){
+            \begin{beamercolorbox}[wd=1.1\paperwidth,ht=140pt]{jumbo}
+            \end{beamercolorbox}
+        }
+            \put(235,-125){\includegraphics[width=250pt]{source/njust-logo-trans}}
+            % 使用TikZ在底部居中放置校园图片
+            \begin{tikzpicture}[remember picture, overlay]
+                \node[anchor=south] at (current page.south) {
+                    \includegraphics[width=\paperwidth]{source/njust-school}
+                    };
+            \end{tikzpicture}
+            \put(0,10){%
+			\begin{minipage}{300pt}
+				\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par
+				\vspace{10pt}
+				\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+                \vspace{20pt}
+                \usebeamerfont{author}\usebeamercolor[fg]{author}{\heiti 作\njustspace 者：\insertauthor}\par
+                \vspace{2pt}
+                \usebeamerfont{institute}\usebeamercolor[fg]{institute}{\heiti 学\njustspace 院：\insertinstitute}\par
+                \vspace{2pt}
+                \usebeamerfont{supervisor}\usebeamercolor[fg]{supervisor}{\heiti 指导教师：\insertsupervisor}\par
+                \vspace{2pt}
+                \usebeamerfont{date}\usebeamercolor[fg]{date}{\heiti 答辩日期：\insertdate}\par
+            \end{minipage}
+        }
+        \put(270,-150){\includegraphics[width=145pt]{source/njust-door}}
+	\end{picture}
+}
+
+% --- 11.2 最后一帧模板 ---
+\newcommand{\backmatter}{
+	\begingroup
+	\setbeamertemplate{headline}{}
+	\setbeamertemplate{footline}{}
+	\begin{frame}[c]{}
+		\begin{picture}(0,0)
+			\put(-28.5,-25){\includegraphics[width=1.01\paperwidth]{source/njust-motto}}
+		\end{picture}
+	\end{frame}
+\endgroup
+}
+
+% --- 11.3 目录样式设置 ---
+\setbeamertemplate{section in toc}{%
+    {\color{section in toc.fg}\Large$\blacktriangleright$}~{\color{section in toc.fg}\textbf{\inserttocsection}}%
+}
+\setbeamertemplate{section in toc shaded}{%
+    {\color{section in toc shaded.fg}\Large$\blacktriangleright$}~{\color{section in toc shaded.fg}\textbf{\inserttocsection}}%
+}
+% 完全禁用小节在目录中的显示
+\setbeamertemplate{subsection in toc}{}
+\setbeamertemplate{subsection in toc shaded}{}
+\setbeamertemplate{frametitle continuation}{}
+
+% --- 11.4 章节导航设置 ---
+\AtBeginSection[]
+{
+    \begingroup
+    \begin{frame}{Contents}{}
+        \begin{columns}[T,onlytextwidth]
+            % 左侧目录列 - 占据较小的宽度
+            \begin{column}{0.30\textwidth}
+                % 增加目录条目间距
+                \begingroup
+                \setlength{\parskip}{0.2em}
+                \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=hide]
+                \endgroup
+            \end{column}
+
+            % 右侧论文页面图像列
+            \begin{column}{0.70\textwidth}
+                \vspace{-0.75cm} % 使用负值vspace将内容向上移动
+                \centering
+                % 使用TikZ绘制带投影的论文页面图像
+                \begin{tikzpicture}
+                    % 图像尺寸定义
+                    \def\imgwidth{120pt}
+                    \def\spacing{20pt}
+
+                    % 第一张图像（带阴影）
+                    \node[draw=black, line width=0.5pt, fill=white,
+                         drop shadow={shadow xshift=3pt, shadow yshift=-3pt,
+                                      fill=black, opacity=0.3}] at (0,0)
+                        {\includegraphics[width=\imgwidth]{source/paper1.pdf}};
+
+                    % 第二张图像（带阴影）
+                    \node[draw=black, line width=0.5pt, fill=white,
+                         drop shadow={shadow xshift=3pt, shadow yshift=-3pt,
+                                      fill=black, opacity=0.3}] at (\imgwidth+\spacing,0)
+                        {\includegraphics[width=\imgwidth]{source/paper2.pdf}};
+                \end{tikzpicture}
+            \end{column}
+        \end{columns}
+    \end{frame}
+    \endgroup
+}
+
+% --- 11.5 元数据存储命令 ---
+\newcommand<>{\title}[2][]{\def\inserttitle{#2}\def\insertshorttitle{#1}}
+\newcommand<>{\subtitle}[1]{\def\insertsubtitle{#1}}
+\newcommand<>{\author}[2][]{\def\insertauthor{#2}\def\insertshortauthor{#1}}
+\newcommand<>{\institute}[2][]{\def\insertinstitute{#2}\def\insertshortinstitute{#1}}
+\newcommand<>{\date}[1]{\def\insertdate{#1}}
+\newcommand<>{\supervisor}[1]{\def\insertsupervisor{#1}}
+
+% ================================================================================
+% 12. 表格和图表设置
+% ================================================================================
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+
+% --- 12.1 表格标题样式 ---
+\DeclareCaptionLabelSeparator{none}{ }
+\captionsetup{labelsep=none}
+% 调整间距，尝试减小标题与表格之间的空隙
+\setlength{\abovecaptionskip}{2pt} % 标题上方的间距
+\setlength{\belowcaptionskip}{0pt} % 进一步减小标题下方的间距
+
+% 为caption定义一个包含\heiti的字体选项
+\DeclareCaptionFont{njustheiti}{\heiti}
+% 为caption定义一个只应用深灰色的字体选项
+\DeclareCaptionFont{darkgraycolor}{\color{darkgray}}
+
+\AtBeginEnvironment{table}{\captionsetup{%
+  skip=1pt, % 进一步减小标题与表格的间距
+  font={small, njustheiti}, % 应用于标题文本
+  labelfont={small, njustheiti, darkgraycolor}, % 应用于标签 "表 X"
+  justification=centering}} % 表格标题较小字体, 思源黑体, 居中
+\AtBeginEnvironment{figure}{\captionsetup{%
+  skip=5pt, %
+  font={small, njustheiti}, % 应用于标题文本
+  labelfont={small, njustheiti, darkgraycolor}, % 应用于标签 "图 X"
+  justification=centering}} % 图表标题较小字体, 思源黑体, 居中
+
+% --- 12.2 表格行高设置 ---
+\renewcommand\arraystretch{1.3}
+
+% ================================================================================
+% 结束
+% ================================================================================
+
+% ================================================================================
+% 13. 自定义卡片环境 (NJUST TikZ Card)
+% ================================================================================
+% 需要 tikz 宏包 (已在前面加载)
+
+\newsavebox{\njusttikzcardbody}
+\newcommand{\njusttikzcardcurrenttitle}{}
+
+\newenvironment{njusttikzcard}[1]%
+  {% 环境开始部分
+    \renewcommand{\njusttikzcardcurrenttitle}{#1}% Store the title
+    \begin{lrbox}{\njusttikzcardbody}%
+    \begin{minipage}{\dimexpr\linewidth-5mm-1pt\relax} % Adjusted for new inner sep (2.5mm*2)
+      \normalsize\heiti % 设置盒子内容的基础字体
+  }%
+  {% 环境结束部分
+    \end{minipage}%
+    \end{lrbox}%
+    % 绘制卡片
+    \begin{tikzpicture}%
+      \node[
+        draw=black, % 黑色边框
+        line width=0.5pt, % 边框宽度
+        fill=white, % 白色背景
+        rounded corners=2mm, % 圆角半径
+        text width=\dimexpr\linewidth-5mm-1pt\relax, % Adjusted for new inner sep
+        inner sep=2.5mm, % Reduced inner padding for compactness
+        align=left, % 节点内文本左对齐
+      ] (cardbox) {%
+        {\large\bfseries\heiti \njusttikzcardcurrenttitle} % Title: smaller, bold, normal size
+        % Corrected check for body content:
+        \ifdim\njusttikzcardbodytext > 0pt
+          \vspace{2mm} % Reduced space between title and body for compactness
+          \par
+          \usebox{\njusttikzcardbody} % 内容部分
+        \fi
+      };%
+    \end{tikzpicture}%
+  }
+% 辅助命令，检查 savebox 是否为空（近似）
+% tcolorbox 使用更复杂的方法，这里简化处理，主要用于有内容时才加vspace
+\newcommand{\njusttikzcardbodytext}{\dimexpr\wd\njusttikzcardbody+\ht\njusttikzcardbody+\dp\njusttikzcardbody\relax}
