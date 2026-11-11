@@ -166,7 +166,15 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  S_n^2u_0''(c_0)+\mathrm E[u_1''(\tilde c_1)\widetilde X_n^2]\le0.\label{eq:wj-8-4}
 \end{equation}
 
-式~\eqref{eq:wj-8-4} 只反映坐标方向的曲率。若消费或交易约束在最优点绑定，则用相应的 KKT 条件刻画最优选择。
+式~\eqref{eq:wj-8-4} 给出坐标方向的曲率。消费非负约束在最优点取等号时，可按定理~\ref{thm:wj-three-kkt}（库恩--塔克条件）在证券头寸空间列出最优条件。令 $F(\theta)$ 为将式~\eqref{eq:wj-8-1} 的两条预算等式代入后的目标函数，$\eta_0$ 与 $\eta_1=(\eta_{1\omega})_\omega$ 为消费非负约束的乘子。由于 $\nabla_\theta c_0=-S$、$D_\theta c_1=X$，在目标函数可微时，驻点和互补松弛条件为
+\[
+ \begin{gathered}
+ \nabla_\theta F(\theta)-\eta_0 S+X^{\mathsf T}\eta_1=0,\\
+ \eta_0,\eta_1\ge0,\qquad \eta_0 c_0=0,\qquad
+ \eta_{1\omega}c_{1\omega}=0\quad(\forall\omega).
+ \end{gathered}
+\]
+同时须满足式~\eqref{eq:wj-8-1} 的消费可行条件。所有消费均为正时，各乘子为零，驻点条件回到内点 Euler 方程。若另有交易约束，其乘子与约束梯度也要计入驻点条件。
 \Needspace{10\baselineskip}
 \subsection{两状态下的对数效用}
 \begin{tcolorbox}[example,breakable]
@@ -266,7 +274,15 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  \end{aligned}\label{eq:wj-8-7}
 \end{equation}
 
-若参与者原来持有组合 $h^0$，可以把这部分禀赋的市值 $S^{\mathsf T}h^0$ 计入当期财富，并以最终持仓 $h^0+\theta$ 表示投资。这样改写后，预算中的未来禀赋只包括证券持仓之外的收入。后文假定没有这部分额外的未来禀赋，并沿用 $e_0$ 表示计入持仓市值后的当期财富、$\theta$ 表示最终持仓。此时设 $e_1=0$，未来消费全部来自所选组合，非负消费条件简化为 $X\theta\ge0$。省略未来效用的时间下标，组合问题为
+若参与者的初始持仓为 $h^0$，记直接未来禀赋为 $e_1^{\mathrm{direct}}$，则总未来禀赋为 $e_1=e_1^{\mathrm{direct}}+Xh^0$。以 $h=h^0+\theta$ 表示最终持仓，即在式~\eqref{eq:wj-8-1} 的两期预算中代入 $\theta=h-h^0$，得到
+\[
+ \begin{aligned}
+ c_0&=e_0-S^{\mathsf T}(h-h^0)=e_0+S^{\mathsf T}h^0-S^{\mathsf T}h,\\
+ c_1&=e_1^{\mathrm{direct}}+Xh^0+X(h-h^0)=e_1^{\mathrm{direct}}+Xh.
+ \end{aligned}
+\]
+
+后文取 $e_1^{\mathrm{direct}}=0$，并沿用 $e_0$ 表示计入初始持仓市值后的当期财富、$\theta$ 表示最终持仓。未来消费由最终持仓产生，非负消费条件为 $X\theta\ge0$。省略未来效用的时间下标，组合问题为
 \begin{equation}
  \begin{aligned}
  v(w)=\max_{\theta}\quad &\mathrm E[u(\widetilde X\theta)]\\
@@ -421,7 +437,11 @@ $A(t)=-u''(t)/u'(t)$。
  (\tilde r-r_F)\right]=0.
 \]
 
-这里 $a^*(w)$ 是随初始财富 $w$ 变化的最优投资金额；$r_F$、$\tilde r$ 及其概率分布保持不变。先对完整的期末财富表达式求导：
+记上述期望对任意 $(w,a)$ 的值为 $G(w,a)$。固定 $r_F$、$\tilde r$ 及其概率分布，则
+\[
+ G_a(w,a^*(w))=\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]<0.
+\]
+因此，由隐函数定理，内点解在所比较的财富附近是 $w$ 的可微函数，且 $da^*/dw=-G_w/G_a$。下面从 $G(w,a^*(w))=0$ 出发，先对完整的期末财富表达式求导。
 \[
  \frac{d\tilde w^*}{dw}
  =\frac{d}{dw}\left[w(1+r_F)+a^*(w)(\tilde r-r_F)\right]
@@ -522,16 +542,16 @@ $\tilde w^*=w(1+r_F)+a^*(w)(\tilde r-r_F)$，得到
 
 DRRA 下该分子为负，分母也为负，故 $e-1>0$；CRRA 时为零，IRRA 时相反。若 $R$ 仅弱单调，逐状态比较给出对应的弱不等式。CRRA 下金额随财富同比增加，比例保持不变。
 
-\textbf{两项充要结论的必要性。}任取 $t_-<t_+$，令 $b=(t_-+t_+)/2$、$d=(t_+-t_-)/2$。构造 $r_F=0$、初始财富 $w=b$、风险证券净收益率为 $\pm d$ 的两状态模型，并取
+\textbf{两项充要结论的必要性。}任取相关财富区间内的 $t_-<t_+$，令 $b=(t_-+t_+)/2$。构造 $r_F=0$、初始财富 $w=b$ 的两状态模型。取任意 $0<d<1$，让风险证券的净收益率为 $\pm d$，使两个状态的总收益率 $1\pm d$ 均为正。取
 \[
  p=\frac{u'(t_-)}{u'(t_-)+u'(t_+)}
 \]
-为正收益状态的概率。因为 $u'(t_-)>u'(t_+)$，$p>1/2$，风险溢价为正。风险投资额 $a=1$ 时，期末财富恰为 $t_-$、$t_+$，且
+为正收益状态的概率。因为 $u'(t_-)>u'(t_+)$，$p>1/2$，风险溢价为正。取风险投资额 $a_0=(t_+-t_-)/(2d)$，则 $b-a_0d=t_-$、$b+a_0d=t_+$。将这两个财富值代入式~\eqref{eq:wj-8-13}，其左边为
 \[
  p\,u'(t_+)d-(1-p)u'(t_-)d=0.
 \]
 
-严格凹性保证 $a=1$ 为内点最优解。令 $C=p\,u'(t_+)d=(1-p)u'(t_-)d>0$，则
+严格凹性保证 $a^*=a_0$ 为内点最优解。令 $C=p\,u'(t_+)d=(1-p)u'(t_-)d>0$，则
 \[
  \mathrm E[u''(\tilde w^*)\tilde r]
  =C[A(t_-)-A(t_+)],

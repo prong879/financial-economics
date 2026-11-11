@@ -218,7 +218,7 @@ $S\le0$、$u''\le0$ 时右端非负，故 2 推出 1。反向，除利用线性�
 
 所有凹效用均偏好 $A$ 就要求 $-S(y)\ge0$，得到 2。非光滑函数可用凹的光滑函数近似。
 
-\textbf{证明（3 推出 1）：}由条件 Jensen 不等式，
+\textbf{证明（3 推出 1）：}先固定 $\tilde x_A$ 的取值，只对附加风险 $\tilde e$ 取条件平均。由于 $u$ 是凹函数，先对附加风险取条件均值再计算效用，所得效用至少与先计算效用再取条件平均一样高。这就是这里用到的条件 Jensen 不等式。再对 $\tilde x_A$ 取期望，并用 $\mathrm E[\tilde e\mid\tilde x_A]=0$，得到
 \[
 \begin{aligned}
  \mathrm E[u(\tilde x_B)]
@@ -228,7 +228,7 @@ $S\le0$、$u''\le0$ 时右端非负，故 2 推出 1。反向，除利用线性�
 \end{aligned}
 \]
 
-1 推出 3 为均值保持扩散表示定理（Rothschild--Stiglitz，1970）。
+1 推出 3 用到均值保持扩散表示定理（Rothschild--Stiglitz，1970）。该定理保证可以把两个收益率的分布放到同一个联合分布中，使 $\tilde x_A+\tilde\varepsilon$ 与 $\tilde x_B$ 同分布，且 $\mathrm E[\tilde\varepsilon\mid\tilde x_A]=0$。给定扩散前的收益率，扩散后的条件均值仍等于该收益率。
 
 \textbf{方差的作用：}若二阶矩存在，取 $u(x)=-x^2$，SSD 推出
 $\operatorname{Var}(\tilde x_A)\le\operatorname{Var}(\tilde x_B)$。反之，等均值加方差更小并不足以保证 SSD，因为凹效用还会反映尾部等分布特征。
@@ -433,7 +433,7 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 
 % 课堂照片补充：投影片第 27 页“充分性”及板书的向量展开。
 \subsubsection{Ross 定理的充分性}
-\textbf{因子条件 $\Rightarrow$ 两基金分离。}
+\textbf{因子条件 $\Rightarrow$ 两基金货币分离。}
 
 \textbf{第一步：将各证券的收益写成向量形式。}
 令 $\iota=(1,\ldots,1)^{\mathsf T}$，并设
@@ -538,7 +538,7 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 \]
 
 \textbf{第五步：利用凹效用移除剩余风险。}
-对凹函数 $v$，给定 $\tilde y$ 后应用条件 Jensen 不等式：
+在自由交易下，可用风险基金和无风险证券组成 $z_0=\lambda w+(1-\lambda)F$。其收益是原组合收益给定 $\tilde y$ 的条件均值，因此仍落在 $v$ 的区间定义域内。给定 $\tilde y$ 后应用条件 Jensen 不等式：
 \[
 \begin{aligned}
  \mathrm E[v(\tilde x_z)\mid\tilde y]
@@ -560,7 +560,7 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 所以原组合收益 $\tilde x_z$ 正是 $\tilde x_{z_0}$ 的均值保持扩散，与定理~\ref{thm:wj-nine-3} 的判据一致。把原组合换成保留同样因子敞口的 $z_0$ 后，期望效用至少保持原水平。因此可在 $w$、$F$ 中找到最优组合。若效用严格凹且剩余风险非退化，移除该风险会严格提高效用。弱凹或冗余时最优头寸未必唯一。
 
 \subsubsection{Ross 定理的必要性（有限状态）}
-\textbf{两基金分离 $\Rightarrow$ 条件均值为零。}
+\textbf{两基金货币分离 $\Rightarrow$ 条件均值为零。}
 % 教材印刷页 135 的勘误要求保留 x_F+lambda*y；以下以固定最优点的边际效用扰动补足量词。
 在有限状态模型中，设各状态概率为正，风险基金超额收益 $\tilde y=\tilde x_w-x_F$ 满足 $\mathrm E[\tilde y]\ne0$。假设存在一个光滑收益率效用 $v_0$，在相关财富区间上满足 $v_0'>0$、$v_0''<0$，其两基金最优组合为
 \[
@@ -594,22 +594,22 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
  \mathrm E[v_0'(\tilde x_0)\tilde e_n]=0.
 \]
 
-\textbf{第三步：保持同一最优点，改变边际效用。}任取定义在 $\tilde y$ 各取值上的函数 $h$，满足 $\mathrm E[h(\tilde y)\tilde y]=0$。由于 $\lambda_0\ne0$，不同的 $y$ 对应不同的 $x_F+\lambda_0 y$。可在这些有限个财富点上作充分小的光滑扰动，使
+\textbf{第三步：保持同一最优点，改变边际效用。}任取定义在 $\tilde y$ 各取值上的函数 $h$，满足 $\mathrm E[h(\tilde y)\tilde y]=0$。由于 $\lambda_0\ne0$，不同的 $y$ 对应不同的 $x_F+\lambda_0 y$。在这些点周围取互不相交的小邻域。对每一点取一个光滑函数，使其在该点等于 $1$、在邻域外等于 $0$。用各点的 $h(y)$ 加权这些函数，将其和乘以 $\varepsilon$ 后加到 $v_0'$ 上，得到
 \[
  v_\varepsilon'(x_F+\lambda_0 y)
  =v_0'(x_F+\lambda_0 y)+\varepsilon h(y),
 \]
-并保持效用严格递增、严格凹。扰动后仍有
+各邻域可取在 $v_0'>0$、$v_0''<0$ 的区间内。由连续性，在这些小闭邻域上取充分小的 $\lvert\varepsilon\rvert$，可使 $v_\varepsilon'>0$、$v_\varepsilon''<0$ 继续成立。扰动后仍有
 \[
  \mathrm E[v_\varepsilon'(\tilde x_0)\tilde y]=0.
 \]
 
-严格凹性使基金上的最优支付仍为 $\tilde x_0$；假设同一基金对扰动后的效用也实现全市场最优，故 $\tilde x_0$ 是全市场最优支付。证券冗余不影响这一支付结论。因此
+严格凹性使基金上的最优支付仍为 $\tilde x_0$。由共同基金分离的假设，这也是扰动后的全市场最优支付。像第二步一样，对 $v_\varepsilon$ 用证券方向的一阶条件减去基金方向的一阶条件的 $\beta_n$ 倍。扰动前后分别有
 \[
- \mathrm E[v_\varepsilon'(\tilde x_0)\tilde e_n]=0
- \quad\Longrightarrow\quad
- \mathrm E[h(\tilde y)\tilde e_n]=0.
+ \mathrm E[v_0'(\tilde x_0)\tilde e_n]=0,\qquad
+ \mathrm E[v_\varepsilon'(\tilde x_0)\tilde e_n]=0.
 \]
+两式相减，代入 $v_\varepsilon'(\tilde x_0)-v_0'(\tilde x_0)=\varepsilon h(\tilde y)$，再除以非零的 $\varepsilon$，得到 $\mathrm E[h(\tilde y)\tilde e_n]=0$。
 
 这里通过保持基金方向的一阶条件，让效用扰动前后的最优投资量都等于 $\lambda_0$。
 
@@ -618,7 +618,13 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
  \mathrm E[h(\tilde y)m_n(\tilde y)]=0.
 \]
 
-在以状态概率为权重的有限维内积空间中，$m_n$ 因而属于 $\tilde y$ 张成的一维空间，即 $m_n(\tilde y)=c_n\tilde y$。再取期望：
+令 $c_n=\mathrm E[m_n(\tilde y)\tilde y]/\mathrm E[\tilde y^2]$，取投影残差 $h(\tilde y)=m_n(\tilde y)-c_n\tilde y$。按 $c_n$ 的定义，$\mathrm E[h(\tilde y)\tilde y]=0$。把这个 $h$ 代入上式，有
+\[
+ 0=\mathrm E[h(\tilde y)m_n(\tilde y)]
+ =\mathrm E[h(\tilde y)^2]+c_n\mathrm E[h(\tilde y)\tilde y]
+ =\mathrm E[h(\tilde y)^2].
+\]
+故 $h=0$，即 $m_n(\tilde y)=c_n\tilde y$。再取期望：
 \[
  0=\mathrm E[\tilde e_n]=c_n\mathrm E[\tilde y].
 \]
@@ -641,22 +647,23 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 
 \subsubsection{二次效用与两基金分离}
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJNineTheorem{thm:wj-nine-6}{（教材表述）} 当且仅当所有参与者具有平方（二次）效用函数时，两基金分离在任意证券集合下成立。
+\WJNineTheorem{thm:wj-nine-6}{} 在第~\ref{sec:wj-twelve-2}~节的均值--方差市场设定下，参与者共享收益均值、协方差矩阵和可行组合集合，并允许自由交易。若每人的最优组合存在，且效用在相关财富区间上为严格递增、严格凹的二次函数，则两基金分离成立。
 \end{tcolorbox}
-\textbf{充分性。}沿用第~\ref{sec:wj-twelve-3}~节共同信念、自由交易的均值--方差框架，并假定最优解存在、二次效用在相关财富区间内边际效用为正。此时，期望效用只依赖组合的均值和方差，最优组合位于均值--方差有效集合上。该节说明如何用两只基金生成这一集合；只有风险证券时也适用。
+% 教材印刷第 136 页将证明指向第 12 章，第 184 页把二次效用作为均值--方差两基金分离的特例。
+\textbf{证明。}由定理~\ref{thm:wj-twelve-1}（二次效用的均值--方差表示），期望效用只依赖期末财富的均值和方差。同均值下，方差项的系数为负，因此各人严格偏好较低方差。由定理~\ref{thm:wj-twelve-4}（最优组合位于均值--方差前沿），所有人的最优组合都在同一条前沿上。推论~\ref{cor:wj-twelve-1} 说明任选两个不同的前沿组合即可生成整条前沿，定理~\ref{thm:wj-twelve-6} 据此得到两基金分离。只有风险证券时也适用。
 
-\textbf{必要性与分离的定义。}按式~\eqref{eq:wj-9-1}，基金权重允许为零，因而单基金分离也满足两基金表示。例如，上一节采用对数效用的参与者，在共同可行权重集合内有最优解时，都可以选择同一只基金，并对第二只基金取零权重。由于对数效用并非二次效用，教材的反向结论不能直接用于包含这种情形的定义。
+\textbf{教材的反向表述。}教材以充要形式陈述定理。按本讲式~\eqref{eq:wj-9-1}，基金权重允许为零，单基金分离也满足两基金表示。例如，共同采用对数效用的参与者，在共同可行权重集合内有最优解时，可以选择同一只基金，并令第二只基金的权重为零。这个例子表明，在本讲定义下，两基金分离也可以出现在非二次效用中。
 
 \subsubsection{HARA 偏好与两基金货币分离}
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJNineTheorem{thm:wj-nine-7}{（Cass--Stiglitz，教材表述）} 存在无风险证券时，两基金货币分离成立，当且仅当每位参与者的边际效用在正比例变换后都可写成
+\WJNineTheorem{thm:wj-nine-7}{（Cass--Stiglitz，充分方向）} 存在总收益率 $x_F>0$ 的无风险证券。设参与者有共同信念，允许自由交易，全投无风险证券时的财富位于各自效用的定义域内，且各人的最优解为内点。若每位参与者的边际效用在正比例变换后均可写成
 \[
  u_k'(t)=\left(d_k+\frac{t}{\gamma}\right)^{-\gamma},
  \qquad d_k+\frac{t}{\gamma}>0.
 \]
-教材在定理中取 $d_k>0$，$\gamma\ge-1$ 且对所有参与者相同。上式的有限参数写法取 $\gamma\ne0$。
+其中 $\gamma\ge-1$、$\gamma\ne0$ 对所有参与者相同，则最优风险头寸可取为同一方向的倍数。当该共同方向的净投资额非零时，可将其归一化为一只纯风险基金，与无风险证券共同实现两基金货币分离。
 \end{tcolorbox}
-这是具有共同形状参数的 \hyperref[sec:wj-seven-hara]{HARA 偏好}。教材在充分性证明中也讨论了 $d_k=0$；取 $\gamma>0$、$d_k=0$ 得到 CRRA 特例。负指数效用是风险容忍度恒定的极限情形。HARA 的绝对风险容忍度为
+这是具有共同形状参数的 \hyperref[sec:wj-seven-hara]{HARA 偏好}。教材在定理中取 $d_k>0$，在充分性证明中也讨论 $d_k=0$。取 $\gamma>0$、$d_k=0$ 得到 CRRA 特例。负指数效用是风险容忍度恒定的极限情形。HARA 的绝对风险容忍度为
 \[
  T_k(t)=-\frac{u_k'(t)}{u_k''(t)}=d_k+\frac{t}{\gamma}.
 \]
@@ -710,7 +717,13 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
  z_{k,n}'=\frac{w_k}{W_k'}z_{k,n}\ (n<N),\qquad
  z_{k,N}'=\frac{w_k}{W_k'}z_{k,N}+1-\frac{w_k}{W_k'}.
 \]
-由 $W_k'/\gamma=C_k/x_F>0$，变换后的权重有定义，且 $\sum_nz_{k,n}'=1$。代入得 $d_k+w_kz_k^{\mathsf T}\tilde x/\gamma=(W_k'/\gamma){z_k'}^{\mathsf T}\tilde x$，因此变换后的一阶条件具有共同形式。再还原
+由 $W_k'/\gamma=C_k/x_F>0$，变换后的权重有定义，且 $\sum_n z_{k,n}'=1$。将 $d_k+w_k z_k^{\mathsf T}\tilde x/\gamma=(W_k'/\gamma)(z_k')^{\mathsf T}\tilde x$ 代入式~\eqref{eq:wj-8-13}（以无风险证券为基准的一阶条件），并除去正因子 $(W_k'/\gamma)^{-\gamma}$，得到
+\[
+ \mathrm E\!\left[\bigl((z_k')^{\mathsf T}\tilde x\bigr)^{-\gamma}
+                    (\tilde x_n-x_F)\right]=0,
+ \qquad n=1,\ldots,N-1.
+\]
+变换后的定义域为 $(z_k')^{\mathsf T}\tilde x>0$，方程和定义域均与 $w_k,d_k$ 无关，因此可以选择同一组 $z_k'$。再还原
 \[
  z_{k,n}=\frac{W_k'}{w_k}z_{k,n}'\ (n<N),\qquad
  z_{k,N}=\frac{W_k'}{w_k}z_{k,N}'+1-\frac{W_k'}{w_k}.
@@ -727,7 +740,12 @@ $v$ 既受原效用 $u$ 影响，也受财富 $w$ 影响。因此不同财富者
 
 以下固定共同风险基金，假设 $\mathrm E[\tilde r_Q]>r_F$，并沿用第~\ref{chap:wj-eight}~讲单只风险证券模型的条件。此时最优风险基金投资金额为正。可以分别比较同一财富下的不同偏好，以及同一偏好下的不同财富。
 
-\textbf{固定财富，比较两位参与者。}设参与者 1 的绝对风险厌恶系数在相关财富区间上处处不低于参与者 2。由定理~\ref{thm:wj-seven-4}（Pratt 定理），$u_1=f\circ u_2$，其中 $f$ 递增且凹。让参与者 1 先持有参与者 2 的最优风险投资金额。此时两人面对相同的期末财富 $\tilde w$，且 $u_1'(\tilde w)=f'(u_2(\tilde w))u_2'(\tilde w)$。以无风险财富处的权重 $f'(u_2(w(1+r_F)))$ 为基准，这个乘数在负超额收益状态不低于基准，在正超额收益状态不高于基准。用参与者 2 的一阶条件消去基准权重后，参与者 1 继续增持的期望边际效用非正。由目标函数的凹性，参与者 1 的最优风险投资金额不高于参与者 2，无风险投资金额则不低于参与者 2。
+\textbf{固定财富，比较两位参与者。}设参与者 1 的绝对风险厌恶系数在相关财富区间上处处不低于参与者 2。由定理~\ref{thm:wj-seven-4}（Pratt 定理），$u_1=f\circ u_2$，其中 $f$ 递增且凹。让参与者 1 先持有参与者 2 的最优风险投资金额。此时两人面对相同的期末财富 $\tilde w$，且 $u_1'(\tilde w)=f'(u_2(\tilde w))u_2'(\tilde w)$。记 $b=w(1+r_F)$、$D=\tilde r_Q-r_F$、$K=f'(u_2(b))$，并以 $F_1$ 表示参与者 1 对风险投资金额的期望效用。参与者 2 在 $a_2^*$ 处满足式~\eqref{eq:wj-8-13}，即 $\mathrm E[u_2'(\tilde w)D]=0$。从参与者 1 的导数中减去这一等式的 $K$ 倍，得到
+\[
+ F_1'(a_2^*)=
+ \mathrm E\!\left[\bigl(f'(u_2(\tilde w))-K\bigr)u_2'(\tilde w)D\right].
+\]
+由于 $\tilde w=b+a_2^*D$ 且 $a_2^*>0$，$D>0$ 时 $\tilde w>b$，递增的 $u_2$ 和非递增的 $f'$ 使括号非正。$D<0$ 时括号非负。故各状态的乘积均非正，$F_1'(a_2^*)\le0$。由目标函数的凹性，参与者 1 的最优风险投资金额不高于参与者 2，无风险投资金额则不低于参与者 2。
 
 \textbf{固定偏好，比较不同财富。}由定理~\ref{thm:wj-eight-3}（投资金额的财富效应）与定理~\ref{thm:wj-eight-4}（投资比例的财富效应），
 \begin{itemize}
