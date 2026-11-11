@@ -40,18 +40,18 @@
  y_{k,1\omega}=y_{k,1\omega}(y_{k,0}).\label{eq:wj-15-1}
 \end{equation}
 \begin{tcolorbox}[knowledge,breakable=false]
-生产函数连续，在正投入处可微，并满足
+生产函数连续，在正投入处二阶可微，并满足
 \[
  y_{k,1\omega}(0)=0,\qquad
  y'_{k,1\omega}\ge0,\qquad y''_{k,1\omega}<0.
 \]
 
-这分别表示零投入时无产出、产出随投入增加、边际产出递减。个人效用为
+这分别表示零投入时无产出、产出随投入增加、边际产出递减。如果某种技术在零投入时也有产出，可把这部分产出计入未来禀赋，将生产函数写成投入带来的新增产出。个人效用为
 \[
- U_k(c_k)=u_{k,0}(c_{k,0})+\sum_\omega\pi_\omega u_{k,1}(c_{k,1\omega}),
+ U_k(c_k)=u_{k,0}(c_{k,0})+\sum_\omega p_\omega u_{k,1}(c_{k,1\omega}),
 \]
 
-其中 $\pi_\omega>0$，各期效用严格递增、严格凹。
+其中 $p_\omega>0$ 是状态 $\omega$ 的概率，且 $\sum_\omega p_\omega=1$。各期效用严格递增、严格凹。
 \end{tcolorbox}
 
 沿用第~\ref{sec:wj-ten-1}~节的完全市场框架，令 $\phi_\omega>0$ 为状态价格，$e_{k,0},e_{k,1}$ 为商品禀赋。用 $y_{k,1}(y_{k,0})$ 表示未来各状态产出的列向量。
@@ -63,7 +63,7 @@
  v_k(y_{k,0})=\phi^{\mathsf T}y_{k,1}(y_{k,0})-y_{k,0}.\label{eq:wj-15-2}
 \end{equation}
 
-第一项是未来产出的现值，第二项是当期投入。生产把当期可用资源减去投入、把未来各状态的可用资源加上产出。按状态价格折算，个人财富为
+第一项是未来产出的现值，第二项是当期投入。若某一投入规模的成本超过产出现值，该规模下的净值为负。零投入是可行选择，且净值为零，因此最优投入若存在，其净值至少为零。生产把当期可用资源减去投入、把未来各状态的可用资源加上产出。按状态价格折算，个人财富为
 \begin{equation}
  \begin{aligned}
  w_k&=(e_{k,0}-y_{k,0})+\phi^{\mathsf T}\bigl[e_{k,1}+y_{k,1}(y_{k,0})\bigr]\\
@@ -73,7 +73,14 @@
  \label{eq:wj-15-3}
 \end{equation}
 
-完全市场允许用证券交易实现按状态价格计价可负担的消费计划。因此，消费的现值至多等于禀赋现值加上生产净值 $w_k$。技术允许零投入，本节在各期、各状态消费都严格为正的计划中选择。
+在 Arrow--Debreu 市场中，每份状态证券只在对应的未来状态支付一单位商品。记 $\theta_{k,\omega}$ 为参与者 $k$ 在状态 $\omega$ 的证券净买入量，两期预算为
+\[
+ \theta_{k,\omega}=c_{k,1\omega}-e_{k,1\omega}
+                   -y_{k,1\omega}(y_{k,0}),\qquad
+ c_{k,0}+y_{k,0}+\phi^{\mathsf T}\theta_k\le e_{k,0}.
+\]
+
+净买入量等于计划消费与生产后自有资源之差。将其代入当期预算，便得到以下现值约束。反过来，任何满足现值约束的消费计划都可由上述净交易实现。技术允许零投入，本节在各期、各状态消费都严格为正的计划中选择。
 \begin{equation}
  \begin{aligned}
  \max_{y_{k,0},\,c_k}\quad &U_k(c_k)\\
@@ -87,7 +94,7 @@
  \label{eq:wj-15-4}
 \end{equation}
 
-效用随消费递增，扩大财富可扩大预算集合。因此先选择使 $v_k$ 最大的投入，再在最大财富下选择消费。给定市场价格，最优生产由技术和价格决定，个人偏好决定财富在各期、各状态的分配。
+给定状态价格，任意投入对个人消费选择的影响都通过财富 $w_k$ 进入预算。若一种投入比另一种多创造 $\Delta w_k>0$ 的财富，原先可负担的消费仍可实现，还可用这笔增量增加当期消费。由于效用严格递增，前一种投入能带来更高的最优效用。因此先选择使 $v_k$ 最大的投入，再在最大财富下选择消费。给定市场价格，最优生产由技术和价格决定，个人偏好决定财富在各期、各状态的分配。
 
 记产出市值为 $V_k(y)=\phi^{\mathsf T}y_{k,1}(y)$。它严格凹，$v_k'(y)=V_k'(y)-1$。若存在正的内点最优投入，则其唯一性及最优条件为
 \begin{equation}
@@ -95,7 +102,7 @@
  \label{eq:wj-15-5}
 \end{equation}
 
-若 $V_k'(0+)\le1$，最优投入为零；若 $V_k'(0+)>1$ 且边际产出现值最终降至1以下，则有唯一正的内点解。设最优解存在，其边界和内点条件可统一写为
+若 $V_k'(0+)\le1$，最优投入为零。若 $V_k'(0+)>1$ 且边际产出现值在某个有限投入处降至 1 以下，则有唯一正的内点解。若边际产出现值在所有正投入处都高于 1，净值会随投入一直增加，因而没有有限最优投入。设最优解存在，其边界和内点条件可统一写为
 \[
  y_{k,0}^*\ge0,\qquad V_k'(y_{k,0}^*)-1\le0,\qquad
  y_{k,0}^*[V_k'(y_{k,0}^*)-1]=0,
@@ -107,28 +114,37 @@
 \WJInputFigure{15_最优生产}
 
 \subsubsection{净现值法则}
-将连续生产过程分成小额边际项目，每份投入为 $\delta$。从投入 $i\delta$ 增加 $\delta$，实际支付增量与净现值为
+\textbf{净现值}（net present value，NPV）是项目未来增量支付的现值减去当期新增投入。将连续生产过程分成小额边际项目，每份投入为 $\delta>0$。在已有投入 $i\delta$ 的基础上再增加一份，实际支付增量与净现值为
 \[
  \Delta y_1=y_1((i+1)\delta)-y_1(i\delta),\qquad
- \operatorname{NPV}_i=\phi^{\mathsf T}\Delta y_1-\delta.
+ \operatorname{NPV}_i=\phi^{\mathsf T}\Delta y_1-\delta
+ =v((i+1)\delta)-v(i\delta).
 \]
 
-当 $\delta$ 较小时，支付近似为 $y_1'(i\delta)\delta$，故
+在给定起点 $i\delta>0$ 处，若新增投入相对较小，支付增量近似为 $y_1'(i\delta)\delta$。起点为零时，这一步要求右导数有限。因此在这些条件下有
 \[
  \operatorname{NPV}_i\approx\left[\phi^{\mathsf T}y_1'(i\delta)-1\right]\delta.
 \]
 
-凹生产技术使边际NPV随投资规模下降。
+若零投入处的右导数无穷，例如下文的平方根技术，第一笔有限投入的净现值直接用 $v(\delta)-v(0)$ 计算。凹生产技术使边际净现值随投资规模下降。
+\Needspace{8\baselineskip}
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJFifteenTheorem{thm:wj-fifteen-1}（NPV法则）在上述连续生产模型中，应接受边际净现值为正的项目；内点最优投资的边际净现值为零。
 \end{tcolorbox}
 
-\textbf{证明：}边际NPV的符号与 $v'(y_0)$ 相同。其为正时增加投资提高净值，为负时减少投资提高净值；严格凹性使导数为零处达到唯一最大值。这与式~\eqref{eq:wj-15-5} 一致。\hfill$\square$
+\textbf{证明。}在给定投入 $y_0$ 处，单位新增投入的净现值在增量趋于零时等于 $v'(y_0)$。其为正时，小幅增加投入可提高净值；其为负时，小幅减少正投入可提高净值。严格凹性使导数为零处达到唯一最大值，即式~\eqref{eq:wj-15-5} 的内点条件。若一次投入的增量较大，应比较增量前后的净值。即使起点的边际净现值为正，一步跨过最优投入也可能使净值下降。\hfill$\square$
 
-对支付为 $\widetilde Y_i$、投入为 $\delta_i$ 的项目，记未来支付的市场现值为 $P_i=\mathrm E[\widetilde m\widetilde Y_i]$。沿用式~\eqref{eq:wj-10-18}（无风险折现与协方差调整），可将项目现值分解为
+沿用第十讲的记号，随机贴现因子 $\widetilde\pi$ 在状态 $\omega$ 的取值为 $\pi_\omega=\phi_\omega/p_\omega$。若项目 $i$ 的投入为 $\delta_i$，未来支付为 $\widetilde Y_i$，则其市场现值为
+\[
+ P_i=\sum_\omega\phi_\omega Y_{i,\omega}
+    =\sum_\omega p_\omega\pi_\omega Y_{i,\omega}
+    =\mathrm E[\widetilde\pi\,\widetilde Y_i].
+\]
+
+项目净现值为 $P_i-\delta_i$。由式~\eqref{eq:wj-10-17}（单位无风险债券的价格），$\mathrm E[\widetilde\pi]=1/(1+r_F)$。再用式~\eqref{eq:wj-10-18}（无风险折现与协方差调整），可将项目现值分解为
 \[
  P_i=\underbrace{\frac{\mathrm E[\widetilde Y_i]}{1+r_F}}_{\text{无风险折现值}}
-     +\underbrace{\operatorname{Cov}(\widetilde m,\widetilde Y_i)}_{\text{风险调整}}.
+     +\underbrace{\operatorname{Cov}(\widetilde\pi,\widetilde Y_i)}_{\text{风险调整}}.
 \]
 
 当支付非负且以正概率为正时，$P_i>0$、$\mathrm E[\widetilde Y_i]>0$。以市场价格 $P_i$ 买入这笔未来支付，期望净收益率为 $\mu_i=\mathrm E[\widetilde Y_i/P_i-1]$，所以也可用 $\mu_i$ 折现期望支付：
@@ -137,10 +153,19 @@
  =\frac{\mathrm E[\widetilde Y_i]}{1+\mu_i}-\delta_i.
 \]
 
-从 $P_i$ 的分解中提出 $\mathrm E[\widetilde m]\mathrm E[\widetilde Y_i]$，再用 $\mathrm E[\widetilde m]=1/(1+r_F)$ 及 $1+\mu_i=\mathrm E[\widetilde Y_i]/P_i$，得到风险调整折现率
+从 $P_i$ 的分解中提出 $\mathrm E[\widetilde\pi]\mathrm E[\widetilde Y_i]$，有
+\[
+ P_i=\mathrm E[\widetilde\pi]\mathrm E[\widetilde Y_i]
+ \left[1+\operatorname{Cov}\!\left(
+ \frac{\widetilde\pi}{\mathrm E[\widetilde\pi]},
+ \frac{\widetilde Y_i}{\mathrm E[\widetilde Y_i]}
+ \right)\right].
+\]
+
+将这一式代入 $1+\mu_i=\mathrm E[\widetilde Y_i]/P_i$，约去 $\mathrm E[\widetilde Y_i]$，再用 $1/\mathrm E[\widetilde\pi]=1+r_F$，得到风险调整后的总折现率
 \[
  1+\mu_i=\frac{1+r_F}
- {1+\operatorname{Cov}\!\left(\widetilde m/\mathrm E[\widetilde m],\widetilde Y_i/\mathrm E[\widetilde Y_i]\right)}.
+ {1+\operatorname{Cov}\!\left(\widetilde\pi/\mathrm E[\widetilde\pi],\widetilde Y_i/\mathrm E[\widetilde Y_i]\right)}.
 \]
 
 期望支付相同时，支付越集中在边际效用高的状态，协方差调整越大，市场现值越高，相应的折现率越低。
@@ -166,13 +191,21 @@
 
 \subsection{市场均衡}
 \subsubsection{个人条件与市场出清}
-假设消费最优解存在且各期各状态消费均为内点。给定最优生产后的财富，消费选择的一阶条件为
+假设消费最优解存在且各期各状态消费均为内点。给定最优生产后的财富，记 $\nu_k$ 为参与者 $k$ 的价值预算约束乘子，表示以当期商品计量的财富增加一单位时，最优期望效用的边际增量。消费选择的一阶条件为
 \begin{subequations}\label{eq:wj-15-6}
 \begin{align}
  u'_{k,0}(c_{k,0})&=\nu_k,\label{eq:wj-15-6a}\\
- \pi_\omega u'_{k,1}(c_{k,1\omega})&=\nu_k\phi_\omega,\qquad\forall\omega.\label{eq:wj-15-6b}
+ p_\omega u'_{k,1}(c_{k,1\omega})&=\nu_k\phi_\omega,\qquad\forall\omega.\label{eq:wj-15-6b}
 \end{align}
 \end{subequations}
+
+将式~\eqref{eq:wj-15-6a} 代入式~\eqref{eq:wj-15-6b}，消去预算乘子并除以当期边际效用，得
+\[
+ \phi_\omega=p_\omega
+ \frac{u'_{k,1}(c_{k,1\omega})}{u'_{k,0}(c_{k,0})}.
+\]
+
+因此，每个参与者在内点都用相同的状态价格为未来消费计价。
 
 商品市场出清要求
 \begin{subequations}\label{eq:wj-15-7}
@@ -182,14 +215,27 @@
 \end{align}
 \end{subequations}
 
-将个人预算加总，并使用未来资源出清，可恢复0期资源出清。因此最优生产条件、个人消费条件与市场出清共同决定均衡价格及配置。
+将前面定义的净持仓对所有参与者加总，式~\eqref{eq:wj-15-7b} 等价于 $\sum_k\theta_{k,\omega}=0$。各状态证券的净买入量与净卖出量恰好相抵。
+
+效用递增使个人预算取等号。将预算加总，用式~\eqref{eq:wj-15-3} 代入生产后的财富，再用未来资源出清条件~\eqref{eq:wj-15-7b}，有
+\[
+ \begin{aligned}
+ \sum_k c_{k,0}
+ &=\sum_k w_k-\phi^{\mathsf T}\sum_k c_{k,1}\\
+ &=\sum_k(e_{k,0}-y_{k,0})
+ +\phi^{\mathsf T}\left[\sum_k\bigl(e_{k,1}+y_{k,1}(y_{k,0})\bigr)-\sum_k c_{k,1}\right]\\
+ &=\sum_k(e_{k,0}-y_{k,0}).
+ \end{aligned}
+\]
+
+这就是当期资源出清条件~\eqref{eq:wj-15-7a}。因此最优生产条件、个人消费条件与市场出清共同决定均衡价格及配置。
 
 \subsubsection{配置效率与代表性参与者}
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFifteenTheorem{thm:wj-fifteen-2} 在完全证券市场、递增且严格凹的效用及凹生产技术下，竞争均衡配置是\hyperref[def:wj-two-9]{帕累托最优}的。对内点均衡，存在正的规划权重，使均衡生产和消费解出加权效用最大化问题；代表性参与者的边际效用给出状态价格。
+\WJFifteenTheorem{thm:wj-fifteen-2} 在完全证券市场、递增且严格凹的效用及凹生产技术下，竞争均衡配置是\hyperref[def:wj-two-9]{帕累托最优}的。若各人在当期和未来各状态的均衡消费均为内点，则存在正的规划权重，使均衡生产和消费解出加权效用最大化问题，代表性参与者的边际效用给出状态价格。生产投入可以为零。
 \end{tcolorbox}
 
-\textbf{证明：}将均衡价格记为 $\phi$。任何替代生产计划满足 $v_k(y_{k,0})\le v_k(y_{k,0}^*)$。若一个可行替代配置使所有人效用不降且至少一人提高，严格改善者的消费支出必须严格高于其最大生产财富，弱改善者的支出不得低于相应财富；否则将与个人最优性及局部非饱和性矛盾。故消费支出之和严格高于均衡总财富。但可行性又给出
+\textbf{证明：}将均衡价格记为 $\phi$，每个人在最优生产下的财富为 $w_k^*$。假设存在可行的替代生产与消费配置，使所有人效用不降且至少一人提高。对严格改善者，若其消费现值不超过 $w_k^*$，他原本就能在均衡价格下用最优生产后的财富买到这份消费，违反个人最优性。对其他人，若替代消费的现值严格低于 $w_k^*$，他还能用剩余财富增加一点当期消费，从而获得严格改善，也违反个人最优性。因此替代消费支出之和严格高于均衡总财富。另一方面，任何替代生产计划都满足 $v_k(y_{k,0})\le v_k(y_{k,0}^*)$。用状态价格为替代配置的资源约束计价并加总，可得
 \[
  \sum_k(c_{k,0}+\phi^{\mathsf T}c_{k,1})
  \le\sum_k(e_{k,0}+\phi^{\mathsf T}e_{k,1})+\sum_kv_k(y_{k,0})
@@ -198,22 +244,38 @@
 
 产生矛盾，故均衡为帕累托最优。
 
-在内点均衡取 $\mu_k=1/\nu_k=1/u'_{k,0}(c_{k,0}^*)>0$。按第~\ref{sec:wj-ten-3}~节的方法，先在给定总消费 $C$ 时求最优分享：
+当各人的均衡消费均为内点时，取 $\mu_k=1/\nu_k=1/u'_{k,0}(c_{k,0}^*)>0$，使各人的加权当期边际效用都等于 $1$。按第~\ref{sec:wj-ten-3}~节的方法，定义给定总消费 $C$ 时的分享价值：
 \[
- u_t(C)=\max_{\substack{\sum_k c_k=C\\ c_k>0\;(\forall k)}}
+ u_t(C)=\sup_{\substack{\sum_k c_k=C\\ c_k>0\;(\forall k)}}
         \sum_k\mu_k u_{k,t}(c_k),\qquad t=0,1.
 \]
 
-每个人的消费还须落在相应效用函数的定义域内。未来期在每个状态分别求这个问题。式~\eqref{eq:wj-15-6} 给出 $\mu_k u'_{k,0}(c_{k,0}^*)=1$ 和 $\mu_k\pi_\omega u'_{k,1}(c_{k,1\omega}^*)=\phi_\omega$，所以均衡消费满足每一期、每一状态的最优分享条件。由包络条件，$u_0'(C_0^*)=1$、$\pi_\omega u_1'(C_{1\omega}^*)=\phi_\omega$，即
+每个人的消费还须落在相应效用函数的定义域内。给定当期总消费 $C_0$ 及未来各状态的总消费 $C_1$，分享问题可在各期各状态分别求解。因此
 \[
- \phi_\omega=\pi_\omega\frac{u_1'(C_{1\omega}^*)}{u_0'(C_0^*)}.
+ u_0(C_0)+\sum_\omega p_\omega u_1(C_{1\omega})
+ =\sup_{\substack{\sum_k c_{k,0}=C_0\\
+                  \sum_k c_{k,1\omega}=C_{1\omega}\;(\forall\omega)}}
+   \sum_k\mu_k U_k(c_k),
 \]
 
-代表性参与者再选择投入和总消费：
+其中个人消费的取值范围沿用上式。式~\eqref{eq:wj-15-6} 给出 $\mu_k u'_{k,0}(c_{k,0}^*)=1$ 和 $\mu_k p_\omega u'_{k,1}(c_{k,1\omega}^*)=\phi_\omega$。同一日期和状态下，各人的加权边际效用相等，故由凹性，均衡消费实现最优分享。
+
+记某个节点的共同加权边际效用为 $q$。由式~\eqref{eq:wj-15-6}，当期有 $q=1$，未来状态 $\omega$ 有 $q=\phi_\omega/p_\omega$。该节点总消费从 $C^*$ 变为 $C^*+\Delta C$。对任一新的消费分配，由凹性，每个人的加权效用增量至多为 $q$ 乘以其消费增量。把这些上界加总，得到 $q\Delta C$。另一方面，均衡消费为内点，对充分小的正或负 $\Delta C$，可把变动全部分给一人，其加权效用增量为 $q\Delta C+o(|\Delta C|)$。故最优分享价值的增量满足
+\[
+ q\Delta C+o(|\Delta C|)
+ \le u_t(C^*+\Delta C)-u_t(C^*)\le q\Delta C.
+\]
+
+上下界与 $q\Delta C$ 的差都是 $o(|\Delta C|)$，所以 $u_t'(C^*)=q$。将两个节点的 $q$ 代入，得到 $u_0'(C_0^*)=1$、$u_1'(C_{1\omega}^*)=\phi_\omega/p_\omega$，即
+\[
+ \phi_\omega=p_\omega\frac{u_1'(C_{1\omega}^*)}{u_0'(C_0^*)}.
+\]
+
+除以状态概率便得到前面项目定价使用的贴现因子 $\pi_\omega=u_1'(C_{1\omega}^*)/u_0'(C_0^*)$。下面核对均衡投入也使代表性参与者的期望效用最大。给定生产技术与总资源，代表性参与者的问题为
 \[
  \begin{aligned}
  \max_{\{y_{k,0}\},\,C_0,\,C_1}\quad
- &u_0(C_0)+\sum_\omega\pi_\omega u_1(C_{1\omega})\\
+ &u_0(C_0)+\sum_\omega p_\omega u_1(C_{1\omega})\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
  C_0&\le\sum_k e_{k,0}-\underbrace{\sum_k y_{k,0}}_{\text{当期总投入}},\\
@@ -227,10 +289,20 @@
 
 资源约束允许有资源未使用，生产函数的凹性使可行集为凸集。效用严格递增，故最优时各资源约束均取等号，与式~\eqref{eq:wj-15-7} 的出清条件一致。将等号代入目标函数，对 $y_{k,0}$ 求导，得到
 \[
- -u_0'(C_0)+\sum_\omega\pi_\omega u_1'(C_{1\omega})y'_{k,1\omega}(y_{k,0}).
+ -u_0'(C_0)+\sum_\omega p_\omega u_1'(C_{1\omega})y'_{k,1\omega}(y_{k,0}).
 \]
 
-正投入时导数为零，除以 $u_0'(C_0)>0$ 就得到式~\eqref{eq:wj-15-5}。零投入时右导数不超过零，对应边际产出现值不超过 $1$。因此均衡投入和消费满足规划问题的最优条件。目标函数凹、可行集凸，这些条件支持全局最优。\hfill$\square$
+在均衡配置处，利用 $p_\omega u_1'(C_{1\omega}^*)=u_0'(C_0^*)\phi_\omega$，上式等于 $u_0'(C_0^*)[\phi^{\mathsf T}y'_{k,1}(y_{k,0}^*)-1]$。由个人生产的最优条件，$y_{k,0}^*>0$ 时该导数为零，$y_{k,0}^*=0$ 时右导数非正。
+
+把资源等式代回后的规划目标记为 $W(y)$，其中 $y$ 是各生产者的投入向量。当期资源是投入的仿射函数，未来各状态的资源是投入的凹函数，且聚合效用递增、凹，所以 $W$ 是凹函数。连接均衡投入 $y^*$ 和任意其他可行投入 $y$，由凹性，目标值的增量不超过沿这条线在起点的方向导数：
+\[
+ W(y)-W(y^*)\le u_0'(C_0^*)\sum_k
+ \bigl[\phi^{\mathsf T}y'_{k,1}(y_{k,0}^*)-1\bigr](y_{k,0}-y_{k,0}^*)\le0.
+\]
+
+最后一个不等式来自个人生产条件。若均衡投入为正，方括号为零。若均衡投入为零，方括号非正且投入增量非负。故均衡投入和消费解出规划问题。\hfill$\square$
+
+状态价格把不同生产机会在各状态创造的产出换算成同一单位。生产者据此扩大边际净现值为正的投入，并在边际净现值降至零时停止。若项目具有正净现值，其未来产出的现值足以覆盖当期投入。即使缺少当期商品禀赋，生产者也可像例~\ref{example:wj-fifteen-1} 那样出售部分未来产出来筹资。证券交易由此把当期资源转移到能创造净值的生产机会。
 
 \section{公司的投资决策}\label{sec:wj-fifteen-2}
 公司选择生产项目及投入规模，称为\textbf{资本预算决策}。设公司 $f$ 拥有生产函数 $y_{f,1}(y_{f,0})$，股东 $k$ 的持股比例为 $s_{k,f}\ge0$，且 $\sum_ks_{k,f}=1$。公司净值及股东财富为
@@ -239,16 +311,16 @@
  w_k=e_{k,0}+\phi^{\mathsf T}e_{k,1}+\sum_fs_{k,f}v_f.
 \]
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFifteenTheorem{thm:wj-fifteen-3} 在完全、竞争的证券市场中，股东一致支持公司市场净值最大化。
+\WJFifteenTheorem{thm:wj-fifteen-3} 在完全、竞争的证券市场中，给定共同的状态价格和非负的初始持股比例，股东一致支持公司市场净值最大化。
 \end{tcolorbox}
 
-\textbf{证明：}固定市场价格，公司净值增加 $\Delta v_f>0$ 时，股东财富增加 $s_{k,f}\Delta v_f\ge0$。正持股者的财富严格增加，零持股者无差异。效用递增且可交易任意状态支付，因此股东共同支持公司净值最大化；个人偏好通过后续消费与证券交易实现。正投入的内点最优满足 $\phi^{\mathsf T}y'_{f,1}=1$；零投入时右边际产出现值不超过1。\hfill$\square$
+\textbf{证明：}若参与者 $k$ 独自拥有公司 $f$，即 $s_{k,f}=1$，公司的全部净值计入其财富。将式~\eqref{eq:wj-15-4} 中的个人生产净值 $v_k$ 换成 $v_f$，就得到独资股东的生产决策问题。股权分散时，固定市场价格，公司净值增加 $\Delta v_f>0$，股东财富增加 $s_{k,f}\Delta v_f\ge0$。正持股者的财富严格增加，零持股者无差异。效用递增且可交易任意状态支付，因此股东共同支持公司净值最大化，个人偏好通过后续消费与证券交易实现。正投入的内点最优满足 $\phi^{\mathsf T}y'_{f,1}=1$。零投入时右边际产出现值不超过 1。\hfill$\square$
 
 股东目标一致，使所有权与经营管理可以分离：股东委托经理人按净值最大化选择投资，再各自安排消费与风险持有。
 
 \section{融资决策}\label{sec:wj-fifteen-3}
 \subsection{融资现金流与债股价值}
-公司用哪些证券筹资、各筹多少，决定了公司的\textbf{资本结构}。设公司 0 期投资为 $y_0$，发行债权筹资 $d_0$，其余 $e_0=y_0-d_0$ 由原股东投入。未来产出分为债权支付 $d_1$ 和股权支付 $e_1$，满足 $y_1=d_1+e_1$。公平发行时，$d_0=\phi^{\mathsf T}d_1$。
+公司用哪些证券筹资、各筹多少，决定了公司的\textbf{资本结构}。设公司 0 期投资为 $y_0$，发行债权筹资 $d_0$，其余 $e_0=y_0-d_0$ 由原股东投入。未来产出分为债权支付 $d_1$ 和股权支付 $e_1$，两者都是按状态列出的实际支付向量，逐状态满足 $y_1=d_1+e_1$。本节的 $e_0,e_1$ 分别表示股东当期投入和未来收到的支付。公平发行时，$d_0=\phi^{\mathsf T}d_1$。例如，有限责任下，若普通债务面值为 $F$，则债权人在状态 $\omega$ 实际取得 $\min\{y_{1\omega},F\}$，股东取得余下的产出。
 
 债权、股权及公司总资产价值分别为
 \[
@@ -267,16 +339,18 @@
 
 \subsection{Modigliani--Miller定理}
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFifteenTheorem{thm:wj-fifteen-4}（Modigliani--Miller）在完全、竞争且无摩擦的证券市场中，固定真实投资和未来总产出，公司的市场价值与融资方式无关。
+\WJFifteenTheorem{thm:wj-fifteen-4}（Modigliani--Miller）在完全、竞争且无摩擦的证券市场中，若各种融资方式按同一组状态价格公平定价，则给定真实投资和未来总产出，公司的市场价值与融资方式无关。若各融资方式面对的生产技术和可行投资集合也相同，公司的最优投资决策同样与融资方式无关。
 \end{tcolorbox}
 
-\textbf{证明：}先固定投资 $y_0$、产出 $y_1$ 和共同状态价格。任意公平定价的债股分割都满足 $D+E=\phi^{\mathsf T}y_1$，股东净值为 $v=\phi^{\mathsf T}y_1-y_0$。图~\ref{fig:wj-fifteen-2} 中，改变债务面值会改变债权与股权在各状态的支付，但两项逐状态加总仍是 $y_1$。
+\textbf{证明：}先固定投资 $y_0$、产出 $y_1$ 和共同状态价格。比较两种债股分割，用 $\Delta$ 表示融资安排之间的差。因为 $d_1+e_1=y_1$，逐状态有 $\Delta e_1=-\Delta d_1$，按同一状态价格计价便有 $\Delta E=-\Delta D$，故公司总价值 $D+E$ 不变。公平发行给出 $\Delta d_0=\Delta D$。投资额固定，所以债务多筹一元，原股东的当期投入就少一元，即 $\Delta e_0=-\Delta d_0=-\Delta D$。因此股权价值与股东投入的变动恰好相抵，$\Delta(E-e_0)=0$。图~\ref{fig:wj-fifteen-2} 展示了这种逐状态的支付分割。
 
 再比较投资选择。若各种融资安排对每个可行投资都采用同一组状态价格，并具有相同的生产技术和可行投资集合，则每种安排都最大化同一个净值函数 $v(y_0)=\phi^{\mathsf T}y_1(y_0)-y_0$，因而得到相同的最优投资。\hfill$\square$
 
 融资将同一总支付分配给不同投资者，改变债权与股权各自的风险和收益。完全市场中的\hyperref[thm:wj-four-6]{线性定价}使这些支付分割具有相同的合计价值。
 
 \WJInputFigure{15_债股分割}
+
+练习~\ref{exer:wj-fifteen-5} 和~\ref{exer:wj-fifteen-6} 说明了为什么比较不同投入时要给实际支付定价。投入改变时，每股支付随之改变。在共同状态价格下，股价也随支付重算。练习~\ref{exer:wj-fifteen-6} 中，投入给定，公司若增加到期偿付额为 $\Delta D$ 的无风险债务，股东当期少出资 $\Delta D/(1+r_F)$，到期少收到 $\Delta D$。个人买入到期支付为 $\Delta D$ 的外部无风险证券，恰好用掉当期少付的资金，并补上未来少收到的支付。
 
 \section{基本框架外的公司财务}\label{sec:wj-fifteen-4}
 \subsection{信息、控制权与利益冲突}
@@ -286,21 +360,28 @@
 
 债权人与股东之间也存在冲突。股东控制项目选择时，提高项目风险可能增加股权价值，同时降低债权价值。新股发行时，原股东与新投资者对公司前景掌握的信息不同，也会影响融资价格和发行选择。
 
+\Needspace{5\baselineskip}
 \subsection{交易成本与制度安排}
 不同融资工具具有不同成本与收益。利息抵税可能提高债务融资的价值；违约处理和破产程序带来额外成本；信息不对称增加证券发行与交易成本。这些因素通过改变现金流、交易机会和激励，影响投资与融资决策。
 
-公司本身也是协调交易和信息的一种制度安排。公司治理、契约设计以及法律和监管环境，共同影响资源配置效率。这使公司财务从给定价格下的价值最大化，进一步延伸到合同和组织形式的选择。
+公司本身也是协调交易和信息的一种制度安排。把部分原本需要通过市场反复协商的交易放到组织内部，可用持续的监督、信息共享和权责安排减少重复议价与核实的成本。能否减少效率损失，取决于内部治理和契约能否约束掌握信息与控制权的人。这也解释了为什么公司财务还研究公司的组织形式及其经济起源。
 
+有些问题会跨越单个公司的边界。例如，投资者往往无法单靠一份合同核实公司的全部披露，违约处理也会涉及多方债权人。法律、监管和社会环境为信息披露、合同执行与利益协调提供共同规则，也会影响融资方式和资源配置。
+
+\Needspace{16\baselineskip}
 \WJChapterSummary
 \begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 完全市场使最优生产与消费选择分离；内点投资满足边际产出现值等于边际投入。
  \item NPV法则按市场价格衡量项目创造的净值，生产均衡在凹性条件下实现有效资源配置。
  \item 股东偏好各异，但在共同价格下支持公司净值最大化。
- \item 固定总产出，公平定价的债股分割保持公司价值不变。
+ \item 给定投资和总产出，按同一组状态价格公平定价的债股分割保持公司价值不变。若生产技术和可行投资集合也相同，最优投资与融资方式无关。
  \item 信息、激励与交易成本改变公司决策，并形成公司治理和制度设计问题。
 \end{enumerate}
 \end{tcolorbox}
+
+% 教材印刷第 239 页的参考文献。
+\textbf{延伸阅读。}有生产机会的一般均衡框架可参阅 Debreu (1959) 的 \emph{Theory of Value}。关于投资、利息与资本的分析，见 Hirshleifer (1970) 的 \emph{Investment, Interest, and Capital}。融资无关性见 Modigliani 和 Miller (1958)。
 \fi
 \WJChapterExercises
 \input{tex/金融经济学_王江/15_完全市场下的公司财务_习题.tex}

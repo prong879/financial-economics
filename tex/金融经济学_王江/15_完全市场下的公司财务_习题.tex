@@ -1,5 +1,6 @@
 % !TeX root = ../../金融经济学_王江_讲义及习题.tex
 % 来源：教材印刷页237—239，PDF物理页252—254；保留六题题号与原始数据。
+% 教材的概率记号 pi 改用 p，与本章正文及前文一致。
 % 15.1补全显式标度解；15.2补无套利区间、严格正财富与财富补偿的标量求根式。
 % 债券统一按到期支付1、价格B=1/R计数，修正旧解将筹资金额误称债券数量的口径。
 % 15.4的alpha比较静态依赖投入尺度；15.5按原题股票支付总产出处理，并补明(c)中参与者2的来源。
@@ -10,7 +11,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-1}{} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $\pi_{a}$ 和 $\pi_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
+\WJFifteenExercise{exer:wj-fifteen-1}{} 考虑一个具有两个时期 0 和 1 的经济。在 1 期有两个可能状态 $a$ 和 $b$，发生概率分别为 $p_{a}$ 和 $p_{b}$。存在生产技术如下：如果在 0 期投入 $I$，那么在 1 期的产出将是
 \[
     Y=\begin{cases}
         \lambda_{a}I^{\alpha},&\text{状态 }a\\
@@ -19,7 +20,7 @@
 \]
 其中 $0<\lambda_{b}<\lambda_{a}<1$ 且 $0<\alpha<1$。假设参与者 1 拥有这项技术但却没有任何其它资产。他具有如下形式的效用函数：
 \[
-    \log(c_{0})+\pi_{a}\log c_{1a}+\pi_{b}\log c_{1b}.
+    \log(c_{0})+p_{a}\log c_{1a}+p_{b}\log c_{1b}.
 \]
 
 证券市场上只存在无风险债券，它的利率为 $r_{F}$。
@@ -34,12 +35,12 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 
-记 $R=1+r_F>0$，$\pi_a,\pi_b>0$ 且和为1。
+记 $R=1+r_F>0$，$p_a,p_b>0$ 且和为1。
 \begin{enumerate}[label=(\alph*)]
 \item 设发行债券的到期偿付额为 $D$。参与者没有当期禀赋，0 期筹资 $D/R$ 要同时支付当期消费和生产投入。1 期各状态都要偿还 $D$，故求解
 \[
  \begin{aligned}
- \max_{I>0,c_0>0,D}\quad &\log c_0+\sum_\omega\pi_\omega\log c_\omega\\
+ \max_{I>0,c_0>0,D}\quad &\log c_0+\sum_\omega p_\omega\log c_\omega\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
  c_0&=D/R-I,\\
@@ -51,19 +52,19 @@
 由当期预算解得 $D=R(c_0+I)$，代入未来消费，得到 $c_\omega=\lambda_\omega I^\alpha-R(c_0+I)$。这样可直接选择 $c_0$ 和 $I$，借款额由两者决定。
 \item 令 $q=D/I^\alpha$，表示每单位 $I^\alpha$ 对应的到期偿付额。因为 $D=R(c_0+I)>0$，且低产出状态的消费必须为正，所以 $0<q<\lambda_b$。各状态消费为 $I^\alpha(\lambda_\omega-q)$，记
 \[
- H(q)=\frac{\pi_a}{\lambda_a-q}+\frac{\pi_b}{\lambda_b-q}.
+ H(q)=\frac{p_a}{\lambda_a-q}+\frac{p_b}{\lambda_b-q}.
 \]
 
-按 (a) 消去 $D$ 后，对 $c_0$ 求导，得 $1/c_0=R\sum_\omega\pi_\omega/c_\omega$。对 $I$ 求导，则有
+按 (a) 消去 $D$ 后，对 $c_0$ 求导，得 $1/c_0=R\sum_\omega p_\omega/c_\omega$。对 $I$ 求导，则有
 \[
- \sum_\omega\frac{\pi_\omega}{c_\omega}
+ \sum_\omega\frac{p_\omega}{c_\omega}
        \bigl(\alpha\lambda_\omega I^{\alpha-1}-R\bigr)=0
  \qquad\text{（生产的一阶条件）}.
 \]
-把消费写成 $I^\alpha(\lambda_\omega-q)$，并用消费一阶条件替换生产条件中的 $R\sum_\omega\pi_\omega/c_\omega$，得到
+把消费写成 $I^\alpha(\lambda_\omega-q)$，并用消费一阶条件替换生产条件中的 $R\sum_\omega p_\omega/c_\omega$，得到
 \[
  \frac1{c_0}=R I^{-\alpha}H(q),\qquad
- \frac1{c_0}=\sum_\omega\frac{\pi_\omega\alpha\lambda_\omega I^{\alpha-1}}{c_\omega}
+ \frac1{c_0}=\sum_\omega\frac{p_\omega\alpha\lambda_\omega I^{\alpha-1}}{c_\omega}
  =\frac\alpha I[1+qH(q)].
 \]
 
@@ -72,7 +73,7 @@
  qH(q)=\frac{1+\alpha}{1-\alpha}.
 \]
 
-左侧在 $0<q<\lambda_b$ 上从0严格增至无穷，故有唯一根 $q_0$。记 $C=(1+\alpha)/(1-\alpha)$、$L=\pi_a\lambda_b+\pi_b\lambda_a$，它也是二次方程
+左侧在 $0<q<\lambda_b$ 上从0严格增至无穷，故有唯一根 $q_0$。记 $C=(1+\alpha)/(1-\alpha)$、$L=p_a\lambda_b+p_b\lambda_a$，它也是二次方程
 \[
  (C+1)q^2-[C(\lambda_a+\lambda_b)+L]q+C\lambda_a\lambda_b=0
 \]
@@ -95,7 +96,7 @@
 \[
  U_1^*=\log\frac{1-\alpha}{2\alpha}
  +(1+\alpha)\log I_1^*
- +\sum_\omega\pi_\omega\log(\lambda_\omega-q_0).
+ +\sum_\omega p_\omega\log(\lambda_\omega-q_0).
 \]
 
 这给出由题目参数直接计算的最优期望效用。\qedhere
@@ -145,7 +146,7 @@
 \[
  \begin{aligned}
  \max_{\substack{I\ge0\\c_0,c_a,c_b>0}}\quad
-   &\log c_0+\pi_a\log c_a+\pi_b\log c_b\\
+   &\log c_0+p_a\log c_a+p_b\log c_b\\
  \text{s.t.}\quad &c_0+\phi_ac_a+\phi_bc_b=SI^\alpha-I.
  \end{aligned}
 \]
@@ -155,9 +156,9 @@
  I_2^*=(\alpha S)^{1/(1-\alpha)},\qquad w^*=\frac{1-\alpha}{\alpha}I_2^*.
 \]
 
-再在预算 $c_0+\sum_\omega\phi_\omega c_\omega=w^*$ 下选择消费。令预算乘子为 $\nu$，一阶条件为 $1/c_0=\nu$、$\pi_\omega/c_\omega=\nu\phi_\omega$。消去 $\nu$，得到 $\phi_\omega c_\omega=\pi_\omega c_0$。未来消费支出的现值合计等于 $c_0$，因此
+再在预算 $c_0+\sum_\omega\phi_\omega c_\omega=w^*$ 下选择消费。令预算乘子为 $\nu$，一阶条件为 $1/c_0=\nu$、$p_\omega/c_\omega=\nu\phi_\omega$。消去 $\nu$，得到 $\phi_\omega c_\omega=p_\omega c_0$。未来消费支出的现值合计等于 $c_0$，因此
 \[
- c_0^*=\frac{w^*}{2},\quad c_\omega^*=\frac{\pi_\omega w^*}{2\phi_\omega}.
+ c_0^*=\frac{w^*}{2},\quad c_\omega^*=\frac{p_\omega w^*}{2\phi_\omega}.
 \]
 
 风险证券和债券头寸为
@@ -176,7 +177,7 @@
 状态价格上升提高给定产出的现值，重新优化后，投入随 $S=\sum_\omega\phi_\omega\lambda_\omega$ 上升而增加。若固定 $r_F$，则 $\phi_a+\phi_b=B$ 不变。沿着提高 $\phi_a$、等量降低 $\phi_b$ 的方向，最大净现值对 $\phi_a$ 的导数为 $(\lambda_a-\lambda_b)(I_2^*)^\alpha$。
 \item 完全市场下的最优效用为
 \[
- U_2^*=2\log\frac{w^*}{2}+\sum_\omega\pi_\omega\log\frac{\pi_\omega}{\phi_\omega}.
+ U_2^*=2\log\frac{w^*}{2}+\sum_\omega p_\omega\log\frac{p_\omega}{\phi_\omega}.
 \]
 
 用 0 期财富衡量开放风险证券带来的效用增益。保持原债券市场的利率，给参与者额外财富 $z$，并允许他重新选择生产、借款和消费。记这样得到的最优效用为 $U_B(z)$，所求补偿 $\Delta w$ 满足 $U_B(\Delta w)=U_2^*$。此时预算为 $c_0=z+D/R-I$。消去 $D$ 后，$z$ 只作为常数进入消费式，因此两条一阶条件与练习~\ref{exer:wj-fifteen-1} 相同。联立 $\frac1{c_0}=RI^{-\alpha}H(q)=\frac{\alpha}{I}[1+qH(q)]$，再代入预算，得
@@ -186,11 +187,11 @@
  c_0(q)&=\frac{I(q)^\alpha}{RH(q)},\qquad
  z(q)=I(q)+c_0(q)-\frac{qI(q)^\alpha}{R},\\
  U(q)&=\log c_0(q)+\alpha\log I(q)
- +\sum_\omega\pi_\omega\log(\lambda_\omega-q).
+ +\sum_\omega p_\omega\log(\lambda_\omega-q).
  \end{aligned}
 \]
 
-在 $q\le q_0$ 上，令 $M(q)=q+1/H(q)>0$，可将财富写成 $z(q)=I(q)[1+\alpha-2q/M(q)]/\alpha$。由于 $H'>H^2$（严格的柯西--施瓦茨不等式），$M$ 递减。又因 $q/M=qH/(1+qH)$，且 $(qH)'=\sum_\omega\pi_\omega\lambda_\omega/(\lambda_\omega-q)^2>0$，$q/M$ 递增。因此 $z(q)$ 严格下降至 $z(q_0)=0$。当 $q\to-\infty$ 时，$M(q)$ 趋于 $\sum_\omega\pi_\omega\lambda_\omega>0$，故 $z(q)\to\infty$。这给出每个 $z\ge0$ 对应的可行一阶解，严格凹性保证其最优。
+在 $q\le q_0$ 上，令 $M(q)=q+1/H(q)>0$，可将财富写成 $z(q)=I(q)[1+\alpha-2q/M(q)]/\alpha$。由于 $H'>H^2$（严格的柯西--施瓦茨不等式），$M$ 递减。又因 $q/M=qH/(1+qH)$，且 $(qH)'=\sum_\omega p_\omega\lambda_\omega/(\lambda_\omega-q)^2>0$，$q/M$ 递增。因此 $z(q)$ 严格下降至 $z(q_0)=0$。当 $q\to-\infty$ 时，$M(q)$ 趋于 $\sum_\omega p_\omega\lambda_\omega>0$，故 $z(q)\to\infty$。这给出每个 $z\ge0$ 对应的可行一阶解，严格凹性保证其最优。
 
 新增风险证券扩大可行消费集合，故 $U_2^*\ge U_B(0)=U(q_0)$。$U_B(z)$ 随 $z$ 严格递增，且保持未来消费不变、将新增财富用于当期消费即可使效用无界增长。故可唯一求得 $q\le q_0$ 使 $U(q)=U_2^*$，财富补偿为 $\Delta w=z(q)$。若原最优选择已达到完全市场的最优效用，补偿为零。\qedhere
 \end{enumerate}
@@ -214,7 +215,7 @@
 \begin{enumerate}[label=(\alph*)]
 \item 给定 $\phi_a,\phi_b>0$，记 $S=\sum_\omega\phi_\omega\lambda_\omega$、$B=\sum_\omega\phi_\omega$。沿用练习~\ref{exer:wj-fifteen-2} 的生产净现值最大化，参与者 1 选择 $I(\phi)=(\alpha S)^{1/(1-\alpha)}$，其财富为 $w_1(\phi)=SI(\phi)^\alpha-I(\phi)$。参与者 2 无生产技术，财富为 $w_2=e_0$。按两人的对数消费需求，
 \[
- c_{k,0}=\frac{w_k}{2},\qquad c_{k,\omega}=\frac{\pi_\omega w_k}{2\phi_\omega}.
+ c_{k,0}=\frac{w_k}{2},\qquad c_{k,\omega}=\frac{p_\omega w_k}{2\phi_\omega}.
 \]
 
 记 $Y_{1,\omega}=\lambda_\omega I(\phi)^\alpha$、$Y_{2,\omega}=0$。用证券复制各人所需的净支付 $x_{k,\omega}=c_{k,\omega}-Y_{k,\omega}$，得到
@@ -233,21 +234,21 @@
 
 未来市场出清与两人的消费需求还给出
 \[
- \frac{\pi_\omega(w_1^*+e_0)}{2\phi_\omega^*}=\lambda_\omega(I^*)^\alpha.
+ \frac{p_\omega(w_1^*+e_0)}{2\phi_\omega^*}=\lambda_\omega(I^*)^\alpha.
 \]
 
 两人面对同样的状态价格且偏好相同，(a) 的需求表明，各节点的消费份额都等于财富份额 $w_k^*/(w_1^*+e_0)$。代入 $w_1^*=(1-\alpha)e_0/(1+\alpha)$，得到 $\eta_1=(1-\alpha)/2$、$\eta_2=(1+\alpha)/2$，所以
 \[
  c_{k,0}^*=\eta_kC_0^*,\qquad c_{k,\omega}^*=\eta_kC_\omega^*,
  \qquad
- \boxed{\phi_\omega^*=\frac{\pi_\omega e_0^{1-\alpha}}
+ \boxed{\phi_\omega^*=\frac{p_\omega e_0^{1-\alpha}}
  {\lambda_\omega\alpha^\alpha(1+\alpha)^{1-\alpha}}}.
 \]
 
 由 $B^*=\phi_a^*+\phi_b^*$、$S^*=\lambda_a\phi_a^*+\lambda_b\phi_b^*$ 恢复证券价格与 $r_F^*=1/B^*-1$。代回生产条件可核对 $\alpha S^*(I^*)^{\alpha-1}=1$。各人终期消费与技术产出均与 $(\lambda_a,\lambda_b)$ 成比例，因此 $\theta_{1,B}^*=\theta_{2,B}^*=0$，$\theta_{2,S}^*=\eta_2(I^*)^\alpha=-\theta_{1,S}^*$，两种证券均出清。
 \item 用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-2}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
 \[
- \max_{0<I<e_0}\ \log(e_0-I)+\alpha\log I+\sum_\omega\pi_\omega\log\lambda_\omega.
+ \max_{0<I<e_0}\ \log(e_0-I)+\alpha\log I+\sum_\omega p_\omega\log\lambda_\omega.
 \]
 
 它严格凹，一阶条件给出上述 $I^*$；因此该配置最大化正权重的效用和，是帕累托最优的。\qedhere
@@ -276,11 +277,11 @@
  =\log C+\sum_k\eta_k\log\eta_k.
 \]
 
-舍去不影响选择的常数，代表性参与者效用为 $\log C_0+\sum_\omega\pi_\omega\log C_\omega$。
+舍去不影响选择的常数，代表性参与者效用为 $\log C_0+\sum_\omega p_\omega\log C_\omega$。
 \item 当期总消费 $C_0=e_0-I$ 必须为正，所以 $I<e_0$。未来各状态的总消费 $C_\omega=\lambda_\omega I^\alpha$ 也须为正，因此 $I>0$。把这两条资源关系代入代表性效用，得到
 \[
  \begin{aligned}
- \max_I\quad &\log(e_0-I)+\sum_\omega\pi_\omega\log(\lambda_\omega I^\alpha)\\
+ \max_I\quad &\log(e_0-I)+\sum_\omega p_\omega\log(\lambda_\omega I^\alpha)\\
  \text{s.t.}\quad &0<I<e_0.
  \end{aligned}
 \]
@@ -292,15 +293,15 @@
 \]
 
 目标对 $I$ 严格凹，故该内点为唯一最优解。代回资源约束得 $C_0^*=e_0/(1+\alpha)$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，个人消费为 $c_{k,0}^*=\eta_k C_0^*$、$c_{k,\omega}^*=\eta_k C_\omega^*$。
-\item 对代表性参与者的两期消费一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-15-6}）\fi，消去预算乘子。状态价格就等于未来该状态的边际效用 $\pi_\omega/C_\omega^*$ 除以当期的边际效用 $1/C_0^*$，即
+\item 对代表性参与者的两期消费一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-15-6}）\fi，消去预算乘子。状态价格就等于未来该状态的边际效用 $p_\omega/C_\omega^*$ 除以当期的边际效用 $1/C_0^*$，即
 \[
- \phi_\omega^*=\pi_\omega\frac{C_0^*}{C_\omega^*}
- =\frac{\pi_\omega e_0^{1-\alpha}}
+ \phi_\omega^*=p_\omega\frac{C_0^*}{C_\omega^*}
+ =\frac{p_\omega e_0^{1-\alpha}}
  {\lambda_\omega\alpha^\alpha(1+\alpha)^{1-\alpha}}.
 \]
 \item 提高 $\lambda_\omega$ 按比例增加该状态的产出和消费，并降低其状态价格；$I^*,C_0^*$ 和消费份额保持不变。
 
-提高 $\alpha$ 时，$dI^*/d\alpha=e_0/(1+\alpha)^2>0$，$dC_0^*/d\alpha=-e_0/(1+\alpha)^2<0$；个人份额满足 $d\eta_1/d\alpha=-1/2$、$d\eta_2/d\alpha=1/2$。对 $\log C_\omega^*=\log\lambda_\omega+\alpha\log I^*$ 求导时，要同时考虑指数 $\alpha$ 和投入 $I^*$ 的变化。再用 $\log\phi_\omega^*=\log\pi_\omega+\log C_0^*-\log C_\omega^*$，得到
+提高 $\alpha$ 时，$dI^*/d\alpha=e_0/(1+\alpha)^2>0$，$dC_0^*/d\alpha=-e_0/(1+\alpha)^2<0$；个人份额满足 $d\eta_1/d\alpha=-1/2$、$d\eta_2/d\alpha=1/2$。对 $\log C_\omega^*=\log\lambda_\omega+\alpha\log I^*$ 求导时，要同时考虑指数 $\alpha$ 和投入 $I^*$ 的变化。再用 $\log\phi_\omega^*=\log p_\omega+\log C_0^*-\log C_\omega^*$，得到
 \[
  \frac{d\log C_\omega^*}{d\alpha}=\log I^*+\frac1{1+\alpha},\qquad
  \frac{d\log\phi_\omega^*}{d\alpha}=-\log I^*-\frac2{1+\alpha}.
@@ -332,7 +333,7 @@
 \item 给定 $R,S$，当期消费来自债券筹资 $BD$ 和股票筹资 $Ss$ 扣除投入 $I$ 后的余额。未来消费是保留的产出扣除债务偿付后的余额。题目未规定债股头寸的上下限，先按头寸可正可负写出问题，其中 $D<0$ 表示持有债券：
 \[
  \begin{aligned}
- \max_{I,D,s}\quad &\log c_{1,0}+\sum_\omega\pi_\omega\log c_{1,\omega}\\
+ \max_{I,D,s}\quad &\log c_{1,0}+\sum_\omega p_\omega\log c_{1,\omega}\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
  c_{1,0}&=BD+Ss-I,\\
@@ -353,19 +354,19 @@
 
 当债股发行限制均不绑定时，一阶条件为
 \[
- \frac B{c_{1,0}}=\sum_\omega\frac{\pi_\omega}{c_{1,\omega}},\quad
- \frac S{c_{1,0}}=I^\alpha\sum_\omega\frac{\pi_\omega\lambda_\omega}{c_{1,\omega}},\quad
- \frac1{c_{1,0}}=\alpha(1-s)I^{\alpha-1}\sum_\omega\frac{\pi_\omega\lambda_\omega}{c_{1,\omega}}.
+ \frac B{c_{1,0}}=\sum_\omega\frac{p_\omega}{c_{1,\omega}},\quad
+ \frac S{c_{1,0}}=I^\alpha\sum_\omega\frac{p_\omega\lambda_\omega}{c_{1,\omega}},\quad
+ \frac1{c_{1,0}}=\alpha(1-s)I^{\alpha-1}\sum_\omega\frac{p_\omega\lambda_\omega}{c_{1,\omega}}.
 \]
 
-将投入条件与股票条件相除，得 $I=\alpha S(1-s)$。再将股票条件乘以 $1-s$、债券条件乘以 $D$ 后相减，右侧为 $\sum_\omega\pi_\omega c_{1,\omega}/c_{1,\omega}=1$。因此 $S(1-s)-BD=c_{1,0}$。与当期预算相加，得到 $2c_{1,0}=S-I$。于是可将内点条件化为单变量方程
+将投入条件与股票条件相除，得 $I=\alpha S(1-s)$。再将股票条件乘以 $1-s$、债券条件乘以 $D$ 后相减，右侧为 $\sum_\omega p_\omega c_{1,\omega}/c_{1,\omega}=1$。因此 $S(1-s)-BD=c_{1,0}$。与当期预算相加，得到 $2c_{1,0}=S-I$。于是可将内点条件化为单变量方程
 \[
  s(I)=1-\frac I{\alpha S},\quad
  D(I)=\frac R{2\alpha}\bigl[(\alpha+2)I-\alpha S\bigr],\quad
  t(I)=\frac{I^{1+\alpha}}{\alpha S},
 \]
 \[
- \sum_\omega\frac{\pi_\omega}{t(I)\lambda_\omega-D(I)}
+ \sum_\omega\frac{p_\omega}{t(I)\lambda_\omega-D(I)}
  =\frac2{R(S-I)}.
 \]
 
@@ -413,13 +414,13 @@
 
 总消费 $C_0^{\dagger}=S^{\dagger}$、$C_\omega^{\dagger}=\lambda_\omega(I^{\dagger})^\alpha$ 给出
 \[
- \phi_\omega^{\dagger}=\frac{\pi_\omega S^{\dagger}}{\lambda_\omega(I^{\dagger})^\alpha},\qquad
+ \phi_\omega^{\dagger}=\frac{p_\omega S^{\dagger}}{\lambda_\omega(I^{\dagger})^\alpha},\qquad
  B^{\dagger}=\sum_\omega\phi_\omega^{\dagger},\qquad r_F^{\dagger}=1/B^{\dagger}-1.
 \]
 
 这是固定股价、发行受限设定下唯一可能的均衡候选。还需在这组报价下检验发行者是否全局最优。
 
-例如取 $\alpha=0.6$、$e_0=10$、$(\lambda_a,\lambda_b)=(0.8,0.3)$、$(\pi_a,\pi_b)=(0.4,0.6)$，候选为
+例如取 $\alpha=0.6$、$e_0=10$、$(\lambda_a,\lambda_b)=(0.8,0.3)$、$(p_a,p_b)=(0.4,0.6)$，候选为
 \[
  (I,D,s)=(1.875,0,0.6153846),\quad S=8.125,\quad R\simeq0.07178561.
 \]
@@ -436,7 +437,7 @@
  S(I)=I^\alpha\sum_\omega\phi_\omega\lambda_\omega.
 \]
 
-此时，最大化净值 $S(I)-I$ 给出与练习~\ref{exer:wj-fifteen-3} 相同的生产条件及状态价格 $\phi_\omega^*=\pi_\omega C_0^*/C_\omega^*$。代入 $C_0^*=e_0-I^*$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，得到
+此时，最大化净值 $S(I)-I$ 给出与练习~\ref{exer:wj-fifteen-3} 相同的生产条件及状态价格 $\phi_\omega^*=p_\omega C_0^*/C_\omega^*$。代入 $C_0^*=e_0-I^*$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，得到
 \[
  I^*=\frac{\alpha e_0}{1+\alpha},\qquad S^*=C_0^*=\frac{e_0}{1+\alpha},\qquad
  r_F^*=\frac{1}{\phi_a^*+\phi_b^*}-1 .
