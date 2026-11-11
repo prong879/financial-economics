@@ -24,7 +24,7 @@
 \newcommand{\WJTenExercise}[2]{\refstepcounter{wjTenExercise}\label{#1}\problemno{\thewjTenExercise#2}}
 
 \ifdefined\WJHandoutKnowledge
-完全市场把证券交易转化为对各状态消费的直接选择。本章先把证券市场与 Arrow--Debreu 经济接通，再研究风险分担、代表性参与者与加总，最后用总消费的边际效用解释资产价格和风险溢价。
+前几讲把证券价格视为给定，研究个人如何选择消费和投资组合。本章反过来问：所有人的选择怎样共同决定均衡价格与资源配置？先把完全证券市场写成等价的 Arrow--Debreu 经济，求出个人需求和市场出清条件。随后借助期望效用的结构分析风险分担，说明市场如何消除个人禀赋中的个体风险，以及所有人如何共同承担总资源的波动。把这种有效分配汇总为代表性参与者的选择后，就能从总消费的边际效用推导资产价格、实利率与风险溢价。下一讲再讨论证券不能复制所有状态支付时会发生什么。
 
 \section{完全市场中的均衡}\label{sec:wj-ten-1}
 \subsection{支付复制与等价预算集合}
@@ -49,7 +49,7 @@
  =\phi^{\mathsf T}\mathbf e_\omega=\phi_\omega.
 \]
 
-当 $X$ 为可逆方阵时，$\theta^{(\omega)}=X^{-1}\mathbf e_\omega$。任意未来支付 $y$ 都可以拆成 $y_\omega$ 份状态 $\omega$ 的单位支付，复制成本为 $\sum_\omega\phi_\omega y_\omega$。
+当 $X$ 为可逆方阵时，$\theta^{(\omega)}=X^{-1}\mathbf e_\omega$，状态价格也可直接写为 $S^{\mathsf T}X^{-1}\mathbf e_\omega$。任意未来支付 $y$ 都可以拆成 $y_\omega$ 份状态 $\omega$ 的单位支付。相应的证券组合是 $\sum_\omega y_\omega\theta^{(\omega)}$，它的支付为 $\sum_\omega y_\omega\mathbf e_\omega=y$，成本为 $\sum_\omega\phi_\omega y_\omega$。用 $y=e_{k,1}$ 就能把每个人的未来禀赋也写成一组状态证券支付。
 
 % 教材印刷第 144、146 页以组合持有量写未来消费和证券出清；此处沿用第 2、3 章的净交易记号。
 令 $e_{k,0}$ 为当期禀赋，$\varepsilon_{k,1}$ 为各状态下的直接禀赋。以 $\bar\theta_k$ 表示初始证券持仓，$\theta_k$ 表示证券净购买向量，则交易后持仓为 $\bar\theta_k+\theta_k$。未来禀赋向量为
@@ -64,7 +64,7 @@
  c_{k,1}=e_{k,1}+\underbrace{X\theta_k}_{\text{未来各状态净支付}}.
 \]
 
-若未来禀赋全部来自初始证券支付，则 $c_{k,1}=X(\bar\theta_k+\theta_k)$，即未来消费等于交易后持仓的支付。
+若未来禀赋全部来自初始证券支付，则 $c_{k,1}=X(\bar\theta_k+\theta_k)$，即未来消费等于交易后持仓的支付。此时教材所说的初始财富为 $w_k=e_{k,0}+S^{\mathsf T}\bar\theta_k$。即使未来禀赋原本以实物给付，完全性也允许先把这笔支付表示成证券组合，再按相同的方式计算其现值。
 
 用 $S=X^{\mathsf T}\phi$ 将证券交易的净支出写成未来净支付的现值，再代入当期预算：
 \[
@@ -82,7 +82,7 @@
 \WJTenTheorem{thm:wj-ten-1}{} 设完全证券市场与 Arrow--Debreu 市场的偏好、状态概率和逐期逐状态总资源相同。给定其中一个市场的一组均衡 $(\phi^*,c^*)$，若在 $\phi^*$ 下每个人的禀赋现值在两个市场中相等，则 $(\phi^*,c^*)$ 也是另一个市场的均衡。证券价格由 $S^*=X^{\mathsf T}\phi^*$ 恢复。
 \end{tcolorbox}
 
-两种市场在所比较的状态价格下给每个人相同的价值预算，因此个人最优消费条件相同。商品出清也只要求各期各状态的消费之和等于给定的总资源。由此，一种市场的均衡价格与消费配置满足另一种市场的个人最优与商品出清条件。证券市场中的组合可由支付复制恢复，冗余证券下的净头寸出清见下文。
+\textbf{证明。}在给定的均衡状态价格下，每个人在两种市场中的禀赋现值相同，所以他的预算集合及最优消费计划相同。逐期逐状态的总资源也相同，因此原配置在另一种市场中仍满足商品出清。若由 Arrow--Debreu 市场转到完全证券市场，再用证券组合复制每个人的未来净消费，取 $S^*=X^{\mathsf T}\phi^*$。商品出清保证这些净支付加总为零，证券净头寸的出清可按下文的构造实现。于是同一组状态价格和消费配置在两种市场中都构成均衡。
 
 这里财富分布指每个人的禀赋现值。给定价格，禀赋在时期和状态间的重新配置只要保持个人现值，就保持其预算集合。
 
@@ -116,7 +116,7 @@
 
 $\lambda_k$ 表示在给定价格下增加一单位当期财富所带来的边际效用。买入一单位状态 $\omega$ 的消费，得到的期望边际效用为 $p_\omega u'_{k,1}$，为它支付的 $\phi_\omega$ 单位当期商品则值 $\lambda_k\phi_\omega$。内点最优使这两项相等。
 
-相除得到跨期及跨状态的边际替代率：
+对每位参与者 $k$ 和任意未来状态 $\omega,\omega'$，将相应的一阶条件相除，得到跨期及跨状态的边际替代率
 \begin{equation}
  \frac{p_\omega u'_{k,1}(c_{k,1\omega})}{u'_{k,0}(c_{k,0})}=\phi_\omega,
  \qquad
@@ -133,10 +133,14 @@ $\lambda_k$ 表示在给定价格下增加一单位当期财富所带来的边�
  \label{eq:wj-10-4}
 \end{equation}
 
-给定状态价格，将式~\eqref{eq:wj-10-4} 的两项需求代回价值预算，就只剩 $\lambda_k$ 一个未知量：
+给定状态价格，将式~\eqref{eq:wj-10-4} 的消费需求代回价值预算。下面依次写出消费现值、用乘子表示的需求现值，以及禀赋现值：
 \begin{equation}
- (u'_{k,0})^{-1}(\lambda_k)+\sum_\omega\phi_\omega
- (u'_{k,1})^{-1}(\lambda_k\phi_\omega/p_\omega)=w_k.
+ \begin{aligned}
+ c_{k,0}+\sum_\omega\phi_\omega c_{k,1\omega}
+ &=(u'_{k,0})^{-1}(\lambda_k)+\sum_\omega\phi_\omega
+ (u'_{k,1})^{-1}(\lambda_k\phi_\omega/p_\omega)\\
+ &=w_k=e_{k,0}+\sum_\omega\phi_\omega e_{k,1\omega}.
+ \end{aligned}
  \label{eq:wj-10-5}
 \end{equation}
 % 教材勘误：式10.5逆边际效用的自变量须除以p_omega。
@@ -144,7 +148,7 @@ $\lambda_k$ 表示在给定价格下增加一单位当期财富所带来的边�
 左边是候选消费计划的总支出。$\lambda_k$ 越高，两期要求的边际效用越高，相应消费与支出越少。求出使支出恰等于 $w_k$ 的乘子，再代回式~\eqref{eq:wj-10-4}，就能确定各期各状态的最优消费。
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTenTheorem{thm:wj-ten-2}{} 在上述内点条件下，对每位参与者，
+\WJTenTheorem{thm:wj-ten-2}{} 在完全市场中，设参与者的效用具有式~\eqref{eq:wj-10-1} 的时间可加期望效用形式，单期效用严格递增且严格凹，最优消费为内点。则对每位参与者 $k$ 和任意未来状态 $\omega,\omega'\in\Omega$，
 \[
  c_{k,1\omega}<c_{k,1\omega'}
  \quad\Longleftrightarrow\quad
@@ -174,18 +178,28 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  =X\underbrace{\sum_k\theta_k}_{\text{证券净交易出清时为零}}=0.
 \]
 
-再把各人的价值预算相加，由未来各状态出清得到当期出清。因此，两个时期的商品市场出清条件为
+再把各人的价值预算相加，得到
+\[
+ \sum_k(c_{k,0}-e_{k,0})
+ +\phi^{\mathsf T}\sum_k(c_{k,1}-e_{k,1})=0.
+\]
+
+未来各状态已经出清，所以第二项为零，第一项也必须为零。因此，两个时期的商品市场出清条件为
 \begin{equation}
  \sum_k c_{k,0}=\sum_k e_{k,0}=C_0,\qquad
  \sum_k c_{k,1}=\sum_k e_{k,1}=C_1.
  \label{eq:wj-10-6}
 \end{equation}
 
-上述推导体现了本模型中的 Walras 法则。在完全市场中，也可以从出清的消费配置反推证券交易。先用净交易向量 $\theta_k$ 复制每个人的未来消费变化 $c_{k,1}-e_{k,1}$。记这些向量的和为 $\Theta=\sum_k\theta_k$。商品出清给出 $X\Theta=0$，而 $S^{\mathsf T}\Theta=\phi^{\mathsf T}X\Theta=0$。从任一参与者的净交易向量中减去 $\Theta$，既不改变各人的消费计划，又使证券净交易量之和为零。
+上述推导体现了 Walras 法则：预算都满足时，总超额需求的价值为零。也可以反过来从商品出清恢复证券出清。若未来禀赋全部来自初始证券且 $X$ 可逆，教材所用的交易后持仓就是 $X^{-1}c_{k,1}$。对未来出清式左乘 $X^{-1}$，便有 $\sum_k X^{-1}c_{k,1}=\sum_k\bar\theta_k=\theta_M$。
+
+证券存在冗余时，先用净交易向量 $\theta_k$ 复制每个人的未来消费变化 $c_{k,1}-e_{k,1}$。记这些向量的和为 $\Theta=\sum_k\theta_k$。商品出清给出 $X\Theta=0$，而 $S^{\mathsf T}\Theta=\phi^{\mathsf T}X\Theta=0$。从任一参与者的净交易向量中减去 $\Theta$，既保留该人的各状态支付与当期支出，也使证券净交易量之和为零。
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTenTheorem{thm:wj-ten-3}{（均衡存在性）} 若偏好连续、凸且严格单调，每人的禀赋向量严格为正，则完全证券市场存在竞争均衡，见第~\ref{sec:wj-three-equilibrium}~节。给定严格正的价格和个人财富，严格凹效用使个人最优消费唯一。
+\WJTenTheorem{thm:wj-ten-3}{（均衡存在性）} 若偏好连续、凸且严格单调，每人的禀赋向量严格为正，则完全证券市场存在竞争均衡。给定严格正的价格和个人财富，严格凹效用使个人最优消费唯一。
 \end{tcolorbox}
+
+\textbf{存在性证明。}把当期消费与未来每个状态的消费分别视为一种商品，构造一个有限商品的 Arrow--Debreu 交换经济。保留每个人的偏好和逐期逐状态禀赋，因此在任意给定状态价格下，两种市场中每个人的禀赋现值都相同。由定理~\ref{thm:wj-three-equilibrium-existence}（Arrow--Debreu 均衡存在性），这个交换经济有一组严格正的均衡价格和相应的消费配置。将当期商品价格归一为 $1$，记未来状态价格为 $\phi^*$。再由定理~\ref{thm:wj-ten-1}（两种市场的均衡等价），同一组状态价格和配置可由完全证券市场实现，证券价格为 $S^*=X^{\mathsf T}\phi^*$。
 
 教材把定理的结论写作“均衡存在且唯一”。附录 A 证明唯一性时，考察的是逆边际效用弹性不小于 $1$ 的情形。市场均衡还要使价格与总需求相互一致。下例说明，仅凭完全性和个人需求唯一，均衡价格仍可有多个。例后给出附加弹性条件下的唯一性证明。
 
@@ -256,7 +270,9 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 最后一步使用了正禀赋和弹性条件。因此 $\partial\lambda/\partial\pi_r<0$。对 $s\ne r$，价格 $\pi_s$ 固定，$I_s$ 又严格递减，所以 $c_s=I_s(\lambda\pi_s)$ 随 $\pi_r$ 上升而严格增加。
 
-若有两组不成比例的正均衡价格 $\pi,\pi'$，令 $m=\min_s(\pi_s/\pi'_s)$，并取一个达到该最小值的商品 $s_*$。需求对价格向量是零次齐次的，可将 $\pi$ 换成 $\pi/m$。此时两组价格在 $s_*$ 上相同，其余价格在 $\pi/m$ 下都不低于 $\pi'$，且至少一个严格更高。从 $\pi'$ 开始逐个提高这些价格，每个人对 $s_*$ 的需求都严格增加。这与两组价格下 $s_*$ 的总需求都等于同一个总禀赋矛盾。因此两组均衡价格必成比例，选定当期商品为计价单位后即为同一组价格。
+先说明价格归一化为何保持需求。若把所有价格乘以 $t>0$，预算等式两边同时乘以 $t$。把乘子改为 $\lambda/t$ 后，每项需求仍是 $I_s((\lambda/t)t\pi_s)=I_s(\lambda\pi_s)$，所以需求对价格向量是零次齐次的。
+
+若有两组不成比例的正均衡价格 $\pi,\pi'$，令 $m=\min_s(\pi_s/\pi'_s)$，并取一个达到该最小值的商品 $s_*$。将 $\pi$ 换成 $\pi/m$ 后，其对应的均衡需求不变。此时两组价格在 $s_*$ 上相同，其余价格在 $\pi/m$ 下都不低于 $\pi'$，且至少一个严格更高。从 $\pi'$ 开始逐个提高这些价格，每个人对 $s_*$ 的需求都严格增加。这与两组价格下 $s_*$ 的总需求都等于同一个总禀赋矛盾。因此两组均衡价格必成比例，选定当期商品为计价单位后即为同一组价格。
 
 % 教材例 10.1（印刷页 146–147）。解答末尾补算总持仓和净交易量。
 \begin{tcolorbox}[example]
@@ -298,7 +314,14 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  \quad(\omega=a,b).
 \]
 
-将 $c_{1,0}=1/\lambda_1$ 和 $c_{1,\omega}=1/(2\lambda_1\phi_\omega)$ 代入价值预算，得到 $2/\lambda_1=w_1=1$，所以
+将一阶条件给出的消费代入价值预算，三个节点的支出依次为
+\[
+ c_{1,0}+\phi_a c_{1,a}+\phi_b c_{1,b}
+ =\frac{1}{\lambda_1}+\frac{1}{2\lambda_1}+\frac{1}{2\lambda_1}
+ =\frac{2}{\lambda_1}=w_1=1.
+\]
+
+因此 $\lambda_1=2$。参与者 1 将财富的 $1/2$ 用于当期消费，将 $1/4$ 分别用于两种未来状态的消费。用 $w_1=1$ 代入后，消费为
 \[
  (c_{1,0},c_{1,a},c_{1,b})
  =\left(\frac12,\frac1{4\phi_a},\frac1{4\phi_b}\right).
@@ -311,7 +334,14 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  \quad(\omega=a,b).
 \]
 
-将 $c_{2,0}=1/\lambda_2^2$ 和 $c_{2,\omega}=1/(4\lambda_2^2\phi_\omega^2)$ 代入价值预算，得到 $A/\lambda_2^2=w_2=S$，其中 $A=1+1/(4\phi_a)+1/(4\phi_b)$。第二人的消费为
+由一阶条件解出 $c_{2,0}=1/\lambda_2^2$ 和 $c_{2,\omega}=1/(4\lambda_2^2\phi_\omega^2)$。代入预算，得到
+\[
+ c_{2,0}+\phi_a c_{2,a}+\phi_b c_{2,b}
+ =\frac{\underbrace{1+1/(4\phi_a)+1/(4\phi_b)}_{A}}{\lambda_2^2}
+ =w_2=S.
+\]
+
+所以 $\lambda_2^2=A/S$。代回个人需求，第二人的消费为
 \[
  (c_{2,0},c_{2,a},c_{2,b})
  =\left(\frac SA,\frac S{4A\phi_a^2},\frac S{4A\phi_b^2}\right).
@@ -364,7 +394,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 \section{最优配置和风险分担}\label{sec:wj-ten-2}
 \subsection{最优性与规划者问题}
-第~\ref{sec:wj-three-welfare}~节的第一福利定理说明，完全市场均衡配置具有帕累托最优性。下面考虑政府作为社会规划者的优化问题：在总资源约束下选择各人的消费，使加权社会效用最大。这个问题提供了构造帕累托最优配置的方法。
+由定理~\ref{thm:wj-ten-1}（两种市场的均衡等价），以相同的逐期逐状态禀赋构造 Arrow--Debreu 经济，可以得到同一均衡消费配置。该经济的偏好满足不满足性，故由定理~\ref{thm:wj-three-welfare}（第一福利定理），这个配置是帕累托最优的。下面考虑政府作为社会规划者的优化问题：在总资源约束下选择各人的消费，使加权社会效用最大。这个问题提供了构造帕累托最优配置的方法。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTenTheorem{thm:wj-ten-4}{} 若一组可行配置解出某个正权重 $\mu_k>0$ 的规划问题，则该配置是帕累托最优的：
 \begin{equation}
@@ -373,7 +403,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  \sum_\omega p_\omega u_{k,1}(c_{k,1\omega})\right]\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
- \sum_k c_k&=C,\\
+ \sum_k c_k&=\sum_k e_k=C,\\
  c_k&\ge0\quad(\forall k).
  \end{aligned}\right.
  \end{aligned}
@@ -444,7 +474,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 内点条件允许取足够小的 $\epsilon>0$，使双方的效用都提高。交换保持各期各状态的总资源不变，与帕累托最优矛盾。因此各人在每个未来状态相对于当期的边际替代率都相同。
 
-取这些共同的边际替代率作为状态价格 $\phi$，并令
+取这些共同的边际替代率作为状态价格 $\phi$。若目标配置来自式~\eqref{eq:wj-10-7} 的规划问题，将式~\eqref{eq:wj-10-8} 的未来状态一阶条件除以当期一阶条件，得到同一个价格 $\phi_\omega=\phi'_\omega/\phi'_0$。接下来令每个人转移后的财富等于目标消费的现值：
 \[
  w_k^*=c_{k,0}^*+\phi^{\mathsf T}c_{k,1}^*,\qquad
  \tau_k=w_k^*-(e_{k,0}+\phi^{\mathsf T}e_{k,1}).
@@ -469,15 +499,18 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \begin{tcolorbox}[knowledge,title=最优分享规则,breakable=false]
 给定规划权重，个人消费可写成总消费的函数：
 \begin{equation}
- c_{k,1\omega}=f_{k,1}(C_{1\omega};\mu),\qquad
- c_{k,0}=f_{k,0}(C_0;\mu).
+ \begin{aligned}
+ c_{k,1\omega}&=f_{k,1}(C_{1\omega};\mu),
+ &\widetilde c_{k,1}&=f_{k,1}(\widetilde C_1;\mu),\\
+ c_{k,0}&=f_{k,0}(C_0;\mu).
+ \end{aligned}
  \label{eq:wj-10-10}
 \end{equation}
 
 在给定权重下，个人消费由总消费决定。资源可行性要求
 \begin{equation}
  \sum_k f_{k,0}(C_0;\mu)=C_0,\qquad
- \sum_k f_{k,1}(C;\mu)=C.
+ \sum_k f_{k,1}(\widetilde C_1;\mu)=\widetilde C_1.
  \label{eq:wj-10-11}
 \end{equation}
 \end{tcolorbox}
@@ -513,13 +546,13 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 这个结果说明最优风险分担的两个方面。第一，总禀赋较高的状态下，每个人都消费更多；总禀赋波动因而由所有人共同承担。第二，给定总禀赋与规划权重，每人的消费由分享规则决定，个人禀赋中不改变总禀赋的状态差异可以通过完全市场交易消除。它不意味着个人初始财富无关：财富分布会影响均衡权重，进而影响各人的分享份额。
 
-由个人一阶条件，状态价格密度等于个人未来边际效用与当期边际效用之比。给定权重和当期资源，未来个人消费由总消费决定，所以状态价格密度随总消费变化；个人禀赋中未改变总消费的风险不单独构成定价风险。比较不同经济时，如果初始财富分布改变，权重及价格也可能改变。
+由个人一阶条件，状态价格密度等于个人未来边际效用与当期边际效用之比。给定权重和当期资源，未来个人消费由总消费决定，所以状态价格密度随总消费变化。总禀赋的波动构成\textbf{总体风险}，由所有人共同承担。个人禀赋中未改变总禀赋的波动构成\textbf{个体风险}，可以通过交易分担。比较不同经济时，若初始财富分布改变，权重及价格也可能改变。
 
 % 教学补充：用两状态禀赋说明教材印刷第 150 页对个体风险与总量风险的区分。
 例如，两人在两个状态下的初始禀赋分别为 $(8,2)$ 和 $(2,8)$，每对数字按参与者排列。两种状态的总资源都是 $10$。给定同一组规划权重，每个人在两种状态下分到的消费都一样，禀赋的状态差异由交易分担。若其中一个状态的总资源降为 $8$，在同一组权重和内点条件下，两人在该状态的消费都会下降。
 
 \subsection{线性分享规则}
-为简化记号，本节略去时间下标，并令 $T_k(c)=-u_k'(c)/u_k''(c)$ 为\hyperlink{wj-risk-tolerance}{绝对风险容忍度}。
+前面的单调性说明总消费增加时每个人都分到更多。若分享规则是仿射函数，每个人在新增消费中所占的份额就是一个常数。下面找出使这种线性分享成立的偏好条件。为简化记号，本节略去时间下标，并令 $T_k(c)=-u_k'(c)/u_k''(c)$ 为\hyperlink{wj-risk-tolerance}{绝对风险容忍度}。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTenTheorem{thm:wj-ten-7}{（线性分享规则）} 设至少有两位参与者，各人的消费域为开区间，$u_k'>0,u_k''<0$，风险容忍度可微。对任意一组正的规划权重，分享规则在所有可实现的内点总消费水平上均为仿射函数，当且仅当
 \[
@@ -528,6 +561,14 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 对所有人具有相同斜率 $a$。$a\ne0$ 时属于共同指数的 \hyperref[sec:wj-seven-hara]{HARA 族}，$a=0$ 时为 \hyperref[sec:wj-seven-cara]{CARA 族}。
 \end{tcolorbox}
 % 教材用u'_k=rho_k(d_k+c/gamma)^(-gamma)、gamma>=-1陈述HARA参数形式；此处以风险容忍度写清共同斜率及刻画量词。
+
+\textbf{与教材参数的对应。}教材把 HARA 边际效用写为 $u_k'(c)=\rho_k(d_k+c/\gamma)^{-\gamma}$，其中 $\rho_k>0$，并列出 $\gamma\ge-1$。在这个幂函数表达式中，$\gamma\ne0$ 且 $d_k+c/\gamma>0$。对边际效用求导可得
+\[
+ -\frac{u_k'(c)}{u_k''(c)}=d_k+\frac{c}{\gamma},
+ \qquad a=\frac1\gamma.
+\]
+
+因此，各人的共同指数 $\gamma$ 对应风险容忍度的共同斜率 $a$。上面的刻画在各人的开消费区间内要求 $T_k(c)>0$，并单独纳入 $a=0$ 的情形，此时各人的风险容忍度为常数，对应 CARA。
 
 \textbf{证明（共同斜率 $\Rightarrow$ 仿射分享）：}固定权重。写 $c_k=f_k(C)$，用 $q(C)$ 表示单项资源约束的乘子。内点一阶条件是 $\mu_k u_k'(f_k(C))=q(C)$。对 $C$ 求导，再除以原式，得到
 \[
@@ -620,8 +661,9 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  \begin{aligned}
  u_0(C_0)&=\max_{\substack{\sum_k c_{k,0}=C_0\\c_{k,0}\ge0\;(\forall k)}}
            \sum_k\mu_k u_{k,0}(c_{k,0}),\\
- u_1(C)&=\max_{\substack{\sum_k c_{k,1}=C\\c_{k,1}\ge0\;(\forall k)}}
-         \sum_k\mu_k u_{k,1}(c_{k,1}).
+ u_1(C_{1\omega})&=\max_{\substack{\sum_k c_{k,1\omega}=C_{1\omega}\\
+                       c_{k,1\omega}\ge0\;(\forall k)}}
+         \sum_k\mu_k u_{k,1}(c_{k,1\omega}),\qquad \omega\in\Omega.
  \end{aligned}\label{eq:wj-10-12}
 \end{equation}
 
@@ -633,10 +675,20 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTenTheorem{thm:wj-ten-8}{} 若个人效用严格递增、严格凹，正权重聚合效用也严格递增、严格凹。
+\WJTenTheorem{thm:wj-ten-8}{} 设每人的可行消费域为非负实数中的区间，个人效用在各自区间上严格递增、严格凹，规划权重均为正。若在所讨论的总消费区间内，每个总量下的分配问题~\eqref{eq:wj-10-12} 均有可行解且能达到最大值，则聚合效用在该区间上严格递增、严格凹。
 \end{tcolorbox}
 
-\textbf{证明：}增加总资源后，在各人定义域内分配增加量，使至少一人的消费增加、其余人消费不减，便能提高加权效用，故聚合效用严格递增。对两个不同的总资源水平，分别取最优分配；两分配的凸组合对相应总资源的凸组合可行。至少一人的消费不同，个人效用的严格凹性使加权效用严格高于两最优值的同权平均。因此最优值函数严格凹。
+例如，各人的消费域为闭区间、效用连续时，给定可行总量 $C$，每人的消费都在 $[0,C]$ 内。各人的消费域与资源等式共同确定一个非空紧集，连续的加权效用在其上达到最大值。允许开放端点时，应另行确认最优分配能达到。
+
+\textbf{证明。}固定一个日期或状态，暂略去时间下标。取总量 $C$ 下的最优分配和总量 $D>C$ 下的任一可行分配。对每位参与者取两组消费中的较大值，得到一组总量至少为 $D$、各人的消费均不低于原最优分配的消费。沿原分配到这组消费之间的线段，取总量恰为 $D$ 的一点。各人的消费域为区间，故该点可行，且至少有一人的消费严格增加。由于权重为正且效用严格递增，这组分配的加权效用高于 $u(C)$，故 $u(D)>u(C)$。
+
+再取 $C\ne D$ 时的两组最优分配 $(c_k^C)_k$、$(c_k^D)_k$。给定 $0<\alpha<1$，令 $\widehat C=\alpha C+(1-\alpha)D$，并取 $\widehat c_k=\alpha c_k^C+(1-\alpha)c_k^D$。逐人求和有 $\sum_k\widehat c_k=\widehat C$，所以这组消费在 $\widehat C$ 下可行。由于 $C\ne D$，至少一人的两项消费不同，其效用的凹性不等式严格成立。乘以正权重再加总，得到
+\[
+ u(\widehat C)\ \ge\ \sum_k\mu_k u_k(\widehat c_k)\
+ >\ \alpha u(C)+(1-\alpha)u(D).
+\]
+
+因此，每个日期或状态对应的最优值函数都严格凹。跨期效用按式~\eqref{eq:wj-10-13} 加总，各状态概率为正，故也保留严格递增性和严格凹性。
 
 \textbf{光滑内点下的一阶导数。}固定规划权重 $\mu$，将最优分享规则代回式~\eqref{eq:wj-10-12}，得到各期的聚合效用
 \[
@@ -721,45 +773,61 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
  \end{aligned}\label{eq:wj-10-15}
 \end{equation}
 
-将式~\eqref{eq:wj-10-15} 的第二行除以第一行，得到 $\phi_\omega=\phi'_\omega/\phi'_0$，与原经济的个人一阶条件给出的状态价格一致。求均衡时，可先给定相对权重，算出分享规则和状态价格，再用各人的价值预算确定相对权重。一般情况下，财富分布改变时，满足这些预算的权重也会改变，聚合效用和价格因而可能随之变化。
+将式~\eqref{eq:wj-10-15} 的第二行除以第一行，个人规划权重 $\mu_k$ 在左端约掉，得到
+\[
+ \frac{p_\omega u'_{k,1}(c_{k,1\omega})}{u'_{k,0}(c_{k,0})}
+ =\frac{p_\omega u'_1(C_{1\omega})}{u'_0(C_0)}
+ =\frac{\phi'_\omega}{\phi'_0}
+ =\phi_\omega.
+\]
+
+因此，原来由多位参与者共同决定的状态价格，可以从一个拥有全部总禀赋的代表性参与者求出。给定代表性参与者的效用，出清已经确定了他的消费，只需求出总禀赋处的边际效用比，再由 $S=X^{\mathsf T}\phi$ 得到证券价格。
+
+代表性参与者的效用本身由规划权重决定，一般不能事先指定。若必须先解出原市场的完整均衡才能得到权重，这种表示对求解价格的帮助就有限。例~\ref{ex:wj-ten-2} 展示另一条求解路径。先把权重视为待定量，由分享规则写出消费和价格，再用个人预算反求与初始财富相符的权重。第~\ref{sec:wj-ten-4}~节进一步给出一类偏好，使内点定价可以直接从总资源和偏好参数求得。
 
 % 教材例 10.2（印刷页 154）。
 \begin{tcolorbox}[example]
 \begin{question}
-\WJTenExample{ex:wj-ten-2} 沿用例~\ref{ex:wj-ten-1} 的经济。三个日期和状态对应的总消费为 $(C_0,C_a,C_b)=(1,2,1)$，未来两状态等概率。参与者 1 和 2 在每一处的单项效用分别为 $\log x$ 和 $2\sqrt{x}$。两人的初始禀赋分别是一单位当期商品和一股股票。用代表性参与者求出均衡规划权重、消费配置和证券价格。
+\WJTenExample{ex:wj-ten-2} 沿用例~\ref{ex:wj-ten-1} 的经济。三个日期和状态对应的总消费为 $(C_0,C_a,C_b)=(1,2,1)$，未来两状态等概率。参与者 1 和 2 在每一处的单项效用分别为 $\log c_1$ 和 $2\sqrt{c_2}$，其中 $c_k$ 表示参与者 $k$ 在该处的消费。两人的初始禀赋分别是一单位当期商品和一股股票。用代表性参与者求出均衡规划权重、消费配置和证券价格。
 \end{question}
 \begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
-\textbf{给定权重，先分配总消费。}把参与者 1 的权重归一为 $1$，参与者 2 的权重记为 $\mu>0$。未来的状态概率对两人的效用乘的是同一个因子，且两人的单项效用不随时期或状态改变，所以每一处的资源都按同一个规则分配。用 $x_1,x_2$ 表示该处两人的消费，定义代表性参与者的单项效用为
+\textbf{给定权重，先分配总消费。}把参与者 1 的权重归一为 $1$，参与者 2 的权重记为 $\mu>0$。未来的状态概率对两人的效用乘的是同一个因子，且两人的单项效用不随时期或状态改变，所以每一处的资源都按同一个规则分配。给定该处的总消费 $C$，代表性参与者的单项效用为
 \[
- u(C)=\max_{\substack{x_1+x_2=C\\ x_1>0,\,x_2\ge0}}
-       \{\log x_1+2\mu\sqrt{x_2}\}.
+ \begin{aligned}
+ u_0(C)=u_1(C)=u(C)=\max_{c_1,c_2}\quad &\log c_1+2\mu\sqrt{c_2}\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ c_1+c_2&=C,\\
+ c_1&>0,\qquad c_2\ge0.
+ \end{aligned}\right.
+ \end{aligned}
 \]
 
 对任意 $C>0$，两人的边际效用在各自消费趋于零时都趋于无穷，因而最优分配在内点。目标函数严格凹，满足资源约束和一阶条件的分配就是唯一最优解。令 $\eta$ 为总资源约束的乘子，则
 \[
- \frac1{x_1}=\eta=\frac{\mu}{\sqrt{x_2}},
+ \frac1{c_1}=\eta=\frac{\mu}{\sqrt{c_2}},
  \qquad
- x_2=\mu^2x_1^2,\qquad C=x_1+\mu^2x_1^2.
+ c_2=\mu^2c_1^2,\qquad C=c_1+\mu^2c_1^2.
 \]
 
-取二次方程的正根，并用总资源约束的乘子得到代表性参与者的边际效用：
+把给定总消费 $C$ 时的最优分配记为 $c_1(C),c_2(C)$。取二次方程的正根，并用总资源约束的乘子得到代表性参与者的边际效用：
 \[
- x_1(C)=\frac{\sqrt{1+4\mu^2C}-1}{2\mu^2},\qquad
- x_2(C)=C-x_1(C),\qquad u'(C)=\eta=\frac1{x_1(C)}.
+ c_1(C)=\frac{\sqrt{1+4\mu^2C}-1}{2\mu^2},\qquad
+ c_2(C)=C-c_1(C),\qquad u'(C)=\eta=\frac1{c_1(C)}.
 \]
 
 代入各日期与状态的总资源，参与者 1 的消费为
 \[
- c_{1,0}=c_{1,b}=x_1(1)=\frac{\sqrt{1+4\mu^2}-1}{2\mu^2},
+ c_{1,0}=c_{1,b}=c_1(1)=\frac{\sqrt{1+4\mu^2}-1}{2\mu^2},
  \qquad
- c_{1,a}=x_1(2)=\frac{\sqrt{1+8\mu^2}-1}{2\mu^2}.
+ c_{1,a}=c_1(2)=\frac{\sqrt{1+8\mu^2}-1}{2\mu^2}.
 \]
 
 \textbf{由边际效用求状态价格。}代表性参与者的跨期效用为 $u(C_0)+\tfrac12 u(C_a)+\tfrac12 u(C_b)$。以当期商品为计价单位，每个状态价格等于该状态的概率乘以未来边际效用相对于当期边际效用的比值：
 \[
  \begin{aligned}
  \phi_a&=\frac{\tfrac12 u'(2)}{u'(1)}
-       =\frac{x_1(1)}{2x_1(2)}
+       =\frac{c_1(1)}{2c_1(2)}
        =\frac{\sqrt{1+4\mu^2}-1}{2(\sqrt{1+8\mu^2}-1)},\\
  \phi_b&=\frac{\tfrac12 u'(1)}{u'(1)}=\frac12.
  \end{aligned}
@@ -767,12 +835,12 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 \textbf{用个人预算确定权重。}参与者 1 的财富为 $1$。按上面的状态价格，他的消费计划必须满足
 \[
- 1=x_1(1)+\underbrace{\phi_a x_1(2)}_{\tfrac12 x_1(1)}
-           +\underbrace{\phi_b x_1(1)}_{\tfrac12 x_1(1)}
-   =2x_1(1)=\frac{\sqrt{1+4\mu^2}-1}{\mu^2}.
+ 1=c_{1,0}+\underbrace{\phi_a c_{1,a}}_{\tfrac12 c_1(1)}
+           +\underbrace{\phi_b c_{1,b}}_{\tfrac12 c_1(1)}
+   =2c_1(1)=\frac{\sqrt{1+4\mu^2}-1}{\mu^2}.
 \]
 
-于是 $x_1(1)=1/2$。代入 $1=x_1(1)+\mu^2x_1(1)^2$ 得 $\mu^2=2$，即 $\mu=\sqrt{2}$。由分享规则得 $x_1(2)=(\sqrt{17}-1)/4$。第二人在每一处消费剩余资源，所以两人的均衡消费计划为
+于是 $c_1(1)=1/2$。代入 $1=c_1(1)+\mu^2c_1(1)^2$ 得 $\mu^2=2$，即 $\mu=\sqrt{2}$。由分享规则得 $c_1(2)=(\sqrt{17}-1)/4$。第二人在每一处消费剩余资源，所以两人的均衡消费计划为
 \[
  c_1^*=\left(\tfrac12,\tfrac{\sqrt{17}-1}{4},\tfrac12\right)^{\mathsf T},
  \qquad
@@ -794,77 +862,141 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 \section{加总}\label{sec:wj-ten-4}
 \subsection{简单加总与财富分布}
-如果聚合效用与个人效用同属一个简单函数族，就能直接从总资源求价格。以下给出平移幂效用的加总。
+一般情况下，个人的效用函数即使具有相同形式，加权最优值也可能变成另一种形式。初始财富分布改变时，支持均衡的规划权重可能随之改变，聚合效用和价格也可能改变。若聚合效用仍属于个人效用所在的简单函数族，且权重只影响可归一化的尺度，就称为\textbf{简单加总}。下面用平移幂效用说明何时能够从总资源直接求价格。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTenTheorem{thm:wj-ten-9}{} 若
 \[
  u_k(c)=\frac{(d_k+c)^{1-\gamma}}{1-\gamma},\qquad
  \gamma>0,\quad\gamma\ne1,\quad d_k+c>0,
 \]
-则在内点最优分配下，正权重聚合效用为
+则在内点最优分配下，代表性参与者的效用经归一化后具有相同的形式：
 \[
- u(C)=A(\mu)\frac{(d+C)^{1-\gamma}}{1-\gamma},\quad
- d=\sum_kd_k,\quad A(\mu)=\left(\sum_k\mu_k^{1/\gamma}\right)^\gamma.
+ u(C)=\frac{(d+C)^{1-\gamma}}{1-\gamma},\qquad d=\sum_kd_k.
 \]
-其偏好经正比例标准化后与权重无关。$\gamma=1$ 时取对数形式。
+给定个人效用和总资源，代表性参与者的偏好与初始财富在参与者之间的分布无关。$\gamma=1$ 时取对数形式。
 \end{tcolorbox}
 
-% 教材印刷第 155--156 页。教材记作 mu 的聚合尺度，此处写为 A(mu)。
-\textbf{证明：}给定总资源 $C$ 和正权重 $\mu$，规划者把 $C$ 分给各人。个人消费须非负，且平移后的消费 $d_k+c_k$ 须落在幂效用的定义域内。
-\[
- u(C)=\max_{\substack{\sum_k c_k=C\\ c_k\ge0,\ d_k+c_k>0\;(\forall k)}}
-       \sum_k\mu_k\frac{(d_k+c_k)^{1-\gamma}}{1-\gamma}.
-\]
+% 教材印刷第 155--156 页。沿用教材记号：mu 为聚合尺度，mu_k 为个人规划权重。
+% 按 2021 年勘误核对代回目标函数时的幂次 (1-gamma)/gamma。
+\textbf{证明：}我们要证明，在内点最优分配下，代表性参与者的单项效用仍具有平移幂效用的形式，且在 $\gamma\ne1$ 时规划权重只影响效用的正比例系数。因此，标准化后的聚合偏好与权重无关。证明先固定一个日期或状态，略去时间下标。若各人有相同的时间折现系数，未来的分配目标只是当期目标乘以这个正数，所以在相同总消费下两期的最优分配相同，两期聚合效用也相差这个因子，见第~\ref{sec:wj-ten-common-discount}~节。下面先求给定总消费时的最优分配，再把它代回目标函数，看看权重怎样进入聚合效用。
 
-令 $q$ 为资源约束的乘子。对 $c_k$ 求导，内点一阶条件及其反解为
-\[
- \mu_k(d_k+c_k)^{-\gamma}=q,\qquad
- c_k=(q/\mu_k)^{-1/\gamma}-d_k.
-\]
-
-对 $k$ 求和并使用 $\sum_k c_k=C$，得到
-\[
- C=q^{-1/\gamma}\underbrace{\sum_k\mu_k^{1/\gamma}}_{L}
-       -\underbrace{\sum_k d_k}_{d}.
-\]
-于是 $q^{-1/\gamma}=(C+d)/L$，即 $q=L^\gamma(C+d)^{-\gamma}$。由定理~\ref{thm:wj-ten-8} 的一阶导数关系，$q$ 也是聚合边际效用。令 $A(\mu)=L^\gamma$，代回个人条件，得到
-\[
- d_k+c_k=\left(\frac{\mu_k}{A(\mu)}\right)^{1/\gamma}(C+d).
-\]
-
-将最优消费代回目标函数。先从每项提取共同的消费因子，再合并权重的幂：
+先考虑 $\gamma\ne1$。固定一个日期或状态，给定该处的总消费 $C$ 和规划权重 $\mu_k>0$。规划者选择各人的消费 $c_k$：
 \[
  \begin{aligned}
- u(C)
- &=\sum_k\mu_k\frac{(d_k+c_k)^{1-\gamma}}{1-\gamma}\\
- &=\frac{(C+d)^{1-\gamma}}{1-\gamma}
-   \sum_k\mu_k\left(\frac{\mu_k}{A(\mu)}\right)^{1/\gamma-1}\\
- &=\frac{(C+d)^{1-\gamma}}{1-\gamma}
-   \underbrace{A(\mu)^{1-1/\gamma}\sum_k\mu_k^{1/\gamma}}_{A(\mu)}.
+ u(C)=\max_{(c_k)_k}\quad &\sum_k\mu_k\frac{(d_k+c_k)^{1-\gamma}}{1-\gamma}\\
+ \text{s.t.}\quad &
+ \left\{\begin{aligned}
+ \sum_k c_k&=C,\\
+ c_k&\ge0,\qquad d_k+c_k>0\quad(\forall k).
+ \end{aligned}\right.
  \end{aligned}
 \]
 
-最后一步使用了 $\sum_k\mu_k^{1/\gamma}=A(\mu)^{1/\gamma}$。若将所有权重同时除以 $A(\mu)$，相对权重及最优配置保持不变，新权重的聚合尺度为 $1$。所以在内点范围内，权重影响各人的消费份额，标准化后的单项聚合效用由 $d$ 和 $\gamma$ 决定。
-
-当 $\gamma=1$ 时，取 $u_k(c)=\log(d_k+c)$，令 $M=\sum_j\mu_j$。一阶条件给出 $d_k+c_k=\mu_k/q$，加总得 $C+d=M/q$。代回即得 $d_k+c_k=(\mu_k/M)(C+d)$，所以
+设最优分配为内点。此时各人的非负约束都不绑定，令 $q$ 为资源约束的乘子，拉格朗日函数为
 \[
- u(C)=\sum_k\mu_k\log\left[\frac{\mu_k}{M}(C+d)\right]
-     =M\log(C+d)+
-       \underbrace{\sum_k\mu_k\log(\mu_k/M)}_{\text{与总消费无关}}.
+ \mathcal L=\sum_k\mu_k\frac{(d_k+c_k)^{1-\gamma}}{1-\gamma}
+             +q\left(C-\sum_k c_k\right).
 \]
-除以 $M$ 并去掉常数后，标准化效用为 $\log(C+d)$。
 
-\subsection{共同时间偏好与状态价格}
-若各人两期效用具有共同折现系数 $\rho$，即 $u_{k,0}=u_k$、$u_{k,1}=\rho u_k$，则式~\eqref{eq:wj-10-15} 中的两期聚合边际效用都带有 $A(\mu)$：
+对 $c_k$ 求偏导并令其为零，得到
 \[
+ \mu_k(d_k+c_k)^{-\gamma}=q
+ \quad\Longrightarrow\quad
+ d_k+c_k=\left(\frac{q}{\mu_k}\right)^{-1/\gamma}
+         =\mu_k^{1/\gamma}q^{-1/\gamma}.
+\]
+
+由于 $\mu_k>0$ 且 $d_k+c_ k>0$，乘子 $q$ 为正。目标函数对各人的消费严格凹，因为 $u_k''(c_k)=-\gamma(d_k+c_k)^{-\gamma-1}<0$。因此满足一阶条件和资源约束的内点分配就是唯一的最优分配。
+
+等式右边的 $q^{-1/\gamma}$ 对所有人相同，可以在加总时提出来。令 $L=\sum_j\mu_j^{1/\gamma}$、$d=\sum_jd_j$，利用 $\sum_k c_k=C$ 得
+\[
+ C+d=\sum_k(d_k+c_k)=q^{-1/\gamma}L
+ \quad\Longrightarrow\quad
+ q^{-1/\gamma}=\frac{C+d}{L},
+ \qquad
+ q=L^\gamma(C+d)^{-\gamma}.
+\]
+
+代回个人条件，得到最优分享规则
+\[
+ d_k+c_k^*(C)=s_k(C+d),\qquad
+ s_k=\frac{\mu_k^{1/\gamma}}{L},\qquad \sum_k s_k=1.
+\]
+
+也就是说，每人分到的是\textbf{平移后总消费} $C+d$ 的固定比例，实际消费为 $s_k(C+d)-d_k$。内点公式适用于这些实际消费均为正的情形。
+
+接下来把分享规则代回规划目标。每一项都含有 $(C+d)^{1-\gamma}$。提取这个公因子后，只需计算权重系数之和：
+\[
+ \begin{aligned}
+ u(C)
+ &=\sum_k\mu_k\frac{[s_k(C+d)]^{1-\gamma}}{1-\gamma}\\
+ &=\frac{(C+d)^{1-\gamma}}{1-\gamma}
+   \sum_k\mu_k\left(\frac{\mu_k^{1/\gamma}}{L}\right)^{1-\gamma}\\
+ &=\frac{(C+d)^{1-\gamma}}{1-\gamma}
+   L^{\gamma-1}\sum_k\mu_k^{\,1+(1-\gamma)/\gamma}\\
+ &=\frac{(C+d)^{1-\gamma}}{1-\gamma}
+   L^{\gamma-1}L
+ =\mu\frac{(C+d)^{1-\gamma}}{1-\gamma}.
+ \end{aligned}
+\]
+
+第三行把 $L$ 的幂从求和中提了出来。第四行用到 $1+(1-\gamma)/\gamma=1/\gamma$，所以求和恰好等于 $L$。这里沿用聚合尺度的记号 $\mu=L^\gamma=(\sum_k\mu_k^{1/\gamma})^\gamma$。对所得的 $u(C)$ 求导，得到 $u'(C)=\mu(C+d)^{-\gamma}=q$，与定理~\ref{thm:wj-ten-8} 中聚合边际效用等于资源乘子的结论一致。
+
+各人的规划权重同时除以 $\mu$，规划目标也整体除以这个正常数。权重之比和最优分配保持不变，而新权重的聚合尺度为
+\[
+ \left(\sum_k(\mu_k/\mu)^{1/\gamma}\right)^\gamma
+ =\frac{1}{\mu}\left(\sum_k\mu_k^{1/\gamma}\right)^\gamma=1.
+\]
+
+因此可以令 $\mu=1$，得到定理中的归一化效用。初始财富分布可以通过相对权重影响个人的分享比例 $s_k$。在内点范围内，归一化后的聚合效用由 $d$ 和 $\gamma$ 决定。
+
+当 $\gamma=1$ 时，个人效用取 $u_k(c)=\log(d_k+c)$。令 $M=\sum_j\mu_j$，内点一阶条件与资源约束依次给出
+\[
+ \frac{\mu_k}{d_k+c_k}=q
+ \quad\Longrightarrow\quad
+ d_k+c_k=\frac{\mu_k}{q},
+ \qquad
+ C+d=\frac{M}{q}.
+\]
+
+因此 $q=M/(C+d)$，最优分配满足 $d_k+c_k^*(C)=(\mu_k/M)(C+d)$。利用对数把乘积分成两项，再对参与者加总：
+\[
+ \begin{aligned}
+ u(C)
+ &=\sum_k\mu_k\log\left[\frac{\mu_k}{M}(C+d)\right]\\
+ &=\sum_k\mu_k\bigl[\log(C+d)+\log(\mu_k/M)\bigr]\\
+ &=M\log(C+d)+
+   \underbrace{\sum_k\mu_k\log(\mu_k/M)}_{\text{与总消费无关}}.
+ \end{aligned}
+\]
+
+减去常数项再除以正数 $M$，得到标准化效用 $\log(C+d)$。\hfill$\square$
+
+\subsection{共同时间偏好与状态价格}\label{sec:wj-ten-common-discount}
+% 教材印刷第 156 页，定理 10.9 后的状态价格推导。
+定理~\ref{thm:wj-ten-9} 给出了聚合效用的形式。现在要用它直接从总消费求出状态价格，省去先求个人均衡消费和规划权重的步骤。
+
+设各人有相同的折现系数 $\rho>0$，即 $u_{k,0}=u_k$、$u_{k,1}=\rho u_k$。对同一个总消费水平 $C$，当期和未来某个状态的分配问题都在式~\eqref{eq:wj-10-12} 给出的可行集合上求最大值。未来的目标函数是 $\sum_k\mu_k\rho u_k(c_k)=\rho\sum_k\mu_ku_k(c_k)$。乘以正数 $\rho$ 保留了各可行分配的效用排序，最大值也恰好乘以 $\rho$。因此，
+\[
+ u_1(C)=\rho u_0(C),\qquad
+ u_1'(C)=\rho u_0'(C).
+\]
+
+在内点范围内，定理~\ref{thm:wj-ten-9} 的推导给出归一化前的聚合边际效用 $u_0'(C)=\mu(d+C)^{-\gamma}$。按式~\eqref{eq:wj-10-15}，用状态 $\omega$ 的聚合边际效用除以当期的聚合边际效用，再乘以状态概率，得到
+\[
+ \begin{aligned}
  \phi_\omega
- =p_\omega\underbrace{
- \frac{\rho A(\mu)(d+C_{1\omega})^{-\gamma}}{A(\mu)(d+C_0)^{-\gamma}}
- }_{\text{状态价格密度 }\phi_\omega/p_\omega}
+ &=p_\omega\frac{u_1'(C_{1\omega})}{u_0'(C_0)}
+ =p_\omega\frac{\rho u_0'(C_{1\omega})}{u_0'(C_0)}\\
+ &=p_\omega\frac{\rho\mu(d+C_{1\omega})^{-\gamma}}
+                   {\mu(d+C_0)^{-\gamma}}
  =\rho p_\omega\left(\frac{d+C_0}{d+C_{1\omega}}\right)^\gamma.
+ \end{aligned}
 \]
 
-在两期最优分配均为内点时，状态价格由总资源和共同偏好参数决定，个人禀赋份额只影响消费分配。若各人的折现系数分别为 $\rho_k$，未来期的有效权重是 $(\mu_k\rho_k)_k$，两期聚合尺度之比为 $A((\mu_k\rho_k)_k)/A(\mu)$，一般随权重变化。共同的 $\rho$ 使 $A(\rho\mu)=\rho A(\mu)$，因此比值简化为 $\rho$。若个人消费的非负约束绑定，则须按式~\eqref{eq:wj-10-12} 的可行集合重新求聚合效用。
+同一个聚合尺度 $\mu$ 同时出现在分子和分母中，因而约掉。若一开始就按定理取 $\mu=1$，也得到同一个状态价格。$\rho$ 只乘在未来的边际效用上，所以仍出现在状态价格中。在当期和未来各状态的最优分配均为内点时，给定各日期和状态的总资源、状态概率和偏好参数，个人禀赋份额只影响消费分配。
+
+若各人的折现系数不同，记未来期的有效权重为 $\widehat\mu_k=\rho_k\mu_k$，聚合尺度为 $\widehat\mu=(\sum_k\widehat\mu_k^{1/\gamma})^\gamma$。两期聚合尺度之比 $\widehat\mu/\mu$ 一般随权重变化。若个人消费的非负约束绑定，则须按式~\eqref{eq:wj-10-12} 的可行集合重新求聚合效用。
 
 \section{基于消费的资本资产定价模型}\label{sec:wj-ten-5}
 \subsection{基于消费的定价关系}
@@ -873,49 +1005,64 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \[
  \begin{aligned}
  S_n&=\sum_\omega \phi_\omega X_{\omega,n}\\
- &=\sum_\omega p_\omega\frac{u'_{k,1}(c_{k,1\omega})}{u'_{k,0}(c_{k,0})}X_{\omega,n}\\
+ &=\sum_\omega
+   \underbrace{p_\omega\frac{u'_{k,1}(c_{k,1\omega})}{u'_{k,0}(c_{k,0})}}_{\phi_\omega\;\text{（欧拉方程）}}
+   X_{\omega,n}\\
  &=\sum_\omega p_\omega
-   \underbrace{\frac{u_1'(C_{1\omega})}{u_0'(C_0)}}_{m_\omega}
+   \underbrace{\frac{u_1'(C_{1\omega})}{u_0'(C_0)}}_{\pi_\omega}
    X_{\omega,n}.
  \end{aligned}
 \]
 
-这一步把状态价格定价写成按实际概率计算的期望。$m_\omega$ 衡量状态 $\omega$ 的一单位未来消费相对于一单位当期消费的边际价值。
+式~\eqref{eq:wj-10-3} 的第一个等式是状态证券的欧拉方程。在内点最优时，买入一单位状态 $\omega$ 的消费所增加的期望边际效用，恰好等于为此减少当期消费所损失的边际效用。用式~\eqref{eq:wj-10-15} 换成代表性参与者的边际效用比后，$\pi_\omega$ 衡量该状态下一单位未来消费相对于一单位当期消费的边际价值，证券价格便是按实际概率计算的贴现支付期望。
 
 \begin{tcolorbox}[knowledge,title=消费定价公式,breakable=false]
-状态价格满足 $\phi_\omega=p_\omega m_\omega$，其中 $m$ 是\hyperlink{wj-stochastic-discount-factor}{随机贴现因子}。对支付为 $\widetilde X_n$ 的证券，
+状态价格满足 $\phi_\omega=p_\omega \pi_\omega$，其中 $\pi_\omega$ 是\hyperlink{wj-stochastic-discount-factor}{随机贴现因子}在状态 $\omega$ 的取值。对支付为 $\widetilde X_n$ 的证券，
 \begin{equation}
- S_n=\mathrm E[\widetilde m\widetilde X_n],\qquad
- \widetilde m=\frac{u_1'(\widetilde C_1)}{u_0'(C_0)}.
+ S_n=\mathrm E\!\left[
+   \underbrace{\frac{u_1'(\widetilde C_1)}{u_0'(C_0)}}_{\widetilde\pi}
+   \,\widetilde X_n
+ \right]
+ =\mathrm E[\widetilde\pi\,\widetilde X_n],\qquad
+ \widetilde\pi\equiv\frac{u_1'(\widetilde C_1)}{u_0'(C_0)}.
  \label{eq:wj-10-16}
 \end{equation}
-$\widetilde m$ 为随机贴现因子，也称定价核。
+$\widetilde\pi$ 为随机贴现因子，也称定价核。其状态取值 $\pi_\omega=\phi_\omega/p_\omega$ 对应式~\eqref{eq:wj-six-sdf} 的 $m_\omega$。
 \end{tcolorbox}
 
-无风险债券支付恒为 $1$，因此
+无风险债券在每个状态都支付 $1$。将这个支付代入式~\eqref{eq:wj-10-16}，债券价格就是定价核的期望。每投入 $B$ 单位当期消费，下一期确定收到 $1$ 单位消费，所以 $1+r_F=1/B$。因此
 \begin{equation}
- B=\mathrm E[\widetilde m]=\frac1{1+r_F}.
+ B=\mathrm E[\widetilde\pi]=\frac1{1+r_F}.
  \label{eq:wj-10-17}
 \end{equation}
 
-由式~\eqref{eq:wj-four-8}（状态价格归一化），把本章的 $\phi_\omega=p_\omega m_\omega$ 和债券价格 $B$ 代入，就得到风险中性概率
+由式~\eqref{eq:wj-four-8}（状态价格归一化），把本章的 $\phi_\omega=p_\omega \pi_\omega$ 和债券价格 $B$ 代入，就得到风险中性概率
 \[
  Q(\omega)=\frac{\phi_\omega}{B}
- =\frac{p_\omega m_\omega}{\underbrace{\mathrm E[\widetilde m]}_{\text{单位无风险债券价格}}}.
+ =\frac{p_\omega \pi_\omega}{\underbrace{\mathrm E[\widetilde\pi]}_{\text{单位无风险债券价格}}}.
 \]
 
-于是 $\mathrm E[\widetilde m\widetilde X_n]=B\sum_\omega Q(\omega)X_{\omega,n}=B\mathrm E^Q[\widetilde X_n]$，与式~\eqref{eq:wj-four-9}（风险中性期望折现定价）一致。
+于是 $\mathrm E[\widetilde\pi\widetilde X_n]=B\sum_\omega Q(\omega)X_{\omega,n}=B\mathrm E^Q[\widetilde X_n]$，与式~\eqref{eq:wj-four-9}（风险中性期望折现定价）一致。
 
-利用乘积期望的协方差分解，
+\Needspace{11\baselineskip}
+为了看清风险怎样影响价格，先将式~\eqref{eq:wj-10-16} 的乘积期望拆成均值的乘积与协方差，再用式~\eqref{eq:wj-10-17} 将 $\mathrm E[\widetilde\pi]$ 换成 $1/(1+r_F)$。
+% 教材印刷第 157 页。式 (10.18) 按勘误用支付 X_n，而非总收益率 x_n。
 \begin{equation}
- S_n=\underbrace{\frac{\mathrm E[\widetilde X_n]}{1+r_F}}_{\text{期望支付的无风险现值}}
- +\underbrace{\operatorname{Cov}(\widetilde m,\widetilde X_n)}_{\text{风险调整}}.
+ \begin{aligned}
+ S_n&=\mathrm E[\widetilde\pi\,\widetilde X_n]\\
+ &=\mathrm E[\widetilde\pi]\,\mathrm E[\widetilde X_n]
+   +\operatorname{Cov}(\widetilde\pi,\widetilde X_n)\\
+ &=\underbrace{\frac{\mathrm E[\widetilde X_n]}{1+r_F}}_{\text{期望支付的无风险现值}}
+   +\underbrace{\operatorname{Cov}(\widetilde\pi,\widetilde X_n)}_{\text{风险调整}}.
+ \end{aligned}
  \label{eq:wj-10-18}
 \end{equation}
 
-总消费较低时，边际效用较高。若证券在这些状态支付更多，其支付与定价核的协方差为正，具有保险价值，价格高于期望支付的无风险现值。若协方差为负，价格低于该现值。支付可以随状态波动，只要它与定价核的协方差为零，价格就等于期望支付的无风险现值。
+定价核 $\widetilde\pi$ 由未来总消费决定。总消费的不确定性通过边际效用反映出来，形成\textbf{总体风险}（aggregate risk）。对单只证券，与定价核共同变动的支付成分反映它对总体风险的暴露，与定价核不相关的支付波动则是\textbf{个体风险}（idiosyncratic risk）。式~\eqref{eq:wj-10-18} 用协方差衡量总体风险带来的价格调整。若证券的支付与定价核的协方差为零，即使支付本身随状态波动，其价格仍等于期望支付的无风险现值。
 
-教材以房屋保险说明支付发生的时机为何重要。保险赔款在房屋受损、投保人需要资源时到账。式~\eqref{eq:wj-10-18} 中的市场价格调整，则取决于赔款是否集中在整个经济消费较低、定价核较高的状态。给定代表性参与者的效用，定价核的波动来自总消费风险，证券的支付波动中与定价核协方差为零的部分不产生价格调整。
+总消费较低时，边际效用较高。若证券在资源稀缺、额外消费价值较高时支付较少，却在资源充裕、额外消费价值较低时支付较多，持有它会加重参与者承担的总体风险。此时 $\operatorname{Cov}(\widetilde\pi,\widetilde X_n)<0$，证券的价格低于期望支付的无风险现值。按式~\eqref{eq:wj-10-18}，折价额就是该协方差的绝对值。负协方差的绝对值越大，折价也越大。
+
+若证券恰在资源稀缺时支付较多、在资源充裕时支付较少，它能在额外消费价值较高时提供资源。此时 $\operatorname{Cov}(\widetilde\pi,\widetilde X_n)>0$，证券具有保险价值，价格比期望支付的无风险现值高出这个协方差。房屋保险体现了支付时机的作用。房屋受损时，赔款能在投保人需要资源时到账。在式~\eqref{eq:wj-10-18} 所描述的市场中，赔款与整个经济的低消费状态越吻合，支付与定价核的协方差就越大。
 
 % 教学补充：将教材印刷第 157--158 页的保险直觉写成两状态算例。
 \begin{tcolorbox}[example,title=补充算例：同样的期望支付为何价格不同]
@@ -929,7 +1076,7 @@ $\widetilde m$ 为随机贴现因子，也称定价核。
  S_{\text{高}}=\tfrac12\cdot\tfrac12\cdot2=\tfrac12.
 \]
 
-单位无风险支付的价格为 $B=\mathrm E[\widetilde m]=3/4$。两份合约的期望支付相同，按无风险利率折现都值 $3/4$。按式~\eqref{eq:wj-10-18}，从各合约价格减去这个共同的折现基准，就得到风险调整：
+单位无风险支付的价格为 $B=\mathrm E[\widetilde\pi]=3/4$。两份合约的期望支付相同，按无风险利率折现都值 $3/4$。按式~\eqref{eq:wj-10-18}，从各合约价格减去这个共同的折现基准，就得到风险调整：
 \[
  S_{\text{低}}-\tfrac34=1-\tfrac34=\tfrac14,\qquad
  S_{\text{高}}-\tfrac34=\tfrac12-\tfrac34=-\tfrac14.
@@ -943,36 +1090,60 @@ $\widetilde m$ 为随机贴现因子，也称定价核。
 \WJInputFigure{10_消费与状态价格}
 
 \subsubsection{收益率、风险溢价与现值}
-对 $S_n>0$ 的证券，记总收益率 $\tilde x_n=\widetilde X_n/S_n$，净收益率 $\tilde r_n=\tilde x_n-1$。除以价格得
+% 教材印刷第 158--159 页：由支付和价格转向收益率表示。
+式~\eqref{eq:wj-10-16} 以消费的边际效用为证券支付定价，式~\eqref{eq:wj-10-18} 则说明支付与边际效用的协方差怎样调整价格。这一定价模型称为\textbf{基于消费的资本资产定价模型}（Consumption-Based Capital Asset Pricing Model，\textbf{CCAPM}）。为了比较不同证券相对于无风险债券的风险溢价，下面把支付和价格的关系改写成收益率的关系。
+
+对 $S_n>0$ 的证券，记总收益率 $\tilde x_n=\widetilde X_n/S_n$，净收益率 $\tilde r_n=\tilde x_n-1$。将式~\eqref{eq:wj-10-16} 两边除以 $S_n$，得到
 \begin{equation}
- \mathrm E[\widetilde m(1+\tilde r_n)]=1.
+ \mathrm E[\widetilde\pi\,\tilde x_n]=1,
+ \qquad \forall n\text{ 满足 } S_n>0.
  \label{eq:wj-10-19}
 \end{equation}
 
-减去无风险债券的同一条件，
+无风险债券的总收益率为 $x_F=1/B=1+r_F$，所以由式~\eqref{eq:wj-10-17} 有
+\[
+ \mathrm E[\widetilde\pi\,x_F]=x_F\mathrm E[\widetilde\pi]=1.
+\]
+
+两式相减，再用 $\tilde x_n-x_F=(1+\tilde r_n)-(1+r_F)=\tilde r_n-r_F$，得到
 \begin{equation}
- \mathrm E[\widetilde m(\tilde r_n-r_F)]=0.
+ \mathrm E[\widetilde\pi(\tilde r_n-r_F)]=0.
  \label{eq:wj-10-20}
 \end{equation}
 
-将式~\eqref{eq:wj-10-20} 的左边拆为均值项和协方差项。$r_F$ 是常数，所以协方差中可以直接用 $\tilde r_n$：
+由协方差的定义 $\operatorname{Cov}(X,Y)=\mathrm E[XY]-\mathrm E[X]\mathrm E[Y]$，移项得到
 \[
- 0=\underbrace{\mathrm E[\widetilde m]}_{1/(1+r_F)}
-   (\bar r_n-r_F)+\operatorname{Cov}(\widetilde m,\tilde r_n).
+ \mathrm E[XY]=\mathrm E[X]\,\mathrm E[Y]+\operatorname{Cov}(X,Y).
+\]
+
+取 $X=\widetilde\pi$、$Y=\tilde r_n-r_F$，式~\eqref{eq:wj-10-20} 就可写成
+\[
+ 0=\mathrm E[\widetilde\pi]\,\mathrm E[\tilde r_n-r_F]
+   +\operatorname{Cov}(\widetilde\pi,\tilde r_n-r_F).
+\]
+
+由于 $r_F$ 是常数，$\mathrm E[\tilde r_n-r_F]=\mathrm E[\tilde r_n]-r_F$。协方差取决于变量相对各自均值的偏差，而减去 $r_F$ 会使收益率及其均值同时降低 $r_F$，因此
+\[
+ (\tilde r_n-r_F)-\mathrm E[\tilde r_n-r_F]
+ =\tilde r_n-\mathrm E[\tilde r_n].
+\]
+所以 $\operatorname{Cov}(\widetilde\pi,\tilde r_n-r_F)=\operatorname{Cov}(\widetilde\pi,\tilde r_n)$。将均值项与协方差项代回，得到
+\[
+ 0=\underbrace{\mathrm E[\widetilde\pi]}_{1/(1+r_F)}
+   \bigl(\mathrm E[\tilde r_n]-r_F\bigr)+\operatorname{Cov}(\widetilde\pi,\tilde r_n).
 \]
 
 用式~\eqref{eq:wj-10-17} 代入定价核的期望，再移项得到
 \begin{tcolorbox}[knowledge,title=精确风险溢价关系,breakable=false]
 \begin{equation}
- \bar r_n-r_F=-(1+r_F)\operatorname{Cov}(\widetilde m,\tilde r_n),
- \qquad\bar r_n=\mathrm E[\tilde r_n].
+ \mathrm E[\tilde r_n]-r_F=-(1+r_F)\operatorname{Cov}(\widetilde\pi,\tilde r_n).
  \label{eq:wj-10-21}
 \end{equation}
 \end{tcolorbox}
 
 这一式子衡量的是收益与边际效用共同变化所承担的风险，而不是收益的总波动。收益在消费稀缺、边际效用高时偏低的资产，其协方差为负，需要正的期望超额收益作为补偿；在这些状态收益偏高的保险型资产，其协方差为正，可以具有负风险溢价。零协方差只意味着这一模型中的风险溢价为零，并不意味着收益没有波动。
 
-当期望总收益率 $1+\bar r_n\ne 0$ 时，价格可写成期望支付的现值：
+记 $\bar r_n=\mathrm E[\tilde r_n]$。把 $\widetilde X_n=S_n(1+\tilde r_n)$ 两边取期望，得到 $\mathrm E[\widetilde X_n]=S_n(1+\bar r_n)$。当 $1+\bar r_n\ne0$ 时，解出证券价格，就得到现值公式
 \begin{equation}
  S_n=\frac{\mathrm E[\widetilde X_n]}{1+\bar r_n}.
  \label{eq:wj-10-22}
@@ -981,31 +1152,57 @@ $\widetilde m$ 为随机贴现因子，也称定价核。
 这里的折现率是证券自身的期望净收益率 $\bar r_n=r_F+(\bar r_n-r_F)$。无风险利率体现跨期交换的价格，括号中的风险溢价由式~\eqref{eq:wj-10-21} 决定。证券提供保险时，风险溢价可以为负，所用的折现率也可以低于无风险利率。
 
 \subsection{基于消费的实利率理论}
-令 $u_0=u$、$u_1=\rho u$，总消费增长率为 $\tilde g=\widetilde C_1/C_0-1$。未来消费偏离 $C_0$ 的量为 $C_0\tilde g$。在增长率取值较小时，逐状态展开边际效用：
+令 $u_0=u$、$u_1=\rho u$，其中 $\rho>0$。设 $C_0>0$、$u'(C_0)>0$，且 $u$ 在 $C_0$ 附近二阶连续可微。总消费增长率为 $\tilde g=\widetilde C_1/C_0-1$，在状态 $\omega$ 取值为 $g_\omega$。以下要求\textbf{各状态的消费增长率都接近零}，即 $\delta=\max_\omega\lvert g_\omega\rvert$ 足够小，使各状态的未来消费均处于 $C_0$ 附近的光滑区间内。
+
+若 $f$ 在 $x_0$ 附近有 $J$ 阶连续导数，则在 $x_0$ 处的 $J$ 阶泰勒展开为
+\[
+ f(x)=f\bigl(x_0+(x-x_0)\bigr)
+ =f(x_0)+\sum_{n=1}^{J}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+ +o\bigl((x-x_0)^J\bigr),\qquad x\to x_0.
+\]
+
+这里取 $f=u'$，展开点 $x_0=C_0$ 是当期总消费，$x=\widetilde C_1=C_0(1+\tilde g)$ 逐状态取未来总消费。因此 $x-x_0=C_0\tilde g$。取 $J=1$，求和中只留下 $f'(x_0)(x-x_0)=u''(C_0)C_0\tilde g$。由于 $C_0$ 固定，余项 $o(C_0\tilde g)$ 可写成 $o(\tilde g)$，得到
 \[
  u'(C_0(1+\tilde g))=u'(C_0)+u''(C_0)C_0\tilde g+o(\tilde g).
 \]
 
 除以当期边际效用 $u'(C_0)$，再乘以折现系数 $\rho$，得
 \begin{equation}
- \widetilde m=\rho\frac{u'(C_0(1+\tilde g))}{u'(C_0)}
- =\rho[1-R\tilde g+o(\tilde g)],\qquad
- R=-\frac{C_0u''(C_0)}{u'(C_0)}.
+ \widetilde\pi=\rho\frac{u'(\widetilde C_1)}{u'(C_0)}
+ =\rho\left[1-
+ \underbrace{\left(-\frac{C_0u''(C_0)}{u'(C_0)}\right)}_{R}
+ \tilde g+o(\tilde g)\right].
  \label{eq:wj-10-23}
 \end{equation}
 
-$-R=C_0u''(C_0)/u'(C_0)$ 是边际效用对消费在 $C_0$ 处的弹性。消费从 $C_0$ 增长 $1\%$ 时，边际效用约下降 $R\%$。
+括号中的 $R=-C_0u''(C_0)/u'(C_0)$ 是代表性参与者在当期总消费 $C_0$ 处的\hyperlink{wj-relative-risk-aversion}{\textbf{相对风险厌恶系数}}。$-R$ 是边际效用对消费在 $C_0$ 处的弹性。消费从 $C_0$ 增长 $1\%$ 时，边际效用约下降 $R\%$。
 
-式~\eqref{eq:wj-10-17} 先给出精确关系 $1+r_F=1/\mathrm E[\widetilde m]$。用 $\mathrm E[\widetilde m]\approx\rho(1-R\bar g)$ 代入，再用 $(1-R\bar g)^{-1}\approx 1+R\bar g$，得到
+各状态都在同一展开点 $C_0$ 处展开。随着 $\delta\to0$，逐状态余项的绝对值的最大值是 $o(\delta)$，按概率加权后的余项也为 $o(\delta)$。因此对式~\eqref{eq:wj-10-23} 取期望，得到
+\[
+ B=\mathrm E[\widetilde\pi]
+ =\rho(1-R\bar g)+o(\delta),\qquad \bar g=\mathrm E[\tilde g].
+\]
+
+式~\eqref{eq:wj-10-17} 给出精确关系 $1+r_F=1/B$。当 $\delta$ 足够小，$B$ 和 $\rho(1-R\bar g)$ 都接近正数 $\rho$，两者取倒数后的差仍为 $o(\delta)$。对 $f(x)=(1-x)^{-1}$ 在 $x_0=0$ 处展开。由 $f(0)=f'(0)=1$，有 $f(x)=1+x+O(x^2)$。取 $x=R\bar g$，当 $\lvert R\bar g\rvert$ 足够小时保留一阶项，得到
+\[
+ 1+r_F\approx\frac{1}{\rho(1-R\bar g)}
+ \approx\frac{1}{\rho}(1+R\bar g).
+\]
+
+两边减去 $1$，得到
 \begin{equation}
  r_F\approx\left(\frac1\rho-1\right)+\frac R\rho\bar g,
- \qquad\bar g=\mathrm E[\tilde g].
  \label{eq:wj-10-24}
 \end{equation}
 
 当预期增长率为零时，一阶近似的基准利率是 $1/\rho-1$。$\rho$ 越小，未来效用的权重越低，基准利率越高。预期增长越快，未来消费越充裕，未来消费的边际效用越低，债券价格随之下降，实利率在近似式中上升。$R$ 越大，边际效用对消费变化越敏感。因此在平均增长率为正时，较大的 $R$ 会提高近似利率，在平均增长率为负时则会降低近似利率。
 
-式~\eqref{eq:wj-10-24} 只保留增长率的一阶项，所以只出现平均增长率。增长的不确定性如何影响精确利率，要回到 $\mathrm E[\widetilde m]$ 计算。这里的借贷以消费品计价，所得利率是实利率。
+式~\eqref{eq:wj-10-24} 只保留增长率的一阶项，所以只出现平均增长率。即使 $\bar g=0$，只要各状态的增长率波动较大，仍应由式~\eqref{eq:wj-10-17} 计算精确利率。例如，取 $u(C)=\log C$，令增长率等概率为 $50\%$ 或 $-50\%$。此时 $\bar g=0$，一阶近似给出 $B\approx\rho$。按定价核的精确定义，$\widetilde\pi=\rho/(1+\tilde g)$，故
+\[
+ B=\frac{\rho}{2}\left(\frac{1}{1.5}+\frac{1}{0.5}\right)=\frac{4\rho}{3}.
+\]
+
+这里的借贷以消费品计价，所得利率是\textbf{实利率}，表示放弃一单位当期消费可以换来多少额外的未来消费。以货币计价的借贷所给出的是名义利率。
 
 % 教材例 10.3（印刷页 160）。
 \begin{tcolorbox}[example]
@@ -1013,7 +1210,7 @@ $-R=C_0u''(C_0)/u'(C_0)$ 是边际效用对消费在 $C_0$ 处的弹性。消费
 \WJTenExample{ex:wj-ten-3} 设代表性参与者的效用为 $u(C_0)+\rho\,\mathrm E[u(\widetilde C_1)]$，其中 $\rho=0.98$，当期消费处的相对风险厌恶系数为 $R=2$，总消费增长率为 $2\%$。在消费增长率较小的条件下，求无风险实利率的一阶近似。
 \end{question}
 \begin{solution}[blank-type=manual]
-本题给定的增长率为 $2\%$，因此在近似式中取 $\bar g=2\%$。按式~\eqref{eq:wj-10-23}（定价核关于消费增长的一阶展开），$\mathrm E[\widetilde m]\approx\rho(1-R\bar g)$。单位无风险债券的价格等于 $\mathrm E[\widetilde m]$，其总收益率是价格的倒数。对倒数也只保留增长率的一阶项，可得式~\eqref{eq:wj-10-24}：
+本题给定的增长率为 $2\%$，因此在近似式中取 $\bar g=2\%$。按式~\eqref{eq:wj-10-23}（定价核关于消费增长的一阶展开），$\mathrm E[\widetilde\pi]\approx\rho(1-R\bar g)$。单位无风险债券的价格等于 $\mathrm E[\widetilde\pi]$，其总收益率是价格的倒数。对倒数也只保留增长率的一阶项，可得式~\eqref{eq:wj-10-24}：
 \[
  r_F\approx
  \underbrace{\left(\frac1{0.98}-1\right)}_{\text{零增长时的利率}}
@@ -1027,77 +1224,135 @@ $-R=C_0u''(C_0)/u'(C_0)$ 是边际效用对消费在 $C_0$ 处的弹性。消费
 
 \subsection{风险的测度及其溢价}
 \subsubsection{总消费索取权与近似市场组合定价}
-把式~\eqref{eq:wj-10-23}（定价核关于消费增长的一阶展开）代入精确风险溢价式~\eqref{eq:wj-10-21}，得
+上一节用定价核的期望求无风险利率。本节先看总消费增长如何进入风险资产的溢价，再用复制总消费的组合把这个溢价写成贝塔定价式。
+
+将式~\eqref{eq:wj-10-23} 中定价核的一阶近似 $\widetilde\pi\approx\rho-\rho R\tilde g$ 代入式~\eqref{eq:wj-10-21}（精确风险溢价关系）。利用协方差的线性，以及常数 $\rho$ 与收益率的协方差为零，得到
 \[
- \bar r_n-r_F\approx(1+r_F)\rho R\operatorname{Cov}(\tilde g,\tilde r_n).
+ \begin{aligned}
+ \bar r_n-r_F&=-(1+r_F)\operatorname{Cov}(\widetilde\pi,\tilde r_n)\\
+ &\approx -(1+r_F)\operatorname{Cov}(\rho-\rho R\tilde g,\tilde r_n)\\
+ &=(1+r_F)\rho R\operatorname{Cov}(\tilde g,\tilde r_n).
+ \end{aligned}
 \]
 
-若进一步代入式~\eqref{eq:wj-10-24} 的利率近似，便有 $(1+r_F)\rho\approx 1+R\bar g$。这样也可将上式写成 $(1+R\bar g)R\operatorname{Cov}(\tilde g,\tilde r_n)$。下文保留 $(1+r_F)\rho$，便于看出该系数来自无风险债券的定价关系。
+接下来把系数 $(1+r_F)\rho$ 写成平均消费增长率的函数。将式~\eqref{eq:wj-10-24}（无风险实利率的一阶近似）两边加 $1$ 再乘以 $\rho$，得到 $(1+r_F)\rho\approx 1+R\bar g$。代回上一式，得到
+\begin{equation}
+ \bar r_n-r_F\approx(1+R\bar g)R\operatorname{Cov}(\tilde g,\tilde r_n).
+ \tag{$*$}\label{eq:wj-10-risk-growth-star}
+\end{equation}
 
-完全市场中，可以用证券组合复制未来总消费 $\widetilde C_1$。下标 $m$ 用于标记这个总消费组合，$\widetilde m$ 仍表示定价核。若未来总禀赋全部来自初始证券的支付，市场组合 $\theta_M$ 就是这样一个复制组合，满足 $X\theta_M=C_1$。用状态证券表示时，状态 $\omega$ 的头寸为 $C_{1\omega}$，因此该总消费索取权的价格为 $v_m=\phi^{\mathsf T}C_1$。记其净收益率为 $\tilde r_m$，由定义，
+为了把式~\eqref{eq:wj-10-risk-growth-star} 写成收益率之间的关系，构造一个支付等于未来总消费 $\widetilde C_1$ 的组合 $m$。完全市场保证这种支付可以复制。若未来总禀赋全部来自证券的支付，按证券总供给持有的市场组合 $\theta_M$ 就满足 $X\theta_M=C_1$，从而可以作为组合 $m$。
+
+用 Arrow--Debreu 状态证券表示时，在每个状态 $\omega$ 持有 $C_{1\omega}$ 份该状态的证券，因此组合头寸为 $\theta_m=C_1$，价格为 $v_m=\phi^{\mathsf T}\theta_m=\phi^{\mathsf T}C_1$。用上一节的定义 $\widetilde C_1=C_0(1+\tilde g)$ 代入净收益率公式，
 \[
- \tilde r_m=\frac{\widetilde C_1}{v_m}-1,\qquad
- \tilde g=\frac{v_m}{C_0}(1+\tilde r_m)-1.
+ \tilde r_m=\frac{\widetilde C_1-v_m}{v_m}
+ =\frac{C_0(1+\tilde g)-v_m}{v_m}.
 \]
 
-故消费增长与该组合收益率具有确定的仿射关系。风险溢价的近似式可写成
+两边加 $1$，再乘以 $v_m/C_0$ 并减去 $1$，解得 $\tilde g=(v_m/C_0)(1+\tilde r_m)-1$。代入式~\eqref{eq:wj-10-risk-growth-star} 的协方差项，常数 $v_m/C_0-1$ 的贡献为零，留下
 \[
- \bar r_n-r_F\approx K_m\operatorname{Cov}(\tilde r_m,\tilde r_n),\qquad
- K_m=(1+r_F)\rho R\frac{v_m}{C_0}.
+ \operatorname{Cov}(\tilde g,\tilde r_n)
+ =\operatorname{Cov}\!\left(\frac{v_m}{C_0}(1+\tilde r_m)-1,\tilde r_n\right)
+ =\frac{v_m}{C_0}\operatorname{Cov}(\tilde r_m,\tilde r_n).
 \]
 
-对组合 $m$ 本身也应用此式，得 $\bar r_m-r_F\approx K_m\operatorname{Var}(\tilde r_m)$。若其收益方差为正，消去共同系数得
+所以，对任意具有净收益率 $\tilde r_n$ 的资产，
 \[
  \bar r_n-r_F\approx
- \underbrace{\beta_{n,m}}_{\text{贝塔暴露}}\,
- \underbrace{(\bar r_m-r_F)}_{\text{基准组合的风险溢价}},\qquad
- \beta_{n,m}=\frac{\operatorname{Cov}(\tilde r_n,\tilde r_m)}
- {\operatorname{Var}(\tilde r_m)}.
+ (1+R\bar g)R\frac{v_m}{C_0}\operatorname{Cov}(\tilde r_m,\tilde r_n).
 \]
 
-组合 $m$ 的贝塔等于 $1$，其风险溢价对应一单位贝塔暴露。把证券 $n$ 的收益率对组合 $m$ 的收益率作含截距的一元回归，$\beta_{n,m}$ 就是总体回归斜率。若总消费组合与可观测的市场组合重合，就可以用市场组合收益率估计这个贝塔。
+% 教材印刷页 161 及 2021 年勘误：令 n=m 时仍须保留 v_m/C_0。
+令 $n=m$，上式中的协方差就变成 $\sigma_m^2=\operatorname{Var}(\tilde r_m)$，因而
+\[
+ \bar r_m-r_F\approx (1+R\bar g)R\frac{v_m}{C_0}\sigma_m^2.
+\]
 
-这里的近似来自对边际效用作一阶展开。若定价核本身是总消费的非恒定仿射函数，它也是组合 $m$ 收益率的仿射函数，以上贝塔关系便精确成立。第~\ref{sec:wj-thirteen-5}~节的二次效用模型给出了一个例子。在该节的证券市场经济中，市场组合的支付恰好等于总消费。
+当 $\sigma_m^2>0$ 时，将任意资产的协方差写成 $\operatorname{Cov}(\tilde r_m,\tilde r_n)=\beta_{n,m}\sigma_m^2$，就能把其溢价公式中的共同因子与 $\sigma_m^2$ 合在一起，用上一式的 $\bar r_m-r_F$ 替换，得到
+\begin{equation}
+ \bar r_n-r_F\approx
+ \underbrace{\beta_{n,m}}_{\text{对总体风险的暴露}}\,
+ \underbrace{(\bar r_m-r_F)}_{\text{单位总体风险的溢价}},\qquad
+ \beta_{n,m}=\frac{\operatorname{Cov}(\tilde r_n,\tilde r_m)}{\sigma_m^2}.
+ \tag{$**$}\label{eq:wj-10-risk-market-beta}
+\end{equation}
+
+因为组合 $m$ 的支付就是总消费，它的收益波动反映整个经济的总体风险。把证券 $n$ 的收益率对组合 $m$ 的收益率作含截距的一元回归，$\beta_{n,m}$ 是总体回归斜率，衡量证券对这种风险的暴露。组合 $m$ 自己的贝塔为 $1$，所以它的风险溢价就是一单位贝塔所对应的溢价。
+
+式~\eqref{eq:wj-10-risk-market-beta} 具有\textbf{资本资产定价模型}（CAPM）的形式。这里先用消费增长近似边际效用的变化，再用组合 $m$ 的收益率表示消费增长。若定价核本身就是总消费的非恒定仿射函数，它也是 $\tilde r_m$ 的仿射函数，贝塔关系便精确成立。第~\ref{sec:wj-thirteen-5}~节的二次效用模型给出了一个例子。在该节的证券市场经济中，市场组合的支付恰好等于总消费。
 
 \subsubsection{边际效用组合与精确贝塔定价}
-完全性还允许构造一个组合 $q$，令其状态支付等于定价核 $\widetilde m$。这里的 $q$ 是组合的标签，风险中性概率仍记为 $Q(\omega)$。由式~\eqref{eq:wj-10-16}（证券价格等于定价核与支付乘积的期望），
+式~\eqref{eq:wj-10-risk-market-beta} 用组合 $m$ 的收益率近似定价核的变化。要写出精确关系，可在完全市场中构造组合 $q$，使它在每个状态的支付恰好等于该状态的定价核。由式~\eqref{eq:wj-10-16}（定价核的定义），用 Arrow--Debreu 状态证券表示，其支付和持仓为
 \[
- v_q=\mathrm E[\widetilde m^2]>0,\qquad
- \tilde r_q=\frac{\widetilde m}{v_q}-1,\qquad
- \widetilde m=v_q(1+\tilde r_q).
+ X_{q,\omega}=\pi_\omega=\frac{u'_1(C_{1\omega})}{u'_0(C_0)},\qquad
+ \theta_q=(\pi_1,\ldots,\pi_\Omega)^{\mathsf T}.
 \]
 
-代入式~\eqref{eq:wj-10-21}（风险溢价与定价核协方差的关系），
+按状态价格为这组持仓定价，并用 $\phi_\omega=p_\omega\pi_\omega$，得到
 \[
- \bar r_n-r_F=-(1+r_F)v_q\operatorname{Cov}(\tilde r_q,\tilde r_n).
+ v_q=\phi^{\mathsf T}\theta_q
+ =\sum_\omega p_\omega\pi_\omega^2
+ =\mathrm E[\widetilde\pi^2]>0.
 \]
 
-令 $n=q$，得到 $\bar r_q-r_F=-(1+r_F)v_q\operatorname{Var}(\tilde r_q)$。因此，当定价核非退化时，
+组合 $q$ 的随机支付就是 $\widetilde\pi$，因此
+\[
+ \tilde r_q=\frac{\widetilde\pi}{v_q}-1,\qquad
+ \widetilde\pi=v_q(1+\tilde r_q).
+\]
+
+将 $\widetilde\pi=v_q(1+\tilde r_q)$ 代入式~\eqref{eq:wj-10-21} 的协方差。常数项 $v_q$ 的贡献为零，乘数 $v_q$ 可提出协方差，得到
+\[
+ \begin{aligned}
+ \bar r_n-r_F&=-(1+r_F)\operatorname{Cov}\bigl(v_q(1+\tilde r_q),\tilde r_n\bigr)\\
+ & =-(1+r_F)v_q\underbrace{\operatorname{Cov}(\tilde r_n,\tilde r_q)}_{\sigma_{n,q}}.
+ \end{aligned}
+\]
+
+令 $n=q$，协方差变为 $\sigma_q^2=\operatorname{Var}(\tilde r_q)$，所以 $\bar r_q-r_F=-(1+r_F)v_q\sigma_q^2$。当 $\sigma_q^2>0$ 时，在任意资产的溢价式中写成 $\sigma_{n,q}=\beta_{n,q}\sigma_q^2$，再把 $-(1+r_F)v_q\sigma_q^2$ 换成组合 $q$ 的风险溢价，得到
 \begin{tcolorbox}[knowledge,title=精确贝塔定价,breakable=false]
 \begin{equation}
  \bar r_n-r_F=
  \underbrace{\beta_{n,q}}_{\text{贝塔暴露}}\,
  \underbrace{(\bar r_q-r_F)}_{\text{基准组合的风险溢价}},\qquad
- \beta_{n,q}=\frac{\operatorname{Cov}(\tilde r_n,\tilde r_q)}
- {\operatorname{Var}(\tilde r_q)}.
+ \beta_{n,q}=\frac{\sigma_{n,q}}{\sigma_q^2}.
  \label{eq:wj-10-25}
 \end{equation}
 \end{tcolorbox}
 
-该关系是精确的。组合 $q$ 在边际效用高时支付多，具有负风险溢价；它由偏好和总消费决定，通常难以直接观测。若定价核为常数，所有资产的风险溢价均为零。
+式~\eqref{eq:wj-10-25} 是 CCAPM 的另一种精确表达。组合 $q$ 的收益刻画定价核的波动，$\beta_{n,q}$ 衡量资产对这部分总体风险的暴露。定价核波动时，组合 $q$ 在边际效用高的状态支付较多，其风险溢价为负。若定价核为常数，式~\eqref{eq:wj-10-21} 直接给出所有资产的风险溢价为零。
 
-\Needspace{8\baselineskip}
+在总消费组合恰好是市场组合的经济中，可以用市场持仓和价格计算组合 $m$ 的收益率。构造组合 $q$ 则需要知道代表性参与者的边际效用，因此它的收益率通常难以直接观测。这也是两种贝塔形式在实证检验和应用上的差别。
+
+\Needspace{13\baselineskip}
 \WJChapterSummary
+% 对照教材印刷第 162--163 页的八条小结，保留正文中明确的适用条件。
 \begin{tcolorbox}[summary,title=从完全市场到消费定价]
 \begin{enumerate}
- \item 完全性使任意状态支付可复制，个人预算可写成禀赋现值的约束。偏好、概率和总资源相同，且在所比较的均衡状态价格下每个人的禀赋现值相等时，该均衡消费配置和状态价格也适用于对应的 Arrow--Debreu 市场。
- \item 均衡要求个人最优与逐状态市场出清。内点最优使边际替代率等于相对状态价格。
- \item 正权重规划问题构造帕累托最优配置；通过财富转移，可由完全市场均衡支持最优配置。
- \item 给定规划权重，个人消费是总消费的分享函数。共同斜率的风险容忍度产生仿射分享规则。
- \item 代表性参与者将个人效用加总为总消费效用。内点下，共同的 HARA 风险容忍度斜率与时间折现系数使定价与个人财富份额无关。
- \item 价格为 $\mathrm E[\widetilde m\widetilde X]$，风险溢价为收益与定价核协方差的负倍数。消费增长展开产生近似市场组合定价，边际效用组合则产生精确贝塔定价。
+ \item \textbf{完全市场与状态证券。}完全性使任意状态支付可复制，个人预算可用禀赋现值表示。两种市场的偏好、概率和总资源相同，且在所比较的均衡状态价格下每个人的禀赋现值相等时，完全证券市场与 Arrow--Debreu 市场有相同的均衡配置和状态价格，见定理~\ref{thm:wj-ten-1}。
+ \item \textbf{个人最优。}由式~\eqref{eq:wj-10-3}，在内点，状态 $\omega$ 的未来消费相对当期消费的边际替代率等于 $\phi_\omega$，两未来状态之间的边际替代率等于 $\phi_\omega/\phi_{\omega'}$。按概率折算后，状态价格密度越低，该状态的最优消费越高，见定理~\ref{thm:wj-ten-2}。
+ \item \textbf{均衡存在性与唯一性。}均衡还要求各日期、各状态分别出清，见式~\eqref{eq:wj-10-6}。偏好连续、凸且严格单调、个人禀赋严格为正时，均衡存在。个人需求唯一和均衡唯一是两个结论。定理~\ref{thm:wj-ten-3} 后的唯一性证明还要求需求为光滑内点，并对逆边际效用施加弹性条件。
+ \item \textbf{帕累托最优与财富转移。}在本章可微、凹且边际效用为正的模型中，可行内点配置达到帕累托最优，当且仅当各人对每个未来状态相对于当期的边际替代率相同。必要性来自互利交换的反证。充分性可取共同边际替代率为状态价格，将各人财富转移到恰好负担目标消费，再由个人最优、市场出清和第一福利定理得到，见定理~\ref{thm:wj-ten-5}。
+ \item \textbf{最优分享与总体风险。}给定规划权重，由式~\eqref{eq:wj-10-10} 和定理~\ref{thm:wj-ten-6}，总消费较高的状态下每个人都消费较多。各人共同承担总禀赋的波动，个人禀赋中不改变总资源的波动可以通过交易分担。共同斜率的风险容忍度产生仿射分享规则，见定理~\ref{thm:wj-ten-7}。
+ \item \textbf{代表性参与者。}给定支持原均衡的规划权重，每一期、每个状态都先按式~\eqref{eq:wj-10-12} 分配总资源，再把最大化后的加权效用作为该处的聚合效用。代表性参与者以经济的总禀赋为自己的禀赋，其最优条件给出与原经济相同的状态价格，见式~\eqref{eq:wj-10-15}。在定理~\ref{thm:wj-ten-9} 的平移幂效用情形下，各人具有共同时间折现系数且各节点的分配为内点时，可从总消费直接求状态价格。
+ \item \textbf{消费定价公式。}将状态价格写成 $\phi_\omega=p_\omega\pi_\omega$，按状态加总证券支付的现值，就得到式~\eqref{eq:wj-10-16}：
+ \[
+ S_n=\mathrm E\!\left[\frac{u_1'(\widetilde C_1)}{u_0'(C_0)}
+ \widetilde X_n\right]=\mathrm E[\widetilde\pi\,\widetilde X_n],
+ \qquad \widetilde\pi=\frac{u_1'(\widetilde C_1)}{u_0'(C_0)}.
+ \]
+ \item \textbf{现值与风险溢价。}对 $S_n>0$ 且 $1+\bar r_n\ne0$ 的证券，把式~\eqref{eq:wj-10-21} 的风险溢价加到无风险利率上，就得到式~\eqref{eq:wj-10-22} 所用的折现率：
+ \[
+ S_n=\frac{\mathrm E[\widetilde X_n]}{1+\bar r_n},
+ \qquad \bar r_n=\mathrm E[\tilde r_n]
+ =r_F-(1+r_F)\operatorname{Cov}(\widetilde\pi,\tilde r_n).
+ \]
+ 用总消费组合的收益率近似定价核的变化，得到式~\eqref{eq:wj-10-risk-market-beta} 的近似贝塔关系。直接复制定价核，则得到式~\eqref{eq:wj-10-25} 的精确贝塔关系。
 \end{enumerate}
 \end{tcolorbox}
+
+% 教材印刷第 166--167 页参考文献。
+\textbf{延伸阅读。}完全证券市场与状态价格的理论基础见 Arrow (1964) 和 Debreu (1959)。竞争均衡的配置效率可参阅 Mas-Colell、Whinston 和 Green (1995) 以及 Radner (1982)。线性风险容忍度与效用加总见 Wilson (1968) 和 Rubinstein (1974)。关于消费定价模型的系统论述，见 Cochrane (2001) 的 \emph{Asset Pricing}。
 \fi
 
 \WJChapterExercises
