@@ -370,7 +370,9 @@
 
 本节假设 $\Sigma$ 正定，即任何非零系数向量 $x\in\mathbb R^N$ 都满足 $\operatorname{Var}(x^{\mathsf T}\widetilde r)=x^{\mathsf T}\Sigma x>0$。因此，中心化收益率之间没有精确的线性依赖。仅知道每只证券的方差都为正时，若两只证券的净收益率只相差一个常数，做多一只并等额做空另一只，所得头寸的收益仍可能是确定的。
 
-令 $\iota=(1,\ldots,1)^{\mathsf T}$ 为 $N$ 维全 $1$ 列向量。本节在 $\iota^{\mathsf T}z=1$ 的所有实数权重上求前沿，允许卖空。若另外要求各状态的期末财富非负，就要在加入该约束后的可行集上求前沿。
+改变权重会同时改变组合的期望收益率和方差。为了看清两者的取舍，先指定一个目标收益率 $\bar r_p$，再从达到这个目标的组合中选出方差最小的一个。
+
+令 $\iota=(1,\ldots,1)^{\mathsf T}$ 为 $N$ 维全 $1$ 列向量，$\iota^{\mathsf T}z=1$ 表示全部投资额都配置到证券上。本节允许卖空，因此在满足这一预算约束的所有实数权重上求前沿。若另外要求各状态的期末财富非负，就要在加入该约束后的可行集上求前沿。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 达到给定期望收益率 $\bar r_p$ 而方差最小的组合称为\textbf{均值--方差前沿组合}（MVF组合），由下列问题确定：
@@ -387,7 +389,7 @@
 \end{equation}
 \end{tcolorbox}
 
-拉格朗日函数为
+待求的是权重 $z$，目标收益率 $\bar r_p$ 和预算右侧的 $1$ 已给定。把方差乘以 $1/2$ 只为简化求导，最小化得到的权重相同。用 $\lambda_r$ 和 $\lambda_1$ 分别表示目标收益率约束与预算约束的乘数，拉格朗日函数为
 \[
  L=\frac12z^{\mathsf T}\Sigma z
  +\lambda_r\underbrace{(\bar r_p-z^{\mathsf T}\bar r)}_{\text{目标收益差额}}
@@ -400,13 +402,7 @@
  =\frac12\sum_k(\Sigma_{jk}+\Sigma_{kj})z_k=(\Sigma z)_j.
 \]
 
-因此二次型的梯度为 $\Sigma z$。两个线性约束中，$z_j$ 的系数分别为 $\bar r_j$ 和 $1$，故
-\[
- \nabla_z(z^{\mathsf T}\bar r)=\bar r,\qquad
- \nabla_z(z^{\mathsf T}\iota)=\iota.
-\]
-
-把目标均值 $\bar r_p$ 与预算常数 $1$ 视为给定，对 $L$ 求梯度，得到
+因此二次型的梯度为 $\Sigma z$。两个线性约束中，$z_j$ 的系数分别为 $\bar r_j$ 和 $1$，所以 $\nabla_z(z^{\mathsf T}\bar r)=\bar r$，$\nabla_z(z^{\mathsf T}\iota)=\iota$。对 $L$ 求关于 $z$ 的梯度，得到
 \[
  \nabla_z L=\Sigma z-\lambda_r\bar r-\lambda_1\iota=0.
 \]
@@ -417,34 +413,34 @@
  \frac{\partial L}{\partial\lambda_1}=1-z^{\mathsf T}\iota=0.
 \]
 
-本节沿用教材记号
+由权重的一阶条件，$z=\Sigma^{-1}(\lambda_r\bar r+\lambda_1\iota)$。把它代入收益率和预算约束，得到关于两个乘数的方程：
+\[
+ \begin{aligned}
+ \bar r_p=\bar r^{\mathsf T}z
+ &=\lambda_r\bar r^{\mathsf T}\Sigma^{-1}\bar r
+   +\lambda_1\bar r^{\mathsf T}\Sigma^{-1}\iota,\\
+ 1=\iota^{\mathsf T}z
+ &=\lambda_r\iota^{\mathsf T}\Sigma^{-1}\bar r
+   +\lambda_1\iota^{\mathsf T}\Sigma^{-1}\iota.
+ \end{aligned}
+\]
+
+为简写方程的系数和行列式，沿用教材记号
 \[
  a=\iota^{\mathsf T}\Sigma^{-1}\bar r,\quad
  b=\bar r^{\mathsf T}\Sigma^{-1}\bar r,\quad
  c=\iota^{\mathsf T}\Sigma^{-1}\iota,\quad d=bc-a^2.
 \]
 
-由 $\Sigma$ 对称，$(\Sigma^{-1})^{\mathsf T}=(\Sigma^{\mathsf T})^{-1}=\Sigma^{-1}$，所以 $\bar r^{\mathsf T}\Sigma^{-1}\iota$ 也等于 $a$。由于 $\Sigma$ 正定，可写成 $\Sigma=Q\operatorname{diag}(\lambda_j)Q^{\mathsf T}$，其中 $Q$ 正交且 $\lambda_j>0$。将每个 $\lambda_j$ 换成 $\lambda_j^{-1/2}$，得到对称、可逆的 $\Sigma^{-1/2}$，其平方就是 $\Sigma^{-1}$。
+这里的 $a$ 是方程的交叉系数。由 $\Sigma$ 对称，$(\Sigma^{-1})^{\mathsf T}=(\Sigma^{\mathsf T})^{-1}=\Sigma^{-1}$，所以 $\bar r^{\mathsf T}\Sigma^{-1}\iota$ 也等于 $a$。两个方程于是简写为 $b\lambda_r+a\lambda_1=\bar r_p$ 和 $a\lambda_r+c\lambda_1=1$。行列式 $d$ 决定能否唯一求出两个乘数。
+
+如果所有证券的期望收益率都相同，任何权重和为 $1$ 的组合都只有这一个均值，收益率约束便与预算约束重复。下面说明这正是 $d=0$ 的情形。由于 $\Sigma$ 正定，可写成 $\Sigma=Q\operatorname{diag}(\lambda_j)Q^{\mathsf T}$，其中 $Q$ 正交且 $\lambda_j>0$。将每个特征值 $\lambda_j$ 换成 $\lambda_j^{-1/2}$，得到对称、可逆的 $\Sigma^{-1/2}$，其平方就是 $\Sigma^{-1}$。
 
 向量 $\Sigma^{-1/2}\iota$ 和 $\Sigma^{-1/2}\bar r$ 的平方范数分别为 $c$ 和 $b$，内积为 $a$。由于 $\Sigma^{-1/2}$ 可逆且 $\iota\ne0$，有 $c>0$。$b\ge0$，且 $b>0$ 当且仅当 $\bar r\ne0$。内积 $a$ 可以为正、零或负。
 
 Cauchy--Schwarz 不等式给出 $a^2\le bc$，所以 $d\ge0$。取等当且仅当两个向量线性相关。由于 $\Sigma^{-1/2}$ 可逆且 $\iota\ne0$，这等价于 $\bar r$ 是 $\iota$ 的倍数，即各证券期望收益全部相同。若 $d=0$，写 $\bar r=k\iota$，则所有完全投资组合的期望收益都为 $z^{\mathsf T}\bar r=kz^{\mathsf T}\iota=k$。只有一个可行目标均值，因此前沿只包含全局最小方差组合（MVP），见练习~\ref{exer:wj-twelve-7}。以下讨论各证券期望收益不全相同、$a^2<bc$（即 $d>0$）的情形。
 
-当 $d>0$ 时，$\bar r$ 与 $\iota$ 线性无关。允许卖空时，任选两只期望收益率不同的证券，就可以用权重和为 1 的配置达到任意实数目标均值。将 $z=\Sigma^{-1}(\lambda_r\bar r+\lambda_1\iota)$ 代入两个约束，得到
-\[
- \begin{aligned}
- \bar r_p=\bar r^{\mathsf T}z
- &=\lambda_r\bar r^{\mathsf T}\Sigma^{-1}\bar r
-   +\lambda_1\bar r^{\mathsf T}\Sigma^{-1}\iota
-   =b\lambda_r+a\lambda_1,\\
- 1=\iota^{\mathsf T}z
- &=\lambda_r\iota^{\mathsf T}\Sigma^{-1}\bar r
-   +\lambda_1\iota^{\mathsf T}\Sigma^{-1}\iota
-   =a\lambda_r+c\lambda_1.
- \end{aligned}
-\]
-
-乘数方程的系数行列式为 $d=bc-a^2>0$，因此可唯一求解：
+当 $d>0$ 时，$\bar r$ 与 $\iota$ 线性无关。允许卖空时，任选两只期望收益率不同的证券，就可以用权重和为 $1$ 的配置达到任意实数目标均值。此时乘数方程可唯一求解：
 \[
  \begin{pmatrix}b&a\\a&c\end{pmatrix}
  \begin{pmatrix}\lambda_r\\\lambda_1\end{pmatrix}
@@ -461,7 +457,7 @@ Cauchy--Schwarz 不等式给出 $a^2\le bc$，所以 $d\ge0$。取等当且仅�
  \label{eq:wj-12-3}
 \end{equation}
 
-由乘数方程构造出的 $z_p$ 满足两条约束和权重的一阶条件。目标函数的 Hessian 为正定矩阵 $\Sigma$，所以目标在由两个等式约束确定的仿射可行集上严格凸。$z_p$ 因而达到最小值，且是唯一的最优解。
+由乘数方程构造出的 $z_p$ 满足两条约束和权重的一阶条件。目标函数的 Hessian 为正定矩阵 $\Sigma$，所以目标在由两个等式约束确定的仿射可行集上严格凸。$z_p$ 因而达到最小值，且是给定目标收益率 $\bar r_p$ 时唯一的最优权重。让目标收益率变化，所有这些最小方差组合就构成了均值--方差前沿。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-4} 对具有均值--方差偏好的参与者，若在期望收益率相同的组合中严格偏好较低的标准差，则其最优投资组合若存在，必为 MVF 组合。
@@ -473,18 +469,18 @@ Cauchy--Schwarz 不等式给出 $a^2\le bc$，所以 $d\ge0$。取等当且仅�
 
 \section{均值--方差前沿组合的性质}\label{sec:wj-twelve-3}
 \subsection{两基金分离与权重空间的直线}
-将式~\eqref{eq:wj-12-3}（给定目标均值的最小方差组合权重）写成
+式~\eqref{eq:wj-12-3} 给出了每个目标均值对应的最小方差权重。现在看目标均值变化时，权重怎样调整。用 $z_0,z_1$ 分别表示目标均值为 $0,1$ 的前沿权重，收益率用小数表示，所以这里的 $1$ 对应 $100\%$。记 $h=z_1-z_0$，它的第 $i$ 个分量是从 $z_0$ 调到 $z_1$ 时第 $i$ 只证券的权重变动。将式~\eqref{eq:wj-12-3} 写成
 \begin{equation}
  z_p=z_0+\bar r_p(z_1-z_0)=(1-\bar r_p)z_0+\bar r_pz_1,
  \label{eq:wj-12-4}
 \end{equation}
-其中
+目标均值每提高一个百分点，前沿权重就增加 $0.01h$。因为 $z_0,z_1$ 的权重和都是 $1$，这个调整的权重和为零。显式计算两者之差，可得
 \[
  z_0=\frac1d\Sigma^{-1}(b\iota-a\bar r),\qquad
  z_1-z_0=\frac1d\Sigma^{-1}(c\bar r-a\iota).
 \]
 
-$z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12-3} 中的目标均值 $0,1$。收益率用小数表示，此处的 $1$ 对应 $100\%$。记 $h=z_1-z_0$ 为两个权重向量之差，其第 $i$ 个分量是第 $i$ 只证券的权重变动。代入 $z_0$ 和 $h$ 的表达式验证预算及均值：
+代入 $z_0$ 和 $h$ 的表达式，可以验证预算及均值：
 \[
  \begin{aligned}
  \iota^{\mathsf T}z_0&=\frac{bc-a^2}{d}=1,
@@ -510,7 +506,7 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 \]
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-5} 任意MVF组合均可由 $z_0,z_1$ 两个MVF组合形成。
+\WJTwelveTheorem{thm:wj-twelve-5} 任意 MVF 组合均可由 $z_0,z_1$ 两个 MVF 组合形成。若其期望收益率为 $\bar r_p$，权重为 $z_p=(1-\bar r_p)z_0+\bar r_pz_1$。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
@@ -532,7 +528,7 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 \end{solution}
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveCorollary{cor:wj-twelve-2} MVF组合的任意组合仍是MVF组合，其中基金配置权重之和为1。
+\WJTwelveCorollary{cor:wj-twelve-2} 设各基金的权重向量 $z_j$ 都对应 MVF 组合。若基金配置比例满足 $\sum_jt_j=1$，则合成权重 $\sum_jt_jz_j$ 仍对应 MVF 组合。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
@@ -540,17 +536,22 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 \end{solution}
 
 \Needspace{6\baselineskip}
+几何上，式~\eqref{eq:wj-12-4} 给出同一条直线上的不同权重。对面对同一条前沿的参与者，可以先选定一对共同基金，再由每个人选择自己偏好的配置比例。
+
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-6} 设所有参与者共享收益均值、协方差矩阵和本节的可行组合集合。若各人的偏好均满足定理~\ref{thm:wj-twelve-4} 的条件，且最优组合存在，则\hyperref[def:wj-nine-4]{两基金分离}成立。
+\WJTwelveTheorem{thm:wj-twelve-6} 设所有参与者共享收益均值、协方差矩阵和本节的可行组合集合。若各人的偏好均满足定理~\ref{thm:wj-twelve-4} 的条件，且最优组合存在，则\hyperref[def:wj-nine-4]{两基金分离}成立。取共同前沿上任意两个不同的基金 $z_A,z_B$，参与者 $k$ 可按自己的配置比例 $t_k$ 得到最优权重
+\[
+ z_k=(1-t_k)z_A+t_k z_B.
+\]
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-由定理~\ref{thm:wj-twelve-4}，每位参与者都在共同前沿上选择组合。取共同前沿上任意两个不同组合 $z_A,z_B$。由推论~\ref{cor:wj-twelve-1}，每人的最优组合 $z_k$ 都可写成
+由定理~\ref{thm:wj-twelve-4}，每位参与者都在共同前沿上选择组合。由推论~\ref{cor:wj-twelve-1}，按上式配置两只基金即可得到任意前沿组合。记参与者 $k$ 所选组合的期望收益率为 $\bar r_k$，则配置比例满足
 \[
- z_k=(1-t_k)z_A+t_k z_B,\qquad
+ \bar r_k=(1-t_k)\bar r_A+t_k\bar r_B,\qquad
  t_k=\frac{\bar r_k-\bar r_A}{\bar r_B-\bar r_A},
 \]
-其中 $\bar r_k$ 是该参与者所选组合的期望收益率。因此所有参与者都可用同一对基金形成各自的最优组合。
+其中 $\bar r_A,\bar r_B$ 分别是两只共同基金的期望收益率。因此所有参与者都可用同一对基金形成各自的最优组合。
 \end{solution}
 
 共同前沿决定可用的基金，个人偏好和初始财富通过所选的组合期望收益率决定两只基金的配置比例\footnote{按第九讲定义~\ref{def:wj-nine-4}，两基金分离是指存在两只共同基金，使每个人都能用它们配出一个自己的最优组合。个人的两个配置权重之和为 $1$，在允许卖空时也可以有一个权重为负。若最优解不唯一，能配出其中一个就满足该定义。}。
@@ -558,7 +559,7 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 第九讲定理~\ref{thm:wj-nine-6}（二次效用下的两基金分离）是这里的一个应用\footnote{第九讲的结论是：在参与者共享收益均值、协方差矩阵和可行组合集合且允许自由交易的设定下，如果每个人的效用在相关财富区间上是严格递增、严格凹的二次函数，并且最优组合存在，就可以用同两只基金配出每个人的最优组合。}。二次效用给出均值--方差表示。对严格凹的二次效用，在相关财富区间内边际效用为正时，参与者偏好更高的均值和更低的标准差。
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-7} MVF组合的权重向量在 $\mathbb R^N$ 中位于一条直线上。
+\WJTwelveTheorem{thm:wj-twelve-7} MVF 组合的权重向量在 $\mathbb R^N$ 中构成一条直线 $\{z_0+t h:t\in\mathbb R\}$，经过 $z_0$，方向为 $h=z_1-z_0$。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
@@ -582,25 +583,87 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  z_p=z_{\mathrm{MVP}}+\left(\bar r_p-\frac ac\right)h,\qquad h=z_1-z_0.
 \]
 
-调整头寸 $h$ 的权重和为零，是一笔净投资为零的多空头寸。每加上一单位 $h$，组合的期望收益率便提高一单位。例如，要使目标收益率提高 $1$ 个百分点，就在原前沿组合的权重上加 $0.01h$，权重之和仍为 $1$。从式~\eqref{eq:wj-12-4} 的写法出发，代入组合方差并展开，有
+调整头寸 $h$ 的权重和为零，是一笔净投资为零的多空头寸。每加上一单位 $h$，组合的期望收益率便提高一单位。它与 MVP 收益的协方差为 $h^{\mathsf T}\Sigma z_{\mathrm{MVP}}=h^{\mathsf T}\iota/c=0$。再由 $\Sigma h=(c\bar r-a\iota)/d$、$h^{\mathsf T}\bar r=1$ 及 $h^{\mathsf T}\iota=0$，可得 $h^{\mathsf T}\Sigma h=c/d$。从 MVP 出发调整目标均值，增加的方差就完全来自这笔头寸：
 \begin{equation}
+ \sigma_p^2=\underbrace{\frac1c}_{\text{MVP 方差}}
+ +\underbrace{\frac cd\left(\bar r_p-\frac ac\right)^2}_{\text{偏离 MVP 均值增加的方差}}
+ =\frac{c\bar r_p^2-2a\bar r_p+b}{d}.
+ \label{eq:wj-12-5}
+\end{equation}
+
+将式~\eqref{eq:wj-12-5} 整理为双曲线的标准式：
+\[
+ c\sigma_p^2-\frac{c^2}{d}\left(\bar r_p-\frac ac\right)^2=1.
+\]
+
+图~\ref{fig:wj-twelve-1}(a) 中，直线上的每个点是一组证券权重。把每组权重换成它所对应的标准差和期望收益率，就得到图 (b) 中的曲线。因为 $\sigma_p\ge0$，曲线取双曲线的右支，顶点是 MVP。同一目标均值下，前沿点的风险最小，其他可行点只能在它的右侧。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}[b]{.42\linewidth}
+ \centering
+ \WJInputFigure{12_权重空间前沿}\par
+ \smallskip (a) 权重空间中的前沿
+\end{minipage}\hfill
+\begin{minipage}[b]{.56\linewidth}
+ \centering
+ \resizebox{.98\linewidth}{!}{\WJInputFigure{12_均值方差前沿}}\par
+ \smallskip (b) 收益率--标准差平面
+\end{minipage}
+\WJTwelveFigure{fig:wj-twelve-1}{两种空间中的均值--方差前沿。图 (a) 取 $N=3$、$0<a/c<1$ 示意，图 (b) 的阴影对应 $N\ge3$。}
+\end{minipage}
+\end{center}
+
+图 (b) 中的 $D$ 和 $E$ 都在前沿上，但它们的标准差相同，$E$ 的均值更高。这个比较引出下面的有效性定义。
+
+\begin{tcolorbox}[knowledge,breakable=false]
+若可行组合 $q$ 满足 $\bar r_q\ge\bar r_p$、$\sigma_q\le\sigma_p$，且至少一项严格，则称 $q$ 在均值--方差意义下\textbf{支配} $p$。不被任何可行组合支配的组合称为\textbf{均值--方差有效组合}（MVE）。
+\end{tcolorbox}
+
+包含 MVP 的上半支正是有效前沿。具有本章所设偏好的参与者，如果存在最优组合，就会在这一支上选择。
+
+\begin{solution}[label-content={证明},blank-type=none]
+偏离 MVF 的组合被同均值、方差更小的前沿组合支配。图~\ref{fig:wj-twelve-1}(b) 中，前沿下半支的 $D$ 被标准差相同、均值更高的 $E$ 支配。反过来，式~\eqref{eq:wj-12-5} 表明，从上半支任一点 $\bar r_p\ge a/c$ 出发，提高目标均值会严格提高所需的最低方差。同均值也无法降低方差，因为该点本身就在 MVF 上。因此包含 MVP 的上半支正是有效前沿。
+\end{solution}
+
+\Needspace{10\baselineskip}
+\begin{tcolorbox}[example,title=补充算例：两只风险证券的前沿]
+两只风险证券的净收益率用百分点计，协方差矩阵的元素用百分点的平方计：
+\[
+ \bar r=\begin{pmatrix}1\\2\end{pmatrix},\qquad
+ \Sigma=\begin{pmatrix}1&0\\0&4\end{pmatrix}.
+\]
+允许卖空。求最小方差组合，以及期望收益率为 $1.5$ 个百分点的前沿组合。
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
+由 $\Sigma^{-1}=\operatorname{diag}(1,1/4)$，得
+\[
+ a=\frac32,\quad b=2,\quad c=\frac54,\quad d=\frac14.
+\]
+因此 $z_{\mathrm{MVP}}=\Sigma^{-1}\iota/c=(4/5,1/5)^{\mathsf T}$，其均值为 $6/5$、方差为 $4/5$。均值为 $3/2$ 的完全投资组合由两个约束唯一确定为 $(1/2,1/2)^{\mathsf T}$，方差为 $5/4$，所以它也是该目标均值的前沿组合。
+\end{solution}
+\end{tcolorbox}
+
+图~\ref{fig:wj-twelve-1}(b) 的阴影说明前沿右侧也可能有可行组合。固定预算和目标均值后，两个独立约束使权重剩下 $N-2$ 个自由度。当 $N=2$ 时，每个目标均值只对应一个可行权重，因此可行点只有前沿。
+
+若 $N\ge3$，可取非零权重调整向量 $g\in\mathbb R^N$，使 $\iota^{\mathsf T}g=\bar r^{\mathsf T}g=0$。两个等式分别表示调整保持权重之和和期望收益率不变。固定目标均值，从对应的前沿权重 $z_p$ 出发，$z_p+tg$ 对任意实数 $t$ 都满足两个约束。由前沿的一阶条件 $\Sigma z_p=\lambda_r\bar r+\lambda_1\iota$，有 $g^{\mathsf T}\Sigma z_p=0$，故
+\[
+ (z_p+tg)^{\mathsf T}\Sigma(z_p+tg)=\sigma_p^2+t^2g^{\mathsf T}\Sigma g.
+\]
+
+由于 $g^{\mathsf T}\Sigma g>0$，右侧随 $|t|$ 从零增加可取到从 $\sigma_p^2$ 起的所有方差值。这就解释了为什么可行点能填满前沿右侧。
+
+也可以沿原书的计算从 $z_0$ 出发，把 $z_p=z_0+\bar r_ph$ 代入组合方差：
+\[
  \begin{aligned}
  \sigma_p^2
  &=(z_0+\bar r_ph)^{\mathsf T}\Sigma(z_0+\bar r_ph)\\
  &=z_0^{\mathsf T}\Sigma z_0
     +2\bar r_ph^{\mathsf T}\Sigma z_0+\bar r_p^2h^{\mathsf T}\Sigma h.
  \end{aligned}
- \label{eq:wj-12-5}
-\end{equation}
-
-交叉项的系数 2 来自 $\Sigma$ 的对称性。若改用 MVP 为起点，交叉项 $h^{\mathsf T}\Sigma z_{\mathrm{MVP}}=h^{\mathsf T}\iota/c$ 为零。再由 $\Sigma h=(c\bar r-a\iota)/d$、$h^{\mathsf T}\bar r=1$ 及 $h^{\mathsf T}\iota=0$，可得 $h^{\mathsf T}\Sigma h=c/d$。于是式~\eqref{eq:wj-12-5} 也可写为
-\[
- \sigma_p^2=\underbrace{\frac1c}_{\text{MVP 方差}}
- +\underbrace{\frac cd\left(\bar r_p-\frac ac\right)^2}_{\text{偏离 MVP 均值增加的方差}}
- =\frac{c\bar r_p^2-2a\bar r_p+b}{d}.
 \]
 
-若从 $z_p=z_0+\bar r_ph$ 出发沿前沿对均值求导，MVP 也满足
+交叉项的系数 $2$ 来自 $\Sigma$ 的对称性。沿前沿对均值求导，MVP 满足
 \[
  \left.\tfrac12\frac{\mathrm d\sigma_p^2}{\mathrm d\bar r_p}\right|_{\bar r_p=\bar r_{\mathrm{MVP}}}
  =h^{\mathsf T}\Sigma(z_0+\bar r_{\mathrm{MVP}}h)=0.
@@ -621,50 +684,14 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  \sigma_{\mathrm{MVP}}^2=z_0^{\mathsf T}\Sigma z_0-\frac{(h^{\mathsf T}\Sigma z_0)^2}{h^{\mathsf T}\Sigma h}=\frac1c.
 \]
 
-将前沿方差的平方形式整理为双曲线的标准式：
-\[
- c\sigma_p^2-\frac{c^2}{d}\left(\bar r_p-\frac ac\right)^2=1.
-\]
-
-由于 $\sigma_p\ge0$，前沿在 $(\sigma,\bar r)$ 平面取双曲线的右支。在权重空间，前沿是定理~\ref{thm:wj-twelve-7} 所述的直线。可行点位于前沿及其右侧。固定预算和目标均值后，两个独立约束使权重剩下 $N-2$ 个自由度。当 $N=2$ 时，每个目标均值只对应一个可行权重，因此可行点只有前沿。
-
-若 $N\ge3$，可取非零权重调整向量 $g\in\mathbb R^N$，使 $\iota^{\mathsf T}g=\bar r^{\mathsf T}g=0$。两个等式分别表示调整保持权重之和和期望收益率不变。固定目标均值，从对应的前沿权重 $z_p$ 出发，$z_p+tg$ 对任意实数 $t$ 都满足两个约束。由前沿的一阶条件 $\Sigma z_p=\lambda_r\bar r+\lambda_1\iota$，有 $g^{\mathsf T}\Sigma z_p=0$，故
-\[
- (z_p+tg)^{\mathsf T}\Sigma(z_p+tg)=\sigma_p^2+t^2g^{\mathsf T}\Sigma g.
-\]
-
-由于 $g^{\mathsf T}\Sigma g>0$，右侧随 $|t|$ 从零增加可取到从 $\sigma_p^2$ 起的所有方差值。这就解释了为什么可行点能填满前沿右侧。
-
-对任意满足 $\iota^{\mathsf T}z=1$ 的组合，写 $z=z_{\mathrm{MVP}}+g$，其中 $\iota^{\mathsf T}g=0$。由 $\Sigma z_{\mathrm{MVP}}=\iota/c$，交叉项为零，故
+前面从 MVP 出发所用的方差分解，也适用于任意权重和为 $1$ 的组合。写 $z=z_{\mathrm{MVP}}+g$，其中 $\iota^{\mathsf T}g=0$，这里的调整可以改变期望收益率。由 $\Sigma z_{\mathrm{MVP}}=\iota/c$，交叉项为零，故
 \[
  z^{\mathsf T}\Sigma z=\underbrace{z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}}_{\text{最小方差}}+\underbrace{g^{\mathsf T}\Sigma g}_{\text{偏离MVP增加的方差}}.
 \]
 
-\begin{tcolorbox}[knowledge,breakable=false]
-若可行组合 $q$ 满足 $\bar r_q\ge\bar r_p$、$\sigma_q\le\sigma_p$，且至少一项严格，则称 $q$ 在均值--方差意义下\textbf{支配} $p$。不被任何可行组合支配的组合称为\textbf{均值--方差有效组合}（MVE）。
-\end{tcolorbox}
-
-包含 MVP 的上半支正是有效前沿。
-
-\begin{solution}[label-content={证明},blank-type=none]
-偏离 MVF 的组合被同均值、方差更小的前沿组合支配。图~\ref{fig:wj-twelve-1}(b) 中，前沿下半支的 $D$ 被标准差相同、均值更高的 $E$ 支配。反过来，式~\eqref{eq:wj-12-5} 的平方形式表明，从上半支任一点 $\bar r_p\ge a/c$ 出发，提高目标均值会严格提高所需的最低方差。同均值也无法降低方差，因为该点本身就在 MVF 上。因此包含 MVP 的上半支正是有效前沿。
-\end{solution}
-
-\begin{center}
-\begin{minipage}[b]{.42\linewidth}
- \centering
- \WJInputFigure{12_权重空间前沿}\par
- \smallskip (a) 权重空间中的前沿
-\end{minipage}\hfill
-\begin{minipage}[b]{.56\linewidth}
- \centering
- \resizebox{.98\linewidth}{!}{\WJInputFigure{12_均值方差前沿}}\par
- \smallskip (b) 收益率--标准差平面
-\end{minipage}
-\WJTwelveFigure{fig:wj-twelve-1}{两种空间中的均值--方差前沿。图 (a) 取 $N=3$、$0<a/c<1$ 示意，图 (b) 的阴影对应 $N\ge3$。}
-\end{center}
-
 \subsection{零协方差组合与零贝塔关系}
+前面比较的是一个组合自身的方差。现在要看两个组合的收益怎样共同波动。若 $p,q$ 的权重向量分别是 $z_p,z_q$，把两者的中心化收益率相乘再取期望，就得到 $\operatorname{Cov}(\widetilde r_q,\widetilde r_p)=z_q^{\mathsf T}\Sigma z_p$。先看以 MVP 为参照的情形。
+
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-8} 任意完全投资组合 $q$ 与MVP的协方差均等于MVP的方差：
 \[
@@ -695,7 +722,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 在 $\alpha=0$ 处，导数为零，因此一次项的系数为零，得到同一协方差关系。
 \end{solution}
 
-令 $\delta_p=\bar r_p-a/c$、$\delta_q=\bar r_q-a/c$，将两个前沿组合都写成从 MVP 出发沿 $h$ 的调整。展开协方差，得到
+若两个组合都在前沿上，它们都可以从 MVP 出发沿 $h$ 调整。记 $\delta_p=\bar r_p-a/c$、$\delta_q=\bar r_q-a/c$ 为各自偏离 MVP 的均值差。展开协方差，得到
 \[
  \begin{aligned}
  \operatorname{Cov}(\widetilde r_p,\widetilde r_q)
@@ -715,10 +742,16 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \]
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-9} 对任意非MVP的前沿组合 $p$，存在唯一前沿组合 $zcp$，与 $p$ 的协方差为零。
+\WJTwelveTheorem{thm:wj-twelve-9} 对任意非 MVP 的前沿组合 $p$，存在唯一的前沿组合 $zcp$，满足
+\[
+ \operatorname{Cov}(\widetilde r_p,\widetilde r_{zcp})=0.
+\]
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
+由前面两个前沿组合的协方差公式，固定 $p$ 后，协方差随 $\bar r_q$ 线性变化。当 $p$ 非 MVP 时，斜率 $(c/d)(\bar r_p-a/c)$ 非零，因此恰有一个目标均值使协方差为零。每个目标均值对应唯一的前沿权重，于是得到唯一的前沿伙伴。
+
+也可从前沿权重直接看出这一点。
 把另一个前沿组合写成 $z_q=z_0+\bar r_qh$，则与 $p$ 的协方差为 $z_0^{\mathsf T}\Sigma z_p+\bar r_qh^{\mathsf T}\Sigma z_p$。由 $z_p=z_{\mathrm{MVP}}+(\bar r_p-a/c)h$，可得
 \[
  h^{\mathsf T}\Sigma z_p=\frac cd\left(\bar r_p-\frac ac\right)\ne0,
@@ -735,6 +768,8 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \]
 
 两者相对 MVP 的均值差符号相反，所以 $p$ 和 $zcp$ 分居前沿的上下两支。若 $p$ 本身就是 MVP，由定理~\ref{thm:wj-twelve-8}，它与任一完全投资组合的协方差恒为 $1/c>0$，此时没有零协方差组合。
+
+对给定的非 MVP 前沿组合 $p$，用它自身的方差来衡量其他组合与它的协方差，得到下式中的贝塔 $\beta_{q,p}$。因此 $p$ 对自己的贝塔是 $1$，它的零协方差伙伴 $zcp$ 对它的贝塔是 $0$。接下来用这两个组合的期望收益率作为参照，说明任意组合 $q$ 的期望收益率与贝塔的关系。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-10} 若 $p$ 是非MVP的前沿组合，则任意组合 $q$ 满足
