@@ -13,7 +13,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 按三个状态等概率，期望效用为 $\log c_{k,0}+\tfrac13\sum_{j=1}^3\log c_{k,1\omega_j}$，因此当期和每个状态的消费都必须严格为正。
 \begin{enumerate}[label=(\alph*)]
 \item 以 $\theta_{kB},\theta_{kS}$ 表示债券、股票的净购买量，出清要求两者分别加总为零。两人的禀赋分别占总禀赋的 $\lambda_1=0.4$、$\lambda_2=0.6$。考虑零净交易配置，此时
@@ -86,7 +86,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=8\baselineskip]
 以每家企业全部资产为一个单位，$P_i$ 表示企业总市场价值，$\widetilde X_i$ 表示其总支付。令 $R_F=1.08$，参与者 $k$ 的期末财富为
 \[
  \widetilde w_k=(w_k-P_1\theta_{k,1}-P_2\theta_{k,2})R_F
@@ -157,10 +157,10 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 以下以 $h_F>0$ 表示企业卖出远期，以 $h_I>0$ 表示单个投机者买入远期。设价格非退化，参与者可双向交易，且 (a)、(b) 所讨论的最优头寸有限、相关期望可求导。
 \begin{enumerate}[label=(\alph*)]
-\item 记 $Y=\widetilde p-f$，投机者目标为 $V(h_I)=\mathrm E[v(h_IY)]$。严格凹性给出
+\item \textbf{证明}\quad 记 $Y=\widetilde p-f$，投机者目标为 $V(h_I)=\mathrm E[v(h_IY)]$。严格凹性给出
 \[
  V'(0)=v'(0)(\mathrm E[\widetilde p]-f),\qquad
  V''(h_I)=\mathrm E[v''(h_IY)Y^2]<0.
@@ -174,7 +174,7 @@
 
 当 $f=\mathrm E[\widetilde p]$ 时，$h_I^*=0$。
 
-\item 令 $R(p)=pS(p)$ 为销售收入，企业目标为
+\item \textbf{解答}\quad 令 $R(p)=pS(p)$ 为销售收入，企业目标为
 \[
  F(h_F)=\mathrm E[u(R(\widetilde p)+h_F(f-\widetilde p))].
 \]
@@ -202,7 +202,7 @@
  =\mathrm E[(g(p)-g(p'))(p-p')].
 \]
 
-\item 取 $a>0$、$N\ge1$，并按正价格讨论 $S(p)$。写 $\widetilde p=d+Z$，其中 $Z$ 服从参数为 1 的指数分布，故 $\mathrm E[\widetilde p]=d+1$。由 $R(p)=s_0p+k$，企业利润为 $s_0d+k+h_F(f-d)+(s_0-h_F)Z$，投机者的远期支付为 $h_I(d-f)+h_IZ$。对任意 $D>0$，指数分布积分给出 $\int_0^\infty e^{-Dz}\,\mathrm dz=1/D$。把密度 $e^{-z}$ 乘入期望，分别得到
+\item \textbf{解答}\quad 取 $a>0$、$N\ge1$，并按正价格讨论 $S(p)$。写 $\widetilde p=d+Z$，其中 $Z$ 服从参数为 1 的指数分布，故 $\mathrm E[\widetilde p]=d+1$。由 $R(p)=s_0p+k$，企业利润为 $s_0d+k+h_F(f-d)+(s_0-h_F)Z$，投机者的远期支付为 $h_I(d-f)+h_IZ$。对任意 $D>0$，指数分布积分给出 $\int_0^\infty e^{-Dz}\,\mathrm dz=1/D$。把密度 $e^{-z}$ 乘入期望，分别得到
 \[
  \begin{aligned}
  F(h_F)&=-e^{-a[s_0d+k+h_F(f-d)]}
@@ -256,11 +256,11 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 取 $\alpha,\rho,\sigma>0$。正态支付可为负，以下采用实数消费域的 CARA 模型，允许无约束证券头寸。给定股价 $S$，两人的财富为 $w_1=x_0$、$w_2=S$，以 $\theta_k$ 表示股票总持仓。
 \begin{enumerate}[label=(\alph*)]
-\item 股票只能生成 $\theta\widetilde x$ 形式的支付，连常数1都不能生成；未来状态连续而支付空间只有一维，市场不完全。
-\item 初始财富用于购买当期消费和股票，股票支付构成未来消费。将两期消费写成总持仓的函数，
+\item \textbf{证明}\quad 股票只能生成 $\theta\widetilde x$ 形式的支付，连常数1都不能生成；未来状态连续而支付空间只有一维，市场不完全。
+\item \textbf{解答}\quad 初始财富用于购买当期消费和股票，股票支付构成未来消费。将两期消费写成总持仓的函数，
 \[
  c_{k,0}=w_k-S\theta_k,\qquad
  \widetilde c_{k,1}=\theta_k\widetilde x,
@@ -280,7 +280,7 @@
 \]
 
 这些方程与出清条件共同决定均衡。
-\item 若一个均衡配置是帕累托最优的，两人的跨期边际替代率必须在几乎所有状态相同\ifdefined\WJHandoutKnowledge（有限状态下见第十章式~\eqref{eq:wj-10-8}）\fi。这里可直接用消费转移证明。记 $x$ 为股票支付的实现值，两人的定价核为
+\item \textbf{证明}\quad 若一个均衡配置是帕累托最优的，两人的跨期边际替代率必须在几乎所有状态相同\ifdefined\WJHandoutKnowledge（有限状态下见第十章式~\eqref{eq:wj-10-8}）\fi。这里可直接用消费转移证明。记 $x$ 为股票支付的实现值，两人的定价核为
 \[
  \pi_k(x)=\rho\exp\{\alpha c_{k,0}-\alpha\theta_k x\}.
 \]
@@ -326,11 +326,11 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 沿用上一题的实数消费域及参数条件。以 $b_k=\theta_{k,1}$ 表示债券持仓，$s_k=\theta_{k,2}$ 表示股票总持仓；债券总供给为零，股票总供给为1。
 \begin{enumerate}[label=(\alph*)]
-\item 证券支付空间为 $\operatorname{span}\{1,\widetilde x\}$，只能复制仿射支付，例如 $\widetilde x^2$ 就不在其中，故市场仍不完全。
-\item 记 $w_1=x_0,w_2=S$。把当期预算和未来证券支付代入效用，沿用上一题的正态指数矩，均衡要求每人选择 $(b_k,s_k)\in\mathbb R^2$ 最大化
+\item \textbf{解答}\quad 证券支付空间为 $\operatorname{span}\{1,\widetilde x\}$，只能复制仿射支付，例如 $\widetilde x^2$ 就不在其中，故市场仍不完全。
+\item \textbf{解答}\quad 记 $w_1=x_0,w_2=S$。把当期预算和未来证券支付代入效用，沿用上一题的正态指数矩，均衡要求每人选择 $(b_k,s_k)\in\mathbb R^2$ 最大化
 \[
  -e^{-\alpha(w_k-Bb_k-Ss_k)}
  -\rho e^{-\alpha(b_k+s_k\bar x)+\alpha^2s_k^2\sigma^2/2},
@@ -342,7 +342,7 @@
  \widetilde c_{k,1}=b_k+s_k\widetilde x.
 \]
 
-\item 令 $A_k=\exp\{-\alpha(b_k+s_k\bar x)+\alpha^2s_k^2\sigma^2/2\}$。先写给定价格下的债券、股票一阶条件：
+\item \textbf{解答}\quad 令 $A_k=\exp\{-\alpha(b_k+s_k\bar x)+\alpha^2s_k^2\sigma^2/2\}$。先写给定价格下的债券、股票一阶条件：
 \begin{align*}
  B e^{-\alpha c_{k,0}}&=\rho A_k,
  \\
@@ -375,9 +375,9 @@
 
 均衡净利率为 $r_F^*=1/B^*-1$。各人消费为 $c_{k,0}^*=x_0/2+b_k^*$、$\widetilde c_{k,1}^*=\widetilde x/2+b_k^*$。严格凹性保证个人最优性，且 $b_1^*+b_2^*=0$ 使消费分别加总为 $x_0$ 和 $\widetilde x$，故商品与证券均出清。
 
-\item 一般而言，引入债券后配置改变。债券使两人能够通过常数支付调整跨期资源，同时各持有半份股票。若 $S^*\ne x_0$，债券头寸非零，上一题仅凭股票无法复制这种未来消费。若 $S^*=x_0$，则 $b_1^*=b_2^*=0$，有债券时的配置与上一题的有效均衡相同。上一题的数值例说明，即使在这个特殊参数关系下，只有股票的市场仍可能有其他均衡。
+\item \textbf{解答}\quad 一般而言，引入债券后配置改变。债券使两人能够通过常数支付调整跨期资源，同时各持有半份股票。若 $S^*\ne x_0$，债券头寸非零，上一题仅凭股票无法复制这种未来消费。若 $S^*=x_0$，则 $b_1^*=b_2^*=0$，有债券时的配置与上一题的有效均衡相同。上一题的数值例说明，即使在这个特殊参数关系下，只有股票的市场仍可能有其他均衡。
 
-\item 对任意实现值 $x$，两人的个人定价核均为
+\item \textbf{证明}\quad 对任意实现值 $x$，两人的个人定价核均为
 \[
  \pi_k(x)=\rho e^{\alpha(c_{k,0}^*-b_k^*)-\alpha x/2}
  =\rho e^{\alpha x_0/2-\alpha x/2}\equiv\pi(x).
@@ -401,7 +401,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 原题未指明期权类型或供给。先按看涨期权、零净供给求解，记支付为 $H=(\widetilde x-\bar x)^+$，并在 (d) 给出看跌价格。
 \begin{enumerate}[label=(\alph*)]
 \item 支付空间为 $\operatorname{span}\{1,\widetilde x,(\widetilde x-\bar x)^+\}$，只包含在 $\bar x$ 处至多有一个折点的分段仿射函数，仍无法生成任意连续状态支付，市场不完全。

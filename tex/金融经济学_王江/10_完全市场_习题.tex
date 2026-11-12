@@ -27,9 +27,9 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 \begin{enumerate}[label=(\alph*)]
- \item 以 0 期消费为计价单位，均衡由正状态价格 $(\phi_a^*,\phi_b^*)$ 与各人消费 $c_k^*$ 组成。给定价格，参与者 $k$ 用禀赋的现值购买各日期、各状态的消费，求解
+ \item \textbf{解答}\quad 以 0 期消费为计价单位，均衡由正状态价格 $(\phi_a^*,\phi_b^*)$ 与各人消费 $c_k^*$ 组成。给定价格，参与者 $k$ 用禀赋的现值购买各日期、各状态的消费，求解
  \[
  \begin{aligned}
  \max_{c_k\ge0}\quad &u_k(c_{k,0})+\pi_a u_k(c_{k,a})+\pi_b u_k(c_{k,b})\\
@@ -54,7 +54,7 @@
 
  对两个人而言，第一行的边际效用比 $u_k'(c_{k,a})/u_k'(c_{k,0})$ 都是 $0.3$，第二行都是 $0.6$，各自等于该行的 $\phi_a^*/\pi_a$。状态 $b$ 的边际效用比为 $1$，等于 $\phi_b^*/\pi_b$。两组消费都是内点，严格凹性保证一阶条件与预算足以确定个人最优，所以两行均为均衡。
 
- \item 固定题设代表性效用 $u$，取 $u'>0$、$u''<0$。代表性参与者的均衡消费等于总禀赋。由内点一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-3}）\fi，状态价格等于该状态消费相对当期消费的边际替代率，即状态概率乘以两项边际效用之比。债券在两状态各支付 1，价格是两状态价格之和，因此
+ \item \textbf{证明}\quad 固定题设代表性效用 $u$，取 $u'>0$、$u''<0$。代表性参与者的均衡消费等于总禀赋。由内点一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-3}）\fi，状态价格等于该状态消费相对当期消费的边际替代率，即状态概率乘以两项边际效用之比。债券在两状态各支付 1，价格是两状态价格之和，因此
  \[
  \begin{aligned}
  \phi_a^*&=\frac{\pi_au'(C_a)}{u'(C_0)},&
@@ -117,7 +117,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 % 原书练习10.2定义右侧漏写导数；题干已按边际效用校正，题号、其余设定保留。
 固定正的规划权重 $\lambda_k$。给定某个未来状态的总消费 $x$，规划者把该状态的资源分给各人，求解\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-12}）\fi
 \[
@@ -185,11 +185,11 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 \begin{enumerate}[label=(\alph*)]
- \item 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$。矩阵行满秩，任意两状态支付都能由这两只证券复制，故市场完全\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节的行满秩判据）\fi。
+ \item \textbf{证明}\quad 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$。矩阵行满秩，任意两状态支付都能由这两只证券复制，故市场完全\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节的行满秩判据）\fi。
 
- \item 设 $0<\pi<1$。给定正状态价格，参与者 $k$ 的财富为 $w_k=s_kC(1+\phi_au+\phi_bd)$，等于当期禀赋加初始股票持仓的市值。对数效用要求各项消费严格为正，且效用递增使预算取等号，因此
+ \item \textbf{解答}\quad 设 $0<\pi<1$。给定正状态价格，参与者 $k$ 的财富为 $w_k=s_kC(1+\phi_au+\phi_bd)$，等于当期禀赋加初始股票持仓的市值。对数效用要求各项消费严格为正，且效用递增使预算取等号，因此
  \[
  \begin{aligned}
  \max_{c_k>0}\quad &U_k(c_k)\\
@@ -225,7 +225,7 @@
  \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C(u-d)}-s_k.
  \]
 
- \item 令 $W=\sum_k w_k$ 为经济中的总财富。将各人的当期需求相加，当期出清要求
+ \item \textbf{解答}\quad 令 $W=\sum_k w_k$ 为经济中的总财富。将各人的当期需求相加，当期出清要求
  \[
  C=\sum_k c_{k,0}=\frac{W}{1+\rho},
  \qquad W=(1+\rho)C.
@@ -251,7 +251,7 @@
 
  代回需求，$c_{k,0}^*=s_kC$、$c_{k,a}^*=s_kuC$、$c_{k,b}^*=s_kdC$。由 $\sum_k s_k=1$，三项消费分别加总为 $C,uC,dC$。各人的净交易 $\theta_{k,B}^*=\theta_{k,S}^*=0$，证券市场也出清。
 
- \item 二叉树期权定价通常给定债券、股票的价格与支付，再用复制关系反推出状态价格。本题先由个人最优和市场出清求出状态价格，再代入 $B^*=\phi_a^*+\phi_b^*$ 和 $S_0^*=\phi_a^*uC+\phi_b^*dC$ 得到两只证券的价格。
+ \item \textbf{解答}\quad 二叉树期权定价通常给定债券、股票的价格与支付，再用复制关系反推出状态价格。本题先由个人最优和市场出清求出状态价格，再代入 $B^*=\phi_a^*+\phi_b^*$ 和 $S_0^*=\phi_a^*uC+\phi_b^*dC$ 得到两只证券的价格。
 
  把两条价格式都除以 $B^*$，令 $Q(a)=\phi_a^*/B^*$，则 $\phi_b^*/B^*=1-Q(a)$，股票价格式化为 $S_0^*/(B^*C)=Q(a)u+[1-Q(a)]d$。解出上涨状态的风险中性概率，再代入 (c) 求得的状态价格，得到
  \[
@@ -276,10 +276,10 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 记 $\widetilde G=\widetilde C_1/C_0$，其取值为 $u,d$。本题的 $p$ 表示股票\textbf{净收益率}的风险溢价。
 \begin{enumerate}[label=(\alph*)]
- \item 沿用练习~\ref{exer:wj-ten-2} 的聚合方法。任取一个日期或状态，总消费为 $x>0$ 时，规划者求解
+ \item \textbf{解答}\quad 沿用练习~\ref{exer:wj-ten-2} 的聚合方法。任取一个日期或状态，总消费为 $x>0$ 时，规划者求解
  \[
  \begin{aligned}
  \max_{c_k>0}\quad &\sum_k\mu_k\log c_k\\
@@ -292,17 +292,17 @@
  \]
  加上常数 $(1+\rho)\sum_k s_k\log s_k$，因为 $\log(s_kx)=\log s_k+\log x$。
 
- \item 规划权重为 $\mu_k=s_k$，由个人禀赋份额决定。较高权重对应较高的最优消费份额。
+ \item \textbf{解答}\quad 规划权重为 $\mu_k=s_k$，由个人禀赋份额决定。较高权重对应较高的最优消费份额。
 
- \item 禀赋份额只改变加总中的常数项，代表性参与者的消费排序与 $s_k$ 无关。
+ \item \textbf{证明}\quad 禀赋份额只改变加总中的常数项，代表性参与者的消费排序与 $s_k$ 无关。
 
- \item 随机贴现因子为 $\widetilde\pi^*=\rho\,u'(\widetilde C_1)/u'(C_0)=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item \textbf{解答}\quad 随机贴现因子为 $\widetilde\pi^*=\rho\,u'(\widetilde C_1)/u'(C_0)=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
  B^*=\rho\mathrm E[1/\widetilde G],\qquad
  S_0^*=\mathrm E[(\rho/\widetilde G)C\widetilde G]=\rho C.
  \]
 
- \item 债券与股票的期望总收益率分别为
+ \item \textbf{解答}\quad 债券与股票的期望总收益率分别为
  \[
  1+r_F^*=\frac1{\rho\mathrm E[1/\widetilde G]},\qquad
  1+\bar r_S^*=\frac{\mathrm E[\widetilde G]}\rho.
@@ -319,7 +319,7 @@
 
  第一行括号内是增长倍数的算术均值与调和均值之差。通分后的分子为 $\mathrm E[\widetilde G]\mathrm E[1/\widetilde G]-1$。代入两状态的取值，分子化为 $\pi(1-\pi)(u/d+d/u-2)=\pi(1-\pi)(u-d)^2/(ud)$，分母中的 $\mathrm E[1/\widetilde G]=[\pi d+(1-\pi)u]/(ud)$，约去 $ud$ 就得到第二行。$u=d$ 时风险溢价为零。
 
- \item 给定增长率分布，消费水平 $C$ 按比例改变股票价格与支付，收益率和风险溢价保持不变。增大 $\rho$ 使 $r_F^*$ 下降，并按 $1/\rho$ 的比例降低风险溢价。
+ \item \textbf{解答}\quad 给定增长率分布，消费水平 $C$ 按比例改变股票价格与支付，收益率和风险溢价保持不变。增大 $\rho$ 使 $r_F^*$ 下降，并按 $1/\rho$ 的比例降低风险溢价。
 
  比较均值与方差时固定状态概率。由 $\operatorname{Var}(\widetilde G)=\pi(1-\pi)(u-d)^2$，固定方差即固定两状态的差 $u-d$。因此提高均值要将 $u,d$ 同时上移相同的幅度，使 $\mathrm E[1/\widetilde G]$ 下降、$r_F^*$ 上升；风险溢价式的分母增大，故溢价下降。
 
@@ -345,9 +345,9 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=8\baselineskip]
 \begin{enumerate}[label=(\alph*)]
- \item 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制组合满足 $\theta_B+uC\theta_S=H_a$、$\theta_B+dC\theta_S=H_b$。两式相减解出股票数量，再代回得到债券数量：
+ \item \textbf{解答}\quad 记 $H_a=(uC-K)_+$、$H_b=(dC-K)_+$。复制组合满足 $\theta_B+uC\theta_S=H_a$、$\theta_B+dC\theta_S=H_b$。两式相减解出股票数量，再代回得到债券数量：
  \[
  \theta_B=\frac{uH_b-dH_a}{u-d},\qquad
  \theta_S=\frac{H_a-H_b}{C(u-d)}.
@@ -362,7 +362,7 @@
  \end{cases}
  \]
 
- \item 沿用练习~\ref{exer:wj-ten-4} 的定价核 $\widetilde\pi^*=\rho C/\widetilde C_1$。按\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}（定价核与支付的乘积取期望）\else 定价核加权的支付定价公式\fi，期权支付 $\tilde H=(\widetilde C_1-K)_+$ 的价格为
+ \item \textbf{证明}\quad 沿用练习~\ref{exer:wj-ten-4} 的定价核 $\widetilde\pi^*=\rho C/\widetilde C_1$。按\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}（定价核与支付的乘积取期望）\else 定价核加权的支付定价公式\fi，期权支付 $\tilde H=(\widetilde C_1-K)_+$ 的价格为
  \[
  V=\mathrm E[\widetilde\pi^*(\widetilde C_1-K)_+]
  =\frac{\rho\pi}{u}(uC-K)_+
@@ -403,12 +403,12 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 原书在这里沿用了前题的 $C,u,d$ 条件。本题实际用到的是 $C_0>0$ 和两状态的正支付不同，按图取 $0<C_{1b}<C_{1a}$。取 $\alpha>0$、$0<\pi<1$，先求内点解，再核对非负消费约束。
 \begin{enumerate}[label=(\alph*)]
- \item 与练习~\ref{exer:wj-ten-3}(a) 一样，支付矩阵 $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式为 $C_{1b}-C_{1a}\ne0$，任意两状态支付都可复制，故市场完全。
+ \item \textbf{证明}\quad 与练习~\ref{exer:wj-ten-3}(a) 一样，支付矩阵 $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式为 $C_{1b}-C_{1a}\ne0$，任意两状态支付都可复制，故市场完全。
 
- \item 给定正的状态价格，记
+ \item \textbf{解答}\quad 给定正的状态价格，记
  \[
  B=\phi_a+\phi_b,\quad S=\phi_aC_{1a}+\phi_bC_{1b},\quad
  W=C_0+S,\quad w_k=s_kW.
@@ -455,7 +455,7 @@
  \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C_{1a}-C_{1b}}-s_k.
  \]
 
- \item 先用内点需求求候选均衡。逐项出清要求 $\sum_kc_{k,0}^*=C_0$、$\sum_kc_{k,a}^*=C_{1a}$、$\sum_kc_{k,b}^*=C_{1b}$。在 (b) 中，每人的未来消费比当期分别多 $d_a,d_b$，因此对各人求和后，$Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$。代回 $d_a,d_b$ 的定义，
+ \item \textbf{解答}\quad 先用内点需求求候选均衡。逐项出清要求 $\sum_kc_{k,0}^*=C_0$、$\sum_kc_{k,a}^*=C_{1a}$、$\sum_kc_{k,b}^*=C_{1b}$。在 (b) 中，每人的未来消费比当期分别多 $d_a,d_b$，因此对各人求和后，$Kd_a=C_{1a}-C_0$、$Kd_b=C_{1b}-C_0$。代回 $d_a,d_b$ 的定义，
  \[
  \phi_a^*=\rho\pi e^{-\frac\alpha K(C_{1a}-C_0)},\qquad
  \phi_b^*=\rho(1-\pi)e^{-\frac\alpha K(C_{1b}-C_0)}.
@@ -529,11 +529,11 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 % 原书题首误指练习 5，题干已改为承接练习 10.6。
 练习~\ref{exer:wj-ten-6} 先从个人需求与市场出清求均衡。本题从同一个均衡构造代表性参与者，再用其边际效用给证券定价。以下采用上一题的内点均衡，令 $a=\alpha/K$、$W^*=C_0+S_0^*$，并记 $\delta_k=(s_k-1/K)W^*/(1+B^*)$。
 \begin{enumerate}[label=(\alph*)]
- \item 依照练习~\ref{exer:wj-ten-2}，给定总消费 $x$，规划者在每个日期或状态分别求解
+ \item \textbf{解答}\quad 依照练习~\ref{exer:wj-ten-2}，给定总消费 $x$，规划者在每个日期或状态分别求解
  \[
  \begin{aligned}
  \max_{c_k\ge0}\quad &-\sum_k\mu_k e^{-\alpha c_k}\\
@@ -554,7 +554,7 @@
  \]
  此指数形式适用于各人的分享均为正的总消费区间。若该分享规则给出负消费，须按非负约束重新分配资源并计算定价。
 
- \item 归一化后的权重可写为
+ \item \textbf{解答}\quad 归一化后的权重可写为
  \[
  \mu_k=\frac{\exp(\alpha W^*s_k/(1+B^*))}
  {\sum_j\exp(\alpha W^*s_j/(1+B^*))}.
@@ -562,15 +562,15 @@
 
  权重随禀赋份额 $s_k$ 上升。因为禀赋份额越高，均衡消费越多，个人边际效用越低，规划者需要给他更大的权重，才能使各人的加权边际效用相等。
 
- \item 在内点区间，财富份额只影响聚合效用的正比例系数。约去该系数后，代表性偏好由 $a=\alpha/K$、$\rho$ 和状态概率决定，所得内点定价与 $s_k$ 无关。
+ \item \textbf{证明}\quad 在内点区间，财富份额只影响聚合效用的正比例系数。约去该系数后，代表性偏好由 $a=\alpha/K$、$\rho$ 和状态概率决定，所得内点定价与 $s_k$ 无关。
 
- \item 定价核为 $\widetilde\pi^*=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item \textbf{解答}\quad 定价核为 $\widetilde\pi^*=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
  B^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}],\qquad
  S_0^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}\widetilde C_1].
  \]
 
- \item 无风险总收益率为 $1+r_F^*=1/B^*$，净利率为 $r_F^*=1/B^*-1$。由 $\tilde r_S^*=\tilde S_1/S_0^*-1$，可将题设的绝对风险溢价写成 $p=S_0^*(\mathrm E[\tilde r_S^*]-r_F^*)$。它是以消费品计量的一股股票的绝对超额收益。由 $B^*=\phi_a^*+\phi_b^*$，两状态价格分别除以 $B^*$ 后加总为 $1$，就是风险中性概率。因此 $S_0^*/B^*$ 是按风险中性概率计算的一股股票的期望支付。记 $\Delta=C_{1a}-C_{1b}>0$。将 (d) 的定价核在两个状态分别乘以相应概率，得到 $\phi_a^*/\phi_b^*=\pi e^{-a\Delta}/(1-\pi)$，从而
+ \item \textbf{解答}\quad 无风险总收益率为 $1+r_F^*=1/B^*$，净利率为 $r_F^*=1/B^*-1$。由 $\tilde r_S^*=\tilde S_1/S_0^*-1$，可将题设的绝对风险溢价写成 $p=S_0^*(\mathrm E[\tilde r_S^*]-r_F^*)$。它是以消费品计量的一股股票的绝对超额收益。由 $B^*=\phi_a^*+\phi_b^*$，两状态价格分别除以 $B^*$ 后加总为 $1$，就是风险中性概率。因此 $S_0^*/B^*$ 是按风险中性概率计算的一股股票的期望支付。记 $\Delta=C_{1a}-C_{1b}>0$。将 (d) 的定价核在两个状态分别乘以相应概率，得到 $\phi_a^*/\phi_b^*=\pi e^{-a\Delta}/(1-\pi)$，从而
  \[
  \frac{\phi_a^*}{B^*}=\frac{\pi}{\pi+(1-\pi)e^{a\Delta}}.
  \]
@@ -586,7 +586,7 @@
 
  它等于实际概率与风险中性概率之差乘以状态支付差。
 
- \item 给定未来\textbf{增长率分布}，令 $\tilde g=\widetilde C_1/C_0-1$、$\ell=aC_0$。当 $|\ell\tilde g|$ 一致较小时，
+ \item \textbf{解答}\quad 给定未来\textbf{增长率分布}，令 $\tilde g=\widetilde C_1/C_0-1$、$\ell=aC_0$。当 $|\ell\tilde g|$ 一致较小时，
  \[
  B^*\approx\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)],
  \quad
@@ -605,10 +605,10 @@
 
  决定。若两个状态的净增长率 $g_a,g_b$ 都为正，利率随 $C_0$ 上升；若都为负，利率下降；若一正一负，方向取决于上式的加权结果。与此同时，$\Delta=C_0(g_a-g_b)$ 随消费规模增大，绝对风险溢价也增加。若保持未来消费水平不变而提高 $C_0$，则债券价格上升、利率下降，绝对风险溢价不变。
 
- \item 将执行价记为 $L$，与参与者人数 $K$ 区分。对任意 $L$，用两状态的看涨支付乘以各自的状态价格并相加，就得到复制成本
+ \item \textbf{解答}\quad 本小问沿用题干，以 $K$ 表示执行价格。下式中的 $a$ 已由前文的参与者人数确定。把两状态的看涨支付分别乘以对应的状态价格，再相加得到复制成本
  \[
- V(L)=\phi_a^*(C_{1a}-L)_++\phi_b^*(C_{1b}-L)_+
- =\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}(\widetilde C_1-L)_+].\qedhere
+ V(K)=\phi_a^*(C_{1a}-K)_++\phi_b^*(C_{1b}-K)_+
+ =\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}(\widetilde C_1-K)_+].\qedhere
  \]
 
 \end{enumerate}

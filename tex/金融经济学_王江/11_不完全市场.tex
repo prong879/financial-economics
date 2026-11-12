@@ -40,7 +40,7 @@
 
 当 $N<\Omega$ 时，$M$ 是整个支付空间的真子空间，市场不完全。
 
-沿用第~\ref{sec:wj-ten-1}~节的净交易口径：$e_k$ 包括初始证券的支付，$\theta_k$ 表示净购买数量。预算关系为
+沿用第~\ref{sec:wj-ten-1}~节的净交易口径，禀赋 $e_k$ 包括初始证券的支付。价格 $S=(S_1,\ldots,S_N)^{\mathsf T}$ 与净买入数量 $\theta_k=(\theta_{k,1},\ldots,\theta_{k,N})^{\mathsf T}$ 都是按证券排列的列向量。未来禀赋 $e_{k,1}$、消费 $c_{k,1}$ 和净交易支付 $X\theta_k$ 则是按状态排列的 $\Omega$ 维列向量。预算关系为
 \[
  c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\qquad
  c_{k,1}=e_{k,1}+X\theta_k.
@@ -125,7 +125,7 @@
  \label{eq:wj-11-2}
 \end{equation}
 
-令 $\widetilde\pi_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$ 为参与者 $k$ 的定价核，其在状态 $\omega$ 的取值记为 $\pi_{k,\omega}$。式~\eqref{eq:wj-11-2} 的向量形式为
+令 $\widetilde\pi_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$ 为参与者 $k$ 的定价核，它在每个状态 $\omega$ 取一个标量值 $\pi_{k,\omega}$。将这个标量乘以各证券在该状态的支付，再逐分量取期望，便得到式~\eqref{eq:wj-11-2} 的向量形式：
 \begin{equation}
  S=\mathrm E[\widetilde\pi_k\widetilde X],\qquad\forall k.
  \label{eq:wj-11-3}
@@ -136,7 +136,7 @@
  \mathrm E[(\widetilde\pi_k-\widetilde\pi_j)\widetilde X_n]=0,\qquad\forall k,j,n.
 \]
 
-令 $\phi_{k,\omega}=p_\omega\pi_{k,\omega}>0$，把各状态的概率并入个人定价核。将第 $n$ 只证券的期望展开，并把所有证券的等式合写为向量式，
+将概率并入个人定价核，得到状态价格 $\phi_{k,\omega}=p_\omega\pi_{k,\omega}>0$。按 $X$ 的行序排列，得到 $\Omega$ 维状态价格列向量 $\phi_k=(\phi_{k,1},\ldots,\phi_{k,\Omega})^{\mathsf T}$。将第 $n$ 只证券的期望展开，再把所有证券的等式合写为
 \[
  S_n=\sum_\omega p_\omega\pi_{k,\omega}X_{\omega,n}
      =\sum_\omega\phi_{k,\omega}X_{\omega,n},\qquad
@@ -182,11 +182,13 @@
 
 式~\eqref{eq:wj-11-4} 对第 0 期和未来每个状态分别成立。约束最优只在现有证券能实现的可行配置中寻找改善，\hyperref[def:wj-two-9]{帕累托最优}则考察所有可行配置。完全市场中，两者考察的配置集合相同。
 
+\Needspace{7\baselineskip}
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJElevenTheorem{thm:wj-eleven-1} 在固定证券支付结构 $X$ 下，无交易限制、效用严格递增且无套利的竞争均衡配置是约束最优的。
 \end{tcolorbox}
 
-\textbf{证明：}记均衡价格为 $S$，均衡消费为 $c_k$。由无套利，存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，将 $S^{\mathsf T}\theta_k=\phi^{\mathsf T}X\theta_k$ 代入证券预算，得到
+\begin{solution}[label-content={证明},blank-type=none]
+记均衡价格为 $S$，均衡消费为 $c_k$。由无套利，存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，将 $S^{\mathsf T}\theta_k=\phi^{\mathsf T}X\theta_k$ 代入证券预算，得到
 \[
  \begin{aligned}
  \widehat\phi^{\mathsf T}c_k
@@ -216,7 +218,8 @@
  \widehat\phi^{\mathsf T}\sum_kc_k,
 \]
 
-与式~\eqref{eq:wj-11-4}（两套配置的总消费逐日期、逐状态相同）矛盾。故均衡是约束最优的。\hfill$\square$
+与式~\eqref{eq:wj-11-4}（两套配置的总消费逐日期、逐状态相同）矛盾。故均衡是约束最优的。
+\end{solution}
 
 有些支付未上市交易，可能是因为转让这类支付需要成本。约束最优回答的是，在给定交易范围内还有没有可实现的改善。若新增证券，能够实现的资源转移可能随之扩大。
 
@@ -239,11 +242,13 @@
 \WJElevenTheorem{thm:wj-eleven-2} 沿用定理~\ref{thm:wj-eleven-1} 的均衡条件，设效用连续且上述共同效用上等值集合紧致。若证券市场是实质完全的，则均衡配置是帕累托最优的。
 \end{tcolorbox}
 
-\textbf{证明：}记均衡配置为 $A$，由定理~\ref{thm:wj-eleven-1}，$A$ 是约束最优的。若 $A$ 不是帕累托最优，则存在可行配置 $A'$，满足 $U_k(A')\ge U_k(A)$ 对所有人均成立，且至少一人严格变好。
+\begin{solution}[label-content={证明},blank-type=none]
+记均衡配置为 $A$，由定理~\ref{thm:wj-eleven-1}，$A$ 是约束最优的。若 $A$ 不是帕累托最优，则存在可行配置 $A'$，满足 $U_k(A')\ge U_k(A)$ 对所有人均成立，且至少一人严格变好。
 
 记 $A^*$ 为 $\sum_k U_k(D)$ 在 $\mathcal F(A')$ 上的一个最大点。若某个可行配置帕累托占优于 $A^*$，它也属于 $\mathcal F(A')$，且效用之和严格更高，与最大值矛盾。所以 $A^*$ 是帕累托最优的。
 
-由 $U_k(A^*)\ge U_k(A')\ge U_k(A)$，在 $A'$ 已严格变好的人在 $A^*$ 仍严格变好。实质完全性保证 $A^*$ 可获得，因此它是对 $A$ 的可获得改进，与 $A$ 的约束最优性矛盾。\hfill$\square$
+由 $U_k(A^*)\ge U_k(A')\ge U_k(A)$，在 $A'$ 已严格变好的人在 $A^*$ 仍严格变好。实质完全性保证 $A^*$ 可获得，因此它是对 $A$ 的可获得改进，与 $A$ 的约束最优性矛盾。
+\end{solution}
 
 以下两种情形都以\textbf{\hyperref[def:wj-two-6]{证券市场经济}}为前提：每个人的未来禀赋都是可交易证券的支付，即
 \[
@@ -268,14 +273,15 @@
 \WJElevenTheorem{thm:wj-eleven-3} 在上述证券市场经济中，若市场包括以市场组合为标的、执行价格齐备的期权，即这 $N_d-1$ 只看涨期权均可交易，则市场实质完全。
 \end{tcolorbox}
 
-\textbf{证明：}先确定需要复制的消费。取两个总禀赋相同的状态 $\omega,\omega'$，把每个人在这两态的消费都换成同一个概率加权平均
+\begin{solution}[label-content={证明},blank-type=none]
+先确定需要复制的消费。取两个总禀赋相同的状态 $\omega,\omega'$，把每个人在这两态的消费都换成同一个概率加权平均
 \[
  \bar c_k=
  \frac{p_\omega c_{k,1\omega}+p_{\omega'}c_{k,1\omega'}}
       {p_\omega+p_{\omega'}}.
 \]
 
-由于 $C_{1\omega}=C_{1\omega'}$，把 $\bar c_k$ 对所有人加总仍得到该共同的总禀赋，两态都满足资源约束。其他状态和当期消费保持原值。单期效用在两态相同且严格凹，所以平均后每人的期望效用都不降低。只要某人原来的两态消费不同，此人的效用就严格提高。因此，任意帕累托最优配置的未来消费在总禀赋相同的状态下必定相同，可写为 $c_{k,1}=f_k(X_M)$。这个结论也覆盖消费在边界的情形，内点情形见第十讲定理~\ref{thm:wj-ten-6}。
+由于 $C_{1\omega}=C_{1\omega'}$，把 $\bar c_k$ 对所有人加总仍得到该共同的总禀赋，两态都满足资源约束。其他状态和当期消费保持原值。单期效用在两态相同且严格凹，所以平均后每人的期望效用都不降低。只要某人原来的两态消费不同，此人的效用就严格提高。因此，任意帕累托最优配置的未来消费在总禀赋相同的状态下必定相同，可写为 $c_{k,1}=f_k(X_M)$。
 
 现在构造能在各个总禀赋水平上匹配 $f_k$ 的证券组合。先取 $z_1>0$。若 $N_d=1$，只需用市场组合在唯一的取值上匹配支付。若 $N_d\ge2$，以总禀赋水平为行，以市场组合和按执行价从低到高排列的看涨期权为列，支付矩阵为
 \[
@@ -298,7 +304,10 @@
 
 若 $z_1=0$，各人的消费非负，所以零总禀赋状态下每个人的消费都为零，复制的目标满足 $f_k(0)=0$。若 $N_d\ge2$，零执行价看涨的支付为 $(X_M-0)^+=X_M$，已经提供了市场组合的支付方向，可以删去原矩阵的第一列。零总禀赋对应的第一行自动匹配，删去后，剩余矩阵仍为下三角，对角元 $z_{i+1}-z_i$ 都严格为正。用期权逐行复制各个正禀赋水平的支付即可。若 $N_d=1$，零头寸就能复制所需的零消费。
 
-于是，每个帕累托最优配置的未来消费都满足 $c_{k,1}\in M$。又因 $e_{k,1}\in M$，净消费变化 $c_{k,1}-e_{k,1}$ 也可复制，市场实质完全。\hfill$\square$
+于是，每个帕累托最优配置的未来消费都满足 $c_{k,1}\in M$。又因 $e_{k,1}\in M$，净消费变化 $c_{k,1}-e_{k,1}$ 也可复制，市场实质完全。
+\end{solution}
+
+任一帕累托最优配置中，总禀赋相同的状态对应相同的个人消费，即使消费位于边界也是如此。内点情形见第十讲定理~\ref{thm:wj-ten-6}。
 
 当 $z_1>0$ 时，市场组合与这些期权张成总禀赋的所有函数，维数为 $N_d$。当 $z_1=0$ 时，它们张成满足 $f(0)=0$ 的函数，维数为 $N_d-1$。若还有单位无风险债券，可先持有 $f(0)$ 单位债券，再用期权复制 $f(X_M)-f(0)$，从而张成全部 $N_d$ 维函数。若 $N_d<\Omega$，这些总禀赋的函数仍无法区分总禀赋相同的状态。结构完全性取决于全部交易证券的支付矩阵是否满行秩。
 
@@ -313,7 +322,8 @@
 其中 $d_k+c/\gamma>0$，则债券和市场组合可以复制内点最优分享规则。若所有帕累托最优配置的未来消费都由这样的内点分享规则给出，则市场实质完全。
 \end{tcolorbox}
 
-\textbf{证明：}对未来期边际效用求导，可得风险容忍度
+\begin{solution}[label-content={证明},blank-type=none]
+对未来期边际效用求导，可得风险容忍度
 \[
  T_k(c)=-\frac{u'_{k,1}(c)}{u''_{k,1}(c)}=d_k+\frac{c}{\gamma}.
 \]
@@ -325,7 +335,10 @@
  +\underbrace{b_k X_M}_{\text{市场组合支付}}.
 \]
 
-若债券每单位到期支付 $1$，只需持有 $a_k$ 单位债券和 $b_k$ 单位市场组合。若债券价格归一为 $1$、到期支付 $1+r_F$，则债券头寸为 $a_k/(1+r_F)$。因此 $c_{k,1}\in M$。结合 $e_{k,1}\in M$，每个满足上述内点条件的帕累托最优配置均可获得。\hfill$\square$
+若债券每单位到期支付 $1$，只需持有 $a_k$ 单位债券和 $b_k$ 单位市场组合。因此 $c_{k,1}\in M$。结合 $e_{k,1}\in M$，每个满足上述内点条件的帕累托最优配置均可获得。
+\end{solution}
+
+把内点分享规则写成 $c_{k,1}=a_k\mathbf1+b_kX_M$，其中 $a_k$ 是常数支付。若债券价格归一为 $1$、到期支付 $1+r_F$，就持有 $a_k/(1+r_F)$ 单位债券来复制这部分支付。
 
 个人消费的非负约束可能使分享规则出现折点。例如，两人的效用都是 $\log(1+c)$，规划权重之比为 $2:1$。在总消费为 $C$ 的状态，把第一人的消费写成 $C-c_2$。对加权效用 $2\log(1+C-c_2)+\log(1+c_2)$ 求导，内点一阶条件给出
 \[
