@@ -8,6 +8,12 @@
 \newcounter{wjFourExercise}
 \renewcommand{\thewjFourExercise}{\thechapter.\arabic{wjFourExercise}}
 \newcommand{\WJFourProblem}[2]{\refstepcounter{wjFourExercise}\label{#1}\problemno{\thewjFourExercise#2}}
+% 学生版不保留解答小问的锚点。
+\newcommand{\WJFourAnswerRef}[1]{%
+  \IfRefUndefinedExpandable{prob:wj-four-1-answer-#1}%
+    {练习~\ref*{prob:wj-four-1}(#1)}%
+    {\WJLink{prob:wj-four-1-answer-#1}{练习~\ref*{prob:wj-four-1}\ref*{prob:wj-four-1-answer-#1}}}%
+}
 
 \begin{problem}
 \WJFourProblem{prob:wj-four-1}{} 经济在 1 期有 4 个可能状态。在市场中有 5 只可交易证券，它们的支付矩阵 $X$ 如下：
@@ -28,17 +34,17 @@
     \item 证明状态或有组合可生成状态空间。
 \end{enumerate}
 \end{problem}
-\begin{solution}
-\begin{enumerate}[label=(\alph*)]
-    \item 证券 $2,3,4,5$ 的支付子矩阵为
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+\begin{enumerate}[label=(\alph*),ref=(\alph*)]
+    \item \textbf{证明。}证券 $2,3,4,5$ 的支付子矩阵为
     \[
       Y=[X_2,X_3,X_4,X_5]
       =\begin{bmatrix}1&0&0&0\\2&1&0&0\\3&2&1&0\\4&3&2&1\end{bmatrix}.
     \]
 
-    $Y$ 是对角元均为 $1$ 的下三角矩阵，故 $\det Y=1$，四列线性无关。状态数为 $4$，所以 $\operatorname{rank}(X)=4$。由行满秩判据\ifdefined\WJHandoutKnowledge（见第~\ref{sec:wj-three-rank}~节）\fi，市场完全。虽然证券 $1,2,3$ 的支付满足 $X_2=X_1+X_3$，证券 $2,3,4,5$ 已足以生成全部状态支付。
+    $Y$ 是对角元均为 $1$ 的下三角矩阵，故 $\det Y=1$，四列线性无关。状态数为 $4$，所以 $\operatorname{rank}(X)=4$。由行满秩判据\ifdefined\WJHandoutKnowledge（见\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，市场完全。虽然证券 $1,2,3$ 的支付满足 $X_2=X_1+X_3$，证券 $2,3,4,5$ 已足以生成全部状态支付。
 
-    \item 设 $S$ 为证券的 0 期价格向量。先求满足 $X^{\mathsf T}\phi=S$ 的候选向量。由 (a)，$Y$ 可逆，所以证券 $2,3,4,5$ 的四个定价方程已唯一确定 $\phi$。
+    \item \textbf{证明与解答。}设 $S$ 为证券的 0 期价格向量。先求满足 $X^{\mathsf T}\phi=S$ 的候选向量。由 (a)，$Y$ 可逆，所以证券 $2,3,4,5$ 的四个定价方程已唯一确定 $\phi$。
 
     这四个定价方程是 $Y^{\mathsf T}\phi=(S_2,S_3,S_4,S_5)^{\mathsf T}$。由末式开始回代，得到
     \[
@@ -52,7 +58,7 @@
 
     证券 $1$ 在每个状态都支付 $1$，它的定价方程要求 $\sum_{i=1}^4\phi_i=S_1$。上面四个分量相加为 $S_2-S_3$，所以五个方程有解当且仅当 $S_1=S_2-S_3$。这也是复制关系 $X_1=X_2-X_3$ 所要求的价格关系。
 
-    由资产定价基本定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-7}）\fi，市场无套利当且仅当报价满足上述价格关系，且求出的四个分量都严格为正。原题只给了支付矩阵，因此状态价格只能表示成报价的函数。
+    由资产定价基本定理\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-7}{定理~}[（资产定价基本定理）]）\fi，市场无套利当且仅当报价满足上述价格关系，且求出的四个分量都严格为正。原题只给了支付矩阵，因此状态价格只能表示成报价的函数。
 
     % 补充算例报价来自参考答案 PDF 第 14 页。
     \Needspace{8\baselineskip}
@@ -68,9 +74,9 @@
 
     四个状态价格加总为 $1$，与证券 $1$ 的报价一致。因此 $\phi=(1/4,1/4,1/4,1/4)^{\mathsf T}$ 是同时满足五个定价方程的唯一解。四个分量均严格为正，所以这组报价无套利。
 
-    \item 因为 $X_1=X_2-X_3$，买入一份证券 $2$ 并卖出一份证券 $3$ 就可复制证券 $1$，所以证券 $1$ 是冗余证券。
+    \item\label{prob:wj-four-1-answer-c} \textbf{证明。}因为 $X_1=X_2-X_3$，买入一份证券 $2$ 并卖出一份证券 $3$ 就可复制证券 $1$，所以证券 $1$ 是冗余证券。
 
-    \item 以证券 $2,3,4,5$ 为复制工具。记 $\mathbf e_i$ 为 $\mathrm R^4$ 的第 $i$ 个单位向量。复制状态 $1$ 的证券时，令 $Y\beta=\mathbf e_1$。由于 $Y$ 为下三角矩阵，第一行给出证券 $2$ 的持仓为 $1$，再让后三行的支付逐一为零，得到证券 $3,4,5$ 的持仓分别为 $-2,1,0$。对四个目标支付逐行求解，得到
+    \item\label{prob:wj-four-1-answer-d} 以证券 $2,3,4,5$ 为复制工具。记 $\mathbf e_i$ 为 $\mathrm R^4$ 的第 $i$ 个单位向量。复制状态 $1$ 的证券时，令 $Y\beta=\mathbf e_1$。由于 $Y$ 为下三角矩阵，第一行给出证券 $2$ 的持仓为 $1$，再让后三行的支付逐一为零，得到证券 $3,4,5$ 的持仓分别为 $-2,1,0$。对四个目标支付逐行求解，得到
     \[
       \begin{aligned}
        X_2-2X_3+X_4&=\mathbf e_1,\\
@@ -102,23 +108,23 @@
       =\sum_{i=1}^4\alpha_i\mathbf e_i=\alpha=X\theta.
     \]
 
-    两种实现方式的支付相同，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，成本也相同。
+    两种实现方式的支付相同，由一价定律\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-3}{定理~}[（一价定律）]）\fi，成本也相同。
 
-    \item 四个状态或有组合的支付为 $\mathbf e_1,\ldots,\mathbf e_4$，构成 $\mathrm R^4$ 的一组基。任意状态支付 $z=(z_1,\ldots,z_4)^{\mathsf T}$ 均可写为 $z=\sum_i z_i\mathbf e_i$，故它们生成全部状态支付空间。
+    \item \textbf{证明。}四个状态或有组合的支付为 $\mathbf e_1,\ldots,\mathbf e_4$，构成 $\mathrm R^4$ 的一组基。任意状态支付 $z=(z_1,\ldots,z_4)^{\mathsf T}$ 均可写为 $z=\sum_i z_i\mathbf e_i$，故它们生成全部状态支付空间。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
 \WJFourProblem{prob:wj-four-2}{} 银行 1 的存贷利率为 $r_{1}$ 而银行 2 的为 $r_{2}$，且 $r_{1}>r_{2}$。证明存在套利机会。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 从银行 $2$ 借入 $1$ 单位资金，并在同一时点全部存入银行 $1$。假设两笔交易同时到期、可按题给利率成交，且无信用风险和额外费用，现金流为
 \[
  \underbrace{1-1}_{\text{0 期净现金流}}=0,\qquad
  \underbrace{(1+r_1)-(1+r_2)}_{\text{1 期净现金流}}=r_1-r_2>0.
 \]
 
-因此，这笔交易不需要当期净投入，到期却有正的净收入，属于第 2 类套利\ifdefined\WJHandoutKnowledge（见定义~\ref{def:wj-four-1}）\fi。
+因此，这笔交易不需要当期净投入，到期却有正的净收入，属于第 2 类套利\ifdefined\WJHandoutKnowledge（见\WJRef{def:wj-four-1}{定义~}[（套利机会）]）\fi。
 \end{solution}
 
 \begin{problem}
@@ -128,11 +134,11 @@
     \item 两个银行的存贷利率应该满足什么样的条件才能使市场上不存在套利机会。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 假设两家银行的存贷总收益率均严格为正，借贷可同时进行、期限相同、无信用风险且无额外费用。
 
 \begin{enumerate}[label=(\alph*)]
-    \item 设 $r_{ia}<r_{ib}$。从银行 $i$ 借入 $1$ 并存入该银行：0 期收到贷款 $1$、支付存款 $1$，净现金流为 $0$；1 期收回 $1+r_{ib}$、偿还 $1+r_{ia}$，净现金流为
+    \item \textbf{证明。}设 $r_{ia}<r_{ib}$。从银行 $i$ 借入 $1$ 并存入该银行：0 期收到贷款 $1$、支付存款 $1$，净现金流为 $0$；1 期收回 $1+r_{ib}$、偿还 $1+r_{ia}$，净现金流为
     \[
         (1+r_{ib})-(1+r_{ia})=r_{ib}-r_{ia}>0.
     \]
@@ -154,17 +160,17 @@
 \end{solution}
 
 \begin{problem}
-\WJFourProblem{prob:wj-four-4}{} 考虑练习~\ref{prob:wj-four-1} 中定义的市场。假设 5 只交易证券的价格分别为 $1$，$2$，$3/2$，$1$，$1/2$。
+\WJFourProblem{prob:wj-four-4}{} 考虑\WJRef{prob:wj-four-1}{练习~} 中定义的市场。假设 5 只交易证券的价格分别为 $1$，$2$，$3/2$，$1$，$1/2$。
 \begin{enumerate}[label=(\alph*)]
     \item 在这样的价格和支付下存在套利机会吗？
     \item 你能构建第 1、2 以及 3 类套利机会吗？
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-    \item 由练习~\ref{prob:wj-four-1}(d)，买入证券 $4$ 一份、卖出证券 $5$ 两份，可复制状态 $3$ 的单位支付 $\mathbf e_3=(0,0,1,0)^{\mathsf T}$。代入本题价格，复制成本为 $S_4-2S_5=1-2\times(1/2)=0$。这个组合在每个状态的支付都非负，且在状态 $3$ 有正支付，因此构成第 2 类套利。
+    \item 由\WJFourAnswerRef{d}，买入证券 $4$ 一份、卖出证券 $5$ 两份，可复制状态 $3$ 的单位支付 $\mathbf e_3=(0,0,1,0)^{\mathsf T}$。代入本题价格，复制成本为 $S_4-2S_5=1-2\times(1/2)=0$。这个组合在每个状态的支付都非负，且在状态 $3$ 有正支付，因此构成第 2 类套利。
 
-    \item 由练习~\ref{prob:wj-four-1}(c)，买入一份证券 $2$、卖出一份证券 $3$ 可复制证券 $1$，成本为 $S_2-S_3=1/2$。证券 $1$ 的报价为 $1$，所以买入较便宜的复制组合并卖出证券 $1$，当期净收入 $1/2$，到期支付恰好抵消，构成第 1 类套利。将它与 (a) 的组合相加，便同时得到当期净收入和状态 $3$ 的正支付，构成第 3 类套利。三种组合的持仓、成本与支付如下。
+    \item 由\WJFourAnswerRef{c}，买入一份证券 $2$、卖出一份证券 $3$ 可复制证券 $1$，成本为 $S_2-S_3=1/2$。证券 $1$ 的报价为 $1$，所以买入较便宜的复制组合并卖出证券 $1$，当期净收入 $1/2$，到期支付恰好抵消，构成第 1 类套利。将它与 (a) 的组合相加，便同时得到当期净收入和状态 $3$ 的正支付，构成第 3 类套利。三种组合的持仓、成本与支付如下。
     \[
       \begin{array}{c|c|c|c}
        \text{类别}&\theta^{\mathsf T}&S^{\mathsf T}\theta&X\theta\\\hline
@@ -195,9 +201,9 @@
     \item 解释为什么存在多个可能的状态价格向量，它们对已有证券都给出相同的价格。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-    \item 状态价格的线性方程为
+    \item \textbf{证明。}状态价格的线性方程为
     \[
        \phi_1+\phi_2=1,\qquad\phi_2+\phi_3=1,\qquad
        \tfrac12\phi_1+\phi_2+\tfrac12\phi_3=1.
@@ -205,11 +211,11 @@
 
     代入 $(2,-1,2)^{\mathsf T}$，三式左端分别为 $2-1=1$、$-1+2=1$ 和 $\tfrac12(2+2)-1=1$。因此它是给已有证券定价的一个线性解，但含负分量。
 
-    \item 由资产定价基本定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-7}）\fi，市场无套利当且仅当定价方程 $X^{\mathsf T}\phi=S$ 至少有一个严格正解 $\phi\gg0$。用这样的 $\phi$ 计价，任意组合的成本为 $S^{\mathsf T}\theta=\phi^{\mathsf T}X\theta$。若 $X\theta=0$，成本为零，排除了第 1 类套利。若 $X\theta\ge0$ 且 $X\theta\ne0$，至少有一个状态的支付为正，乘上该状态的严格正价格后，组合成本为正，从而排除了第 2、3 类套利。若允许某个状态价格为零，只在该状态支付的组合就可能有零成本。
+    \item 由资产定价基本定理\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-7}{定理~}[（资产定价基本定理）]）\fi，市场无套利当且仅当定价方程 $X^{\mathsf T}\phi=S$ 至少有一个严格正解 $\phi\gg0$。用这样的 $\phi$ 计价，任意组合的成本为 $S^{\mathsf T}\theta=\phi^{\mathsf T}X\theta$。若 $X\theta=0$，成本为零，排除了第 1 类套利。若 $X\theta\ge0$ 且 $X\theta\ne0$，至少有一个状态的支付为正，乘上该状态的严格正价格后，组合成本为正，从而排除了第 2、3 类套利。若允许某个状态价格为零，只在该状态支付的组合就可能有零成本。
 
     \item 定理要求有一个严格正解。(a) 只是验证了一个含负分量的解，(d) 给出的严格正解足以证明这些证券的价格无套利。
 
-    \item 将 $(1/2,1/2,1/2)^{\mathsf T}$ 代入 (a) 的定价方程，三式左端分别为 $\tfrac12+\tfrac12$、$\tfrac12+\tfrac12$ 和 $\tfrac14+\tfrac12+\tfrac14$，均为 $1$。该向量严格为正，所以满足资产定价基本定理的要求。
+    \item \textbf{证明。}将 $(1/2,1/2,1/2)^{\mathsf T}$ 代入 (a) 的定价方程，三式左端分别为 $\tfrac12+\tfrac12$、$\tfrac12+\tfrac12$ 和 $\tfrac14+\tfrac12+\tfrac14$，均为 $1$。该向量严格为正，所以满足资产定价基本定理的要求。
 
     \item 因 $X_c=(X_a+X_b)/2$，且 $X_a,X_b$ 线性无关，支付矩阵的秩为 $2<3$，市场不完全。第三个定价方程是前两个的平均。前两个方程相减得 $\phi_1=\phi_3$，令 $\phi_1=t$，则 $\phi_2=1-t$。全部线性解为
     \[
@@ -231,14 +237,14 @@
     \item 假设持有 1 盎司黄金不仅得到它的 1 期出售收益，在 1 期还得到额外收益 $y$。$y$ 将如何影响远期价格？
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 设无风险存贷总收益率 $1+r_F>0$，且可以自由买卖黄金、借贷和交易远期合约。
 \begin{enumerate}[label=(\alph*)]
     \item 单独签订远期合约，1 期取得黄金时还要支付 $F_0$。为了和直接持有黄金比较，先把这笔交割款也备好，使两种策略到期都只交付一盎司黄金。
 
     新签远期合约的初始价值为零。为在到期时支付交割款，另以 $F_0/(1+r_F)$ 购买到期支付 $F_0$ 的无风险债券。1 期债券支付恰好用于远期交割，整个组合取得一盎司黄金，且无额外净现金支出。
 
-    直接买入并持有一盎司黄金的当期成本为 $S_0$，1 期也取得一盎司黄金。由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，两种策略的当期成本必须相同。若成本有差异，买入成本较低的一边并卖出成本较高的一边，就能在到期支付相互抵消的同时取得当期净收入。
+    直接买入并持有一盎司黄金的当期成本为 $S_0$，1 期也取得一盎司黄金。由一价定律\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-3}{定理~}[（一价定律）]）\fi，两种策略的当期成本必须相同。若成本有差异，买入成本较低的一边并卖出成本较高的一边，就能在到期支付相互抵消的同时取得当期净收入。
     \[
        \underbrace{\frac{F_0}{1+r_F}}_{\text{远期交割准备金的当期成本}}
        =\underbrace{S_0}_{\text{直接买入黄金的当期成本}},\qquad
@@ -269,7 +275,7 @@
 \end{itemize}
 得到的远期价格、现时汇率和利率之间的关系就叫作抛补利率平价理论（Covered Interest Rate Parity）。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 设 $1+r_A>0$、$1+r_B>0$，两种货币都可无风险借贷、兑换且无交易费用。$S_0$ 的单位为美元/英镑，远期价格 $F_0$ 也以美元/英镑报价。
 
 比较两种在 1 期取得 $1$ 英镑、且到期无需另付美元的做法。
@@ -277,7 +283,7 @@
     \item 以零初始成本签订买入 $1$ 英镑的远期合约，并存入 $F_0/(1+r_A)$ 美元。1 期美元存款增长为 $F_0$，恰好用于交割，得到 $1$ 英镑。
     \item 当期买入 $x=1/(1+r_B)$ 英镑并存入英镑账户，1 期本息为 $x(1+r_B)=1$ 英镑；当期美元成本为 $S_0/(1+r_B)$。
 \end{enumerate}
-第一种做法用美元存款准备交割款，所以用美元利率 $r_A$ 折现。第二种做法用英镑存款凑足到期的 $1$ 英镑，所以先用英镑利率 $r_B$ 折现，再按即期汇率换算为美元。两种策略的到期支付相同，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，其当期美元成本相等。
+第一种做法用美元存款准备交割款，所以用美元利率 $r_A$ 折现。第二种做法用英镑存款凑足到期的 $1$ 英镑，所以先用英镑利率 $r_B$ 折现，再按即期汇率换算为美元。两种策略的到期支付相同，由一价定律\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-3}{定理~}[（一价定律）]）\fi，其当期美元成本相等。
 \[
     \frac{F_0}{1+r_A}=\frac{S_0}{1+r_B},\qquad
     F_0=S_0\frac{1+r_A}{1+r_B}.
@@ -287,16 +293,16 @@
 \end{solution}
 
 \begin{problem}
-\WJFourProblem{prob:wj-four-8}{} 考虑练习~\ref{prob:wj-four-1} 定义的市场。假设证券 1，2，4，5 的价格分别是 $0.8$，$2$，$0.6$，$0.2$。
+\WJFourProblem{prob:wj-four-8}{} 考虑\WJRef{prob:wj-four-1}{练习~} 定义的市场。假设证券 1，2，4，5 的价格分别是 $0.8$，$2$，$0.6$，$0.2$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算状态价格和利率。
     \item 构建等价鞅测度。
     \item 证明 5 只证券的价格都具有鞅性质。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-    \item 练习~\ref{prob:wj-four-1} 给出 $X_3=X_2-X_1$，因此证券 $1,2,4,5$ 足以复制证券 $3$，也生成全部四个状态的支付。先用这四只证券的已知价格求状态价格，再由复制关系确定 $S_3$。对应的四个定价方程为
+    \item \WJRef{prob:wj-four-1}{练习~} 给出 $X_3=X_2-X_1$，因此证券 $1,2,4,5$ 足以复制证券 $3$，也生成全部四个状态的支付。先用这四只证券的已知价格求状态价格，再由复制关系确定 $S_3$。对应的四个定价方程为
     \[
       \begin{aligned}
        \phi_1+\phi_2+\phi_3+\phi_4&=0.8,\\
@@ -322,7 +328,7 @@
 
     题中四个可能状态的实际概率均为正，$Q$ 也为每个状态赋予正概率。因此 $Q$ 和实际概率测度 $P$ 对零概率事件的判断一致，这就是两者等价的含义。这里 $q_i$ 相等来自四个状态价格相等。
 
-    \item 以 $X_n(\omega_i)$ 表示证券 $n$ 在状态 $\omega_i$ 的到期支付。由 (b)，$\mathrm E^Q[X_n]=\tfrac14\sum_{i=1}^4 X_n(\omega_i)$。用练习~\ref{prob:wj-four-1} 的支付矩阵计算，得到
+    \item \textbf{证明。}以 $X_n(\omega_i)$ 表示证券 $n$ 在状态 $\omega_i$ 的到期支付。由 (b)，$\mathrm E^Q[X_n]=\tfrac14\sum_{i=1}^4 X_n(\omega_i)$。用\WJRef{prob:wj-four-1}{练习~} 的支付矩阵计算，得到
     \[
       \begin{array}{c|ccccc}
        n&1&2&3&4&5\\\hline
@@ -343,6 +349,6 @@
        \qquad n=1,\ldots,5.
     \]
 
-    这就是两期模型的鞅条件\ifdefined\WJHandoutKnowledge（见正文式~\eqref{eq:wj-four-10}）\fi，因此五只证券以债券计价的价格在 $Q$ 下均为鞅。结合 (b) 的等价性，$Q$ 就是等价鞅测度。\qedhere
+    这就是两期模型的鞅条件\ifdefined\WJHandoutKnowledge（见\WJEqRef{eq:wj-four-10}{正文式~}[（债券计价鞅条件）]）\fi，因此五只证券以债券计价的价格在 $Q$ 下均为鞅。结合 (b) 的等价性，$Q$ 就是等价鞅测度。\qedhere
 \end{enumerate}
 \end{solution}

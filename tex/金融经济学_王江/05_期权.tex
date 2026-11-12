@@ -41,11 +41,15 @@
  \qquad [x]_+=\max\{0,x\}.
  \label{eq:wj-five-1}
 \end{equation}
-图~\ref{fig:wj-five-option-payoffs} 展示看涨与看跌的到期支付如何随标的支付变化。
+\WJRef{fig:wj-five-option-payoffs}{图~} 展示看涨与看跌的到期支付如何随标的支付变化。
 % 来源：教材图 5.1、PPT 第 4 页。横轴统一为到期标的支付。
 \begin{center}
+\begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-five-option-payoffs}%
+\centering
 \WJInputFigure{05_欧式期权到期支付}%
-\WJFigure{fig:wj-five-option-payoffs}{欧式看涨与看跌的到期支付}
+\WJFigureCaption{欧式看涨与看跌的到期支付}
+\end{minipage}
 \end{center}
 
 \subsection{美式期权与执行时点}
@@ -104,24 +108,29 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-1}欧式看涨和看跌价格非负：$c(S,K)\ge0$、$p(S,K)\ge0$。
 \end{tcolorbox}
-\textbf{证明。}两种期权支付均非负，由定理~\ref{thm:wj-four-5} 的单调性，其价格不低于零支付的价格 $V(0)=0$。
+\begin{solution}[label-content={证明},blank-type=none]
+两种期权支付均非负，由\WJRef{thm:wj-four-5}{定理~}[（定价单调性）]，其价格不低于零支付的价格 $V(0)=0$\footnote{第四章在无套利且可买卖相关头寸时比较两笔可交易支付。如果一笔支付逐状态都不低于另一笔，它的价格也不能更低。否则买入这笔较便宜的支付并卖出另一笔，会在当期取得价差，未来净支付还非负。这里用零头寸的支付作比较基准。}。
+\end{solution}
 
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-2}$c(S,K)$ 对 $K$ 非增，$p(S,K)$ 对 $K$ 非减。
 \end{tcolorbox}
-\textbf{证明。}设 $K_1>K_2$，逐状态比较有
+\begin{solution}[label-content={证明},blank-type=none]
+设 $K_1>K_2$，逐状态比较有
 \[
  [\tilde X-K_1]_+\le[\tilde X-K_2]_+,
  \qquad [K_1-\tilde X]_+\ge[K_2-\tilde X]_+.
 \]
 
 应用定价算子的单调性，分别得到 $c(S,K_1)\le c(S,K_2)$ 和 $p(S,K_1)\ge p(S,K_2)$。
+\end{solution}
 
 \subsection{执行价格的凸性与组合期权}
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-3}$c(S,K)$ 与 $p(S,K)$ 均为执行价格 $K$ 的凸函数。
 \end{tcolorbox}
-\textbf{证明。}对任意实数 $a,b$ 和 $\alpha\in[0,1]$，$\alpha[a]_++(1-\alpha)[b]_+$ 同时不小于零和 $\alpha a+(1-\alpha)b$，所以
+\begin{solution}[label-content={证明},blank-type=none]
+对任意实数 $a,b$ 和 $\alpha\in[0,1]$，$\alpha[a]_++(1-\alpha)[b]_+$ 同时不小于零和 $\alpha a+(1-\alpha)b$，所以
 \[
  [\alpha a+(1-\alpha)b]_+\le\alpha[a]_++(1-\alpha)[b]_+.
 \]
@@ -139,6 +148,8 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
  c(S,K_\alpha)\le\alpha c(S,K_1)+(1-\alpha)c(S,K_2),\qquad
  p(S,K_\alpha)\le\alpha p(S,K_1)+(1-\alpha)p(S,K_2).
 \]
+\end{solution}
+
 % PPT 第 11 页中间区域的文字论证未完整比较两边，此处用正部函数的凸性统一证明。
 
 当 $K_1<K_2$ 且 $0<\alpha<1$ 时，标的支付落在 $(K_1,K_2)$ 内的状态使两个支付不等式都严格，因为两个执行价对应的行权差额一正一负。若有这样的状态，且其状态价格为正，两种期权的价格不等式也严格。若所有状态的标的支付都在该开区间之外，则逐状态取等号，价格也取等号。
@@ -158,7 +169,8 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 
 例如，两只证券各持一份，单项执行价均为 $100$，到期分别值 $120$ 和 $80$。组合看涨支付 $0$，两份单项看涨合计支付 $20$。
 \end{tcolorbox}
-\textbf{证明。}右边组合的到期支付非负，且不小于相应的带符号线性组合，因此
+\begin{solution}[label-content={证明},blank-type=none]
+右边组合的到期支付非负，且不小于相应的带符号线性组合，因此
 \[
  \underbrace{\left[\sum_i\theta_i(\tilde X_i-K_i)\right]_+}_{\text{组合期权支付}}
  \le\underbrace{\sum_i\theta_i[\tilde X_i-K_i]_+}_{\text{单项期权支付之和}},
@@ -168,33 +180,41 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \]
 
 由逐状态支付比较得到价格比较。
+\end{solution}
 
 \Needspace{8\baselineskip}
 \subsection{看涨和看跌的价格界}
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-5}欧式看涨价格不超过标的价格：$c(S,K)\le S$。
 \end{tcolorbox}
-\textbf{证明。}由 $\tilde X\ge0$、$K\ge0$，有 $[\tilde X-K]_+\le\tilde X$。标的的价格为 $S=V(\tilde X)$，应用单调性即得结论。
+\begin{solution}[label-content={证明},blank-type=none]
+由 $\tilde X\ge0$、$K\ge0$，有 $[\tilde X-K]_+\le\tilde X$。标的的价格为 $S=V(\tilde X)$，应用单调性即得结论。
+\end{solution}
 
 \begin{tcolorbox}[knowledge]
 \WJFiveTheorem{thm:wj-five-6}存在上述无风险债券时，$c(S,K)\ge[S-K/R]_+$。
 \end{tcolorbox}
-\textbf{证明。}买入一股股票、卖出 $K$ 份单位债券。卖出债券相当于 0 期借入 $K/R$、1 期偿还 $K$，因此这个比较组合的当期成本和到期支付分别为
+\begin{solution}[label-content={证明},blank-type=none]
+买入一股股票、卖出 $K$ 份单位债券。卖出债券相当于 0 期借入 $K/R$、1 期偿还 $K$，因此这个比较组合的当期成本和到期支付分别为
 \[
  \underbrace{S-\frac K R}_{\text{比较组合的 0 期成本}},\qquad
  \underbrace{\tilde X-K}_{\text{到期组合支付}}.
 \]
 
-看涨支付 $[\tilde X-K]_+\ge\tilde X-K$，所以 $c(S,K)\ge S-K/R$。结合定理~\ref{thm:wj-five-1} 的非负性，得到下界。
+看涨支付 $[\tilde X-K]_+\ge\tilde X-K$，所以 $c(S,K)\ge S-K/R$。结合\WJRef{thm:wj-five-1}{定理~}[（期权价格非负）]，得到下界。
+\end{solution}
 
-综合定理~\ref{thm:wj-five-5}（看涨价格的上界）和定理~\ref{thm:wj-five-6}（看涨价格的下界），
+综合\WJRef{thm:wj-five-5}{定理~}[（看涨价格的上界）]和\WJRef{thm:wj-five-6}{定理~}[（看涨价格的下界）]，
 \begin{equation}
  \left[S-\frac K R\right]_+\le c(S,K)\le S.
  \label{eq:wj-five-2}
 \end{equation}
-图~\ref{fig:wj-five-option-bounds} 比较三种到期支付，显示价格上下界的来源。
+\WJRef{fig:wj-five-option-bounds}{图~} 比较三种到期支付，显示价格上下界的来源。
 % 来源：教材图 5.2—5.3、PPT 第 13—14 页。此图比较到期支付，以单调性推导价格界。
 \begin{center}
+\begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-five-option-bounds}%
+\centering
 \begin{tikzpicture}[x=.95cm,y=.7cm,font=\small]
  \draw[->] (0,-2.3)--(0,4.3) node[above] {到期支付};
  \draw[->] (0,0)--(6.8,0) node[right] {$\tilde X$};
@@ -205,7 +225,8 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
  \node[below right] at (2,0) {$K$};
  \node[left] at (0,-2) {$-K$};
 \end{tikzpicture}
-\WJFigure{fig:wj-five-option-bounds}{看涨期权价格界的支付比较}
+\WJFigureCaption{看涨期权价格界的支付比较}
+\end{minipage}
 \end{center}
 上方的股票支付给出价格上界；下方的“股票减债券”支付给出价格下界。
 
@@ -217,7 +238,8 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
  \label{eq:wj-five-3}
 \end{equation}
 \end{tcolorbox}
-\textbf{证明。}比较“看涨加 $K$ 份单位债券”与“看跌加一股股票”：
+\begin{solution}[label-content={证明},blank-type=none]
+比较“看涨加 $K$ 份单位债券”与“看跌加一股股票”：
 \[
 \begin{array}{c|cc}
  &\tilde X\le K&\tilde X>K\\\hline
@@ -226,12 +248,13 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \end{array}
 \]
 
-两组合在每个状态都支付 $\max\{\tilde X,K\}$。每份单位债券今天花 $1/R$、到期支付 $1$，所以 $K$ 份债券今天花 $K/R$。由\hyperref[thm:wj-four-3]{一价定律}，两组当期成本相等：
+两组合在每个状态都支付 $\max\{\tilde X,K\}$。每份单位债券今天花 $1/R$、到期支付 $1$，所以 $K$ 份债券今天花 $K/R$。由\WJLink{thm:wj-four-3}{一价定律}，两组当期成本相等\footnote{第四章的一价定律比较各状态实际支付相同的可交易组合。在无套利且两种组合均可买卖的市场，若价格不同，买低卖高便能在当期得到价差，未来两笔支付恰好抵消。}：
 \[
  \underbrace{c(S,K)+K/R}_{\text{看涨期权加债券的成本}}
  =\underbrace{p(S,K)+S}_{\text{看跌期权加股票的成本}}.
 \]
-这就是式~\eqref{eq:wj-five-3} 的平价关系。
+这就是\WJEqRef{eq:wj-five-3}{看涨—看跌平价式~}。
+\end{solution}
 
 \begin{tcolorbox}[knowledge,title=欧式看跌的价格界,breakable=false]
 由平价与看涨的界，还可得看跌的界
@@ -274,17 +297,19 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \begin{tcolorbox}[knowledge,title=无股利、非负利率下的美式看涨]
 若股票在到期前不分红且 $r_F\ge0$，持有美式看涨至到期是最优策略之一，并且 $C(S,K)=c(S,K)$。
 \end{tcolorbox}
-\textbf{证明。}当期价格界给出
+\begin{solution}[label-content={证明},blank-type=none]
+当期价格界给出
 \[
  S-K\le S-\frac K R\le\left[S-\frac K R\right]_+\le c(S,K).
 \]
 
 结合 $c(S,K)\ge0$，得到 $[S-K]_+\le c(S,K)$。在立即执行与继续持有两种策略中，后者价值不低，故 $C=c$。若 $r_F>0$、$K>0$ 且 $S>K$，第一个不等式严格，继续持有严格更优。
+\end{solution}
 
 提前执行会提前支付执行价格，并放弃到期时按实际股价选择是否执行的权利。正利率下，推迟支付 $K$ 具有时间价值；到期保留放弃执行的选择，则使 $[\tilde X-K]_+$ 不低于无条件交易所得 $\tilde X-K$。
 
 \subsubsection{美式看跌}
-立即执行看跌期权可得 $K-S$，继续持有的价值为 $p(S,K)\ge0$。由式~\eqref{eq:wj-five-3}（欧式看涨—看跌平价），
+立即执行看跌期权可得 $K-S$，继续持有的价值为 $p(S,K)\ge0$。由\WJEqRef{eq:wj-five-3}{式~}[（欧式看涨—看跌平价）]，
 \[
  P(S,K)=\max\{K-S,p(S,K)\}
  =\max\left\{K-S,\frac K R-S+c(S,K)\right\}.
@@ -350,7 +375,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 
 \section{完全市场中的期权定价}\label{sec:wj-five-complete}
 \subsection{状态价格定价}
-设市场完全且无套利，单位无风险债券到期支付 $1$、价格为 $B=1/R$，其中 $R=1+r_F>0$。由定理~\ref{thm:wj-four-8}（无套利完全市场中状态价格的唯一性），状态价格 $\phi\gg0$ 唯一。将其规范化为 $q_\omega=R\phi_\omega$，得到风险中性测度 $Q$。
+设市场完全且无套利，单位无风险债券到期支付 $1$、价格为 $B=1/R$，其中 $R=1+r_F>0$。由\WJRef{thm:wj-four-8}{定理~}[（无套利完全市场中状态价格的唯一性）]，状态价格 $\phi\gg0$ 唯一。将其规范化为 $q_\omega=R\phi_\omega$，得到风险中性测度 $Q$\footnote{第四章由无套利得到一组严格正的状态价格。市场完全时，每个状态的单位支付都能复制，其复制成本就是该状态价格，因此整组价格唯一。无风险债券在每个状态支付 $1$，所以 $\sum_\omega\phi_\omega=B$。除以 $B$ 后，各权重为正且加总为 $1$。}。
 
 \begin{tcolorbox}[knowledge,title=完全市场中的期权定价,breakable=false]
 若标的在状态 $\omega$ 的支付为 $X_\omega$，则
@@ -378,7 +403,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 
 \textbf{（无套利 $\Rightarrow$ $d<R<u$）}若 $d\ge R$，买入一股并卖出 $SR$ 份单位债券。当期成本为零，到期支付为 $S(u-R)>0$、$S(d-R)\ge0$，构成套利。若 $u\le R$，卖出一股并买入 $SR$ 份债券，到期支付为 $S(R-u)\ge0$、$S(R-d)>0$，也构成套利。因此两端都须严格。
 
-\textbf{（$d<R<u$ $\Rightarrow$ 无套利）}下一小节构造的状态价格在该条件下均严格为正，并为股票和债券同时定价；由定理~\ref{thm:wj-four-7}（无套利当且仅当存在严格正的定价状态价格向量），市场无套利。
+\textbf{（$d<R<u$ $\Rightarrow$ 无套利）}下一小节构造的状态价格在该条件下均严格为正，并为股票和债券同时定价；由\WJRef{thm:wj-four-7}{定理~}[（无套利当且仅当存在严格正的定价状态价格向量）]，市场无套利。
 
 两证券的支付矩阵及行列式为
 \[
@@ -389,7 +414,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 股票与债券的支付线性无关，两个状态下的任意支付均可复制，市场完全。
 
 \subsection{求解状态价格}
-状态价格 $\phi_u,\phi_d$ 满足
+按上涨、下跌的顺序，状态价格列向量为 $\phi=(\phi_u,\phi_d)^{\mathsf T}$。股票和债券的定价方程为
 \[
  S=\phi_u uS+\phi_d dS,\qquad \phi_u+\phi_d=\frac1R.
 \]
@@ -400,14 +425,14 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
  \phi_d=\frac1R\frac{u-R}{u-d}.
 \]
 
-两分量严格为正恰好对应 $d<R<u$。用 $c_1=\tilde c$ 表示看涨期权的到期支付，其在上涨和下跌状态分别取值 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$。按状态价格加权，得到
+两分量严格为正恰好对应 $d<R<u$。记 $c_1=\tilde c$ 为看涨期权的随机到期支付。它在上涨和下跌状态分别取标量值 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$，两项按状态排成支付列向量 $(c_u,c_d)^{\mathsf T}$。用 $\phi$ 的相应分量加权，得到当期价格 $c$：
 \begin{equation}
  c=\phi_u c_u+\phi_d c_d.
  \label{eq:wj-five-5}
 \end{equation}
 
 \subsection{复制组合与对冲比}
-持有 $\theta_S$ 股与 $\theta_B$ 份单位债券，以复制到期支付 $c_u,c_d$：
+按股票、债券的顺序，把持仓记为 $(\theta_S,\theta_B)^{\mathsf T}$，其中 $\theta_S$ 是股数，$\theta_B$ 是单位债券的份数。用支付矩阵 $A$ 乘以持仓列向量，逐状态匹配期权支付：
 \[
  \theta_SuS+\theta_B=c_u,\qquad \theta_SdS+\theta_B=c_d.
 \]
@@ -427,11 +452,11 @@ $\theta_S$ 称为\textbf{对冲比}（hedge ratio，也记作期权的 $\delta$�
  =\frac1R\left[\frac{R-d}{u-d}c_u+\frac{u-R}{u-d}c_d\right].
 \]
 
-它与式~\eqref{eq:wj-five-5}（按状态价格加权的期权价格）相同。一价定律使期权价格等于复制成本；报价偏高时卖出期权、买入复制组合，偏低时反向交易，均可得到未来净支付为零的当期正收入。
+它与\WJEqRef{eq:wj-five-5}{式~}[（按状态价格加权的期权价格）]相同。一价定律使期权价格等于复制成本；报价偏高时卖出期权、买入复制组合，偏低时反向交易，均可得到未来净支付为零的当期正收入。
 
 \subsection{风险中性概率与鞅}
 \begin{tcolorbox}[knowledge,title=二叉树的风险中性概率与定价,breakable=false]
-将状态价格按其总和 $B=1/R$ 规范化，得到\hyperref[sec:wj-four-risk-neutral-probability]{风险中性概率}
+将状态价格按其总和 $B=1/R$ 规范化，得到\WJLink{sec:wj-four-risk-neutral-probability}{风险中性概率}
 \begin{equation}
  q=\frac{\phi_u}{B}=\frac{R-d}{u-d},\qquad
  1-q=\frac{\phi_d}{B}=\frac{u-R}{u-d}.
@@ -444,7 +469,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \quad\Longrightarrow\quad qu+(1-q)d=R.
 \]
 
-因此，股票在 $Q$ 下的期望总收益率等于无风险总收益率 $R$。对看涨期权作同样的替换，式~\eqref{eq:wj-five-5} 化为
+因此，股票在 $Q$ 下的期望总收益率等于无风险总收益率 $R$。对看涨期权作同样的替换，\WJEqRef{eq:wj-five-5}{式~} 化为
 \[
  c=\frac1R\underbrace{\bigl[qc_u+(1-q)c_d\bigr]}_{\mathrm E^Q[c_1]}.
 \]
@@ -458,11 +483,11 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \frac S{B_0}=\mathrm E^Q\!\left[\frac{\tilde X}{B_1}\right].
 \]
 
-这与第~\ref{sec:wj-four-risk-neutral} 节的债券计价和等价鞅测度一致。
+这与\WJRef{sec:wj-four-risk-neutral}{第~}[~节（风险中性定价和鞅）]的债券计价和等价鞅测度一致\footnote{第四章把证券各期价值除以该期无风险债券的价值。风险中性定价使当期的这一比值等于 $Q$ 下未来比值的条件期望。两期模型中，$0$ 期还没有区分未来状态，所以条件期望就是上面的普通期望。这里 $Q$ 与真实测度在同一组可能状态上都赋予正概率，因此两者等价。}。
 
 \subsection{多期二叉树与倒推}\label{sec:wj-five-backward}
 % 教材练习 5.6—5.9 使用三时点模型；补充逐节点复制与最优执行的共同递推步骤。
-设交易日期为 $t=0,1,\ldots,T$，股票无股利，$S_0>0$，每期使用相同的参数 $0<d<R<u$，且每个节点的两条后续分支均有正条件概率。各节点股价 $S_t>0$，股票与一期债券的支付矩阵均满秩，所以每个节点都可复制下一期的任意两种支付。每个节点使用~\eqref{eq:wj-five-q} 的同一风险中性概率 $q$。
+设交易日期为 $t=0,1,\ldots,T$，股票无股利，$S_0>0$，每期使用相同的参数 $0<d<R<u$，且每个节点的两条后续分支均有正条件概率。各节点股价 $S_t>0$，股票与一期债券的支付矩阵均满秩，所以每个节点都可复制下一期的任意两种支付。每个节点都使用由\WJEqRef{eq:wj-five-q}{风险中性概率公式~}给出的同一个 $q$。
 % 单期模型可取 d=0；这里采用教材练习 5.8 的 d>0，以保证每个后续节点股价为正、局部市场完全。
 \begin{tcolorbox}[knowledge,title=逐节点定价与执行]
 设 $g(S_t)$ 为在股价 $S_t$ 时立即行权的价值，例如看涨期权为 $[S_t-K]_+$。到期时 $V_T^{\mathrm E}=V_T^{\mathrm A}=g(S_T)$。令 $V_{t+1}^{u}$、$V_{t+1}^{d}$ 为下一期两个节点的期权价值。从 $T-1$ 期倒推到 0 期，继续持有价值与期权价值分别满足
@@ -491,7 +516,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 \section{期权与市场完全化}\label{sec:wj-five-completion}
 在完全市场中，期权支付已能由原生证券复制，期权是冗余证券。在不完全市场中，期权的新支付方向可以扩大可达支付空间。
 
-市场完全时，参与者可以通过证券组合实现任意状态消费计划，预算约束决定哪些计划负担得起。在定理~\ref{thm:wj-three-welfare}（第一福利定理）的条件下，完全市场的竞争均衡配置是 Pareto 最优的。下面通过蝴蝶头寸与状态指数证券构造阿罗证券，说明期权怎样补足原有市场缺少的状态支付。
+市场完全时，参与者可以通过证券组合实现任意状态消费计划，预算约束决定哪些计划负担得起。在\WJRef{thm:wj-three-welfare}{定理~}[（第一福利定理）]的条件下，完全市场的竞争均衡配置是 Pareto 最优的\footnote{第三讲在无摩擦、完全的状态证券市场中，假定参与者偏好满足不满足性，即任一项消费增加且其余各项不减少都会使人更好。在各人按共同价格选到最优计划且市场出清时，不存在另一可行配置能让所有人至少一样好，并使至少一人严格更好。}。下面通过蝴蝶头寸与状态指数证券构造阿罗证券，说明期权怎样补足原有市场缺少的状态支付。
 
 \subsection{蝴蝶头寸与局部支付}
 \begin{tcolorbox}[knowledge,title=蝴蝶头寸]
@@ -509,9 +534,12 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \end{cases}
  \end{aligned}
 \]
-图~\ref{fig:wj-five-butterfly} 中，带公式标注的虚线分别表示三个头寸的支付，蓝色实线表示逐状态相加后的总支付。
+\WJRef{fig:wj-five-butterfly}{图~} 中，带公式标注的虚线分别表示三个头寸的支付，蓝色实线表示逐状态相加后的总支付。
 % 来源：教材图 5.4、勘误第 78—79 页、PPT 第 28—29 页。横轴使用到期支付而非当期股价。
 \begin{center}
+\begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-five-butterfly}%
+\centering
 \begin{tikzpicture}[x=.95cm,y=.4cm,font=\small]
  \draw[->] (0,0)--(7.8,0) node[right] {$x$};
  \draw[->] (0,-5.8)--(0,5.5) node[above] {到期支付};
@@ -525,7 +553,8 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \node[below] at (4,0) {$K$};
  \node[below] at (6,0) {$K+\delta$};
 \end{tikzpicture}
-\WJFigure{fig:wj-five-butterfly}{蝴蝶组合的到期支付}
+\WJFigureCaption{蝴蝶组合的到期支付}
+\end{minipage}
 \end{center}
 支付只集中在执行价附近，最高支付为 $\delta$，形状类似只在局部状态支付的或有证券。
 
@@ -543,13 +572,12 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 \begin{tcolorbox}[knowledge,title=状态分离与状态指数证券]
 若证券在任意两个不同状态下的支付均不同，就能根据它的到期支付辨认实现了哪个状态。这叫\textbf{状态分离}（state separating），具有这一性质的证券称为\textbf{状态指数证券}（state-index security）。以下按支付从低到高给状态编号，记为 $X_1<X_2<\cdots<X_\Omega$。这个顺序让不同执行价的看涨期权可以在不同状态开始产生支付。
 \end{tcolorbox}
-假设指数证券的支付非负，并且下述相同到期日、相应执行价的欧式看涨期权均可交易。以它为标的、执行价为 $X_\omega$ 的看涨支付为
+假设指数证券的支付非负，并且下述相同到期日、相应执行价的欧式看涨期权均可交易。以 $\tilde X$ 表示指数证券的随机支付，$X_i$ 是它在状态 $i$ 的取值。执行价为 $X_\omega$ 的看涨期权在状态 $i$ 支付 $[X_i-X_\omega]_+$。按状态顺序排列，得到支付列向量
 \[
- [\tilde X-X_\omega]_+
- =[0,\ldots,0,X_{\omega+1}-X_\omega,\ldots,X_\Omega-X_\omega]^{\mathsf T}.
+ \bigl([X_1-X_\omega]_+,\ldots,[X_\Omega-X_\omega]_+\bigr)^{\mathsf T}.
 \]
 
-当 $X_1\ne0$ 时，选取指数证券及执行价为 $X_1,\ldots,X_{\Omega-1}$ 的看涨，支付矩阵为
+该向量的前 $\omega$ 项为零，其余各项为 $X_i-X_\omega$。当 $X_1\ne0$ 时，选取指数证券及执行价为 $X_1,\ldots,X_{\Omega-1}$ 的看涨，将这些支付向量依次作为列，得到支付矩阵
 \[
  A=\begin{bmatrix}
  X_1&0&0&\cdots&0\\
@@ -560,12 +588,12 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \end{bmatrix}.
 \]
 
-其行列式为 $X_1\prod_{i=2}^{\Omega}(X_i-X_{i-1})\ne0$。由定理~\ref{thm:wj-four-1}（支付矩阵行满秩，当且仅当市场完全），这些支付生成完全市场。若 $X_1=0$，使用单位无风险债券替换第一列，行列式为 $\prod_{i=2}^{\Omega}(X_i-X_{i-1})>0$，仍能完全化。
+其行列式为 $X_1\prod_{i=2}^{\Omega}(X_i-X_{i-1})\ne0$。由\WJRef{thm:wj-four-1}{定理~}[（支付矩阵行满秩，当且仅当市场完全）]，这些支付生成完全市场。若 $X_1=0$，使用单位无风险债券替换第一列，行列式为 $\prod_{i=2}^{\Omega}(X_i-X_{i-1})>0$，仍能完全化。
 % 教材第 80 页直接称矩阵满秩；此处明确第一列首项非零的条件和零支付时的债券构造。
 状态分离使每个状态具有不同的执行价阈值。若两个状态下的标的支付相同，则依赖同一标的支付的期权也在这两个状态下支付相同。
 
 \subsection{用蝴蝶组合复制阿罗证券}
-为展示构造，设状态 $i=1,\ldots,\Omega$ 下指数证券支付为 $i\delta$。记执行价 $n\delta$ 的看涨支付向量为 $C_n$，其中 $C_0$ 等于指数证券本身，$C_\Omega=C_{\Omega+1}=0$，因为相应执行价达到或超过最高支付。执行价 $0,\delta,\ldots,(\Omega-1)\delta$ 对应的支付矩阵为
+为展示构造，设状态 $i=1,\ldots,\Omega$ 下指数证券支付为 $i\delta$。记 $C_n$ 为执行价 $n\delta$ 的看涨期权的支付列向量，其第 $i$ 项为 $[i\delta-n\delta]_+$。其中 $C_0$ 与指数证券的支付向量相同。$C_\Omega,C_{\Omega+1}$ 均为 $\Omega$ 维零向量，因为相应执行价达到或超过最高支付。执行价 $0,\delta,\ldots,(\Omega-1)\delta$ 对应的支付矩阵为
 \[
  A_\delta=\begin{bmatrix}
  \delta&0&\cdots&0\\
@@ -575,7 +603,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \end{bmatrix}.
 \]
 
-记 $\mathbf e_i$ 为第 $i$ 个分量是 $1$、其余分量是 $0$ 的支付向量，即只在状态 $i$ 支付一单位的\hyperref[def:wj-three-claim]{阿罗证券}的支付。先用相邻执行价的看涨价差构造状态 $1$ 的支付
+记 $\mathbf e_i$ 为第 $i$ 个分量是 $1$、其余分量是 $0$ 的支付向量，即只在状态 $i$ 支付一单位的\WJLink{def:wj-three-claim}{阿罗证券}的支付。先用相邻执行价的看涨价差构造状态 $1$ 的支付
 \[
  C_0-2C_1+C_2=(C_0-C_1)-(C_1-C_2)
  =[\delta,\delta,\ldots,\delta]^{\mathsf T}
@@ -662,7 +690,7 @@ $-c'(K)$ 是一笔只在标的到期值超过 $K$ 时支付一单位的合约的
  V(y)=\int_0^\infty c''(K)y(K)\,\mathrm dK.
  \label{eq:wj-five-bl}
 \end{equation}
-这就是 \textbf{Breeden--Litzenberger 公式}。在离散近似中，$c''(K)$ 对应的是 $\phi_i/\delta$，与~\eqref{eq:wj-five-discrete-price} 的单位状态价格具有明确的区间宽度换算关系。
+这就是 \textbf{Breeden--Litzenberger 公式}。在离散近似中，$c''(K)$ 对应的是 $\phi_i/\delta$，与\WJEqRef{eq:wj-five-discrete-price}{离散状态定价式~}中的单位状态价格具有明确的区间宽度换算关系。
 \end{tcolorbox}
 % 教材第 81 页及 PPT 第 35—37 页；PPT 第 36 页将除以 delta 的离散状态价格直接取为密度，少了一次区间宽度换算。
 % 本段连续、严格正支付的假设排除零点原子；含原子情形需用状态价格测度处理。
@@ -682,7 +710,7 @@ $-c'(K)$ 是一笔只在标的到期值超过 $K$ 时支付一单位的合约的
  \label{eq:wj-five-density}
 \end{equation}
 \end{tcolorbox}
-上式右端是 $Q$ 下的期望支付 $\mathrm E^Q[y(\tilde X)]$。单位债券到期支付 $1$，所以它也是到期价值按债券计价的期望。左端 $V(y)/B$ 是 0 期的债券计价，这与第~\ref{chap:wj-four} 章式~\eqref{eq:wj-four-10} 的两期关系一致。
+上式右端是 $Q$ 下的期望支付 $\mathrm E^Q[y(\tilde X)]$。单位债券到期支付 $1$，所以它也是到期价值按债券计价的期望。左端 $V(y)/B$ 是 0 期的债券计价，这与第四讲的\WJEqRef{eq:wj-four-10}{债券计价鞅条件~} 的两期关系一致。
 
 % 来源：教师 PPT 第 37 页。将隐含分布解释为风险中性分布，明确其与真实概率的口径。
 应用时，收集同一到期日、不同执行价的欧式看涨价格，拟合满足单调性和凸性的价格曲线，再求二阶导并乘以 $R$。所得 $q$ 描述价格隐含的风险中性权重，可用于比较尾部支付的估值以及为依赖该标的的支付定价。真实概率密度描述实际发生频率；定价密度还包含投资者对各状态消费的估值。

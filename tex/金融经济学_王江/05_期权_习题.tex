@@ -20,7 +20,7 @@
     \item 将看涨期权换成看跌期权，回答 (b) 和 (c)。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 令 $R=1+r_F>0$，取 $S>0$。先讨论两状态股价不同的情形，将股价较高的状态记为 $a$，于是 $u>d$。持有一股到 1 期会收到股利 $\delta S$，并持有除息后价值为 $uS$ 或 $dS$ 的股票。因此，给股票定价用总支付 $(u+\delta)S$、$(d+\delta)S$。期权在股利支付后按除息价结算，计算行权所得时用 $uS$、$dS$。美式期权还可在 0 期执行。
 \begin{enumerate}[label=(\alph*)]
@@ -43,7 +43,7 @@
  \phi_b=\frac{u+\delta-R}{R(u-d)}.
  \]
 
- 两个分量都严格为正，由资产定价基本定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-7}）\fi，市场无套利。只要两个状态都可能发生，真实概率 $\pi$ 的具体数值就不影响这个条件或求出的状态价格。
+ 两个分量都严格为正，由资产定价基本定理\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-7}{定理~}[（资产定价基本定理）]）\fi，市场无套利\footnote{第四章在允许无摩擦交易的有限状态市场中，把无套利等价地写成存在严格正的状态价格向量 $\phi$，且能用同一 $\phi$ 为所有交易证券定价，即 $X^{\mathsf T}\phi=S$。本题上面两式分别核对了债券和含股利股票的报价。}。只要两个状态都可能发生，真实概率 $\pi$ 的具体数值就不影响这个条件或求出的状态价格。
 
  \item 欧式看涨在除息后结算，分别计算两个状态的行权支付，再用 (a) 求出的状态价格加权，得到
  \[
@@ -104,20 +104,20 @@
 
 这些证券的 0 期均衡价格是 $S_{a}=S_{b}=S_{c}=1$。令 $\phi=\begin{bmatrix}\phi_{1} \\ \phi_{2} \\ \phi_{3}\end{bmatrix}$ 为状态价格向量。考虑一份标的资产证券为 $a$、执行价格为 $1/2$ 的欧式买权。它的支付是什么？你能确定它的价格吗？
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-题给的支付向量和价格与练习~\ref{prob:wj-four-5} 相同。前两个状态中，证券 $a$ 支付 $1$，行权后得到 $1-\tfrac12$。第三个状态中证券 $a$ 支付 $0$，放弃行权。因此
+题给的支付向量和价格与\WJRef{prob:wj-four-5}{练习~} 相同。前两个状态中，证券 $a$ 支付 $1$，行权后得到 $1-\tfrac12$。第三个状态中证券 $a$ 支付 $0$，放弃行权。因此
 \[
  [X_a-\tfrac12]_+=\begin{bmatrix}1/2\\1/2\\0\end{bmatrix}=\tfrac12 X_a.
 \]
 
- 买入半份证券 $a$ 即可复制期权。由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，其价格为 $\tfrac12 S_a=\tfrac12$。从状态价格看，虽然市场不完全，但每个定价解都满足 $\phi_1+\phi_2=1$，因此都给出同一个期权价格 $\tfrac12(\phi_1+\phi_2)=\tfrac12$。
+ 买入半份证券 $a$ 即可复制期权。由一价定律\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-3}{定理~}[（一价定律）]）\fi，其价格为 $\tfrac12 S_a=\tfrac12$\footnote{第四章的一价定律只需要无套利和相关头寸可交易。只要某笔支付已经能由现有证券复制，其价格就等于复制成本。即使有些其他支付无法复制，或者状态价格向量不唯一，这笔可复制支付仍有唯一价格。}。从状态价格看，虽然市场不完全，但每个定价解都满足 $\phi_1+\phi_2=1$，因此都给出同一个期权价格 $\tfrac12(\phi_1+\phi_2)=\tfrac12$。
 \end{solution}
 
 \begin{problem}
 \WJFiveProblem{} 蝴蝶头寸是看涨期权的组合：（1）买入 1 份执行价格为 $K-\delta$ 的看涨期权，（2）卖出 2 份执行价格为 $K$ 的看涨期权，（3）买入 1 份执行价格为 $K+\delta$ 的看涨期权。因此，蝴蝶头寸可由两个参数 $K$ 和 $\delta$ 刻划。比较两个蝴蝶头寸，$K$ 相同但 $\delta$ 不同。证明 $\delta$ 较高的蝴蝶头寸的价格较高。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 
 比较同一标的、同一到期日的欧式看涨期权。记 $x$ 为到期标的价格，将题给三只期权的支付相加，得到
 \[
@@ -125,19 +125,19 @@
  =[\delta-|x-K|]_+.
 \]
 
- 在 $K-\delta<x<K+\delta$ 内，支付等于峰值 $\delta$ 减去 $x$ 到 $K$ 的距离。到了区间端点和外部，支付为零\ifdefined\WJHandoutKnowledge（见图~\ref{fig:wj-five-butterfly}）\fi。
+ 在 $K-\delta<x<K+\delta$ 内，支付等于峰值 $\delta$ 减去 $x$ 到 $K$ 的距离。到了区间端点和外部，支付为零\ifdefined\WJHandoutKnowledge（见\WJRef{fig:wj-five-butterfly}{图~}）\fi。
 
-若 $\delta_1>\delta_0>0$，逐状态均有 $h_{\delta_1}(x)\ge h_{\delta_0}(x)$。由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-four-5}\else 价格的单调性\fi（逐状态支付不低则价格不低），较宽组合的价格不低。
+若 $\delta_1>\delta_0>0$，逐状态均有 $h_{\delta_1}(x)\ge h_{\delta_0}(x)$。由\ifdefined\WJHandoutKnowledge \WJRef{thm:wj-four-5}{定理~}[（价格的单调性）]\else 价格的单调性\fi（逐状态支付不低则价格不低），较宽组合的价格不低。
 
-当存在正概率状态满足 $|\tilde X-K|<\delta_1$ 时，较宽组合在该状态的支付严格更高，由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-four-4}\else 非负支付的正价格性质\fi（非负、非零支付具有严格正价格）得到严格价格比较。若全部状态均落在较宽组合的支付区间之外或端点，两组合支付都为零，价格相等。
+当存在正概率状态满足 $|\tilde X-K|<\delta_1$ 时，较宽组合在该状态的支付严格更高，由\ifdefined\WJHandoutKnowledge \WJRef{thm:wj-four-4}{定理~}[（价格的正性）]\else 价格的正性\fi（非负、非零支付具有严格正价格）得到严格价格比较。若全部状态均落在较宽组合的支付区间之外或端点，两组合支付都为零，价格相等。
 \end{solution}
 
 \begin{problem}
 \WJFiveProblem{} 对于参数为 $K$ 和 $\delta$ 的蝴蝶头寸，给出它的价格的一个上界和下界。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-设 $\delta>0$、$K\ge\delta$，相关期权与债券均可交易。由练习~\ref{prob:wj-five-3}，蝴蝶组合的到期支付介于 $0$ 与 $\delta$ 之间。单位债券到期支付 $1$，价格为 $1/R$，其中 $R=1+r_F$。买入 $\delta$ 份债券的当期成本为 $\delta/R$，到期所得 $\delta$ 在每个状态都足以覆盖组合的支付。由无套利下的价格单调性，得到
+设 $\delta>0$、$K\ge\delta$，相关期权与债券均可交易。由\WJRef{prob:wj-five-3}{练习~}，蝴蝶组合的到期支付介于 $0$ 与 $\delta$ 之间。单位债券到期支付 $1$，价格为 $1/R$，其中 $R=1+r_F$。买入 $\delta$ 份债券的当期成本为 $\delta/R$，到期所得 $\delta$ 在每个状态都足以覆盖组合的支付。由无套利下的价格单调性，得到
 \[
  0\le V(h_\delta)\le\frac\delta R.
 \]
@@ -163,7 +163,7 @@
     \item 假设你得到一个新的利好信息：股票价格上升到 12 的概率大于 $1/2$，而股票价格仍然是 10。你愿意支付的看跌期权的价格是上涨还是下跌？解释原因。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 \begin{enumerate}[label=(\alph*)]
  \item 按题给股价树，设股票无股利。用风险中性概率 $q$ 计算下一期股价的期望，再按 $R=11/10$ 贴现，应得到当前股价。因此 $10R=12q+8(1-q)$，解得 $q=3/4$。把风险中性概率除以 $R$，得到两种状态的单位支付在 0 期的价格
@@ -203,9 +203,9 @@
     \item 如果是美式看涨期权，它在 0 期的价格是多少？
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-假设股票无股利。每个节点的上涨倍数、下跌倍数和无风险总收益率仍分别为 $1.2$、$0.8$ 和 $1.1$，所以沿用练习~\ref{prob:wj-five-5} 的单期状态价格 $\phi_u=15/22$、$\phi_d=5/22$。按逐节点倒推的定价关系\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-five-backward}）\fi，每到一个节点，用这两个状态价格给下一期的两种期权价值加权，得到当前节点的继续持有价值。
+假设股票无股利。每个节点的上涨倍数、下跌倍数和无风险总收益率仍分别为 $1.2$、$0.8$ 和 $1.1$，所以沿用\WJRef{prob:wj-five-5}{练习~} 的单期状态价格 $\phi_u=15/22$、$\phi_d=5/22$。按逐节点倒推的定价关系\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-five-backward}{式~}[（二叉树倒推）]）\fi，每到一个节点，用这两个状态价格给下一期的两种期权价值加权，得到当前节点的继续持有价值。
 \begin{enumerate}[label=(\alph*)]
  \item 将四条路径的终点股价代入 $[S_2-9]_+$，按 $uu,ud,du,dd$ 排列得到 $(27/5,3/5,3/5,0)^{\mathsf T}$。
  \item 股价为 $12$ 时，下一步对应 $uu,ud$，到期支付分别为 $27/5,3/5$。股价为 $8$ 时，下一步对应 $du,dd$，支付分别为 $3/5,0$。用各节点的单期状态价格加权，得到
@@ -224,15 +224,15 @@
 \end{solution}
 
 \begin{problem}
-\WJFiveProblem{} 在练习~\ref{prob:wj-five-6} 描述的经济中，考虑一份以股票为标的资产、在 2 期到期、执行价格为 14 的看跌期权。
+\WJFiveProblem{} 在\WJRef{prob:wj-five-6}{练习~} 描述的经济中，考虑一份以股票为标的资产、在 2 期到期、执行价格为 14 的看跌期权。
 \begin{enumerate}[label=(\alph*)]
     \item 如果它是欧式期权，求解它的 0 期价格。
     \item 如果它是美式期权，求解它的 0 期价格。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-沿用练习~\ref{prob:wj-five-6} 的单期状态价格 $\phi_u=15/22$、$\phi_d=5/22$，并使用逐节点定价与执行的递推式\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-five-backward}）\fi，从 2 期倒推。
+沿用\WJRef{prob:wj-five-6}{练习~} 的单期状态价格 $\phi_u=15/22$、$\phi_d=5/22$，并使用逐节点定价与执行的递推式\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-five-backward}{式~}[（二叉树倒推）]）\fi，从 2 期倒推。
 \begin{enumerate}[label=(\alph*)]
  \item 按 $uu,ud,du,dd$ 排列，到期支付 $[14-S_2]_+$ 为 $(0,22/5,22/5,38/5)^{\mathsf T}$。在 1 期两节点，
  \[
@@ -263,7 +263,7 @@
 \end{solution}
 
 \begin{problem}
-\WJFiveProblem{} 这里的经济与练习~\ref{prob:wj-five-6} 描述的经济一样，只是这里的参数更具一般性：
+\WJFiveProblem{} 这里的经济与\WJRef{prob:wj-five-6}{练习~} 描述的经济一样，只是这里的参数更具一般性：
 \begin{center}
 \begin{tikzpicture}[WJ binomial compact]
 \node[WJ binomial node] (A) at (0,0) {$S$};
@@ -286,9 +286,9 @@
     \item 证明在 2 期到期的美式看涨期权的价格比具有相同执行价格、但在 1 期到期的美式看涨期权的价格要高。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-令 $R=1+r_F$，沿用练习~\ref{prob:wj-five-6} 的无股利设定。
+令 $R=1+r_F$，沿用\WJRef{prob:wj-five-6}{练习~} 的无股利设定。
 \begin{enumerate}[label=(\alph*)]
  \item 在任一 0 期或 1 期节点，记当前股价为 $S_t$、下一期风险中性上涨概率为 $q$。股票的定价关系为 $S_t=[q uS_t+(1-q)dS_t]/R$。约去 $S_t>0$，得到 $qu+(1-q)d=R$，所以
 \[
@@ -301,23 +301,23 @@
  q^2[K-u^2S]_++2q(1-q)[K-udS]_++(1-q)^2[K-d^2S]_+
  \right\}.
  \]
- \item 1 期到期的合约可在 0、1 期执行。持有 2 期到期的合约时，仍可以在同一时点按同一执行价行权，取得同样的支付。较长合约还可以等到 2 期，所以在相同执行价下，其 0 期价值至少等于较短合约的价值。
+ \item \textbf{证明。}1 期到期的合约可在 0、1 期执行。持有 2 期到期的合约时，仍可以在同一时点按同一执行价行权，取得同样的支付。较长合约还可以等到 2 期，所以在相同执行价下，其 0 期价值至少等于较短合约的价值。
 
  新增执行机会可能带来严格增益。例如 $S=10,u=1.2,d=0.8,R=1.1,K=13$ 时，1 期到期的看涨在两状态均为零，而 2 期到期的看涨在 $uu$ 路径有正支付，因此后者价格严格更高。若把 $K$ 改为 $20$，所有执行时点都为虚值，两种期限的价格均为零。
 \end{enumerate}
 \end{solution}
 
 \begin{problem}
-\WJFiveProblem{} 考虑练习~\ref{prob:wj-five-8} 描述的经济。假设一只证券在 2 期的支付是股票价格从 0 期到 2 期所达到的最大值。（这是一个关于回望期权的例子，它的支付依赖于标的证券的价格路径。）
+\WJFiveProblem{} 考虑\WJRef{prob:wj-five-8}{练习~} 描述的经济。假设一只证券在 2 期的支付是股票价格从 0 期到 2 期所达到的最大值。（这是一个关于回望期权的例子，它的支付依赖于标的证券的价格路径。）
 \begin{enumerate}[label=(\alph*)]
     \item 写出它在 2 期的支付。
     \item 导出它的 0 期价格。
     \item 证明用在 2 期支付一美元的无风险债券的价格正规化以后，这只证券的价格过程在等价鞅测度下是鞅。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-令 $R=1+r_F$，沿用练习~\ref{prob:wj-five-8} 各节点的风险中性上涨概率 $q=(R-d)/(u-d)$。由于 $0<q<1$，在两条分支均可能发生的设定下，风险中性测度 $Q$ 与实际概率测度等价。记 $h_{ij}$ 为沿路径 $ij$ 到达 2 期时的最大历史股价。
+令 $R=1+r_F$，沿用\WJRef{prob:wj-five-8}{练习~} 各节点的风险中性上涨概率 $q=(R-d)/(u-d)$。由于 $0<q<1$，在两条分支均可能发生的设定下，风险中性测度 $Q$ 与实际概率测度等价。记 $h_{ij}$ 为沿路径 $ij$ 到达 2 期时的最大历史股价。
 \begin{enumerate}[label=(\alph*)]
  \item 按 $uu,ud,du,dd$ 排列，完整支付为
  \[
@@ -327,7 +327,7 @@
  \end{aligned}
  \]
 
- 若 $u>1>d$ 且 $ud<1$，四条路径的最高价依次是 $u^2S,uS,S,S$。例如，练习~\ref{prob:wj-five-6} 中两条路径 $ud$ 和 $du$ 都收在 $9.6$，但 $ud$ 先经过 $12$，历史最高价为 $12$，$du$ 的历史最高价为初始股价 $10$。因此同一个终点股价可以对应不同的回望支付。
+ 若 $u>1>d$ 且 $ud<1$，四条路径的最高价依次是 $u^2S,uS,S,S$。例如，\WJRef{prob:wj-five-6}{练习~} 中两条路径 $ud$ 和 $du$ 都收在 $9.6$，但 $ud$ 先经过 $12$，历史最高价为 $12$，$du$ 的历史最高价为初始股价 $10$。因此同一个终点股价可以对应不同的回望支付。
 
  \item 1 期的两个节点价值与 0 期价值分别为
  \[
@@ -341,7 +341,7 @@
 
  四条路径分别赋予风险中性权重；相同终点股价的路径按各自的历史最高价计价。
 
- \item 以 2 期支付一单位的债券为计价单位，其价格为
+ \item \textbf{证明。}以 2 期支付一单位的债券为计价单位，其价格为
  \[
  B_0=R^{-2},\qquad B_1=R^{-1},\qquad B_2=1.
  \]
@@ -358,7 +358,7 @@
  =qRV_{1,u}+(1-q)RV_{1,d}=R^2V_0=\widehat V_0.
  \]
 
- 0 期尚未区分任何未来状态，上式即 $\widehat V_0=\mathrm E^Q[\widehat V_1\mid\mathcal F_0]$。两步都满足条件期望关系，所以债券计价的价格过程在 $Q$ 下是鞅\ifdefined\WJHandoutKnowledge（见定义~\ref{def:wj-four-3}）\fi。
+ 0 期尚未区分任何未来状态，上式即 $\widehat V_0=\mathrm E^Q[\widehat V_1\mid\mathcal F_0]$。两步都满足条件期望关系，所以债券计价的价格过程在 $Q$ 下是鞅\ifdefined\WJHandoutKnowledge（见\WJRef{def:wj-four-3}{定义~}[（鞅）]）\fi。
 \end{enumerate}
 \end{solution}
 
@@ -378,14 +378,14 @@
 \end{center}
 \end{samepage}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-依次以 $X_0,X_1,X_2$ 表示指数证券、执行价为 $1$ 的看涨期权和执行价为 $2$ 的看涨期权的支付向量。逐状态计算期权支付 $[X_0-1]_+$、$[X_0-2]_+$，得到三只证券的支付矩阵
+依次以 $X_0,X_1,X_2$ 表示指数证券和执行价为 $1,2$ 的两只看涨期权的支付列向量。$X_0$ 的第 $i$ 个分量 $(X_0)_i$ 是指数证券在状态 $i$ 的支付。在该状态，执行价为 $K$ 的期权支付 $[(X_0)_i-K]_+$。把各状态的支付按列排好，得到三只证券的支付矩阵
 \[
  [X_0,X_1,X_2]=\begin{bmatrix}1&0&0\\2&1&0\\3&2&1\end{bmatrix}.
 \]
 
-要复制支付 $(y_1,y_2,y_3)^{\mathsf T}$，记三只证券的持仓为 $(a_0,a_1,a_2)$。状态 1 只有指数证券支付，先由 $a_0=y_1$ 确定指数持仓。再到状态 2，用第一只期权补足差额 $a_1=y_2-2a_0$。最后到状态 3，用第二只期权补足差额 $a_2=y_3-3a_0-2a_1$。依次代入三个目标，得到
+要复制支付 $(y_1,y_2,y_3)^{\mathsf T}$，按支付矩阵的列序记持仓列向量为 $(a_0,a_1,a_2)^{\mathsf T}$。状态 1 只有指数证券支付，先由 $a_0=y_1$ 确定指数持仓。再到状态 2，用第一只期权补足差额 $a_1=y_2-2a_0$。最后到状态 3，用第二只期权补足差额 $a_2=y_3-3a_0-2a_1$。依次代入三个目标，得到
 \[
     X_{0}-X_{1}=\begin{bmatrix}1\\1\\1\end{bmatrix},\quad
     3X_{0}-4X_{1}=\begin{bmatrix}3\\2\\1\end{bmatrix},\quad
