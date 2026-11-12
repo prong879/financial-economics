@@ -7,6 +7,7 @@
 % 教材p183的a>0不由正定性推出；p187对所有MVF使用lambda_r>0，此处改为非MVP的lambda_r!=0。
 % 参照杨云雯第12章批注（讲义印刷页263—270），补充标准化、乘数方程和前沿的经济解释。
 % 参照朱思博第12章批注（PDF物理页1—4）及教材印刷页179—183，补充持仓与财富的换算、单调性条件和最小方差问题的推导。
+% 参照陈馨怡第12讲批注（PDF物理页4—9），补充混合偏导、MVP换起点和前沿组合协方差的中间步骤。
 \lecture{在均值--方差偏好下的投资组合选择}
 \label{chap:wj-twelve}
 \begingroup
@@ -142,7 +143,9 @@ $u'>0$ 说明提高平均财富会增加期望效用。$u''<0$ 说明财富越�
  \begin{aligned}
  v_1&=\mathrm E[u'(Y)]>0,&v_2&=\mathrm E[u'(Y)Z],\\
  v_{11}&=\mathrm E[u''(Y)]<0,&v_{22}&=\mathrm E[u''(Y)Z^2]<0,\\
- v_{12}&=\mathrm E[u''(Y)Z].
+ v_{12}&=\frac{\partial}{\partial\sigma_w}\mathrm E[u'(Y)]
+ =\mathrm E\!\left[u''(Y)\frac{\partial Y}{\partial\sigma_w}\right]
+ =\mathrm E[u''(Y)Z].
  \end{aligned}
 \]
 
@@ -254,7 +257,9 @@ Hessian 的两个对角元 $v_{11},v_{22}$ 均为负，行列式非负，因此�
 
 由 $\Sigma$ 对称，$(\Sigma^{-1})^{\mathsf T}=(\Sigma^{\mathsf T})^{-1}=\Sigma^{-1}$，所以 $\bar r^{\mathsf T}\Sigma^{-1}\iota$ 也等于 $a$。由于 $\Sigma$ 正定，可写成 $\Sigma=Q\operatorname{diag}(\lambda_j)Q^{\mathsf T}$，其中 $Q$ 正交且 $\lambda_j>0$。将每个 $\lambda_j$ 换成 $\lambda_j^{-1/2}$，得到对称、可逆的 $\Sigma^{-1/2}$，其平方就是 $\Sigma^{-1}$。
 
-有 $c>0$、$b\ge0$，$a$ 可以为正、零或负。向量 $\Sigma^{-1/2}\iota$ 和 $\Sigma^{-1/2}\bar r$ 的平方范数分别为 $c$ 和 $b$，内积为 $a$。Cauchy--Schwarz 不等式给出 $a^2\le bc$，所以 $d\ge0$。取等当且仅当两个向量线性相关。由于 $\Sigma^{-1/2}$ 可逆且 $\iota\ne0$，这等价于 $\bar r$ 是 $\iota$ 的倍数，即各证券期望收益全部相同。若 $d=0$，写 $\bar r=k\iota$，则所有完全投资组合的期望收益都为 $z^{\mathsf T}\bar r=kz^{\mathsf T}\iota=k$。只有一个可行目标均值，因此前沿只包含全局最小方差组合（MVP），见练习~\ref{exer:wj-twelve-7}。以下讨论 $d>0$ 的一般情形。
+向量 $\Sigma^{-1/2}\iota$ 和 $\Sigma^{-1/2}\bar r$ 的平方范数分别为 $c$ 和 $b$，内积为 $a$。由于 $\Sigma^{-1/2}$ 可逆且 $\iota\ne0$，有 $c>0$。$b\ge0$，且 $b>0$ 当且仅当 $\bar r\ne0$。内积 $a$ 可以为正、零或负。
+
+Cauchy--Schwarz 不等式给出 $a^2\le bc$，所以 $d\ge0$。取等当且仅当两个向量线性相关。由于 $\Sigma^{-1/2}$ 可逆且 $\iota\ne0$，这等价于 $\bar r$ 是 $\iota$ 的倍数，即各证券期望收益全部相同。若 $d=0$，写 $\bar r=k\iota$，则所有完全投资组合的期望收益都为 $z^{\mathsf T}\bar r=kz^{\mathsf T}\iota=k$。只有一个可行目标均值，因此前沿只包含全局最小方差组合（MVP），见练习~\ref{exer:wj-twelve-7}。以下讨论各证券期望收益不全相同、$a^2<bc$（即 $d>0$）的情形。
 
 当 $d>0$ 时，$\bar r$ 与 $\iota$ 线性无关。允许卖空时，任选两只期望收益率不同的证券，就可以用权重和为 1 的配置达到任意实数目标均值。将 $z=\Sigma^{-1}(\lambda_r\bar r+\lambda_1\iota)$ 代入两个约束，得到
 \[
@@ -287,7 +292,7 @@ Hessian 的两个对角元 $v_{11},v_{22}$ 均为负，行列式非负，因此�
  \label{eq:wj-12-3}
 \end{equation}
 
-目标函数的 Hessian 为 $\Sigma$。由于 $\Sigma$ 正定，目标在由两个等式约束确定的可行集上严格凸。因此满足约束及一阶条件的 $z_p$ 是唯一最优解。
+由乘数方程构造出的 $z_p$ 满足两条约束和权重的一阶条件。目标函数的 Hessian 为正定矩阵 $\Sigma$，所以目标在由两个等式约束确定的仿射可行集上严格凸。$z_p$ 因而达到最小值，且是唯一的最优解。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-4} 对具有均值--方差偏好的参与者，若在期望收益率相同的组合中严格偏好较低的标准差，则其最优投资组合若存在，必为 MVF 组合。
@@ -349,11 +354,12 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 
 \begin{solution}[label-content={证明},blank-type=none]
 设两组合的均值为 $\bar r_A\ne\bar r_B$。由式~\eqref{eq:wj-12-4}，两者之差 $z_A-z_B=(\bar r_A-\bar r_B)h$ 给出前沿的方向。给定 $\bar r_p$，取 $t=(\bar r_p-\bar r_B)/(\bar r_A-\bar r_B)$，则
-\[
+\begin{equation*}
  tz_A+(1-t)z_B
  =z_0+[t\bar r_A+(1-t)\bar r_B]h
  =z_0+\bar r_p h=z_p.
-\]
+ \qedhere
+\end{equation*}
 \end{solution}
 
 \begin{tcolorbox}[knowledge,breakable=false]
@@ -400,7 +406,9 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 \]
 \end{tcolorbox}
 
-只保留预算约束 $\iota^{\mathsf T}z=1$，最小化 $z^{\mathsf T}\Sigma z/2$。一阶条件 $\Sigma z=\lambda\iota$ 给出 $z=\lambda\Sigma^{-1}\iota$。代回预算约束，有 $1=\lambda\iota^{\mathsf T}\Sigma^{-1}\iota=\lambda c$。因此 $\lambda=1/c$，均值为 $\bar r^{\mathsf T}z_{\mathrm{MVP}}=a/c$，方差为 $z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}=z_{\mathrm{MVP}}^{\mathsf T}\iota/c=1/c$。MVP 本身就在前沿上，因此式~\eqref{eq:wj-12-4} 可改写为
+只保留预算约束 $\iota^{\mathsf T}z=1$，最小化 $z^{\mathsf T}\Sigma z/2$。一阶条件 $\Sigma z=\lambda\iota$ 给出 $z=\lambda\Sigma^{-1}\iota$。代回预算约束，有 $1=\lambda\iota^{\mathsf T}\Sigma^{-1}\iota=\lambda c$。因此 $\lambda=1/c$，均值为 $\bar r^{\mathsf T}z_{\mathrm{MVP}}=a/c$，方差为 $z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}=z_{\mathrm{MVP}}^{\mathsf T}\iota/c=1/c$。
+
+MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中也达到最小方差，所以它就在前沿上。在式~\eqref{eq:wj-12-4} 中取目标均值为 $a/c$，得到 $z_{\mathrm{MVP}}=z_0+(a/c)h$。将 $z_p=z_0+\bar r_ph$ 与它相减，可把前沿写成从 MVP 出发的形式：
 \[
  z_p=z_{\mathrm{MVP}}+\left(\bar r_p-\frac ac\right)h,\qquad h=z_1-z_0.
 \]
@@ -495,12 +503,14 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-从 MVP 调整到 $q$ 的增量 $g=z_q-z_{\mathrm{MVP}}$ 满足 $g^{\mathsf T}\iota=0$。由 $\Sigma z_{\mathrm{MVP}}=\iota/c$，增量收益与 MVP 收益的协方差为 $g^{\mathsf T}\Sigma z_{\mathrm{MVP}}=0$。因此
+由 $\Sigma z_{\mathrm{MVP}}=\iota/c$ 和完全投资组合的权重和 $z_q^{\mathsf T}\iota=1$，得到
 \[
- z_q^{\mathsf T}\Sigma z_{\mathrm{MVP}}
- =z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}
- =\sigma_{\mathrm{MVP}}^2.
+ \operatorname{Cov}(\widetilde r_q,\widetilde r_{\mathrm{MVP}})
+ =z_q^{\mathsf T}\Sigma z_{\mathrm{MVP}}
+ =\frac{z_q^{\mathsf T}\iota}{c}=\frac1c=\sigma_{\mathrm{MVP}}^2.
 \]
+
+因此，从 MVP 调整到 $q$ 的增量 $g=z_q-z_{\mathrm{MVP}}$ 满足 $g^{\mathsf T}\iota=0$，增量收益与 MVP 收益的协方差为 $g^{\mathsf T}\Sigma z_{\mathrm{MVP}}=0$。
 
 也可从最小化直接理解。令 $\widetilde r_\alpha=\widetilde r_{\mathrm{MVP}}+\alpha(\widetilde r_q-\widetilde r_{\mathrm{MVP}})$。权重之和始终为 $1$，且允许卖空，故 $\alpha=0$ 是沿该方向的内点最小值。将方差按 $\alpha$ 展开，
 \[
@@ -515,7 +525,20 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
 在 $\alpha=0$ 处，导数为零，因此一次项的系数为零，得到同一协方差关系。
 \end{solution}
 
-把两个前沿组合都写成 MVP 加上沿 $h$ 的调整。将这两个权重向量代入 $z_p^{\mathsf T}\Sigma z_q$，MVP 与 $h$ 的交叉项为零，只留下 MVP 自身的方差和两个调整头寸的协方差：
+令 $\delta_p=\bar r_p-a/c$、$\delta_q=\bar r_q-a/c$，将两个前沿组合都写成从 MVP 出发沿 $h$ 的调整。展开协方差，得到
+\[
+ \begin{aligned}
+ \operatorname{Cov}(\widetilde r_p,\widetilde r_q)
+ &=(z_{\mathrm{MVP}}+\delta_p h)^{\mathsf T}
+      \Sigma(z_{\mathrm{MVP}}+\delta_q h)\\
+ &=z_{\mathrm{MVP}}^{\mathsf T}\Sigma z_{\mathrm{MVP}}
+   +\delta_p h^{\mathsf T}\Sigma z_{\mathrm{MVP}}
+   +\delta_q z_{\mathrm{MVP}}^{\mathsf T}\Sigma h
+   +\delta_p\delta_q h^{\mathsf T}\Sigma h.
+ \end{aligned}
+\]
+
+由 $\Sigma z_{\mathrm{MVP}}=\iota/c$ 及 $h^{\mathsf T}\iota=0$，两个交叉项均为零。第一项是 MVP 的方差 $1/c$，末项用到 $h^{\mathsf T}\Sigma h=c/d$，因此
 \[
  \operatorname{Cov}(\widetilde r_p,\widetilde r_q)
  =\frac1c+\frac cd(\bar r_p-a/c)(\bar r_q-a/c).
@@ -533,7 +556,7 @@ $z_0,z_1$ 是两个前沿组合的权重向量，分别对应式~\eqref{eq:wj-12
  z_0^{\mathsf T}\Sigma z_p=\frac1c-\frac ac h^{\mathsf T}\Sigma z_p.
 \]
 
-第二个等式用了 $z_0=z_{\mathrm{MVP}}-(a/c)h$ 和定理~\ref{thm:wj-twelve-8}。由于协方差关于 $\bar r_q$ 的斜率 $h^{\mathsf T}\Sigma z_p$ 非零，令协方差为零可解出唯一的目标均值。每个目标均值对应唯一前沿权重，因此 $zcp$ 存在且唯一。
+第二个等式用了 $z_0=z_{\mathrm{MVP}}-(a/c)h$ 和定理~\ref{thm:wj-twelve-8}。由于 $p$ 是前沿组合且 $p\ne\mathrm{MVP}$，其均值满足 $\bar r_p\ne a/c$，所以协方差关于 $\bar r_q$ 的斜率 $h^{\mathsf T}\Sigma z_p$ 非零。令协方差为零可解出唯一的目标均值。每个目标均值对应唯一前沿权重，因此 $zcp$ 存在且唯一。
 \end{solution}
 
 将两个前沿组合的协方差公式置为零，可求出零协方差组合的均值：
