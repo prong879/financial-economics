@@ -26,7 +26,8 @@
 \newcommand{\WJFourteenExercise}[2]{\refstepcounter{wjFourteenExercise}\label{#1}\problemno{\thewjFourteenExercise#2}}
 \newcounter{wjFourteenFigure}
 \renewcommand{\thewjFourteenFigure}{\thechapter.\arabic{wjFourteenFigure}}
-\newcommand{\WJFourteenFigure}[2]{\refstepcounter{wjFourteenFigure}\label{#1}\par\smallskip 图\thewjFourteenFigure\quad #2}
+\newcommand{\WJFourteenFigureStart}[1]{\refstepcounter{wjFourteenFigure}\label{#1}}
+\newcommand{\WJFourteenFigureCaption}[1]{\par\smallskip 图\thewjFourteenFigure\quad #1}
 \ifdefined\WJHandoutKnowledge
 
 % 教材印刷页213—225，PDF物理页228—240。收益载荷用B记，原书用b。
@@ -46,7 +47,7 @@ CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，�
 因子均值为零、协方差矩阵为 $I$；剩余项均值为零，与全部因子不相关，且两两不相关，$\operatorname{Var}(\widetilde\varepsilon_n)\le\bar\sigma^2$。其中 $b_{n,k}$ 是资产 $n$ 对因子 $k$ 的\textbf{载荷}。
 \end{tcolorbox}
 
-共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。将式~\eqref{eq:wj-14-1} 与第 $k$ 个因子取协方差，只有第 $k$ 项保留下来。因子方差为 $1$，所以 $b_{n,k}=\operatorname{Cov}(\widetilde r_n,\widetilde f_k)$。
+共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。将\WJEqRef{eq:wj-14-1}{式~} 与第 $k$ 个因子取协方差，只有第 $k$ 项保留下来。因子方差为 $1$，所以 $b_{n,k}=\operatorname{Cov}(\widetilde r_n,\widetilde f_k)$。
 
 将各资产的收益率、期望收益率和剩余项按资产顺序排成 $N$ 维列向量 $\widetilde r,\bar r,\widetilde\varepsilon$，将共同因子排成 $F$ 维列向量 $\widetilde f=(\widetilde f_1,\ldots,\widetilde f_F)^{\mathsf T}$。第 $n$ 只资产的载荷列向量为 $b_n=(b_{n,1},\ldots,b_{n,F})^{\mathsf T}$，其转置是 $N\times F$ 载荷矩阵 $B$ 的第 $n$ 行。记 $\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
 \begin{equation}
@@ -64,8 +65,8 @@ CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，�
 \]
 第二项用到了 $\Sigma_\varepsilon$ 为对角阵。更一般地，即使剩余项相关，只要 $\Sigma_\varepsilon$ 的最大特征值有统一上界 $\bar\sigma^2$，仍有 $w^{\mathsf T}\Sigma_\varepsilon w\le\bar\sigma^2\|w\|^2$。因子的单位协方差是标准化约定，它表示因子互不相关。
 
-CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩余项与市场收益不相关；本节的模型则允许多个共同因子，并对剩余项之间的相关性施加限制\footnote{第十三讲对资产超额收益作含截距的总体回归。在二阶矩有限且市场收益方差为正时，市场超额收益的回归斜率为 $\operatorname{Cov}(\widetilde r_n,\widetilde r_M)/\operatorname{Var}(\widetilde r_M)$。最小二乘使每只资产的残差与市场收益正交。不同资产的残差是否彼此不相关，还需要单独判断。}。第九讲的定理~\ref{thm:wj-nine-4}（Ross 两基金分离）要求 $\mathrm E[\tilde e_n\mid\tilde y]=0$，其中 $\tilde y$ 是共同因子、$\tilde e_n$ 是第 $n$ 只证券的残差。该定理还要求存在一只权重和为 $1$ 的基金，满足 $\sum_n w_n\tilde e_n=0$，使基金的残差完全抵消\footnote{Ross 定理的充分方向假定存在无风险证券，各风险证券的总收益为无风险总收益加共同因子项和残差。若残差的条件均值为零，并且上述共同基金的因子载荷非零，则递增凹效用的投资者在最优解存在时，都能用无风险证券与这只基金配出一个最优组合。给定因子后，去掉零均值的剩余风险不会降低期望效用。}。本节用上述二阶矩条件分解方差。第~\ref{sec:wj-fourteen-5}~节证明均衡定价时，将用条件均值为零来计算给定因子的消费期望，并应用条件 Jensen 不等式。
-图~\ref{fig:wj-fourteen-1} 取载荷相同、剩余方差相同的单因子资产。代入 $w_i=1/N$ 后，组合载荷仍为 $b$，而剩余方差为 $N(1/N)^2\sigma_\varepsilon^2=\sigma_\varepsilon^2/N$。
+CAPM的\WJLink{eq:wj-13-4}{市场回归}以市场收益为共同因子，剩余项与市场收益不相关；本节的模型则允许多个共同因子，并对剩余项之间的相关性施加限制\footnote{第十三讲对资产超额收益作含截距的总体回归。在二阶矩有限且市场收益方差为正时，市场超额收益的回归斜率为 $\operatorname{Cov}(\widetilde r_n,\widetilde r_M)/\operatorname{Var}(\widetilde r_M)$。最小二乘使每只资产的残差与市场收益正交。不同资产的残差是否彼此不相关，还需要单独判断。}。第九讲的\WJRef{thm:wj-nine-4}{定理~}[（Ross 两基金分离）]要求 $\mathrm E[\tilde e_n\mid\tilde y]=0$，其中 $\tilde y$ 是共同因子、$\tilde e_n$ 是第 $n$ 只证券的残差。该定理还要求存在一只权重和为 $1$ 的基金，满足 $\sum_n w_n\tilde e_n=0$，使基金的残差完全抵消\footnote{Ross 定理的充分方向假定存在无风险证券，各风险证券的总收益为无风险总收益加共同因子项和残差。若残差的条件均值为零，并且上述共同基金的因子载荷非零，则递增凹效用的投资者在最优解存在时，都能用无风险证券与这只基金配出一个最优组合。给定因子后，去掉零均值的剩余风险不会降低期望效用。}。本节用上述二阶矩条件分解方差。\WJRef{sec:wj-fourteen-5}{第~}[~节]证明均衡定价时，将用条件均值为零来计算给定因子的消费期望，并应用条件 Jensen 不等式。
+\WJRef{fig:wj-fourteen-1}{图~} 取载荷相同、剩余方差相同的单因子资产。代入 $w_i=1/N$ 后，组合载荷仍为 $b$，而剩余方差为 $N(1/N)^2\sigma_\varepsilon^2=\sigma_\varepsilon^2/N$。
 
 \WJInputFigure{14_风险分散}
 
@@ -110,7 +111,7 @@ CAPM的\hyperref[eq:wj-13-4]{市场回归}以市场收益为共同因子，剩�
 $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相对无风险组合 $p_0$ 的期望收益差 $\lambda=\bar r_{p_1}-r_F$ 称为\textbf{因子风险溢价}，表示承担一单位因子暴露获得的期望超额收益。
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFourteenTheorem{thm:wj-fourteen-1} 精确单因子模型中，\hyperref[def:wj-four-2]{无套利}要求
+\WJFourteenTheorem{thm:wj-fourteen-1} 精确单因子模型中，\WJLink{def:wj-four-2}{无套利}要求
 \begin{equation}
  \bar r_n=r_F+b_n\lambda,\qquad\forall n.\label{eq:wj-14-5}
 \end{equation}
@@ -126,14 +127,14 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 若常数为正，上述头寸就是套利。若为负，则把三个头寸同时反向。无套利要求该常数为零，包括 $b_n=0$ 的情形。
 \end{solution}
 
-若 $\sigma_M>0$，且精确单因子模型的共同因子是标准化市场收益 $\widetilde f=(\widetilde r_M-\bar r_M)/\sigma_M$，由式~\eqref{eq:wj-14-1} 后的载荷公式，
+若 $\sigma_M>0$，且精确单因子模型的共同因子是标准化市场收益 $\widetilde f=(\widetilde r_M-\bar r_M)/\sigma_M$，由\WJEqRef{eq:wj-14-1}{式~} 后的载荷公式，
 \[
  b_n=\operatorname{Cov}(\widetilde r_n,\widetilde f)
  =\frac{\operatorname{Cov}(\widetilde r_n,\widetilde r_M)}{\sigma_M}
  =\beta_{n,M}\sigma_M.
 \]
 
-市场组合的收益为 $\widetilde r_M=\bar r_M+\sigma_M\widetilde f$，所以载荷为 $\sigma_M$。先对市场组合应用式~\eqref{eq:wj-14-5}，得到 $\bar r_M-r_F=\sigma_M\lambda$。把 $\lambda=(\bar r_M-r_F)/\sigma_M$ 和上面的 $b_n$ 代入同一式的个股风险溢价 $b_n\lambda$，约去 $\sigma_M$，得到 CAPM 的式~\eqref{eq:wj-13-3}。
+市场组合的收益为 $\widetilde r_M=\bar r_M+\sigma_M\widetilde f$，所以载荷为 $\sigma_M$。先对市场组合应用\WJEqRef{eq:wj-14-5}{式~}，得到 $\bar r_M-r_F=\sigma_M\lambda$。把 $\lambda=(\bar r_M-r_F)/\sigma_M$ 和上面的 $b_n$ 代入同一式的个股风险溢价 $b_n\lambda$，约去 $\sigma_M$，得到 CAPM 的\WJEqRef{eq:wj-13-3}{式~}。
 
 \subsection{精确F因子模型}
 令 $\iota$ 为 $N$ 维全 $1$ 列向量。以 $z\in\mathbb R^N$ 记录各资产的投资金额，$z_n$ 以当期货币计量，组合的初始净成本为 $z^{\mathsf T}\iota$。终期支付对各因子的载荷为 $B^{\mathsf T}z$。
@@ -150,12 +151,12 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
  \bar r\in(\ker A^{\mathsf T})^\perp=\operatorname{col}(A).
 \]
 
-列空间中的向量都能写成 $A$ 各列的线性组合。将第一列的系数记为 $\lambda_0$，其余系数记为 $\lambda$，即得式~\eqref{eq:wj-14-6}。
+列空间中的向量都能写成 $A$ 各列的线性组合。将第一列的系数记为 $\lambda_0$，其余系数记为 $\lambda$，即得\WJEqRef{eq:wj-14-6}{式~}。
 \end{solution}
 
 若 $[\iota\ B]$ 列满秩，线性方程 $z^{\mathsf T}\iota=1$、$B^{\mathsf T}z=d$ 对任意 $d\in\mathbb R^F$ 有解。取 $d=0$ 得无风险组合，取 $d=e_k$（第 $k$ 个坐标单位向量）得因子组合 $p_k$。将定价式左乘 $z^{\mathsf T}$，得到组合期望收益 $\lambda_0+d^{\mathsf T}\lambda$。代入 $d=0$，该收益为 $\lambda_0$，也是无风险收益率 $r_F$。若市场已包含无风险证券，直接取该证券的单位金额头寸即可得到这个等式。代入 $d=e_k$，得 $\bar r_{p_k}=r_F+\lambda_k$。
 
-式~\eqref{eq:wj-14-6} 排除了成本和因子载荷均为零的头寸产生套利的可能。若头寸仍有因子暴露，还须根据因子的取值判断终期支付能否恒为非负。练习~\ref{exer:wj-fourteen-2} 给出了线性关系成立而仍有套利的例子。
+\WJEqRef{eq:wj-14-6}{式~} 排除了成本和因子载荷均为零的头寸产生套利的可能。若头寸仍有因子暴露，还须根据因子的取值判断终期支付能否恒为非负。\WJRef{exer:wj-fourteen-2}{练习~} 给出了线性关系成立而仍有套利的例子。
 
 \Needspace{16\baselineskip}
 \section{极限套利和APT}\label{sec:wj-fourteen-3}
@@ -187,7 +188,7 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 这个概率上界随 $n$ 增大而趋于零，有限市场中仍可能出现亏损。若期望趋于无穷而方差趋于零，可将头寸除以其期望，得到期望为 $1$、方差趋于零的组合。
 
 \subsection{有限市场的近似定价}
-固定共同因子数 $F$，逐步增加资产。沿用第~\ref{sec:wj-fourteen-1}~节的剩余项假设。
+固定共同因子数 $F$，逐步增加资产。沿用\WJRef{sec:wj-fourteen-1}{第~}[~节]的剩余项假设。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJFourteenTheorem{thm:wj-fourteen-3} 若不存在极限套利，则对每个 $n$，存在 $\lambda_0^{(n)},\lambda^{(n)}$，且存在与 $n$ 无关的常数 $A$，使
 \[
@@ -224,7 +225,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  \le h_n^2\bar\sigma^2 Q_n.
 \end{align*}
 
-教材取 $h_n=Q_n^{-2/3}$，于是期望支付为 $Q_n^{1/3}$，方差至多为 $\bar\sigma^2Q_n^{-1/3}$。为使期望支付收敛到定义~\ref{def:wj-fourteen-1} 要求的有限正数，把这组头寸除以其期望支付，等价于直接取 $h_n=1/Q_n$。代入上面两式，得到期望支付恒为 $1$，方差至多为 $\bar\sigma^2/Q_n\to0$。对其余有限个 $n$ 取零头寸，即得到极限套利序列，与假设矛盾。因此 $Q_n$ 有统一上界。
+教材取 $h_n=Q_n^{-2/3}$，于是期望支付为 $Q_n^{1/3}$，方差至多为 $\bar\sigma^2Q_n^{-1/3}$。为使期望支付收敛到\WJRef{def:wj-fourteen-1}{定义~} 要求的有限正数，把这组头寸除以其期望支付，等价于直接取 $h_n=1/Q_n$。代入上面两式，得到期望支付恒为 $1$，方差至多为 $\bar\sigma^2/Q_n\to0$。对其余有限个 $n$ 取零头寸，即得到极限套利序列，与假设矛盾。因此 $Q_n$ 有统一上界。
 \end{solution}
 
 \subsection{统一系数与定价误差}
@@ -236,7 +237,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-记 $a_i=(1,b_i^{\mathsf T})^{\mathsf T}$，$\beta_n=(\lambda_0^{(n)},\lambda^{(n)\mathsf T})^{\mathsf T}$，并从全部 $a_i$ 中选取一组基 $a_{i_1},\ldots,a_{i_d}$。把 $\beta_n$ 投影到该基张成的空间，不改变任何预测值 $a_i^{\mathsf T}\beta_n$。当 $n\ge\max_j i_j$ 时，定理~\ref{thm:wj-fourteen-3} 给出 $|a_{i_j}^{\mathsf T}\beta_n|\le|\bar r_{i_j}|+\sqrt A$。
+记 $a_i=(1,b_i^{\mathsf T})^{\mathsf T}$，$\beta_n=(\lambda_0^{(n)},\lambda^{(n)\mathsf T})^{\mathsf T}$，并从全部 $a_i$ 中选取一组基 $a_{i_1},\ldots,a_{i_d}$。把 $\beta_n$ 投影到该基张成的空间，不改变任何预测值 $a_i^{\mathsf T}\beta_n$。当 $n\ge\max_j i_j$ 时，\WJRef{thm:wj-fourteen-3}{定理~} 给出 $|a_{i_j}^{\mathsf T}\beta_n|\le|\bar r_{i_j}|+\sqrt A$。
 
 令 $D=[a_{i_1}\ \cdots\ a_{i_d}]$。投影后的系数可写成 $\beta_n=D\gamma_n$，而有界的基上预测向量为 $D^{\mathsf T}\beta_n=(D^{\mathsf T}D)\gamma_n$。$D^{\mathsf T}D$ 是固定的可逆矩阵，所以 $\gamma_n$ 有界，进而 $\beta_n$ 有界。取收敛子列 $\beta_{n_j}\to\beta=(\lambda_0,\lambda^{\mathsf T})^{\mathsf T}$。
 
@@ -250,7 +251,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 
 \textbf{教材附录 A 的方差最小化推导。}
 % 教材印刷页249—250，引理A.2及式(A.1)；目标应为min，逆矩阵步骤需正定与满列秩。
-记 $X_n=[\bar r^{(n)}\ \iota\ B^{(n)}]$，$e_1$ 为第一个坐标单位向量。若每个 $n$ 的期望收益列都能由常数列和载荷列线性表示，则定理~\ref{thm:wj-fourteen-3} 中可取 $A=0$，并可由定理~\ref{thm:wj-fourteen-4} 得到精确定价。否则，从无限资产序列的常数列和载荷列中选一组固定的基列，保留期望收益列。删去的列由基列线性生成，所以零成本和零因子载荷的约束保持等价。从某个 $n_0$ 起，保留的列在前 $n$ 行已线性无关，以下仍以 $X_n$ 记这个满列秩的矩阵。此时可求解
+记 $X_n=[\bar r^{(n)}\ \iota\ B^{(n)}]$，$e_1$ 为第一个坐标单位向量。若每个 $n$ 的期望收益列都能由常数列和载荷列线性表示，则\WJRef{thm:wj-fourteen-3}{定理~} 中可取 $A=0$，并可由\WJRef{thm:wj-fourteen-4}{定理~} 得到精确定价。否则，从无限资产序列的常数列和载荷列中选一组固定的基列，保留期望收益列。删去的列由基列线性生成，所以零成本和零因子载荷的约束保持等价。从某个 $n_0$ 起，保留的列在前 $n$ 行已线性无关，以下仍以 $X_n$ 记这个满列秩的矩阵。此时可求解
 \begin{align}
  \min_z\quad &z^{\mathsf T}S_n z,\qquad S_n=\Sigma_\varepsilon^{(n)}+I,
  \tag{A.1a}\label{eq:wj-14-appendix-objective}\\
@@ -258,7 +259,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  \underbrace{e_1}_{\text{期望为 1，成本与载荷均为零}}.
  \tag{A.1b}\label{eq:wj-14-appendix-constraint}
 \end{align}
-式~\eqref{eq:wj-14-appendix-objective} 和式~\eqref{eq:wj-14-appendix-constraint} 沿用教材附录编号。这里将期望支付归一为 $1$，目标取最小值。
+\WJEqRef{eq:wj-14-appendix-objective}{式~} 和\WJEqRef{eq:wj-14-appendix-constraint}{式~} 沿用教材附录编号。这里将期望支付归一为 $1$，目标取最小值。
 \begin{solution}[label-content={证明},blank-type=none]
 加入 $I$ 使 $S_n$ 正定，即使某些剩余方差为零也有逆矩阵。若这些约束下的实际方差没有统一的正下界，可在递增的市场规模 $n_j$ 中选取方差趋于零的组合。对 $n_j\le n<n_{j+1}$，沿用前 $n_j$ 只资产的头寸，只将新增资产的头寸设为零。从 $n_1$ 起，这些组合的成本和因子载荷都为零，期望支付恒为 $1$，方差趋于零。此前有限个市场可取零头寸，由此得到极限套利序列。因此实际方差有统一的正下界，加入 $I$ 后的最小值也有同一正下界。
 
@@ -313,12 +314,12 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  +\underbrace{\frac{\widetilde\varepsilon_n}{v-\sigma^2}}_{\text{特殊风险}}.
 \]
 
-若保留一般无风险总收益率 $R=1+r_F>0$，可直接用第十三讲式~\eqref{eq:wj-13-normal-price}（CARA--正态均衡定价）$\bar v-RS=a\Sigma\theta_M$\footnote{第十三讲假定风险证券支付联合正态、协方差矩阵 $\Sigma$ 正定，参与者具有指数效用，且可按同一无风险利率自由借贷与卖空。给定 $R$，个人的风险证券需求为 $a_k^{-1}\Sigma^{-1}(\bar v-RS)$。将需求加总并令其等于市场供给 $\theta_M$，便得到价格式，其中 $1/a=\sum_k1/a_k$ 是总风险容忍度。}。本例只有一位风险厌恶系数为 $1$ 的参与者，每只风险证券各供给一单位，所以代入 $a=1$、$\bar v=v\iota$、$\Sigma=\sigma^2 I$、$\theta_M=\iota$ 和 $S=\boldsymbol p$，得 $v\iota-R\boldsymbol p=\sigma^2\iota$。逐分量求解，得到
+若保留一般无风险总收益率 $R=1+r_F>0$，可直接用第十三讲\WJEqRef{eq:wj-13-normal-price}{式~}[（CARA--正态均衡定价）]$\bar v-RS=a\Sigma\theta_M$\footnote{第十三讲假定风险证券支付联合正态、协方差矩阵 $\Sigma$ 正定，参与者具有指数效用，且可按同一无风险利率自由借贷与卖空。给定 $R$，个人的风险证券需求为 $a_k^{-1}\Sigma^{-1}(\bar v-RS)$。将需求加总并令其等于市场供给 $\theta_M$，便得到价格式，其中 $1/a=\sum_k1/a_k$ 是总风险容忍度。}。本例只有一位风险厌恶系数为 $1$ 的参与者，每只风险证券各供给一单位，所以代入 $a=1$、$\bar v=v\iota$、$\Sigma=\sigma^2 I$、$\theta_M=\iota$ 和 $S=\boldsymbol p$，得 $v\iota-R\boldsymbol p=\sigma^2\iota$。逐分量求解，得到
 \[
  p_R=\frac{v-\sigma^2}{R},\qquad
  \bar r_n-r_F=\frac{v-Rp_R}{p_R}=\frac{\sigma^2}{p_R},
 \]
-其中 $p_R$ 为每只风险证券在该利率下的均衡价格。买入一单位风险证券并借入 $p_R$ 元，终期支付为 $v+\widetilde\varepsilon_n-Rp_R$，所以无风险融资把收益率的比较基准固定在 $r_F$。定理~\ref{thm:wj-fourteen-3} 和定理~\ref{thm:wj-fourteen-4} 的一般拟合式中，截距 $\lambda_0$ 是待定系数。只对本例的风险证券拟合，取共同的期望收益率为截距就能拟合全部风险证券。检验极限套利还要把无风险融资纳入组合。以下回到题设 $R=1$、$p=v-\sigma^2$。
+其中 $p_R$ 为每只风险证券在该利率下的均衡价格。买入一单位风险证券并借入 $p_R$ 元，终期支付为 $v+\widetilde\varepsilon_n-Rp_R$，所以无风险融资把收益率的比较基准固定在 $r_F$。\WJRef{thm:wj-fourteen-3}{定理~} 和\WJRef{thm:wj-fourteen-4}{定理~} 的一般拟合式中，截距 $\lambda_0$ 是待定系数。只对本例的风险证券拟合，取共同的期望收益率为截距就能拟合全部风险证券。检验极限套利还要把无风险融资纳入组合。以下回到题设 $R=1$、$p=v-\sigma^2$。
 
 各风险证券的剩余风险独立，期望超额收益均为正。任一有限市场中的非零风险头寸都有正方差，其正态支付有取负值的可能；纯无风险、零成本头寸的支付为零，故不存在常规套利。
 
@@ -332,7 +333,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  \mathrm E[\widetilde X_n]=\sigma^2n^{1/3},\qquad
  \operatorname{Var}(\widetilde X_n)=\sigma^2n^{-1/3}.
 \]
-将头寸除以 $\mathrm E[\widetilde X_n]$ 后，初始成本仍为零，终期支付的期望为 1，方差为 $1/(\sigma^2 n)$，所以符合定义~\ref{def:wj-fourteen-1}。本例没有共同因子，但每只证券的期望收益率始终高于 $r_F=0$。随着证券数增加，参与者的财富 $Np$ 和需要承受的总风险一同增加，\hyperref[sec:wj-seven-cara]{CARA偏好}下每单位新增风险的补偿仍然为正\footnote{第七讲的指数效用 $u(c)=-e^{-ac}$（$a>0$）具有常数绝对风险厌恶 $-u''/u'=a$。在本例的正态支付下，确定性等值为期望消费减去 $a/2$ 倍的消费方差。财富增加时，方差项的系数 $a/2$ 仍相同。}。由此可见，逐个有限市场的竞争均衡可以与跨市场的极限套利并存。
+将头寸除以 $\mathrm E[\widetilde X_n]$ 后，初始成本仍为零，终期支付的期望为 1，方差为 $1/(\sigma^2 n)$，所以符合\WJRef{def:wj-fourteen-1}{定义~}。本例没有共同因子，但每只证券的期望收益率始终高于 $r_F=0$。随着证券数增加，参与者的财富 $Np$ 和需要承受的总风险一同增加，\WJLink{sec:wj-seven-cara}{CARA偏好}下每单位新增风险的补偿仍然为正\footnote{第七讲的指数效用 $u(c)=-e^{-ac}$（$a>0$）具有常数绝对风险厌恶 $-u''/u'=a$。在本例的正态支付下，确定性等值为期望消费减去 $a/2$ 倍的消费方差。财富增加时，方差项的系数 $a/2$ 仍相同。}。由此可见，逐个有限市场的竞争均衡可以与跨市场的极限套利并存。
 \end{solution}
 \end{tcolorbox}
 
@@ -348,18 +349,18 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \end{align}
 \end{subequations}
 
-沿用 $\mathrm E[\widetilde f]=0$，所以 $\bar x=\mathrm E[\widetilde x]$。对任意使乘积可积的因子函数 $g$，迭代期望给出 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=\mathrm E[g(\widetilde f)\mathrm E[\widetilde\varepsilon\mid\widetilde f]]=0$。因此，剩余支付也与由因子决定的边际效用正交。第~\ref{sec:wj-fourteen-1}~节的二阶矩条件只要求它与各因子不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
+沿用 $\mathrm E[\widetilde f]=0$，所以 $\bar x=\mathrm E[\widetilde x]$。对任意使乘积可积的因子函数 $g$，迭代期望给出 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=\mathrm E[g(\widetilde f)\mathrm E[\widetilde\varepsilon\mid\widetilde f]]=0$。因此，剩余支付也与由因子决定的边际效用正交。\WJRef{sec:wj-fourteen-1}{第~}[~节]的二阶矩条件只要求它与各因子不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJFourteenTheorem{thm:wj-fourteen-5} 假设：
 \begin{enumerate}
- \item 证券支付满足式~\eqref{eq:wj-14-7}，且含无风险证券；
+ \item 证券支付满足\WJEqRef{eq:wj-14-7}{式~}，且含无风险证券；
  \item 各因子可由证券支付线性生成，即 $\mathcal F\subseteq\mathcal M$；
  \item 市场无摩擦，参与者可自由买卖证券，个人1期消费可由可交易支付生成；
  \item 总禀赋属于 $\mathcal F$；
  \item 参与者具有共同概率信念，个人效用为 $u_{k,0}(c_{k,0})+\mathrm E[u_{k,1}(\widetilde c_{k,1})]$，其中期望均按共同概率计算。两期效用均可微、严格递增且严格凹；
  \item 均衡为内点，相关期望存在。
 \end{enumerate}
-则价格非零的证券的均衡期望收益率满足式~\eqref{eq:wj-14-6}，其中 $\lambda_0=r_F$。
+则价格非零的证券的均衡期望收益率满足\WJEqRef{eq:wj-14-6}{式~}，其中 $\lambda_0=r_F$。
 \end{tcolorbox}
 
 \subsection{消除剩余风险与均衡定价}
@@ -373,7 +374,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  \qquad
  \mathrm E[\widetilde c_{k,1}\mid\widetilde f]=\widetilde c_{k,1}^{\mathcal F}.
 \]
-其中 $\widetilde\varepsilon_{c,k}$ 是个人消费中的剩余项。式~\eqref{eq:wj-14-7b} 保证它给定因子的条件期望为零。由条件 Jensen 不等式，
+其中 $\widetilde\varepsilon_{c,k}$ 是个人消费中的剩余项。\WJEqRef{eq:wj-14-7b}{式~} 保证它给定因子的条件期望为零。由条件 Jensen 不等式，
 \[
  \mathrm E[u_{k,1}(\widetilde c_{k,1})\mid\widetilde f]
  \le u_{k,1}\bigl(\mathrm E[\widetilde c_{k,1}\mid\widetilde f]\bigr)
@@ -381,7 +382,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \]
 若剩余项以正概率非零，严格凹性使取无条件期望后的不等式严格。按共同概率对市场出清式 $\sum_k\widetilde c_{k,1}=\widetilde C_1$ 取条件期望，由 $\widetilde C_1\in\mathcal F$ 得 $\sum_k\widetilde c_{k,1}^{\mathcal F}=\widetilde C_1$，两式相减得到 $\sum_k\widetilde\varepsilon_{c,k}=0$。
 
-还需核对个人预算。记 $p(\cdot)$ 为可交易支付的价格。由定理~\ref{thm:wj-four-6}（无摩擦、无套利市场的线性定价），将零总剩余支付代入，有\footnote{对可以用证券组合复制的支付，第四讲用一价定律把支付的价格确定为复制成本。允许按任意实数比例组合持仓时，合并后的复制成本等于各部分成本按相同比例加总。因此 $p(ax+by)=ap(x)+bp(y)$，零支付的价格为零。这里各人的剩余支付都可交易，所以可以把它们的价格相加。}
+还需核对个人预算。记 $p(\cdot)$ 为可交易支付的价格。由\WJRef{thm:wj-four-6}{定理~}[（无摩擦、无套利市场的线性定价）]，将零总剩余支付代入，有\footnote{对可以用证券组合复制的支付，第四讲用一价定律把支付的价格确定为复制成本。允许按任意实数比例组合持仓时，合并后的复制成本等于各部分成本按相同比例加总。因此 $p(ax+by)=ap(x)+bp(y)$，零支付的价格为零。这里各人的剩余支付都可交易，所以可以把它们的价格相加。}
 \[
  \sum_k p(\widetilde\varepsilon_{c,k})
  =p\Bigl(\sum_k\widetilde\varepsilon_{c,k}\Bigr)=p(0)=0.
@@ -397,7 +398,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 
 条件期望与原消费都在消费的可行区间内，因此两者的凸组合也可行。取足够小的 $s$，当期消费仍在定义域内。由凹性，新的未来期望效用至少为原消费和条件期望消费各自的期望效用按 $1-s,s$ 加权。后者严格更高，因此未来期望效用严格上升。这与个人最优矛盾，故均衡中每个人的剩余消费项均为零，即 $\widetilde c_{k,1}\in\mathcal F$。
 
-令 $\widetilde m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$，它就是第十一讲的个人定价核 $\widetilde\pi_k$。由于 $\widetilde m_k$ 是因子的函数，有 $\mathrm E[\widetilde m_k\widetilde\varepsilon_n]=0$。买入一单位证券 $n$，同时取初始成本为 $-S_n$ 的无风险头寸，合计初始成本为零，终期支付为 $\widetilde x_n-(1+r_F)S_n$。将这笔净支付及其零价格代入式~\eqref{eq:wj-11-2}（个人证券定价的 Euler 方程），得\footnote{第十一讲在个人最优解为内点、证券头寸可双向微调且当期边际效用为正时，令买入证券的当期边际效用成本等于未来期望边际效用增益。除以当期边际效用，得到可交易支付 $\widetilde X$ 的价格 $p(\widetilde X)=\mathrm E[\widetilde m_k\widetilde X]$。这里取的头寸初始成本为零，所以右侧的期望也为零。}
+令 $\widetilde m_k=u'_{k,1}(\widetilde c_{k,1})/u'_{k,0}(c_{k,0})$，它就是第十一讲的个人定价核 $\widetilde\pi_k$。由于 $\widetilde m_k$ 是因子的函数，有 $\mathrm E[\widetilde m_k\widetilde\varepsilon_n]=0$。买入一单位证券 $n$，同时取初始成本为 $-S_n$ 的无风险头寸，合计初始成本为零，终期支付为 $\widetilde x_n-(1+r_F)S_n$。将这笔净支付及其零价格代入\WJEqRef{eq:wj-11-2}{式~}[（个人证券定价的 Euler 方程）]，得\footnote{第十一讲在个人最优解为内点、证券头寸可双向微调且当期边际效用为正时，令买入证券的当期边际效用成本等于未来期望边际效用增益。除以当期边际效用，得到可交易支付 $\widetilde X$ 的价格 $p(\widetilde X)=\mathrm E[\widetilde m_k\widetilde X]$。这里取的头寸初始成本为零，所以右侧的期望也为零。}
 \[
  0=\mathrm E[\widetilde m_k(\widetilde x_n-(1+r_F)S_n)].
 \]
@@ -419,14 +420,14 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  0=\mathrm E[\widetilde m_k](\bar r_n-r_F)
     +\operatorname{Cov}(\widetilde m_k,\widetilde r_n).
 \]
-把协方差移到右边，再除以 $\mathrm E[\widetilde m_k]$，得到式~\eqref{eq:wj-14-8} 的第一个等号。由式~\eqref{eq:wj-14-7a} 除以 $S_n$ 后减 $1$，得 $\widetilde r_n=\bar r_n+b_n^{\mathsf T}\widetilde f+\widetilde\varepsilon_n/S_n$。代入协方差，常数项的贡献为零。式~\eqref{eq:wj-14-7b} 又给出 $\mathrm E[\widetilde\varepsilon_n]=0$ 和 $\mathrm E[\widetilde m_k\widetilde\varepsilon_n]=0$，所以剩余项的协方差也为零，只留下因子项：
+把协方差移到右边，再除以 $\mathrm E[\widetilde m_k]$，得到\WJEqRef{eq:wj-14-8}{式~} 的第一个等号。由\WJEqRef{eq:wj-14-7a}{式~} 除以 $S_n$ 后减 $1$，得 $\widetilde r_n=\bar r_n+b_n^{\mathsf T}\widetilde f+\widetilde\varepsilon_n/S_n$。代入协方差，常数项的贡献为零。\WJEqRef{eq:wj-14-7b}{式~} 又给出 $\mathrm E[\widetilde\varepsilon_n]=0$ 和 $\mathrm E[\widetilde m_k\widetilde\varepsilon_n]=0$，所以剩余项的协方差也为零，只留下因子项：
 \[
  \bar r_n-r_F
  =-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde r_n\right)
  =b_n^{\mathsf T}\underbrace{\left[-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde f\right)\right]}_{\lambda}.
 \]
 
-因子支付 $\widetilde f_j$ 可交易。买入复制它的组合，再投入 $1-p(\widetilde f_j)$ 元于无风险证券，得到成本为 1、终期支付为 $\widetilde f_j+(1+r_F)[1-p(\widetilde f_j)]$ 的因子组合。由于 $\mathrm E[\widetilde f_j]=0$，该组合的期望超额收益为 $-(1+r_F)p(\widetilde f_j)$。它的收益载荷为第 $j$ 个单位向量，且没有剩余项，故由式~\eqref{eq:wj-14-8}，
+因子支付 $\widetilde f_j$ 可交易。买入复制它的组合，再投入 $1-p(\widetilde f_j)$ 元于无风险证券，得到成本为 1、终期支付为 $\widetilde f_j+(1+r_F)[1-p(\widetilde f_j)]$ 的因子组合。由于 $\mathrm E[\widetilde f_j]=0$，该组合的期望超额收益为 $-(1+r_F)p(\widetilde f_j)$。它的收益载荷为第 $j$ 个单位向量，且没有剩余项，故由\WJEqRef{eq:wj-14-8}{式~}，
 \[
  \bar r_{p_j}-r_F
  =-\operatorname{Cov}\!\left(\frac{\widetilde m_k}{\mathrm E[\widetilde m_k]},\widetilde f_j\right)
@@ -443,16 +444,16 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
  \label{eq:wj-14-8}
 \end{equation}
 
-练习~\ref{exer:wj-fourteen-4} 将因子坐标的第一轴选在非零溢价向量 $\lambda$ 的方向上。换坐标后，期望超额收益只取决于第一项载荷，其他载荷仍会贡献因子方差。因子对组合波动的贡献和它是否带来风险溢价，要分别由式~\eqref{eq:wj-14-2} 与式~\eqref{eq:wj-14-8} 判断。
+\WJRef{exer:wj-fourteen-4}{练习~} 将因子坐标的第一轴选在非零溢价向量 $\lambda$ 的方向上。换坐标后，期望超额收益只取决于第一项载荷，其他载荷仍会贡献因子方差。因子对组合波动的贡献和它是否带来风险溢价，要分别由\WJEqRef{eq:wj-14-2}{式~} 与\WJEqRef{eq:wj-14-8}{式~} 判断。
 
 \WJChapterSummary
 \begin{tcolorbox}[summary]
 \begin{enumerate}
- \item 式~\eqref{eq:wj-14-1} 将收益分为期望收益、共同因子收益与剩余项。充分分散可压低剩余方差，见式~\eqref{eq:wj-14-2} 后的组合方差分解。
- \item 精确因子模型下，复制与无套利给出式~\eqref{eq:wj-14-6}，即 $\bar r=\lambda_0\iota+B\lambda$。当 $[\iota\ B]$ 满列秩时，可构造成本为 $1$ 的无风险组合和各因子组合，因而 $\lambda_0=r_F$，$\lambda_k$ 为第 $k$ 个因子组合的风险溢价。
- \item 在剩余方差有界且不存在极限套利时，定理~\ref{thm:wj-fourteen-3} 给出误差平方和的统一上界，定理~\ref{thm:wj-fourteen-4} 进一步给出适用于同一无限资产序列的固定系数。
- \item 有限市场的竞争均衡可与跨市场的极限套利序列并存。第~\ref{sec:wj-fourteen-4}~节的例子用无风险证券融资，并通过增加持有的证券数使组合支付的方差趋于零。
- \item 当定理~\ref{thm:wj-fourteen-5} 的因子可交易、总禀赋由因子生成等条件成立时，均衡消费消除剩余风险。将收益因子模型代入个人 Euler 方程，得到式~\eqref{eq:wj-14-8} 的精确 APT 关系。
+ \item \WJEqRef{eq:wj-14-1}{式~} 将收益分为期望收益、共同因子收益与剩余项。充分分散可压低剩余方差，见\WJEqRef{eq:wj-14-2}{式~} 后的组合方差分解。
+ \item 精确因子模型下，复制与无套利给出\WJEqRef{eq:wj-14-6}{式~}，即 $\bar r=\lambda_0\iota+B\lambda$。当 $[\iota\ B]$ 满列秩时，可构造成本为 $1$ 的无风险组合和各因子组合，因而 $\lambda_0=r_F$，$\lambda_k$ 为第 $k$ 个因子组合的风险溢价。
+ \item 在剩余方差有界且不存在极限套利时，\WJRef{thm:wj-fourteen-3}{定理~} 给出误差平方和的统一上界，\WJRef{thm:wj-fourteen-4}{定理~} 进一步给出适用于同一无限资产序列的固定系数。
+ \item 有限市场的竞争均衡可与跨市场的极限套利序列并存。\WJRef{sec:wj-fourteen-4}{第~}[~节]的例子用无风险证券融资，并通过增加持有的证券数使组合支付的方差趋于零。
+ \item 当\WJRef{thm:wj-fourteen-5}{定理~} 的因子可交易、总禀赋由因子生成等条件成立时，均衡消费消除剩余风险。将收益因子模型代入个人 Euler 方程，得到\WJEqRef{eq:wj-14-8}{式~} 的精确 APT 关系。
 \end{enumerate}
 \end{tcolorbox}
 \fi

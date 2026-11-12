@@ -105,7 +105,9 @@
 \renewcommand{\thewjThirteenFigure}{13.\arabic{wjThirteenFigure}}
 \newcommand{\WJThirteenTheorem}[1]{\refstepcounter{wjThirteenTheorem}\label{#1}\textbf{定理 \thewjThirteenTheorem}\quad}
 \newcommand{\WJThirteenExample}[1]{\refstepcounter{wjThirteenExample}\label{#1}\textbf{例 \thewjThirteenExample}\quad}
-\newcommand{\WJThirteenFigure}[2]{\refstepcounter{wjThirteenFigure}\label{#1}\par\smallskip 图\thewjThirteenFigure\quad #2}
+\newcommand{\WJThirteenFigureStart}[1]{\refstepcounter{wjThirteenFigure}\label{#1}}
+\newcommand{\WJThirteenFigureCaption}[1]{\par\smallskip 图\thewjThirteenFigure\quad #1}
+\newcommand{\WJThirteenFigure}[2]{\WJThirteenFigureStart{#1}\WJThirteenFigureCaption{#2}}
 \newcommand{\WJInputCaptionedFigure}[1]{%
   {\centering
   \resizebox*{!}{.74\textheight}{%
@@ -126,7 +128,9 @@
 \newcommand{\WJFourteenDefinition}[1]{\refstepcounter{wjFourteenDefinition}\label{#1}\textbf{定义 \thewjFourteenDefinition}\quad}
 \newcounter{wjFourteenFigure}
 \renewcommand{\thewjFourteenFigure}{14.\arabic{wjFourteenFigure}}
-\newcommand{\WJFourteenFigure}[2]{\refstepcounter{wjFourteenFigure}\label{#1}\par\smallskip 图\thewjFourteenFigure\quad #2}
+\newcommand{\WJFourteenFigureStart}[1]{\refstepcounter{wjFourteenFigure}\label{#1}}
+\newcommand{\WJFourteenFigureCaption}[1]{\par\smallskip 图\thewjFourteenFigure\quad #1}
+\newcommand{\WJFourteenFigure}[2]{\WJFourteenFigureStart{#1}\WJFourteenFigureCaption{#2}}
 
 \newcommand{\LectureCover}{%
 \begin{frame}[plain]

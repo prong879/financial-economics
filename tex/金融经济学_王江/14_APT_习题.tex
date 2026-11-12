@@ -76,7 +76,7 @@
  z^{\mathsf T}(a-r_F\iota)+(B^{\mathsf T}z)^{\mathsf T}\widetilde f.
 \]
 
-若 $B^{\mathsf T}z=0$，终期支付为常数。若该常数非零，取原头寸或其相反头寸即可获得严格正的支付。因此每个消去因子暴露的头寸都必须满足 $z^{\mathsf T}(a-r_F\iota)=0$。也就是说，$a-r_F\iota$ 与 $\ker B^{\mathsf T}$ 正交，因而在 $B$ 的列空间中。这给出无套利的线性必要条件\ifdefined\WJHandoutKnowledge（精确因子模型的定价关系，见定理~\ref{thm:wj-fourteen-2}）\fi
+若 $B^{\mathsf T}z=0$，终期支付为常数。若该常数非零，取原头寸或其相反头寸即可获得严格正的支付。因此每个消去因子暴露的头寸都必须满足 $z^{\mathsf T}(a-r_F\iota)=0$。也就是说，$a-r_F\iota$ 与 $\ker B^{\mathsf T}$ 正交，因而在 $B$ 的列空间中。这给出无套利的线性必要条件\ifdefined\WJHandoutKnowledge（精确因子模型的定价关系，见\WJRef{thm:wj-fourteen-2}{定理~}）\fi
 \[
  \boxed{a-r_F\iota=B\lambda},\qquad
  a_i-r_F=b_{i,1}\lambda_1+b_{i,2}\lambda_2,\quad i=A,B,C.
@@ -131,7 +131,7 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
-和练习~\ref{exer:wj-fourteen-1} 一样，剩余项不相关指 $n\ne n'$。原题 (a) 沿用了载荷记号 $b_n$。若载荷保持不变，等价表示要求 $(A^{\mathsf T}b_n-b_n)^{\mathsf T}\widetilde f=0$。由于原因子的协方差为 $I$，左边的方差等于 $\|A^{\mathsf T}b_n-b_n\|^2$，故必须有 $A^{\mathsf T}b_n=b_n$。若原载荷张成 $\mathbb R^K$，这只允许 $A=I$。下面将换坐标后的载荷记为 $b'_n$。
+和\WJRef{exer:wj-fourteen-1}{练习~} 一样，剩余项不相关指 $n\ne n'$。原题 (a) 沿用了载荷记号 $b_n$。若载荷保持不变，等价表示要求 $(A^{\mathsf T}b_n-b_n)^{\mathsf T}\widetilde f=0$。由于原因子的协方差为 $I$，左边的方差等于 $\|A^{\mathsf T}b_n-b_n\|^2$，故必须有 $A^{\mathsf T}b_n=b_n$。若原载荷张成 $\mathbb R^K$，这只允许 $A=I$。下面将换坐标后的载荷记为 $b'_n$。
 
 \begin{enumerate}[label=(\alph*)]
 \item 要保持因子的单位协方差，必须有
@@ -157,7 +157,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFourteenExercise{exer:wj-fourteen-4}{} 给定练习~\ref{exer:wj-fourteen-3} 描述的因子模型，APT 要求
+\WJFourteenExercise{exer:wj-fourteen-4}{} 给定\WJRef{exer:wj-fourteen-3}{练习~} 描述的因子模型，APT 要求
 \[
     \bar{r}_{n}-r_{F}=\lambda^{\mathrm{T}}b_{n}
 \]

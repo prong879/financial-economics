@@ -47,7 +47,7 @@
  \end{aligned}
 \]
 
-允许卖空，并用无风险证券承接预算余额。沿用练习~\ref{exer:wj-nine-7} 的 CARA--正态结果，最大化期望效用等价于最大化均值减去一半方差\footnote{若期末财富 $\widetilde W$ 正态，且效用为 $u(x)=-e^{-ax}$、$a>0$，则 $\mathrm E[u(\widetilde W)]=u(\mathrm E[\widetilde W]-\tfrac a2\operatorname{Var}(\widetilde W))$。括号内是确定性等值。因 $u$ 严格递增，最大化期望效用等价于最大化这个确定性等值。本题 $a=1$。}。对股票总持仓 $\theta_k$ 求导，得一阶条件；目标函数的 Hessian 为 $-\Sigma$，严格凹性保证需求唯一：
+允许卖空，并用无风险证券承接预算余额。沿用\WJRef{exer:wj-nine-7}{练习~} 的 CARA--正态结果，最大化期望效用等价于最大化均值减去一半方差\footnote{若期末财富 $\widetilde W$ 正态，且效用为 $u(x)=-e^{-ax}$、$a>0$，则 $\mathrm E[u(\widetilde W)]=u(\mathrm E[\widetilde W]-\tfrac a2\operatorname{Var}(\widetilde W))$。括号内是确定性等值。因 $u$ 严格递增，最大化期望效用等价于最大化这个确定性等值。本题 $a=1$。}。对股票总持仓 $\theta_k$ 求导，得一阶条件；目标函数的 Hessian 为 $-\Sigma$，严格凹性保证需求唯一：
 \[
  \bar v-S=\Sigma(\theta_k+y_k\iota),\qquad
  \boxed{\theta_k^*(S)=\Sigma^{-1}(\bar v-S)-y_k\iota}.
@@ -92,7 +92,7 @@
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJThirteenExercise{exer:wj-thirteen-2}{} 在练习~\ref{exer:wj-thirteen-1}定义的经济中，现在假设 $\tilde{\varepsilon}$ 与 $\tilde{v}$ 相关。令 $\operatorname{Cov}[\tilde{v},\tilde{\varepsilon}]=c$，这里 $c$ 是一 $(N\times 1)$ 维向量。
+\WJThirteenExercise{exer:wj-thirteen-2}{} 在\WJRef{exer:wj-thirteen-1}{练习~}定义的经济中，现在假设 $\tilde{\varepsilon}$ 与 $\tilde{v}$ 相关。令 $\operatorname{Cov}[\tilde{v},\tilde{\varepsilon}]=c$，这里 $c$ 是一 $(N\times 1)$ 维向量。
 \begin{enumerate}[label=(\alph*)]
     \item 求解投资者的股票需求函数。是否得到两基金分离？证明答案。如果两基金分离不成立，能否得到 $K$ 基金分离？$K$ 应为多少？
     \item 求解均衡股票价格。
@@ -119,7 +119,7 @@
  -y_k\underbrace{(\iota+\Sigma^{-1}c)}_{h\text{，劳动收入对冲方向}}}.
 \]
 
-\textbf{证明。}先看由无风险证券和一只共同风险基金构成的两基金货币分离\ifdefined\WJHandoutKnowledge（第九章定义~\ref{def:wj-nine-5}）\fi。它要求每个人的股票头寸都是同一风险方向的倍数。若 $d,h$ 线性无关且 $y_k$ 因人而异，$\theta_k^*=d-y_kh$ 的方向随人而变，这种分离一般不成立。
+\textbf{证明。}先看由无风险证券和一只共同风险基金构成的两基金货币分离\ifdefined\WJHandoutKnowledge（第九章\WJRef{def:wj-nine-5}{定义~}）\fi。它要求每个人的股票头寸都是同一风险方向的倍数。若 $d,h$ 线性无关且 $y_k$ 因人而异，$\theta_k^*=d-y_kh$ 的方向随人而变，这种分离一般不成立。
 
 再看任意两只基金是否足够。基金按单位成本计，因此要比较的是各人每单位金融财富的最优组合。取无风险基金 $F$，再分别在 $F$ 上加入股票头寸 $d$、$h$，用债券抵销新增的成本，得到另外两只单位成本基金 $F_d,F_h$。对 $W_{k,0}>0$ 的投资者，其单位财富的最优组合为
 \[
@@ -173,7 +173,7 @@ $\widetilde\varepsilon_M$ 与市场总支付不相关，但仍可能与单只股
 
 因为 $\operatorname{Cov}(\widetilde v,c^{\mathsf T}\Sigma^{-1}(\widetilde v-\bar v))=c$，这里的剩余冲击与每只股票的支付都不相关。代入 $\theta_k^*=d^*-y_kh$，股票持仓与劳动收入中可由股票复制的部分合为 $(d^*)^{\mathsf T}\widetilde v$，故期末财富为 $C'_k+(d^*)^{\mathsf T}\widetilde v+y_k\widetilde\varepsilon_\perp$，其中 $C'_k=b_k^*-y_kc^{\mathsf T}\Sigma^{-1}\bar v$ 为常数。与上一题的边际效用比论证相同，在允许1期状态依赖可行再分配的帕累托比较下，配置为帕累托最优当且仅当 $\tau^2=0$ 或所有 $y_k$ 相同。仅允许既有证券交易时，受约束的可行配置集合不同。
 
-$\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回到练习~\ref{exer:wj-thirteen-1} 的 $c=0$，标准 CAPM 成立，此时 $\widetilde\varepsilon_\perp=\widetilde\varepsilon$。若 $\sigma^2>0$ 且各人的 $y_k$ 不同，劳动收入冲击的分担仍可改进。因此，股票是否满足 CAPM 与劳动收入风险是否实现帕累托最优分担，取决于不同的条件。\qedhere
+$\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回到\WJRef{exer:wj-thirteen-1}{练习~} 的 $c=0$，标准 CAPM 成立，此时 $\widetilde\varepsilon_\perp=\widetilde\varepsilon$。若 $\sigma^2>0$ 且各人的 $y_k$ 不同，劳动收入冲击的分担仍可改进。因此，股票是否满足 CAPM 与劳动收入风险是否实现帕累托最优分担，取决于不同的条件。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -216,7 +216,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 
 正定，使给定价格下的投资目标严格凹。记 $L=K_a+K_b$、$R=1+r_F>0$，$\ell_a=\bar v-Rp_a$、$\ell_b=\bar v-Rp_b$ 为超额期望支付。
 \begin{enumerate}[label=(\alph*)]
-\item 任一国家的投资者均可交易全部股票，允许卖空，并按给定利率借贷。由练习~\ref{exer:wj-thirteen-1} 的确定性等价，扣除与持仓无关的常数后，目标函数为
+\item 任一国家的投资者均可交易全部股票，允许卖空，并按给定利率借贷。由\WJRef{exer:wj-thirteen-1}{练习~} 的确定性等价，扣除与持仓无关的常数后，目标函数为
 \[
  \theta_a^{\mathsf T}\ell_a+\theta_b^{\mathsf T}\ell_b
  -\frac\alpha2
@@ -272,9 +272,9 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJThirteenExercise{exer:wj-thirteen-4}{} 继续考虑练习~\ref{exer:wj-thirteen-3}所描述的经济。假设国家 $a$ 中的投资者可以持有国家 $b$ 的资产而国家 $b$ 中的投资者不能持有国家 $a$ 的资产。
+\WJThirteenExercise{exer:wj-thirteen-4}{} 继续考虑\WJRef{exer:wj-thirteen-3}{练习~}所描述的经济。假设国家 $a$ 中的投资者可以持有国家 $b$ 的资产而国家 $b$ 中的投资者不能持有国家 $a$ 的资产。
 \begin{enumerate}[label=(\alph*)]
-    \item 重复练习~\ref{exer:wj-thirteen-3} 中 (a)--(c) 的计算。
+    \item 重复\WJRef{exer:wj-thirteen-3}{练习~}[(a)--(c)] 的计算。
     \item 现在证明
     \[
         \bar{r}-r_{F}=\gamma_{a}(\bar{r}_{a}-r_{F})+\gamma_{b}(\bar{r}_{b}-r_{F}).
@@ -285,7 +285,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
-沿用上一题的协方差记号 $A,B,C$，令 $n=K_a>0$、$m=K_b>0$、$L=n+m$、$R=1+r_F$。如练习~\ref{exer:wj-nine-8}，用 $b$ 国股票对冲 $a$ 国股票的风险\footnote{练习 9.8 用旧证券对冲新增证券，做法是从新增收益中减去一个旧证券组合，使剩余部分与旧证券零协方差。本题改用 $b$ 国股票作对冲工具。若减去的支付为 $D\widetilde v_b$，零协方差条件是 $C-DB=0$。由于 $B$ 正定可逆，得到 $D=CB^{-1}$。}。对冲后的支付向量为 $\widetilde v_a-CB^{-1}\widetilde v_b$，与 $\widetilde v_b$ 的协方差为 $C-CB^{-1}B=0$。其协方差为 $H=A-CB^{-1}C^{\mathsf T}$。$\Gamma$ 正定保证任何非零的 $a$ 国头寸在对冲后仍有正方差，故 $H$ 正定。
+沿用上一题的协方差记号 $A,B,C$，令 $n=K_a>0$、$m=K_b>0$、$L=n+m$、$R=1+r_F$。如\WJRef{exer:wj-nine-8}{练习~}，用 $b$ 国股票对冲 $a$ 国股票的风险\footnote{练习 9.8 用旧证券对冲新增证券，做法是从新增收益中减去一个旧证券组合，使剩余部分与旧证券零协方差。本题改用 $b$ 国股票作对冲工具。若减去的支付为 $D\widetilde v_b$，零协方差条件是 $C-DB=0$。由于 $B$ 正定可逆，得到 $D=CB^{-1}$。}。对冲后的支付向量为 $\widetilde v_a-CB^{-1}\widetilde v_b$，与 $\widetilde v_b$ 的协方差为 $C-CB^{-1}B=0$。其协方差为 $H=A-CB^{-1}C^{\mathsf T}$。$\Gamma$ 正定保证任何非零的 $a$ 国头寸在对冲后仍有正方差，故 $H$ 正定。
 \begin{enumerate}[label=(\alph*)]
 \item 对一位国家 $a$ 的投资者，记 $x,y\in\mathbb R^N$ 分别为他对 $a$ 国、$b$ 国股票的总持仓列向量。需求为
 \[
@@ -394,7 +394,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
  \end{aligned}
 \]
 
-\item 原题的 $q_\omega=\phi_\omega/\pi_\omega$ 是状态价格密度，即消费定价核\ifdefined\WJHandoutKnowledge（第十讲式~\eqref{eq:wj-10-16}）\fi。将状态价格除以单位无风险债券价格 $B$，才得到风险中性概率 $Q(\omega)=\phi_\omega/B=\pi_\omega q_\omega/B$\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-four-8}）\fi\footnote{对任意状态支付 $X_\omega$，把状态价格写成 $\phi_\omega=\pi_\omega q_\omega$（真实概率 $\pi_\omega>0$），就可把价格 $\sum_\omega\phi_\omega X_\omega$ 写成真实概率下的期望 $\mathrm E[qX]$。在无套利的状态证券市场中，$\phi_\omega>0$，而单位无风险支付的价格 $B=\sum_\omega\phi_\omega$。因此 $\phi_\omega/B$ 为正且加总为 $1$，证券价格也可写成 $B\,\mathrm E^Q[X]$。}。
+\item 原题的 $q_\omega=\phi_\omega/\pi_\omega$ 是状态价格密度，即消费定价核\ifdefined\WJHandoutKnowledge（第十讲\WJEqRef{eq:wj-10-16}{式~}）\fi。将状态价格除以单位无风险债券价格 $B$，才得到风险中性概率 $Q(\omega)=\phi_\omega/B=\pi_\omega q_\omega/B$\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-four-8}{式~}）\fi\footnote{对任意状态支付 $X_\omega$，把状态价格写成 $\phi_\omega=\pi_\omega q_\omega$（真实概率 $\pi_\omega>0$），就可把价格 $\sum_\omega\phi_\omega X_\omega$ 写成真实概率下的期望 $\mathrm E[qX]$。在无套利的状态证券市场中，$\phi_\omega>0$，而单位无风险支付的价格 $B=\sum_\omega\phi_\omega$。因此 $\phi_\omega/B$ 为正且加总为 $1$，证券价格也可写成 $B\,\mathrm E^Q[X]$。}。
 
 记 $\widetilde q$ 为取值为 $q_\omega$ 的定价核，令 $J=\sum_\omega\phi_\omega q_\omega=\mathrm E[\widetilde q^{\,2}]$。两只基金的成本都为 $1$，各状态的支付分别为
 \[
@@ -440,7 +440,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJThirteenExercise{exer:wj-thirteen-6}{} 继续考虑练习~\ref{exer:wj-thirteen-5}中的经济。
+\WJThirteenExercise{exer:wj-thirteen-6}{} 继续考虑\WJRef{exer:wj-thirteen-5}{练习~}中的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 令 $u(\cdot)$ 为代表性参与者的效用函数。证明为使 CAPM 成立 $u(\cdot)$ 必须具有平方函数的形式。
     \item 假设所有的资产都可由 CAPM 定价。证明一份在状态 $\omega$（$\omega\in\Omega$）下支付 $x_{\omega}$ 单位消费品的证券价格由下式给出
@@ -489,7 +489,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 
 把这一支付定价式用于市场组合，就有 $\mathrm E[\widetilde e]-RP_e=R\lambda\sigma_e^2$。代回即可恢复对所有非零价格证券的 CAPM 收益率关系。因此，在给定经济中，CAPM 成立当且仅当边际效用在各个实际禀赋值上满足同一仿射关系。
 
-若该仿射关系在一个消费区间内处处成立，则 $u'(e)=A-De$，积分得 $u(e)=Ae-De^2/2+C$，严格凹性对应 $D>0$。这给出(a)中二次效用的区间刻画。有限状态只确定 $u'(e_\omega)$ 在若干点的取值；这些点之间仍可作不同的递减插值。例如，练习~\ref{exer:wj-thirteen-7} 中的两状态模型允许对数效用。
+若该仿射关系在一个消费区间内处处成立，则 $u'(e)=A-De$，积分得 $u(e)=Ae-De^2/2+C$，严格凹性对应 $D>0$。这给出(a)中二次效用的区间刻画。有限状态只确定 $u'(e_\omega)$ 在若干点的取值；这些点之间仍可作不同的递减插值。例如，\WJRef{exer:wj-thirteen-7}{练习~} 中的两状态模型允许对数效用。
 
 \item 由 (a)，任意支付（包括价格为零的支付）的价格都可写成
 \[
@@ -504,7 +504,7 @@ $\alpha$ 由无风险债券价格决定，$\beta$ 由总禀赋的均值、方差
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJThirteenExercise{exer:wj-thirteen-7}{} 考虑练习~\ref{exer:wj-thirteen-5}中的经济。假设只有两个可能状态 $a$ 和 $b$，$e_{b}>e_{a}$。称支付总禀赋的证券为股票。考虑一份以股票为标的资产、执行价格为 $K\in(e_{a},e_{b})$ 的看涨期权。
+\WJThirteenExercise{exer:wj-thirteen-7}{} 考虑\WJRef{exer:wj-thirteen-5}{练习~}中的经济。假设只有两个可能状态 $a$ 和 $b$，$e_{b}>e_{a}$。称支付总禀赋的证券为股票。考虑一份以股票为标的资产、执行价格为 $K\in(e_{a},e_{b})$ 的看涨期权。
 \begin{enumerate}[label=(\alph*)]
     \item 能用 CAPM（代表性参与者具有一般形式的 $u(\cdot)$）为期权定价吗？解释所得的结论。
     \item 能把上面的结论推广到多于两个状态的情形吗？给出解释。
@@ -525,7 +525,7 @@ $\alpha$ 由无风险债券价格决定，$\beta$ 由总禀赋的均值、方差
  \boxed{C=\Delta(P_e-e_aB)=\phi_b(e_b-K)>0}.
 \]
 
-另一方面，在 $(e,m)$ 平面上，两个不同的禀赋值及其定价核取值确定一条直线，因此 $m=A-D\widetilde e$ 在这两个状态都成立。由练习~\ref{exer:wj-thirteen-6}，所有支付都满足 CAPM 的协方差定价式。也可从复制式直接看出，除以期权价格 $C$，得到
+另一方面，在 $(e,m)$ 平面上，两个不同的禀赋值及其定价核取值确定一条直线，因此 $m=A-D\widetilde e$ 在这两个状态都成立。由\WJRef{exer:wj-thirteen-6}{练习~}，所有支付都满足 CAPM 的协方差定价式。也可从复制式直接看出，除以期权价格 $C$，得到
 \[
  \frac{(\widetilde e-K)^+}{C}
  =\frac{\Delta P_e}{C}\frac{\widetilde e}{P_e}+\frac bC.
