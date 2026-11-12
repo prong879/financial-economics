@@ -624,16 +624,17 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
 \[
  0<\bar c-\xi<\bar c-CE<\varepsilon,
 \]
-当 $\varepsilon\to0^+$ 时，上下界 $\varepsilon$ 和 $0$ 都趋于零。由夹逼定理，$\bar c-\xi$ 和 $\bar c-CE$ 都趋于零，即 $\xi$ 与 $CE$ 都趋于 $\bar c$。再由 $u'$ 在 $\bar c$ 处连续，得到 $u'(\xi)\to u'(\bar c)>0$。
-
-\WJRef{fig:wj-six-squeeze}{图~} 用一般的 $y=f(x)$ 说明极限的容差：把水平带从 $A\pm\eta_1$ 缩到 $A\pm\eta_2$，可相应缩小 $x_0$ 两侧的范围。在本题中，$x$ 对应波动幅度 $\varepsilon$，$x_0=0$，$A=\bar c$，$f(x)$ 分别对应 $CE$ 或 $\xi$。这里只考察 $\varepsilon>0$ 的一侧；任取容许误差 $\eta>0$，由上面的不等式可知，只要 $0<\varepsilon<\eta$，两者就都落在 $\bar c\pm\eta$ 之间。
+当 $\varepsilon\to0^+$ 时，上下界 $\varepsilon$ 和 $0$ 都趋于零。由夹逼定理，$\bar c-\xi$ 和 $\bar c-CE$ 都趋于零，即 $\xi$ 与 $CE$ 都趋于 $\bar c$（见\WJRef{fig:wj-six-squeeze}{图~}）。再由 $u'$ 在 $\bar c$ 处连续，得到
+\[
+ u'(\xi)\to u'(\bar c)>0.
+\]
 
 \begin{center}
 \begin{minipage}{\linewidth}
 \WJFigureStart{fig:wj-six-squeeze}%
 \centering
 \WJInputFigure{06_夹逼定理}
-\WJFigureCaption{极限的容差示意：从较宽的水平带缩到较窄的水平带}
+\WJFigureCaption{函数极限与夹逼定理示意}
 \end{minipage}
 \end{center}
 
@@ -641,7 +642,7 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
 \[
  \frac{\pi(\varepsilon)}{\varepsilon^2}
  =\frac{-\tfrac12 u''(\bar c)+o(1)}{u'(\xi)}
- \longrightarrow -\frac{u''(\bar c)}{2u'(\bar c)}.
+ \xrightarrow[u'(\xi)\to u'(\bar c)]{\varepsilon\to0^+} -\frac{u''(\bar c)}{2u'(\bar c)}.
 \]
 
 因此，风险溢价的二阶展开为
