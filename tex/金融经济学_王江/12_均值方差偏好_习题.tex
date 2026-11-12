@@ -26,7 +26,7 @@
  \sigma_w^2=w^2z^{\mathsf T}\Sigma z.
 \]
 
-联合正态收益的线性组合仍服从正态分布，故可写成 $\tilde w=\bar w+\sigma_w Z$，其中 $Z$ 为标准正态变量。由练习~\ref{exer:wj-nine-7} 所用的正态指数矩\footnote{第九讲这道题沿用了练习~\ref{exer:wj-eight-3} 中对正态财富计算指数效用的方法。若 $Z\sim N(0,1)$，则对任意实数 $t$，有 $\mathrm E[e^{tZ}]=e^{t^2/2}$。本题取 $t=-a\sigma_w$。}，$\mathrm E[e^{-a\sigma_w Z}]=e^{a^2\sigma_w^2/2}$，得到所求效用
+联合正态收益的线性组合仍服从正态分布，故可写成 $\tilde w=\bar w+\sigma_w Z$，其中 $Z$ 为标准正态变量。由\WJRef{exer:wj-nine-7}{练习~} 所用的正态指数矩\footnote{第九讲这道题沿用了\WJRef{exer:wj-eight-3}{练习~} 中对正态财富计算指数效用的方法。若 $Z\sim N(0,1)$，则对任意实数 $t$，有 $\mathrm E[e^{tZ}]=e^{t^2/2}$。本题取 $t=-a\sigma_w$。}，$\mathrm E[e^{-a\sigma_w Z}]=e^{a^2\sigma_w^2/2}$，得到所求效用
 \[
  v(\bar w,\sigma_w)=-\exp\left(-a\bar w+\frac12a^2\sigma_w^2\right).
 \]
@@ -178,7 +178,7 @@
  +\sigma_2^2(\bar r_1-\bar r_p)^2}{(\bar r_1-\bar r_2)^2}.
 \]
 
-若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，最小方差组合的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，其均值为 $\bar r_{\mathrm{MVP}}=z^*\bar r_1+(1-z^*)\bar r_2$。将 $z-z^*=(\bar r_p-\bar r_{\mathrm{MVP}})/(\bar r_1-\bar r_2)$ 代入练习~\ref{exer:wj-twelve-2} 的配方结果，
+若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，最小方差组合的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，其均值为 $\bar r_{\mathrm{MVP}}=z^*\bar r_1+(1-z^*)\bar r_2$。将 $z-z^*=(\bar r_p-\bar r_{\mathrm{MVP}})/(\bar r_1-\bar r_2)$ 代入\WJRef{exer:wj-twelve-2}{练习~} 的配方结果，
 \[
  \sigma_p^2=\sigma_{\mathrm{MVP}}^2+
  \frac{D}{(\bar r_1-\bar r_2)^2}(\bar r_p-\bar r_{\mathrm{MVP}})^2.
@@ -212,7 +212,7 @@
 \WJInputFigure{12_两资产相关性与前沿形状}%
 \end{center}
 
-若 $\bar r_1=\bar r_2$，所有组合均值都等于 $\bar r_1$，MVF在均值--标准差平面仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere
+若 $\bar r_1=\bar r_2$，所有组合均值都等于 $\bar r_1$，MVF在均值--标准差平面仅为MVP点；其权重按\WJRef{exer:wj-twelve-2}{练习~} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -240,7 +240,7 @@
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTwelveExercise{exer:wj-twelve-6}{} 证明最小方差组合（MVP）的期望收益率为 $a/c$，这里的 $a$ 和 $c$ 由练习~\ref{exer:wj-twelve-5} 给定。
+\WJTwelveExercise{exer:wj-twelve-6}{} 证明最小方差组合（MVP）的期望收益率为 $a/c$，这里的 $a$ 和 $c$ 由\WJRef{exer:wj-twelve-5}{练习~} 给定。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
@@ -274,12 +274,12 @@
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
 \WJTwelveExercise{exer:wj-twelve-7}{} 考虑 $\bar{r}=(b/a)\iota$ 的特殊情形。导出均值--方差前沿。在 $\bar{r}$--$\sigma$ 平面上画出这个组合前沿。
-\par\textit{提示}\quad 沿用练习~\ref{exer:wj-twelve-5}，包括共同期望收益率为零的情形。
+\par\textit{提示}\quad 沿用\WJRef{exer:wj-twelve-5}{练习~}，包括共同期望收益率为零的情形。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-沿用允许卖空和 $\Sigma$ 正定的设定。由练习~\ref{exer:wj-twelve-5}，写 $\bar r=k\iota$，其中 $k=a/c$，$a\ne0$ 时也可写为 $b/a$。完全投资要求 $z^{\mathsf T}\iota=1$，所以每个组合的均值都是 $k$。于是只需在这个均值下找方差最小的组合。由练习~\ref{exer:wj-twelve-6}，
+沿用允许卖空和 $\Sigma$ 正定的设定。由\WJRef{exer:wj-twelve-5}{练习~}，写 $\bar r=k\iota$，其中 $k=a/c$，$a\ne0$ 时也可写为 $b/a$。完全投资要求 $z^{\mathsf T}\iota=1$，所以每个组合的均值都是 $k$。于是只需在这个均值下找方差最小的组合。由\WJRef{exer:wj-twelve-6}{练习~}，
 \[
  z_{\mathrm{MVP}}=\frac{\Sigma^{-1}\iota}{c},\qquad
  (\sigma_{\mathrm{MVP}},\bar r_{\mathrm{MVP}})=(1/\sqrt c,k).
@@ -355,7 +355,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明}]
-沿用 $\Sigma$ 正定、只含风险证券的设定。任一完全投资组合与 MVP 的协方差均为 $1/c>0$\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-twelve-8}）\fi。题设中 $p$ 和 $zcp$ 的协方差为零，所以两者都不是 MVP。若 $d=0$，由练习~\ref{exer:wj-twelve-7}，前沿只有 MVP，故这里有 $d>0$。正定性保证两个组合的方差均为正。
+沿用 $\Sigma$ 正定、只含风险证券的设定。任一完全投资组合与 MVP 的协方差均为 $1/c>0$\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-twelve-8}{定理~}）\fi。题设中 $p$ 和 $zcp$ 的协方差为零，所以两者都不是 MVP。若 $d=0$，由\WJRef{exer:wj-twelve-7}{练习~}，前沿只有 MVP，故这里有 $d>0$。正定性保证两个组合的方差均为正。
 \begin{enumerate}[label=(\alph*)]
 \item 沿用题给的 $\beta_{i,p}$ 和 $\beta_{i,zcp}$，取截距和残差为
 \[
@@ -371,7 +371,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
  \end{aligned}
 \]
 
-\item $p$ 与 $zcp$ 都是非 MVP 前沿组合，且互为零协方差组合，所以可以先以 $p$ 为基准，再以 $zcp$ 为基准，分别使用零贝塔关系\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-12-6}）\fi
+\item $p$ 与 $zcp$ 都是非 MVP 前沿组合，且互为零协方差组合，所以可以先以 $p$ 为基准，再以 $zcp$ 为基准，分别使用零贝塔关系\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-12-6}{式~}）\fi
 \[
  \bar r_i-\bar r_{zcp}=\beta_{i,p}(\bar r_p-\bar r_{zcp}),\qquad
  \bar r_i-\bar r_p=\beta_{i,zcp}(\bar r_{zcp}-\bar r_p).
@@ -396,13 +396,13 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明}]
-沿用本章 $\Sigma$ 正定、允许自由交易的设定。这里取凸组合的是证券权重向量，即把资金按比例投入两个有效组合。仅有风险证券时，若 $d=0$，前沿只包含 MVP。若 $d>0$，给定目标均值 $m$ 的前沿权重为 $z(m)=z_0+m(z_1-z_0)$\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-12-4}）\fi。若 $z_A,z_B$ 均为 MVE，则 $m_A,m_B\ge a/c$。对 $0\le t\le1$，
+沿用本章 $\Sigma$ 正定、允许自由交易的设定。这里取凸组合的是证券权重向量，即把资金按比例投入两个有效组合。仅有风险证券时，若 $d=0$，前沿只包含 MVP。若 $d>0$，给定目标均值 $m$ 的前沿权重为 $z(m)=z_0+m(z_1-z_0)$\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-12-4}{式~}）\fi。若 $z_A,z_B$ 均为 MVE，则 $m_A,m_B\ge a/c$。对 $0\le t\le1$，
 \[
  tz_A+(1-t)z_B=z(tm_A+(1-t)m_B),\qquad
  tm_A+(1-t)m_B\ge a/c.
 \]
 
-因此，混合后的权重仍是新目标均值下的最小方差权重，而且新均值不低于 MVP 的均值，故仍是 MVE。练习~\ref{exer:wj-twelve-8} 考察的是两个均值--标准差点之间的线段，其标准差坐标一般与混合后的实际标准差不同。
+因此，混合后的权重仍是新目标均值下的最小方差权重，而且新均值不低于 MVP 的均值，故仍是 MVE。\WJRef{exer:wj-twelve-8}{练习~} 考察的是两个均值--标准差点之间的线段，其标准差坐标一般与混合后的实际标准差不同。
 
 存在无风险证券时，令 $\bar\eta=\bar r-r_F\iota$、$K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta$。若 $K=0$，前沿只包含无风险组合。若 $K>0$，MVE 组合的风险权重为 $\lambda\Sigma^{-1}\bar\eta$，其中 $\lambda\ge0$。凸组合对应的系数 $t\lambda_A+(1-t)\lambda_B$ 仍非负，故仍为 MVE。
 \end{solution}
@@ -433,7 +433,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明}]
-题末的“期望收益为正”指只由风险证券构成的 MVP 的期望超额收益为正。沿用 $\Sigma$ 正定的设定，并令 $K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta>0$。有无风险证券时，前沿组合的风险权重都沿 $\Sigma^{-1}\bar\eta$ 这一方向\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-12-7}）\fi。记 $H=\iota^{\mathsf T}\Sigma^{-1}\bar\eta$ 为该方向的权重和。要得到只含风险证券的切点组合，风险权重之和必须为 1。若 $H\ne0$，可用 $z_T=\Sigma^{-1}\bar\eta/H$ 实现，故
+题末的“期望收益为正”指只由风险证券构成的 MVP 的期望超额收益为正。沿用 $\Sigma$ 正定的设定，并令 $K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta>0$。有无风险证券时，前沿组合的风险权重都沿 $\Sigma^{-1}\bar\eta$ 这一方向\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-12-7}{式~}）\fi。记 $H=\iota^{\mathsf T}\Sigma^{-1}\bar\eta$ 为该方向的权重和。要得到只含风险证券的切点组合，风险权重之和必须为 1。若 $H\ne0$，可用 $z_T=\Sigma^{-1}\bar\eta/H$ 实现，故
 \[
  \bar\eta_T=z_T^{\mathsf T}\bar\eta=\frac KH,\qquad
  H=\iota^{\mathsf T}\Sigma^{-1}(\bar r-r_F\iota)
