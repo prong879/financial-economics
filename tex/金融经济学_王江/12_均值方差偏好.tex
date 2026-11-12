@@ -803,16 +803,16 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 \section{存在无风险资产的情形}\label{sec:wj-twelve-4}
 \subsection{存在无风险证券时的前沿组合}
-设无风险净利率为 $r_F$，允许以同一利率借贷并允许卖空。记 $\eta=\bar r-r_F\iota$ 为 $N$ 只风险证券的期望超额收益率列向量，其第 $i$ 个分量是 $\bar r_i-r_F$。本节的 $z$ 是风险证券的 $N$ 维权重列向量。无风险证券的权重由剩余资金决定，等于 $1-\iota^{\mathsf T}z$。因此
+前面把全部资金配置在风险证券中。现在加入净利率为 $r_F$ 的无风险证券，允许以同一利率借贷并允许卖空。仍用 $z$ 记录 $N$ 只风险证券的权重，$\Sigma$ 仍是这些风险证券的正定协方差矩阵。无风险证券承接余额，权重是 $1-\iota^{\mathsf T}z$。例如，风险证券的净投入占初始资金的 $120\%$ 时，无风险权重为 $-20\%$，表示借入初始资金的 $20\%$。组合的随机净收益率为
 \[
- \begin{aligned}
- \widetilde r_p&=\underbrace{r_F}_{\text{无风险基准}}
-    +\underbrace{z^{\mathsf T}(\widetilde r-r_F\iota)}_{\text{风险头寸的超额收益}},\\
- \bar r_p-r_F&=z^{\mathsf T}\eta,\qquad \sigma_p^2=z^{\mathsf T}\Sigma z.
- \end{aligned}
+ \widetilde r_p=(1-\iota^{\mathsf T}z)r_F+z^{\mathsf T}\widetilde r
+ =\underbrace{r_F}_{\text{无风险基准}}
+    +\underbrace{z^{\mathsf T}(\widetilde r-r_F\iota)}_{\text{风险头寸的超额收益率}}.
 \]
 
-无风险证券承接风险权重之和留下的余额，全部证券的权重和仍为 $1$。记 $\bar\eta_p\equiv\bar r_p-r_F$ 为组合的目标期望超额收益。因此只需对风险权重 $z$ 施加约束 $z^{\mathsf T}\eta=\bar\eta_p$，便可在收益相同的组合中比较方差。
+记 $\eta=\bar r-r_F\iota$ 为风险证券的期望超额收益率列向量，第 $i$ 个分量是 $\bar r_i-r_F$。取期望得 $\bar r_p-r_F=z^{\mathsf T}\eta$。无风险利率为常数，组合的方差仍是 $\sigma_p^2=z^{\mathsf T}\Sigma z$。
+
+指定组合的目标期望超额收益率 $\bar\eta_p\equiv\bar r_p-r_F$。无风险权重随风险头寸调整，全部权重的和始终为 $1$，所以最小方差问题只需对 $z$ 写出一条收益率约束：
 \[
  \begin{aligned}
  \min_z\quad &\tfrac12 z^{\mathsf T}\Sigma z\\
@@ -820,24 +820,24 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  \end{aligned}
 \]
 
-记 $K=\eta^{\mathsf T}\Sigma^{-1}\eta$。先取 $K>0$，拉格朗日函数为
+用 $\lambda$ 表示目标超额收益率约束的乘数，拉格朗日函数为
 \[
  L=\frac12 z^{\mathsf T}\Sigma z+\lambda(\bar\eta_p-z^{\mathsf T}\eta).
 \]
 
-对 $z$ 求导得 $\Sigma z=\lambda\eta$，故 $z=\lambda\Sigma^{-1}\eta$。代回目标超额收益约束，得 $\lambda K=\bar\eta_p$，再用 $\sigma_p^2=\lambda^2K$，得到
+对 $z$ 求导得 $\Sigma z=\lambda\eta$，故 $z=\lambda\Sigma^{-1}\eta$。不同目标收益率下，风险头寸都沿 $\Sigma^{-1}\eta$ 这一方向，区别在于倍数 $\lambda$。记 $K=\eta^{\mathsf T}\Sigma^{-1}\eta$，代回约束得 $\lambda K=\bar\eta_p$。先取 $K>0$，用 $\sigma_p^2=\lambda^2K$ 得
 \begin{equation}
  z_p=\frac{\bar\eta_p}{K}\Sigma^{-1}\eta,\qquad
  \sigma_p^2=\frac{\bar\eta_p^2}{K}.
  \label{eq:wj-12-7}
 \end{equation}
 
-\hypertarget{wj-tangency-portfolio}{}当 $\bar\eta_p=0$ 时，前沿点为无风险证券。若 $H=\iota^{\mathsf T}\Sigma^{-1}\eta\ne0$，令风险权重之和为1，得到\textbf{切点组合}
+当 $\bar\eta_p=0$ 时，式~\eqref{eq:wj-12-7} 给出 $z_p=0$，即全部资金投入无风险证券。接下来找前沿上完全由风险证券构成的组合，这要求风险权重之和等于 $1$。记 $H=\iota^{\mathsf T}\Sigma^{-1}\eta$ 为方向 $\Sigma^{-1}\eta$ 的分量之和。若 $H\ne0$，用 $H$ 归一化就得到\hypertarget{wj-tangency-portfolio}{}\textbf{切点组合} $T$。下一小节用图说明「切点」的含义。
 \[
  z_T=\frac{\Sigma^{-1}\eta}{H},\qquad \bar\eta_T=\frac KH.
 \]
 
-对任意前沿组合，令 $a_p=\iota^{\mathsf T}z_p=\bar\eta_pH/K=\bar\eta_p/\bar\eta_T$。这个比例使切点组合提供的期望超额收益 $a_p\bar\eta_T$ 恰好等于目标 $\bar\eta_p$。因此
+对任意前沿组合，令 $a_p=\iota^{\mathsf T}z_p=\bar\eta_pH/K=\bar\eta_p/\bar\eta_T$。这是投向切点组合的资金比例，使 $a_p\bar\eta_T$ 恰好等于目标超额收益率 $\bar\eta_p$。把无风险权重放在列向量第一项、风险权重放在其余 $N$ 项，完整配置可以写为
 \begin{equation}
  z_p=a_pz_T,\qquad
  \begin{pmatrix}1-\iota^{\mathsf T}z_p\\z_p\end{pmatrix}
@@ -847,22 +847,42 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \end{equation}
 
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-11} 当切点组合存在时，有无风险证券的MVF组合均由无风险证券和切点组合生成。
+\WJTwelveTheorem{thm:wj-twelve-11} 当切点组合存在时，有无风险证券的 MVF 组合均由无风险证券和切点组合生成。若切点组合的配置比例为 $a_p$，风险证券的权重为 $z_p=a_pz_T$，无风险证券的权重为 $1-a_p$。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
 式~\eqref{eq:wj-12-8}（无风险证券与切点组合的两基金表示）给出了生成关系。
 \end{solution}
 
-式~\eqref{eq:wj-12-8} 的完整权重是 $N+1$ 维列向量，首项是无风险权重，其余 $N$ 项是风险权重。全投无风险证券时，风险权重是 $N$ 维零向量。在风险权重空间 $\mathbb R^N$ 中，前沿是经过这个原点和切点权重 $z_T$ 的直线。计入无风险权重后，前沿在 $\mathbb R^{N+1}$ 中仍是一条直线。
-
-若 $K=0$，由 $\Sigma$ 正定知 $\eta=0$。此时只有 $\bar\eta_p=0$ 可行，全投无风险证券使方差最小，因此前沿退化为一个点。若 $K>0$ 且 $H=0$，式~\eqref{eq:wj-12-7} 仍给出前沿，但其风险方向的权重和为零，无法归一化为只含风险证券的切点组合。若 $H<0$，归一化后的 $z_T$ 有负的期望超额收益。当 $d>0$ 时，它位于风险证券前沿的下半支；取负的切点组合权重并把余额配置到无风险证券，才得到正的期望超额收益。练习~\ref{exer:wj-twelve-12} 和~\ref{exer:wj-twelve-13} 给出了相应的符号和 Sharpe 比推导。
-
-下文采用 $r_F<\bar r_{\mathrm{MVP}}=a/c$，此时 $H=a-r_Fc>0$，切点组合的期望超额收益为正。
+全投无风险证券时，风险权重是 $N$ 维零向量。在风险权重空间 $\mathbb R^N$ 中，前沿是经过这个原点和切点权重 $z_T$ 的直线。计入无风险权重后，前沿在 $\mathbb R^{N+1}$ 中仍是一条直线。
 
 \subsection{Sharpe比与有效前沿}
+把无风险证券和一只风险基金搭配，改变资金配置比例，会在收益率--标准差平面上形成怎样的前沿？先考虑 $r_F<\bar r_{\mathrm{MVP}}=a/c$。此时 $H=a-r_Fc>0$，切点组合的期望超额收益率为正。
+
+对于 $\sigma_q>0$ 的组合，\textbf{Sharpe比}衡量每单位标准差对应的期望超额收益率：
+\[
+ \operatorname{SR}_q=\frac{\bar r_q-r_F}{\sigma_q}.
+\]
+
+考虑任意风险证券权重 $z$，记风险证券的净权重为 $\alpha=\iota^{\mathsf T}z$。当 $\alpha\ne0$ 时，可令 $z_q=z/\alpha$，使 $q$ 成为权重和为 1 的纯风险组合。于是原组合等价于按 $1-\alpha$ 配置无风险证券、按 $\alpha$ 配置组合 $q$，有
+\[
+ \bar r_p=r_F+\alpha(\bar r_q-r_F),\qquad \sigma_p=|\alpha|\sigma_q.
+\]
+
+当 $\alpha>0$ 时，超额收益率和标准差按同一倍数变化，混合后的组合与 $q$ 有相同的 Sharpe 比。因而在图~\ref{fig:wj-twelve-2} 中，固定 $q$、改变 $\alpha>0$，得到一条从无风险点 $(0,r_F)$ 出发的射线，斜率就是 $q$ 的 Sharpe 比。同一标准差下，斜率越大的射线给出的期望收益率越高。风险证券前沿为双曲线时，从无风险点向上转动射线，最后一条能接触风险证券前沿的射线在 $T$ 处与它相切。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\WJInputFigure{12_资本市场线}%
+\WJTwelveFigure{fig:wj-twelve-2}{无风险证券、切点组合与资本市场线}
+\end{minipage}
+\end{center}
+
+当 $\alpha<0$ 时，混合后的组合与 $q$ 的 Sharpe 比符号相反。若 $\alpha=0$，应直接按风险权重 $z$ 计算收益和方差。例如两只风险证券上的头寸 $z=(1,-1)^{\mathsf T}$ 净投入为零，仍有正方差 $z^{\mathsf T}\Sigma z$。下面的 Sharpe 比上界也适用于这种头寸。
+
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-12} 若 $r_F<\bar r_{\mathrm{MVP}}$，则切点组合 $T$ 为风险证券集合中的MVE组合。
+\WJTwelveTheorem{thm:wj-twelve-12} 若 $r_F<\bar r_{\mathrm{MVP}}$，则切点组合 $T$ 为风险证券集合中的 MVE 组合。当 $d>0$ 时，$T$ 位于风险证券前沿的上半支，满足 $\bar r_T>\bar r_{\mathrm{MVP}}$。当 $d=0$ 时，$T$ 就是 MVP。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
@@ -876,19 +896,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 因此 $T$ 位于有效上半支。这里沿用 $d>0$。若 $d=0$，所有风险证券的期望收益相同；在 $r_F<\bar r_{\mathrm{MVP}}$ 下，切点组合就是MVP，仍为MVE。
 \end{solution}
 
-对于 $\sigma_q>0$ 的组合，\textbf{Sharpe比}定义为
-\[
- \operatorname{SR}_q=\frac{\bar r_q-r_F}{\sigma_q}.
-\]
-
-考虑任意风险证券权重 $z$，记风险证券的净权重为 $\alpha=\iota^{\mathsf T}z$。当 $\alpha\ne0$ 时，可令 $z_q=z/\alpha$，使 $q$ 成为权重和为 1 的纯风险组合。于是原组合等价于按 $1-\alpha$ 配置无风险证券、按 $\alpha$ 配置组合 $q$，有
-\[
- \bar r_p=r_F+\alpha(\bar r_q-r_F),\qquad \sigma_p=|\alpha|\sigma_q.
-\]
-
-因此，当 $\alpha>0$ 时，两组合的Sharpe比相同；当 $\alpha<0$ 时，Sharpe比符号相反。若 $\alpha=0$，应直接按风险权重 $z$ 计算收益和方差。例如两只风险证券上的头寸 $z=(1,-1)^{\mathsf T}$ 净投入为零，仍有正方差 $z^{\mathsf T}\Sigma z$。下面的 Sharpe 比上界也适用于这种头寸。
-
-在 $H>0$ 的情形下，最大 Sharpe 比为 $\sqrt K$，切点组合达到该最大值。
+在 $H>0$ 的情形下，切点组合达到最大 Sharpe 比 $\operatorname{SR}_T=\sqrt K$。
 
 \begin{solution}[label-content={证明},blank-type=none]
 对 $\Sigma^{1/2}z$ 与 $\Sigma^{-1/2}\eta$ 应用 Cauchy--Schwarz 不等式。对任意非零风险头寸 $z$，有
@@ -901,24 +909,43 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 平方不等式取等时，$z=\lambda\Sigma^{-1}\eta$，其中 $\lambda\ne0$。此时超额收益为 $\lambda K$，标准差为 $|\lambda|\sqrt K$，所以 $\operatorname{SR}(z)=(\lambda/|\lambda|)\sqrt K$。取 $\lambda>0$ 时，Sharpe 比达到最大值 $\sqrt K$，因此 $K$ 是最大 Sharpe 比的平方。因 $H>0$，切点组合恰是这一方向中风险权重和为 $1$ 的组合，也达到这个最大值。
 \end{solution}
 
-当 $d>0$ 时，还可验证资本市场线与风险证券前沿在 $T$ 处相切。把 $\bar\eta_T=K/H$ 代入式~\eqref{eq:wj-12-7}，得 $\sigma_T^2=\bar\eta_T^2/K=K/H^2$。由 $H>0$，有 $\sigma_T=\sqrt K/H$。沿风险证券前沿对式~\eqref{eq:wj-12-5} 求导，在上半支有 $\mathrm d\bar r_p/\mathrm d\sigma_p=d\sigma_p/[c(\bar r_p-a/c)]$。代入 $\bar r_T-a/c=d/(cH)$ 和刚得到的 $\sigma_T$，前沿在 $T$ 处的斜率就是 $H\sigma_T=\sqrt K$。从无风险点连到 $T$ 的斜率也等于 $\operatorname{SR}_T=\sqrt K$，因此这条线与风险证券前沿在 $T$ 相切。
+当 $d>0$ 时，可以用斜率核对图中的相切关系。把 $\bar\eta_T=K/H$ 代入式~\eqref{eq:wj-12-7}，得 $\sigma_T^2=\bar\eta_T^2/K=K/H^2$。由 $H>0$，有 $\sigma_T=\sqrt K/H$。沿风险证券前沿对式~\eqref{eq:wj-12-5} 求导，再代入 $\bar r_T-a/c=d/(cH)$ 和 $\sigma_T$，得到
+\[
+ \frac{\mathrm d\bar r_p}{\mathrm d\sigma_p}
+ =\frac{d\sigma_p}{c(\bar r_p-a/c)}\quad(\bar r_p>a/c),\qquad
+ \left.\frac{\mathrm d\bar r_p}{\mathrm d\sigma_p}\right|_{p=T}=H\sigma_T=\sqrt K.
+\]
+
+从无风险点连到 $T$ 的斜率也等于 $\operatorname{SR}_T=\sqrt K$，因此这条线与风险证券前沿在 $T$ 相切。
 
 无风险证券与 $T$ 的配置比例为 $1-a_p,a_p$ 时，$\bar r_p-r_F=a_p\bar\eta_T$、$\sigma_p=|a_p|\sigma_T$。由于 $\bar\eta_T>0$，$a_p$ 的符号决定超额收益的正负，$|a_p|$ 决定标准差。因此完整前沿在均值--标准差平面上为
 \[
  \bar r_p=r_F\pm\sqrt K\,\sigma_p.
 \]
 
-\hypertarget{wj-capital-market-line}{}图~\ref{fig:wj-twelve-2} 的上方射线是有效前沿，称为\textbf{资本市场线}（CML），其斜率为切点组合的 Sharpe 比。$0<a_p<1$ 表示同时持有债券和切点组合，$a_p=1$ 就是切点，$a_p>1$ 表示按无风险利率借入资金加仓。$a_p<0$ 表示做空切点组合，对应图中的下方射线。同一标准差下，上方射线的期望收益更高。
-
-\begin{center}
-\WJInputFigure{12_资本市场线}%
-\WJTwelveFigure{fig:wj-twelve-2}{无风险证券、切点组合与资本市场线}
-\end{center}
+\hypertarget{wj-capital-market-line}{}图~\ref{fig:wj-twelve-2} 的上方射线是有效前沿，称为\textbf{资本市场线}（CML）。它的方程为 $\bar r_p=r_F+\operatorname{SR}_T\sigma_p$，斜率为切点组合的 Sharpe 比。$0<a_p<1$ 表示同时持有债券和切点组合，$a_p=1$ 就是切点，$a_p>1$ 表示按无风险利率借入资金加仓。$a_p<0$ 表示做空切点组合，对应图中的下方射线。同一标准差下，上方射线的期望收益更高。
 
 % 参见教材印刷页190—191，区分切点组合的风险权重和个人在资本市场线上的配置。
 在图~\ref{fig:wj-twelve-2} 的资本市场线上，切点组合确定风险部分投向哪些证券及其相对权重。对每个 $a_p>0$，超额收益和标准差都随 $a_p$ 同比例变化，所以这些组合的 Sharpe 比相同。若最优组合存在，它就位于资本市场线上。参与者按自己的均值--方差偏好权衡期望收益与标准差，选择切点组合的配置比例 $a_p\ge0$。取 $a_p=0$ 时，全部资金投入无风险证券。
 
+\Needspace{9\baselineskip}
+\begin{tcolorbox}[example,title=补充算例（续）：从前沿到切点组合]
+沿用前面两只风险证券的数据，收益率仍用百分点计。加入无风险证券并取 $r_F=0$，求切点组合及其 Sharpe 比。
+\begin{solution}[blank-type=manual,blank-vsep=2\baselineskip]
+当 $r_F=0$ 时，$\eta=\bar r$、$K=2$、$H=3/2$，故
+\[
+ z_T=\frac{\Sigma^{-1}\eta}{H}=\begin{pmatrix}2/3\\1/3\end{pmatrix},\quad
+ \bar r_T=\frac43,\quad \sigma_T^2=\frac89,\quad
+ \operatorname{SR}_T=\frac{4/3}{\sqrt{8/9}}=\sqrt2.
+\]
+\end{solution}
+\end{tcolorbox}
+
+以上用期望超额收益率为正的切点组合来描述有效前沿。其他情形可以回到式~\eqref{eq:wj-12-7} 逐一判断。若 $K=0$，由 $\Sigma$ 正定知 $\eta=0$，只有 $\bar\eta_p=0$ 可行。全投无风险证券使方差最小，因此前沿退化为一个点。若 $K>0$ 且 $H=0$，前沿的风险方向仍存在，但其权重和为零，无法归一化为只含风险证券的切点组合。若 $H<0$，归一化后的 $z_T$ 有负的期望超额收益率。当 $d>0$ 时，它位于风险证券前沿的下半支。取负的切点组合权重并把余额配置到无风险证券，才得到正的期望超额收益率。练习~\ref{exer:wj-twelve-12} 和~\ref{exer:wj-twelve-13} 给出了相应的符号和 Sharpe 比推导。
+
 \subsection{风险证券和切点组合之间的关系}
+资本市场线用组合自身的标准差来描述有效配置。接下来固定一个有风险的前沿组合作为参照，考察任意组合（包括只持有一只证券的组合）的期望收益率与贝塔之间的关系。
+
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-13} 存在无风险证券时，若 $p$ 是方差为正的MVE组合，则对任意组合 $q$，
 \begin{equation}
@@ -941,7 +968,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 两式相除得 $\beta_{q,p}=\bar\eta_q/\bar\eta_p$，即所求关系。
 \end{solution}
 
-由式~\eqref{eq:wj-12-7}，任一方差为正的 MVF 组合的风险权重都与 $\Sigma^{-1}\eta$ 成比例。因此式~\eqref{eq:wj-12-9} 对这些组合都成立，也适用于前沿的下方射线。
+由式~\eqref{eq:wj-12-7}，方差为正的 MVF 组合的风险权重都与 $\Sigma^{-1}\eta$ 成比例，因此式~\eqref{eq:wj-12-9} 也适用于下方射线。固定一个这样的 $p$，有 $\bar\eta_p\ne0$。另一个前沿组合 $q$ 要使协方差 $\bar\eta_p\bar\eta_q/K$ 为零，就必须有 $\bar\eta_q=0$。此时式~\eqref{eq:wj-12-7} 给出无风险点，所以零贝塔基准的收益率是 $r_F$。
 
 特别取 $p=T$，有
 \begin{equation}
@@ -961,48 +988,28 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  -\underbrace{\varepsilon r_F}_{\text{借款利息}}.
 \]
 
-由于 $r_F$ 是常数，在 $\varepsilon=0$ 处沿这一调整方向的方差导数为
+借款利息是常数，对方差没有影响。展开方差后可以看到，二次项在 $\varepsilon=0$ 处的导数为零，边际变化由一次项决定：
 \[
+ \begin{aligned}
+ \operatorname{Var}(\widetilde r(\varepsilon))
+ &=\sigma_T^2+2\varepsilon\operatorname{Cov}(\widetilde r_q,\widetilde r_T)
+   +\varepsilon^2\operatorname{Var}(\widetilde r_q),\\
  \left.\frac{\mathrm d}{\mathrm d\varepsilon}
  \operatorname{Var}\bigl(\widetilde r(\varepsilon)\bigr)\right|_{\varepsilon=0}
- =2\operatorname{Cov}(\widetilde r_q,\widetilde r_T)
+ &=2\operatorname{Cov}(\widetilde r_q,\widetilde r_T)
  =2\sigma_T^2\beta_{q,T}.
+ \end{aligned}
 \]
 
 对同一个切点组合，$\beta_{q,T}$ 越大，增加等量的 $q$ 所带来的边际方差增量就越大。资本市场线用标准差描述有效组合，切点贝塔关系则适用于任意证券或组合。下一讲第~\ref{sec:wj-thirteen-2}~节加入市场出清，将切点组合与市场组合联系起来。
 
-\Needspace{18\baselineskip}
-\begin{tcolorbox}[example,title=补充算例：从前沿到切点组合]
-两只风险证券的净收益率均值与协方差矩阵为
-\[
- \bar r=\begin{pmatrix}1\\2\end{pmatrix},\qquad
- \Sigma=\begin{pmatrix}1&0\\0&4\end{pmatrix}.
-\]
-允许卖空。求最小方差组合、均值为 $3/2$ 的前沿组合；再设无风险利率 $r_F=0$，求切点组合及其Sharpe比。
-\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
-由 $\Sigma^{-1}=\operatorname{diag}(1,1/4)$，得
-\[
- a=\frac32,\quad b=2,\quad c=\frac54,\quad d=\frac14.
-\]
-因此 $z_{\mathrm{MVP}}=\Sigma^{-1}\iota/c=(4/5,1/5)^{\mathsf T}$，其均值为 $6/5$、方差为 $4/5$。均值为 $3/2$ 的完全投资组合由两个约束唯一确定为 $(1/2,1/2)^{\mathsf T}$，方差为 $5/4$，所以它也是该目标均值的前沿组合。
-
-当 $r_F=0$ 时，$\eta=\bar r$、$K=2$、$H=3/2$，故
-\[
- z_T=\frac{\Sigma^{-1}\eta}{H}=\begin{pmatrix}2/3\\1/3\end{pmatrix},\quad
- \bar r_T=\frac43,\quad \sigma_T^2=\frac89,\quad
- \operatorname{SR}_T=\frac{4/3}{\sqrt{8/9}}=\sqrt2.
-\]
-这些收益率与方差采用相同的数值单位，例中数值用于说明计算。
-\end{solution}
-\end{tcolorbox}
-
-\Needspace{13\baselineskip}
+\Needspace{11\baselineskip}
 \WJChapterSummary
 \begin{tcolorbox}[summary]
 \begin{enumerate}
- \item 二次效用或联合正态支付使期望效用具有均值--方差表示。组合选择进一步采用对均值递增、对正标准差递减的偏好。
+ \item 二次效用或联合正态支付使期望效用具有均值--方差表示 $\mathrm E[u(\widetilde w)]=v(\bar w,\sigma_w)$。组合选择进一步采用对均值递增、对正标准差递减的偏好。
  \item 仅含风险证券且 $d>0$ 时，MVF 权重构成直线，在收益--标准差平面形成双曲线的右支。其中上半支为 MVE，顶点为 MVP。若 $d=0$，前沿只包含 MVP。
- \item 当 $d>0$ 时，任意两只不同前沿基金生成全部 MVF 组合。非 MVP 前沿组合与其零协方差组合给出零贝塔收益关系。
+ \item 当 $d>0$ 时，任意两只不同前沿基金生成全部 MVF 组合。对非 MVP 的前沿组合 $p$，零协方差组合 $zcp$ 给出收益关系 $\bar r_q-\bar r_{zcp}=\beta_{q,p}(\bar r_p-\bar r_{zcp})$。
  \item 存在无风险证券且 $r_F<\bar r_{\mathrm{MVP}}$ 时，无风险证券与切点组合生成前沿。有效上方射线上每个方差为正的组合都达到最大 Sharpe 比，并有以 $r_F$ 为基准的贝塔关系。
 \end{enumerate}
 \end{tcolorbox}
