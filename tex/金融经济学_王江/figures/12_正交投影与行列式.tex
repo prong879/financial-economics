@@ -1,0 +1,21 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[>=Stealth,font=\small]
+ \coordinate (origin) at (0,0);
+ \coordinate (projection) at (3.7,0);
+ \coordinate (endpoint) at (3.7,2.15);
+
+ \draw[<->,gray!65] (-.9,0)--(6.7,0)
+   node[right,text=black] {$y$ 所在直线};
+ \draw[->,semithick,gray!80!black] (origin)--(5.6,0)
+   node[above] {$y$};
+
+ \draw[->,very thick,blue!65!black] (origin)--(endpoint)
+   node[midway,above left,align=center] {$x$\\平方长度 $b$};
+ \draw[->,very thick,teal!65!black] (origin)--(projection)
+   node[midway,below=4pt,align=center] {$\frac ac y$\\平方长度 $\frac{a^2}{c}$};
+ \draw[->,very thick,orange!80!black] (projection)--(endpoint)
+   node[midway,right=5pt,align=left] {$x-\frac ac y$\\平方长度 $\frac dc$};
+
+ \draw[gray!80!black] (3.48,0)--(3.48,.22)--(3.7,.22);
+ \fill (origin) circle(1.25pt) node[below left] {$O$};
+\end{tikzpicture}
