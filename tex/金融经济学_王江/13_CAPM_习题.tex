@@ -28,7 +28,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 以下补设 $(\widetilde v,\widetilde\varepsilon)$ 联合正态，使任意股票头寸对应的期末财富都是正态的。题中给出的边际正态和不相关性不足以推出联合正态。
 
 记 $Y=\sum_ky_k$、$V=\iota^{\mathsf T}\Sigma\iota>0$，股票总持仓为 $\theta_k$，初始金融财富为 $W_{k,0}=S^{\mathsf T}\bar\theta_k$。
@@ -47,7 +47,7 @@
  \end{aligned}
 \]
 
-允许卖空，并用无风险证券承接预算余额。沿用练习~\ref{exer:wj-nine-7} 的 CARA--正态结果，最大化期望效用等价于最大化均值减去一半方差。对股票总持仓 $\theta_k$ 求导，得一阶条件；目标函数的 Hessian 为 $-\Sigma$，严格凹性保证需求唯一：
+允许卖空，并用无风险证券承接预算余额。沿用练习~\ref{exer:wj-nine-7} 的 CARA--正态结果，最大化期望效用等价于最大化均值减去一半方差\footnote{若期末财富 $\widetilde W$ 正态，且效用为 $u(x)=-e^{-ax}$、$a>0$，则 $\mathrm E[u(\widetilde W)]=u(\mathrm E[\widetilde W]-\tfrac a2\operatorname{Var}(\widetilde W))$。括号内是确定性等值。因 $u$ 严格递增，最大化期望效用等价于最大化这个确定性等值。本题 $a=1$。}。对股票总持仓 $\theta_k$ 求导，得一阶条件；目标函数的 Hessian 为 $-\Sigma$，严格凹性保证需求唯一：
 \[
  \bar v-S=\Sigma(\theta_k+y_k\iota),\qquad
  \boxed{\theta_k^*(S)=\Sigma^{-1}(\bar v-S)-y_k\iota}.
@@ -63,7 +63,7 @@
 
 代回需求，均衡持仓为 $\theta_k^*=\theta_k^*(S^*)=[(1+Y)/K-y_k]\iota$，加总恰为 $\iota$。以单位无风险支付为债券单位，其价格为 1，故均衡债券头寸为 $b_k^*=(S^*)^{\mathsf T}(\bar\theta_k-\theta_k^*)$。两组股票持仓的总和相同，所以 $\sum_k b_k^*=0$，债券也出清。
 
-\item 由 $\widetilde m=\iota^{\mathsf T}\widetilde v$，$(\Sigma\iota)_i=\operatorname{Cov}(\widetilde v_i,\widetilde m)$，即股票 $i$ 的支付与市场总支付的协方差。均衡式 (b) 给出了每股的预期超额支付，除以股价 $S_i^*\ne0$ 就得到期望超额收益率。市场市值为 $v_M=\iota^{\mathsf T}S^*>0$，同样用市场总支付除以市场市值，并记 $\widetilde r_M=\widetilde m/v_M-1$。于是 $\operatorname{Cov}(\widetilde r_i,\widetilde r_M)=(\Sigma\iota)_i/(S_i^*v_M)$，市场收益率方差为 $V/v_M^2$，所以
+\item \textbf{证明。}由 $\widetilde m=\iota^{\mathsf T}\widetilde v$，$(\Sigma\iota)_i=\operatorname{Cov}(\widetilde v_i,\widetilde m)$，即股票 $i$ 的支付与市场总支付的协方差。均衡式 (b) 给出了每股的预期超额支付，除以股价 $S_i^*\ne0$ 就得到期望超额收益率。市场市值为 $v_M=\iota^{\mathsf T}S^*>0$，同样用市场总支付除以市场市值，并记 $\widetilde r_M=\widetilde m/v_M-1$。于是 $\operatorname{Cov}(\widetilde r_i,\widetilde r_M)=(\Sigma\iota)_i/(S_i^*v_M)$，市场收益率方差为 $V/v_M^2$，所以
 \[
  \bar r_i=\frac{1+Y}{KS_i^*}(\Sigma\iota)_i,\quad
  \bar r_M=\frac{1+Y}{Kv_M}V,\quad
@@ -72,7 +72,7 @@
 
 直接相乘得 $\bar r_i=\beta_{i,M}\bar r_M$，即零无风险利率下的CAPM。
 
-\item 令 $d^*=\Sigma^{-1}(\bar v-S^*)$。把 $\theta_k^*=d^*-y_k\iota$ 代入期末财富，得到
+\item \textbf{证明。}令 $d^*=\Sigma^{-1}(\bar v-S^*)$。把 $\theta_k^*=d^*-y_k\iota$ 代入期末财富，得到
 \[
  \widetilde W_k^*=b_k^*+(d^*)^{\mathsf T}\widetilde v+y_k\widetilde\varepsilon.
 \]
@@ -102,7 +102,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 沿用上一题在解答中补设的联合正态条件，现将协方差改为 $c$。记 $Y=\sum_ky_k$、$V=\iota^{\mathsf T}\Sigma\iota$。
 \begin{enumerate}[label=(\alph*)]
 \item 由联合正态及 $\operatorname{Cov}(\widetilde v,\widetilde\varepsilon)=c$，个人财富的方差为
@@ -119,7 +119,7 @@
  -y_k\underbrace{(\iota+\Sigma^{-1}c)}_{h\text{，劳动收入对冲方向}}}.
 \]
 
-先看由无风险证券和一只共同风险基金构成的两基金货币分离\ifdefined\WJHandoutKnowledge（第九章定义~\ref{def:wj-nine-5}）\fi。它要求每个人的股票头寸都是同一风险方向的倍数。若 $d,h$ 线性无关且 $y_k$ 因人而异，$\theta_k^*=d-y_kh$ 的方向随人而变，这种分离一般不成立。
+\textbf{证明。}先看由无风险证券和一只共同风险基金构成的两基金货币分离\ifdefined\WJHandoutKnowledge（第九章定义~\ref{def:wj-nine-5}）\fi。它要求每个人的股票头寸都是同一风险方向的倍数。若 $d,h$ 线性无关且 $y_k$ 因人而异，$\theta_k^*=d-y_kh$ 的方向随人而变，这种分离一般不成立。
 
 再看任意两只基金是否足够。基金按单位成本计，因此要比较的是各人每单位金融财富的最优组合。取无风险基金 $F$，再分别在 $F$ 上加入股票头寸 $d$、$h$，用债券抵销新增的成本，得到另外两只单位成本基金 $F_d,F_h$。对 $W_{k,0}>0$ 的投资者，其单位财富的最优组合为
 \[
@@ -192,16 +192,16 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
     \item 假设投资者可以持有两个国家的资产。计算国家 $a$ 和国家 $b$ 的投资者的资产需求。
     \item 计算均衡价格。
     \item 计算所有资产的均衡风险溢价。
-    \item 证明国际化的 CAPM 成立，即
+    \item 证明国际化的 CAPM 成立，即对国家 $j\in\{a,b\}$ 的第 $i$ 只证券，
     \[
-        \bar{r}-r_{F}=\beta(\bar{r}_{wm}-r_{F}),\quad(\bar{r}=\mathrm{E}[\tilde{r}]),
+        \bar r_{j,i}-r_F=\beta_{j,i;W}(\bar r_W-r_F).
     \]
-    其中 $\beta$ 是相对于世界市场组合的 $\beta$ 值，世界市场组合是由国家 $a$ 和国家 $b$ 的市场组合构成的等权重组合（即两国所有资产的组合）。
+    其中 $\bar r_{j,i}=\mathrm E[\widetilde r_{j,i}]$，$\beta_{j,i;W}$ 是该证券相对于世界市场组合 $W$ 的贝塔，$\bar r_W$ 是 $W$ 的期望净收益率。世界市场组合是由国家 $a$ 和国家 $b$ 的市场组合构成的等权重组合（即两国所有资产的组合）。
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 记 $D=\sigma_w^2I$，两国股票支付的协方差为
 \[
  A=\operatorname{Var}(\widetilde v_a)=\Sigma_a,\quad
@@ -246,7 +246,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
  \bar r_{b,i}-r_F=\frac{\alpha[(B+C^{\mathsf T})\iota]_i}{Lp_{b,i}^*}.
 \]
 
-\item 按题面括号中的“两国所有资产的组合”，世界市场组合持有每只股票各一单位。记两国市场市值为 $V_a,V_b>0$，世界市场市值为 $V_W=V_a+V_b=\iota^{\mathsf T}(p_a^*+p_b^*)$。两国市场支付分别为 $V_a(1+\widetilde r_a)$ 和 $V_b(1+\widetilde r_b)$，加总后除以 $V_W$ 得到
+\item \textbf{证明。}按题面括号中的“两国所有资产的组合”，世界市场组合持有每只股票各一单位。记两国市场市值为 $V_a,V_b>0$，世界市场市值为 $V_W=V_a+V_b=\iota^{\mathsf T}(p_a^*+p_b^*)$。两国市场支付分别为 $V_a(1+\widetilde r_a)$ 和 $V_b(1+\widetilde r_b)$，加总后除以 $V_W$ 得到
 \[
  \widetilde r_W=\frac{V_a}{V_W}\widetilde r_a+\frac{V_b}{V_W}\widetilde r_b.
 \]
@@ -284,16 +284,16 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
-沿用上一题的协方差记号 $A,B,C$，令 $n=K_a>0$、$m=K_b>0$、$L=n+m$、$R=1+r_F$。如练习~\ref{exer:wj-nine-8}，用 $b$ 国股票对冲 $a$ 国股票的风险。对冲后的支付向量为 $\widetilde v_a-CB^{-1}\widetilde v_b$，与 $\widetilde v_b$ 的协方差为 $C-CB^{-1}B=0$。其协方差为 $H=A-CB^{-1}C^{\mathsf T}$。$\Gamma$ 正定保证任何非零的 $a$ 国头寸在对冲后仍有正方差，故 $H$ 正定。
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+沿用上一题的协方差记号 $A,B,C$，令 $n=K_a>0$、$m=K_b>0$、$L=n+m$、$R=1+r_F$。如练习~\ref{exer:wj-nine-8}，用 $b$ 国股票对冲 $a$ 国股票的风险\footnote{练习 9.8 用旧证券对冲新增证券，做法是从新增收益中减去一个旧证券组合，使剩余部分与旧证券零协方差。本题改用 $b$ 国股票作对冲工具。若减去的支付为 $D\widetilde v_b$，零协方差条件是 $C-DB=0$。由于 $B$ 正定可逆，得到 $D=CB^{-1}$。}。对冲后的支付向量为 $\widetilde v_a-CB^{-1}\widetilde v_b$，与 $\widetilde v_b$ 的协方差为 $C-CB^{-1}B=0$。其协方差为 $H=A-CB^{-1}C^{\mathsf T}$。$\Gamma$ 正定保证任何非零的 $a$ 国头寸在对冲后仍有正方差，故 $H$ 正定。
 \begin{enumerate}[label=(\alph*)]
-\item 国家 $a$ 的投资者可持有两国资产，需求为
+\item 对一位国家 $a$ 的投资者，记 $x,y\in\mathbb R^N$ 分别为他对 $a$ 国、$b$ 国股票的总持仓列向量。需求为
 \[
  \begin{pmatrix}x\\y\end{pmatrix}
  =\frac1\alpha\Gamma^{-1}\begin{pmatrix}\ell_a\\\ell_b\end{pmatrix}.
 \]
 
-国家 $b$ 的投资者仅持有本国股票，需求为 $t=B^{-1}\ell_b/\alpha$。一阶条件与市场出清组成
+对一位国家 $b$ 的投资者，记 $t\in\mathbb R^N$ 为他对本国股票的总持仓列向量，需求为 $t=B^{-1}\ell_b/\alpha$。一阶条件与市场出清组成
 \[
  \ell_a^*=\alpha(Ax^*+Cy^*),\quad
  \ell_b^*=\alpha(C^{\mathsf T}x^*+By^*),\quad
@@ -319,7 +319,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 
 无风险投资仍由预算余额决定。两国投资者分别从初始财富中扣除 $(p_a^*)^{\mathsf T}x^*+(p_b^*)^{\mathsf T}y^*$ 和 $(p_b^*)^{\mathsf T}t^*$。由两国股票出清，合计扣除的正是两国股票总市值，因此在沿用上一题的初始资产禀赋条件时，无风险资产也出清。
 
-\item 令两国市场市值为 $V_a=\iota^{\mathsf T}p_a^*>0$、$V_b=\iota^{\mathsf T}p_b^*>0$，市场风险溢价分别为 $\lambda_a=\bar r_a-r_F$、$\lambda_b=\bar r_b-r_F$。定义
+\item \textbf{证明。}令两国市场市值为 $V_a=\iota^{\mathsf T}p_a^*>0$、$V_b=\iota^{\mathsf T}p_b^*>0$，市场风险溢价分别为 $\lambda_a=\bar r_a-r_F$、$\lambda_b=\bar r_b-r_F$。定义
 \[
  h=H\iota,\quad s=\iota^{\mathsf T}h>0,\qquad
  g=(B+C^{\mathsf T})\iota,\quad G=\iota^{\mathsf T}g>0,
@@ -377,7 +377,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
 \item 无套利当且仅当每个 $\phi_\omega>0$。若某个状态价格非正，买入该状态证券即可套利。反之，任一非负且至少一项为正的支付向量，在正状态价格下必有严格正的成本。令 $B=\sum_\omega\phi_\omega$，则单位无风险支付的价格为 $B>0$，总无风险收益率为 $1/B$。相应净无风险利率为 $r_F=1/B-1$，当 $B>1$ 时为负。
 
@@ -394,7 +394,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
  \end{aligned}
 \]
 
-\item 原题的 $q_\omega=\phi_\omega/\pi_\omega$ 是状态价格密度，即消费定价核\ifdefined\WJHandoutKnowledge（第十讲式~\eqref{eq:wj-10-16}）\fi。将状态价格除以单位无风险债券价格 $B$，才得到风险中性概率 $Q(\omega)=\phi_\omega/B=\pi_\omega q_\omega/B$\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-four-8}）\fi。
+\item 原题的 $q_\omega=\phi_\omega/\pi_\omega$ 是状态价格密度，即消费定价核\ifdefined\WJHandoutKnowledge（第十讲式~\eqref{eq:wj-10-16}）\fi。将状态价格除以单位无风险债券价格 $B$，才得到风险中性概率 $Q(\omega)=\phi_\omega/B=\pi_\omega q_\omega/B$\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-four-8}）\fi\footnote{对任意状态支付 $X_\omega$，把状态价格写成 $\phi_\omega=\pi_\omega q_\omega$（真实概率 $\pi_\omega>0$），就可把价格 $\sum_\omega\phi_\omega X_\omega$ 写成真实概率下的期望 $\mathrm E[qX]$。在无套利的状态证券市场中，$\phi_\omega>0$，而单位无风险支付的价格 $B=\sum_\omega\phi_\omega$。因此 $\phi_\omega/B$ 为正且加总为 $1$，证券价格也可写成 $B\,\mathrm E^Q[X]$。}。
 
 记 $\widetilde q$ 为取值为 $q_\omega$ 的定价核，令 $J=\sum_\omega\phi_\omega q_\omega=\mathrm E[\widetilde q^{\,2}]$。两只基金的成本都为 $1$，各状态的支付分别为
 \[
@@ -402,7 +402,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
  \frac{w^b_\omega}{\phi_\omega}=\frac{q_\omega}{J}.
 \]
 
-因此 $w^a$ 是无风险组合，$w^b$ 的支付则与定价核成正比。允许卖空，故权重可以取负值。在给定总期望收益 $M=1+\bar r_w$ 时，最小方差等价于最小化支付的二阶矩：
+\textbf{证明。}因此 $w^a$ 是无风险组合，$w^b$ 的支付则与定价核成正比。允许卖空，故权重可以取负值。在给定总期望收益 $M=1+\bar r_w$ 时，最小方差等价于最小化支付的二阶矩：
 \[
  \begin{aligned}
  \min_w\quad &\frac12\sum_\omega\pi_\omega\left(\frac{w_\omega}{\phi_\omega}\right)^2\\
@@ -452,7 +452,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 设总禀赋非退化，使市场贝塔有定义。记 $\sigma_e^2=\operatorname{Var}(\widetilde e)>0$、$B=\sum_\omega\phi_\omega$、$R=1/B$、$P_e=\sum_\omega\phi_\omega e_\omega>0$。市场完备，任意支付的价格为 $p_x=\sum_\omega\phi_\omega x_\omega=\mathrm E[m\widetilde x]$，其中 $m_\omega=\phi_\omega/\pi_\omega$。若代表性参与者的两期效用为 $u_0(c_0)+\mathrm E[u(\widetilde c_1)]$，则均衡的一阶条件给出 $m_\omega=u'(e_\omega)/u'_0(e_0)$。
 \begin{enumerate}[label=(\alph*)]
 \item 若所有资产均可由 CAPM 定价，对价格 $p_x\ne0$ 的支付，市场贝塔为
@@ -512,7 +512,7 @@ $\alpha$ 由无风险债券价格决定，$\beta$ 由总禀赋的均值、方差
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
 \item 两状态下，总禀赋取值不同，债券支付 $(1,1)$ 与股票支付 $(e_a,e_b)$ 线性独立，可复制任意状态支付。对执行价 $K\in(e_a,e_b)$ 的看涨期权，支付为 $(0,e_b-K)$，复制头寸为
 \[

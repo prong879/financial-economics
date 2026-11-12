@@ -23,7 +23,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 题中的剩余项不相关条件按 $n\ne n'$ 理解。若也令 $n=n'$，便会要求每个剩余项的方差都为零。用 $w^{(N)}$ 表示随 $N$ 变化的一列组合。先考察每个组合只持有 $N$ 只证券的情形，把所持证券重编号为 $1,\ldots,N$，并将该组合的权重简记为 $w_n$。
 
 \begin{enumerate}[label=(\alph*)]
@@ -41,7 +41,7 @@
 \]
 
 因此 $\operatorname{Var}(\widetilde r_{p,N})=b_{p,N}^2\sigma_f^2+O(N^{-1})$。例如等权配置时 $\sum_nw_n^2=1/N$，剩余方差至多为 $\sigma^2/N$。
-\item 任一入选证券对剩余方差的贡献为 $w_n^2\operatorname{Var}(\widetilde u_n)$，它非负且不超过总剩余方差。由 (a)，总剩余方差以 $O(N^{-1})$ 的速度趋于零，所以单只证券的贡献也趋于零。又因 $\mathrm E[\widetilde u_{p,N}]=0$，有 $\mathrm E[\widetilde u_{p,N}^2]=\operatorname{Var}(\widetilde u_{p,N})\to0$，即剩余项在均方意义下消失。
+\item \textbf{证明。}任一入选证券对剩余方差的贡献为 $w_n^2\operatorname{Var}(\widetilde u_n)$，它非负且不超过总剩余方差。由 (a)，总剩余方差以 $O(N^{-1})$ 的速度趋于零，所以单只证券的贡献也趋于零。又因 $\mathrm E[\widetilde u_{p,N}]=0$，有 $\mathrm E[\widetilde u_{p,N}^2]=\operatorname{Var}(\widetilde u_{p,N})\to0$，即剩余项在均方意义下消失。
 \item 因子方差和组合载荷共同决定保留的系统风险。若 $b_{p,N}\to b_p$，则组合方差趋于 $b_p^2\sigma_f^2$。若正负载荷相抵使组合载荷趋于零，则总方差也趋于零。多因子情形下，系统方差相应为 $b_{p,N}^{\mathsf T}\Sigma_f b_{p,N}$，其中 $\Sigma_f$ 是因子协方差阵。
 
 若 $N$ 只统计绝对权重最大的 $N$ 项，将权重按绝对值从大到小排列。由于 $N|w_N|^2\le\sum_{n\le N}w_n^2=O(N^{-1})$，有 $|w_N|=O(N^{-1})$。若每个组合的总绝对权重 $\sum_n|w_n|$ 有统一上界，则
@@ -69,7 +69,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 令 $a=(a_A,a_B,a_C)^{\mathsf T}$，$B$ 的三行为各资产的两因子载荷，$\iota$ 为全 1 列向量，$R=1+r_F>0$。在允许自由卖空和借贷时，任取风险资产投资金额向量 $z$，用无风险证券承接 $-\iota^{\mathsf T}z$，使组合初始成本为零。风险资产的终期支付为 $z^{\mathsf T}(\iota+a+B\widetilde f)$，无风险头寸的支付为 $-R\iota^{\mathsf T}z$。相加后得到
 \[
@@ -130,7 +130,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 和练习~\ref{exer:wj-fourteen-1} 一样，剩余项不相关指 $n\ne n'$。原题 (a) 沿用了载荷记号 $b_n$。若载荷保持不变，等价表示要求 $(A^{\mathsf T}b_n-b_n)^{\mathsf T}\widetilde f=0$。由于原因子的协方差为 $I$，左边的方差等于 $\|A^{\mathsf T}b_n-b_n\|^2$，故必须有 $A^{\mathsf T}b_n=b_n$。若原载荷张成 $\mathbb R^K$，这只允许 $A=I$。下面将换坐标后的载荷记为 $b'_n$。
 
 \begin{enumerate}[label=(\alph*)]
@@ -165,7 +165,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 
 沿用上一题的正交换坐标。若 $\lambda=0$，取 $\widetilde f^*=\widetilde f$、$b_n^*=b_n$、$\lambda^*=0$，此时所有因子溢价均为零。若 $\lambda\ne0$，把溢价向量的方向选为第一条坐标轴，令 $q_1=\lambda/\|\lambda\|$。将其补成一组正交单位基，组成正交阵 $Q=(q_1,\ldots,q_K)$。
 

@@ -33,7 +33,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 记 $R=1+r_F>0$，$p_a,p_b>0$ 且和为1。
 \begin{enumerate}[label=(\alph*)]
@@ -120,11 +120,11 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 沿用 $R=1+r_F$，令 $B=1/R$。
 \begin{enumerate}[label=(\alph*)]
-\item 两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节）\fi，任意两状态支付都可复制，市场完全。
+\item \textbf{证明。}两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节）\fi，任意两状态支付都可复制，市场完全\footnote{第三讲的判据要求持仓可取任意实数。支付矩阵的行秩等于状态数时，它的列向量张成整个状态支付空间。本题行列式非零，所以对任意给定的两状态支付 $y$，都能解出复制头寸 $\theta=X^{-1}y$。}。
 \item 状态价格由 $\phi_a+\phi_b=B$、$\lambda_a\phi_a+\lambda_b\phi_b=S$ 决定：
 \[
  \phi_a=\frac{RS-\lambda_b}{R(\lambda_a-\lambda_b)},\qquad
@@ -209,7 +209,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 设 $e_0>0$，且两状态概率均为正。
 \begin{enumerate}[label=(\alph*)]
@@ -246,7 +246,7 @@
 \]
 
 由 $B^*=\phi_a^*+\phi_b^*$、$S^*=\lambda_a\phi_a^*+\lambda_b\phi_b^*$ 恢复证券价格与 $r_F^*=1/B^*-1$。代回生产条件可核对 $\alpha S^*(I^*)^{\alpha-1}=1$。各人终期消费与技术产出均与 $(\lambda_a,\lambda_b)$ 成比例，因此 $\theta_{1,B}^*=\theta_{2,B}^*=0$，$\theta_{2,S}^*=\eta_2(I^*)^\alpha=-\theta_{1,S}^*$，两种证券均出清。
-\item 用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-2}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
+\item \textbf{证明。}用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-2}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
 \[
  \max_{0<I<e_0}\ \log(e_0-I)+\alpha\log I+\sum_\omega p_\omega\log\lambda_\omega.
 \]
@@ -268,7 +268,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 \begin{enumerate}[label=(\alph*)]
 \item 沿用上一题得到的规划权重 $\eta_k$ 和分享规则。给定某一期或状态的总消费 $C$，把最优分配 $c_k=\eta_k C$ 代回该节点的加权效用，得到
@@ -325,7 +325,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
 % 原题股票支付为全部产出lambda I^alpha，非扣债后的剩余支付；按题设沿用，发行者承担债务偿付。
 令 $R=1+r_F>0$，$B=1/R$。以 $D$ 表示到期支付1的公司债发行量，$s$ 表示出售的总产出份额。依题设，发行者保留 $(1-s)\lambda_\omega I^\alpha$，并从中偿付债务。
@@ -454,9 +454,9 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两种债券每单位到期都支付 $1$，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，价格同为 $B=1/(1+r_F)$。公司发债带来当期收入 $BD$ 和未来偿付 $D$，个人买入外部债券则带来当期支出 $BH$ 和未来收入 $H$。因此个人预算为
+令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两种债券每单位到期都支付 $1$，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，价格同为 $B=1/(1+r_F)$\footnote{第四讲的一价定律针对各状态支付都相同的证券或组合。在无套利且可交易两边头寸的市场中，若两者价格不同，买入低价的一边并卖出高价的一边，会在当期取得价差，未来净支付为零。本题两种债券都在每个状态支付 $1$，因此同价。}。公司发债带来当期收入 $BD$ 和未来偿付 $D$，个人买入外部债券则带来当期支出 $BH$ 和未来收入 $H$。因此个人预算为
 \[
  c_{1,0}=B\underbrace{(D-H)}_{\text{净负债}}+Ss-I,\qquad
  c_{1,\omega}=(1-s)\lambda_\omega I^\alpha-(D-H).
@@ -472,7 +472,7 @@
  =\underbrace{S(I)-I}_{\text{生产创造的净值}}.
 \]
 
-给定正投入，债券与总产出证券张成两个状态。只要个人债券交易可以抵销公司融资的变动，各种融资安排对应同一个预算集合，最优投入都由最大化 $S(I)-I$ 决定。
+\textbf{证明。}给定正投入，债券与总产出证券张成两个状态。只要个人债券交易可以抵销公司融资的变动，各种融资安排对应同一个预算集合，最优投入都由最大化 $S(I)-I$ 决定。
 
 例如，沿用上一题固定状态价格下的均衡，设新增外部债券的净供给为零，且允许借贷。公司增发 $\Delta$ 单位债券，参与者 1 同时增持 $\Delta$ 单位外部债券。参与者 2 买入全部增发的公司债，同时卖空 $\Delta$ 单位外部债券。两人各自在 0 期和 1 期的新增现金流均相抵，公司债和外部债券也都出清。只要这组头寸可行，投资、股价和两人的均衡消费保持上一题的配置，公司的债务发行量可以改变。\qedhere
 \end{solution}
