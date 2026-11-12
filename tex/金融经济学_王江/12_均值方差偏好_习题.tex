@@ -165,45 +165,45 @@
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{解答}\quad 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。本题用标量 $z$ 表示第一只证券的权重，因此组合权重列向量为 $(z,1-z)^{\mathsf T}$。先设 $\bar r_1\ne\bar r_2$。由 $z\bar r_1+(1-z)\bar r_2=m$，得到
+\item \textbf{解答}\quad 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。本题用标量 $z$ 表示第一只证券的权重，因此组合权重列向量为 $(z,1-z)^{\mathsf T}$。先设 $\bar r_1\ne\bar r_2$。由 $z\bar r_1+(1-z)\bar r_2=\bar r_p$，得到
 \[
- z=\frac{m-\bar r_2}{\bar r_1-\bar r_2},\qquad1-z=\frac{\bar r_1-m}{\bar r_1-\bar r_2}.
+ z=\frac{\bar r_p-\bar r_2}{\bar r_1-\bar r_2},\qquad1-z=\frac{\bar r_1-\bar r_p}{\bar r_1-\bar r_2}.
 \]
 
 因此MVF方程为
 \[
  \sigma_p^2=
- \frac{\sigma_1^2(m-\bar r_2)^2
- +2\sigma_{12}(m-\bar r_2)(\bar r_1-m)
- +\sigma_2^2(\bar r_1-m)^2}{(\bar r_1-\bar r_2)^2}.
+ \frac{\sigma_1^2(\bar r_p-\bar r_2)^2
+ +2\sigma_{12}(\bar r_p-\bar r_2)(\bar r_1-\bar r_p)
+ +\sigma_2^2(\bar r_1-\bar r_p)^2}{(\bar r_1-\bar r_2)^2}.
 \]
 
-若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，最小方差组合的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，记其均值为 $m_*=z^*\bar r_1+(1-z^*)\bar r_2$。将 $z-z^*=(m-m_*)/(\bar r_1-\bar r_2)$ 代入练习~\ref{exer:wj-twelve-2} 的配方结果，
+若 $D=\sigma_1^2+\sigma_2^2-2\sigma_{12}>0$，最小方差组合的权重为 $z^*=(\sigma_2^2-\sigma_{12})/D$，其均值为 $\bar r_{\mathrm{MVP}}=z^*\bar r_1+(1-z^*)\bar r_2$。将 $z-z^*=(\bar r_p-\bar r_{\mathrm{MVP}})/(\bar r_1-\bar r_2)$ 代入练习~\ref{exer:wj-twelve-2} 的配方结果，
 \[
  \sigma_p^2=\sigma_{\mathrm{MVP}}^2+
- \frac{D}{(\bar r_1-\bar r_2)^2}(m-m_*)^2.
+ \frac{D}{(\bar r_1-\bar r_2)^2}(\bar r_p-\bar r_{\mathrm{MVP}})^2.
 \]
-若 $m<m_*$，均值为 $2m_*-m$ 的组合风险相同而均值更高。若 $m\ge m_*$，提高均值必增加方差，因此 $m\ge m_*$ 的部分构成 MVE。
+若 $\bar r_p<\bar r_{\mathrm{MVP}}$，均值为 $2\bar r_{\mathrm{MVP}}-\bar r_p$ 的组合风险相同而均值更高。若 $\bar r_p\ge \bar r_{\mathrm{MVP}}$，提高均值必增加方差，因此 $\bar r_p\ge \bar r_{\mathrm{MVP}}$ 的部分构成 MVE。
 
 若 $D=0$，所有组合的方差相同，所以每个组合都是MVP。由于两只证券的均值不同，允许卖空时可以在同一方差下任意提高均值，因此没有MVE组合。每个给定均值仍唯一确定一个MVF组合。
 
-\item \textbf{证明}\quad 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。若 $D>0$，均值不低于MVP均值的证券也在MVE上。若 $D=0$，两只证券都不在MVE上。
+\item \textbf{证明}\quad 在 $\bar r_1\ne\bar r_2$ 下，令 $\bar r_p=\bar r_1$ 或 $\bar r_p=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。若 $D>0$，均值不低于MVP均值的证券也在MVE上。若 $D=0$，两只证券都不在MVE上。
 
 \item \textbf{解答}\quad 完全负相关、完全正相关时分别有
 \[
  \begin{aligned}
  \rho_{12}=-1:\quad\sigma_p
- &=\left|\frac{(\sigma_1+\sigma_2)m-\sigma_1\bar r_2-\sigma_2\bar r_1}
+ &=\left|\frac{(\sigma_1+\sigma_2)\bar r_p-\sigma_1\bar r_2-\sigma_2\bar r_1}
  {\bar r_1-\bar r_2}\right|,\\
  \rho_{12}=1:\quad\sigma_p
- &=\left|\frac{(\sigma_1-\sigma_2)m+\sigma_2\bar r_1-\sigma_1\bar r_2}
+ &=\left|\frac{(\sigma_1-\sigma_2)\bar r_p+\sigma_2\bar r_1-\sigma_1\bar r_2}
  {\bar r_1-\bar r_2}\right|.
  \end{aligned}
 \]
 
 第一式给出两条相接射线。第二式在 $\sigma_1\ne\sigma_2$ 时也给出两条相接射线，$\sigma_1=\sigma_2$ 时退化为 $\sigma_p=\sigma_1$ 的竖直线，对应(a)中的 $D=0$。$\rho_{12}=0$ 时，
 \[
- \sigma_p^2=\frac{\sigma_1^2(m-\bar r_2)^2+\sigma_2^2(\bar r_1-m)^2}
+ \sigma_p^2=\frac{\sigma_1^2(\bar r_p-\bar r_2)^2+\sigma_2^2(\bar r_1-\bar r_p)^2}
  {(\bar r_1-\bar r_2)^2},
 \]
 
@@ -212,7 +212,7 @@
 \WJInputFigure{12_两资产相关性与前沿形状}%
 \end{center}
 
-若 $\bar r_1=\bar r_2=m_0$，所有组合均值都等于 $m_0$，MVF在均值--标准差平面仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere
+若 $\bar r_1=\bar r_2$，所有组合均值都等于 $\bar r_1$，MVF在均值--标准差平面仅为MVP点；其权重按练习~\ref{exer:wj-twelve-2} 求解。两只单证券通常不都达到最小方差，因此(b)也需要区分这一情形。图中的曲线均只画出有限区间，实际前沿按公式继续延伸。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -357,11 +357,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \begin{solution}[label-content={证明}]
 沿用 $\Sigma$ 正定、只含风险证券的设定。任一完全投资组合与 MVP 的协方差均为 $1/c>0$\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-twelve-8}）\fi。题设中 $p$ 和 $zcp$ 的协方差为零，所以两者都不是 MVP。若 $d=0$，由练习~\ref{exer:wj-twelve-7}，前沿只有 MVP，故这里有 $d>0$。正定性保证两个组合的方差均为正。
 \begin{enumerate}[label=(\alph*)]
-\item 定义
-\[
- \beta_{i,p}=\frac{\operatorname{Cov}(\widetilde r_i,\widetilde r_p)}{\sigma_p^2},\qquad
- \beta_{i,zcp}=\frac{\operatorname{Cov}(\widetilde r_i,\widetilde r_{zcp})}{\sigma_{zcp}^2},
-\]
+\item 沿用题给的 $\beta_{i,p}$ 和 $\beta_{i,zcp}$，取截距和残差为
 \[
  \alpha=\bar r_i-\beta_{i,p}\bar r_p-\beta_{i,zcp}\bar r_{zcp},\qquad
  \widetilde u_i=\widetilde r_i-\alpha-\beta_{i,p}\widetilde r_p-\beta_{i,zcp}\widetilde r_{zcp}.
@@ -414,12 +410,12 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTwelveExercise{exer:wj-twelve-11}{} 当存在一只收益率为 $r_{F}$ 的无风险债券时，记 $\bar{\eta}=\bar{r}-r_{F}\iota$ 是风险证券的超额收益向量。证明 $\bar{\eta}^{\top}\Sigma^{-1}\bar{\eta}=0$ 等价于 $\bar{r}=r_{F}\iota$。
+\WJTwelveExercise{exer:wj-twelve-11}{} 当存在一只收益率为 $r_{F}$ 的无风险债券时，记 $\bar{\bar\eta}=\bar{r}-r_{F}\iota$ 是风险证券的超额收益向量。证明 $\bar{\bar\eta}^{\top}\Sigma^{-1}\bar{\bar\eta}=0$ 等价于 $\bar{r}=r_{F}\iota$。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明}]
-本题的 $\bar\eta$ 是风险证券的期望超额收益率列向量\ifdefined\WJHandoutKnowledge，对应第~\ref{sec:wj-twelve-4}~节的 $\eta$\fi。这里 $\Sigma$ 只包含风险证券的协方差。沿用 $\Sigma$ 正定的条件，正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零。将这一二次型记为 $K$，则
+这里 $\Sigma$ 是风险证券收益率的协方差矩阵。沿用 $\Sigma$ 正定的条件，正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零。将这一二次型记为 $K$，则
 \[
  K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta=0
  \iff\bar\eta=0\iff\bar r=r_F\iota.
@@ -461,20 +457,20 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明},blank-type=manual,blank-vsep=7\baselineskip]
-沿用上一题的记号，简写 $\eta=\bar r-r_F\iota$。先取 $\Sigma$ 正定且 $r_F<\bar r_{\mathrm{MVP}}$，于是 $H>0$。允许按 $r_F$ 自由借贷和卖空，风险权重 $z$ 之外的余额 $1-\iota^{\mathsf T}z$ 由无风险证券承接。只要 $z\ne0$，组合标准差就为正，Sharpe 比满足
+沿用上一题的 $\bar\eta$、$K$ 和 $H$。先取 $\Sigma$ 正定且 $r_F<\bar r_{\mathrm{MVP}}$，于是 $H>0$。允许按 $r_F$ 自由借贷和卖空，风险权重 $z$ 之外的余额 $1-\iota^{\mathsf T}z$ 由无风险证券承接。只要 $z\ne0$，组合标准差就为正，Sharpe 比满足
 \[
  \operatorname{SR}(z)^2
- =\frac{(z^{\mathsf T}\eta)^2}{z^{\mathsf T}\Sigma z}
- \le\eta^{\mathsf T}\Sigma^{-1}\eta\equiv K,
+ =\frac{(z^{\mathsf T}\bar\eta)^2}{z^{\mathsf T}\Sigma z}
+ \le\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta=K,
 \]
 
-不等式来自向量 $\Sigma^{1/2}z$ 与 $\Sigma^{-1/2}\eta$ 的 Cauchy--Schwarz 不等式。取等要求 $z=\lambda\Sigma^{-1}\eta$，此时分子 $z^{\mathsf T}\eta=\lambda K$。所以 $\lambda>0$ 时达到最大值 $\sqrt K$，$\lambda<0$ 时得到 $-\sqrt K$。当 $H>0$ 时，取
+不等式来自向量 $\Sigma^{1/2}z$ 与 $\Sigma^{-1/2}\bar\eta$ 的 Cauchy--Schwarz 不等式。取等要求 $z=\lambda\Sigma^{-1}\bar\eta$，此时分子 $z^{\mathsf T}\bar\eta=\lambda K$。所以 $\lambda>0$ 时达到最大值 $\sqrt K$，$\lambda<0$ 时得到 $-\sqrt K$。当 $H>0$ 时，取
 \[
- z_T=\frac{\Sigma^{-1}\eta}{H}
+ z_T=\frac{\Sigma^{-1}\bar\eta}{H}
 \]
 
 恰有风险权重之和为 1，且仍是上述方向的正倍数，故纯风险切点组合取得全局最大 Sharpe 比。
 
-若 $K>0$ 而 $H<0$，归一化使 $z_T$ 成为负倍数，其 Sharpe 比为 $-\sqrt K$。取 $z=a_pz_T$ 且 $a_p<0$，风险权重才是 $\Sigma^{-1}\eta$ 的正倍数，无风险权重 $1-a_p>1$，此时达到最大 Sharpe 比 $\sqrt K$。若 $K>0$ 而 $H=0$，可保留无风险证券权重为 $1$，再叠加权重和为零的风险头寸 $\lambda\Sigma^{-1}\eta$（$\lambda>0$），仍取得最大 Sharpe 比。若 $K=0$，任何标准差为正的组合的 Sharpe 比均为零。\qedhere
+若 $K>0$ 而 $H<0$，归一化使 $z_T$ 成为负倍数，其 Sharpe 比为 $-\sqrt K$。取 $z=a_pz_T$ 且 $a_p<0$，风险权重才是 $\Sigma^{-1}\bar\eta$ 的正倍数，无风险权重 $1-a_p>1$，此时达到最大 Sharpe 比 $\sqrt K$。若 $K>0$ 而 $H=0$，可保留无风险证券权重为 $1$，再叠加权重和为零的风险头寸 $\lambda\Sigma^{-1}\bar\eta$（$\lambda>0$），仍取得最大 Sharpe 比。若 $K=0$，任何标准差为正的组合的 Sharpe 比均为零。\qedhere
 \end{solution}
 

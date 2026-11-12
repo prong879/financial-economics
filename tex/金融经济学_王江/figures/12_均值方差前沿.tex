@@ -6,6 +6,8 @@
    ({sqrt(1+\t*\t)},{1.8+.7*\t})--(3.5,3.41)--(3.5,.4)--cycle;
  \draw[->] (0,0)--(4,0) node[right] {$\sigma$（风险）};
  \draw[->] (0,0)--(0,3.9) node[above] {$\bar r$（预期收益）};
+ % 示意双曲线的两条渐近线为 y=1.8±0.7x。
+ \draw[gray!75,dashed] (2.6,{1.8+.7*2.6})--(0,1.8)--(2.5,{1.8-.7*2.5});
  \draw[gray!65,thick,domain=-2:0,samples=60,variable=\t]
    plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
  \draw[red!70!black,very thick,domain=0:2.3,samples=60,variable=\t]
