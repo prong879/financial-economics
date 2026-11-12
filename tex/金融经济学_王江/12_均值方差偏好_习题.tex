@@ -6,7 +6,7 @@
 \Needspace{8\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTwelveExercise{exer:wj-twelve-1}{} 令交易证券的价格向量为 $p$、总收益率向量为 $\tilde{x}=\begin{bmatrix}\tilde{x}_{1} \\ \dots \\ \tilde{x}_{N}\end{bmatrix}$。假设 $\tilde{x}=\iota+\tilde{r}$ 服从均值为 $\iota+\bar{r}$、协方差阵为 $\Sigma$ 的正态分布。对于初始财富为 $w$ 的参与者，他的 1 期财富是 $\tilde{w}=wz^{\top}\tilde{x}$，其中 $z$ 是他的权重向量（$\iota^{\top}z=1$）。假设参与者的绝对风险厌恶系数恒为 $a$。
+\WJTwelveExercise{exer:wj-twelve-1}{} 令交易证券的价格列向量为 $p$、总收益率列向量为 $\tilde{x}=\begin{bmatrix}\tilde{x}_{1} \\ \dots \\ \tilde{x}_{N}\end{bmatrix}$。记 $\iota$ 为 $N$ 维全 $1$ 列向量，$\tilde r$ 为证券净收益率列向量，$\bar r$ 为其均值向量。假设 $\tilde{x}=\iota+\tilde{r}$ 服从均值为 $\iota+\bar{r}$、协方差阵为 $\Sigma$ 的正态分布。对于初始财富为 $w$ 的参与者，他的 1 期财富是 $\tilde{w}=wz^{\top}\tilde{x}$，其中 $z$ 是组合的权重列向量，各项权重满足 $\iota^{\top}z=1$。假设参与者的绝对风险厌恶系数恒为 $a$。
 \begin{enumerate}[label=(\alph*)]
     \item 计算他的间接效用函数
     \[
@@ -19,20 +19,22 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={(a) 解答}]
 先给定组合权重 $z$。这里的 $v$ 是该组合带来的期望效用，计算它之后才可以比较不同的组合。按严格风险厌恶取 $a>0$。由 $-u''(t)/u'(t)=a$ 解得 $u(t)=A-Be^{-at}$（$B>0$），可归一化为 $u(t)=-e^{-at}$。将 $\tilde x=\iota+\tilde r$ 和 $\iota^{\mathsf T}z=1$ 代入期末财富式，得到均值和方差
 \[
  \bar w=w(1+z^{\mathsf T}\bar r),\qquad
  \sigma_w^2=w^2z^{\mathsf T}\Sigma z.
 \]
 
-联合正态收益的线性组合仍服从正态分布，故可写成 $\tilde w=\bar w+\sigma_w Z$，其中 $Z$ 为标准正态变量。由练习~\ref{exer:wj-nine-7} 所用的正态指数矩，$\mathrm E[e^{-a\sigma_w Z}]=e^{a^2\sigma_w^2/2}$，得到 (a)、(b) 所求效用
+联合正态收益的线性组合仍服从正态分布，故可写成 $\tilde w=\bar w+\sigma_w Z$，其中 $Z$ 为标准正态变量。由练习~\ref{exer:wj-nine-7} 所用的正态指数矩\footnote{第九讲这道题沿用了练习~\ref{exer:wj-eight-3} 中对正态财富计算指数效用的方法。若 $Z\sim N(0,1)$，则对任意实数 $t$，有 $\mathrm E[e^{tZ}]=e^{t^2/2}$。本题取 $t=-a\sigma_w$。}，$\mathrm E[e^{-a\sigma_w Z}]=e^{a^2\sigma_w^2/2}$，得到所求效用
 \[
  v(\bar w,\sigma_w)=-\exp\left(-a\bar w+\frac12a^2\sigma_w^2\right).
 \]
 
+(b) \textbf{证明}\quad 由 (a) 的表达式可见，期望效用只依赖期末财富的均值和方差，因此具有均值--方差表示。
+
 % 原书 12.1(c) 的二阶导数误用 u，题面已按均值--标准差效用 v 校正，并区分零波动边界。
-(c) 对 $v$ 求导。第二个自变量是标准差 $\sigma_w$，方差则是 $\sigma_w^2$。令 $E=\exp(-a\bar w+a^2\sigma_w^2/2)>0$，有
+(c) \textbf{证明}\quad 对 $v$ 求导。第二个自变量是标准差 $\sigma_w$，方差则是 $\sigma_w^2$。令 $E=\exp(-a\bar w+a^2\sigma_w^2/2)>0$，有
 \[
  \begin{aligned}
  v_1&=aE>0,&v_2&=-a^2\sigma_wE,\\
@@ -68,7 +70,7 @@
  V(z)=z^2\sigma_1^2+2z(1-z)k+(1-z)^2\sigma_2^2.
 \]
 \begin{enumerate}[label=(\alph*)]
-\item 原命题中的严格改善结论有例外。取 $\sigma_1=1,\sigma_2=2,\rho=1/2$，有
+\item \textbf{反例}\quad 原命题中的严格改善结论有例外。取 $\sigma_1=1,\sigma_2=2,\rho=1/2$，有
 \[
  V(z)=1+3(z-1)^2\ge1.
 \]
@@ -87,7 +89,7 @@
 \]
 等价于 $k<\min(\sigma_1^2,\sigma_2^2)$。允许卖空时，可在整条实线上取最小值。只要 (b) 的唯一最小方差权重 $z^*$ 与 $0,1$ 都不同，就会严格低于两个端点，等价于 $k$ 与 $\sigma_1^2,\sigma_2^2$ 均不相等。
 
-\item 令 $D=\sigma_1^2+\sigma_2^2-2k$。当 $D>0$ 时，配方得
+\item \textbf{解答}\quad 令 $D=\sigma_1^2+\sigma_2^2-2k$。当 $D>0$ 时，配方得
 \[
  z^*=\frac{\sigma_2^2-k}{D},\qquad
  V(z)=D(z-z^*)^2+\frac{\sigma_1^2\sigma_2^2-k^2}{D}.
@@ -95,14 +97,14 @@
 
 平方项在 $z=z^*$ 时为零，这给出允许卖空时的唯一最小方差组合。若权重限于 $[0,1]$，则取区间内离 $z^*$ 最近的点，即 $\min\{1,\max\{0,z^*\}\}$。当 $D=0$ 时，$\rho=1$ 且 $\sigma_1=\sigma_2$，所有权重的风险相同。
 
-\item 当 $\rho=1$ 时，$\sigma_p=|z\sigma_1+(1-z)\sigma_2|$。若 $0\le z\le1$，其值介于两只证券波动率之间，故无法低于两者中的较小者。若允许卖空且 $\sigma_1\ne\sigma_2$，取
+\item \textbf{证明与反例}\quad 当 $\rho=1$ 时，$\sigma_p=|z\sigma_1+(1-z)\sigma_2|$。若 $0\le z\le1$，其值介于两只证券波动率之间，故无法低于两者中的较小者。若允许卖空且 $\sigma_1\ne\sigma_2$，取
 \[
  z=\frac{\sigma_2}{\sigma_2-\sigma_1}
 \]
 
 即可使波动率为零。例如 $\sigma_1=1,\sigma_2=2$ 时，权重 $(2,-1)$ 的风险为零。因此原题(c)的结论对应非负配置权重。
 
-\item 若 $\sigma_1=\sigma_2=\sigma$，则
+\item \textbf{证明}\quad 若 $\sigma_1=\sigma_2=\sigma$，则
 \[
  V(z)=\frac{\sigma^2(1+\rho)}2
  +2\sigma^2(1-\rho)\left(z-\frac12\right)^2.
@@ -126,7 +128,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-\item 用 $\sum_{i\ne j}z_i z_j=(\sum_i z_i)^2-\sum_i z_i^2=1-\sum_i z_i^2$ 合并协方差项，组合方差为
+\item \textbf{证明}\quad 记 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 为组合的权重列向量，满足 $\sum_i z_i=1$。用 $\sum_{i\ne j}z_i z_j=(\sum_i z_i)^2-\sum_i z_i^2=1-\sum_i z_i^2$ 合并协方差项，组合方差为
 \[
  \sigma_p^2=(\sigma^2-c)\sum_i z_i^2+c.
 \]
@@ -137,13 +139,13 @@
 \]
 
 由 $\sum_i z_i^2\ge(\sum_i z_i)^2/N=1/N$，等权组合使方差最小。当 $c<\sigma^2$ 时等号要求 $z_i=1/N$；$c=\sigma^2$ 时所有权重具有相同风险。
-\item 代入等权组合，
+\item \textbf{证明}\quad 代入等权组合，
 \[
  \sigma_p^2=c+\frac{\sigma^2-c}{N}\longrightarrow c.
 \]
 
 这个极限要求同一个 $\sigma,c$ 能用于任意大的 $N$。若固定 $c<0$，等权组合的方差最终会变成负数，违反半正定条件。因此本问的极限对应 $0\le c\le\sigma^2$。
-\item 当 $c\ge0$ 时，可构造 $\widetilde r_i-\bar r_i=F+\varepsilon_i$ 表示同一二阶矩结构，其中 $\operatorname{Var}(F)=c$、$\operatorname{Var}(\varepsilon_i)=\sigma^2-c$，各残差彼此及与 $F$ 不相关。等权组合的残差方差为 $(\sigma^2-c)/N$，随证券数增加趋于零，留下共同成分的方差 $c$。\qedhere
+\item \textbf{解答}\quad 当 $c\ge0$ 时，可构造 $\widetilde r_i-\bar r_i=F+\varepsilon_i$ 表示同一二阶矩结构，其中 $\operatorname{Var}(F)=c$、$\operatorname{Var}(\varepsilon_i)=\sigma^2-c$，各残差彼此及与 $F$ 不相关。等权组合的残差方差为 $(\sigma^2-c)/N$，随证券数增加趋于零，留下共同成分的方差 $c$。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -159,9 +161,9 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-\item 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。先设 $\bar r_1\ne\bar r_2$。由 $z+(1-z)=1$ 和 $z\bar r_1+(1-z)\bar r_2=m$，得到
+\item \textbf{解答}\quad 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。本题用标量 $z$ 表示第一只证券的权重，因此组合权重列向量为 $(z,1-z)^{\mathsf T}$。先设 $\bar r_1\ne\bar r_2$。由 $z\bar r_1+(1-z)\bar r_2=m$，得到
 \[
  z=\frac{m-\bar r_2}{\bar r_1-\bar r_2},\qquad1-z=\frac{\bar r_1-m}{\bar r_1-\bar r_2}.
 \]
@@ -183,9 +185,9 @@
 
 若 $D=0$，所有组合的方差相同，所以每个组合都是MVP。由于两只证券的均值不同，允许卖空时可以在同一方差下任意提高均值，因此没有MVE组合。每个给定均值仍唯一确定一个MVF组合。
 
-\item 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。若 $D>0$，均值不低于MVP均值的证券也在MVE上。若 $D=0$，两只证券都不在MVE上。
+\item \textbf{证明}\quad 在 $\bar r_1\ne\bar r_2$ 下，令 $m=\bar r_1$ 或 $m=\bar r_2$，分别得到 $z=1$ 或 $z=0$，故两只证券都在MVF上。若 $D>0$，均值不低于MVP均值的证券也在MVE上。若 $D=0$，两只证券都不在MVE上。
 
-\item 完全负相关、完全正相关时分别有
+\item \textbf{解答}\quad 完全负相关、完全正相关时分别有
 \[
  \begin{aligned}
  \rho_{12}=-1:\quad\sigma_p
@@ -219,7 +221,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明}]
 在内积 $\langle x,y\rangle=x^{\mathsf T}\Sigma^{-1}y$ 下，$a=\langle\iota,\bar r\rangle$、$b=\langle\bar r,\bar r\rangle$、$c=\langle\iota,\iota\rangle>0$。
 
 若 $d=0$，则 $\langle\iota,\bar r\rangle^2=\langle\iota,\iota\rangle\langle\bar r,\bar r\rangle$。由 Cauchy--Schwarz 不等式的取等条件，两向量线性相关，故 $\bar r=k\iota$。此时 $a=kc,b=k^2c$；若 $a\ne0$，则 $k=b/a$。若 $a=0$，则 $k=0$，所有期望收益均为零。
@@ -239,7 +241,7 @@
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明}]
 把投资总额归一为 $1$，组合各项权重之和便等于 $1$。最小方差组合在满足这一预算条件的组合中选取方差最小者。
 \[
  \begin{aligned}
@@ -308,26 +310,26 @@
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}
-权重满足 $\iota^{\mathsf T}z=1$，允许卖空。
+组合的权重列向量为 $z\in\mathbb R^N$，预算约束为 $\iota^{\mathsf T}z=1$，允许卖空。
 \begin{enumerate}[label=(\alph*)]
-\item 若 $\Sigma$ 正定，取 $A$ 中收敛点列 $(m_n,s_n)\to(m,s)$ 及对应权重 $z_n$。由最小特征值 $\lambda_{\min}>0$，
+\item \textbf{证明}\quad 若 $\Sigma$ 正定，取 $A$ 中收敛点列 $(m_n,s_n)\to(m,s)$ 及对应权重 $z_n$。由最小特征值 $\lambda_{\min}>0$，
 \[
  \lambda_{\min}\|z_n\|^2\le z_n^{\mathsf T}\Sigma z_n=s_n^2.
 \]
 
 故权重有界，存在收敛子列 $z_{n_j}\to z$。连续性给出 $\iota^{\mathsf T}z=1$、$\bar r^{\mathsf T}z=m$、$z^{\mathsf T}\Sigma z=s^2$，因此 $(m,s)\in A$，$A$ 闭。
 
-对一般半正定 $\Sigma$，权重序列本身可能无界。取 $B=\Sigma^{1/2}$，由于 $\|Bz_n\|=s_n$ 有界，可选子列使 $Bz_{n_j}\to y$，且 $\|y\|=s$。令
+对一般半正定 $\Sigma$，权重序列本身可能无界。取 $B=\Sigma^{1/2}$，由于 $\|Bz_n\|=s_n$ 有界，可选子列使 $Bz_{n_j}\to y$，其中 $y\in\mathbb R^N$ 且 $\|y\|=s$。将两个标量和 $N$ 维向量 $Bz$ 合在一起，得到线性映射 $L:\mathbb R^N\to\mathbb R^{N+2}$：
 \[
  Lz=(\iota^{\mathsf T}z,\bar r^{\mathsf T}z,Bz),\qquad Lz_{n_j}\to(1,m,y).
 \]
 $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $Lz=(1,m,y)$，即这个 $z$ 满足预算，均值为 $m$，标准差为 $\|y\|=s$。因此半正定时 $A$ 仍是闭集。
 
-\item 原命题不成立。取两证券均值 $\bar r=(0,1)^{\mathsf T}$、协方差矩阵 $\Sigma=I$。两个单证券组合给出点 $(0,1)$、$(1,1)$。二者中点为 $(1/2,1)$；但均值为 $1/2$ 唯一要求权重 $(1/2,1/2)$，其标准差为 $1/\sqrt2$，故中点不属于 $A$。因此 $A$ 不是凸集。
+\item \textbf{反例}\quad 原命题不成立。取两证券均值 $\bar r=(0,1)^{\mathsf T}$、协方差矩阵 $\Sigma=I$。两个单证券组合给出点 $(0,1)$、$(1,1)$。二者中点为 $(1/2,1)$；但均值为 $1/2$ 唯一要求权重 $(1/2,1/2)$，其标准差为 $1/\sqrt2$，故中点不属于 $A$。因此 $A$ 不是凸集。
 
 在这个例子里，分别投入一半资金得到的是 $(1/2,1/\sqrt2)$，而连接两个单证券点所得的几何中点是 $(1/2,1)$。组合权重的平均给出均值的平均，标准差则还取决于协方差。
 
-若另有 $N\ge3$、$\Sigma$ 正定且各证券均值不全相同，在允许卖空时，点集确实为凸。记均值 $m$ 对应的最小方差权重为 $z_m$。$N\ge3$ 时可取非零方向 $h$，同时满足 $\iota^{\mathsf T}h=\bar r^{\mathsf T}h=0$。由最小化的一阶条件 $h^{\mathsf T}\Sigma z_m=0$，$z_m+th$ 的方差为 $\sigma_{\min}^2(m)+t^2h^{\mathsf T}\Sigma h$，所以 $A$ 填满 $\sigma\ge\sigma_{\min}(m)$ 的区域。混合两个最小方差组合，再对标准差 $\|\Sigma^{1/2}z\|$ 用三角不等式，可得 $\sigma_{\min}(m)$ 为凸函数，所以该区域为凸集。\qedhere
+\textbf{补充}\quad 若另有 $N\ge3$、$\Sigma$ 正定且各证券均值不全相同，在允许卖空时，点集确实为凸。记均值 $m$ 对应的最小方差权重为 $z_m$。$N\ge3$ 时可取非零权重调整向量 $g$，同时满足 $\iota^{\mathsf T}g=\bar r^{\mathsf T}g=0$，所以调整保持权重之和与期望收益率不变。由最小化的一阶条件 $g^{\mathsf T}\Sigma z_m=0$，$z_m+tg$ 的方差为 $\sigma_{\min}^2(m)+t^2g^{\mathsf T}\Sigma g$，所以 $A$ 填满 $\sigma\ge\sigma_{\min}(m)$ 的区域。混合两个最小方差组合，再对标准差 $\|\Sigma^{1/2}z\|$ 用三角不等式，可得 $\sigma_{\min}(m)$ 为凸函数，所以该区域为凸集。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -347,7 +349,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明}]
 沿用 $\Sigma$ 正定、只含风险证券的设定。任一完全投资组合与 MVP 的协方差均为 $1/c>0$\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-twelve-8}）\fi。题设中 $p$ 和 $zcp$ 的协方差为零，所以两者都不是 MVP。若 $d=0$，由练习~\ref{exer:wj-twelve-7}，前沿只有 MVP，故这里有 $d>0$。正定性保证两个组合的方差均为正。
 \begin{enumerate}[label=(\alph*)]
 \item 定义
@@ -392,7 +394,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明}]
 沿用本章 $\Sigma$ 正定、允许自由交易的设定。这里取凸组合的是证券权重向量，即把资金按比例投入两个有效组合。仅有风险证券时，若 $d=0$，前沿只包含 MVP。若 $d>0$，给定目标均值 $m$ 的前沿权重为 $z(m)=z_0+m(z_1-z_0)$\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-12-4}）\fi。若 $z_A,z_B$ 均为 MVE，则 $m_A,m_B\ge a/c$。对 $0\le t\le1$，
 \[
  tz_A+(1-t)z_B=z(tm_A+(1-t)m_B),\qquad
@@ -411,8 +413,8 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
-这里 $\Sigma$ 只包含风险证券的协方差。沿用 $\Sigma$ 正定的条件，正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零。将这一二次型记为 $K$，则
+\begin{solution}[label-content={证明}]
+本题的 $\bar\eta$ 是风险证券的期望超额收益率列向量\ifdefined\WJHandoutKnowledge，对应第~\ref{sec:wj-twelve-4}~节的 $\eta$\fi。这里 $\Sigma$ 只包含风险证券的协方差。沿用 $\Sigma$ 正定的条件，正定矩阵 $\Sigma^{-1}$ 的二次型仅在零向量处取零。将这一二次型记为 $K$，则
 \[
  K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta=0
  \iff\bar\eta=0\iff\bar r=r_F\iota.
@@ -428,7 +430,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明}]
 题末的“期望收益为正”指只由风险证券构成的 MVP 的期望超额收益为正。沿用 $\Sigma$ 正定的设定，并令 $K=\bar\eta^{\mathsf T}\Sigma^{-1}\bar\eta>0$。有无风险证券时，前沿组合的风险权重都沿 $\Sigma^{-1}\bar\eta$ 这一方向\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-12-7}）\fi。记 $H=\iota^{\mathsf T}\Sigma^{-1}\bar\eta$ 为该方向的权重和。要得到只含风险证券的切点组合，风险权重之和必须为 1。若 $H\ne0$，可用 $z_T=\Sigma^{-1}\bar\eta/H$ 实现，故
 \[
  \bar\eta_T=z_T^{\mathsf T}\bar\eta=\frac KH,\qquad
@@ -451,7 +453,7 @@ $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=7\baselineskip]
 沿用上一题的记号，简写 $\eta=\bar r-r_F\iota$。先取 $\Sigma$ 正定且 $r_F<\bar r_{\mathrm{MVP}}$，于是 $H>0$。允许按 $r_F$ 自由借贷和卖空，风险权重 $z$ 之外的余额 $1-\iota^{\mathsf T}z$ 由无风险证券承接。只要 $z\ne0$，组合标准差就为正，Sharpe 比满足
 \[
  \operatorname{SR}(z)^2
