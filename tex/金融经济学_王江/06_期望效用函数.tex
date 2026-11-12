@@ -66,14 +66,15 @@
 \]
 按独立性公理，替换后应选 $d$ 还是 $d'$？
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
 应选 $d$。替换前，两个计划在雨天都看电视。替换后，两者在雨天都工作，晴天仍是原来的两种安排。晴天和雨天互斥，最终只会执行其中一种天气下的安排。按独立性公理，只要雨天的安排在每次比较中都相同，对晴天两种安排的取舍就保持原样，所以 $d\succ d'$。
 \end{solution}
 \end{tcolorbox}
 
-上例只替换了一个共同状态，即雨天。下面把这组比较写成效用差，并推广到一次替换多个共同状态的情形。
+上例只替换了一个共同状态，即雨天。\WJEqRef{eq:wj-six-1}{式~} 的期望效用表示满足\WJRef{axiom:wj-six-independence}{公理~}[（状态间独立性）]。固定当期消费时，同时替换两个计划在若干共同状态中的消费，效用差保持不变。
 
-\textbf{（期望效用表示 $\Rightarrow$ 独立性）}假定偏好已由式~\eqref{eq:wj-six-1} 的期望效用 $U$ 表示。要证明的是，共同后果替换前后的两次比较给出同样的排序。
+\begin{solution}[label-content={证明},blank-type=none]
+假定偏好已由\WJEqRef{eq:wj-six-1}{式~} 的期望效用 $U$ 表示。要证明的是，共同后果替换前后的两次比较给出同样的排序。
 
 设 $c$ 和 $c'$ 为替换前要比较的两个消费计划。它们的当期消费同为 $c_0$，在未来状态 $\omega$ 的消费分别记为 $c_{1\omega}$ 和 $c'_{1\omega}$。用 $A$ 表示本次要替换共同消费的未来状态集合。对每个 $\omega\in A$，两个计划在该状态的消费都等于 $x_\omega$。将 $A$ 内的共同消费同时换成 $y_\omega$，得到新计划 $d,d'$。两者的当期消费仍为 $c_0$，未来消费逐状态为
 \[
@@ -84,7 +85,7 @@
  \end{cases}
 \]
 
-先按式~\eqref{eq:wj-six-1} 写出每个计划的期望效用。四个计划的当期消费都是 $c_0$，同一状态的权重都是 $p_\omega$，各计划代入的是自己在该状态的未来消费。两份计划的期望效用相减时，可以把同一状态的两项合在一起。
+先按\WJEqRef{eq:wj-six-1}{式~} 写出每个计划的期望效用。四个计划的当期消费都是 $c_0$，同一状态的权重都是 $p_\omega$，各计划代入的是自己在该状态的未来消费。两份计划的期望效用相减时，可以把同一状态的两项合在一起。
 \[
  \begin{aligned}
  U(c)-U(c')
@@ -118,7 +119,10 @@
  \end{aligned}
 \]
 
-两次效用差都等于 $\Delta$，所以 $c\succeq c'$ 当且仅当 $d\succeq d'$。若 $\Delta>0$，两次都严格偏好前一个计划。若 $\Delta=0$，两次都无差异。若 $\Delta<0$，两次都严格偏好后一个计划。共同消费的替换可以改变两个计划各自的效用水平，两个计划之间的效用差保持相同。
+两次效用差都等于 $\Delta$，所以 $c\succeq c'$ 当且仅当 $d\succeq d'$。若 $\Delta>0$，两次都严格偏好前一个计划。若 $\Delta=0$，两次都无差异。若 $\Delta<0$，两次都严格偏好后一个计划。
+\end{solution}
+
+共同消费的替换可以改变两个计划各自的效用水平，两个计划之间的效用差保持相同。
 
 教材的公理从一个共同状态说起。若在固定 $c_0$ 时，各状态的可选消费可以任意组合（乘积消费域），就可在 $A$ 内逐个替换，每一步都保持排序，最终得到同一对 $d,d'$。下一小节讨论反向问题，即在什么条件下可以从状态组独立性推出可加效用表示。
 
@@ -127,7 +131,7 @@
 \begin{question}
 当前消费相同，晴、雨两状态等概率，未来效用为 $u(x)=\sqrt{x}$。比较未来消费 $(100,16)$ 与 $(64,16)$；再把两计划共同的雨天消费从 $16$ 同时换成 $36$，偏好是否改变？
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=4\baselineskip]
 \[
 \begin{array}{c|cc|c}
  \text{计划}&\text{晴天消费}&\text{雨天消费}&\text{未来期望效用}\\\hline
@@ -146,15 +150,15 @@
 \begin{question}
 \WJSixExample{ex:wj-six-2}晴天比较两种消费组合：$c_1$ 是海滩玩 $4$ 小时并喝 $1$ 升水，$c_2$ 是看电视 $4$ 小时并喝 $1$ 升水。若先选择 $c_1$，将两组合的水都去掉后，是否仍会选择海滩？
 \end{question}
-\begin{solution}
-酷暑下，去海滩时有水喝尤其重要。虽然两种安排都少了同样的一升水，海滩活动的吸引力可能下降得更多，参与者便可能转而选择室内活动。这里两种消费品在\textbf{同一个晴天}共同发挥作用，所以水和海滩活动的搭配会影响选择。公理~\ref{axiom:wj-six-independence} 说的是，同时替换\textbf{另一个互斥状态}中的共同安排时，原有的偏好排序应当保持。
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
+酷暑下，去海滩时有水喝尤其重要。虽然两种安排都少了同样的一升水，海滩活动的吸引力可能下降得更多，参与者便可能转而选择室内活动。这里两种消费品在\textbf{同一个晴天}共同发挥作用，所以水和海滩活动的搭配会影响选择。\WJRef{axiom:wj-six-independence}{公理~}[（状态间独立性）] 说的是，同时替换\textbf{另一个互斥状态}中的共同安排时，原有的偏好排序应当保持。
 \end{solution}
 \end{tcolorbox}
 
 % 让节标题、导语和定理框出现在同一页。
 \Needspace{10\baselineskip}
 \subsection{可加表示定理及其适用范围}
-定理~\ref{thm:wj-two-utility-existence} 给出了连续效用表示的存在条件。上一小节说明，期望效用表示满足独立性公理。反过来，满足这一公理的偏好，何时可以用按状态相加的效用来表示？
+\WJRef{thm:wj-two-utility-existence}{定理~}[（连续效用表示的存在性）] 给出了连续效用表示的存在条件\footnote{第二讲在闭凸消费集上，假定偏好完备、传递、自反且连续，得到一个连续的序数效用函数：$a\succeq b$ 当且仅当 $U(a)\ge U(b)$。这里还要问，这个表示能否进一步拆成各状态效用之和。}。上一小节说明，期望效用表示满足独立性公理。反过来，满足这一公理的偏好，何时可以用按状态相加的效用来表示？
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJSixTheorem{thm:wj-six-1}\textbf{（Debreu，可加表示）}
@@ -166,23 +170,26 @@
 % 教材印刷第 91 页与 PPT 第 11 页从必要性引出充分性；PPT 第 8 页的两状态算例对应必要性。
 % Debreu, Topological Methods in Cardinal Utility Theory, Cowles DP 76 (1959), Section 3, pp. 9—15.
 % https://cowles.yale.edu/sites/default/files/2022-08/d0076.pdf
-\textbf{（必要性）}可加效用下，共同状态的效用项在两个计划的效用差中相抵。共同消费同时替换后，这些项仍然相抵，效用差和偏好排序都保持原样。计算见第~\ref{sec:wj-six-independence}~节。
+\begin{solution}[label-content={证明},blank-type=none]
+\textbf{（必要性）}可加效用下，共同状态的效用项在两个计划的效用差中相抵。共同消费同时替换后，这些项仍然相抵，效用差和偏好排序都保持原样。计算见\WJRef{sec:wj-six-independence}{第~}[~节（状态间独立性与共同后果替换）]。
 
-\textbf{（充分性）}固定 $c_0$。公理~\ref{axiom:wj-six-independence} 保证，对任一组状态内消费的排序，独立于其余状态的共同安排。在定理所列条件下，Debreu 的可加表示结果给出连续的状态效用项 $v_\omega(c_{1\omega};c_0)$，其和表示这一截面上的偏好。用模型给定的正概率 $p_\omega$，令 $u_\omega(c_0,c_{1\omega})=v_\omega(c_{1\omega};c_0)/p_\omega$，则
+\textbf{（充分性）}固定 $c_0$。\WJRef{axiom:wj-six-independence}{公理~}[（状态间独立性）] 保证，对任一组状态内消费的排序，独立于其余状态的共同安排。在定理所列条件下，Debreu 的可加表示结果给出连续的状态效用项 $v_\omega(c_{1\omega};c_0)$，其和表示这一截面上的偏好。用模型给定的正概率 $p_\omega$，令 $u_\omega(c_0,c_{1\omega})=v_\omega(c_{1\omega};c_0)/p_\omega$，则
 \[
  \sum_{\omega=1}^{\Omega} v_\omega(c_{1\omega};c_0)
  =\sum_{\omega=1}^{\Omega}p_\omega u_\omega(c_0,c_{1\omega}).
 \]
 
-右端就是式~\eqref{eq:wj-six-1} 的期望效用形式，即按各状态发生的概率对消费路径的效用取加权平均。这里的 $p_\omega$ 由模型给定。若改用另一组正概率 $p_\omega^*$，并将各状态效用改写为 $u_\omega^*=(p_\omega/p_\omega^*)u_\omega$，则每一项仍有 $p_\omega^*u_\omega^*=p_\omega u_\omega$。因此，可加表示本身容许不同的概率与状态效用搭配。定理给出的是同一 $c_0$ 下的排序。比较不同 $c_0$ 的计划需要统一的效用尺度，后文假定式~\eqref{eq:wj-six-1} 在整个消费域上成立。
+右端就是\WJEqRef{eq:wj-six-1}{式~} 的期望效用形式，即按各状态发生的概率对消费路径的效用取加权平均。
+\end{solution}
 
-这里固定各状态的概率，替换两个计划在共同状态下的后果。第~\ref{sec:wj-six-lottery}~节讨论的彩票混合独立性则比较另一种操作，即把两张彩票分别与同一张彩票按相同的比例混合。
+这里的 $p_\omega$ 由模型给定。若改用另一组正概率 $p_\omega^*$，并将各状态效用改写为 $u_\omega^*=(p_\omega/p_\omega^*)u_\omega$，则每一项仍有 $p_\omega^*u_\omega^*=p_\omega u_\omega$。因此，可加表示本身容许不同的概率与状态效用搭配。定理给出的是同一 $c_0$ 下的排序。比较不同 $c_0$ 的计划需要统一的效用尺度，后文假定\WJEqRef{eq:wj-six-1}{式~} 在整个消费域上成立。
 
-% 为两级标题和首个短框预留空间，避免标题留在页尾。
-\Needspace{11\baselineskip}
+这里固定各状态的概率，替换两个计划在共同状态下的后果。\WJRef{sec:wj-six-lottery}{第~}[~节（彩票混合独立性）]讨论的彩票混合独立性则比较另一种操作，即把两张彩票分别与同一张彩票按相同的比例混合。
+
+
 \section{附加假设}\label{sec:wj-six-assumptions}
 \subsection{状态独立}
-前面的状态间独立性讨论共同后果替换前后的排序，式~\eqref{eq:wj-six-1} 在满足这一要求的同时允许各状态使用不同的 $u_\omega$。这里再问，同一条消费路径在不同状态下是否由同一个效用函数评价。
+前面的状态间独立性讨论共同后果替换前后的排序，\WJEqRef{eq:wj-six-1}{式~} 在满足这一要求的同时允许各状态使用不同的 $u_\omega$。这里再问，同一条消费路径在不同状态下是否由同一个效用函数评价。
 
 \begin{tcolorbox}[knowledge,title=状态独立的期望效用,breakable=false]
 若同一完整消费路径的效用与状态标签无关，即 $u_\omega(c_0,c_1)=u(c_0,c_1)$，则
@@ -199,21 +206,21 @@
 \begin{question}
 用 $(x,s)$ 表示冰淇淋数量和阳光数量。晴天的篮子为 $(1,1)$，阴天为 $(1,0)$。同一个效用函数满足 $v(1,1)=10$、$v(1,0)=5$。说明效用差异来自哪里。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
 两种天气提供的完整消费篮子不同，效用差异由 $s$ 的变化解释。状态独立性要求同一完整篮子采用同一评价函数。天气仍会影响各状态的资源供给与市场价格，例如阳光条件可能影响水的供给，从而影响水价。
 \end{solution}
 \end{tcolorbox}
 
 % 教材印刷第 91—92 页：状态独立的建模动机；第 96 页：后续分析所用的基准形式。
-如果可以为每个状态任意指定效用函数，观察到某个状态的消费偏低时，总可以尝试用“参与者在该状态下对消费的评价较低”来解释。事后调整偏好的空间越大，就越难用观察到的行为检验模型。状态独立对同一消费路径采用共同的评价函数，给偏好施加了限制。再加上下面的时间可加等假设，就得到后续组合选择与均衡定价所用的两种基准形式~\eqref{eq:wj-six-3} 和~\eqref{eq:wj-six-4}。
+如果可以为每个状态任意指定效用函数，观察到某个状态的消费偏低时，总可以尝试用“参与者在该状态下对消费的评价较低”来解释。事后调整偏好的空间越大，就越难用观察到的行为检验模型。状态独立对同一消费路径采用共同的评价函数，给偏好施加了限制。再加上下面的时间可加等假设，就得到后续组合选择与均衡定价所用的两种基准形式，即\WJEqRef{eq:wj-six-3}{时间可加形式~}和\WJEqRef{eq:wj-six-4}{共用单期效用函数的形式~}。
 
 \subsection{时间可加与时间偏好}
 \subsubsection{可加形式与交叉边际效用}
 % 建模动机与跨期例子见教材印刷第 92 页，时间分离及其应用见 PPT 第 14—15 页。
-式~\eqref{eq:wj-six-2} 对各状态的消费路径采用同一个函数 $u(c_0,c_1)$。这个函数仍允许一期消费影响另一期的边际效用。例如，今天多吃牛肉，明天再多吃一份牛肉带来的效用可能降低。吸烟成瘾则可能使今天吸得越多，明天再多吸一支带来的效用越高。本章主要研究财富或资源在各期的配置。为简化跨期选择的分析，以下假定各期消费可以分别评价。
+\WJEqRef{eq:wj-six-2}{式~} 对各状态的消费路径采用同一个函数 $u(c_0,c_1)$。这个函数仍允许一期消费影响另一期的边际效用。例如，今天多吃牛肉，明天再多吃一份牛肉带来的效用可能降低。吸烟成瘾则可能使今天吸得越多，明天再多吸一支带来的效用越高。本章主要研究财富或资源在各期的配置。为简化跨期选择的分析，以下假定各期消费可以分别评价。
 
 \begin{tcolorbox}[knowledge,title=时间可加性,breakable=false]
-若路径效用可写为 $u(c_0,c_1)=u_0(c_0)+u_1(c_1)$，则称其为\textbf{时间可加}（time additive），也称\textbf{时间分离}（time separable）。这里 $u_0$ 和 $u_1$ 分别评价两期消费。在式~\eqref{eq:wj-six-2} 中，对每个状态 $\omega$ 代入 $u(c_0,c_{1\omega})=u_0(c_0)+u_1(c_{1\omega})$。当期消费 $c_0$ 在各状态相同，所以 $u_0(c_0)$ 可以提到求和号外。
+若路径效用可写为 $u(c_0,c_1)=u_0(c_0)+u_1(c_1)$，则称其为\textbf{时间可加}（time additive），也称\textbf{时间分离}（time separable）。这里 $u_0$ 和 $u_1$ 分别评价两期消费。在\WJEqRef{eq:wj-six-2}{式~} 中，对每个状态 $\omega$ 代入 $u(c_0,c_{1\omega})=u_0(c_0)+u_1(c_{1\omega})$。当期消费 $c_0$ 在各状态相同，所以 $u_0(c_0)$ 可以提到求和号外。
 \begin{equation}
  \begin{aligned}
  U(c)
@@ -230,6 +237,7 @@
 时间可加时，一期消费的边际效用只取决于该期消费。在矩形定义域上，若路径效用二阶连续可微，时间可加等价于交叉偏导 $\partial_{01}u=\frac{\partial}{\partial c_0}\bigl(\frac{\partial u}{\partial c_1}\bigr)=0$。这个交叉偏导衡量当期消费改变时，未来消费的边际效用如何变化。上面的牛肉和吸烟例子分别对应 $\partial_{01}u<0$ 和 $\partial_{01}u>0$。
 \end{tcolorbox}
 
+\begin{solution}[label-content={证明},blank-type=none]
 \textbf{（可加形式 $\Rightarrow$ 交叉偏导为零）}未来消费的边际效用是 $\partial_1u(c_0,c_1)=u_1'(c_1)$。它只随 $c_1$ 变化，再对 $c_0$ 求导就得到 $\partial_{01}u=0$。
 
 \textbf{（交叉偏导为零 $\Rightarrow$ 可加形式）}二阶连续可微保证两种求导顺序给出同一交叉偏导。因此 $\partial_{01}u=0$ 也意味着 $\partial_0u(c_0,c_1)$ 不随 $c_1$ 变化，记为 $f(c_0)$。在当期消费区间内取一个固定点 $a$，沿当期消费从 $a$ 积分到 $c_0$，得到
@@ -237,18 +245,19 @@
  u(c_0,c_1)=\underbrace{\int_a^{c_0} f(t)\,\mathrm dt}_{u_0(c_0)}
             +\underbrace{u(a,c_1)}_{u_1(c_1)}.
 \]
+\end{solution}
 
-这个分解让各期的边际效用可以分别计算。后文推导式~\eqref{eq:wj-six-sdf} 的随机折现因子时，就会用到当期与未来状态的边际效用之比。若跨期消费形成习惯，多期决策还需要记录过去的消费所形成的习惯水平。用动态规划求解时，这一水平可以作为额外的状态变量，随消费决策一起更新。
+这个分解让各期的边际效用可以分别计算。后文推导\WJEqRef{eq:wj-six-sdf}{随机折现因子~}时，就会用到当期与未来状态的边际效用之比。若跨期消费形成习惯，多期决策还需要记录过去的消费所形成的习惯水平。用动态规划求解时，这一水平可以作为额外的状态变量，随消费决策一起更新。
 
-\Needspace{11\baselineskip}
+
 \subsubsection{共同单期效用与时间偏好系数}
 % 共同单期效用与时间偏好系数见教材印刷第 93 页、PPT 第 16 页。
-式~\eqref{eq:wj-six-3} 允许两期使用不同的单期效用函数。若进一步假定两期共用一个函数 $u$，未来效用再乘以正的时间权重 $\rho$，即 $u_0=u$、$u_1=\rho u$，则路径效用为
+\WJEqRef{eq:wj-six-3}{式~} 允许两期使用不同的单期效用函数。若进一步假定两期共用一个函数 $u$，未来效用再乘以正的时间权重 $\rho$，即 $u_0=u$、$u_1=\rho u$，则路径效用为
 \[
  u_0(c_0)+u_1(c_1)=u(c_0)+\rho u(c_1),\qquad \rho>0.
 \]
 
-将 $u_0(c_0)=u(c_0)$ 和 $u_1(c_{1\omega})=\rho u(c_{1\omega})$ 代入式~\eqref{eq:wj-six-3}。各状态的时间权重相同，因而可以将 $\rho$ 提到求和号外。
+将 $u_0(c_0)=u(c_0)$ 和 $u_1(c_{1\omega})=\rho u(c_{1\omega})$ 代入\WJEqRef{eq:wj-six-3}{式~}。各状态的时间权重相同，因而可以将 $\rho$ 提到求和号外。
 \begin{tcolorbox}[knowledge,title=时间可加的标准形式,breakable=false]
 \begin{equation}
  U(c)=\underbrace{u(c_0)}_{\text{当期效用}}
@@ -264,15 +273,15 @@ $\rho$ 是\textbf{时间偏好系数}或时间折扣系数。$\rho=1$ 时，两�
 \subsection{总效用的序数性与单期效用的基数性}\label{sec:wj-six-cardinal}
 % 教材印刷第 93—94 页及 PPT 第 17—18 页从变换总效用与变换单期效用的差别解释序数性与基数性。
 \begin{tcolorbox}[knowledge,title=总效用与单期效用的变换范围,breakable=false]
-\textbf{总效用 $U$ 的序数性}\quad 总效用 $U(c)$ 是给整个消费计划 $c$ 的评分。作为\hyperref[def:wj-two-4]{偏好表示}，它的作用是给计划排序。若 $U(A)>U(B)$，对已经算出的总效用施加任意严格递增变换 $g$，仍有 $g(U(A))>g(U(B))$，所以选择保持原样。
+\textbf{总效用 $U$ 的序数性}\quad 总效用 $U(c)$ 是给整个消费计划 $c$ 的评分。作为\WJLink{def:wj-two-4}{偏好表示}，它的作用是给计划排序。若 $U(A)>U(B)$，对已经算出的总效用施加任意严格递增变换 $g$，仍有 $g(U(A))>g(U(B))$，所以选择保持原样。
 
-\textbf{单期效用 $u$ 的基数性}\quad 单期效用 $u(x)$ 是对某一期消费量 $x$ 的评价。在式~\eqref{eq:wj-six-4} 中，先用 $u$ 给各个消费结果评分，再按概率和时间权重加总。不同结果之间的效用差会进入加权比较，效用差之间的相对大小会影响排序。若先用 $g$ 变换每个 $u(x)$ 再加总，即使单个消费结果的排序相同，计划的排序也可能改变。
+\textbf{单期效用 $u$ 的基数性}\quad 单期效用 $u(x)$ 是对某一期消费量 $x$ 的评价。在\WJEqRef{eq:wj-six-4}{式~} 中，先用 $u$ 给各个消费结果评分，再按概率和时间权重加总。不同结果之间的效用差会进入加权比较，效用差之间的相对大小会影响排序。若先用 $g$ 变换每个 $u(x)$ 再加总，即使单个消费结果的排序相同，计划的排序也可能改变。
 \end{tcolorbox}
 
 % 教材例 6.3，印刷第 93—94 页；PPT 第 17 页引入同一例。
 \begin{tcolorbox}[example,breakable=false]
 \begin{question}
-\WJSixExample{ex:wj-six-3}两状态等可能，当前消费均为 $1$，未来消费如下。在式~\eqref{eq:wj-six-4} 中取 $\rho=1$，总效用为 $u(c_0)+\tfrac12[u(c_{11})+u(c_{12})]$。分别取单期效用 $u(x)=x$ 和 $v(x)=\sqrt{x}$，比较 $A,B$。
+\WJSixExample{ex:wj-six-3}两状态等可能，当前消费均为 $1$，未来消费如下。在\WJEqRef{eq:wj-six-4}{式~} 中取 $\rho=1$，总效用为 $u(c_0)+\tfrac12[u(c_{11})+u(c_{12})]$。分别取单期效用 $u(x)=x$ 和 $v(x)=\sqrt{x}$，比较 $A,B$。
 \begin{center}
 \begin{tabular}{cc}
  计划 $A$ & 计划 $B$\\
@@ -280,7 +289,7 @@ $\rho$ 是\textbf{时间偏好系数}或时间折扣系数。$\rho=1$ 时，两�
 \end{tabular}
 \end{center}
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
 两计划的当期消费相同，所以当期效用在比较中相抵。先取 $u(x)=x$，将各期消费代入，得到
 \[
  U(A)=1+\tfrac12(1+1)=2,\qquad
@@ -304,7 +313,7 @@ $\rho$ 是\textbf{时间偏好系数}或时间折扣系数。$\rho=1$ 时，两�
 \begin{question}
 $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性与平方根效用比较。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
 两方案的期望财富相同。在线性效用下，$U(C)=1.5$，$U(D)=\tfrac12(1+2)=1.5$，参与者无差异，体现了风险中性。若先用平方根函数评价每个财富结果，再按概率加权，则
 \[
  V(C)=\sqrt{1.5}>\tfrac12(\sqrt{1}+\sqrt{2})=V(D).
@@ -315,10 +324,11 @@ $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge,title=正仿射变换与基数性,breakable=false]
-在通常的非退化彩票域上，表示同一彩票偏好的伯努利效用相差一个\textbf{正仿射变换} $v=au+b$（$a>0$）。其中 $b$ 移动效用的零点，$a$ 把所有效用差按同一比例缩放，因此效用差之间的比值保持原样。这就是单期效用的基数性在数值尺度上的含义。
+在通常的非退化彩票域上，表示同一彩票偏好的伯努利效用相差一个\textbf{正仿射变换} $v=au+b$（$a>0$）。其中 $b$ 移动效用的零点，$a$ 把所有效用差按同一比例缩放，因此效用差之间的比值保持原样。这就是单期效用的基数性在数值尺度上的含义。对\WJEqRef{eq:wj-six-4}{式~} 的两期单期效用采用同一个正仿射变换，也保持计划的排序。
 \end{tcolorbox}
 
-对式~\eqref{eq:wj-six-4} 的两期单期效用采用同一变换 $v=au+b$，代入得到
+\begin{solution}[label-content={证明},blank-type=none]
+对\WJEqRef{eq:wj-six-4}{式~} 的两期单期效用采用同一变换 $v=au+b$，代入得到
 \[
  \begin{aligned}
  V(c)&=[a u(c_0)+b]+\rho\sum_{\omega=1}^{\Omega}p_\omega
@@ -328,15 +338,18 @@ $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性
  \end{aligned}
 \]
 
-因为 $a>0$，而且所有计划都加上同一个常数 $b\cdot(1+\rho)$，所以排序保持原样。此处的效用尺度是个人内部的评价尺度。
+因为 $a>0$，而且所有计划都加上同一个常数 $b\cdot(1+\rho)$，所以排序保持原样。
+\end{solution}
 
-\Needspace{15\baselineskip}
+此处的效用尺度是个人内部的评价尺度。
+
+
 \subsection{期望效用与状态价格、随机折现因子的联系}
-第四讲用状态价格给证券的各状态支付定价。这里把式~\eqref{eq:wj-six-4} 的期望效用带入第三讲的消费选择问题，看看在最优消费处，状态价格如何反映时间偏好和各状态的边际效用。
+第四讲用状态价格给证券的各状态支付定价。这里把\WJEqRef{eq:wj-six-4}{式~} 的期望效用带入第三讲的消费选择问题，看看在最优消费处，状态价格如何反映时间偏好和各状态的边际效用。
 % 第六章教材印刷第 92—94 页给出效用形式，教师 PPT 第 5、15 页提示定价联系。以下联立教材式 (3.7)、(4.6)—(4.9) 与 (6.4)，对应第三讲 PPT 第 13—18 页和第四讲 PPT 第 25—31 页。
 
 \textbf{从消费选择到状态价格}\quad
-在完全市场中，未来各状态的消费都可通过阿罗证券取得。沿用式~\eqref{eq:wj-three-budget}，以 $0$ 期消费品计价，预算约束为 $c_0+\sum_\omega\phi_\omega c_{1\omega}\le w$，其中 $w$ 是禀赋的市场价值，$\phi_\omega$ 是在状态 $\omega$ 多取得一单位消费所需的当期支出。设 $u$ 可微、$u'>0$，且最优消费为内点。效用随消费增加，最优时预算用尽，拉格朗日函数为
+在完全市场中，未来各状态的消费都可通过阿罗证券取得。沿用\WJEqRef{eq:wj-three-budget}{消费预算约束~}，以 $0$ 期消费品计价，预算约束为 $c_0+\sum_\omega\phi_\omega c_{1\omega}\le w$，其中 $w$ 是禀赋的市场价值，$\phi_\omega$ 是在状态 $\omega$ 多取得一单位消费所需的当期支出。设 $u$ 可微、$u'>0$，且最优消费为内点。效用随消费增加，最优时预算用尽，拉格朗日函数为
 \[
  \mathcal L
  =u(c_0)+\rho\sum_{\omega=1}^{\Omega}p_\omega u(c_{1\omega})
@@ -352,7 +365,7 @@ $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性
 在状态 $\omega$ 略微增加未来消费时，每增加一单位的边际效用增益为 $\rho p_\omega u'(c_{1\omega})$。按预算约束，每增加一单位未来消费，要放弃 $\phi_\omega$ 单位当期消费，对应的边际效用损失为 $u'(c_0)\phi_\omega$。内点最优时，两者相等。将第一式的 $\lambda=u'(c_0)$ 代入第二式，再除以 $u'(c_0)$，就把未来边际效用换算成了以当期消费品计量的状态价格。
 
 \begin{tcolorbox}[knowledge,title=随机折现因子与证券定价,breakable=false]
-把状态价格写成真实概率 $p_\omega$ 与折现权重 $m_\omega$ 的乘积。记 $m(\omega)=m_\omega$，则 $m$ 称为\textbf{随机折现因子}（stochastic discount factor）。沿用第四讲的记号，$\tilde x_n$ 是证券 $n$ 的到期支付，在状态 $\omega$ 取值 $x_{\omega n}$。式~\eqref{eq:wj-four-6} 给出所有证券的价格向量 $S$。其中第 $n$ 项是支付矩阵 $X$ 的第 $n$ 列按状态价格加总的结果。
+把状态价格写成真实概率 $p_\omega$ 与折现权重 $m_\omega$ 的乘积。记 $m(\omega)=m_\omega$，则 $m$ 称为\textbf{随机折现因子}（stochastic discount factor）。沿用第四讲的记号，$\tilde x_n$ 是证券 $n$ 的到期支付，在状态 $\omega$ 取值 $x_{\omega n}$。\WJEqRef{eq:wj-four-6}{状态价格定价式~}给出证券价格列向量 $S=(S_1,\ldots,S_N)^{\mathsf T}$。状态价格列向量 $\phi=(\phi_1,\ldots,\phi_\Omega)^{\mathsf T}$ 按 $X$ 的行排列，$S$ 则按 $X$ 的列排列。$S_n$ 等于第 $n$ 列的各状态支付按状态价格加总：
 \[
  S=X^{\mathsf T}\phi,
  \qquad
@@ -378,7 +391,7 @@ $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性
 $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未来状态的消费而变。若 $u$ 严格凹，未来消费较少的状态有较高的边际效用，因而同样一单位支付在这些状态下有较高的折现权重 $m_\omega$。
 
 \textbf{一般路径效用下的折现因子}\quad
-若回到式~\eqref{eq:wj-six-1}（期望效用$U(c)=\sum_{\omega=1}^{\Omega}p_\omega u_\omega(c_0,c_{1\omega})$），$c_{1\omega}$ 只出现在状态 $\omega$ 的路径效用中，$c_0$ 则出现在所有路径中。在同样的内点条件下，状态价格仍等于式~\eqref{eq:wj-three-mrs} 所给的边际效用之比。设当期边际效用为正，将 $U$ 对两种消费分别求偏导，得到
+若回到\WJEqRef{eq:wj-six-1}{式~}[（期望效用$U(c)=\sum_{\omega=1}^{\Omega}p_\omega u_\omega(c_0,c_{1\omega})$）]，$c_{1\omega}$ 只出现在状态 $\omega$ 的路径效用中，$c_0$ 则出现在所有路径中。在同样的内点条件下，状态价格仍等于\WJEqRef{eq:wj-three-mrs}{内点最优条件~}所给的边际效用之比。设当期边际效用为正，将 $U$ 对两种消费分别求偏导，得到
 \[
  \phi_\omega=\frac{\partial_{c_{1\omega}}U}{\partial_{c_0}U}
  =\frac{p_\omega\partial_1u_\omega(c_0,c_{1\omega})}
@@ -386,11 +399,11 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  \qquad m_\omega=\frac{\phi_\omega}{p_\omega}.
 \]
 
-其中 $\partial_0$、$\partial_1$ 分别表示对路径效用的当期和未来消费求偏导。时间不可加时，当期边际效用可能随未来消费变化，所以分母要按各状态的路径求导再加权。若采用式~\eqref{eq:wj-six-4} 的设定，分母就化为 $u'(c_0)\sum_\eta p_\eta=u'(c_0)$。
+其中 $\partial_0$、$\partial_1$ 分别表示对路径效用的当期和未来消费求偏导。时间不可加时，当期边际效用可能随未来消费变化，所以分母要按各状态的路径求导再加权。若采用\WJEqRef{eq:wj-six-4}{式~} 的设定，分母就化为 $u'(c_0)\sum_\eta p_\eta=u'(c_0)$。
 
-\Needspace{8\baselineskip}
+
 \textbf{从真实概率定价到风险中性定价}\quad
-第四讲把单位无风险债券编号为 $1$。它在每个状态都支付 $1$，代入式~\eqref{eq:wj-six-sdf}，结合式~\eqref{eq:wj-four-7} 得到
+第四讲把单位无风险债券编号为 $1$。它在每个状态都支付 $1$，代入\WJEqRef{eq:wj-six-sdf}{式~}，结合\WJEqRef{eq:wj-four-7}{式~} 得到
 \[
  S_1=\sum_\omega\phi_\omega
     =\sum_\omega p_\omega m_\omega
@@ -398,7 +411,7 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
     =\frac{1}{1+r_F}.
 \]
 
-因此，无风险折现因子是随机折现因子在真实概率下的平均值。再按式~\eqref{eq:wj-four-8} 用 $S_1$ 归一化状态价格，得到
+因此，无风险折现因子是随机折现因子在真实概率下的平均值。再按\WJEqRef{eq:wj-four-8}{式~} 用 $S_1$ 归一化状态价格，得到
 \[
  q_\omega=\frac{\phi_\omega}{S_1}
           =p_\omega\frac{m_\omega}{\mathrm E^P[m]}.
@@ -447,12 +460,12 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
 \textbf{状态依赖}（state dependence）指即使个人的消费路径相同，所处的状态也可能改变他对这条路径的评价，所以用带状态下标的函数 $u_\omega$ 表示路径效用。例如，个人的消费水平相同，但在经济景气和不景气时，再多一单位消费带来的边际效用可能不同。
 \end{tcolorbox}
 
-沿用式~\eqref{eq:wj-six-4} 的时间权重 $\rho$，允许未来单期效用 $u_{1\omega}$ 随状态变化。消费计划的效用为
+沿用\WJEqRef{eq:wj-six-4}{式~} 的时间权重 $\rho$，允许未来单期效用 $u_{1\omega}$ 随状态变化。消费计划的效用为
 \[
  U(c)=u_0(c_0)+\rho\sum_\omega p_\omega u_{1\omega}(c_{1\omega}).
 \]
 
-假设市场完全，单期效用可微、严格递增且严格凹，最优消费为内点。沿用式~\eqref{eq:wj-three-budget} 的消费预算。以当期消费品为计价单位，令 $\lambda$ 为预算乘子。当期一阶条件为 $\lambda=u_0'(c_0)$，未来状态的一阶条件为 $\rho p_\omega u_{1\omega}'(c_{1\omega})=\lambda\phi_\omega$。将当期条件代入后有
+假设市场完全，单期效用可微、严格递增且严格凹，最优消费为内点。沿用\WJEqRef{eq:wj-three-budget}{消费预算约束~}\footnote{第三讲把每个未来状态的消费按该状态的价格折算成现值。在完全市场中，计划的现值 $c_0+\phi^{\mathsf T}c_1$ 不能超过禀赋的现值 $e_0+\phi^{\mathsf T}e_1$。这里消费越多效用越高，因此最优时预算取等号。}。以当期消费品为计价单位，令 $\lambda$ 为预算乘子。当期一阶条件为 $\lambda=u_0'(c_0)$，未来状态的一阶条件为 $\rho p_\omega u_{1\omega}'(c_{1\omega})=\lambda\phi_\omega$。将当期条件代入后有
 \[
  \phi_\omega=\frac{\rho p_\omega u_{1\omega}'(c_{1\omega})}{u_0'(c_0)}.
 \]
@@ -473,7 +486,7 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
 % 折点效用见教材印刷第 95 页及第 6 章 PPT 第 20 页。
 % 公平赌博与风险溢价见教材印刷第 102、107 页及第 7 章 PPT 第 28—30 页；第 107 页的溢价公式以 2021 年勘误为准。
 \subsection{参考点与一阶风险厌恶}
-第三讲用边际效用写出了消费选择的一阶条件。内点最优时，各项消费 $c_i^*$ 都为正，由互补松弛条件~\eqref{eq:wj-three-kkt-complementarity}（$\mu_i c_i^*=0$）可知，非负约束的乘子 $\mu_i$ 都为零。代入一阶条件~\eqref{eq:wj-three-kkt-stationarity}，再除以相应的价格 $\phi_i$，得到
+第三讲用边际效用写出了消费选择的一阶条件。内点最优时，各项消费 $c_i^*$ 都为正，由\WJEqRef{eq:wj-three-kkt-complementarity}{互补松弛条件~}[（$\mu_i c_i^*=0$）]可知，非负约束的乘子 $\mu_i$ 都为零。代入\WJEqRef{eq:wj-three-kkt-stationarity}{一阶条件~}，再除以相应的价格 $\phi_i$。这里 $i=0$ 对应当期消费，以当期商品为计价单位，故 $\phi_0=1$；$i=1,\ldots,\Omega$ 对应各未来状态。于是
 \[
  \frac{\partial_i U(c^*)}{\phi_i}=\lambda,\qquad i=0,\ldots,\Omega.
 \]
@@ -510,55 +523,63 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  \pi(\varepsilon)=\bar c-CE=\frac{a_--a_+}{2a_-}\varepsilon.
 \]
 
-\Needspace{16\baselineskip}
-图~\ref{fig:wj-six-kink-ce} 中，弦的两端对应两种消费结果。两种结果等概率，因而弦的中点横坐标为平均消费 $\bar c$，纵坐标为期望效用。过中点作水平线，与效用曲线交于 $c=CE$ 处。图上 $CE$ 到 $\bar c$ 的水平距离就是风险溢价。
+
+\WJRef{fig:wj-six-kink-ce}{图~} 中，弦的两端对应两种消费结果。两种结果等概率，因而弦的中点横坐标为平均消费 $\bar c$，纵坐标为期望效用。过中点作水平线，与效用曲线交于 $c=CE$ 处。图上 $CE$ 到 $\bar c$ 的水平距离就是风险溢价。
 
 \begin{center}
 \begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-six-kink-ce}%
 \centering
 \WJInputFigure{06_一阶风险厌恶与确定性等值}
-\WJFigure{fig:wj-six-kink-ce}{折点效用下的确定性等值与风险溢价（示例取 $a_-=2,\ a_+=1$）}
+\WJFigureCaption{折点效用下的确定性等值与风险溢价（示例取 $a_-=2,\ a_+=1$）}
 \end{minipage}
 \end{center}
 
-取 $\bar c=100$、$a_-=2$、$a_+=1$。若消费等概率取 $96$ 或 $104$，期望效用为 $(-8+4)/2=-2$，相当于确定地消费 $99$。图~\ref{fig:wj-six-kink-two-risks} 的子图（b）把消费结果收窄到 $98$ 和 $102$。平均消费仍是 $100$，期望效用升至 $-1$，确定性等值升至 $99.5$。波动幅度从 $4$ 减到 $2$，风险溢价也从 $1$ 减到 $0.5$。
+取 $\bar c=100$、$a_-=2$、$a_+=1$。若消费等概率取 $96$ 或 $104$，期望效用为 $(-8+4)/2=-2$，相当于确定地消费 $99$。\WJRef{fig:wj-six-kink-two-risks}{图~} 的子图（b）把消费结果收窄到 $98$ 和 $102$。平均消费仍是 $100$，期望效用升至 $-1$，确定性等值升至 $99.5$。波动幅度从 $4$ 减到 $2$，风险溢价也从 $1$ 减到 $0.5$。
 
 \begin{center}
 \begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-six-kink-two-risks}%
 \centering
 \WJInputFigure{06_两种风险幅度的比较}
-\WJFigure{fig:wj-six-kink-two-risks}{跨越折点与同侧波动的风险溢价}
+\WJFigureCaption{跨越折点与同侧波动的风险溢价}
 \end{minipage}
 \end{center}
 
-\Needspace{5\baselineskip}
+
 只要以折点为中心，波动再小，两个消费结果也分居斜率不同的两侧。将风险溢价等式两边同除以 $\varepsilon$，得到
 \[
  \frac{\pi(\varepsilon)}{\varepsilon}
  =\frac{a_--a_+}{2a_-}>0.
 \]
 
-图~\ref{fig:wj-six-kink-two-risks} 的前两幅子图取 $a_-=2$、$a_+=1$，这个比值为 $\frac{(2-1)}{(2\cdot 2)}=1/4$，对应图中红色区间（风险溢价）与蓝色区间（单侧波动幅度）的长度之比。若以 $\varepsilon$ 为横轴、$\pi$ 为纵轴，它就是风险溢价函数 $\pi(\varepsilon)$ 的斜率。在本例中，波动幅度每增加一单位，风险溢价增加 $1/4$ 单位。溢价与波动幅度成正比，因而称为 \textbf{ 一阶风险厌恶}。
+\WJRef{fig:wj-six-kink-two-risks}{图~} 的前两幅子图取 $a_-=2$、$a_+=1$，这个比值为 $\frac{(2-1)}{(2\cdot 2)}=1/4$，对应图中红色区间（风险溢价）与蓝色区间（单侧波动幅度）的长度之比。若以 $\varepsilon$ 为横轴、$\pi$ 为纵轴，它就是风险溢价函数 $\pi(\varepsilon)$ 的斜率。在本例中，波动幅度每增加一单位，风险溢价增加 $1/4$ 单位。溢价与波动幅度成正比，因而称为 \textbf{ 一阶风险厌恶}。
 
-若两个消费结果都在折点的同一侧，效用函数在两者之间的斜率恒定。图~\ref{fig:wj-six-kink-two-risks} 的子图（c）中，等概率消费 $96$ 或 $98$，平均消费为 $97$。以 $97$ 为基准，少消费 $1$ 损失的效用和多消费 $1$ 增加的效用都是 $2$，取平均后正好抵消。因此，确定性等值为 $97$，风险溢价为零。
+若两个消费结果都在折点的同一侧，效用函数在两者之间的斜率恒定。\WJRef{fig:wj-six-kink-two-risks}{图~} 的子图（c）中，等概率消费 $96$ 或 $98$，平均消费为 $97$。以 $97$ 为基准，少消费 $1$ 损失的效用和多消费 $1$ 增加的效用都是 $2$，取平均后正好抵消。因此，确定性等值为 $97$，风险溢价为零。
 
 
 
-与图~\ref{fig:wj-six-kink-ce} 对照，图~\ref{fig:wj-six-smooth-ce} 把折点换成光滑的凹效用曲线。沿 $\bar c$ 处的切线看，左右等量变动的一阶项分别为 $-u'(\bar c)\varepsilon$ 和 $+u'(\bar c)\varepsilon$，取平均后恰好抵消。实际的两个效用点都在切线下方，弦中点的纵坐标是期望效用，低于 $u(\bar c)$。这两个效用值之差是承担风险的效用损失。效用曲线上达到该期望效用的消费量是 $CE$，它比平均消费 $\bar c$ 少的数量就是风险溢价。
+与\WJRef{fig:wj-six-kink-ce}{图~}[（折点效用）]对照，\WJRef{fig:wj-six-smooth-ce}{图~}[（光滑效用）] 把折点换成光滑的凹效用曲线。沿 $\bar c$ 处的切线看，左右等量变动的一阶项分别为 $-u'(\bar c)\varepsilon$ 和 $+u'(\bar c)\varepsilon$，取平均后恰好抵消。实际的两个效用点都在切线下方，弦中点的纵坐标是期望效用，低于 $u(\bar c)$。这两个效用值之差是承担风险的效用损失。效用曲线上达到该期望效用的消费量是 $CE$，它比平均消费 $\bar c$ 少的数量就是风险溢价。
 
 \begin{center}
 \begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-six-smooth-ce}%
 \centering
 \WJInputFigure{06_光滑效用与确定性等值}
-\WJFigure{fig:wj-six-smooth-ce}{光滑效用下的一阶项抵消与风险溢价}
+\WJFigureCaption{光滑效用下的一阶项抵消与风险溢价}
 \end{minipage}
 \end{center}
 
 仍设 $\tilde c$ 等概率取 $\bar c+\varepsilon$ 和 $\bar c-\varepsilon$。假定 $u$ 在 $\bar c$ 附近二阶连续可微，且 $u'(\bar c)>0$、$u''(\bar c)<0$。当 $\varepsilon$ 较小时，将两种结果的效用在 $\bar c$ 处作泰勒展开，得
 \[
- u(\bar c\pm\varepsilon)
- =u(\bar c)\pm u'(\bar c)\varepsilon
+ \begin{aligned}
+ u(\bar c+\varepsilon)
+ &=u(\bar c)+u'(\bar c)\varepsilon
+   +\tfrac12 u''(\bar c)\varepsilon^2+o(\varepsilon^2),\\
+ u(\bar c-\varepsilon)
+ &=u(\bar c)-u'(\bar c)\varepsilon
    +\tfrac12 u''(\bar c)\varepsilon^2+o(\varepsilon^2).
+ \end{aligned}
 \]
 
 这里 $o(\varepsilon^2)$ 表示比 $\varepsilon^2$ 更快趋于零的余项。两种消费结果各以 $1/2$ 的概率发生，所以期望效用是把各自的效用乘以 $1/2$ 再相加。代入上面的泰勒展开，得
@@ -566,26 +587,29 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  \begin{aligned}
  \mathrm E[u(\tilde c)]
  =\tfrac12u(\bar c+\varepsilon)+\tfrac12u(\bar c-\varepsilon)
- \xlongequal{\text{泰勒展开}}u(\bar c)
+ \xlongequal{\text{分别泰勒展开}}u(\bar c)
    +\underbrace{\tfrac12u'(\bar c)\varepsilon-\tfrac12u'(\bar c)\varepsilon}_{=\,0}
    +\tfrac12u''(\bar c)\varepsilon^2+o(\varepsilon^2).
  \end{aligned}
 \]
 
-一阶项一正一负，按相同的概率加权后恰好抵消。两种结果的二阶项相同，因为 $(+\varepsilon)^2=(-\varepsilon)^2$，加权平均后仍保留这一项。因此，承担风险的效用损失为
-\[
+一阶项一正一负，按相同的概率加权后恰好抵消。两种结果的二阶项相同，因为 $(+\varepsilon)^2=(-\varepsilon)^2$，加权平均后仍保留这一项。从确定消费的效用 $u(\bar c)$ 中减去上面展开的期望效用，就得到效用损失的二阶展开：
+\begin{equation}\label{eq:wj-six-smooth-utility-loss}
+ \begin{aligned}
  u(\bar c)-\mathrm E[u(\tilde c)]
- =-\tfrac12 u''(\bar c)\varepsilon^2+o(\varepsilon^2).
-\]
+ &=u(\bar c)-\bigl[u(\bar c)+\tfrac12 u''(\bar c)\varepsilon^2+o(\varepsilon^2)\bigr]\\
+ &=-\tfrac12 u''(\bar c)\varepsilon^2+o(\varepsilon^2).
+ \end{aligned}
+\end{equation}
 
-和折点情形一样，确定性等值满足 $u(CE)=\mathrm E[u(\tilde c)]$，而风险溢价为 $\pi(\varepsilon)=\bar c-CE$。对足够小的 $\varepsilon>0$，$u$ 在两个消费结果之间严格递增且严格凹，因此 $\bar c-\varepsilon<CE<\bar c$。
+和折点情形一样，确定性等值满足 $u(CE)=\mathrm E[u(\tilde c)]$，而风险溢价为 $\pi(\varepsilon)=\bar c-CE$。对足够小的 $\varepsilon>0$，$u$ 在两个消费结果之间严格递增且严格凹。严格递增意味着两种效用的平均值高于较低的效用 $u(\bar c-\varepsilon)$；严格凹意味着这个平均值低于 $u(\bar c)$。由 $u(CE)$ 夹在这两个效用值之间可知 $\bar c-\varepsilon<CE<\bar c$。
 
 \textbf{拉格朗日中值定理。}设 $a<b$，$f$ 在 $[a,b]$ 上连续、在 $(a,b)$ 内可微，则存在 $\xi\in(a,b)$ 使
 \[
  \frac{f(b)-f(a)}{b-a}=f'(\xi).
 \]
 
-在这里，$u$ 在 $[CE,\bar c]$ 上连续、在 $(CE,\bar c)$ 内可微。取 $f=u$、$a=CE$、$b=\bar c$，由中值定理可知，存在 $\xi\in(CE,\bar c)$，使
+在这里，$u$ 在 $[CE,\bar c]$ 上连续、在 $(CE,\bar c)$ 内可微。取 $f=u$、$a=CE$、$b=\bar c$，由\textbf{中值定理}可知，存在 $\xi\in(CE,\bar c)$，使
 \[
  \frac{u(\bar c)-u(CE)}{\bar c-CE}=u'(\xi).
 \]
@@ -596,13 +620,37 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  =\frac{u(\bar c)-\mathrm E[u(\tilde c)]}{u'(\xi)}.
 \]
 
-这样，效用损失除以每单位消费的平均效用增量，就得到参与者为消除风险愿意放弃的消费量。由于 $\bar c-\varepsilon<CE<\xi<\bar c$，当 $\varepsilon\to0$ 时，$\xi\to\bar c$，从而 $u'(\xi)\to u'(\bar c)>0$。把效用损失的二阶展开代入，得到
+这样，效用损失除以每单位消费的平均效用增量，就得到参与者为消除风险愿意放弃的消费量。由 $\bar c-\varepsilon<CE<\xi<\bar c$ 可知，
+\[
+ 0<\bar c-\xi<\bar c-CE<\varepsilon,
+\]
+当 $\varepsilon\to0^+$ 时，上下界 $\varepsilon$ 和 $0$ 都趋于零。由夹逼定理，$\bar c-\xi$ 和 $\bar c-CE$ 都趋于零，即 $\xi$ 与 $CE$ 都趋于 $\bar c$。再由 $u'$ 在 $\bar c$ 处连续，得到 $u'(\xi)\to u'(\bar c)>0$。
+
+\WJRef{fig:wj-six-squeeze}{图~} 用一般的 $y=f(x)$ 说明极限的容差：把水平带从 $A\pm\eta_1$ 缩到 $A\pm\eta_2$，可相应缩小 $x_0$ 两侧的范围。在本题中，$x$ 对应波动幅度 $\varepsilon$，$x_0=0$，$A=\bar c$，$f(x)$ 分别对应 $CE$ 或 $\xi$。这里只考察 $\varepsilon>0$ 的一侧；任取容许误差 $\eta>0$，由上面的不等式可知，只要 $0<\varepsilon<\eta$，两者就都落在 $\bar c\pm\eta$ 之间。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-six-squeeze}%
+\centering
+\WJInputFigure{06_夹逼定理}
+\WJFigureCaption{极限的容差示意：从较宽的水平带缩到较窄的水平带}
+\end{minipage}
+\end{center}
+
+将\WJEqRef{eq:wj-six-smooth-utility-loss}{式~}[的效用损失二阶展开]代入上面的风险溢价公式，再除以 $\varepsilon^2$，得到
+\[
+ \frac{\pi(\varepsilon)}{\varepsilon^2}
+ =\frac{-\tfrac12 u''(\bar c)+o(1)}{u'(\xi)}
+ \longrightarrow -\frac{u''(\bar c)}{2u'(\bar c)}.
+\]
+
+因此，风险溢价的二阶展开为
 \[
  \pi(\varepsilon)=-\frac{u''(\bar c)}{2u'(\bar c)}\varepsilon^2
                    +o(\varepsilon^2).
 \]
 
-波动幅度减半时，光滑情形的二阶近似减为原来的四分之一，折点模型的溢价则恰好减半。第~\ref{sec:wj-seven-small-risk}~节将这个推导推广到一般的公平小风险（式~\eqref{eq:wj-seven-2}），图~\ref{fig:wj-seven-smooth-two-risks} 比较了光滑效用下的两种波动幅度。第~\ref{sec:wj-seven-6}~节再比较两种溢价的阶数。
+波动幅度减半时，光滑情形的二阶近似减为原来的四分之一，折点模型的溢价则恰好减半。\WJRef{sec:wj-seven-small-risk}{第~}[~节（小风险展开与绝对风险厌恶系数）]将这个推导推广到一般的公平小风险，见\WJEqRef{eq:wj-seven-2}{式~}[（小风险溢价的二阶近似）]，\WJRef{fig:wj-seven-smooth-two-risks}{图~} 比较了光滑效用下的两种波动幅度。\WJRef{sec:wj-seven-6}{第~}[~节（一阶风险厌恶）]再比较两种溢价的阶数。
 
 \subsection{风险与模糊性}
 \begin{tcolorbox}[knowledge,title=风险与模糊性,breakable=false]
@@ -612,20 +660,23 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
 \end{tcolorbox}
 
 % 两袋抽球例据 Ellsberg (1961), pp. 650--652。教材印刷第 96 页与教师 PPT 第 25 页讨论独立性问题。
-\Needspace{12\baselineskip}
-\textbf{两袋抽球。}图~\ref{fig:wj-six-ellsberg-bags} 中，袋 A 有 50 个红球和 50 个黑球，袋 B 也有 100 个球，只知道每个球非红即黑。选定一袋后，从中随机抽一个球。两袋中奖的奖金相同，未中奖都得零。在抽球前分别回答两个问题。如果抽中红球才中奖，你会选哪一袋？如果抽中黑球才中奖，你又会选哪一袋？
+
+
+
+\textbf{两袋抽球。}\WJRef{fig:wj-six-ellsberg-bags}{图~} 中，袋 A 有 50 个红球和 50 个黑球，袋 B 也有 100 个球，只知道每个球非红即黑。选定一袋后，从中随机抽一个球。两袋中奖的奖金相同，未中奖都得零。在抽球前分别回答两个问题。如果抽中红球才中奖，你会选哪一袋？如果抽中黑球才中奖，你又会选哪一袋？
 
 \begin{center}
 \begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-six-ellsberg-bags}%
 \centering
 \WJInputFigure{06_两袋抽球}
-\WJFigure{fig:wj-six-ellsberg-bags}{两袋抽球}
+\WJFigureCaption{两袋抽球}
 \end{minipage}
 \end{center}
 
 如果两次都严格偏好袋 A，这种选择体现了\textbf{模糊性厌恶}。设决策者用同一个效用函数评价奖金，给定金额的效用与球的颜色和袋子无关。再设袋 B 抽到红球的主观概率为 $p$，则黑球的概率为 $1-p$。在这套主观期望效用模型下，中奖概率越高，评价就越高。因此，红球中奖时严格偏好 A 要求 $p<\tfrac12$，黑球中奖时严格偏好 A 则要求 $1-p<\tfrac12$。两式相加会得到 $1<1$，所以一组主观概率无法同时解释这两次选择。
 
-接下来的第~\ref{sec:wj-six-paradoxes}~节回到概率已知的彩票。阿莱斯悖论考察的是，两张彩票的共同后果同时改变后，原来的偏好排序是否保持不变。
+接下来的\WJRef{sec:wj-six-paradoxes}{第~}[~节（悖论与独立性）]回到概率已知的彩票。阿莱斯悖论考察的是，两张彩票的共同后果同时改变后，原来的偏好排序是否保持不变。
 
 \section{悖论与独立性}\label{sec:wj-six-paradoxes}
 \subsection{圣彼得堡悖论}
@@ -711,6 +762,9 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  \label{eq:wj-six-mixture}
 \end{equation}
 \end{tcolorbox}
+期望效用表示满足混合独立性。
+
+\begin{solution}[label-content={证明},blank-type=none]
 若 $V(L)=\sum_i p_i u(x_i)$，则混合后两彩票的效用差为
 \[
  V\bigl(\alpha L+(1-\alpha)N\bigr)
@@ -718,18 +772,20 @@ $\rho$ 给未来效用统一的时间权重，边际效用之比则可能随未�
  =\alpha[V(L)-V(M)].
 \]
 
-$\alpha>0$，所以差值的符号保持不变，证明了~\eqref{eq:wj-six-mixture} 的双向关系。
+$\alpha>0$，所以差值的符号保持不变，证明了\WJEqRef{eq:wj-six-mixture}{彩票混合独立性~} 的双向关系。
+\end{solution}
 
 \textbf{混合连续性}要求，若 $L\succ M\succ N$，则存在 $0<\alpha<1$，使 $\alpha L+(1-\alpha)N\sim M$。逐步提高选中较好彩票 $L$ 的概率时，可以找到一个比例，使这张混合彩票与排在中间的 $M$ 恰好无差异。
 \begin{tcolorbox}[knowledge,title=期望效用表示定理：彩票形式,breakable=false]
 在简单彩票构成的混合集上，偏好若满足完备性、传递性、混合连续性与混合独立性，就具有 \textbf{von Neumann--Morgenstern 期望效用表示} $V(L)=\sum_i p_i u(x_i)$。伯努利效用 $u$ 在正仿射变换下唯一。
 \end{tcolorbox}
 
-\Needspace{12\baselineskip}
+
 \subsection{阿莱斯悖论}\label{sec:wj-six-allais}
-第一对彩票中有一张保证中奖，第二对彩票则都可能一无所获。比较这两组选择，可以检验式~\eqref{eq:wj-six-mixture} 的混合独立性。
+第一对彩票中有一张保证中奖，第二对彩票则都可能一无所获。比较这两组选择，可以检验\WJEqRef{eq:wj-six-mixture}{式~} 的混合独立性。
 
 % 来源：PPT 第 25—27 页；P_3/P_4 编号按第 26 页图片。
+\Needspace{13\baselineskip}
 \begin{tcolorbox}[example,title=课堂例题：两对抽奖的选择]
 \begin{question}
 奖金单位为万美元，四种彩票为
@@ -745,7 +801,7 @@ $\alpha>0$，所以差值的符号保持不变，证明了~\eqref{eq:wj-six-mixt
 
 若参与者选择 $P_1\succ P_2$，同时 $P_3\succ P_4$，能否用同一个期望效用函数解释？说明共同后果如何替换。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=6\baselineskip]
 第一对排序要求
 \[
  u(100)>0.01u(0)+0.89u(100)+0.10u(500)
@@ -777,7 +833,6 @@ $\alpha>0$，所以差值的符号保持不变，证明了~\eqref{eq:wj-six-mixt
 
 如果目的是解释观察到的选择，就需要考虑怎样修改模型。引入后悔时，评价一个结果还会考虑同一情形下未选方案本来能带来什么。放宽独立性则容许概率以非线性方式进入评价。下面的秩依效用修改了概率的加权方式，前景理论还把结果相对参考点的收益或损失纳入评价。
 
-\Needspace{15\baselineskip}
 \section{非期望效用与行为模型}\label{sec:wj-six-behavior}
 \subsection{秩依效用}
 将相同的结果合并后，按 $x_1<\cdots<x_n$ 排列，记随机结果为 $X$，各结果的概率为 $p_i$。取递增函数 $g:[0,1]\to[0,1]$，$g(0)=0,g(1)=1$，\textbf{秩依效用}（rank-dependent utility）可写为
@@ -801,9 +856,9 @@ $\pi_i\ge0$，且由相邻项相消得 $\sum_i\pi_i=g(1)-g(0)=1$。$g(p)=p$ 时�
 % 补充算例：用 PPT 第 25—26 页的四种彩票演示第 28 页的秩依效用。
 \begin{tcolorbox}[example,title=课堂例题：用秩依效用比较阿莱斯彩票]
 \begin{question}
-沿用第~\ref{sec:wj-six-allais}~节的四种彩票，取 $g(p)=p^2$，并设 $u(0)=0$、$u(100)=1$、$u(500)=2$。计算四种彩票的秩依效用，比较两组选择。
+沿用\WJRef{sec:wj-six-allais}{第~}[~节（阿莱斯悖论）]的四种彩票，取 $g(p)=p^2$，并设 $u(0)=0$、$u(100)=1$、$u(500)=2$。计算四种彩票的秩依效用，比较两组选择。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
 先看 $P_2$。至少得到 $100$ 的概率为 $0.99$，超过 $100$ 的概率为 $0.10$，所以结果 $100$ 的决策权重为 $g(0.99)-g(0.10)$，结果 $500$ 的决策权重为 $g(0.10)$。按同一方法计算四种彩票，得到
 \[
 \begin{aligned}
@@ -836,7 +891,7 @@ $\pi_i\ge0$，且由相邻项相消得 $\sum_i\pi_i=g(1)-g(0)=1$。$g(p)=p$ 时�
 
 期望效用的公理可以用来检查一组选择是否一致。前景理论则着重解释实际观察到的选择，例如同样的最终财富用收益或损失来表述时，为什么会引起不同的风险态度。
 
-价值函数在参考点两侧的形状见图~\ref{fig:wj-prospect-value}。
+价值函数在参考点两侧的形状见\WJRef{fig:wj-prospect-value}{图~}。
 
 \WJInputFigure{06_前景价值函数}
 
@@ -845,7 +900,7 @@ $\pi_i\ge0$，且由相邻项相消得 $\sum_i\pi_i=g(1)-g(0)=1$。$g(p)=p$ 时�
 \begin{question}
 $A$ 的最终财富确定为 $50$ 元，$B$ 的最终财富等概率为 $100$ 或 $0$ 元。设 $\alpha=1/2$、$\lambda=2$，本例取决策权重 $\omega_i=p_i$，即各结果的原概率。分别以 $r=0$、$r=100$ 为参考点比较两选择。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=4\baselineskip]
 \[
 \begin{array}{c|cc|c}
  \text{参考点}&V(A)&V(B)&\text{排序}\\\hline
@@ -869,19 +924,19 @@ $A$ 的最终财富确定为 $50$ 元，$B$ 的最终财富等概率为 $100$ �
 两个人到商场看话剧，两张票总价为 $K$，也可以放弃演出、改去逛商场。比较两种情形：已买好的票丢失后是否重买；准备买票前丢失 $K$ 元现金后是否仍买。两种情形都还有足够现金，也能买到同样的票。若只按最终财富与演出体验评价，应如何选择？心理账户会怎样影响判断？
 \end{question}
 
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]
 两情形的经济损失均为 $K$，再次购票均需支付 $K$，可获得的后续结果相同，因此按最终财富与演出体验评价时，购票决定相同。
 
 卡尼曼和特沃斯基的问卷比较了这两类情形。丢了等额现金后仍愿意买票的人，比丢票后愿意重买的人更多。心理账户可以解释这种差异。丢票后重买可能使“观看演出”账户累计记入 $2K$，参与者因超出该账户预算而放弃；丢现金被记入一般现金损失，演出账户仍只记 $K$，参与者可能继续购买。差异来自对同一损失与支出的归类方式。
 \end{solution}
 \end{tcolorbox}
 
-\Needspace{21\baselineskip}
+\Needspace{23\baselineskip}
 \WJChapterSummary
 \begin{tcolorbox}[summary,breakable=false]
 \begin{enumerate}
- \item 期望效用对消费路径效用按真实概率线性加权，共同后果替换保持偏好排序。反过来，在定理~\ref{thm:wj-six-1} 的条件下，状态组独立性给出固定 $c_0$ 时的状态可加表示。
- \item 状态独立与时间可加给出式~\eqref{eq:wj-six-3}，即当期效用与未来期望效用相加。进一步令 $u_1=\rho u_0$，得到式~\eqref{eq:wj-six-4} 的共同单期效用形式。
+ \item 期望效用对消费路径效用按真实概率线性加权，共同后果替换保持偏好排序。反过来，在\WJRef{thm:wj-six-1}{定理~}[（可加表示定理）] 的条件下，状态组独立性给出固定 $c_0$ 时的状态可加表示。
+ \item 状态独立与时间可加给出\WJEqRef{eq:wj-six-3}{式~}，即当期效用与未来期望效用相加。进一步令 $u_1=\rho u_0$，得到\WJEqRef{eq:wj-six-4}{式~} 的共同单期效用形式。
  \item 总效用 $U$ 是序数表示；彩票偏好的伯努利效用在正仿射变换下等价。内点最优时，$m_\omega=\rho u'(c_{1\omega})/u'(c_0)$ 联系消费与定价。
  \item 习惯和攀比把过去或他人的消费纳入评价，状态依赖允许不同状态采用不同的效用函数。参考点处的折点可以产生一阶风险厌恶；偏好概率明确的选择可以体现模糊性厌恶。
  \item 圣彼得堡彩票区分期望奖金与期望效用；阿莱斯选择违反混合独立性。秩依效用、前景理论与心理账户分别突出累计概率、参考点与支出归类。

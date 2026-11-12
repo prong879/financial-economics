@@ -1,0 +1,27 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 按用户提供的教材图示重绘。用 eta 表示容许误差，与正文的波动幅度 epsilon 区分。
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.38cm,y=1.27cm]
+ \draw[->,semithick] (-.48,0)--(5.86,0) node[right] {$x$};
+ \draw[->,semithick] (0,-1.03)--(0,3.02) node[above left] {$y$};
+ \node[below left] at (0,0) {$O$};
+ \draw[dashed] (0,1.46) node[left] {$A$} -- (5.7,1.46);
+ \draw[dashed] (3.2,1.46)--(3.2,0) node[below] {$x_0$};
+
+ \draw (.63,2.65)--(5.28,2.65) node[right] {$A+\eta_1$};
+ \draw (.63,2.08)--(5.28,2.08) node[right] {$A+\eta_2$};
+ \draw (.63,.84)--(5.28,.84) node[right] {$A-\eta_2$};
+ \draw (.63,.27)--(5.28,.27) node[right] {$A-\eta_1$};
+
+ \draw (2.36,2.08)--(2.36,-.86) node[below] {$x_0-\delta_2$};
+ \draw (4.04,2.08)--(4.04,-.86) node[below] {$x_0+\delta_2$};
+ \draw (1.62,.24) .. controls (1.43,.12) and (1.43,-.12) .. (1.62,-.24);
+ \draw (4.78,.24) .. controls (4.97,.12) and (4.97,-.12) .. (4.78,-.24);
+ \node[below] at (1.56,-.26) {$x_0-\delta_1$};
+ \node[below] at (4.84,-.26) {$x_0+\delta_1$};
+
+ \draw[thick] (.63,2.48)
+   .. controls (1.39,2.57) and (1.89,2.49) .. (2.36,2.08)
+   .. controls (2.66,1.82) and (2.92,1.61) .. (3.2,1.46)
+   .. controls (3.77,1.15) and (4.34,1.02) .. (5.16,1.01)
+   node[right,yshift=3pt] {$f(x)$};
+\end{tikzpicture}

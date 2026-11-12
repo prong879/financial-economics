@@ -13,8 +13,8 @@
 \]
 满足独立性公理。
 \end{problem}
-\begin{solution}
-独立性公理\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-six-independence}）\fi{}要求，在两个计划中同时替换共同状态的消费后，原有排序保持不变。题中的 $\pi_\omega$ 表示状态 $\omega$ 的真实概率\ifdefined\WJHandoutKnowledge，正文记为 $p_\omega$\fi。固定当前消费 $c_0$，设两个计划 $c,c'$ 在状态 $\omega'$ 的未来消费同为 $x$。比较时，共同的 $u_0(c_0)$ 和 $\pi_{\omega'}u_1(x)$ 相消，得到
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=7\baselineskip]
+独立性公理\ifdefined\WJHandoutKnowledge（\WJRef{axiom:wj-six-independence}{公理~}[（状态间独立性）]）\fi{}要求，在两个计划中同时替换共同状态的消费后，原有排序保持不变。题中的 $\pi_\omega$ 表示状态 $\omega$ 的真实概率\ifdefined\WJHandoutKnowledge，正文记为 $p_\omega$\fi。固定当前消费 $c_0$，设两个计划 $c,c'$ 在状态 $\omega'$ 的未来消费同为 $x$。比较时，共同的 $u_0(c_0)$ 和 $\pi_{\omega'}u_1(x)$ 相消，得到
 \[
  U(c)-U(c')=
  \sum_{\omega\ne\omega'}\pi_\omega
@@ -30,15 +30,15 @@
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{} 对于由练习~\ref{prob:wj-six-1} 给出的效用函数表示的偏好，证明连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
+\WJSixProblem{} 对于由\WJRef{prob:wj-six-1}{练习~} 给出的效用函数表示的偏好，证明连续性意味着 $u_{0}(\cdot)$ 和 $u_{1}(\cdot)$ 都是连续的。
 \end{problem}
-\begin{solution}
-沿用第二讲的非负消费域与不满足性公理\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-two-1}，增加消费会使计划严格更受偏好）\fi。考虑当前消费为 $x$、未来各状态消费均为 $y$ 的计划。由于 $\sum_\omega\pi_\omega=1$，其效用为
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
+沿用第二讲的非负消费域与不满足性公理\ifdefined\WJHandoutKnowledge（\WJRef{axiom:wj-two-1}{公理~}，增加消费会使计划严格更受偏好）\fi。考虑当前消费为 $x$、未来各状态消费均为 $y$ 的计划。由于 $\sum_\omega\pi_\omega=1$，其效用为
 \[
  F(x,y)=u_0(x)+u_1(y).
 \]
 
-固定 $y$ 增加 $x$，由不满足性知 $u_0$ 严格递增。固定 $x$ 增加 $y$，由同一公理知 $u_1$ 严格递增。偏好连续性\ifdefined\WJHandoutKnowledge（公理~\ref{axiom:wj-two-2}，上下等值集均为闭集）\fi{}则保证，对同一个基准计划，一列计划若都不劣于它，极限仍不劣于它。若都不优于它，极限仍不优于它。
+固定 $y$ 增加 $x$，由不满足性知 $u_0$ 严格递增。固定 $x$ 增加 $y$，由同一公理知 $u_1$ 严格递增。偏好连续性\ifdefined\WJHandoutKnowledge（\WJRef{axiom:wj-two-2}{公理~}，上下等值集均为闭集）\fi{}则保证，对同一个基准计划，一列计划若都不劣于它，极限仍不劣于它。若都不优于它，极限仍不优于它。
 
 把 $F$ 写成 $f(x)+g(y)$。如果 $f$ 有跳跃，可以小幅调整另一期的消费，使 $g$ 的效用变化小于这个跳跃，再利用偏好连续性取极限。因为单调函数至多有可数个不连续点，可以选取 $g$ 的一个内点连续点 $y$。
 \begin{enumerate}[label=(\roman*)]
@@ -67,10 +67,10 @@
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{} 若 $a\succeq b$ 意味着对任意 $\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，则称偏好关系 $\succeq$ 是\textbf{弱凸的}（weakly convex）。这与教材第 2 章中的强凸性有所不同。假设偏好关系连续，并由练习~\ref{prob:wj-six-1} 给出的期望效用函数表示（因而 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是连续函数）。证明此时强凸性蕴含弱凸性。
+\WJSixProblem{} 若 $a\succeq b$ 意味着对任意 $\alpha\in[0,1]$ 都有 $\alpha a+(1-\alpha)b\succeq b$，则称偏好关系 $\succeq$ 是\textbf{弱凸的}（weakly convex）。这与教材第 2 章中的强凸性有所不同。假设偏好关系连续，并由\WJRef{prob:wj-six-1}{练习~} 给出的期望效用函数表示（因而 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是连续函数）。证明此时强凸性蕴含弱凸性。
 \end{problem}
-\begin{solution}
-本题的强凸性沿用教材第 15 页公理 3\ifdefined\WJHandoutKnowledge。现行讲义第二讲的公理~\ref{axiom:wj-two-3} 采用的是题中所说的弱凸性\fi。按教材的条件，若 $a\succ b$，则对任意 $0<\alpha<1$，有
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=8\baselineskip]
+本题的强凸性沿用教材第 15 页公理 3\ifdefined\WJHandoutKnowledge。本讲义的\WJRef{axiom:wj-two-3}{公理~}[（凸性）]采用的是题中所说的弱凸性\fi。按教材的条件，若 $a\succ b$，则对任意 $0<\alpha<1$，有
 \[
  \alpha a+(1-\alpha)b\succ b.
 \]
@@ -82,7 +82,7 @@
  U(m)<U(a)=U(b).
 \]
 
-由练习~\ref{prob:wj-six-2}，$u_0$ 和 $u_1$ 连续，故有限状态下的 $U$ 连续。沿着从 $a$ 到 $m$ 的线段，由介值定理可取
+由\WJRef{prob:wj-six-2}{练习~}，$u_0$ 和 $u_1$ 连续，故有限状态下的 $U$ 连续。沿着从 $a$ 到 $m$ 的线段，由介值定理可取
 \[
  d=(1-t)a+tm,\quad 0<t<1,\qquad
  U(m)<U(d)<U(b).
@@ -99,9 +99,9 @@
 \end{solution}
 
 \begin{problem}
-\WJSixProblem{} 判断教材中的下述命题。假设定义在随机支付上的效用函数具有练习~\ref{prob:wj-six-1} 中的形式，其中 $\Omega$ 是任意状态空间，$P$ 是相应概率测度。如果偏好还满足弱凸性，那么 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是凹的。
+\WJSixProblem{} 判断教材中的下述命题。假设定义在随机支付上的效用函数具有\WJRef{prob:wj-six-1}{练习~} 中的形式，其中 $\Omega$ 是任意状态空间，$P$ 是相应概率测度。如果偏好还满足弱凸性，那么 $u_0(\cdot)$ 和 $u_1(\cdot)$ 都是凹的。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={反例},blank-type=manual,blank-vsep=9\baselineskip]
 命题不成立。弱凸性要求混合计划的效用至少达到两个端点中较低的效用，这是拟凹性。凹性则要求混合计划的效用至少达到两个端点效用的加权平均。
 
 写成期望形式有 $U(c_0,\widetilde c_1)=u_0(c_0)+\mathrm E^P[u_1(\widetilde c_1)]$。固定 $c_0$，比较未来各状态消费恒为 $x$ 或恒为 $y$ 的两个计划。常数的期望等于自身，因此两计划的效用分别为 $u_0(c_0)+u_1(x)$ 和 $u_0(c_0)+u_1(y)$。任取 $\lambda\in[0,1]$，混合计划的效用至少达到两者中较低的一个。消去共同的 $u_0(c_0)$，得到
@@ -125,6 +125,6 @@
 
 任取两个满足 $x\ge f_k(y)$ 的计划，它们的混合记为 $(\bar x,\bar y)$。两个计划的 $x$ 各自不小于其边界值，所以 $\bar x$ 不小于两个边界值的加权平均。由 $f_k$ 的凸性，这个加权平均又不小于 $f_k(\bar y)$。因此混合计划仍在上等值集中，偏好弱凸。交换两期的角色，还可得到 $u_1$ 不凹的反例。
 
-本题允许两期采用不同的 $u_0,u_1$。两期采用共同单期效用的形式\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-six-4}）\fi{}还要求 $u_1=\rho u_0$。
+本题允许两期采用不同的 $u_0,u_1$。两期采用共同单期效用的形式\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-six-4}{式~}[（共同单期效用）]）\fi{}还要求 $u_1=\rho u_0$。
 \end{solution}
 

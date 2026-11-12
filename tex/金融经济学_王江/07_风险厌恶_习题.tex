@@ -18,7 +18,7 @@
 \end{enumerate}
 最后一个结论说的是，对于具有单调递增的相对风险厌恶的投资者，他在风险资产上的投资额占他财富的比例随着财富的增加而减少。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=11\baselineskip]
 记初始财富为 $w$ 时的可行投资区间为 $D(w)$。它包含不投资的选择 $a=0$，并要求可行头寸在各可能状态下都使期末财富为正，以便在正财富区间上比较风险厌恶。对 $i=1,2$，用同一可行集求解
 \[
  \begin{aligned}
@@ -106,8 +106,8 @@
     \item 讨论在以上情形下，确定性等价如何依赖于初始财富 $w$。从中你能得到什么结论？并解释你的结论。
 \end{enumerate}
 \end{problem}
-\begin{solution}
-常绝对风险厌恶 $a>0$ 时，可取 $u(x)=-e^{-ax}$，其绝对风险厌恶系数 $-u''(x)/u'(x)$ 恒为 $a$。这个效用在整个实数轴上有定义，因此也适用于期末财富可能为负的正态情形。按风险溢价的定义\ifdefined\WJHandoutKnowledge（定义~\ref{def:wj-seven-4}）\fi，
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+常绝对风险厌恶 $a>0$ 时，可取 $u(x)=-e^{-ax}$，其绝对风险厌恶系数 $-u''(x)/u'(x)$ 恒为 $a$。这个效用在整个实数轴上有定义，因此也适用于期末财富可能为负的正态情形。按风险溢价的定义\ifdefined\WJHandoutKnowledge（\WJRef{def:wj-seven-4}{定义~}[（风险溢价）]）\fi，
 \[
  \mathrm E[u(w+\tilde g)]=u(w-\pi)=u(w+C),\qquad
  C=-\pi,\qquad CE=w-\pi=w+C.
@@ -159,7 +159,7 @@
 
 % 原书印刷第 109 页；参考答案采用对数效用，与原题的“绝对”条件不一致，保留原题并分别处理。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 绝对风险厌恶系数恒为 $1$，可取 $u(x)=-e^{-x}$。沿用上一题的净额口径，相对确定性等价为 $C_R=C/w$，其中 $w>0$。将 $a=1$、净风险 $w\tilde g$ 代入上一题的公式，得到 $C=-\ln\mathrm E[e^{-w\tilde g}]$。若按期末财富总额计算，对应的比例是 $CE/w=1+C_R$。
 \begin{enumerate}[label=(\alph*)]
 \item 对公平二项风险，
@@ -210,7 +210,7 @@
 \end{itemize}
 用这两种定义计算风险溢价。它们相等吗？解释所得到的结论。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=8\baselineskip]
 相对风险厌恶系数恒为 $2$，所以
 \[
  -\frac{x u''(x)}{u'(x)}=2
@@ -269,15 +269,15 @@
     \item 现在假设他必须承担的是分散化的风险 $\tilde{g}=\frac12(\tilde{g}_{1}+\tilde{g}_{2})$。记这种情形下的期望效用为 $V_{2}=E[u(w+\tilde{g})]$。$V_{2}$ 是否总是高于 $V_{1}$？
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-\item 由公平性，$-b$ 和 $b$ 各以 $1/2$ 的概率发生。严格风险厌恶意味着伯努利效用 $u$ 严格凹\ifdefined\WJHandoutKnowledge（见定理~\ref{thm:wj-seven-3}）\fi。由于 $b>0$，两个期末财富 $w+b$ 和 $w-b$ 均为正且不同，严格 Jensen 不等式给出
+\item \textbf{证明}\quad 由公平性，$-b$ 和 $b$ 各以 $1/2$ 的概率发生。严格风险厌恶意味着伯努利效用 $u$ 严格凹\ifdefined\WJHandoutKnowledge（见\WJRef{thm:wj-seven-3}{定理~}[（风险厌恶与效用凹性）]）\fi。由于 $b>0$，两个期末财富 $w+b$ 和 $w-b$ 均为正且不同，严格 Jensen 不等式给出
 \[
  V_1=\tfrac12u(w+b)+\tfrac12u(w-b)
  <u\left(\tfrac12(w+b)+\tfrac12(w-b)\right)=u(w).
 \]
 
-\item 两个赌博独立，四种输赢组合各有 $1/4$ 的概率。两次都赢或都输时，平均风险分别为 $b$ 或 $-b$。一赢一输的两条路径上，盈亏相抵，合计有 $1/2$ 的概率得到零。因此
+\item \textbf{解答}\quad 两个赌博独立，四种输赢组合各有 $1/4$ 的概率。两次都赢或都输时，平均风险分别为 $b$ 或 $-b$。一赢一输的两条路径上，盈亏相抵，合计有 $1/2$ 的概率得到零。因此
 \[
  \Pr(\tilde g=b)=\tfrac14,\quad
  \Pr(\tilde g=0)=\tfrac12,\quad
