@@ -7,8 +7,8 @@
 \end{problem}
 \end{samepage}
 \Needspace{6\baselineskip}
-\begin{solution}
-设 $w>0$，$\theta_i$ 是投资权重，$\sum_i\theta_i=1$。沿用本章的净收益率记号，期末财富与目标函数为
+\begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
+设 $w>0$。本题用 $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$ 表示投资权重，第 $i$ 只证券的投资金额为 $w\theta_i$，且 $\sum_i\theta_i=1$。沿用本章的净收益率记号，期末财富与目标函数为
 \[
  \widetilde W(\theta)=w\left(1+\sum_{i=1}^N\theta_i\tilde r_i\right),\qquad
  F(\theta)=\mathrm E[u(\widetilde W(\theta))].
@@ -18,7 +18,7 @@
 
 对任意权重向量 $\theta$，将其分量作全部 $N!$ 种排列，记为 $\theta^{(\sigma)}$。收益独立同分布，所以调换资产的权重不会改变组合收益的分布，各排列的期望效用均为 $F(\theta)$。每个权重在每个位置出现的次数相同，故平均后每个位置的权重都是 $\sum_i\theta_i/N=1/N$。
 
-记这个等权向量为 $\bar\theta$。对同一组已实现的收益率，先平均权重再算期末财富，等于先算各排列的期末财富再取平均。对这些财富应用 Jensen 不等式\ifdefined\WJHandoutKnowledge（见第~\ref{sec:wj-seven-2}~节）\fi，再对收益率取期望，得到
+记这个等权向量为 $\bar\theta$。对同一组已实现的收益率，先平均权重再算期末财富，等于先算各排列的期末财富再取平均。对这些财富应用 Jensen 不等式\ifdefined\WJHandoutKnowledge（见\WJRef{sec:wj-seven-2}{第~}[~节（风险厌恶的定义）]）\fi\footnote{效用函数凹时，先对财富取平均再算效用，至少不低于先算效用再取平均。本题先固定一组收益率，对权重的各个排列应用此不等式，随后才对随机收益率取期望。}，再对收益率取期望，得到
 \[
  F(\bar\theta)
  =F\left(\frac1{N!}\sum_\sigma\theta^{(\sigma)}\right)
@@ -42,7 +42,7 @@
 \end{problem}
 \end{samepage}
 \Needspace{6\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
 \item 设股票权重为 $x$，记
 \[
@@ -104,7 +104,7 @@
 
 \begin{samepage}
 \begin{problem}
-\WJEightExercise{exer:wj-eight-3}{} 考虑与练习~\ref{exer:wj-eight-2} 一样的问题。不过现在假设效用函数具有常数绝对风险厌恶系数：
+\WJEightExercise{exer:wj-eight-3}{} 考虑与\WJRef{exer:wj-eight-2}{练习~} 一样的问题。不过现在假设效用函数具有常数绝对风险厌恶系数：
 \[
     E\bigl[-e^{-a\tilde{w}}\bigr].
 \]
@@ -117,7 +117,7 @@
 \end{problem}
 \end{samepage}
 \Needspace{6\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
 \item 取 $a>0$、$w>0$、$\sigma^2>0$，允许自由借贷与卖空，指数效用定义在整个实数轴上。设股票权重为 $x$，则
 \[
@@ -143,7 +143,7 @@
  =w(1+r_F)+wx(\bar r-r_F)-\frac a2w^2x^2\sigma^2.
 \]
 
-指数效用严格递增，所以最大化期望效用等价于最大化 $CE$。\IfRefUndefinedExpandable{exer:wj-twelve-1}{}{练习~\ref{exer:wj-twelve-1} 将这一计算推广到多只证券。}对 $x$ 求导，得到
+指数效用严格递增，所以最大化期望效用等价于最大化 $CE$。\IfRefUndefinedExpandable{exer:wj-twelve-1}{}{\WJRef{exer:wj-twelve-1}{练习~} 将这一计算推广到多只证券。}对 $x$ 求导，得到
 \[
  w(\bar r-r_F)-aw^2x\sigma^2=0,
  \qquad x^*=\frac{\bar r-r_F}{aw\sigma^2}.
@@ -175,13 +175,13 @@
 \end{problem}
 \end{samepage}
 \Needspace{6\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 % 原题仅假设 DARA；(b) 的背景风险比较需检查诱导效用，不能从 DARA 直接定号。
 % 外部核对：Gollier--Pratt (1996), Risk Vulnerability and the Tempering Effect of Background Risk.
 % https://www.tse-fr.eu/publications/journal-article/risk-vulnerability-and-tempering-effect-background-risk
 以下假定零头寸可行，收益非退化，所讨论的最优头寸为有限内点解。取 $u'>0$、$u''<0$，并假设可交换求导与期望。记 $\mu=\bar r=\mathrm E[\tilde r]$。
 \begin{enumerate}[label=(\alph*)]
-\item 当 $\lambda=0$ 时，风险溢价就是 $\mu$。零头寸处的目标函数导数为 $u'(w)\mu$，所以严格凹性使最优头寸与 $\mu$ 同号\ifdefined\WJHandoutKnowledge（见定理~\ref{thm:wj-eight-2}）\fi。令 $W_0=w+a_0^*(w)\tilde r$，内点最优的一阶条件为 $\mathrm E[u'(W_0)\tilde r]=0$。
+\item 当 $\lambda=0$ 时，风险溢价就是 $\mu$。零头寸处的目标函数导数为 $u'(w)\mu$，所以严格凹性使最优头寸与 $\mu$ 同号\ifdefined\WJHandoutKnowledge（见\WJRef{thm:wj-eight-2}{定理~}[（风险投资额与风险溢价同号）]）\fi。令 $W_0=w+a_0^*(w)\tilde r$，内点最优的一阶条件为 $\mathrm E[u'(W_0)\tilde r]=0$。
 
 沿最优解对 $w$ 求导时，$a_0^*(w)$ 也随 $w$ 变化，因此 $\mathrm dW_0/\mathrm dw=1+(a_0^*)'(w)\tilde r$。代入并整理，得到
 \[
@@ -196,7 +196,7 @@
  \mathrm E[u''(W_0)\tilde r]
  =-\mathrm E\bigl[(A(W_0)-A(w))u'(W_0)\tilde r\bigr]>0.
 \]
-因为 $W_0-w=a_0^*\tilde r$，DARA 使 $A(W_0)-A(w)$ 与非零的 $\tilde r$ 异号，故 $(a_0^*)'(w)>0$\ifdefined\WJHandoutKnowledge（这对应定理~\ref{thm:wj-eight-3} 中投资金额的财富效应）\fi。若 $\mu<0$，将 $-\tilde r$ 看作正风险溢价的交易方向，得到 $a_0^*<0$、$(a_0^*)'(w)<0$，即财富增加时空头金额扩大。若 $\mu=0$，则 $a_0^*=0$，财富效应为零。
+因为 $W_0-w=a_0^*\tilde r$，DARA 使 $A(W_0)-A(w)$ 与非零的 $\tilde r$ 异号，故 $(a_0^*)'(w)>0$\ifdefined\WJHandoutKnowledge（这对应\WJRef{thm:wj-eight-3}{定理~}[（投资金额的财富效应）]）\fi。若 $\mu<0$，将 $-\tilde r$ 看作正风险溢价的交易方向，得到 $a_0^*<0$、$(a_0^*)'(w)<0$，即财富增加时空头金额扩大。若 $\mu=0$，则 $a_0^*=0$，财富效应为零。
 
 \item 仅凭 DARA 无法判断 $a_\lambda^*$ 比 $a_0^*$ 大还是小。由于背景收入与股票收益独立，可以先固定股票收益的实现值，对背景收入取期望。定义
 \[
@@ -233,7 +233,7 @@
  A_1(t)=\frac{t^2+b^2}{t(t^2-b^2)}>\frac1t=A(t),\quad t>b.
 \]
 
-由 Pratt 定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-seven-4}）\fi，$v_1=f\circ u$，其中 $f'>0$、$f''<0$。在 $a_0^*>0$ 处，令 $k_0=f'(u(w))$。因为 $w+a_0^*\tilde r$ 与 $\tilde r$ 同向变化，逐状态有
+由\ifdefined\WJHandoutKnowledge \WJRef{thm:wj-seven-4}{定理~}[（Pratt 定理）]\else Pratt 定理\fi，$v_1=f\circ u$，其中 $f'>0$、$f''<0$\footnote{对共同财富区间上二阶可微且边际效用为正的两个效用函数，若 $A_{v_1}=-v_1''/v_1'$ 在该区间处处大于 $A_u=-u''/u'$，则 $f=v_1\circ u^{-1}$ 严格递增且 $f''<0$。若风险厌恶系数只满足弱不等式，结论是 $f''\le0$。}。在 $a_0^*>0$ 处，令 $k_0=f'(u(w))$。因为 $w+a_0^*\tilde r$ 与 $\tilde r$ 同向变化，逐状态有
 \[
  [f'(u(w+a_0^*\tilde r))-k_0]\,\tilde r<0.
 \]
@@ -316,7 +316,7 @@
 \end{problem}
 \end{samepage}
 \Needspace{6\baselineskip}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 先把 $w>0$ 作为初始财富，按题给目标函数在 $p\ge0$ 上求解。若现金额度还限制购债支出，最后加入约束 $p\,x(p)\le w$。设 $x$ 可微且严格递增，$\tilde\varepsilon$ 非退化，相关期望及导数存在。记
 \[
  W(p)=w+x(p)(\bar v+\tilde\varepsilon-p).
@@ -330,12 +330,12 @@
 \]
 
 \begin{enumerate}[label=(\alph*)]
-\item 内点最优报价满足
+\item \textbf{解答}\quad 内点最优报价满足
 \[
  V'(p^*)=\mathrm E[u'(W(p^*))q(p^*)]=0.
 \]
 
-\item 因 $x(0)=0$，$V(0)=u(w)$。由 $x$ 在零点连续且严格递增，足够小的正报价对应趋于零的正持仓，单位债券的期望收益为 $\bar v-p>0$。若期望效用可在零持仓附近作一阶展开，则
+\item \textbf{证明}\quad 因 $x(0)=0$，$V(0)=u(w)$。由 $x$ 在零点连续且严格递增，足够小的正报价对应趋于零的正持仓，单位债券的期望收益为 $\bar v-p>0$。若期望效用可在零持仓附近作一阶展开，则
 \[
  V(p)-u(w)=u'(w)x(p)(\bar v-p)+o(x(p))>0.
 \]
@@ -352,7 +352,7 @@ $p>\bar v$ 时，$\mathrm E[W(p)]<w$，所以
 
 因此连续的 $V$ 在 $[0,\bar v]$ 上取到最大值，最大值位于内部。严格凹性保证唯一，故 $0<p^*<\bar v$。小额买入的论证也适用于 $x'(0)=0$。若 $x'(0)>0$，则可直接由 $V'(0)=u'(w)x'(0)\bar v>0$ 排除零报价。
 
-\item 由 Pratt 定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-seven-4}）\fi，$A_1>A_2$ 蕴含 $u_1=f\circ u_2$，其中 $f'>0$、$f''<0$。让交易员 1 先用交易员 2 的最优报价 $p_2^*$，看他在这个报价上还愿不愿意提价。记 $W_2=W(p_2^*)$、$q_2=q(p_2^*)$、$x_2=x(p_2^*)$、$x'_2=x'(p_2^*)$。若 $x'_2=0$，则 $q_2=-x_2<0$，与交易员 2 的一阶条件矛盾，故 $x'_2>0$。
+\item \textbf{证明}\quad 由\ifdefined\WJHandoutKnowledge \WJRef{thm:wj-seven-4}{定理~}[（Pratt 定理）]\else Pratt 定理\fi，$A_1>A_2$ 蕴含 $u_1=f\circ u_2$，其中 $f'>0$、$f''<0$\footnote{这里要求两人的效用二阶可微、边际效用为正，且 $A_1>A_2$ 在所比较的共同财富区间上处处成立。因此 $f=u_1\circ u_2^{-1}$ 的边际斜率 $f'$ 随效用水平严格递减。}。让交易员 1 先用交易员 2 的最优报价 $p_2^*$，看他在这个报价上还愿不愿意提价。记 $W_2=W(p_2^*)$、$q_2=q(p_2^*)$、$x_2=x(p_2^*)$、$x'_2=x'(p_2^*)$。若 $x'_2=0$，则 $q_2=-x_2<0$，与交易员 2 的一阶条件矛盾，故 $x'_2>0$。
 
 当 $q_2=0$ 时，再提高一点报价对期末财富没有一阶影响。由 $x'_2(\bar v+\tilde\varepsilon-p_2^*)=x_2$，这对应的期末财富为 $t_2=w+x_2^2/x'_2$。一般地，
 \[
@@ -375,7 +375,7 @@ $p>\bar v$ 时，$\mathrm E[W(p)]<w$，所以
 在 $p_2^*$ 处，交易员 1 的报价导数已非正。目标函数严格凹，继续提高报价只会降低效用，所以 $p_1^*\le p_2^*$。
 
 \Needspace{7\baselineskip}
-\item 取 $w_1>w_0$，令 $p_0=p^*(w_0)$、$x_0=x(p_0)$、$x'_0=x'(p_0)>0$，并记
+\item \textbf{证明}\quad 取 $w_1>w_0$，令 $p_0=p^*(w_0)$、$x_0=x(p_0)$、$x'_0=x'(p_0)>0$，并记
 \[
  W_0=w_0+x_0(\bar v+\tilde\varepsilon-p_0),\qquad
  q_0=x'_0(\bar v+\tilde\varepsilon-p_0)-x_0.
