@@ -133,25 +133,27 @@ c_{k,1}
 
 ### 当前讲义内部
 
-- 公式放在有编号的 `equation`、`align` 等环境中，设置有语义且唯一的 `\label{eq:wj-...}`，用 `\eqref{eq:wj-...}` 引用。不要在无编号 `\[...\]` 中随意放标签。
-- 章节标题命令后放 `\label{sec:wj-...}`，正文用 `第~\ref{sec:wj-...} 节`。不为引用而保留原文中手写的当前讲义章节号。
-- 定义、定理、命题和例题应绑定实际计数器后设置 `\label`，用 `\ref` 引用。若现有框标题只是手写粗体编号，直接加标签会引用到上一计数器；须在授权范围内接入合适的定理或带计数器框机制，并保留需要保留的原书编号。
-- 采用项目已有机制和宏包。只有项目已配置时才使用 `\autoref`、`\cref` 等，核对中文类型名；不为少量引用无故引入整套新设施。
-- 相同文档内的跨章引用同样用标签。引用页码用 `\pageref`。多行公式引用对应的具体编号，避免标签意外落到整组或别行。
-- 图表同样需要真实计数器。原位 TikZ 图可沿用 `tex/_shared/wj-figure-styles.tex` 中的 `\WJFigure{标签}{图题}`；已有章节专用图注命令时沿用其编号，不并行引入重复图号。标准图表环境中将 `\label` 放在 `\caption` 后；自定义图注须先 `\refstepcounter` 再 `\label`。正文在相关解释处用 `图~\ref{fig:...}` 或 `表~\ref{tab:...}`，多面板可写 `图~\ref{fig:...} 的（a）`。
+- 正文与习题使用主文件定义的深蓝色引用宏（`WJReferenceColor`，`#244A78`）。把类型、编号、条款或子图标记及简短说明纳入同一链接。跨章或读者仅看编号难以辨认时补简短名称，附近已说明时可以省略，较长背景放正文或脚注。
+- 章节、定义、定理、命题、例题、图表和习题用 `\WJRef{标签}{前缀}[后缀]`，例如 `\WJRef{sec:wj-seven-small-risk}{第~}[~节（小风险展开与绝对风险厌恶系数）]`。章节标签放在标题命令后，其他编号对象的标签绑定实际计数器，沿用所需的原书编号。
+- 公式用 `\WJEqRef{标签}{前缀}[后缀]`，宏会给编号加圆括号。用有编号的 `equation`、`align` 等环境绑定语义明确且唯一的标签，多行公式引用具体编号所在行。
+- 只链接概念名称，或需要组合多个编号并跳到其中一个具体目标时，用 `\WJLink{目标标签}{显示文字}`，内部用 `\ref*` 取号。例如 Ross 定理的引用文字包含定理号和条款号，落点是对应条款。已有无编号的 `\hypertarget` 可用 `\hyperlink{锚点}{\textcolor{WJReferenceColor}{显示文字}}`，保留精确落点。页码引用沿用 `\pageref`。
+- 图引用的落点应在图上方。原位或独立 TikZ 图可沿用 `tex/_shared/wj-figure-styles.tex` 中的 `\WJFigureStart{标签}` 和 `\WJFigureCaption{图题}`，在图前绑定真实计数器及标签，图后排图注。已有章节专用计数器时沿用其编号。标准浮动图表核对 `\caption` 后的标签所对应的实际跳转位置。多面板可写 `\WJRef{fig:...}{图~}[（a）]`。
+- 引用某小问的解答时，教师版链接到对应解答，隐藏解答的学生版保留题号和小问号。仅习题版没有正文目标时，沿用 `\ifdefined\WJHandoutKnowledge` 或已有的标签存在性判断，让该模式下的文字仍然通顺。
 
 ```tex
 \begin{equation}
   \sum_{k=1}^{K}\theta_k(e_k,S)=0
   \label{eq:wj-market-clearing}
 \end{equation}
-由出清条件~\eqref{eq:wj-market-clearing} 可得……
+由\WJEqRef{eq:wj-market-clearing}{市场出清条件~}可得……
 ```
 
-例如，正文写“消费集与上等值集的几何性质见图~\ref{fig:wj-consumption-preferences}”，对应图注使用：
+例如，正文用 `\WJRef{fig:wj-consumption-preferences}{图~}` 引用下图。
 
 ```tex
-\WJFigure{fig:wj-consumption-preferences}{消费集与偏好的几何性质}
+\WJFigureStart{fig:wj-consumption-preferences}
+% 此处排图
+\WJFigureCaption{消费集与偏好的几何性质}
 ```
 
 图注、图下解释和正文引用各有作用：图注标识对象，图下解释交代示例设定，正文引用连接所讲的概念或结论。编译后同时核对显示的图表编号与 PDF 跳转目标；只有标签存在或链接可点击，还不足以说明引用正确。
