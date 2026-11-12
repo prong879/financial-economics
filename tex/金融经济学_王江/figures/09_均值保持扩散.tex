@@ -2,6 +2,7 @@
 % 教学补图：A恒等于2，B以相同概率取1、3；S(y)=积分(F_A-F_B)<=0。
 \begin{center}
 \begin{minipage}{\linewidth}
+\WJFigureStart{fig:wj-mean-preserving-spread}%
 \centering
 \begin{tikzpicture}[>=Stealth,font=\small,x=1.05cm,y=2.35cm]
  \draw[->] (0,0)--(4.1,0) node[right] {$x$};
@@ -31,6 +32,6 @@
 \par\smallskip\small
 取 $A\equiv2$，$B$ 等概率取 $1,3$。两者均值为 $2$，且 $B=A+e$、$\mathrm E[e\mid A]=0$。
 CDF 虽然交叉，$S(y)=\int_{-\infty}^y(F_A-F_B)\,dx\le0$，故 $A\succeq_{\mathrm{SSD}}B$。
-\WJFigure{fig:wj-mean-preserving-spread}{均值保持扩散与分布函数差的积分}
+\WJFigureCaption{均值保持扩散与分布函数差的积分}
 \end{minipage}
 \end{center}

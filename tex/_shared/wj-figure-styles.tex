@@ -2,8 +2,13 @@
 % 原位图注：按章编号，标签绑定真实图计数器，不引入浮动位置。
 \newcounter{wjFigure}[chapter]
 \renewcommand{\thewjFigure}{\thechapter.\arabic{wjFigure}}
+\newcommand{\WJFigureStart}[1]{\refstepcounter{wjFigure}\label{#1}}
+\newcommand{\WJFigureCaption}[1]{%
+  \par\smallskip
+  图\thewjFigure\quad #1\par
+}
 \newcommand{\WJFigure}[2]{%
   \par\smallskip
-  \refstepcounter{wjFigure}\label{#1}%
+  \WJFigureStart{#1}%
   图\thewjFigure\quad #2\par
 }
