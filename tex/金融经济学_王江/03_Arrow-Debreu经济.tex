@@ -82,7 +82,7 @@
 
 \section{市场的完全性}
 \subsection{消费计划的复制与完全市场}
-在 Arrow-Debreu 市场中，给定有限的未来消费向量 $c_1=(c_{11},\ldots,c_{1\Omega})^{\mathsf T}$，取总持仓 $h=c_1$，便有
+在 Arrow-Debreu 市场中，给定有限的未来消费向量 $c_1=(c_{11},\ldots,c_{1\Omega})^{\mathsf T}$，令 $h_\omega$ 为状态 $\omega$ 的阿罗证券的持有份数。该证券每份只在状态 $\omega$ 支付一单位，所以令 $h_\omega=c_{1\omega}$ 就能匹配该状态的目标消费。各状态采用同一排列顺序，因而可取总持仓列向量 $h=c_1$：
 \[
  \underbrace{X^{A\text{-}D}h}_{\text{组合支付}}=I_\Omega c_1
  =\underbrace{c_1}_{\text{目标消费}},\qquad
@@ -98,7 +98,7 @@
 \WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $(1,1)^{\mathsf T}$ 的无风险债券。能否复制消费 $(2,1)^{\mathsf T}$？市场是否完全？
 \end{question}
 \begin{solution}
-债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。若改为交易例~\ref{ex:wj-three-1} 的两只状态证券，则
+债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。若改为交易\WJRef{ex:wj-three-1}{例~} 的两只状态证券，则
 \[
  \underbrace{2x_a+x_b}_{\text{复制目标支付的组合}}
  =\begin{bmatrix}2\\1\end{bmatrix}.
@@ -203,7 +203,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 第一行按当期收支计算：当期消费 $c_0$ 加上证券净买入支出 $\phi^{\mathsf T}\theta$，不得超过当期禀赋 $e_0$。第二行按市场价值计算：当期消费与未来消费的市值之和，不得超过禀赋的总市值 $w$。
 \end{tcolorbox}
 
-在 Arrow-Debreu 市场中，选定未来消费 $c_1$ 后，所需的证券净交易就由 $\theta=c_1-e_1$ 确定。因此，参与者可以直接在式~\eqref{eq:wj-three-budget} 给出的预算范围内，选择使效用最大的消费计划。
+在 Arrow-Debreu 市场中，选定未来消费 $c_1$ 后，所需的证券净交易就由 $\theta=c_1-e_1$ 确定。因此，参与者可以直接在\WJEqRef{eq:wj-three-budget}{预算约束~}所给出的范围内，选择使效用最大的消费计划。
 
 \begin{tcolorbox}[knowledge,title=扩展价格与消费优化,breakable=false]
 以当期消费品为计价单位，其价格为 $\phi_0=1$。把这个价格放在状态价格向量 $\phi$ 前面，得到扩展价格向量 $\hat\phi$。整个消费计划的当期价值为
@@ -228,16 +228,17 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \Needspace{18\baselineskip}
 \subsection{最优消费的存在性}
 \begin{tcolorbox}[knowledge]
-\WJThreeTheorem{thm:wj-three-existence}设 $\hat\phi\gg0$、$0\le w<\infty$，且 $U$ 在 $\mathrm R_+^{1+\Omega}$ 上连续，则问题~\eqref{eq:wj-three-optimization}（预算约束下的效用最大化）有最优解。
+\WJThreeTheorem{thm:wj-three-existence}设 $\hat\phi\gg0$、$0\le w<\infty$，且 $U$ 在 $\mathrm R_+^{1+\Omega}$ 上连续，则\WJEqRef{eq:wj-three-optimization}{问题~}[（预算约束下的效用最大化）]有最优解。
 
 也就是说，在所有买得起的消费计划中，至少有一个计划能达到最高效用。
 \end{tcolorbox}
-\textbf{证明。}由\textbf{极值定理}可知，一元实函数 $y=f(x)$ 如果在闭区间 $[a,b]$ 上连续，就一定能在这个区间上取到最大值和最小值。对多元实函数也一样：只要它在一个非空、闭且有界的集合上连续，就能在这个集合上取到最大值和最小值。
+由\textbf{极值定理}可知，一元实函数 $y=f(x)$ 如果在闭区间 $[a,b]$ 上连续，就一定能在这个区间上取到最大值和最小值。对多元实函数也一样：只要它在一个非空、闭且有界的集合上连续，就能在这个集合上取到最大值和最小值。
 
-图~\ref{fig:wj-three-extreme-value} 分别用曲线和曲面说明全局最大值与最小值。右图的曲面有多个峰谷，虚线把最高点投影到预算边界上，表示达到该最大值的点仍在预算集内。
+\WJRef{fig:wj-three-extreme-value}{图~} 分别用曲线和曲面说明全局最大值与最小值。右图的曲面有多个峰谷，虚线把最高点投影到预算边界上，表示达到该最大值的点仍在预算集内。
 
 \WJInputFigure{03_极值定理}
 
+\begin{solution}[label-content={证明},blank-type=none]
 这里，效用 $U(c)$ 是消费计划 $c$ 的连续函数，预算集 $B=\{c\ge0:\hat\phi^{\mathsf T}c\le w\}$ 是所有买得起的消费计划。要证明最高效用可以达到，只需验证 $B$ 非空、有界且闭。
 
 \textbf{非空。}由于 $w\ge0$，零消费计划 $c=0$ 的支出不超过预算，所以 $B$ 至少包含这个计划。
@@ -253,8 +254,9 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \textbf{闭。}如果一列预算内的消费计划 $c^{(n)}$ 收敛到 $c$，取极限后每项消费仍非负，总支出也仍满足 $\hat\phi^{\mathsf T}c\le w$，所以极限计划 $c$ 仍在 $B$ 中。例如，若一列计划的支出逐步接近 $w$，其极限计划恰好用完预算，仍然可行。
 
 由极值定理，$U$ 在 $B$ 上能取到最大值，因此最优消费计划存在。
+\end{solution}
 
-对数效用的定义域为严格正消费集；例~\ref{ex:wj-three-3} 将结合其边界行为构造唯一最优解。
+对数效用的定义域为严格正消费集；\WJRef{ex:wj-three-3}{例~}[（Lucas 树经济中的最优消费）]将结合其边界行为构造唯一最优解。
 
 \subsection{最优消费的一阶条件}
 \begin{tcolorbox}[knowledge,title=边际效用向量,breakable=false]
@@ -270,7 +272,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 % 教材印刷第 38 页及 PPT 第 16 页的 (3.6a) 使用 +mu，按非负乘子约定改为 -mu。
 % 凹性是本处充分性证明的附加条件，区别于前章偏好凸性（效用拟凹）。
 \begin{tcolorbox}[knowledge,title=消费最优的库恩--塔克条件（Kuhn--Tucker 条件）]
-\WJThreeTheorem{thm:wj-three-kkt}设 $w>0$、$\hat\phi\gg0$，效用函数 $U$ 在消费集的邻域上连续可微，并满足~\eqref{eq:wj-three-marginal-utility}（各项边际效用严格为正）。若 $c^*$ 是问题~\eqref{eq:wj-three-optimization}（预算约束下的效用最大化）的最优解，则存在预算约束的乘子 $\lambda>0$ 和各项消费非负约束 $c_i\ge0$ 的乘子 $\mu_i\ge0$，使
+\WJThreeTheorem{thm:wj-three-kkt}设 $w>0$、$\hat\phi\gg0$，效用函数 $U$ 在消费集的邻域上连续可微，并满足\WJEqRef{eq:wj-three-marginal-utility}{式~}[（各项边际效用严格为正）]。若 $c^*$ 是\WJEqRef{eq:wj-three-optimization}{问题~}[（预算约束下的效用最大化）]的最优解，则存在预算约束的乘子 $\lambda>0$ 和各项消费非负约束 $c_i\ge0$ 的乘子 $\mu_i\ge0$，使
 \begin{subequations}
 \begin{align}
  \partial_iU(c^*)&=\lambda\phi_i-\mu_i,\qquad i=0,\ldots,\Omega,\label{eq:wj-three-kkt-stationarity}\\
@@ -280,16 +282,17 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \end{subequations}
 若进一步假设 $U$ 为凹函数，则可行消费 $c^*$ 为最优解，当且仅当它满足上述三个条件。
 
-\textbf{一阶条件~\eqref{eq:wj-three-kkt-stationarity}。}每花一单位预算带来的边际效用，在各项正消费之间都等于 $\lambda$。某项消费为零时，它的单位支出边际效用至多为 $\lambda$，差额为 $\mu_i/\phi_i$。
+\textbf{\WJEqRef{eq:wj-three-kkt-stationarity}{一阶条件~}。}每花一单位预算带来的边际效用，在各项正消费之间都等于 $\lambda$。某项消费为零时，它的单位支出边际效用至多为 $\lambda$，差额为 $\mu_i/\phi_i$。
 
-\textbf{预算用尽~\eqref{eq:wj-three-kkt-budget}。}各项边际效用都为正，只要预算有剩余，就可以增加消费来提高效用。因此最优时预算余额为零，即消费总支出 $\hat\phi^{\mathsf T}c^*$ 等于禀赋的市场价值 $\hat\phi^{\mathsf T}e=w$。
+\textbf{\WJEqRef{eq:wj-three-kkt-budget}{预算用尽~}。}各项边际效用都为正，只要预算有剩余，就可以增加消费来提高效用。因此最优时预算余额为零，即消费总支出 $\hat\phi^{\mathsf T}c^*$ 等于禀赋的市场价值 $\hat\phi^{\mathsf T}e=w$。
 
-\textbf{互补松弛~\eqref{eq:wj-three-kkt-complementarity}。}若 $c_i^*>0$，则 $\mu_i=0$。若 $c_i^*=0$，则 $\mu_i$ 可以为正，也可以为零。
+\textbf{\WJEqRef{eq:wj-three-kkt-complementarity}{互补松弛~}。}若 $c_i^*>0$，则 $\mu_i=0$。若 $c_i^*=0$，则 $\mu_i$ 可以为正，也可以为零。
 \end{tcolorbox}
 
-\textbf{（最优解 $\Rightarrow$ 三个条件）}若预算有剩余，就可以用剩余预算增加一点消费。由于各项边际效用都为正，这会提高效用。因此最优时必定用尽预算，即满足~\eqref{eq:wj-three-kkt-budget}。
+\begin{solution}[label-content={证明},blank-type=none]
+\textbf{（最优解 $\Rightarrow$ 三个条件）}若预算有剩余，就可以用剩余预算增加一点消费。由于各项边际效用都为正，这会提高效用。因此最优时必定用尽预算，即满足\WJEqRef{eq:wj-three-kkt-budget}{式~}。
 
-因为总支出等于 $w>0$，至少有一项 $c_j^*>0$。固定这样一个 $j$，考虑从第 $j$ 项挪出 $t$ 单位支出给另一项 $i$。第 $i$ 项增加 $t/\phi_i$，第 $j$ 项减少 $t/\phi_j$，总支出不变。记 $\mathbf e_i$ 为第 $i$ 个坐标方向的单位向量，则调整后的消费计划为 $c^*+td$，其中
+因为总支出等于 $w>0$，至少有一项 $c_j^*>0$。固定这样一个 $j$，考虑从第 $j$ 项挪出 $t$ 单位支出给另一项 $i$。第 $i$ 项增加 $t/\phi_i$，第 $j$ 项减少 $t/\phi_j$，总支出不变。记 $\mathbf e_i\in\mathbb R^{1+\Omega}$ 为消费计划中第 $i$ 个坐标的单位向量，坐标 $0$ 对应当期消费，坐标 $1,\ldots,\Omega$ 对应未来各状态的消费。调整后的消费计划为 $c^*+td$，其中
 \[
  d=\frac{\mathbf e_i}{\phi_i}-\frac{\mathbf e_j}{\phi_j},
  \qquad
@@ -302,7 +305,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 若 $c_i^*=0$，第 $i$ 项的消费不能再减少，所以只能取充分小的 $t\ge0$。若 $t=0$ 处的右导数为正，略微增加 $t$ 就能提高效用。因此右导数至多为零，即 $\partial_iU(c^*)/\phi_i\le\lambda$。
 
-对每一项定义 $\mu_i=\lambda\phi_i-\partial_iU(c^*)$，即得到~\eqref{eq:wj-three-kkt-stationarity}。当 $c_i^*>0$ 时，单位支出边际效用等于 $\lambda$，所以 $\mu_i=0$。当 $c_i^*=0$ 时，单位支出边际效用至多为 $\lambda$，所以 $\mu_i\ge0$。两种情形下都满足互补松弛条件~\eqref{eq:wj-three-kkt-complementarity}。
+对每一项定义 $\mu_i=\lambda\phi_i-\partial_iU(c^*)$，即得到\WJEqRef{eq:wj-three-kkt-stationarity}{式~}。当 $c_i^*>0$ 时，单位支出边际效用等于 $\lambda$，所以 $\mu_i=0$。当 $c_i^*=0$ 时，单位支出边际效用至多为 $\lambda$，所以 $\mu_i\ge0$。两种情形下都满足\WJEqRef{eq:wj-three-kkt-complementarity}{互补松弛条件~}。
 
 \Needspace{6\baselineskip}
 \textbf{（三个条件 $+$ 效用凹性 $\Rightarrow$ 最优解）}任取一个可行消费计划 $a$。预算集是凸集，从 $c^*$ 到 $a$ 的整条线段都可行。沿这条线段，凹函数 $U$ 的图像位于起点切线的下方，因此在 $c^*$ 处用边际效用计算的增量，是实际效用增量的上界：
@@ -310,7 +313,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  U(a)-U(c^*)\le DU(c^*)^{\mathsf T}(a-c^*).
 \]
 
-把一阶条件~\eqref{eq:wj-three-kkt-stationarity} 代入这个上界，得到
+把\WJEqRef{eq:wj-three-kkt-stationarity}{一阶条件~} 代入这个上界，得到
 \[
  DU(c^*)^{\mathsf T}(a-c^*)
  =\lambda\underbrace{\hat\phi^{\mathsf T}(a-c^*)}_{\le0}
@@ -319,8 +322,12 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \]
 
 第一项非正，因为 $a$ 的支出至多为 $w$，而 $c^*$ 恰好用尽预算。第二项非正，因为 $a_i$ 和 $\mu_i$ 都非负。第三项由互补松弛等于零。因此对任一可行计划 $a$，都有 $U(a)\le U(c^*)$，所以 $c^*$ 是全局最优解。
+\end{solution}
 
-若 $U$ 严格凹，最优解唯一。否则，两个不同的最优计划的中点仍然可行，而严格凹性使中点的效用高于两端相同的最优效用，产生矛盾。
+若 $U$ 严格凹，最优解唯一。
+\begin{solution}[label-content={证明},blank-type=none]
+否则，两个不同的最优计划的中点仍然可行，而严格凹性使中点的效用高于两端相同的最优效用，产生矛盾。
+\end{solution}
 
 也可以用拉格朗日函数写出一阶条件。将预算余额 $w-\hat\phi^{\mathsf T}c$ 乘以 $\lambda$，再把每个非负约束的余额 $c_i$ 乘以各自的 $\mu_i$，得到
 \[
@@ -332,7 +339,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \frac{\partial\mathcal L}{\partial c_i}
  =\partial_iU(c)-\lambda\phi_i+\mu_i.
 \]
-在 $c^*$ 处令该导数为零，就得到式~\eqref{eq:wj-three-kkt-stationarity}。$\lambda$ 是预算约束的影子价格，表示多一单位预算在最优消费处的边际价值。
+在 $c^*$ 处令该导数为零，就得到\WJEqRef{eq:wj-three-kkt-stationarity}{式~}。$\lambda$ 是预算约束的影子价格，表示多一单位预算在最优消费处的边际价值。
 
 % 来源：教材印刷第 40 页；相对于非负消费集区分内点与边界。
 \begin{tcolorbox}[knowledge,title=内点解与角点解,breakable=false]
@@ -346,7 +353,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 写出参与者的效用最大化问题，求最优消费计划，并求出预算约束乘子 $\lambda$ 和两项消费的非负约束乘子 $\mu_0,\mu_1$。
 
-图~\ref{fig:wj-budget-tangency} 的右图对应本题。左图在相同预算下取 $U=\log(1+c_0)+\log(1+c_1)$，用来对照内点与角点。
+\WJRef{fig:wj-budget-tangency}{图~} 的右图对应本题。左图在相同预算下取 $U=\log(1+c_0)+\log(1+c_1)$，用来对照内点与角点。
 
 \WJInputFigure{03_预算与切点}
 \end{question}
@@ -368,9 +375,9 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  U(1-c_1,c_1)=2-c_1,\qquad 0\le c_1\le1.
 \]
 
-沿预算线每增加一单位未来消费，效用就减少 $1$。因此最优点为 $c_1^*=0$、$c_0^*=1$，对应图~\ref{fig:wj-budget-tangency} 右图的角点。
+沿预算线每增加一单位未来消费，效用就减少 $1$。因此最优点为 $c_1^*=0$、$c_0^*=1$，对应\WJRef{fig:wj-budget-tangency}{图~} 右图的角点。
 
-\textbf{求乘子并核验。}由~\eqref{eq:wj-three-kkt-stationarity}，两项消费分别满足
+\textbf{求乘子并核验。}由\WJEqRef{eq:wj-three-kkt-stationarity}{式~}，两项消费分别满足
 \[
  2=\lambda-\mu_0,\qquad 1=\lambda-\mu_1.
 \]
@@ -383,7 +390,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 \subsection{内点解与跨期边际替代率}
 \begin{tcolorbox}[knowledge,title=内点最优与跨期边际替代率,breakable=false]
-由定理~\ref{thm:wj-three-kkt}，最优消费满足互补松弛条件~\eqref{eq:wj-three-kkt-complementarity}，即 $\mu_{ki}c_{ki}=0$。若最优消费 $c_k\gg0$，每一项消费都严格为正，因此对应的非负约束乘子 $\mu_{ki}$ 都为零。代入一阶条件~\eqref{eq:wj-three-kkt-stationarity}，再用 $\phi_0=1$，得到
+由\WJRef{thm:wj-three-kkt}{定理~}[（库恩--塔克条件）]，最优消费满足\WJEqRef{eq:wj-three-kkt-complementarity}{互补松弛条件~}，即 $\mu_{ki}c_{ki}=0$。若最优消费 $c_k\gg0$，每一项消费都严格为正，因此对应的非负约束乘子 $\mu_{ki}$ 都为零。代入\WJEqRef{eq:wj-three-kkt-stationarity}{一阶条件~}，再用 $\phi_0=1$，得到
 \begin{equation}
  DU_k(c_k)=\lambda_k\hat\phi,\qquad
  \partial_0U_k=\lambda_k,\quad\partial_\omega U_k=\lambda_k\phi_\omega.\label{eq:wj-three-interior}
@@ -402,7 +409,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 \end{tcolorbox}
 
 \Needspace{6\baselineskip}
-由预算用尽条件~\eqref{eq:wj-three-kkt-budget}（$\hat\phi^{\mathsf T}(e-c^*)=0$），当期消费和未来各状态消费按当期价格计值，其总支出等于财富。固定价格、财富和其他状态的消费，只在当期消费 $c_0$ 与状态 $\omega$ 的未来消费 $c_{1\omega}$ 之间调配支出。要留在预算线上，两项支出的变化量必须相抵：
+由\WJEqRef{eq:wj-three-kkt-budget}{预算用尽条件~}[（$\hat\phi^{\mathsf T}(e-c^*)=0$）]，当期消费和未来各状态消费按当期价格计值，其总支出等于财富。固定价格、财富和其他状态的消费，只在当期消费 $c_0$ 与状态 $\omega$ 的未来消费 $c_{1\omega}$ 之间调配支出。要留在预算线上，两项支出的变化量必须相抵：
 \[
  \mathrm dc_0+\phi_\omega\mathrm dc_{1\omega}=0
  \quad\Longrightarrow\quad
@@ -417,9 +424,9 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
  \mathrm dc_{1\omega}.
 \]
 
-内点处两项消费都为正，沿预算线向两个方向作小幅调整都可行。若括号内的系数为正，就可以增加未来消费来提高效用。若系数为负，就可以反向调整来提高效用。因此内点最优时该系数为零，这正是式~\eqref{eq:wj-three-mrs} 所表达的市场交换比例与个人跨期边际替代率相等。
+内点处两项消费都为正，沿预算线向两个方向作小幅调整都可行。若括号内的系数为正，就可以增加未来消费来提高效用。若系数为负，就可以反向调整来提高效用。因此内点最优时该系数为零，这正是\WJEqRef{eq:wj-three-mrs}{式~} 所表达的市场交换比例与个人跨期边际替代率相等。
 
-图~\ref{fig:wj-budget-tangency} 左侧的切点对应这个条件。无差异曲线与预算线在该点斜率相同。
+\WJRef{fig:wj-budget-tangency}{图~} 左侧的切点对应这个条件。无差异曲线与预算线在该点斜率相同。
 
 % 来源：教材印刷第 39—40 页，PPT 第 17—18 页；末项分母统一为 phi_b。
 \begin{tcolorbox}[example]
@@ -431,7 +438,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
 
 他的最优消费/组合选择是什么？
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
 给定状态价格和他的禀赋，他的总财富是 $w=e_{0}+\phi_{a}e_{1a}+\phi_{b}e_{1b}$。他的最优化问题是
 \[
     \begin{aligned}
@@ -476,7 +483,7 @@ $\det X_1=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的
     c_{1b}^{*}=\frac14\frac{w}{\phi_{b}}
 \]
 
-上述解各项消费为正，且满足预算等式与内点一阶条件。在正消费可行集上，沿用定理~\ref{thm:wj-three-kkt}（库恩--塔克条件）的充分性证明，由效用的凹性可知该解是全局最优解。效用在这个凸集上严格凹，因此最优解唯一。
+上述解各项消费为正，且满足预算等式与内点一阶条件。在正消费可行集上，沿用\WJRef{thm:wj-three-kkt}{定理~}[（库恩--塔克条件）]的充分性证明，由效用的凹性可知该解是全局最优解。效用在这个凸集上严格凹，因此最优解唯一。
 
 可以看出，参与者将一半财富用于当期消费，另一半用于未来消费。给定财富 $w$，各未来状态的最优消费与状态价格成反比。价格变化还会通过 $w=e_0+\phi^{\mathsf T}e_1$ 改变禀赋财富，因此价格变动的总效应同时包含消费成本与财富的变化。
 
@@ -544,11 +551,11 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 % 教材定理 3.3（第 42 页）及 PPT 第 22 页未单列生存性条件。
 % 保留原命题归属，同时给出足以使用有限维交换经济存在定理的一组条件。
 \begin{tcolorbox}[knowledge]
-\WJThreeTheorem{thm:wj-three-equilibrium-existence}在两期、有限状态的 Arrow-Debreu 交换经济中，若每人的偏好连续、凸且严格单调（即公理~\ref{axiom:wj-two-1} 所述的不满足性），并且每人的禀赋向量均严格为正，则存在竞争均衡；均衡价格各分量严格为正，可将当期价格归一为 $1$。
+\WJThreeTheorem{thm:wj-three-equilibrium-existence}在两期、有限状态的 Arrow-Debreu 交换经济中，若每人的偏好连续、凸且严格单调（即\WJRef{axiom:wj-two-1}{公理~}[（不满足性）]），并且每人的禀赋向量均严格为正，则存在竞争均衡；均衡价格各分量严格为正，可将当期价格归一为 $1$。
 \end{tcolorbox}
-把当期消费与未来各状态的消费分别视为一种商品，状态证券预算就成为有限商品交换经济的价值预算。上面的偏好和禀赋假设给出均衡存在的一组充分条件。
+把当期消费与未来各状态的消费分别视为一种商品，状态证券预算就成为有限商品交换经济的价值预算。上面的偏好和禀赋假设给出均衡存在的一组充分条件\footnote{第二章的不满足性按各项消费比较。若一个可行计划在每个日期和状态的消费都不低于另一个，且至少一项严格更高，参与者就严格偏好它。这里的严格单调性沿用这一含义。}。
 
-对于含零禀赋分量的具体经济，可直接检验最优消费与市场出清，例~\ref{ex:wj-three-4} 即采用这种方法。
+对于含零禀赋分量的具体经济，可直接检验最优消费与市场出清，\WJRef{ex:wj-three-4}{例~} 即采用这种方法。
 % 原书定理 3.3 未逐项给出生存性条件。此处保留严格正个人禀赋作为明确的充分条件。
 % 仅有非负禀赋不足以保证严格正价格均衡：禀赋 (1,0)、效用 sqrt(c0)+sqrt(c1) 时未来总资源为零，而任意严格正价格下的最优未来消费均为正。
 
@@ -558,7 +565,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \begin{tcolorbox}[knowledge,title=均衡中的共同跨期边际替代率,breakable=false]
 记 $c_k=(c_{k,0},c_{k,1}^{\mathsf T})^{\mathsf T}$ 为参与者 $k$ 的整个消费计划向量，包含当期消费和未来各状态的消费。
 
-在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足~\eqref{eq:wj-three-mrs}（跨期边际替代率等于状态价格），因而
+在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足\WJEqRef{eq:wj-three-mrs}{式~}[（跨期边际替代率等于状态价格）]，因而
 \begin{equation}
  \frac{\partial_\omega U_k(c_k)}{\partial_0U_k(c_k)}
  =\phi_\omega
@@ -611,9 +618,9 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \end{aligned}
 \]
 
-两组推导的最后一行都用边际估值的定义提取了当期消费的边际效用。由于当期边际效用为正，且成交价介于两人的边际估值之间，两个导数都为正。因此，只要交易量足够小，这笔可行交易就能严格提高双方的效用。在式~\eqref{eq:wj-three-common-mrs} 描述的内点均衡中，两人的边际估值都等于共同的状态价格，由估值差异产生的这类互利交易机会随之消失。
+两组推导的最后一行都用边际估值的定义提取了当期消费的边际效用。由于当期边际效用为正，且成交价介于两人的边际估值之间，两个导数都为正。因此，只要交易量足够小，这笔可行交易就能严格提高双方的效用。在\WJEqRef{eq:wj-three-common-mrs}{式~} 描述的内点均衡中，两人的边际估值都等于共同的状态价格，由估值差异产生的这类互利交易机会随之消失。
 
-如果这笔交易无法实施，或者估值差不足以覆盖交易成本，同一状态的边际替代率仍可能因人而异。第~\ref{sec:wj-three-trade-frictions}~节会分别说明这两种情形。
+如果这笔交易无法实施，或者估值差不足以覆盖交易成本，同一状态的边际替代率仍可能因人而异。\WJRef{sec:wj-three-trade-frictions}{第~}[~节（证券缺失与交易成本）]会分别说明这两种情形。
 
 \subsubsection{两状态经济的均衡}
 % 来源：教材印刷第 42—43 页，PPT 第 24 页。
@@ -632,7 +639,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 求均衡状态价格、消费配置和证券净交易量。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
 两只状态证券分别在状态 $a$ 和 $b$ 支付一单位消费品。以 0 期消费品为计价单位，状态价格为 $\phi=(\phi_a,\phi_b)^{\mathsf T}$，禀赋 $e$ 的现值为 $w=\hat\phi^{\mathsf T}e$，其中 $\hat\phi=(1,\phi_a,\phi_b)^{\mathsf T}$。效用随消费增加，最优计划会用尽这笔财富。对数效用还要求三个消费量都严格为正。
 \[
     \begin{aligned}
@@ -645,7 +652,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     \end{aligned}
 \]
 
-由例~\ref{ex:wj-three-3}，最优消费为
+由\WJRef{ex:wj-three-3}{例~}，最优消费为
 \[
     c_{k,0}^{*}=\tfrac12 w_{k},\qquad
     c_{k,a}^{*}=\tfrac14\frac{w_{k}}{\phi_{a}},\qquad
@@ -658,7 +665,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     w_{2}=0+200\phi_{a}+50\phi_{b}=200\phi_{a}+50\phi_{b}.
 \]
 
-\textbf{0 期商品市场出清}（两人 0 期消费之和等于经济 0 期总禀赋 $100$）。由例~\ref{ex:wj-three-3}，$c_{k,0}^{*}=\tfrac12 w_{k}$，故
+\textbf{0 期商品市场出清}（两人 0 期消费之和等于经济 0 期总禀赋 $100$）。由\WJRef{ex:wj-three-3}{例~}，$c_{k,0}^{*}=\tfrac12 w_{k}$，故
 \[
     c_{1,0}^{*}+c_{2,0}^{*}=\tfrac12 w_{1}+\tfrac12 w_{2}=\tfrac12(w_{1}+w_{2})=100
     \quad\Longrightarrow\quad w_{1}+w_{2}=200.
@@ -696,7 +703,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
     \end{aligned}
 \]
 
-由内点最优条件~\eqref{eq:wj-three-mrs}，每个人在最优消费计划上的跨期边际替代率应等于相应的状态价格。本例中，未来状态 $\omega$ 的边际效用为 $1/(2c_{k,\omega}^*)$，当期边际效用为 $1/c_{k,0}^*$，两者之比为 $m_{k,\omega}=c_{k,0}^*/(2c_{k,\omega}^*)$。对 $k=1,2$，分别代入两个状态的消费量，得到
+由\WJEqRef{eq:wj-three-mrs}{内点最优条件~}，每个人在最优消费计划上的跨期边际替代率应等于相应的状态价格。本例中，未来状态 $\omega$ 的边际效用为 $1/(2c_{k,\omega}^*)$，当期边际效用为 $1/c_{k,0}^*$，两者之比为 $m_{k,\omega}=c_{k,0}^*/(2c_{k,\omega}^*)$。对 $k=1,2$，分别代入两个状态的消费量，得到
 \[
  \begin{aligned}
  m_{k,a}&=\frac{1/(2c_{k,a}^*)}{1/c_{k,0}^*}
@@ -706,7 +713,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \end{aligned}
 \]
 
-在状态 $a$，两人的跨期边际替代率都是 $1/4$。在状态 $b$，两人都是 $1$。这样便验证了式~\eqref{eq:wj-three-common-mrs} 中对同一状态的比较。
+在状态 $a$，两人的跨期边际替代率都是 $1/4$。在状态 $b$，两人都是 $1$。这样便验证了\WJEqRef{eq:wj-three-common-mrs}{式~} 中对同一状态的比较。
 
 初始状态证券持仓分别为 $(0,0)^{\mathsf T}$ 与 $(200,50)^{\mathsf T}$，因此
 \[
@@ -725,7 +732,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \subsubsection{证券缺失与交易成本}
 \label{sec:wj-three-trade-frictions}
 % 来源：教材印刷第 44 页、PPT 第 22 页。逐证券推导、价差模型及数字例子为讲义补充。
-式~\eqref{eq:wj-three-common-mrs} 中，参与者可以按同一个价格自由买卖每个状态的单位支付。证券缺失会限制哪些消费转移可以实现，买卖价差则会改变这种转移的成本。
+\WJEqRef{eq:wj-three-common-mrs}{式~} 中，参与者可以按同一个价格自由买卖每个状态的单位支付。证券缺失会限制哪些消费转移可以实现，买卖价差则会改变这种转移的成本。
 
 \textbf{证券缺失与可复制的支付。}设第 $n$ 只证券的当期价格为 $S_n$，未来各状态的支付向量为 $x_n$，所有证券的支付向量构成矩阵 $X$。净买入量每增加一份，当期消费减少 $S_n$，未来消费向量增加 $x_n$。沿用前面交易推导的链式法则，效用对该证券净买入量的变化率为
 \[
@@ -736,7 +743,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 在无价差、消费为内点且持仓可自由调整时，净买入量可以略增或略减。最优时上述导数为零。由于 $\partial_0U_k>0$，每只证券都满足 $x_n^{\mathsf T}m_k=S_n$，合起来就是 $X^{\mathsf T}m_k=S$。因此，两位参与者的估值差满足 $X^{\mathsf T}(m_k-m_{k'})=0$，即他们对每只可交易证券及其组合的支付估值都相同。
 
-由第~\ref{sec:wj-three-rank}~节的行满秩判据，若 $X$ 行满秩，每个状态的单位支付 $\mathbf e_\omega$ 都能由某个证券组合 $h$ 复制，即 $Xh=\mathbf e_\omega$。两人对该组合的估值相同，就意味着 $\mathbf e_\omega^{\mathsf T}(m_k-m_{k'})=0$，也就是对状态 $\omega$ 的消费估值相同。
+由\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]的行满秩判据，若 $X$ 行满秩，每个状态的单位支付 $\mathbf e_\omega$ 都能由某个证券组合 $h$ 复制，即 $Xh=\mathbf e_\omega$。两人对该组合的估值相同，就意味着 $\mathbf e_\omega^{\mathsf T}(m_k-m_{k'})=0$，也就是对状态 $\omega$ 的消费估值相同。
 
 例如，若只有一只在两个状态都支付 $1$ 的债券，且价格为 $1$，两人的跨期边际替代率可以分别是 $(0.4,0.6)^{\mathsf T}$ 和 $(0.6,0.4)^{\mathsf T}$。两人对这只债券的估值都是 $1$，但对各状态单独消费的估值不同。交易这只债券只会同时改变两个状态的消费，因而这项交易工具无法消除逐状态的估值差异。
 
@@ -764,7 +771,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 例如，若买入一份须付 $1.1$，卖出一份只能收到 $0.9$，边际估值分别为 $0.95$ 和 $1.05$ 的两人都觉得买入太贵、卖出所得太少。两人的估值不同，却都没有买入或卖出的边际动机。
 
-若效用为凹函数，在固定其他持仓时，沿买入或卖出方向的效用都是交易量的凹函数。因此从零开始的两个方向导数都非正时，单独交易该证券就无法提高效用。某一状态证券的价差消失时，该状态的区间收缩为一个价格。每个状态的证券都可无价差交易时，便恢复式~\eqref{eq:wj-three-common-mrs} 的逐状态等式。
+若效用为凹函数，在固定其他持仓时，沿买入或卖出方向的效用都是交易量的凹函数。因此从零开始的两个方向导数都非正时，单独交易该证券就无法提高效用。某一状态证券的价差消失时，该状态的区间收缩为一个价格。每个状态的证券都可无价差交易时，便恢复\WJEqRef{eq:wj-three-common-mrs}{式~}中的逐状态等式。
 
 % 来源：教师 PPT 第 28 页、教材第 42 页式 (3.9) 及第 56—57 页的一价定律与定价公式。
 \subsubsection{状态价格与证券定价}
@@ -776,7 +783,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  =\phi^{\mathsf T}x_n.
 \]
 
-由内点均衡条件~\eqref{eq:wj-three-common-mrs}，参与者 $k$ 的跨期边际替代率 $m_{k,\omega}$ 等于状态价格 $\phi_\omega$。将这一关系逐状态代入定价式，得到
+由\WJEqRef{eq:wj-three-common-mrs}{内点均衡条件~}，参与者 $k$ 的跨期边际替代率 $m_{k,\omega}$ 等于状态价格 $\phi_\omega$。将这一关系逐状态代入定价式，得到
 \[
  S_n=\sum_{\omega=1}^{\Omega}\phi_\omega x_{\omega n}
  =\underbrace{\sum_{\omega=1}^{\Omega}m_{k,\omega}x_{\omega n}}_{\text{按参与者 }k\text{ 的边际估值计价}}.
@@ -791,11 +798,12 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  \hat\phi^{\mathsf T}\sum_k c_k=\hat\phi^{\mathsf T}\sum_k e_k.\label{eq:wj-three-feasibility-value}
 \end{equation}
 \begin{tcolorbox}[knowledge]
-\WJThreeTheorem{thm:wj-three-welfare}在本章无摩擦、完全的状态证券市场中，若偏好满足不满足性（公理~\ref{axiom:wj-two-1}，喜多厌少），则竞争均衡配置是 \textbf{\hyperref[def:wj-two-9]{Pareto 最优的}}：不存在另一可行配置，使所有人至少一样好、至少一人严格更好。
+\WJThreeTheorem{thm:wj-three-welfare}在本章无摩擦、完全的状态证券市场中，若偏好满足不满足性（\WJRef{axiom:wj-two-1}{公理~}，喜多厌少），则竞争均衡配置是 \textbf{\WJLink{def:wj-two-9}{Pareto 最优}的}：不存在另一可行配置，使所有人至少一样好、至少一人严格更好。
 
 这就是\textbf{福利经济学第一定理}。它说明在完全、无摩擦的竞争市场中，分散的个人选择可以实现资源在不同时期、不同状态下的有效配置。下面的证明直接比较各消费计划的预算成本，适用于包含角点消费的均衡配置。
 \end{tcolorbox}
-\textbf{证明。}记均衡价格为 $\hat\phi\gg0$，均衡消费配置为 $\{c_k\}$。按这组价格计价，第 $k$ 位参与者的禀赋财富是 $w_k=\hat\phi^{\mathsf T}e_k$。他在这一预算内选择最优消费计划 $c_k$。由不满足性，最优时用尽预算，所以 $\hat\phi^{\mathsf T}c_k=w_k$。
+\begin{solution}[label-content={证明},blank-type=none]
+记均衡价格为 $\hat\phi\gg0$，均衡消费配置为 $\{c_k\}$。按这组价格计价，第 $k$ 位参与者的禀赋财富是 $w_k=\hat\phi^{\mathsf T}e_k$。他在这一预算内选择最优消费计划 $c_k$。由不满足性，最优时用尽预算，所以 $\hat\phi^{\mathsf T}c_k=w_k$。
 
 反设存在另一个可行配置 $\{a_k\}$，使每个人都有 $a_k\succeq_k c_k$，且至少有一位参与者 $j$ 满足 $a_j\succ_j c_j$。下面用同一组均衡价格给新配置计价，先看每个人的消费需要花多少钱，再比较全体的总成本。
 
@@ -820,12 +828,13 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
  =\underbrace{\hat\phi^{\mathsf T}\sum_k e_k}_{\text{总禀赋价值}}.
 \]
 
-另一方面，新配置可行，意味着每个日期、每个状态的总消费量都等于相应的总禀赋。把式~\eqref{eq:wj-three-feasibility-value} 的计价关系用到新配置上，得到
+另一方面，新配置可行，意味着每个日期、每个状态的总消费量都等于相应的总禀赋。把\WJEqRef{eq:wj-three-feasibility-value}{可行配置的计价等式~}用到新配置上，得到
 \[
  \hat\phi^{\mathsf T}\sum_k a_k=\hat\phi^{\mathsf T}\sum_k e_k.
 \]
 
 总成本不可能同时严格超过又等于总禀赋价值。因此不存在这样的 Pareto 改善，竞争均衡配置是 Pareto 最优的。
+\end{solution}
 
 \begin{tcolorbox}[knowledge,title=效率与分配]
 Pareto 效率排除了使所有人不受损、至少一人受益的进一步调整，但有效配置仍可对应不同的福利分配。第二福利定理研究在附加条件下，如何通过一次性财富再分配支持给定的有效配置；这一问题将在完全市场的资源配置章节进一步讨论。

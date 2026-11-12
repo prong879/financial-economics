@@ -4,6 +4,12 @@
 \newcounter{wjThreeExercise}
 \renewcommand{\thewjThreeExercise}{\thechapter.\arabic{wjThreeExercise}}
 \newcommand{\WJThreeProblem}[2]{\refstepcounter{wjThreeExercise}\label{#1}\problemno{\thewjThreeExercise#2}}
+% 学生版会排版后隐藏解答，此时解答小问的锚点不写入 PDF。
+\newcommand{\WJThreeAnswerRef}[2]{%
+  \IfRefUndefinedExpandable{#1-answer-#2}%
+    {练习~\ref*{#1}(#2)}%
+    {\WJLink{#1-answer-#2}{练习~\ref*{#1}\ref*{#1-answer-#2}}}%
+}
 
 \par\noindent
 \begin{minipage}{\linewidth}
@@ -33,7 +39,7 @@
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 \begin{enumerate}[label=(\alph*)]
     \item Arrow-Debreu 证券的支付向量是 $X_{a}=\begin{bmatrix}1 \\ 0\end{bmatrix}$、$X_{b}=\begin{bmatrix}0 \\ 1\end{bmatrix}$，对应的价格向量为 $\phi=(\phi_a,\phi_b)^{\mathsf T}$。
     \item $2X_{a}+X_{b}$；
@@ -119,7 +125,7 @@
             $(0.01,1)$  & $-0.87$ & $-100.87$ & $-0.87$
         \end{tabular}
     \end{center}
-    \item 当 $\phi_{a}=\phi_{b}=0.1$ 时，$w=0.3$，$S=1.2$，
+    \item \textbf{证明。}当 $\phi_{a}=\phi_{b}=0.1$ 时，$w=0.3$，$S=1.2$，
     \[
         c_{0}^{*}=\frac{0.3+0.2\log(0.2)}{1.2}\approx -0.0182<0.
     \]
@@ -145,9 +151,9 @@
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
-\begin{solution}
-\begin{enumerate}[label=(\alph*)]
-    \item 设 $\rho>0$。每份债券当期花费 $1$，$r_F$ 是扣除本金后的净利率，$R=1+r_F>0$ 是含本金的到期支付。参与者 1 净买入 $\theta_1$ 份债券，当期支出 $\theta_1$，到期收到 $R\theta_1$，因此
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+\begin{enumerate}[label=(\alph*),ref=(\alph*)]
+    \item\label{prob:wj-three-2-answer-a} 设 $\rho>0$。每份债券当期花费 $1$，$r_F$ 是扣除本金后的净利率，$R=1+r_F>0$ 是含本金的到期支付。参与者 1 净买入 $\theta_1$ 份债券，当期支出 $\theta_1$，到期收到 $R\theta_1$，因此
     \[
         c_{1,0}=100-\theta_1,\qquad c_{1,1}=1+R\theta_1.
     \]
@@ -181,7 +187,7 @@
 
     两期消费均为正，所以解在可行区间内。目标函数严格凹，因此这是一阶条件给出的唯一最优解。
     \item 出清要求所有参与者的最优证券净买入量之和为零。经济中只有参与者 1，因此出清条件为 $\theta_1^{*}(R)=0$。
-    \item 由 (b)，均衡时 $\theta_1^*(R^*)=0$，其中 $R^*=1+r_F^*$。代入 (a) 求得的证券需求式，得到
+    \item\label{prob:wj-three-2-answer-c} 由 (b)，均衡时 $\theta_1^*(R^*)=0$，其中 $R^*=1+r_F^*$。代入 (a) 求得的证券需求式，得到
     \[
         \theta_1^{*}(R^*)=\frac{100\rho R^*-1}{(1+\rho)R^*}=0.
     \]
@@ -205,7 +211,7 @@
 \par\noindent
 \begin{minipage}{\linewidth}
 \begin{problem}
-\WJThreeProblem{prob:wj-three-3}{} 继续考虑练习~\ref{prob:wj-three-2} 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $\begin{bmatrix}1 \\ 100\end{bmatrix}$（参与者 1 是$\begin{bmatrix}100 \\ 1\end{bmatrix}$）。
+\WJThreeProblem{prob:wj-three-3}{} 继续考虑\WJRef{prob:wj-three-2}{练习~} 中定义的经济。现在假设还有另外一个参与者 2，他的效用函数和参与者 1 的一样但他的禀赋为 $\begin{bmatrix}1 \\ 100\end{bmatrix}$（参与者 1 是$\begin{bmatrix}100 \\ 1\end{bmatrix}$）。
 \begin{enumerate}[label=(\alph*)]
     \item 求解参与者 2 的最优消费/储蓄选择。
     \item 比较参与者 1 和 2 的最优消费/储蓄选择。
@@ -215,11 +221,11 @@
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
-\begin{solution}
-练习~\ref{prob:wj-three-2} 只有参与者 1，出清时他的证券净买入量为零。本题的第 1 期仍只有一个可能状态。加入参与者 2 后，先分别求两人的证券需求，再用两人的净买入量之和为零求均衡利率。
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+\WJRef{prob:wj-three-2}{练习~} 只有参与者 1，出清时他的证券净买入量为零。本题的第 1 期仍只有一个可能状态。加入参与者 2 后，先分别求两人的证券需求，再用两人的净买入量之和为零求均衡利率。
 
 \begin{enumerate}[label=(\alph*)]
-    \item 沿用练习~\ref{prob:wj-three-2}(a) 的记号。参与者 2 净买入 $\theta_2$ 单位债券后，$c_{2,0}=1-\theta_2$，$c_{2,1}=100+R\theta_2$。把两期消费代入效用函数，并要求两者都为正，得到
+    \item 沿用\WJThreeAnswerRef{prob:wj-three-2}{a} 的记号。参与者 2 净买入 $\theta_2$ 单位债券后，$c_{2,0}=1-\theta_2$，$c_{2,1}=100+R\theta_2$。把两期消费代入效用函数，并要求两者都为正，得到
     \[
         \begin{aligned}
             \max_{\theta_2}\quad &\log(1-\theta_2)+\rho\log(100+R\theta_2)\\
@@ -277,7 +283,7 @@
 
     当 $R$ 低于两个临界值时，两人都借款。高于两个临界值时，两人都储蓄。当 $1/(100\rho)<R<100/\rho$ 时，参与者 1 储蓄，参与者 2 借款。$R$ 恰好等于某人的临界值时，此人不交易。
 
-    \item 均衡时，两人的证券净买入量相加为零。将练习~\ref{prob:wj-three-2}(a) 和本题 (a) 的需求代入出清条件，得到
+    \item 均衡时，两人的证券净买入量相加为零。将\WJThreeAnswerRef{prob:wj-three-2}{a} 和本题 (a) 的需求代入出清条件，得到
     \[
         \underbrace{\frac{100\rho R^*-1}{(1+\rho)R^*}}_{\text{参与者 1 的证券净买入量}}
         +\underbrace{\frac{\rho R^*-100}{(1+\rho)R^*}}_{\text{参与者 2 的证券净买入量}}
@@ -308,7 +314,7 @@
       r_F^*=R^*-1=\frac{1}{\rho}-1.
     \]
 
-    只有参与者 1 时，出清要求他自己的净买入量为零。由练习~\ref{prob:wj-three-2}(c)，此时的均衡利率为 $1/(100\rho)-1$。同一 $\rho>0$ 下，两人经济的均衡利率高出
+    只有参与者 1 时，出清要求他自己的净买入量为零。由\WJThreeAnswerRef{prob:wj-three-2}{c}，此时的均衡利率为 $1/(100\rho)-1$。同一 $\rho>0$ 下，两人经济的均衡利率高出
     \[
       \left(\frac1\rho-1\right)-\left(\frac1{100\rho}-1\right)
       =\frac{99}{100\rho}>0.
@@ -316,14 +322,14 @@
     加入参与者 2 后，总禀赋从 $(100,1)$ 变为 $(101,101)$，未来商品相对更充裕。一单位未来商品的当期价格 $1/R^*$ 从 $100\rho$ 降为 $\rho$，因此均衡利率更高。
 
     \Needspace{13\baselineskip}
-    \item 记 $c_k^*$ 为参与者 $k$ 的均衡消费计划。由 (c)，两期消费均严格为正，且 $c_{k,1}^*=\rho R^*c_{k,0}^*$。因此，未来消费相对于当期消费的跨期边际替代率为
+    \item \textbf{证明。}记 $c_k^*$ 为参与者 $k$ 的均衡消费计划。由 (c)，两期消费均严格为正，且 $c_{k,1}^*=\rho R^*c_{k,0}^*$。因此，未来消费相对于当期消费的跨期边际替代率为
     \[
         \frac{\partial_1U_k(c_k^*)}{\partial_0U_k(c_k^*)}
         =\rho\frac{c_{k,0}^*}{c_{k,1}^*}
         =\frac{1}{R^*}=\rho.
     \]
 
-    这个比率衡量在效用不变时，参与者愿为增加未来消费放弃多少当期消费。在均衡点，它等于一单位未来商品的当期价格 $1/R^*$\ifdefined\WJHandoutKnowledge（见正文式~\eqref{eq:wj-three-mrs} 的内点最优条件）\fi。
+    这个比率衡量在效用不变时，参与者愿为增加未来消费放弃多少当期消费。在均衡点，它等于一单位未来商品的当期价格 $1/R^*$\ifdefined\WJHandoutKnowledge（见正文\WJEqRef{eq:wj-three-mrs}{内点最优条件~}）\fi。
 
     假设存在另一组可行消费计划 $\{a_k\}$，使两人的效用都不下降，且至少一人严格提高。记 $\Delta c_{k,t}=a_{k,t}-c_{k,t}^*$，其中 $t=0,1$。沿从 $c_k^*$ 到 $a_k$ 的线段，效用是凹的，所以在 $c_k^*$ 处用边际效用算出的线性变化，是实际效用增量的上界。也就是
     \[
@@ -338,7 +344,7 @@
       \le \Delta c_{k,0}+\frac{\Delta c_{k,1}}{R^*}.
     \]
 
-    右边正是按均衡价格计算的消费支出变化。两人的支出都不会减少，效用严格提高的人还必须增加支出，因此总支出会增加。但两期总资源都固定，任何可行的重新分配都满足 $\sum_k\Delta c_{k,0}=\sum_k\Delta c_{k,1}=0$，按同一组价格计算的总支出变化只能为零。两者矛盾，故均衡配置是 Pareto 最优的\ifdefined\WJHandoutKnowledge。这与正文第一福利定理（定理~\ref{thm:wj-three-welfare}）的计价思路相同\fi。\qedhere
+    右边正是按均衡价格计算的消费支出变化。两人的支出都不会减少，效用严格提高的人还必须增加支出，因此总支出会增加。但两期总资源都固定，任何可行的重新分配都满足 $\sum_k\Delta c_{k,0}=\sum_k\Delta c_{k,1}=0$，按同一组价格计算的总支出变化只能为零。两者矛盾，故均衡配置是 Pareto 最优的\ifdefined\WJHandoutKnowledge。这与正文\WJRef{thm:wj-three-welfare}{定理~}[（福利经济学第一定理）]的计价思路相同\fi。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -363,16 +369,16 @@
 \end{enumerate}
 \end{problem}
 \end{minipage}\par
-\begin{solution}
-练习~\ref{prob:wj-three-2} 只有一位参与者，练习~\ref{prob:wj-three-3} 增加到两位，两题的第 1 期都只有一个可能状态。本题仍有两位参与者，第 1 期有三个等可能的状态 $a,b,c$。前两题用一个利率描述跨期交换，本题要分别求三个状态下未来消费的价格 $\phi_a,\phi_b,\phi_c$。
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
+\WJRef{prob:wj-three-2}{练习~} 只有一位参与者，\WJRef{prob:wj-three-3}{练习~} 增加到两位，两题的第 1 期都只有一个可能状态。本题仍有两位参与者，第 1 期有三个等可能的状态 $a,b,c$。前两题用一个利率描述跨期交换，本题要分别求三个状态下未来消费的价格 $\phi_a,\phi_b,\phi_c$。
 
 \begin{enumerate}[label=(\alph*)]
-    \item 先在给定的正状态价格下求个人需求\ifdefined\WJHandoutKnowledge（状态价格的正性见正文式~\eqref{eq:wj-three-positive-price}）\fi。消费不能为负，效用式的分母也不能为零，所以各项消费都必须为正。在这一范围内，效用严格递增、严格凹。按当期商品计价，禀赋财富为 $w_k=e_{k,0}+\sum_{\omega=a,b,c}\phi_\omega e_{k,1\omega}$\ifdefined\WJHandoutKnowledge（见正文式~\eqref{eq:wj-three-wealth}）\fi。代入两人的禀赋，得
+    \item 先在给定的正状态价格下求个人需求\ifdefined\WJHandoutKnowledge（状态价格的正性见\WJEqRef{eq:wj-three-positive-price}{正文式~}）\fi。消费不能为负，效用式的分母也不能为零，所以各项消费都必须为正。在这一范围内，效用严格递增、严格凹。按当期商品计价，禀赋财富为 $w_k=e_{k,0}+\sum_{\omega=a,b,c}\phi_\omega e_{k,1\omega}$\ifdefined\WJHandoutKnowledge（见\WJEqRef{eq:wj-three-wealth}{正文式~}）\fi。代入两人的禀赋，得
     \[
        w_1=100,\qquad w_2=200\phi_a+100\phi_b+50\phi_c.
     \]
 
-    按价值预算约束\ifdefined\WJHandoutKnowledge（正文式~\eqref{eq:wj-three-budget}）\fi，当期消费加上未来各状态消费的现值不能超过 $w_k$。效用严格递增，最优时用尽预算，因此两人的问题可以写为
+    按价值预算约束\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-three-budget}{正文式~}）\fi，当期消费加上未来各状态消费的现值不能超过 $w_k$。效用严格递增，最优时用尽预算，因此两人的问题可以写为
     \[
       \begin{aligned}
        \max_{c_{k,0},c_{k,1\omega}>0}\quad&
@@ -408,7 +414,7 @@
        \quad k=1,2,\ \omega=a,b,c.
     \]
 
-    这些消费均严格为正且满足预算，目标函数严格凹，所以这是一阶条件给出的唯一最优解。每份阿罗证券在对应状态支付一单位商品，因此参与者在状态 $\omega$ 的最优净买入量为 $\theta_{k,\omega}^*=c_{k,1\omega}^*-e_{k,1\omega}$\ifdefined\WJHandoutKnowledge（见正文第~\ref{sec:wj-three-budget}~节的净交易关系）\fi。参与者 1 在三个状态都没有未来禀赋，所需的未来消费都由证券买入取得。参与者 2 则分别从三个状态的最优消费中扣除禀赋 $200,100,50$，得到净买入量。
+    这些消费均严格为正且满足预算，目标函数严格凹，所以这是一阶条件给出的唯一最优解。每份阿罗证券在对应状态支付一单位商品，因此参与者在状态 $\omega$ 的最优净买入量为 $\theta_{k,\omega}^*=c_{k,1\omega}^*-e_{k,1\omega}$\ifdefined\WJHandoutKnowledge（见正文\WJRef{sec:wj-three-budget}{第~}[~节（禀赋财富与预算约束）]的净交易关系）\fi。参与者 1 在三个状态都没有未来禀赋，所需的未来消费都由证券买入取得。参与者 2 则分别从三个状态的最优消费中扣除禀赋 $200,100,50$，得到净买入量。
 
     \item 记题中的 1 期总禀赋为 $E_{1\omega}=\sum_k e_{k,1\omega}$。当期出清要求 $\sum_k c_{k,0}^*=100$。由 (a) 的最优消费关系，在均衡状态价格 $\phi_\omega^*$ 下，
     \[
@@ -454,7 +460,7 @@
     各列的总消费都等于对应的总禀赋。按 (a) 的净交易公式，参与者 1 在三个状态的净买入量就是表中的未来消费量。参与者 2 在每个状态的净卖出量恰好与之相等，因此三个状态的证券市场也都出清。
 
     \Needspace{8\baselineskip}
-    \item 这里比较的是各状态的总禀赋。由 (a) 的个人最优消费式和 (b) 的状态出清式，对任一参与者 $k$ 都有
+    \item \textbf{证明。}这里比较的是各状态的总禀赋。由 (a) 的个人最优消费式和 (b) 的状态出清式，对任一参与者 $k$ 都有
     \[
        c_{k,1\omega}^*
        =\frac{c_{k,0}^*}{\sqrt{3\phi_\omega^*}}
@@ -463,7 +469,7 @@
 
     同一个人的系数 $c_{k,0}^*/100$ 为正，且在三个状态都相同。由于 $E_{1a}>E_{1b}>E_{1c}$，两人各自都有 $c_{k,1a}^*>c_{k,1b}^*>c_{k,1c}^*$。例如，参与者 1 的未来个人禀赋在三个状态都是零，他仍会在总禀赋较多的状态消费得更多。
 
-    \item 所求份额是个人在状态 $\omega$ 的消费占该状态总消费的比例。在均衡状态价格 $\phi_\omega^*$ 下，(a) 给出个人最优消费，(b) 给出总消费与总禀赋的关系：
+    \item \textbf{证明。}所求份额是个人在状态 $\omega$ 的消费占该状态总消费的比例。在均衡状态价格 $\phi_\omega^*$ 下，(a) 给出个人最优消费，(b) 给出总消费与总禀赋的关系：
     \[
        c_{k,1\omega}^*=\frac{c_{k,0}^*}{\sqrt{3\phi_\omega^*}},
        \qquad

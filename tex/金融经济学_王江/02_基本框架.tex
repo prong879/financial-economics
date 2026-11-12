@@ -100,7 +100,7 @@
 % 教材印刷第 10—11 页：信息的经济价值、逆向选择与道德风险。
 \textbf{公开信息}是所有参与者都能取得的信息，例如已公布的市场报价。\textbf{私有信息}只由一个人或一部分人掌握，例如某个参与者提前收到的收成预测。这类信息有经济价值，因为知道收成预测的人可以据此判断未来的支付，调整证券买卖和消费安排。
 
-当交易一方掌握另一方无法观察的相关信息时，就会出现\textbf{信息不对称}。在保险市场上，难以观察的风险类型可能引发逆向选择，难以观察的投保后行为可能引发道德风险，见第~\ref{sec:wj-three-insurance}~节。本讲采用共同信息的假设，用同一个概率测度 $P$ 描述所有人于 $0$ 期对未来状态的判断。
+当交易一方掌握另一方无法观察的相关信息时，就会出现\textbf{信息不对称}。在保险市场上，难以观察的风险类型可能引发逆向选择，难以观察的投保后行为可能引发道德风险，见\WJRef{sec:wj-three-insurance}{第~}[~节（市场不完全与金融创新）]。本讲采用共同信息的假设，用同一个概率测度 $P$ 描述所有人于 $0$ 期对未来状态的判断。
 \subsubsection{生产技术}
 指可以把商品转化为更多商品，或者把现在的商品转化为未来的商品。在本书中，假设所有参与者不拥有任何生产技术。
 
@@ -131,7 +131,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 \end{bmatrix}$。所有消费计划的集合叫做消费集 $C$。和禀赋一样，消费计划属于 $\mathrm{R}^{1+\Omega}$ 中的一个元素，且假设消费计划非负，那么消费计划 $c \in \mathrm{R}^{1+\Omega}_{+}$，消费集就是 $C=\mathrm{R}^{1+\Omega}_{+}$。
 \end{tcolorbox}
 
-两状态下，禀赋向量与消费向量的分期、分状态结构见图~\ref{fig:wj-endowment-consumption}。
+两状态下，禀赋向量与消费向量的分期、分状态结构见\WJRef{fig:wj-endowment-consumption}{图~}。
 
 \WJInputFigure{02_禀赋与消费}
 
@@ -147,7 +147,11 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 \textbf{假设 1} 消费集 $C=\mathrm{R}^{1+\Omega}_{+}$ 是 $\mathrm{R}^{1+\Omega}$ 中的一个闭凸子集。
 \end{tcolorbox}
 
-\textbf{直接验证：}若 $a,b\ge0$、$\alpha\in[0,1]$，则每个分量 $\alpha a_i+(1-\alpha)b_i\ge0$，故 $C$ 凸。若 $c^{(n)}\in C$ 且 $c^{(n)}\to c$，则 $c_i=\lim_{n\to\infty}c_i^{(n)}\ge0$，故 $c\in C$，所以 $C$ 闭。闭性保证集合内收敛序列的极限仍属于该集合。
+\begin{solution}[label-content={证明},blank-type=none]
+若 $a,b\ge0$、$\alpha\in[0,1]$，则每个分量 $\alpha a_i+(1-\alpha)b_i\ge0$，故 $C$ 凸。若 $c^{(n)}\in C$ 且 $c^{(n)}\to c$，则 $c_i=\lim_{n\to\infty}c_i^{(n)}\ge0$，故 $c\in C$，所以 $C$ 闭。
+\end{solution}
+
+闭性保证集合内收敛序列的极限仍属于该集合。
 
 \subsubsection{偏好及其一致性}
 偏好是\textbf{参与者对所有可能消费计划的排序}，这种排序描述了其经济需求。
@@ -204,7 +208,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
     \item 凸性：愿意接受消费计划的适当搭配。 如果计划 $a$ 至少和计划 $b$ 一样好，那么把两者按任意比例混合，得到的计划至少不会比 $b$ 差。特别地，如果两者一样好，你会认为它们的混合至少也一样好\footnote{这里的“混合”，是把两个计划在同一日期、同一状态下的消费量分别加权平均，不是随机抽取一个计划执行。}。
 \end{enumerate}
 
-消费集的闭凸性、增加消费对偏好的影响及上等值集的凸性，分别见图~\ref{fig:wj-consumption-preferences} 的（a）—（c）。
+消费集的闭凸性、增加消费对偏好的影响及上等值集的凸性，分别见\WJRef{fig:wj-consumption-preferences}{图~}[（a）]—（c）。
 
 \WJInputFigure{02_集合与偏好}
 
@@ -236,7 +240,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 上面的定义说明什么样的函数能够表示偏好。接下来的问题是：给定一个偏好关系，是否能找到这样的函数？
 
         \begin{tcolorbox}[knowledge]
-\WJTwoTheorem{thm:wj-two-utility-existence} 对于闭凸消费集 $C$ 上由定义~\ref{def:wj-two-3} 所定义的偏好（满足完备性、传递性和自反性），若其满足公理~\ref{axiom:wj-two-2}（连续性），则存在一个连续的效用函数 $U$ 使得 $\forall a,b \in C, a\succeq b$，当且仅当 $U(a) \ge U(b)$。
+\WJTwoTheorem{thm:wj-two-utility-existence} 对于闭凸消费集 $C$ 上\WJRef{def:wj-two-3}{定义~}[（偏好关系）]所述的偏好（满足完备性、传递性和自反性），若其满足\WJRef{axiom:wj-two-2}{公理~}[（连续性）]，则存在一个连续的效用函数 $U$ 使得 $\forall a,b \in C, a\succeq b$，当且仅当 $U(a) \ge U(b)$。
 \end{tcolorbox}
 
 这一定理说明，在上述条件下，可以选取一个连续的效用函数来表示偏好。因此，研究参与者如何选择消费计划，可以转化为研究他如何在可行的计划中选择效用值最大的一个。下面的例子说明如何利用效用函数比较消费计划。
@@ -245,7 +249,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 \Needspace{13\baselineskip}
 \begin{tcolorbox}[example]
 \begin{question}
-            \WJTwoExample{ex:wj-two-3}\quad 在例~\ref{ex:wj-two-1} 中描述的 Lucas 树经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
+            \WJTwoExample{ex:wj-two-3}\quad 在\WJRef{ex:wj-two-1}{例~} 中描述的 Lucas 树经济中，消费空间是 $\mathrm{R}^{3}_{+}$，表示在今年和明年的两个可能状态下的消费；状态 $a$ 对应于好天气，而状态 $b$ 则对应于坏天气。假设经济中的某个参与者有如下的效用函数：
             \[
                 U(c_0,c_{1a},c_{1b})=\log c_0+\tfrac12(\log c_{1a}+\log c_{1b})
             \]
@@ -289,7 +293,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge,title=效用函数的序数性]
-定理~\ref{thm:wj-two-utility-existence}（连续效用表示的存在性）给出的效用表示是\textbf{序数的}：效用值用于表示个人的偏好次序，其差额与倍数不度量福利的增减数量，人际福利比较还需要额外的判断标准。
+\WJRef{thm:wj-two-utility-existence}{定理~}[（连续效用表示的存在性）]给出的效用表示是\textbf{序数的}：效用值用于表示个人的偏好次序，其差额与倍数不度量福利的增减数量，人际福利比较还需要额外的判断标准。
 
 对效用函数作\textbf{严格递增}变换，偏好排序保持不变：若 $V=f(U)$、$f$ 严格递增，则 $V(a)\ge V(b)\iff U(a)\ge U(b)$。
 \tcbline
@@ -299,7 +303,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
  =c_0\sqrt{c_{1a}c_{1b}}=V(c).
 \]
 
-图~\ref{fig:wj-ordinal-transform} 中，$U_A>U_C>U_B$ 与 $V_A>V_C>V_B$ 对应同一偏好排序 $A\succ C\succ B$；指数变换改变了效用值的尺度。
+\WJRef{fig:wj-ordinal-transform}{图~} 中，$U_A>U_C>U_B$ 与 $V_A>V_C>V_B$ 对应同一偏好排序 $A\succ C\succ B$；指数变换改变了效用值的尺度。
 \end{tcolorbox}
 
 \WJInputFigure{02_序数变换}
@@ -307,7 +311,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
 % 教材印刷页 15--17、教师 PPT 第 15、17 页：沿用前文弱凸偏好公理，
 % 将其效用表示明确称为拟凹性；下列函数、图示与数值反例为教学补充。
 \begin{tcolorbox}[knowledge,title=偏好假设的效用函数表示]
-选取连续的效用函数来表示偏好后，前面的三个基本假设（公理~\ref{axiom:wj-two-1}：不满足性；公理~\ref{axiom:wj-two-2}：连续性；公理~\ref{axiom:wj-two-3}：凸性）可表述为：
+选取连续的效用函数来表示偏好后，前面的三个基本假设（\WJRef{axiom:wj-two-1}{公理~}[：不满足性]、\WJRef{axiom:wj-two-2}{公理~}[：连续性]、\WJRef{axiom:wj-two-3}{公理~}[：凸性]）可表述为：
 \begin{enumerate}
     \item \textbf{不满足性：}如果 $a>b$，那么 $U(a)>U(b)$；相应有 $a\ge b\Rightarrow U(a)\ge U(b)$。
     \item \textbf{连续性：}$\lim_{a_n \to a}U(a_n)=U(a)$。
@@ -324,7 +328,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
  \alpha a+(1-\alpha)b\succeq b.
 \]
 
-特别地，若 $a\sim b$，则 $m$ 至少和两者一样好，允许严格更好。这里的“凸”指\textbf{上等值集是凸集}：所有至少和某个给定计划一样好的计划，任意混合后仍属于这个集合。图~\ref{fig:wj-convex-preference-curvature}（a）在消费平面中画出了这样的集合及其中的混合计划。
+特别地，若 $a\sim b$，则 $m$ 至少和两者一样好，允许严格更好。这里的“凸”指\textbf{上等值集是凸集}：所有至少和某个给定计划一样好的计划，任意混合后仍属于这个集合。\WJRef{fig:wj-convex-preference-curvature}{图~}[（a）]在消费平面中画出了这样的集合及其中的混合计划。
 
 \textbf{效用函数的拟凹性：用效用数值表达同一个偏好要求。}
 由于 $a\succeq b\iff U(a)\ge U(b)$，混合计划至少不差于较差计划，可以写为
@@ -341,7 +345,7 @@ c_k \equiv \begin{bmatrix}c_{k,0} \\ c_{k,1}\end{bmatrix}=
  U(\alpha a+(1-\alpha)b)\ge\underbrace{\alpha U(a)+(1-\alpha)U(b)}_{\text{端点效用的加权平均}},
 \]
 
-则称 $U$ 为凹函数。图~\ref{fig:wj-convex-preference-curvature}（c）画出一元函数的情形，曲线不低于连接任意两端点的弦。多元函数要求沿任意消费线段都满足相同的不等式。加权平均总不低于较小值，故\textbf{凹性蕴含拟凹性}。例如两端效用为 $1$ 和 $9$，各取一半时，拟凹性只要求混合计划的效用至少为 $1$，凹性则要求至少为 $5$。
+则称 $U$ 为凹函数。\WJRef{fig:wj-convex-preference-curvature}{图~}[（c）]画出一元函数的情形，曲线不低于连接任意两端点的弦。多元函数要求沿任意消费线段都满足相同的不等式。加权平均总不低于较小值，故\textbf{凹性蕴含拟凹性}。例如两端效用为 $1$ 和 $9$，各取一半时，拟凹性只要求混合计划的效用至少为 $1$，凹性则要求至少为 $5$。
 \end{tcolorbox}
 
 % 板书截图的三种判别法。术语对照参见中国矿业大学《高等数学 A（1）》
@@ -373,7 +377,7 @@ $f''(x)\le 0$ &
 \bottomrule
 \end{tabular*}\par}
 
-若区间含端点，使用导数判别时假设 $f$ 在端点连续。法 1 的符号条件须对所有内点成立，处处为正或为负分别是严格凸或严格凹的充分条件。法 3 可任选内点 $x_0$ 作切点。图~\ref{fig:wj-convexity-tests} 取 $x_0=m$，在两种曲线上分别画出弦和切线。
+若区间含端点，使用导数判别时假设 $f$ 在端点连续。法 1 的符号条件须对所有内点成立，处处为正或为负分别是严格凸或严格凹的充分条件。法 3 可任选内点 $x_0$ 作切点。\WJRef{fig:wj-convexity-tests}{图~} 取 $x_0=m$，在两种曲线上分别画出弦和切线。
 
 \WJInputFigure{02_凹凸函数的判别}
 \end{tcolorbox}
@@ -393,7 +397,7 @@ $f''(x)\le 0$ &
     U(c)=u(c_0)+\tfrac12\bigl(u(c_{1a})+u(c_{1b})\bigr).
 \]
 
-本章部分例题和习题采用这一可加形式。下面比较常用函数的形状及其单调性、凹性，帮助理解不满足性和偏好凸性。期望效用与时间可加结构见第~\ref{chap:wj-six}~讲，风险厌恶及 CARA、CRRA 的比较见第~\ref{chap:wj-seven}~讲。
+本章部分例题和习题采用这一可加形式。下面比较常用函数的形状及其单调性、凹性，帮助理解不满足性和偏好凸性。期望效用与时间可加结构见\WJRef{chap:wj-six}{第}[讲（期望效用函数）]，风险厌恶及 CARA、CRRA 的比较见\WJRef{chap:wj-seven}{第}[讲（风险厌恶）]。
 
 {\small
 \renewcommand{\arraystretch}{1.25}
@@ -479,6 +483,8 @@ $f''(x)\le 0$ &
 \end{tcolorbox}
 
 \subsection{证券组合}
+记 $S=(S_1,\ldots,S_N)^{\mathsf T}$ 为 $0$ 期的证券价格列向量，其中 $S_n$ 是第 $n$ 只证券每份的价格。价格与持仓均按支付矩阵 $X$ 的列序排列。
+
 \begin{tcolorbox}[knowledge,title=证券组合与市场组合,breakable=false]
 对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则组合由向量 $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$ 表示。在状态 $\omega$，先用每份证券的支付乘以持有数量，再把各证券的支付加起来。对每个状态都做一次，就得到组合的支付向量 $X\theta$：
     \[
@@ -520,12 +526,12 @@ $f''(x)\le 0$ &
  \theta_{\rm bond}=\frac{4y_b-y_a}{3}.
 \]
 
-例如支付 $[1,0]^{\mathsf T}$ 可由 $1/150$ 份股票与 $-1/3$ 份债券复制。股票与债券共同生成全部两状态支付；仅有股票时，只能生成其支付列的倍数。复制成本为 $S^{\mathsf T}\theta$，由所用证券的价格与数量共同决定。
+例如支付 $[1,0]^{\mathsf T}$ 可由 $1/150$ 份股票与 $-1/3$ 份债券复制。股票与债券共同生成全部两状态支付；仅有股票时，只能生成其支付列的倍数。复制成本 $S^{\mathsf T}\theta$ 等于股票单价乘以股票持有量，再加上债券单价乘以债券持有量。
 \end{tcolorbox}
 
 \subsection{交易过程}
 \subsubsection{交易方式与市场出清}
-交易可以通过\textbf{集中化交易}（centralized exchange）或\textbf{柜台交易}（over-the-counter，OTC）完成；具体的交易安排称为\textbf{市场微观结构}（market micro-structure）。所有价格均以 0 期商品为计价单位。记 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 为证券价格，$h_k(S)$ 为参与者的\textbf{交易后总持仓}，$\bar\theta_k$ 为初始持仓。总持仓出清条件为
+交易可以通过\textbf{集中化交易}（centralized exchange）或\textbf{柜台交易}（over-the-counter，OTC）完成；具体的交易安排称为\textbf{市场微观结构}（market micro-structure）。所有价格均以 0 期商品为计价单位。给定价格向量 $S$，记 $h_k(S)$ 为参与者的\textbf{交易后总持仓}，$\bar\theta_k$ 为初始持仓。总持仓出清条件为
 \[
  \sum_k h_k(S)=\sum_k\bar\theta_k=\theta_M.
 \]
@@ -582,7 +588,7 @@ $f''(x)\le 0$ &
     \begin{enumerate}[label=(\alph*)]
         \item 每一参与者对未来状态发生的可能性都有\textbf{相同的信息}，由 $P$ 描述；
         \item 每一参与者具有\textbf{禀赋} $e_k\in\mathrm{R}^{1+\Omega}_{+}$；
-        \item 每一参与者有定义于 $C=\mathrm{R}^{1+\Omega}_{+}$ 上、且满足公理~\ref{axiom:wj-two-1}$\sim$公理~\ref{axiom:wj-two-3} 的偏好（不满足性、连续性、凸性）。
+        \item 每一参与者有定义于 $C=\mathrm{R}^{1+\Omega}_{+}$ 上、且满足\WJRef{axiom:wj-two-1}{公理~}[（不满足性）]、\WJRef{axiom:wj-two-2}{公理~}[（连续性）]和\WJRef{axiom:wj-two-3}{公理~}[（凸性）]的偏好。
     \end{enumerate}
     \item 有一个市场结构为 $X$ 的\textbf{无摩擦证券市场}。
 \end{enumerate}
@@ -596,7 +602,7 @@ e_{k,1}=X\bar{\theta}_k
 则我们称之为\textbf{证券市场经济}（security-market economy）。其中 $\bar{\theta}_k$ 是投资者 k 的初始证券持仓向量。
 \end{tcolorbox}
 
-证券市场经济考察\textbf{每个人的实际禀赋是否可\hyperref[sec:wj-two-marketed]{市场化}}（即能否用现有证券组合复制其第 1 期各状态下的禀赋）；第~\ref{chap:wj-three}~章的“\hyperref[def:wj-three-complete]{完全市场}”则考察\textbf{所有状态支付是否都可\hyperref[sec:wj-two-marketed]{市场化}}。例如，两状态下只有支付 $[1,1]^{\mathsf T}$ 的债券，若人人的 1 期禀赋都是该向量的倍数，就满足证券市场经济的定义；其可交易支付仍局限于两状态数量相同的向量，因而市场不完全。
+证券市场经济考察\textbf{每个人的实际禀赋是否可\WJLink{sec:wj-two-marketed}{市场化}}（即能否用现有证券组合复制其第 1 期各状态下的禀赋）；“\WJLink{def:wj-three-complete}{完全市场}”则考察\textbf{所有状态支付是否都可市场化}。例如，两状态下只有支付 $[1,1]^{\mathsf T}$ 的债券，若人人的 1 期禀赋都是该向量的倍数，就满足证券市场经济的定义；其可交易支付仍局限于两状态数量相同的向量，因而市场不完全。
 
 % 摘录整理自教师 PPT 第 30—31 页；将收入来源与可交易要求权的区别具体化。
 \begin{tcolorbox}[example,title=课堂例题：土地收成与劳动收入]
@@ -605,7 +611,7 @@ e_{k,1}=X\bar{\theta}_k
 若引入与这些收入相联系、且支付无法由现有证券组合复制的新证券，就能扩大市场化支付集合，为收入转移和风险分担提供更多选择。
 \end{tcolorbox}
 
-图~\ref{fig:wj-marketed-endowments} 以第 1 期三个状态的支付为坐标，两只证券张成 $x_aOx_b$ 平面 $M$。禀赋 $e_{1,1}$ 可由组合 $X_1+X_2$ 复制，因而可市场化；$e_{2,1}$ 位于平面外，无法复制，因此该示例不满足证券市场经济的定义。
+\WJRef{fig:wj-marketed-endowments}{图~} 以第 1 期三个状态的支付为坐标，两只证券张成 $x_aOx_b$ 平面 $M$。各持有一份证券，即取持仓列向量 $(1,1)^{\mathsf T}$，得到支付 $X_1+X_2=e_{1,1}$，所以该禀赋可市场化。$e_{2,1}$ 位于平面外，无法复制，因此该示例不满足证券市场经济的定义。
 
 \WJInputFigure{02_市场化与禀赋}
 
@@ -682,7 +688,7 @@ e_{k,1}=X\bar{\theta}_k
 
 其中 $\rho$ 是未来消费效用的权重。给定利率和禀赋，求最优消费 $c_0^*,c_1^*$，以及最优证券净购买量 $\theta^*$，并判断参与者是储蓄还是借款。
 \end{question}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
 \textbf{从证券选择到消费选择。}净购买 $\theta$ 份证券时，0 期支出为 $\theta$，1 期新增支付为 $R\theta$，所以
 \[
  \left\{\begin{aligned}
@@ -841,7 +847,7 @@ $w$ 是以 0 期商品计价的禀赋现值。反过来，给定满足该等式�
 
 这一向量等式表示\textbf{逐日期、逐状态的资源可行性}：部分参与者通过交易增加的消费，恰好由其余参与者在同一日期、同一状态下减少的消费补足。
 
-瓦尔拉斯法则的一般形式是：当各人用尽预算时，所有商品市场\textbf{超额需求的价格加权总和为零}；本章强调的是上述证券出清与商品出清的联系。一般价值形式及其应用见第~\ref{sec:wj-three-equilibrium}~节“均衡的定义与市场出清”。
+瓦尔拉斯法则的一般形式是：当各人用尽预算时，所有商品市场\textbf{超额需求的价格加权总和为零}；本章强调的是上述证券出清与商品出清的联系。一般价值形式及其应用见\WJRef{sec:wj-three-equilibrium}{第~}[~节（均衡的定义与市场出清）]。
 \end{tcolorbox}
 
 \begin{tcolorbox}[knowledge]
@@ -915,8 +921,8 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
         \end{center}
         配置 A 中参与者 1 在 0 期消费全部、参与者 2 在 1 期消费全部；B 为两参与者在各期、各状态均分；C 中参与者 1 始终消费全部。哪种配置是 Pareto 最优的？（完整消费计划 $c_1$、$c_2$ 见解答。）
     \end{question}
-    \begin{solution}
-        与前文及习题~\ref{prob:wj-two-2} 相同，参与者 $i$ 的\textbf{消费计划}是 $\mathrm{R}^{3}_{+}$ 中的列向量（两状态记为 $a,b$）：
+    \begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
+        与前文及\WJRef{prob:wj-two-2}{习题~} 相同，参与者 $i$ 的\textbf{消费计划}是 $\mathrm{R}^{3}_{+}$ 中的列向量（两状态记为 $a,b$）：
         \[
             c_i=\begin{bmatrix}c_{i,0} \\ c_{i,1a} \\ c_{i,1b}\end{bmatrix},
             \qquad U_i(c_i)=\sqrt{c_{i,0}}+\tfrac12\bigl(\sqrt{c_{i,1a}}+\sqrt{c_{i,1b}}\bigr).
@@ -982,7 +988,7 @@ Pareto 最优配置也叫做\textbf{有效}（efficient）配置。若证券市�
 
             左边是按原分配计算的平均效用，右边是均分时每个人的效用。两边乘以 $2$，可见两人的效用和至多为 $2\sqrt{\frac{E}{2}}$，且仅在 $x=E/2$ 时达到这一上界。%
             % 学生版仍排版隐藏解答，但隐藏图注的标签不会写入辅助文件。
-            \IfRefUndefinedExpandable{fig:wj-node-equal-split}{}{图~\ref{fig:wj-node-equal-split} 的峰值对应这一节点的均分。}
+            \IfRefUndefinedExpandable{fig:wj-node-equal-split}{}{\WJRef{fig:wj-node-equal-split}{图~} 的峰值对应这一节点的均分。}
 
             \WJInputFigure{02_节点均分与效用和}
 

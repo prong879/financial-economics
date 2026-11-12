@@ -8,10 +8,10 @@
 \begin{problem}
 \WJTwoProblem{prob:wj-two-1}{} $U(c)$ 和 $V(c)$ 是两个效用函数，$c\in\mathrm{R}_{+}^{N}$，且 $V(x)=f(U(x))$，其中 $f(\cdot)$ 是一正单调函数。证明这两个效用函数表示了相同的偏好。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 \textbf{正单调变换}是指用严格递增的函数 $f$ 对原效用值作变换。也就是说，对 $f$ 定义域内任意 $u<v$，都有 $f(u)<f(v)$。因此，较大的效用值变换后仍然较大，相等的效用值变换后仍然相等。
 
-设 $U$ 表示偏好 $\succeq$。对任意两个消费计划 $c_1,c_2$，结合上述性质与\ifdefined\WJHandoutKnowledge 定义~\ref{def:wj-two-4}\else 教材定义 2.4\fi，有
+设 $U$ 表示偏好 $\succeq$。对任意两个消费计划 $c_1,c_2$，结合上述性质与\ifdefined\WJHandoutKnowledge \WJRef{def:wj-two-4}{定义~}[（效用函数）]\else 教材定义 2.4\fi，有
 \[
     V(c_1)\ge V(c_2)
     \iff U(c_1)\ge U(c_2)
@@ -38,7 +38,7 @@
 
 证明它们满足：不满足性、连续性和凸性。
 \end{problem}
-\begin{solution}
+\begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 三个效用函数都具有形式 $U(c)=u(c_{0})+\tfrac12\bigl(u(c_{1a})+u(c_{1b})\bigr)$。对数效用要求消费严格为正，幂效用也取正的底数。指数效用在整个实数轴上有定义。为在同一个消费集上比较三种偏好，统一取
 \[
     C=\bigl\{c\in\mathrm{R}^{3}:c_{0}>0,\;c_{1a}>0,\;c_{1b}>0\bigr\}
@@ -103,7 +103,7 @@
 \begin{problem}
 \WJTwoProblem{prob:wj-two-3}{} $U(c)=c-\tfrac12 a c^{2}$ 是一可能的效用函数，其中 $c\in\mathrm{R}_{+}$，$a$ 是非负的系数。$U(c)$ 具有不满足性吗？如果不是，那么 $a$ 取什么值和/或 $c$ 在什么范围内时 $U(c)$ 具有不满足性？
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 由 $U'(c)=1-ac$ 可知，$a=0$ 时 $U(c)=c$ 在整个非负消费域上严格递增。
 
 若 $a>0$，则 $U$ 在 $[0,1/a]$ 上严格递增。由中值定理，即使取右端点 $1/a$，区间内任意两点的割线斜率仍等于某个正的导数值。超过 $1/a$ 后，$U'(c)<0$，消费越多，效用越低。例如 $a=1$ 时，$U(3)=-3/2<U(1)=1/2$。
@@ -164,7 +164,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     \item 现在引入新的证券 3，它的支付向量为 $X_{3}=\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}$。写出新的市场结构矩阵。在这个市场结构下，市场化支付集合是什么？
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 三个状态 $a,b,c$ 对应 $\Omega=3$。记
 \[
     X_1=\begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix},\quad
@@ -228,9 +228,9 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\WJTwoProblem{prob:wj-two-5}{} 在练习~\ref{prob:wj-two-4} 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
+\WJTwoProblem{prob:wj-two-5}{} 在\WJRef{prob:wj-two-4}{练习~} 中定义的只存在证券 1 和 2 的经济中。考虑一个禀赋为 $\theta_{1}$ 单位的证券 1 和 $\theta_{2}$ 单位的证券 2 的参与者。写出他的预算集。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 设 $\theta_i$ 为证券 $i$ 的初始持有量，$\alpha_i$ 为交易后的持有量，则净买入量为 $\alpha_i-\theta_i$。本题的禀赋全为证券。初始组合市值为 $w=\theta_1S_1+\theta_2S_2$，扣除新组合市值后的余额用于 0 期消费。要求 $c_0\ge0$，等价于 $\alpha_1S_1+\alpha_2S_2\le w$。
 
 交易后的组合在 1 期提供支付 $c_1=\alpha_1X_1+\alpha_2X_2$。三个状态下的消费都须非负，即 $c_1\in\mathrm{R}_+^3$。市场允许卖空，所以单只证券的持有量 $\alpha_i$ 可以为负。完整的两期预算集为
@@ -247,9 +247,9 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
 \end{solution}
 
 \begin{problem}
-\WJTwoProblem{prob:wj-two-6}{} 在上面的练习中引入练习~\ref{prob:wj-two-4} 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
+\WJTwoProblem{prob:wj-two-6}{} 在上面的练习中引入\WJRef{prob:wj-two-4}{练习~} 中定义的证券 3，它的价格为 $S_{3}$。这时，参与者的预算集是什么（他在证券 3 上的禀赋为 0）？证明由证券 1、2、3 构成的预算集包含仅由证券 1、2 构成的预算集。
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 证券 3 上的禀赋为 $0$，初始持仓的市值仍为 $w=\theta_1S_1+\theta_2S_2$。允许卖空时，加入证券 3 后的预算集为
 \[
     B_{123}=\Bigl\{(c_0,c_1)\in\mathrm{R}_{+}\times\mathrm{R}_{+}^{3}:
@@ -260,7 +260,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     \Bigr\}.
 \]
 
-任取 $(c_0,c_1)\in B_{12}$，设实现该计划的持仓为 $(\alpha_1,\alpha_2)$。在新市场取 $\alpha_3=0$，则 $\alpha_3S_3=0$、$\alpha_3X_3=0$，所以买入成本和到期支付都与原组合相同，仍可实现同一个 $(c_0,c_1)$。因此 $B_{12}\subseteq B_{123}$。
+\textbf{证明。}任取 $(c_0,c_1)\in B_{12}$，设实现该计划的持仓为 $(\alpha_1,\alpha_2)$。在新市场取 $\alpha_3=0$，则 $\alpha_3S_3=0$、$\alpha_3X_3=0$，所以买入成本和到期支付都与原组合相同，仍可实现同一个 $(c_0,c_1)$。因此 $B_{12}\subseteq B_{123}$。
 \end{solution}
 
 \begin{problem}
@@ -287,7 +287,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     计算 $g$。讨论 $g$ 如何依赖于 $\rho$？$g$ 如何依赖于 $r_{F}$？给出解释。
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 设 $\rho>0$。禀赋 $e_0=100$、$e_1=1$。无风险证券的 0 期价格为 $1$，1 期支付为 $1+r_F>0$。记 $S$ 为 0 期\textbf{储蓄}（买入该证券的金额，$S<0$ 表示借款）。
 
 \begin{enumerate}[label=(\alph*)]
@@ -382,7 +382,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
         由 $S^*=100-c_0^*$，提高任一参数都会增加最优储蓄。利率升高提高了储蓄回报，$\rho$ 升高则提高了未来消费的权重。
     \end{itemize}
 
-    \item \textbf{$U^{b}\ge U^{a}$。}不能交易时只能消费禀赋，\((c_0,c_1)=(100,1)\)，效用为 \(U^{a}=\log 100\)。
+    \item \textbf{证明。}\textbf{$U^{b}\ge U^{a}$。}不能交易时只能消费禀赋，\((c_0,c_1)=(100,1)\)，效用为 \(U^{a}=\log 100\)。
     
     能交易时 \(S=0\) 仍可行，对应的消费还是 \((100,1)\)，效用仍是 \(\log 100=U^{a}\)。\(U^{b}\) 是所有可行储蓄里的最大效用，而 \(S=0\) 只是其中一个可行点，最大值不会低于这一点：
     \[
@@ -415,7 +415,7 @@ $a=0$，$U(c)=c$ & $a>0$，$c\in[0,1/a]$ & $a=1$，$U(\tfrac12)<U(1)>U(3)$
     \]
 
     % 学生版不写入隐藏图注的标签。
-    \IfRefUndefinedExpandable{fig:wj-gains-from-trade}{}{图~\ref{fig:wj-gains-from-trade} 中，先从 $U^a$ 水平移到 $U^b(z)$ 曲线，再向下读出 $\hat w$。横轴上 $\hat w$ 到 $w$ 的距离就是 $g$。}
+    \IfRefUndefinedExpandable{fig:wj-gains-from-trade}{}{\WJRef{fig:wj-gains-from-trade}{图~} 中，先从 $U^a$ 水平移到 $U^b(z)$ 曲线，再向下读出 $\hat w$。横轴上 $\hat w$ 到 $w$ 的距离就是 $g$。}
 
     \WJInputFigure{02_交易益处}
 
