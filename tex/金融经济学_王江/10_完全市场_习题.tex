@@ -38,7 +38,7 @@
  \end{aligned}
  \]
 
- 在均衡价格下，各人的最优消费还须逐项出清，即 $\sum_kc_{k,s}^*=C_s$（$s=0,a,b$）。由\ifdefined\WJHandoutKnowledge 定理~\ref{thm:wj-ten-3}（均衡存在性）\else 完全市场的均衡存在性结论\fi，偏好连续、凸、严格单调且个人禀赋严格为正时，完全市场存在均衡。严格凹性保证给定价格下的个人最优消费唯一，而均衡价格是否唯一，要看使总超额需求为零的价格有几组。
+ 在均衡价格下，各人的最优消费还须逐项出清，即 $\sum_kc_{k,s}^*=C_s$（$s=0,a,b$）。由\ifdefined\WJHandoutKnowledge \WJRef{thm:wj-ten-3}{定理~}[（均衡存在性）]\else 完全市场的均衡存在性结论\fi，偏好连续、凸、严格单调且个人禀赋严格为正时，完全市场存在均衡。严格凹性保证给定价格下的个人最优消费唯一，而均衡价格是否唯一，要看使总超额需求为零的价格有几组。
 
  即使两期使用同一个 $u_k$，也可出现多重均衡。取 $\pi_a=\pi_b=1/2$，两人禀赋为 $(0.88,4.2,0.88)$、$(3.12,3.8,3.12)$。下表给出两组候选均衡，每人的状态 $b$ 消费等于其当期消费，即 $c_{k,b}=c_{k,0}$。
  \[
@@ -54,7 +54,7 @@
 
  对两个人而言，第一行的边际效用比 $u_k'(c_{k,a})/u_k'(c_{k,0})$ 都是 $0.3$，第二行都是 $0.6$，各自等于该行的 $\phi_a^*/\pi_a$。状态 $b$ 的边际效用比为 $1$，等于 $\phi_b^*/\pi_b$。两组消费都是内点，严格凹性保证一阶条件与预算足以确定个人最优，所以两行均为均衡。
 
- \item \textbf{证明}\quad 固定题设代表性效用 $u$，取 $u'>0$、$u''<0$。代表性参与者的均衡消费等于总禀赋。由内点一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-3}）\fi，状态价格等于该状态消费相对当期消费的边际替代率，即状态概率乘以两项边际效用之比。债券在两状态各支付 1，价格是两状态价格之和，因此
+ \item \textbf{证明}\quad 固定题设代表性效用 $u$，取 $u'>0$、$u''<0$。代表性参与者的均衡消费等于总禀赋。由内点一阶条件\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-10-3}{式~}）\fi，状态价格等于该状态消费相对当期消费的边际替代率，即状态概率乘以两项边际效用之比。债券在两状态各支付 1，价格是两状态价格之和，因此
  \[
  \begin{aligned}
  \phi_a^*&=\frac{\pi_au'(C_a)}{u'(C_0)},&
@@ -119,7 +119,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 % 原书练习10.2定义右侧漏写导数；题干已按边际效用校正，题号、其余设定保留。
-固定正的规划权重 $\lambda_k$。给定某个未来状态的总消费 $x$，规划者把该状态的资源分给各人，求解\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-12}）\fi
+固定正的规划权重 $\lambda_k$。给定某个未来状态的总消费 $x$，规划者把该状态的资源分给各人，求解\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-10-12}{式~}）\fi
 \[
 \begin{aligned}
  V_1(x)=\max_{c_k\ge0}\quad &\sum_k\lambda_ku_{k,1}(c_k)\\
@@ -136,7 +136,7 @@
 
  第二个等式来自将第一个等式解为 $f_k'(x)=u_1''(x)/[\lambda_ku_{k,1}''(f_k(x))]$，再用 $\sum_k f_k'(x)=1$。求和项为负，故 $u_1''<0$。代回各人的导数式，分子和分母都为负，因而 $f_k'>0$。当期用 $u_{k,0}$ 和 $f_k^0$ 做同样的计算，所以两期聚合效用均严格递增、严格凹。
 
- \item 将最优分配代回 $V_1(x)=\sum_k\lambda_ku_{k,1}(f_k(x))$。按聚合边际效用的推法\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-14}）\fi，对 $x$ 用链式法则，用题设的 $u_1'(x)$ 替换每个人的加权边际效用，再由 $\sum_k f_k'(x)=1$ 得到
+ \item 将最优分配代回 $V_1(x)=\sum_k\lambda_ku_{k,1}(f_k(x))$。按聚合边际效用的推法\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-10-14}{式~}）\fi，对 $x$ 用链式法则，用题设的 $u_1'(x)$ 替换每个人的加权边际效用，再由 $\sum_k f_k'(x)=1$ 得到
  \[
  V_1'(x)=\sum_k\lambda_ku_{k,1}'(f_k(x))f_k'(x)
         =u_1'(x)\sum_k f_k'(x)=u_1'(x).
@@ -187,7 +187,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 \begin{enumerate}[label=(\alph*)]
- \item \textbf{证明}\quad 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$。矩阵行满秩，任意两状态支付都能由这两只证券复制，故市场完全\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节的行满秩判据）\fi。
+ \item\label{exer:wj-ten-3-answer-a} \textbf{证明}\quad 支付矩阵为 $X=\begin{bmatrix}1&uC\\1&dC\end{bmatrix}$，行列式为 $C(d-u)\ne0$。矩阵行满秩，任意两状态支付都能由这两只证券复制，故市场完全\ifdefined\WJHandoutKnowledge（\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]的行满秩判据）\fi。
 
  \item \textbf{解答}\quad 设 $0<\pi<1$。给定正状态价格，参与者 $k$ 的财富为 $w_k=s_kC(1+\phi_au+\phi_bd)$，等于当期禀赋加初始股票持仓的市值。对数效用要求各项消费严格为正，且效用递增使预算取等号，因此
  \[
@@ -258,13 +258,13 @@
  Q(a)=\frac{S_0^*/(B^*C)-d}{u-d}
  =\frac{\pi/u}{\pi/u+(1-\pi)/d}.
  \]
- 第一种写法由二叉树中的证券价格反推概率，第二种写法用本题的均衡结果给出同一个概率。用它对未来支付取期望，再乘以 $B^*$，就是风险中性折现定价\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-four-9}）\fi。
+ 第一种写法由二叉树中的证券价格反推概率，第二种写法用本题的均衡结果给出同一个概率。用它对未来支付取期望，再乘以 $B^*$，就是风险中性折现定价\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-four-9}{式~}）\fi。
 \end{enumerate}
 \end{solution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-4}{} 继续考虑练习~\ref{exer:wj-ten-3} 定义的经济。
+\WJTenExercise{exer:wj-ten-4}{} 继续考虑\WJRef{exer:wj-ten-3}{练习~} 定义的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 计算在代表性参与者（即中央计划者）的效用函数中每个参与者的权重。它依赖于什么？为什么？
@@ -279,7 +279,7 @@
 \begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 记 $\widetilde G=\widetilde C_1/C_0$，其取值为 $u,d$。本题的 $p$ 表示股票\textbf{净收益率}的风险溢价。
 \begin{enumerate}[label=(\alph*)]
- \item \textbf{解答}\quad 沿用练习~\ref{exer:wj-ten-2} 的聚合方法。任取一个日期或状态，总消费为 $x>0$ 时，规划者求解
+ \item \textbf{解答}\quad 沿用\WJRef{exer:wj-ten-2}{练习~} 的聚合方法。任取一个日期或状态，总消费为 $x>0$ 时，规划者求解
  \[
  \begin{aligned}
  \max_{c_k>0}\quad &\sum_k\mu_k\log c_k\\
@@ -296,7 +296,7 @@
 
  \item \textbf{证明}\quad 禀赋份额只改变加总中的常数项，代表性参与者的消费排序与 $s_k$ 无关。
 
- \item \textbf{解答}\quad 随机贴现因子为 $\widetilde\pi^*=\rho\,u'(\widetilde C_1)/u'(C_0)=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item \textbf{解答}\quad 随机贴现因子为 $\widetilde\pi^*=\rho\,u'(\widetilde C_1)/u'(C_0)=\rho/\widetilde G$。由\ifdefined\WJHandoutKnowledge \WJEqRef{eq:wj-10-16}{式~}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
  B^*=\rho\mathrm E[1/\widetilde G],\qquad
  S_0^*=\mathrm E[(\rho/\widetilde G)C\widetilde G]=\rho C.
@@ -353,7 +353,7 @@
  \theta_S=\frac{H_a-H_b}{C(u-d)}.
  \]
 
- 代入练习~\ref{exer:wj-ten-3} 的均衡价格，复制成本为 $V=\theta_BB^*+\theta_SS_0^*=\phi_a^*H_a+\phi_b^*H_b$。当 $K\le dC$ 时，两状态的支付均可写为股价减执行价；当 $dC<K<uC$ 时，只有高状态的支付为正；当 $K\ge uC$ 时，两状态支付均为零。因此
+ 代入\WJRef{exer:wj-ten-3}{练习~} 的均衡价格，复制成本为 $V=\theta_BB^*+\theta_SS_0^*=\phi_a^*H_a+\phi_b^*H_b$。当 $K\le dC$ 时，两状态的支付均可写为股价减执行价；当 $dC<K<uC$ 时，只有高状态的支付为正；当 $K\ge uC$ 时，两状态支付均为零。因此
  \[
  V=\begin{cases}
  \rho C-K\rho(\pi/u+(1-\pi)/d),&K\le dC,\\
@@ -362,14 +362,14 @@
  \end{cases}
  \]
 
- \item \textbf{证明}\quad 沿用练习~\ref{exer:wj-ten-4} 的定价核 $\widetilde\pi^*=\rho C/\widetilde C_1$。按\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}（定价核与支付的乘积取期望）\else 定价核加权的支付定价公式\fi，期权支付 $\tilde H=(\widetilde C_1-K)_+$ 的价格为
+ \item \textbf{证明}\quad 沿用\WJRef{exer:wj-ten-4}{练习~} 的定价核 $\widetilde\pi^*=\rho C/\widetilde C_1$。按\ifdefined\WJHandoutKnowledge \WJEqRef{eq:wj-10-16}{式~}[（定价核与支付的乘积取期望）]\else 定价核加权的支付定价公式\fi，期权支付 $\tilde H=(\widetilde C_1-K)_+$ 的价格为
  \[
  V=\mathrm E[\widetilde\pi^*(\widetilde C_1-K)_+]
  =\frac{\rho\pi}{u}(uC-K)_+
   +\frac{\rho(1-\pi)}d(dC-K)_+.
  \]
 
- 这与 (a) 的复制价格相同。若 $V>0$，令 $\tilde r_H=\tilde H/V-1$ 为期权净收益率。将 $V=\mathrm E[\widetilde\pi^*\tilde H]$ 两边除以 $V$，得 $\mathrm E[\widetilde\pi^*(1+\tilde r_H)]=1$。单位无风险债券的总收益率是 $1+r_F^*=1/\mathrm E[\widetilde\pi^*]$，所以 $\mathrm E[\widetilde\pi^*(1+r_F^*)]=1$。两式相减得到 $\mathrm E[\widetilde\pi^*(\tilde r_H-r_F^*)]=0$。把这个乘积期望展开为均值乘积加协方差，并代入 $\mathrm E[\widetilde\pi^*]=1/(1+r_F^*)$，得到消费 CAPM 的风险溢价形式\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-21}）\fi
+ 这与 (a) 的复制价格相同。若 $V>0$，令 $\tilde r_H=\tilde H/V-1$ 为期权净收益率。将 $V=\mathrm E[\widetilde\pi^*\tilde H]$ 两边除以 $V$，得 $\mathrm E[\widetilde\pi^*(1+\tilde r_H)]=1$。单位无风险债券的总收益率是 $1+r_F^*=1/\mathrm E[\widetilde\pi^*]$，所以 $\mathrm E[\widetilde\pi^*(1+r_F^*)]=1$。两式相减得到 $\mathrm E[\widetilde\pi^*(\tilde r_H-r_F^*)]=0$。把这个乘积期望展开为均值乘积加协方差，并代入 $\mathrm E[\widetilde\pi^*]=1/(1+r_F^*)$，得到消费 CAPM 的风险溢价形式\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-10-21}{式~}）\fi
  \[
  \mathrm E[\tilde r_H]-r_F^*
  =-(1+r_F^*)\operatorname{Cov}(\widetilde\pi^*,\tilde r_H).
@@ -406,7 +406,7 @@
 \begin{solution}[blank-type=manual,blank-vsep=10\baselineskip]
 原书在这里沿用了前题的 $C,u,d$ 条件。本题实际用到的是 $C_0>0$ 和两状态的正支付不同，按图取 $0<C_{1b}<C_{1a}$。取 $\alpha>0$、$0<\pi<1$，先求内点解，再核对非负消费约束。
 \begin{enumerate}[label=(\alph*)]
- \item \textbf{证明}\quad 与练习~\ref{exer:wj-ten-3}(a) 一样，支付矩阵 $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式为 $C_{1b}-C_{1a}\ne0$，任意两状态支付都可复制，故市场完全。
+ \item \textbf{证明}\quad 与\IfRefUndefinedExpandable{exer:wj-ten-3-answer-a}{练习~\ref*{exer:wj-ten-3}(a)}{\WJLink{exer:wj-ten-3-answer-a}{练习~\ref*{exer:wj-ten-3}\ref*{exer:wj-ten-3-answer-a}}} 一样，支付矩阵 $X=\begin{bmatrix}1&C_{1a}\\1&C_{1b}\end{bmatrix}$ 的行列式为 $C_{1b}-C_{1a}\ne0$，任意两状态支付都可复制，故市场完全。
 
  \item \textbf{解答}\quad 给定正的状态价格，记
  \[
@@ -426,7 +426,7 @@
  \end{aligned}
  \]
 
- 先求三项消费均为正的解。按内点的个人最优条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-10-2}）\fi，用 $\lambda_k$ 表示预算乘子，把指数效用的边际效用代入，得到
+ 先求三项消费均为正的解。按内点的个人最优条件\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-10-2}{式~}）\fi，用 $\lambda_k$ 表示预算乘子，把指数效用的边际效用代入，得到
  \[
  \begin{aligned}
  \alpha e^{-\alpha c_{k,0}}&=\lambda_k,\\
@@ -516,7 +516,7 @@
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJTenExercise{exer:wj-ten-7}{} 继续考虑练习~\ref{exer:wj-ten-6} 定义的经济。
+\WJTenExercise{exer:wj-ten-7}{} 继续考虑\WJRef{exer:wj-ten-6}{练习~} 定义的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 计算在代表性参与者（即中央计划者）的效用函数中每个参与者的权重。它依赖于什么？为什么？
@@ -531,9 +531,9 @@
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=12\baselineskip]
 % 原书题首误指练习 5，题干已改为承接练习 10.6。
-练习~\ref{exer:wj-ten-6} 先从个人需求与市场出清求均衡。本题从同一个均衡构造代表性参与者，再用其边际效用给证券定价。以下采用上一题的内点均衡，令 $a=\alpha/K$、$W^*=C_0+S_0^*$，并记 $\delta_k=(s_k-1/K)W^*/(1+B^*)$。
+\WJRef{exer:wj-ten-6}{练习~} 先从个人需求与市场出清求均衡。本题从同一个均衡构造代表性参与者，再用其边际效用给证券定价。以下采用上一题的内点均衡，令 $a=\alpha/K$、$W^*=C_0+S_0^*$，并记 $\delta_k=(s_k-1/K)W^*/(1+B^*)$。
 \begin{enumerate}[label=(\alph*)]
- \item \textbf{解答}\quad 依照练习~\ref{exer:wj-ten-2}，给定总消费 $x$，规划者在每个日期或状态分别求解
+ \item \textbf{解答}\quad 依照\WJRef{exer:wj-ten-2}{练习~}，给定总消费 $x$，规划者在每个日期或状态分别求解
  \[
  \begin{aligned}
  \max_{c_k\ge0}\quad &-\sum_k\mu_k e^{-\alpha c_k}\\
@@ -564,7 +564,7 @@
 
  \item \textbf{证明}\quad 在内点区间，财富份额只影响聚合效用的正比例系数。约去该系数后，代表性偏好由 $a=\alpha/K$、$\rho$ 和状态概率决定，所得内点定价与 $s_k$ 无关。
 
- \item \textbf{解答}\quad 定价核为 $\widetilde\pi^*=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge 式~\eqref{eq:wj-10-16}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
+ \item \textbf{解答}\quad 定价核为 $\widetilde\pi^*=\rho e^{-a(\widetilde C_1-C_0)}$。由\ifdefined\WJHandoutKnowledge \WJEqRef{eq:wj-10-16}{式~}\else 证券定价公式\fi（定价核加权的证券支付定价公式），
  \[
  B^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}],\qquad
  S_0^*=\rho\mathrm E[e^{-a(\widetilde C_1-C_0)}\widetilde C_1].
