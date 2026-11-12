@@ -48,11 +48,12 @@
 
 记给定的初始投资额为 $w>0$，交易后的证券总持仓为 $q=\bar\theta_k+\theta_k$，证券价格列向量为 $S$，并取各只证券的价格 $S_i\ne0$。总持仓的成本为 $S^{\mathsf T}q=w$，其中第 $i$ 只证券的投资金额为 $S_iq_i$。以 $z_i=S_iq_i/w$ 表示该证券的投资权重，则权重列向量 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 的分量之和为 $1$。
 
-记 $\widetilde X$ 为实现状态对应的证券支付行向量，$\widetilde r=(\widetilde r_1,\ldots,\widetilde r_N)^{\mathsf T}$ 为随机净收益率列向量。由净收益率的定义 $\widetilde X_i=S_i(1+\widetilde r_i)$，得到
+记 $\widetilde w$ 为参与者第 1 期的随机期末财富，$\widetilde X$ 为实现状态对应的证券支付行向量，$\widetilde r=(\widetilde r_1,\ldots,\widetilde r_N)^{\mathsf T}$ 为随机净收益率列向量。由净收益率的定义 $\widetilde X_i=S_i(1+\widetilde r_i)$，得到
 \[
- \widetilde w=\widetilde Xq
- =\sum_{i=1}^N S_iq_i(1+\widetilde r_i)
- =w(1+z^{\mathsf T}\widetilde r).
+ \widetilde w=\widetilde Xq=\sum_{i=1}^N S_iq_i(1+\widetilde r_i)
+ =\underbrace{w}_{\text{初始投资额}}
+   +\underbrace{wz^{\mathsf T}\widetilde r}_{\text{投资净损益}}
+   =w(1+z^{\mathsf T}\widetilde r).
 \]
 
 这里 $z^{\mathsf T}\widetilde r=\sum_{i=1}^N z_i\widetilde r_i$ 是组合的随机净收益率。期末财富的均值为 $\bar w=\mathrm E[\widetilde w]$，标准差为 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。均值--方差效用以标准差为第二个自变量。
@@ -237,7 +238,8 @@ Hessian 的两个对角元 $v_{11},v_{22}$ 均为负，行列式非负，因此�
 拉格朗日函数为
 \[
  L=\frac12z^{\mathsf T}\Sigma z
- +\lambda_r(\bar r_p-z^{\mathsf T}\bar r)+\lambda_1(1-z^{\mathsf T}\iota).
+ +\lambda_r\underbrace{(\bar r_p-z^{\mathsf T}\bar r)}_{\text{目标收益差额}}
+ +\lambda_1\underbrace{(1-z^{\mathsf T}\iota)}_{\text{预算差额}}.
 \]
 
 对二次型求关于 $z_j$ 的偏导，利用 $\Sigma$ 的对称性，有
@@ -441,7 +443,8 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 交叉项的系数 2 来自 $\Sigma$ 的对称性。若改用 MVP 为起点，交叉项 $h^{\mathsf T}\Sigma z_{\mathrm{MVP}}=h^{\mathsf T}\iota/c$ 为零。再由 $\Sigma h=(c\bar r-a\iota)/d$、$h^{\mathsf T}\bar r=1$ 及 $h^{\mathsf T}\iota=0$，可得 $h^{\mathsf T}\Sigma h=c/d$。于是式~\eqref{eq:wj-12-5} 也可写为
 \[
- \sigma_p^2=\frac1c+\frac cd\left(\bar r_p-\frac ac\right)^2
+ \sigma_p^2=\underbrace{\frac1c}_{\text{MVP 方差}}
+ +\underbrace{\frac cd\left(\bar r_p-\frac ac\right)^2}_{\text{偏离 MVP 均值增加的方差}}
  =\frac{c\bar r_p^2-2a\bar r_p+b}{d}.
 \]
 
@@ -615,8 +618,11 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \subsection{存在无风险证券时的前沿组合}
 设无风险净利率为 $r_F$，允许以同一利率借贷并允许卖空。记 $\eta=\bar r-r_F\iota$ 为 $N$ 只风险证券的期望超额收益率列向量，其第 $i$ 个分量是 $\bar r_i-r_F$。本节的 $z$ 是风险证券的 $N$ 维权重列向量。无风险证券的权重由剩余资金决定，等于 $1-\iota^{\mathsf T}z$。因此
 \[
- \widetilde r_p=r_F+z^{\mathsf T}(\widetilde r-r_F\iota),\qquad
- \bar r_p-r_F=z^{\mathsf T}\eta,\quad \sigma_p^2=z^{\mathsf T}\Sigma z.
+ \begin{aligned}
+ \widetilde r_p&=\underbrace{r_F}_{\text{无风险基准}}
+    +\underbrace{z^{\mathsf T}(\widetilde r-r_F\iota)}_{\text{风险头寸的超额收益}},\\
+ \bar r_p-r_F&=z^{\mathsf T}\eta,\qquad \sigma_p^2=z^{\mathsf T}\Sigma z.
+ \end{aligned}
 \]
 
 无风险证券承接风险权重之和留下的余额，全部证券的权重和仍为 $1$。记 $\bar\eta_p\equiv\bar r_p-r_F$ 为组合的目标期望超额收益。因此只需对风险权重 $z$ 施加约束 $z^{\mathsf T}\eta=\bar\eta_p$，便可在收益相同的组合中比较方差。
@@ -761,7 +767,14 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 式~\eqref{eq:wj-12-6} 以零协方差组合的均值为基准，式~\eqref{eq:wj-12-10} 以无风险利率为基准。切点组合自身的贝塔为 $1$，其风险溢价 $\bar r_T-r_F$ 就是每单位切点贝塔对应的风险溢价。
 
 % 参照杨云雯批注版印刷页268及教材印刷页191—192，将贝塔的边际风险含义写成方差导数。
-先将全部初始资金投入切点组合 $T$，再按无风险利率 $r_F$ 借入初始资金的 $\varepsilon$ 倍（$\varepsilon>0$），并将借款全部投入组合 $q$。借款对应的无风险证券权重为 $-\varepsilon$，因此总权重仍为 $1$，调整后的收益率为 $\widetilde r(\varepsilon)=\widetilde r_T+\varepsilon(\widetilde r_q-r_F)$。由于 $r_F$ 是常数，在 $\varepsilon=0$ 处沿这一调整方向的方差导数为
+先将全部初始资金投入切点组合 $T$，再按无风险利率 $r_F$ 借入初始资金的 $\varepsilon$ 倍（$\varepsilon>0$），并将借款全部投入组合 $q$。借款对应的无风险证券权重为 $-\varepsilon$，因此总权重仍为 $1$，调整后的收益率为
+\[
+ \widetilde r(\varepsilon)=\widetilde r_T
+ +\underbrace{\varepsilon\widetilde r_q}_{\text{增配收益}}
+ -\underbrace{\varepsilon r_F}_{\text{借款利息}}.
+\]
+
+由于 $r_F$ 是常数，在 $\varepsilon=0$ 处沿这一调整方向的方差导数为
 \[
  \left.\frac{\mathrm d}{\mathrm d\varepsilon}
  \operatorname{Var}\bigl(\widetilde r(\varepsilon)\bigr)\right|_{\varepsilon=0}
