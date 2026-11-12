@@ -39,14 +39,14 @@
 \subsection{均值--方差表示与二次效用}
 与第八、九讲一样，本章给定参与者的当期消费与储蓄决策，研究怎样把既定的投资额配置到各只证券上。设市场上有 $N$ 只交易证券，支付矩阵为 $X$。取支付列向量线性无关的证券，即 $\operatorname{rank}(X)=N$。
 
-沿用第\ref*{chap:wj-two}章\hyperref[def:wj-two-6]{定义~\ref*{def:wj-two-6}（证券市场经济）}的设定，每位参与者 $k$ 的第 $1$ 期禀赋都可\textbf{市场化}。具体来说，存在一个初始证券组合 $\bar\theta_k$，其支付在每个状态下都恰好等于该参与者的禀赋：
+要用证券持仓表示期末财富，先把原有的未来禀赋也写成证券支付。沿用第\ref*{chap:wj-two}章\hyperref[def:wj-two-6]{定义~\ref*{def:wj-two-6}（证券市场经济）}的设定，每位参与者 $k$ 的第 $1$ 期禀赋都可\textbf{市场化}。也就是说，存在一个初始证券组合 $\bar\theta_k$，其支付在每个状态下都恰好等于该参与者的禀赋：
 \[
  e_{k,1}=X\bar\theta_k\in M,\qquad M=\{X\theta:\theta\in\mathrm R^N\}.
 \]
 
-这里 $X$ 的行对应状态，列对应证券。$\bar\theta_k$ 和 $\theta_k$ 都是 $N$ 维列向量，分别记录参与者 $k$ 对各只证券的初始持有数量和净买入数量。禀赋 $e_{k,1}$ 和净交易支付 $X\theta_k$ 都按 $X$ 的行序列出各状态的数量。交易后，第 $1$ 期各状态的可用资源为 $e_{k,1}+X\theta_k=X(\bar\theta_k+\theta_k)$，即总持仓在各状态的支付。
+这里 $X$ 的行对应状态，列对应证券，$M$ 是这些证券能够生成的支付集合。用两个 $N$ 维列向量 $\bar\theta_k$ 和 $\theta_k$ 分别记录各只证券的初始持有数量和净买入数量。第 $1$ 期的净交易支付是 $X\theta_k$，它与禀赋 $e_{k,1}$ 都按 $X$ 的行序列出各状态的数量。交易后的总持仓为 $q=\bar\theta_k+\theta_k$，第 $1$ 期各状态的可用资源就是 $e_{k,1}+X\theta_k=Xq$。
 
-记给定的初始投资额为 $w>0$，交易后的证券总持仓为 $q=\bar\theta_k+\theta_k$，证券价格列向量为 $S$，并取各只证券的价格 $S_i\ne0$。总持仓的成本为 $S^{\mathsf T}q=w$，其中第 $i$ 只证券的投资金额为 $S_iq_i$。以 $z_i=S_iq_i/w$ 表示该证券的投资权重，则权重列向量 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 的分量之和为 $1$。
+给定初始投资额 $w>0$，接下来把持有数量换算成投资权重。记证券价格列向量为 $S$，取各只证券的价格 $S_i\ne0$。第 $i$ 只证券持有 $q_i$ 单位，对应投资金额 $S_iq_i$，所有证券的投资金额之和为 $S^{\mathsf T}q=w$。因此，第 $i$ 只证券的投资权重为 $z_i=S_iq_i/w$，权重列向量 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 的分量之和为 $1$。
 
 记 $\widetilde w$ 为参与者第 1 期的随机期末财富，$\widetilde X$ 为实现状态对应的证券支付行向量，$\widetilde r=(\widetilde r_1,\ldots,\widetilde r_N)^{\mathsf T}$ 为随机净收益率列向量。由净收益率的定义 $\widetilde X_i=S_i(1+\widetilde r_i)$，得到
 \[
@@ -56,115 +56,270 @@
    =w(1+z^{\mathsf T}\widetilde r).
 \]
 
-这里 $z^{\mathsf T}\widetilde r=\sum_{i=1}^N z_i\widetilde r_i$ 是组合的随机净收益率。期末财富的均值为 $\bar w=\mathrm E[\widetilde w]$，标准差为 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。均值--方差效用以标准差为第二个自变量。
+用 $p$ 表示权重为 $z$ 的组合。它的随机净收益率是 $\widetilde r_p=z^{\mathsf T}\widetilde r=\sum_{i=1}^N z_i\widetilde r_i$。期末财富的均值为 $\bar w=\mathrm E[\widetilde w]$，标准差为 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。
+
+组合的收益随状态变化，参与者怎样把这些结果合起来评价？记 $u(y)$ 为获得确定财富 $y$ 时的单期效用。若状态 $\omega$ 以概率 $p_\omega$ 发生，期末财富为 $w_\omega$，则组合带来的未来期望效用为 $\mathrm E[u(\widetilde w)]=\sum_\omega p_\omega u(w_\omega)$。
 
 本章沿用式~\eqref{eq:wj-six-4}（状态独立、时间可加的期望效用），将总效用写成 $u(c_0)+\rho\,\mathrm E[u(\widetilde w)]$。给定投资额 $w$ 后，当期消费 $c_0$ 固定。对同一参与者，未来效用的权重 $\rho$ 在各组合中都是同一个正数\footnote{第六讲设两期共用一个单期效用函数 $u$，并以 $u_1=\rho u$ 评价未来消费，其中 $\rho>0$ 是时间偏好的假设。当期消费相同时，未来期望效用增加 $\Delta>0$，总效用就增加 $\rho\Delta>0$。若 $0<\rho<1$，同样的单期效用增量在未来获得时，权重比当期低。}。
 因此，沿用第八讲式~\eqref{eq:wj-8-8}（给定投资额的组合选择）的目标，可以直接比较 $\mathrm E[u(\widetilde w)]$\footnote{第八讲把决策分成投多少钱和这笔钱怎么投。式~\eqref{eq:wj-8-8} 固定 $w$，用 $\theta$ 表示交易后的证券总持仓，相当于本节的 $q$。第八讲在成本约束和各状态支付非负的约束下选择使期末财富期望效用最大的组合。本章各模型的财富取值范围及组合约束在相应各节给出。}。
-这里 $u(y)$ 评价确定的期末财富 $y$，$u(\widetilde w)$ 则随状态变化。若状态 $\omega$ 以概率 $p_\omega$ 发生、期末财富为 $w_\omega$，则 $\mathrm E[u(\widetilde w)]=\sum_\omega p_\omega u(w_\omega)$。
-
-对给定的 $u$，如果任意两个可行组合只要期末财富的均值和方差相同，就有相同的期望效用，那么可以把这一共同的期望效用记为 $v(\bar w,\sigma_w)$：
+对给定的 $u$，\textbf{若期末财富均值和方差相同的组合总有相同的期望效用}，就可以用同一个函数 $v(\bar w,\sigma_w)$ 评价这些组合。这里以标准差为第二个自变量。标准差是方差的非负平方根，两者包含同样的信息。
 \begin{equation}
  \mathrm E[u(\widetilde w)]=v(\bar w,\sigma_w),
  \label{eq:wj-12-1}
 \end{equation}
 
-此时称偏好具有\textbf{均值--方差表示}。标准差是方差的非负平方根，两者包含同样的信息。式~\eqref{eq:wj-12-1} 给出的是期望效用的精确表示。比较组合时还要进一步说明 $v$ 的变化方向。本章后续分析假定，同标准差下偏好更高的均值，同均值下偏好更低的标准差。
+式~\eqref{eq:wj-12-1} 成立时，称 偏好具有 \textbf{均值--方差表示}。这是期望效用的精确表示。比较组合时还要进一步说明 $v$ 的变化方向。本章后续分析采用\textbf{同标准差下偏好更高的均值}、\textbf{同均值下偏好更低的标准差这两个条件}。
 
-但是，实际上一般期望效用还依赖分布的更高阶特征。把期末财富写成 $\bar w+(\widetilde w-\bar w)$，就可以把确定地获得平均财富的效用 $u(\bar w)$ 作为基准。选 $\bar w$ 为展开点时，财富偏差的均值恰为零，其平方的期望就是方差。若 $u$ 在相应财富范围内等于其在 $\bar w$ 处的泰勒级数，则
+两个组合的期末财富有相同的均值和方差时，期望效用为什么仍可能不同？把确定地获得平均财富的效用 $u(\bar w)$ 作为基准，考察实际财富偏离均值后带来的效用变化。若 $u$ 在相应财富范围内等于其在 $\bar w$ 处的泰勒级数，则
 \[
- \begin{aligned}
- u(\widetilde w)
- &=u(\bar w)+u'(\bar w)(\widetilde w-\bar w)
-   +\frac12u''(\bar w)(\widetilde w-\bar w)^2\\
- &\quad+\sum_{n=3}^{\infty}
-   \frac{u^{(n)}(\bar w)}{n!}(\widetilde w-\bar w)^n.
- \end{aligned}
+ u(\widetilde w)=u(\bar w)+u'(\bar w)(\widetilde w-\bar w)
+ +\frac12u''(\bar w)(\widetilde w-\bar w)^2
+ +\sum_{n=3}^{\infty}\frac{u^{(n)}(\bar w)}{n!}(\widetilde w-\bar w)^n.
 \]
 
-若可逐项取期望，由于 $u'(\bar w)$ 为常数，一阶项的期望为
-\[
- \mathrm E[u'(\bar w)(\widetilde w-\bar w)]
- =u'(\bar w)\mathrm E[\widetilde w-\bar w]
- =u'(\bar w)(\mathrm E[\widetilde w]-\bar w)=0.
-\]
-
-又因为 $\mathrm E[(\widetilde w-\bar w)^2]=\sigma_w^2$，所以
+若可逐项取期望，由于 $u'(\bar w)$ 为常数，一阶项的期望为 $u'(\bar w)(\mathrm E[\widetilde w]-\bar w)=0$。二阶项用到 $\mathrm E[(\widetilde w-\bar w)^2]=\sigma_w^2$。于是
 \[
  \mathrm E[u(\widetilde w)]=u(\bar w)+\frac12u''(\bar w)\sigma_w^2
  +\sum_{n=3}^{\infty}\frac{u^{(n)}(\bar w)}{n!}\mathrm E[(\widetilde w-\bar w)^n].
 \]
 
-其中 $u^{(n)}$ 表示 $u$ 的第 $n$ 阶导数，$\mathrm E[(\widetilde w-\bar w)^n]$ 是财富的第 $n$ 阶中心矩。均值和方差相同的两种财富分布，仍可能有不同的高阶中心矩，所以一般不能仅凭前两个量比较期望效用。若在小风险下略去高阶项，得到的是二阶近似。下面两种情形给出精确表示：二次效用使高阶项消失，联合正态支付则使组合财富的整个分布由均值和方差确定。
+其中 $u^{(n)}$ 表示 $u$ 的第 $n$ 阶导数，$\mathrm E[(\widetilde w-\bar w)^n]$ 是财富的第 $n$ 阶中心矩。上式的前两项由期末财富的均值和方差确定\footnote{在小风险下，保留到方差项可得到期望效用的二阶近似。}，求和项还涉及三阶及以上的中心矩。均值和方差相同时，高阶中心矩的差异仍可能影响期望效用。先看二次效用的情形。此时三阶及以上的导数都为零，求和项随之消失。
 
 \Needspace{5\baselineskip}
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-1} 若效用为二次函数，则对期末财富有有限二阶矩的组合，偏好具有均值--方差表示。
+\WJTwelveTheorem{thm:wj-twelve-1} 若效用函数 $u$ 为二次函数，且期末财富 $\widetilde w$ 有有限二阶矩，则偏好具有均值--方差表示，即 $\mathrm E[u(\widetilde w)]=v(\bar w,\sigma_w)$。
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-一般二次函数 $u(y)=A+By+Cy^2$ 的期望为 $A+B\bar w+C(\bar w^2+\sigma_w^2)$，因为 $\mathrm E[\widetilde w^2]=\bar w^2+\sigma_w^2$。因此期望效用只依赖 $\bar w$ 和 $\sigma_w$。
+把二次效用写成 $u(y)=A+By+Cy^2$，其中 $y$ 是期末财富的实现值，$A,B,C$ 是常数。由方差的定义，
+\[
+ \sigma_w^2=\mathrm E[(\widetilde w-\bar w)^2]
+ =\mathrm E[\widetilde w^2]-\bar w^2,
+\]
+所以 $\mathrm E[\widetilde w^2]=\bar w^2+\sigma_w^2$。对二次效用逐项取期望，再代入这个关系，得到只依赖于均值 $\bar w$ 和标准差 $\sigma_w$ 的表达式
+\begin{align*}
+ \mathrm E[u(\widetilde w)]
+ &= A+B\,\mathrm E[\widetilde w]+C\,\mathrm E[\widetilde w^2]\\
+ &= A+B\bar w+C(\bar w^2+\sigma_w^2)
+ \equiv v(\bar w,\sigma_w).\qedhere
+\end{align*}
 \end{solution}
 
-例如，以 $y$ 表示期末财富的实现值，取 $u(y)=y-ay^2/2$（$a>0$），则
+例如，以 $y$ 表示期末财富的实现值，取 $u(y)=y-ay^2/2$，其中 $a>0$ 是曲率参数。对该效用取期望，得
 \[
  \begin{aligned}
  \mathrm E[u(\widetilde w)]
  &=\mathrm E[\widetilde w]-\frac a2\mathrm E[\widetilde w^2]\\
- &=\bar w-\frac a2\underbrace{(\bar w^2+\sigma_w^2)}_{\mathrm E[\widetilde w^2]}
+ &=\bar w-\frac a2\underbrace{(\bar w^2+\sigma_w^2)}_{\mathrm E[\widetilde w^2]}\\
+ &=\left(1-\frac a2\bar w\right)\bar w-\frac a2\sigma_w^2
  \equiv v(\bar w,\sigma_w).
  \end{aligned}
 \]
 
-以下对 $v(\bar w,\sigma_w)$ 的偏导数用数字作下标，$1$ 对应均值 $\bar w$，$2$ 对应标准差 $\sigma_w$。一个下标表示一阶偏导，两个下标表示二阶偏导，例如 $v_{12}=\partial(v_1)/\partial\sigma_w$。
-
-对给定的财富实现值 $y$，边际效用为 $u'(y)=1-ay$。若要求每个状态增加一点财富都带来正的边际效用，就要逐状态检查 $y<1/a$。对期望效用 $v$，固定标准差时，提高平均财富的边际效用为 $v_1=1-a\bar w$，只需 $\bar w<1/a$ 即为正。
-
-按第七讲式~\eqref{eq:wj-seven-2} 中的 Arrow--Pratt 定义，在 $y<1/a$ 时，平方效用的绝对风险厌恶系数为
+以下对 $v(\bar w,\sigma_w)$ 的偏导数用数字作下标，$1$ 对应均值 $\bar w$，$2$ 对应标准差 $\sigma_w$。一个下标表示一阶偏导，两个下标表示依次求两次偏导。例如，先对均值求偏导，再对标准差求偏导，得到
 \[
- A(y)=-\frac{u''(y)}{u'(y)}=\frac{a}{1-ay}.
+ \frac{\partial^2 v(\bar w,\sigma_w)}{\partial\bar w\partial\sigma_w}
+ =\frac{\partial}{\partial\sigma_w}
+   \left(\frac{\partial v(\bar w,\sigma_w)}{\partial\bar w}\right)
+ =\frac{\partial v_1}{\partial\sigma_w}
+ =v_{12}.
 \]
 
-比较不同的 $a$ 时，取两种效用都递增的同一财富点 $y$。由于 $\partial A(y)/\partial a=1/(1-ay)^2>0$，$a$ 越大，该财富点的绝对风险厌恶越强。
+\Needspace{13\baselineskip}
+第二讲的\WJRef{axiom:wj-two-1}{公理~}[（不满足性）]要求财富越多越好。二次效用 $u(y)=y-ay^2/2$ 的边际效用为 $u'(y)=1-ay$。如下图 (a) 所示，$u$ 在 $y\le 1/a$ 的财富区间上严格递增，且在端点 $y=1/a$ 的边际效用为零\footnote{若要求每个状态的边际效用都为正，就要逐状态检查 $y<1/a$。}。
 
-固定均值时，$v_2=-a\sigma_w$ 在 $\sigma_w>0$ 时为负，在 $\sigma_w=0$ 时为零。另有 $v_{11}=v_{22}=-a$、$v_{12}=0$。因此，固定标准差时，平均财富越高，再提高一点均值的边际效用越低。固定均值时，标准差越大，再增加一点标准差带来的效用损失越大。
+在均值--标准差表示中，固定标准差时（比较财富标准差相同的组合），$v_1=1-a\bar w$ 在 $\bar w<1/a$ 时为正，体现了对平均财富的不满足性，见下图 (b)。固定均值时（比较平均财富相同的组合），$v_2=-a\sigma_w$ 在 $\sigma_w>0$ 时为负，在 $\sigma_w=0$ 时为零，体现了对财富波动的厌恶，见下图 (c)。
+
+\begin{center}
+\WJInputFigure{12_二次效用递增区间}
+\end{center}
+
+二阶偏导满足 $v_{11}=v_{22}=-a<0$、$v_{12}=0$。因此，固定标准差时，平均财富越高，再提高一点均值的边际效用越低。固定均值时，标准差越大，再增加一点标准差带来的效用损失越大。
+
+% 补充知识，参见 Boyd 与 Vandenberghe, Convex Optimization, §3.1.4。
+\begin{tcolorbox}[knowledge,title=海塞矩阵与凹凸性的二阶判别]
+设 $f$ 在开凸集上二阶连续可微。海塞矩阵把 $f$ 的二阶偏导数排成一个矩阵。以二元函数 $f(x_1,x_2)$ 为例，沿用本节的下标记法，$f_{ij}$ 表示先对 $x_i$ 求偏导，再对 $x_j$ 求偏导：
+\[
+ H(x)=\nabla^2 f(x)=
+ \begin{pmatrix}
+  f_{11}(x)&f_{12}(x)\\
+  f_{21}(x)&f_{22}(x)
+ \end{pmatrix},
+ \qquad f_{ij}=\frac{\partial f_i}{\partial x_j}.
+\]
+二阶偏导连续时，$f_{12}=f_{21}$，因此海塞矩阵是对称矩阵。
+
+沿非零方向 $d$ 取直线，令 $g(t)=f(x+td)$，则 $g''(0)=d^{\mathsf T}H(x)d$。这个二次型给出沿 $d$ 的二阶导数。对任意维数，下表的条件须在定义域每一点 $x$ 成立。
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+海塞矩阵的条件 & 对所有非零 $d$ 的判据 & 函数的凹凸性 \\
+\midrule
+半正定 & $d^{\mathsf T}H(x)d\geq 0$ & 凸的充要条件 \\
+半负定 & $d^{\mathsf T}H(x)d\leq 0$ & 凹的充要条件 \\
+正定   & $d^{\mathsf T}H(x)d>0$     & 严格凸的充分条件 \\
+负定   & $d^{\mathsf T}H(x)d<0$     & 严格凹的充分条件 \\
+\bottomrule
+\end{tabular}
+\end{center}
+严格凹的函数在个别点也可以有零二阶导数，例如 $f(x)=-x^4$ 在 $x=0$ 处。
+
+对二元函数，海塞矩阵负定当且仅当 $f_{11}<0$ 且 $\det H=f_{11}f_{22}-f_{12}^2>0$。混合偏导 $f_{12}$ 会影响两个变量同时改变时的凹凸性。
+
+\par\smallskip
+\noindent\begin{minipage}{\linewidth}
+下图用蓝色实线表示函数图像，红色虚线表示连接图像上两点的弦。凸、凹分别要求弦在图像的上方、下方，都允许重合。严格凸、严格凹则要求任意一条弦的内部都严格位于图像的上方、下方。
+
+\begin{center}
+\WJInputFigure{12_凹凸与严格凹凸}
+\end{center}
+\end{minipage}
+\end{tcolorbox}
+
+对本节的均值--标准差效用 $v$，一阶偏导为 $v_1=1-a\bar w$、$v_2=-a\sigma_w$。再分别求偏导，得
+\[
+ v_{11}=\frac{\partial(1-a\bar w)}{\partial\bar w}=-a,\qquad
+ v_{22}=\frac{\partial(-a\sigma_w)}{\partial\sigma_w}=-a,\qquad
+ v_{12}=\frac{\partial(1-a\bar w)}{\partial\sigma_w}=0.
+\]
+
+由对称性，$v_{21}=v_{12}=0$。将这些二阶偏导代入海塞矩阵，得
+\[
+ \nabla^2v=
+ \begin{pmatrix}v_{11}&v_{12}\\v_{21}&v_{22}\end{pmatrix}
+ =
+ \begin{pmatrix}-a&0\\0&-a\end{pmatrix},
+ \qquad \det(\nabla^2v)=(-a)(-a)-0^2=a^2.
+\]
+
+由于 $a>0$，左上角元素为负，行列式为正，所以海塞矩阵负定，$v$ 对平均财富$\bar{w}$和标准差$\sigma$联合\textbf{严格凹}。
+
+把参数为 $a$ 的二次效用记作 $u_a(y)=y-ay^2/2$。按第七讲式~\eqref{eq:wj-seven-2} 中的 Arrow--Pratt 定义，在 $y<1/a$ 时，它的绝对风险厌恶系数为
+\[
+ A_a(y)=-\frac{u_a''(y)}{u_a'(y)}=\frac{a}{1-ay}.
+\]
+
+
+第七讲讨论二次效用时，固定参数 $a$，考察绝对风险厌恶怎样随财富变化。这里固定财富 $y$，比较两个参数 $0<a_1<a_2$ 所对应的效用函数 $u_{a_1}$ 和 $u_{a_2}$。取 $y<1/a_2$，两者在这个财富点的边际效用都为正。由于 $\partial A_a(y)/\partial a=1/(1-ay)^2>0$，有 $A_{a_2}(y)>A_{a_1}(y)$，即在同一财富水平上，参数较大的效用函数对应更强的绝对风险厌恶。下图 (a) 沿同一条曲线比较 $y_L$ 和 $y_H$ 处的切线。曲率 $u_a''=-a$ 保持不变，财富越高，切线斜率越小，$A_a$ 越大。图 (b) 用竖虚线对齐两条曲线上同一个财富点 $y_0$。
+
+\begin{center}
+\WJInputFigure{12_二次效用的风险厌恶比较}
+\end{center}
 
 \subsection{联合正态支付与效用性质}
+二次效用通过限制 $u$ 的形式（例如 $u(y)=y-ay^2/2$，其中 $a>0$）得到式~\eqref{eq:wj-12-1} 的精确表示。另一种途径是限制证券支付的分布\footnote{每只证券的期末支付可能随实现的状态而变，因此是随机变量。$\widetilde X$ 是由各只证券的支付组成的随机行向量，其联合分布描述各只证券的支付如何同时取值。给定持仓 $q$，这个联合分布就决定了期末财富 $\widetilde Xq$ 的分布。}。若各证券的支付联合正态，固定持仓下的组合财富 $\widetilde w=\widetilde Xq$ 是这些支付的线性组合，因此也服从正态分布。它的分布由均值 $\bar w$ 和标准差 $\sigma_w$ 确定。当 $\sigma_w>0$ 时，可写成 $\widetilde w=\bar w+\sigma_w Z$，其中 $Z$ 是均值为零、方差为一的标准正态变量。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-2} 若证券支付服从联合正态分布，则对期望效用存在的组合，参与者的偏好具有均值--方差表示。
 若 $Z\sim N(0,1)$，其表示为
 \[
- v(\bar w,\sigma_w)=\mathrm E[u(\bar w+\sigma_w Z)],\qquad v(\bar w,0)=u(\bar w).
+ \mathrm E[u(\widetilde w)]
+ =v(\bar w,\sigma_w)=\mathrm E[u(\bar w+\sigma_w Z)],\qquad
+ v(\bar w,0)=u(\bar w).
 \]
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-若随机列向量 $Y_0$ 联合正态，均值向量为 $\mu$，协方差矩阵为 $\Gamma$，则对任意与 $Y_0$ 同维的固定系数列向量 $q$，线性组合 $q^{\mathsf T}Y_0$ 为正态变量，均值为 $q^{\mathsf T}\mu$，方差为 $q^{\mathsf T}\Gamma q$。方差为零时退化为常数\footnote{联合正态向量的两个分量协方差为零时相互独立。非退化情形下，对角协方差矩阵使它们的二维正态密度分解为两个边际密度的乘积。}。
-
-给定总持仓 $q$，组合财富 $\widetilde w=\widetilde Xq$ 是证券支付的固定系数线性组合，因此也服从正态分布。当 $\sigma_w>0$ 时，$\widetilde w\sim N(\bar w,\sigma_w^2)$。将其标准化，令 $Z=(\widetilde w-\bar w)/\sigma_w\sim N(0,1)$，则 $\widetilde w=\bar w+\sigma_w Z$。均值和标准差确定了正态财富的分布，也就确定了期望效用。当 $\sigma_w=0$ 时，期末财富恒等于 $\bar w$，表示式仍成立。
-\end{solution}
-
-非退化的正态财富可能取负值，本节的正态模型采用实数财富域，允许期末财富为负。
-\begin{tcolorbox}[knowledge,breakable=false]
-\WJTwelveTheorem{thm:wj-twelve-3} 设证券支付联合正态，效用在实数域上满足 $u'>0$、$u''<0$，且相关期望有限，允许在期望号下求一阶及二阶导数。则均值--方差效用满足 $v_1>0$，$\sigma_w>0$ 时 $v_2<0$，并且 $v_{11}<0$、$v_{22}<0$，$v$ 对 $(\bar w,\sigma_w)$ 联合凹。
-\end{tcolorbox}
-
-$u'>0$ 说明提高平均财富会增加期望效用。$u''<0$ 说明财富越高，边际效用越低。均值不变时，提高标准差会拉开高、低财富结果的差距。对称的正、负偏差扩大同样的幅度，低财富一侧的效用损失较大，因此 $\sigma_w>0$ 时 $v_2<0$。$v_{11}<0$ 和 $v_{22}<0$ 说明固定另一个变量时 $v$ 分别为凹。用二阶导数判断联合凹性时，还要结合交叉偏导检验 Hessian。
-
-\begin{solution}[label-content={证明},blank-type=none]
-记 $Y=\bar w+\sigma_w Z$。在期望号下应用链式法则，$\partial Y/\partial\bar w=1$，$\partial Y/\partial\sigma_w=Z$。因此每对 $\sigma_w$ 求导一次，就多乘一个 $Z$\footnote{例如，若 $u$ 二阶连续可微，且在所求导的参数点附近，$|u'(Y)|(1+|Z|)+|u''(Y)|(1+Z^2)$ 有一个对参数一致的可积上界，就可以用支配收敛定理交换求导与取期望。}。于是
+给定总持仓 $q$，期末财富 $\widetilde w=\widetilde Xq$ 是证券支付的线性组合。记支付列向量 $\widetilde X^{\mathsf T}$ 的均值向量为 $\mu$、协方差矩阵为 $\Gamma$。由于 $q$ 固定，取期望得 $\bar w=q^{\mathsf T}\mu$，所以财富偏差为 $\widetilde w-\bar w=q^{\mathsf T}(\widetilde X^{\mathsf T}-\mu)$。将这一偏差平方并取期望，把 $q$ 提到期望号外，得到
 \[
  \begin{aligned}
- v_1&=\mathrm E[u'(Y)]>0,&v_2&=\mathrm E[u'(Y)Z],\\
- v_{11}&=\mathrm E[u''(Y)]<0,&v_{22}&=\mathrm E[u''(Y)Z^2]<0,\\
- v_{12}&=\frac{\partial}{\partial\sigma_w}\mathrm E[u'(Y)]
- =\mathrm E\!\left[u''(Y)\frac{\partial Y}{\partial\sigma_w}\right]
- =\mathrm E[u''(Y)Z].
+ \sigma_w^2
+ &=\mathrm E[(\widetilde w-\bar w)^2]\\
+ &=q^{\mathsf T}
+   \underbrace{\mathrm E\!\left[
+   (\widetilde X^{\mathsf T}-\mu)(\widetilde X^{\mathsf T}-\mu)^{\mathsf T}
+   \right]}_{\text{支付的协方差矩阵 }\Gamma}
+   q
+ =q^{\mathsf T}\Gamma q.
  \end{aligned}
 \]
 
-当 $\sigma_w>0$ 时，若 $Z>0$，则 $u'(\bar w+\sigma_w Z)<u'(\bar w)$，乘以 $Z$ 后不等号方向不变。若 $Z<0$，则 $u'(\bar w+\sigma_w Z)>u'(\bar w)$，乘以 $Z$ 后不等号反向。两种情形都得到 $u'(\bar w+\sigma_w Z)Z<u'(\bar w)Z$。取期望并用 $\mathrm E[Z]=0$，得到 $v_2<0$。从协方差来看，$v_2=\operatorname{Cov}(u'(Y),Z)$：$Z$ 越大，边际效用越低。当 $\sigma_w=0$ 时，$v_2=u'(\bar w)\mathrm E[Z]=0$。
+由联合正态向量的线性组合性质\footnote{联合正态向量的两个分量协方差为零时相互独立。非退化情形下，对角协方差矩阵使它们的二维正态密度分解为两个边际密度的乘积。}，当 $\sigma_w>0$ 时，$\widetilde w\sim N(\bar w,\sigma_w^2)$。将期末财富标准化，再解回 $\widetilde w$，得到
+\[
+ Z=\frac{\widetilde w-\bar w}{\sigma_w}\sim N(0,1),
+ \qquad \widetilde w=\bar w+\sigma_w Z.
+\]
 
-也可以直接验证这个协方差的符号。令 $g(s)=u'(\bar w+\sigma_w s)$，取 $Z$ 的两个独立同分布副本 $Z_1,Z_2$，记 $g_i=g(Z_i)$。展开后，同一下标的两项具有相同的期望 $\mathrm E[g(Z)Z]$。两个交叉项的因子相互独立，故其期望均为 $\mathrm E[g(Z)]\mathrm E[Z]$。于是
+由于 $Z$ 的分布固定，代回期望效用后，只需知道 $\bar w$ 和 $\sigma_w$ 就能确定其值：
+\[
+ \mathrm E[u(\widetilde w)]
+ =\mathrm E[u(\bar w+\sigma_w Z)]
+ \equiv v(\bar w,\sigma_w).
+\]
+
+当 $\sigma_w=0$ 时，期末财富几乎处处等于 $\bar w$，因此 $v(\bar w,0)=u(\bar w)$。
+\end{solution}
+
+非退化的正态财富可能取负值，本节的正态模型采用实数财富域，允许期末财富为负。有了均值--方差表示，接下来要看提高均值或改变波动会怎样影响效用。稍后的前沿分析将用到均值和标准差的一阶性质。
+\begin{tcolorbox}[knowledge,breakable=false]
+\WJTwelveTheorem{thm:wj-twelve-3} 设证券支付联合正态，效用在实数域上满足 $u'>0$、$u''<0$，且相关期望有限，允许在期望号下求一阶及二阶导数。则均值--方差效用 $v$ 具有以下性质。
+\begin{enumerate}[label=(\arabic*)]
+ \item $v_1>0$。
+ \item 当 $\sigma_w>0$ 时，$v_2<0$。
+ \item $v_{11}<0$。
+ \item $v_{22}<0$。
+ \item $v$ 对 $(\bar w,\sigma_w)$ 联合凹。
+\end{enumerate}
+\end{tcolorbox}
+
+不满足性假设 $u'>0$ 使固定标准差时提高平均财富能增加期望效用，即 $v_1>0$。$u''<0$ 表示财富越高，边际效用越低。均值不变时，提高标准差会拉开高、低财富结果的差距。对称的正、负偏差扩大同样的幅度，低财富一侧的效用损失较大，因此 $\sigma_w>0$ 时 $v_2<0$，体现了对波动的厌恶。$v_{11}<0$ 和 $v_{22}<0$ 说明固定另一个变量时 $v$ 分别为凹。用二阶导数判断联合凹性时，还要结合交叉偏导检验 Hessian。
+
+\begin{solution}[label-content={证明},blank-type=none]
+沿用\WJRef{thm:wj-twelve-2}{定理~}的表示，用标准正态变量 $Z$ 写出随机财富 $Y=\bar w+\sigma_w Z$。它与组合期末财富 $\widetilde w$ 同分布，均值为 $\bar w$、标准差为 $\sigma_w$，所以 $v(\bar w,\sigma_w)=\mathrm E[u(Y)]$。
+
+先对 $Z$ 的每个取值分别求导。对 $\bar w$ 求偏导时固定 $\sigma_w$，对 $\sigma_w$ 求偏导时固定 $\bar w$。由链式法则，
+\[
+ \frac{\partial u(Y)}{\partial\bar w}
+ =u'(Y)\underbrace{\frac{\partial Y}{\partial\bar w}}_{1}
+ =u'(Y),
+ \qquad
+ \frac{\partial u(Y)}{\partial\sigma_w}
+ =u'(Y)\underbrace{\frac{\partial Y}{\partial\sigma_w}}_{Z}
+ =u'(Y)Z.
+\]
+
+由定理的条件，可以把求导移入期望号，再对上面的导数取期望\footnote{例如，若 $u$ 二阶连续可微，且在所求导的参数点附近，$|u'(Y)|(1+|Z|)+|u''(Y)|(1+Z^2)$ 有一个对参数一致的可积上界，就可以用支配收敛定理交换求导与取期望。}。
+\begin{enumerate}[label=(\arabic*)]
+ \item 由 $u'>0$，得 $v_1=\mathrm E[u'(Y)]>0$。
+ \item $v_2=\mathrm E[u'(Y)Z]$。当 $\sigma_w>0$ 时，由 $u''<0$ 可知 $u'$ 严格递减。按 $Z$ 的符号比较 $u'(Y)$ 与 $u'(\bar w)$，
+ \[
+  \begin{aligned}
+   Z>0&:\quad u'(Y)<u'(\bar w)
+          \ \Longrightarrow\ u'(Y)Z<u'(\bar w)Z,\\
+   Z<0&:\quad u'(Y)>u'(\bar w)
+          \ \Longrightarrow\ u'(Y)Z<u'(\bar w)Z.
+  \end{aligned}
+ \]
+ 由于 $\mathrm P(Z=0)=0$，取期望得
+ \[
+  v_2=\mathrm E[u'(Y)Z]<u'(\bar w)\mathrm E[Z]=0.
+ \]
+ 当 $\sigma_w=0$ 时，$Y=\bar w$，所以 $v_2=u'(\bar w)\mathrm E[Z]=0$。
+ \item 由 $u''<0$，得 $v_{11}=\mathrm E[u''(Y)]<0$。
+ \item 对 $u'(Y)Z$ 再求一次 $\sigma_w$ 的偏导时，对每个固定的 $Z$，只需对 $u'(Y)$ 求导。链式法则再带来一个因子 $Z$，所以
+ \[
+  v_{22}
+  =\mathrm E\!\left[\frac{\partial}{\partial\sigma_w}\bigl(u'(Y)Z\bigr)\right]
+  =\mathrm E\!\left[u''(Y)\frac{\partial Y}{\partial\sigma_w}Z\right]
+  =\mathrm E[u''(Y)Z^2]<0.
+ \]
+ 最后一步用到 $u''<0$，且标准正态变量满足 $Z^2>0$ 几乎处处成立。
+ \item 要判断联合凹性，还需计算交叉偏导并检验 Hessian。
+ \[
+  v_{12}=\frac{\partial}{\partial\sigma_w}\mathrm E[u'(Y)]
+  =\mathrm E\!\left[u''(Y)\frac{\partial Y}{\partial\sigma_w}\right]
+  =\mathrm E[u''(Y)Z],
+  \qquad \nabla^2 v=\begin{pmatrix}v_{11}&v_{12}\\v_{12}&v_{22}\end{pmatrix}.
+ \]
+
+ 令 $h=-u''(Y)>0$。对 $\sqrt h$ 与 $Z\sqrt h$ 应用 Cauchy--Schwarz 不等式，得到
+ \[
+  \det(\nabla^2 v)=v_{11}v_{22}-v_{12}^2
+  =\mathrm E[h]\mathrm E[hZ^2]-(\mathrm E[hZ])^2\ge0.
+ \]
+ 由第 (3)、(4) 项，Hessian 的两个对角元均为负。结合行列式非负，Hessian 为负半定矩阵，故 $v$ 联合凹。
+\end{enumerate}
+
+\textbf{从协方差看第 (2) 项。} 因为 $\mathrm E[Z]=0$，所以 $v_2=\operatorname{Cov}(u'(Y),Z)$。当 $\sigma_w>0$ 时，$Z$ 越大，边际效用越低。令 $g(s)=u'(\bar w+\sigma_w s)$，取 $Z$ 的两个独立同分布副本 $Z_1,Z_2$，记 $g_i=g(Z_i)$。展开后，同一下标的两项具有相同的期望 $\mathrm E[g(Z)Z]$。两个交叉项的因子相互独立，故其期望均为 $\mathrm E[g(Z)]\mathrm E[Z]$。于是
 \[
  \begin{aligned}
  \mathrm E[(g_1-g_2)(Z_1-Z_2)]
@@ -177,17 +332,7 @@ $u'>0$ 说明提高平均财富会增加期望效用。$u''<0$ 说明财富越�
 
 当 $\sigma_w>0$ 时，$g$ 严格递减。若 $Z_1>Z_2$，则 $g_1<g_2$。若 $Z_1<Z_2$，则 $g_1>g_2$。只要 $Z_1\ne Z_2$，两个差就异号。由于独立标准正态变量相等的概率为零，乘积的期望严格为负，故协方差为负。
 
-为判断联合凹性，考虑二阶偏导矩阵
-\[
- \nabla^2 v=\begin{pmatrix}v_{11}&v_{12}\\v_{12}&v_{22}\end{pmatrix}.
-\]
-令 $h(Z)=-u''(Y)>0$。对 $\sqrt{h(Z)}$ 与 $Z\sqrt{h(Z)}$ 应用 Cauchy--Schwarz 不等式，得
-\[
- v_{11}v_{22}-v_{12}^2
- =\mathrm E[h]\mathrm E[hZ^2]-(\mathrm E[hZ])^2\ge0.
-\]
-
-Hessian 的两个对角元 $v_{11},v_{22}$ 均为负，行列式非负，因此它是负半定矩阵，$v$ 联合凹。也可直接用 $u$ 的凹性证明。对两组参数 $x_i=(\bar w_i,\sigma_i)$，用同一个 $Z$ 构造 $Y_i=\bar w_i+\sigma_i Z$，$i=1,2$。计算 $v(x_i)$ 只需要 $Y_i$ 各自的分布，因此可以这样构造。实际合并两个证券组合时，合并后的标准差还取决于两个组合收益之间的协方差。
+\textbf{直接证明第 (5) 项及严格凹性。} 对两组参数 $x_i=(\bar w_i,\sigma_i)$，用同一个 $Z$ 构造 $Y_i=\bar w_i+\sigma_i Z$，$i=1,2$。计算 $v(x_i)$ 只需要 $Y_i$ 各自的分布，因此可以这样构造。实际合并两个证券组合时，合并后的标准差还取决于两个组合收益之间的协方差。
 
 在上述构造下，对任意 $t\in[0,1]$，参数 $tx_1+(1-t)x_2$ 对应的财富恰好是 $tY_1+(1-t)Y_2$，故联合凹性所需的不等式成立：
 \[
@@ -199,7 +344,14 @@ Hessian 的两个对角元 $v_{11},v_{22}$ 均为负，行列式非负，因此�
 若 $x_1\ne x_2$，则 $Y_1-Y_2=(\bar w_1-\bar w_2)+(\sigma_1-\sigma_2)Z$ 要么是非零常数，要么是非退化的正态变量，因此 $Y_1\ne Y_2$ 几乎必然成立。对 $0<t<1$，$u''<0$ 使取期望前的凹性不等式几乎必然为严格不等式，取期望后仍严格。因此在上述条件下，$v$ 对 $(\bar w,\sigma_w)$ 实际上严格联合凹。
 \end{solution}
 
-以下组合选择采用 $v$ 对均值递增、对正标准差递减的均值--方差偏好。初始财富 $w>0$ 给定时，$\bar w=w(1+\bar r_p)$，$\operatorname{Var}(\widetilde w)=w^2\sigma_p^2$，故 $\sigma_w=w\sigma_p$。因此可直接在收益率的均值--标准差平面比较组合。
+以下组合选择采用 $v$ 对均值递增、对正标准差递减的均值--方差偏好。记组合 $p$ 的期望净收益率为 $\bar r_p=\mathrm E[\widetilde r_p]$，标准差为 $\sigma_p=\sqrt{\operatorname{Var}(\widetilde r_p)}$。由 $\widetilde w=w(1+\widetilde r_p)$，在初始投资额 $w>0$ 给定时，
+\[
+ \bar w=w(1+\bar r_p),\qquad
+ \operatorname{Var}(\widetilde w)=w^2\sigma_p^2,\qquad
+ \sigma_w=w\sigma_p.
+\]
+
+因此，收益率的均值越高，对应的预期财富越高。收益率的标准差越低，对应的财富波动越小。接下来可以直接在收益率的均值--标准差平面比较组合。
 
 \section{均值--方差前沿组合}\label{sec:wj-twelve-2}
 \subsection{最小方差问题及其解}

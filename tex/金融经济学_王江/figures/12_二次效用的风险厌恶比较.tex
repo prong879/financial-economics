@@ -1,0 +1,48 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 示意取左图 a=1，右图 a_1=.62、a_2=1，两个面板使用同一坐标比例。
+\begin{tikzpicture}[>=Stealth,font=\footnotesize,x=3.8cm,y=3.45cm,
+    first/.style={blue!70!black}, second/.style={teal!70!black},
+    guide/.style={gray,densely dotted},
+    tangent/.style={densely dashed,semithick}]
+ \draw[->] (-.06,0)--(1.13,0) node[right] {$y$};
+ \draw[->] (0,-.025)--(0,.84) node[above] {$u_a(y)$};
+ \node[below left,inner sep=1.5pt] at (0,0) {$0$};
+
+ \coordinate (lower) at (.27,{.27-.27*.27/2});
+ \coordinate (higher) at (.78,{.78-.78*.78/2});
+ \draw[guide] (.27,0) node[below,black] {$y_L$} -- (lower);
+ \draw[guide] (.78,0) node[below,black] {$y_H$} -- (higher);
+ \draw[first,very thick,domain=0:.99,samples=38] plot (\x,{\x-\x*\x/2});
+ \draw[gray,tangent] (.01,{.27-.27*.27/2+.73*(.01-.27)})
+   -- (.69,{.27-.27*.27/2+.73*(.69-.27)});
+ \draw[gray,tangent] (.41,{.78-.78*.78/2+.22*(.41-.78)})
+   -- (1.12,{.78-.78*.78/2+.22*(1.12-.78)});
+ \fill[first] (lower) circle(1.5pt) (higher) circle(1.5pt);
+ \node at (.56,-.26) {(a) 固定 $a$，比较不同财富};
+ \node at (.56,-.43) {$A_a(y_H)>A_a(y_L)$};
+
+ \begin{scope}[xshift=5.95cm]
+   \draw[->] (-.06,0)--(1.13,0) node[right] {$y$};
+   \draw[->] (0,-.025)--(0,.84) node[above] {$u(y)$};
+   \node[below left,inner sep=1.5pt] at (0,0) {$0$};
+
+   \pgfmathsetmacro{\firstParameter}{.62}
+   \pgfmathsetmacro{\firstSlope}{1-\firstParameter*.68}
+   \pgfmathsetmacro{\firstUtility}{.68-\firstParameter*.68*.68/2}
+   \coordinate (first-point) at (.68,\firstUtility);
+   \coordinate (second-point) at (.68,{.68-.68*.68/2});
+   \draw[guide] (.68,0) node[below,black] {$y_0$} -- (first-point);
+   \draw[first,very thick,domain=0:1.10,samples=42] plot (\x,{\x-\firstParameter*\x*\x/2});
+   \draw[second,very thick,domain=0:.99,samples=38] plot (\x,{\x-\x*\x/2});
+   \draw[blue!55!gray,tangent] (.32,{\firstUtility+\firstSlope*(.32-.68)})
+     -- (1.12,{\firstUtility+\firstSlope*(1.12-.68)});
+   \draw[teal!65!gray,tangent] (.40,{.68-.68*.68/2+.32*(.40-.68)})
+     -- (1.10,{.68-.68*.68/2+.32*(1.10-.68)});
+   \fill[first] (first-point) circle(1.5pt);
+   \fill[second] (second-point) circle(1.5pt);
+   \node[first,right] at (1.12,{1.10-\firstParameter*1.10*1.10/2}) {$u_{a_1}(y)$};
+   \node[second,right] at (1.12,{.99-.99*.99/2}) {$u_{a_2}(y)$};
+   \node at (.56,-.26) {(b) 固定 $y$，比较不同参数};
+   \node at (.56,-.43) {$A_{a_2}(y_0)>A_{a_1}(y_0)$};
+ \end{scope}
+\end{tikzpicture}

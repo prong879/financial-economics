@@ -1,0 +1,29 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[>=Stealth,font=\footnotesize,x=1.16cm,y=1.23cm,
+    curve/.style={draw=blue!70!black,very thick},
+    chord/.style={draw=red!65!black,thick,densely dashed}]
+ \foreach \panelshift/\curvesign/\strict/\curvelevel/\panelname in {
+   0/1/0/.88/{(a) 凸（非严格）},
+   3.55/1/1/1.03/{(b) 严格凸},
+   7.10/-1/0/1.13/{(c) 凹（非严格）},
+   10.65/-1/1/.98/{(d) 严格凹}
+ } {
+   \begin{scope}[xshift=\panelshift cm]
+     \draw[->] (0,0)--(2.60,0) node[right,inner sep=1pt] {$x$};
+     \draw[->] (0,0)--(0,1.95) node[above] {$f(x)$};
+     \ifnum\strict=1
+       \draw[curve,domain=.20:2.26,samples=45]
+         plot (\x,{\curvelevel+\curvesign*.76*(\x-1.23)^2});
+       \pgfmathsetmacro{\chordheight}{\curvelevel+\curvesign*.76*.65^2}
+     \else
+       \draw[curve,domain=.20:2.26,samples=55]
+         plot (\x,{\curvelevel+\curvesign*13*max(abs(\x-1.23)-.69,0)^3});
+       \let\chordheight\curvelevel
+     \fi
+     \draw[chord] (.58,\chordheight)--(1.88,\chordheight);
+     \fill[fill=red!65!black] (.58,\chordheight) circle(1.35pt)
+       (1.88,\chordheight) circle(1.35pt);
+     \node at (1.23,-.32) {\panelname};
+   \end{scope}
+ }
+\end{tikzpicture}

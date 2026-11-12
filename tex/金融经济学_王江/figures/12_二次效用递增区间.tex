@@ -1,0 +1,35 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 横轴按 a 缩放。左图纵坐标为 2au(y)，中、右图的偏导数共用 1/2 的纵向缩放。
+\begin{tikzpicture}[>=Stealth,font=\footnotesize,x=1.62cm,y=1.42cm,
+    active/.style={blue!70!black,very thick}, extended/.style={gray,thick,dashed}]
+ \draw[->] (-.24,0)--(1.91,0) node[right] {$y$};
+ \draw[->] (0,-.51)--(0,1.25) node[above] {$u(y)$};
+ \node[below right,inner sep=1.5pt] at (0,0) {$0$};
+
+ \draw[gray,densely dotted] (1,0) node[below,black] {$1/a$} -- (1,1);
+ \draw[active,domain=-.19:1,samples=35] plot (\x,{2*\x-\x*\x});
+ \draw[extended,domain=1:1.80,samples=30] plot (\x,{2*\x-\x*\x});
+ \fill[blue!70!black] (1,1) circle(1.5pt) node[above right,black] {$u'(1/a)=0$};
+ \node[blue!70!black,above] at (.47,.94) {严格递增};
+ \node at (.85,-1.10) {(a) 二次效用};
+
+ \begin{scope}[xshift=4.25cm]
+   \draw[->] (-.24,0)--(1.91,0) node[right] {$\bar w$};
+   \draw[->] (0,-.78)--(0,1.25) node[above] {$v_1$};
+   \node[below right,inner sep=1.5pt] at (0,0) {$0$};
+   \draw[active] (-.14,.57)--(1,0);
+   \draw[extended] (1,0)--(1.69,-.345);
+   \fill[blue!70!black] (1,0) circle(1.5pt) node[above right,black,inner sep=2pt] {$1/a$};
+   \node at (1.12,.77) {$v_1=1-a\bar w$};
+   \node at (.85,-1.10) {(b) 固定标准差};
+ \end{scope}
+
+ \begin{scope}[xshift=8.50cm]
+   \draw[->] (-.24,0)--(1.91,0) node[right] {$\sigma_w$};
+   \draw[->] (0,-.91)--(0,1.25) node[above] {$v_2$};
+   \draw[active] (0,0)--(1.68,-.84);
+   \fill[blue!70!black] (0,0) circle(1.5pt) node[above left,black,inner sep=1.5pt] {$0$};
+   \node at (.99,.38) {$v_2=-a\sigma_w$};
+   \node at (.85,-1.10) {(c) 固定均值};
+ \end{scope}
+\end{tikzpicture}
