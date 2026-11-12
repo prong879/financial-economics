@@ -5,6 +5,7 @@
 % 教材定理12.3采用u''<0；标准差的严格单调性取sigma>0。
 % 图12.1、12.2为教材结构的示意重绘；带无风险资产的完整MVF按标准差绝对值分为上下两射线。
 % 教材p183的a>0不由正定性推出；p187对所有MVF使用lambda_r>0，此处改为非MVP的lambda_r!=0。
+% 参照朱思博第12章批注（PDF物理页1—4）及教材印刷页179—183，补充持仓与财富的换算、单调性条件和最小方差问题的推导。
 \lecture{在均值--方差偏好下的投资组合选择}
 \label{chap:wj-twelve}
 \begingroup
@@ -31,7 +32,20 @@
 
 \section{均值--方差偏好}\label{sec:wj-twelve-1}
 \subsection{均值--方差表示与二次效用}
-沿用前文\hyperref[def:wj-two-6]{证券市场经济}的设定，个人未来禀赋已市场化，初始投资额 $w>0$ 给定。以 $z$ 表示投资权重，则随机期末财富为 $\widetilde w=w(1+z^{\mathsf T}\widetilde r)$。其均值为 $\bar w=\mathrm E[\widetilde w]$，标准差为 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。均值--方差效用以标准差为第二个自变量。
+沿用前文\hyperref[def:wj-two-6]{证券市场经济}的设定，个人未来禀赋已市场化。对参与者 $k$，以 $\bar\theta_k$ 表示初始证券持仓、$\theta_k$ 表示净买入数量。
+
+本章给定个人的初始投资额 $w>0$，研究这笔资金如何配置。记 $q=\bar\theta_k+\theta_k$ 为交易后的证券总持仓，$S$ 为证券价格列向量，取各只证券的价格 $S_i\ne0$。总持仓的成本为 $S^{\mathsf T}q=w$，其中第 $i$ 只证券的投资金额为 $S_iq_i$。以 $z_i=S_iq_i/w$ 表示该证券的投资权重，则权重列向量 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 的分量之和为 $1$。
+
+记 $\widetilde X$ 为实现状态对应的证券支付行向量，$\widetilde r=(\widetilde r_1,\ldots,\widetilde r_N)^{\mathsf T}$ 为随机净收益率列向量。由净收益率的定义 $\widetilde X_i=S_i(1+\widetilde r_i)$，得到
+\[
+ \widetilde w=\widetilde Xq
+ =\sum_{i=1}^N S_iq_i(1+\widetilde r_i)
+ =w(1+z^{\mathsf T}\widetilde r).
+\]
+
+这里 $z^{\mathsf T}\widetilde r=\sum_{i=1}^N z_i\widetilde r_i$ 是组合的随机净收益率。期末财富的均值为 $\bar w=\mathrm E[\widetilde w]$，标准差为 $\sigma_w=\sqrt{\operatorname{Var}(\widetilde w)}$。均值--方差效用以标准差为第二个自变量。
+
+给定投资额后，沿用第八讲式~\eqref{eq:wj-8-8}（给定投资额的组合选择）的目标，可以直接比较 $\mathrm E[u(\widetilde w)]$\footnote{第八讲把决策分成投多少钱和这笔钱怎么投。式~\eqref{eq:wj-8-8} 固定 $w$，用 $\theta$ 表示交易后的证券总持仓，相当于本节的 $q$。第八讲在成本约束和各状态支付非负的约束下选择使期末财富期望效用最大的组合。本章各模型的财富取值范围及组合约束在相应各节给出。}。
 
 若期望效用可写成
 \begin{equation}
@@ -54,33 +68,40 @@
 
 \textbf{证明：}一般二次函数 $u(y)=A+By+Cy^2$ 的期望只依赖 $\bar w$ 与 $\mathrm E[\widetilde w^2]=\bar w^2+\sigma_w^2$。例如，以 $y$ 表示期末财富的实现值，取 $u(y)=y-ay^2/2$（$a>0$），
 \[
+ \begin{aligned}
  \mathrm E[u(\widetilde w)]
- =\bar w-\frac a2\underbrace{(\bar w^2+\sigma_w^2)}_{\mathrm E[\widetilde w^2]}
+ &=\mathrm E[\widetilde w]-\frac a2\mathrm E[\widetilde w^2]\\
+ &=\bar w-\frac a2\underbrace{(\bar w^2+\sigma_w^2)}_{\mathrm E[\widetilde w^2]}
  \equiv v(\bar w,\sigma_w).
+ \end{aligned}
 \]
 
 故结论成立。\hfill$\square$
 
 只要期末财富有有限二阶矩，上式就给出均值--方差表示。以下对 $v(\bar w,\sigma_w)$ 的偏导数用数字作下标，$1$ 对应均值 $\bar w$，$2$ 对应标准差 $\sigma_w$。一个下标表示一阶偏导，两个下标表示二阶偏导，例如 $v_{12}=\partial(v_1)/\partial\sigma_w$。
 
-若还要求期末财富的每个可能取值都满足边际效用为正，则取 $y<1/a$ 的财富区间。固定标准差时，提高均值的边际效用为 $v_1=1-a\bar w$，在 $\bar w<1/a$ 时为正。固定均值时，$v_2=-a\sigma_w$ 是对标准差的导数，在 $\sigma_w>0$ 时为负，在 $\sigma_w=0$ 时为零。另有 $v_{11}=v_{22}=-a$、$v_{12}=0$。
+对给定的财富实现值 $y$，边际效用为 $u'(y)=1-ay$。若要求每个状态增加一点财富都带来正的边际效用，就要逐状态检查 $y<1/a$。对期望效用 $v$，固定标准差时，提高平均财富的边际效用为 $v_1=1-a\bar w$，只需 $\bar w<1/a$ 即为正。
+
+固定均值时，$v_2=-a\sigma_w$ 是对标准差的导数，在 $\sigma_w>0$ 时为负，在 $\sigma_w=0$ 时为零。另有 $v_{11}=v_{22}=-a$、$v_{12}=0$。
 
 \subsection{联合正态支付与效用性质}
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-2} 若证券支付服从联合正态分布，则对期望效用存在的组合，参与者的偏好具有均值--方差表示。
 \end{tcolorbox}
 
-\textbf{证明：}联合正态向量的线性组合仍为正态变量。故组合财富可表示为 $\widetilde w=\bar w+\sigma_w Z$，其中 $Z\sim N(0,1)$，从而
+\textbf{证明：}给定总持仓 $q$，组合财富 $\widetilde w=\widetilde Xq$ 是联合正态证券支付的固定系数线性组合。故组合财富可表示为 $\widetilde w=\bar w+\sigma_w Z$，其中 $Z\sim N(0,1)$，从而
 \[
  v(\bar w,\sigma_w)=\mathrm E[u(\bar w+\sigma_w Z)].
 \]
 
 均值和标准差确定了正态财富的分布，也就确定了期望效用。当 $\sigma_w=0$ 时，期末财富恒等于 $\bar w$，上式仍成立，并给出 $v(\bar w,0)=u(\bar w)$。\hfill$\square$
 
-非退化的正态财富可能取负值，本节的正态模型采用实数财富域。
+非退化的正态财富可能取负值，本节的正态模型采用实数财富域，允许期末财富为负。
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTwelveTheorem{thm:wj-twelve-3} 设证券支付联合正态，效用在实数域上满足 $u'>0$、$u''<0$，且相关期望有限，允许在期望号下求一阶及二阶导数。则均值--方差效用满足 $v_1>0$，$\sigma_w>0$ 时 $v_2<0$，并且 $v_{11}<0$、$v_{22}<0$，$v$ 对 $(\bar w,\sigma_w)$ 联合凹。
 \end{tcolorbox}
+
+$u'>0$ 说明提高平均财富会增加期望效用。$u''<0$ 说明财富越高，边际效用越低。均值不变时，提高标准差会拉开高、低财富结果的差距。对称的正、负偏差扩大同样的幅度，低财富一侧的效用损失较大，因此 $\sigma_w>0$ 时 $v_2<0$。$v_{11}<0$ 和 $v_{22}<0$ 说明固定另一个变量时 $v$ 分别为凹。用二阶导数判断联合凹性时，还要结合交叉偏导检验 Hessian。
 
 \textbf{证明：}记 $Y=\bar w+\sigma_w Z$，直接求导得
 \[
@@ -105,7 +126,22 @@
 
 \section{均值--方差前沿组合}\label{sec:wj-twelve-2}
 \subsection{最小方差问题及其解}
-设 $N$ 只风险证券的净收益率向量为 $\widetilde r$，所有参与者采用相同的均值 $\bar r$ 和正定协方差矩阵 $\Sigma$。令 $\iota=(1,\ldots,1)^{\mathsf T}$。组合权重满足 $\iota^{\mathsf T}z=1$，允许卖空；组合均值和方差分别为 $z^{\mathsf T}\bar r$、$z^{\mathsf T}\Sigma z$。
+设市场上只有 $N$ 只风险证券，收益率具有有限二阶矩。所有参与者采用相同的期望净收益率列向量 $\bar r=\mathrm E[\widetilde r]$ 和协方差矩阵
+\[
+ \Sigma=\mathrm E[(\widetilde r-\bar r)(\widetilde r-\bar r)^{\mathsf T}],
+ \qquad \Sigma_{ij}=\operatorname{Cov}(\widetilde r_i,\widetilde r_j).
+\]
+
+组合净收益率 $\widetilde r_p=z^{\mathsf T}\widetilde r$ 的均值为 $\bar r_p=z^{\mathsf T}\bar r$，因此其中心化收益率为 $z^{\mathsf T}(\widetilde r-\bar r)$。把固定权重移到期望号外，得到
+\[
+ \sigma_p^2=\mathrm E\bigl[(z^{\mathsf T}(\widetilde r-\bar r))^2\bigr]
+ =z^{\mathsf T}\mathrm E[(\widetilde r-\bar r)(\widetilde r-\bar r)^{\mathsf T}]z
+ =z^{\mathsf T}\Sigma z.
+\]
+
+本节假设 $\Sigma$ 正定，即任何非零系数向量 $x\in\mathbb R^N$ 都满足 $\operatorname{Var}(x^{\mathsf T}\widetilde r)=x^{\mathsf T}\Sigma x>0$。因此，中心化收益率之间没有精确的线性依赖。仅知道每只证券的方差都为正时，若两只证券的净收益率只相差一个常数，做多一只并等额做空另一只，所得头寸的收益仍可能是确定的。
+
+令 $\iota=(1,\ldots,1)^{\mathsf T}$ 为 $N$ 维全 $1$ 列向量。本节在 $\iota^{\mathsf T}z=1$ 的所有实数权重上求前沿，允许卖空。若另外要求各状态的期末财富非负，就要在加入该约束后的可行集上求前沿。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 达到给定期望收益率 $\bar r_p$ 而方差最小的组合称为\textbf{均值--方差前沿组合}（MVF组合），由下列问题确定：
@@ -127,6 +163,13 @@
  L=\frac12z^{\mathsf T}\Sigma z
  +\lambda_r(\bar r_p-z^{\mathsf T}\bar r)+\lambda_1(1-z^{\mathsf T}\iota),
  \qquad\Sigma z=\lambda_r\bar r+\lambda_1\iota.
+\]
+
+对两个乘数分别求导，其一阶条件恰好是原来的收益约束和预算约束：
+\[
+ \frac{\partial L}{\partial\lambda_r}=\bar r_p-z^{\mathsf T}\bar r=0,
+ \qquad
+ \frac{\partial L}{\partial\lambda_1}=1-z^{\mathsf T}\iota=0.
 \]
 
 本节沿用教材记号
