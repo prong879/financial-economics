@@ -106,7 +106,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-2}{} 在练习~\ref{exer:wj-fifteen-1}描述的经济中，现在假设证券市场还包括一只证券，它在状态 $a$ 支付 $\lambda_{a}$、在状态 $b$ 支付 $\lambda_{b}$ 而它的价格为 $S$。
+\WJFifteenExercise{exer:wj-fifteen-2}{} 在\WJRef{exer:wj-fifteen-1}{练习~}描述的经济中，现在假设证券市场还包括一只证券，它在状态 $a$ 支付 $\lambda_{a}$、在状态 $b$ 支付 $\lambda_{b}$ 而它的价格为 $S$。
 \begin{enumerate}[label=(\alph*)]
     \item 证明现在证券市场是完全的。
     \item 用 $r_{F}$ 和 $S$ 表示状态价格。
@@ -124,7 +124,7 @@
 
 沿用 $R=1+r_F$，令 $B=1/R$。
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{证明。}两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（第~\ref{sec:wj-three-rank}~节）\fi，任意两状态支付都可复制，市场完全\footnote{第三讲的判据要求持仓可取任意实数。支付矩阵的行秩等于状态数时，它的列向量张成整个状态支付空间。本题行列式非零，所以对任意给定的两状态支付 $y$，都能解出复制头寸 $\theta=X^{-1}y$。}。
+\item \textbf{证明。}两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，任意两状态支付都可复制，市场完全\footnote{第三讲的判据要求持仓可取任意实数。支付矩阵的行秩等于状态数时，它的列向量张成整个状态支付空间。本题行列式非零，所以对任意给定的两状态支付 $y$，都能解出复制头寸 $\theta=X^{-1}y$。}。
 \item 状态价格由 $\phi_a+\phi_b=B$、$\lambda_a\phi_a+\lambda_b\phi_b=S$ 决定：
 \[
  \phi_a=\frac{RS-\lambda_b}{R(\lambda_a-\lambda_b)},\qquad
@@ -142,7 +142,7 @@
 \[
  \phi_ac_a+\phi_bc_b=SI^\alpha+B\theta_B+S\theta_S .
 \]
-代入当期预算以消去证券头寸。反过来，因为市场完全，任何满足下式的消费计划都可以用证券复制其相对产出的净支付。因此个人问题为\ifdefined\WJHandoutKnowledge（见式~\eqref{eq:wj-15-4} 的现值预算）\fi
+代入当期预算以消去证券头寸。反过来，因为市场完全，任何满足下式的消费计划都可以用证券复制其相对产出的净支付。因此个人问题为\ifdefined\WJHandoutKnowledge（见\WJEqRef{eq:wj-15-4}{式~} 的现值预算）\fi
 \[
  \begin{aligned}
  \max_{\substack{I\ge0\\c_0,c_a,c_b>0}}\quad
@@ -168,7 +168,7 @@
 \]
 
 两式同时复制所需终期消费，0期预算随状态价格条件成立。
-\item 由 NPV 法则\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-1}）\fi，增加一单位投入的边际收益为 $\alpha SI^{\alpha-1}$，边际成本为 $1$。差额为正时增加投入；随着边际产出递减，差额在 $I_2^*$ 处降为零。
+\item 由 NPV 法则\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-fifteen-1}{定理~}）\fi，增加一单位投入的边际收益为 $\alpha SI^{\alpha-1}$，边际成本为 $1$。差额为正时增加投入；随着边际产出递减，差额在 $I_2^*$ 处降为零。
 \item 最大NPV等于 $w^*$，且包络定理给出
 \[
  \frac{\partial w^*}{\partial\phi_\omega}=\lambda_\omega(I_2^*)^\alpha>0.
@@ -180,7 +180,7 @@
  U_2^*=2\log\frac{w^*}{2}+\sum_\omega p_\omega\log\frac{p_\omega}{\phi_\omega}.
 \]
 
-用 0 期财富衡量开放风险证券带来的效用增益。保持原债券市场的利率，给参与者额外财富 $z$，并允许他重新选择生产、借款和消费。记这样得到的最优效用为 $U_B(z)$，所求补偿 $\Delta w$ 满足 $U_B(\Delta w)=U_2^*$。此时预算为 $c_0=z+D/R-I$。消去 $D$ 后，$z$ 只作为常数进入消费式，因此两条一阶条件与练习~\ref{exer:wj-fifteen-1} 相同。联立 $\frac1{c_0}=RI^{-\alpha}H(q)=\frac{\alpha}{I}[1+qH(q)]$，再代入预算，得
+用 0 期财富衡量开放风险证券带来的效用增益。保持原债券市场的利率，给参与者额外财富 $z$，并允许他重新选择生产、借款和消费。记这样得到的最优效用为 $U_B(z)$，所求补偿 $\Delta w$ 满足 $U_B(\Delta w)=U_2^*$。此时预算为 $c_0=z+D/R-I$。消去 $D$ 后，$z$ 只作为常数进入消费式，因此两条一阶条件与\WJRef{exer:wj-fifteen-1}{练习~} 相同。联立 $\frac1{c_0}=RI^{-\alpha}H(q)=\frac{\alpha}{I}[1+qH(q)]$，再代入预算，得
 \[
  \begin{aligned}
  I(q)&=\left[\frac{\alpha}{R}\left(q+\frac1{H(q)}\right)\right]^{1/(1-\alpha)},\\
@@ -200,7 +200,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-3}{} 考虑练习~\ref{exer:wj-fifteen-1}描述的经济。现在假设经济中除了那里描述的参与者 1 以外还有一个参与者 2。参与者 2 没有生产技术，但经济赋予了他 $e_{0}$ 单位的 0 期消费。他的效用函数和参与者 1 的一样。证券市场和练习~\ref{exer:wj-fifteen-2}中的一样。
+\WJFifteenExercise{exer:wj-fifteen-3}{} 考虑\WJRef{exer:wj-fifteen-1}{练习~}描述的经济。现在假设经济中除了那里描述的参与者 1 以外还有一个参与者 2。参与者 2 没有生产技术，但经济赋予了他 $e_{0}$ 单位的 0 期消费。他的效用函数和参与者 1 的一样。证券市场和\WJRef{exer:wj-fifteen-2}{练习~}中的一样。
 \begin{enumerate}[label=(\alph*)]
     \item 求解两个参与者在给定状态价格下的最优生产、消费和投资选择。
     \item 求解均衡状态价格、总消费和消费配置。
@@ -213,7 +213,7 @@
 
 设 $e_0>0$，且两状态概率均为正。
 \begin{enumerate}[label=(\alph*)]
-\item 给定 $\phi_a,\phi_b>0$，记 $S=\sum_\omega\phi_\omega\lambda_\omega$、$B=\sum_\omega\phi_\omega$。沿用练习~\ref{exer:wj-fifteen-2} 的生产净现值最大化，参与者 1 选择 $I(\phi)=(\alpha S)^{1/(1-\alpha)}$，其财富为 $w_1(\phi)=SI(\phi)^\alpha-I(\phi)$。参与者 2 无生产技术，财富为 $w_2=e_0$。按两人的对数消费需求，
+\item 给定 $\phi_a,\phi_b>0$，记 $S=\sum_\omega\phi_\omega\lambda_\omega$、$B=\sum_\omega\phi_\omega$。沿用\WJRef{exer:wj-fifteen-2}{练习~} 的生产净现值最大化，参与者 1 选择 $I(\phi)=(\alpha S)^{1/(1-\alpha)}$，其财富为 $w_1(\phi)=SI(\phi)^\alpha-I(\phi)$。参与者 2 无生产技术，财富为 $w_2=e_0$。按两人的对数消费需求，
 \[
  c_{k,0}=\frac{w_k}{2},\qquad c_{k,\omega}=\frac{p_\omega w_k}{2\phi_\omega}.
 \]
@@ -246,7 +246,7 @@
 \]
 
 由 $B^*=\phi_a^*+\phi_b^*$、$S^*=\lambda_a\phi_a^*+\lambda_b\phi_b^*$ 恢复证券价格与 $r_F^*=1/B^*-1$。代回生产条件可核对 $\alpha S^*(I^*)^{\alpha-1}=1$。各人终期消费与技术产出均与 $(\lambda_a,\lambda_b)$ 成比例，因此 $\theta_{1,B}^*=\theta_{2,B}^*=0$，$\theta_{2,S}^*=\eta_2(I^*)^\alpha=-\theta_{1,S}^*$，两种证券均出清。
-\item \textbf{证明。}用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-2}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
+\item \textbf{证明。}用正权重检验均衡配置的帕累托最优性\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-fifteen-2}{定理~}）\fi。取 $\eta_1,\eta_2$ 为规划权重。给定投入 $I$，在任一总消费为 $C$ 的节点，规划者在 $c_1+c_2=C$ 下最大化 $\sum_k\eta_k\log c_k$。一阶条件使 $\eta_1/c_1=\eta_2/c_2$，故 $c_k=\eta_k C$。将最优分享代回，节点效用为 $\log C$ 加一个与 $I$ 无关的常数。再代入当期和未来总资源，生产选择化为
 \[
  \max_{0<I<e_0}\ \log(e_0-I)+\alpha\log I+\sum_\omega p_\omega\log\lambda_\omega.
 \]
@@ -258,7 +258,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-4}{} 考虑练习~\ref{exer:wj-fifteen-3}中的经济。
+\WJFifteenExercise{exer:wj-fifteen-4}{} 考虑\WJRef{exer:wj-fifteen-3}{练习~}中的经济。
 \begin{enumerate}[label=(\alph*)]
     \item 构建代表性参与者。
     \item 通过求解代表性参与者的优化问题而得到均衡配置。
@@ -293,7 +293,7 @@
 \]
 
 目标对 $I$ 严格凹，故该内点为唯一最优解。代回资源约束得 $C_0^*=e_0/(1+\alpha)$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，个人消费为 $c_{k,0}^*=\eta_k C_0^*$、$c_{k,\omega}^*=\eta_k C_\omega^*$。
-\item 对代表性参与者的两期消费一阶条件\ifdefined\WJHandoutKnowledge（式~\eqref{eq:wj-15-6}）\fi，消去预算乘子。状态价格就等于未来该状态的边际效用 $p_\omega/C_\omega^*$ 除以当期的边际效用 $1/C_0^*$，即
+\item 对代表性参与者的两期消费一阶条件\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-15-6}{式~}）\fi，消去预算乘子。状态价格就等于未来该状态的边际效用 $p_\omega/C_\omega^*$ 除以当期的边际效用 $1/C_0^*$，即
 \[
  \phi_\omega^*=p_\omega\frac{C_0^*}{C_\omega^*}
  =\frac{p_\omega e_0^{1-\alpha}}
@@ -316,7 +316,7 @@
 \Needspace{10\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-5}{} 沿用练习~\ref{exer:wj-fifteen-2} 中的生产技术与偏好。在这里我们不假设有一组给定的可交易证券，而是假设拥有生产技术的参与者 1 可以成立一个公司、而公司可以到市场上发行债券和股票，但没有其它可交易的证券。一单位（无风险）公司债在 1 期有 1 单位支付，而一股股票在 1 期有 $\hat{\lambda}I^{\alpha}$ 单位支付，在状态 $a$ 和 $b$ 下 $\hat{\lambda}=\lambda_{a}$，$\lambda_{b}$，$I$ 是公司的生产投资。
+\WJFifteenExercise{exer:wj-fifteen-5}{} 沿用\WJRef{exer:wj-fifteen-2}{练习~} 中的生产技术与偏好。在这里我们不假设有一组给定的可交易证券，而是假设拥有生产技术的参与者 1 可以成立一个公司、而公司可以到市场上发行债券和股票，但没有其它可交易的证券。一单位（无风险）公司债在 1 期有 1 单位支付，而一股股票在 1 期有 $\hat{\lambda}I^{\alpha}$ 单位支付，在状态 $a$ 和 $b$ 下 $\hat{\lambda}=\lambda_{a}$，$\lambda_{b}$，$I$ 是公司的生产投资。
 \begin{enumerate}[label=(\alph*)]
     \item 给定利率 $r_{F}$ 和股价 $S$，求解参与者 1 的优化问题，即最优的投资额、在市场发行的债券和股票的数量以及他的消费。
     \item 在这种情况下，有无最优负债水平？这和 Modigliani--Miller 定理是否一致？解释原因。
@@ -371,8 +371,8 @@
 \]
 
 固定 $I>0$ 时，消费是 $(D,s)$ 的仿射函数，对数效用使融资子问题严格凹。若加上发行限制，需先在每个 $I$ 下求融资子问题的最大值，再对 $I$ 求全局最大值，并检查发行限制绑定的解。上述方程只给出无约束一阶条件的候选。
-\item 按固定股价且头寸不限的读法，(a) 没有有限最优解，因此也没有最优债务水平。若限制发行，固定 $I>0$ 时，融资子问题在有解时至多有一个最优债券发行量和出售份额。按 MM 定理\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-fifteen-4}）\fi，比较融资安排时，应固定真实投资和总产出。这里改变 $I$ 就会改变每股支付，而报价 $S$ 仍被固定，所以 (a) 的投资问题无法用一组共同状态价格为所有可选支付定价。
-\item 原题在此问引入第二位参与者，以下沿用练习~\ref{exer:wj-fifteen-3} 中参与者 2 的禀赋 $e_0$ 与偏好。按固定 $R,S$ 且头寸不限的读法，均衡必须有 $I>0$ 以满足未来正消费，还必须有 $S>0$，否则参与者 2 可不限量买入正支付的股票。由 (a)，在这样的价格下参与者 1 没有最优选择，故不存在该口径下的均衡。
+\item 按固定股价且头寸不限的读法，(a) 没有有限最优解，因此也没有最优债务水平。若限制发行，固定 $I>0$ 时，融资子问题在有解时至多有一个最优债券发行量和出售份额。按 MM 定理\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-fifteen-4}{定理~}）\fi，比较融资安排时，应固定真实投资和总产出。这里改变 $I$ 就会改变每股支付，而报价 $S$ 仍被固定，所以 (a) 的投资问题无法用一组共同状态价格为所有可选支付定价。
+\item 原题在此问引入第二位参与者，以下沿用\WJRef{exer:wj-fifteen-3}{练习~} 中参与者 2 的禀赋 $e_0$ 与偏好。按固定 $R,S$ 且头寸不限的读法，均衡必须有 $I>0$ 以满足未来正消费，还必须有 $S>0$，否则参与者 2 可不限量买入正支付的股票。由 (a)，在这样的价格下参与者 1 没有最优选择，故不存在该口径下的均衡。
 
 \textbf{发行受限时的均衡检验。}令发行者满足 $D\ge0$、$0\le s\le1$，参与者 2 可按报价自由交易两种证券，包括净供给为零时。记 $Y_\omega=\lambda_\omega I^\alpha$。证券出清时，参与者 2 的消费为
 \[
@@ -392,7 +392,7 @@
 
 因此只剩 $D=0$、$0<s<1$。两人的未来消费分别为 $(1-s)Y_\omega$ 和 $sY_\omega$，故按个人边际效用计算的两个状态价格向量成比例。双方对股票的一阶条件都将这组价格乘以产出支付后加总为 $S>0$，比例系数只能为 $1$，所以两组状态价格相同。
 
-参与者 2 的现值财富是 $e_0$，按练习~\ref{exer:wj-fifteen-2} 的对数消费需求，当期消费为 $e_0/2$。两人的状态价格相同，也给出相同的未来与当期消费比例，所以总产出的市值等于当期总消费 $e_0-I$。再由发行者对 $I,s$ 的一阶条件，有
+参与者 2 的现值财富是 $e_0$，按\WJRef{exer:wj-fifteen-2}{练习~} 的对数消费需求，当期消费为 $e_0/2$。两人的状态价格相同，也给出相同的未来与当期消费比例，所以总产出的市值等于当期总消费 $e_0-I$。再由发行者对 $I,s$ 的一阶条件，有
 \[
  S^{\dagger}s^{\dagger}=\frac{e_0}{2},\qquad
  S^{\dagger}=e_0-I^{\dagger},\qquad I^{\dagger}=\alpha S^{\dagger}(1-s^{\dagger}).
@@ -437,7 +437,7 @@
  S(I)=I^\alpha\sum_\omega\phi_\omega\lambda_\omega.
 \]
 
-此时，最大化净值 $S(I)-I$ 给出与练习~\ref{exer:wj-fifteen-3} 相同的生产条件及状态价格 $\phi_\omega^*=p_\omega C_0^*/C_\omega^*$。代入 $C_0^*=e_0-I^*$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，得到
+此时，最大化净值 $S(I)-I$ 给出与\WJRef{exer:wj-fifteen-3}{练习~} 相同的生产条件及状态价格 $\phi_\omega^*=p_\omega C_0^*/C_\omega^*$。代入 $C_0^*=e_0-I^*$、$C_\omega^*=\lambda_\omega(I^*)^\alpha$，得到
 \[
  I^*=\frac{\alpha e_0}{1+\alpha},\qquad S^*=C_0^*=\frac{e_0}{1+\alpha},\qquad
  r_F^*=\frac{1}{\phi_a^*+\phi_b^*}-1 .
@@ -450,13 +450,13 @@
 \Needspace{28\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \begin{problem}
-\WJFifteenExercise{exer:wj-fifteen-6}{} 在练习~\ref{exer:wj-fifteen-5}中，现在假设市场上存在一只无风险证券可供参与者交易。证明此时Modigliani--Miller 定理成立，即公司的融资决策不影响它的投资决策和均衡配置。解释这种情形和上述情形之间的差别。
+\WJFifteenExercise{exer:wj-fifteen-6}{} 在\WJRef{exer:wj-fifteen-5}{练习~}中，现在假设市场上存在一只无风险证券可供参与者交易。证明此时Modigliani--Miller 定理成立，即公司的融资决策不影响它的投资决策和均衡配置。解释这种情形和上述情形之间的差别。
 \end{problem}
 \end{minipage}\par
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两种债券每单位到期都支付 $1$，由一价定律\ifdefined\WJHandoutKnowledge（定理~\ref{thm:wj-four-3}）\fi，价格同为 $B=1/(1+r_F)$\footnote{第四讲的一价定律针对各状态支付都相同的证券或组合。在无套利且可交易两边头寸的市场中，若两者价格不同，买入低价的一边并卖出高价的一边，会在当期取得价差，未来净支付为零。本题两种债券都在每个状态支付 $1$，因此同价。}。公司发债带来当期收入 $BD$ 和未来偿付 $D$，个人买入外部债券则带来当期支出 $BH$ 和未来收入 $H$。因此个人预算为
+令 $D$ 为公司债到期偿付额，$H$ 为另行购买的外部无风险证券数量。两种债券每单位到期都支付 $1$，由一价定律\ifdefined\WJHandoutKnowledge（\WJRef{thm:wj-four-3}{定理~}）\fi，价格同为 $B=1/(1+r_F)$\footnote{第四讲的一价定律针对各状态支付都相同的证券或组合。在无套利且可交易两边头寸的市场中，若两者价格不同，买入低价的一边并卖出高价的一边，会在当期取得价差，未来净支付为零。本题两种债券都在每个状态支付 $1$，因此同价。}。公司发债带来当期收入 $BD$ 和未来偿付 $D$，个人买入外部债券则带来当期支出 $BH$ 和未来收入 $H$。因此个人预算为
 \[
  c_{1,0}=B\underbrace{(D-H)}_{\text{净负债}}+Ss-I,\qquad
  c_{1,\omega}=(1-s)\lambda_\omega I^\alpha-(D-H).
