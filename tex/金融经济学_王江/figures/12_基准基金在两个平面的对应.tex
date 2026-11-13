@@ -1,0 +1,39 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 示例：证券均值为 (0,1)，协方差矩阵为 0.04I，目标均值为 0.25。
+\begin{tikzpicture}[
+ >=Stealth,font=\small,
+ basis/.style={blue!70!black},
+ target/.style={teal!65!black},
+ guide/.style={gray,densely dotted}]
+ % 左图的两个坐标是两只证券各自的投资权重。
+ \begin{scope}[x=3cm,y=2.8cm]
+  \draw[->] (-.19,0)--(1.34,0) node[right] {$z^{(1)}$};
+  \draw[->] (0,-.19)--(0,1.25) node[above] {$z^{(2)}$};
+  \draw[basis,thick,<->] (-.15,1.15)--(1.16,-.16);
+  \node[basis] at (.79,.87) {$z^{(1)}+z^{(2)}=1$};
+  \fill[basis] (1,0) circle (1.8pt) node[below left=3pt] {$z_0=(1,0)$};
+  \fill[basis] (0,1) circle (1.8pt) node[right=3pt] {$z_1=(0,1)$};
+  \fill[target] (.75,.25) circle (1.8pt)
+   node[above right=2pt] {$z_p=(0.75,0.25)$};
+  \node at (.55,-.34) {(a) 证券权重平面};
+ \end{scope}
+
+ % 右图横坐标为标准差，纵坐标为以小数表示的期望净收益率。
+ \begin{scope}[xshift=6.55cm,x=18.5cm,y=2.8cm]
+  \draw[->] (0,-.08)--(.258,-.08) node[right] {$\sigma_p$};
+  \draw[->] (0,-.08)--(0,1.25) node[above] {$\bar r_p$};
+  \draw[guide] (0,0) node[left] {$0$}--(.2,0);
+  \draw[guide] (0,.25) node[left] {$0.25$}--({sqrt(.025)},.25);
+  \draw[guide] (0,1) node[left] {$1$}--(.2,1);
+  \draw[gray!75,dashed] (.2,0)--(.2,1);
+  \draw[gray!80,thick,domain=-.06:.5,samples=35,variable=\t]
+   plot ({.2*sqrt((1-\t)^2+\t^2)},\t);
+  \draw[basis,thick,domain=.5:1.14,samples=35,variable=\t]
+   plot ({.2*sqrt((1-\t)^2+\t^2)},\t);
+  \fill[basis] (.2,0) circle (1.8pt) node[right] {$P_0\ (z_0)$};
+  \fill[basis] (.2,1) circle (1.8pt) node[right] {$P_1\ (z_1)$};
+  \fill[target] ({sqrt(.025)},.25) circle (1.8pt)
+   node[above left=1pt] {$P_p\ (z_p)$};
+  \node at (.124,-.34) {(b) 均值--标准差平面};
+ \end{scope}
+\end{tikzpicture}

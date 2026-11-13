@@ -1,0 +1,33 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 两图共用示意坐标。右图以参数 t 表示相对 MVP 的均值偏离。
+\begin{tikzpicture}[
+ >=Stealth,font=\small,x=1.32cm,y=.87cm,
+ effective/.style={blue!70!black,very thick},
+ comparison/.style={gray!80,thick,dashed},
+ guide/.style={gray,densely dotted}]
+ \draw[->] (0,0)--(3.55,0) node[right] {$\sigma_p$};
+ \draw[->] (0,0)--(0,3.2) node[above] {$\bar r_p$};
+ \draw[guide] (0,1.55) node[left] {$a/c$}--(1,1.55)--(1,0)
+  node[below] {$1/\sqrt c$};
+ \draw[comparison,->] (1,1.55)--(3.25,1.55)
+  node[pos=.66,below=3pt] {同均值的可行组合};
+ \fill[blue!70!black] (1,1.55) circle (2pt)
+  node[above right=2pt,align=left] {MVP（唯一有效点）\\权重 $z_{\mathrm{MVP}}$};
+ \node at (1.77,-.94) {(a) $d=0$};
+
+ \begin{scope}[xshift=6.25cm]
+  \draw[->] (0,0)--(3.55,0) node[right] {$\sigma_p$};
+  \draw[->] (0,0)--(0,3.2) node[above] {$\bar r_p$};
+  \draw[guide] (0,1.55) node[left] {$a/c$}--(1,1.55)--(1,0)
+   node[below] {$1/\sqrt c$};
+  \draw[comparison] plot[domain=-2.35:0,samples=42,variable=\t]
+   ({sqrt(1+\t*\t)},{1.55+.52*\t});
+  \draw[effective] plot[domain=0:2.55,samples=42,variable=\t]
+   ({sqrt(1+\t*\t)},{1.55+.52*\t});
+  \node[blue!70!black,above left] at (2.72,2.83) {有效前沿};
+  \node[gray!80!black,above right] at (2.13,.57) {无效下半支};
+  \fill[blue!70!black] (1,1.55) circle (2pt)
+   node[above left,align=right] {MVP\\权重 $z_{\mathrm{MVP}}$};
+  \node at (1.77,-.94) {(b) $d>0$};
+ \end{scope}
+\end{tikzpicture}

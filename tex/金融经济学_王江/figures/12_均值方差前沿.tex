@@ -14,8 +14,13 @@
    plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
  \draw[densely dotted,gray] (0,1.8) node[left] {$a/c$}--(1,1.8)--(1,0) node[below] {$1/\sqrt c$};
  \fill (1,1.8) circle(2pt) node[above left] {MVP};
+ % E 与 F 同均值，横向箭头指向该均值下的最小方差组合。
+ \coordinate (efficient) at (1.72047,2.78);
+ \coordinate (sameMean) at (3.16,2.78);
  \draw[dotted,gray] (1.72047,.82)--(1.72047,2.78);
- \fill[red!70!black] (1.72047,2.78) circle(1.8pt) node[above left] {$E$};
+ \draw[->,black!60,shorten <=4pt,shorten >=4pt] (sameMean)--(efficient);
+ \fill[blue!60!black] (sameMean) circle(1.8pt) node[above right] {$F$};
+ \fill[red!70!black] (efficient) circle(1.8pt) node[above left] {$E$};
  \fill[gray] (1.72047,.82) circle(1.8pt) node[below left] {$D$};
  \draw[->,black!60] (1.85,1.05)--(1.85,2.55);
  \node[red!70!black,above] at (2.5,3.4) {有效前沿 MVE};
