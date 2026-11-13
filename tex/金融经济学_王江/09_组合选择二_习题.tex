@@ -33,7 +33,7 @@
     \end{cases}
 \]
 
-逐段累加 $F_A-F_B$ 的有符号面积。例如 $0.4\le y<0.5$ 时，$F_A-F_B=-0.5$，所以 $S(y)=S(0.4)-0.5(y-0.4)$，其中 $S(0.4)=-0.25(0.4-0.3)=-0.025$。
+先检查两条阶梯分布函数的位置。$x=0.4$ 时 $F_A<F_B$，$x=0.7$ 时 $F_A>F_B$，所以两个方向的一阶随机占优都不成立。再逐段累加 $F_A-F_B$ 的有符号面积，每一段的增量是阶梯高度差乘以走过的区间长度。例如 $0.4\le y<0.5$ 时，$F_A-F_B=-0.5$，所以 $S(y)=S(0.4)-0.5(y-0.4)$，其中 $S(0.4)=-0.25(0.4-0.3)=-0.025$。
 \[
     S(y)=\int_{-\infty}^{y}\bigl(F_{A}(x)-F_{B}(x)\bigr)\,dx=\begin{cases}
         0 & y<0.3\\
@@ -48,7 +48,7 @@
 
 给两个净收益率同时加上 $1$，占优关系保持不变。
 
-在 $x=0.4$ 时 $F_A<F_B$，在 $x=0.7$ 时 $F_A>F_B$，两条分布函数交叉，故两个方向的一阶随机占优均不成立。累计积分先下降至 $S(0.5)=-0.075$，在 $[0.5,0.7]$ 上保持不变，再上升至 $S(0.9)=0$，故
+累计积分先下降至 $S(0.5)=-0.075$，在 $[0.5,0.7]$ 上保持不变，再上升至 $S(0.9)=0$，故
 \[
  \mathrm E[\tilde r_A]=\mathrm E[\tilde r_B]=0.6,\qquad S(y)\le0\quad(\forall y),
 \]
@@ -117,7 +117,12 @@
  \end{aligned}
  \]
 
- 固定 $S$ 后，$\tilde e$ 越大，财富越高，边际效用 $u'$ 越低。若 $\tilde e$ 非退化，由于它独立于 $S$，该条件协方差严格为负，故 $V'(1/2)>0$。另一方面，在 $a=1$ 处，$\tilde w=1+\tilde x$，且 $\mathrm E[\tilde y+\tilde e\mid\tilde x]=\mathrm E[\tilde x]$，故若 $\tilde x$ 非退化，
+ 固定 $S$ 后，记 $f(e)=u'(1+S/2+e/2)$，并取噪声的独立同分布副本 $\tilde e'$。将两份独立抽样的差相乘，可以写出
+ \[
+  2\operatorname{Cov}(f(\tilde e),\tilde e\mid S)
+  =\mathrm E[(f(\tilde e)-f(\tilde e'))(\tilde e-\tilde e')\mid S].
+ \]
+ 由于边际效用严格递减，两个差的符号相反。若 $\tilde e$ 非退化，两份抽样以正概率取不同值，因此条件协方差严格为负，得 $V'(1/2)>0$。同理，在 $a=1$ 处，$\tilde w=1+\tilde x$，且 $\mathrm E[\tilde y+\tilde e\mid\tilde x]=\mathrm E[\tilde x]$。若 $\tilde x$ 非退化，则
  \[
  V'(1)=\operatorname{Cov}(u'(1+\tilde x),\tilde x)<0.
  \]
@@ -174,7 +179,15 @@
 \end{problem}
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明},blank-type=manual,blank-vsep=6\baselineskip]
-沿用本章的共同概率信念和凹效用设定。由\WJRef{exer:wj-eight-1}{练习~}，在可行集合对证券置换和取平均封闭时，等权组合是每位参与者的最优组合之一。独立同分布使权重置换后的组合收益分布相同，对这些权重取平均得到等权组合，凹效用保证取平均后的期望效用至少保持原水平。
+沿用本章的共同概率信念和凹效用设定，并假定可行权重集合对证券置换和取平均封闭。对任意可行权重 $z$，逐一交换证券之间的权重。因为收益率独立同分布，每种置换所得的组合收益与原组合收益同分布。
+
+将所有置换的权重取平均。每只证券在同样多的置换中分到原来的第 $i$ 个权重，因此它得到的平均权重是 $\sum_i z_i/N=1/N$。固定一个状态后，等权组合的期末财富就是所有置换组合在这个状态下的平均财富。用凹性比较这些财富，再对状态取期望，有
+\[
+ \mathrm E[u(\tilde w_{\mathrm{eq}})]
+ \ge \frac{1}{N!}\sum_{\pi}\mathrm E[u(\tilde w_{\pi})]
+ =\mathrm E[u(\tilde w_z)].
+\]
+这里 $\pi$ 遍历所有置换。这是\WJRef{exer:wj-eight-1}{练习~}[（独立同分布证券的等权组合）]的同一构造。
 
 因此，每位参与者都可以选择同一只等权基金 $z_f=\iota/N$，单基金分离成立。选择该基金的参与者在每只证券上投资 $w_k/N$，持有的权重相同，投资金额随财富而变。
 \end{solution}
@@ -211,13 +224,15 @@
         -\frac a2 w^2[(R_F+x^{\mathsf T}\mu)^2+x^{\mathsf T}\Sigma x].
     \]
 
-    预算已通过债券权重代入，且允许借贷与卖空，所以可直接对 $x\in\mathrm R^N$ 求导。记 $H=\Sigma+\mu\mu^{\mathsf T}$，则
+    预算已通过债券权重代入，且允许借贷与卖空，所以可直接对风险权重列向量 $x\in\mathbb R^N$ 求导。对第 $i$ 个权重，$(R_F+x^{\mathsf T}\mu)^2$ 的偏导为 $2(R_F+x^{\mathsf T}\mu)\mu_i$。协方差矩阵对称，故 $x^{\mathsf T}\Sigma x$ 的偏导为 $2(\Sigma x)_i$。将各分量排成列向量，记 $H=\Sigma+\mu\mu^{\mathsf T}$，一阶条件为
     \[
-        \nabla J(x)=w(1-awR_F)\mu-aw^2Hx=0
-        \qquad\text{（一阶条件）}.
+    \begin{aligned}
+        \nabla J(x)&=w\mu-aw^2\bigl[(R_F+x^{\mathsf T}\mu)\mu+\Sigma x\bigr]\\
+        &=w(1-awR_F)\mu-aw^2Hx=0.
+    \end{aligned}
     \]
 
-    由于 $\Sigma$ 正定，Hessian $-aw^2H$ 负定。解一阶条件得到唯一的最优风险资产权重
+    对任何非零方向 $b$，$b^{\mathsf T}Hb=b^{\mathsf T}\Sigma b+(b^{\mathsf T}\mu)^2>0$。所以海塞矩阵 $-aw^2H$ 负定，目标严格凹。将一阶条件两边除以 $aw^2$，再左乘 $H^{-1}$，得到唯一的最优风险资产权重
     \[
         x^*=\frac{1-awR_F}{aw}H^{-1}\mu.
     \]
@@ -225,7 +240,7 @@
 
     \item \textbf{证明}\quad 记 $d=H^{-1}\mu$，$k=(1-awR_F)/(aw)$。每个人的风险权重都是 $kd$，差别只在倍数 $k$。记 $D=\iota^{\mathsf T}d$，则风险证券的净权重为 $kD$，债券权重为 $1-kD$。若 $D\ne0$，把 $d$ 除以 $D$，得到内部权重之和为 $1$ 的纯风险基金 $z_R=d/D$。按权重 $kD$ 持有该基金，就能得到所需的风险权重 $(kD)z_R=kd$，从而实现两基金货币分离\ifdefined\WJHandoutKnowledge（\WJRef{def:wj-nine-5}{定义~}[（基金货币分离）]）\fi。
 
-    若 $d=0$，全投债券即可。若协方差正定、$D=0$ 且有人持有非零的 $kd$，该风险头寸的多空权重加总为零，无法由一只权重和为 $1$ 的纯风险基金按比例复制。此时仍可实现一般两基金分离。按风险证券在前、债券在后的顺序，取 $F=[0,\ldots,0,1]^{\mathsf T}$，第二只基金在全投债券的基础上叠加零成本头寸，记为 $F+\begin{bmatrix}d\\0\end{bmatrix}$。两只基金分别取权重 $1-k$ 和 $k$，便得到所需组合 $F+k\begin{bmatrix}d\\0\end{bmatrix}$。
+ 若 $d=0$，全投债券即可。若 $d\ne0$、$D=0$ 且有人持有非零的 $kd$，该风险头寸的多空权重加总为零，无法由一只权重和为 $1$ 的纯风险基金按比例复制。此时仍可实现一般两基金分离。按风险证券在前、债券在后的顺序，取 $F=[0,\ldots,0,1]^{\mathsf T}$，第二只基金在全投债券的基础上叠加零成本头寸，记为 $F+\begin{bmatrix}d\\0\end{bmatrix}$。两只基金分别取权重 $1-k$ 和 $k$，便得到所需组合 $F+k\begin{bmatrix}d\\0\end{bmatrix}$。
 \end{enumerate}
 
 协方差矩阵奇异时。仍可取 $x^*=kd$，其中 $d$ 满足 $Hd=\mu$。若 $H$ 也奇异，其零空间中的方向既没有超额收益均值，也没有方差，所以 $\mu$ 与 $\ker H$ 正交。由 $H$ 对称可知 $Hd=\mu$ 有解。选取同一个解 $d$，即可沿用 (b) 的基金构造。不同最优权重之间相差的是不改变期末财富的零支付头寸。
@@ -261,12 +276,12 @@
       CE=\mathrm E[\tilde w]-\frac a2\operatorname{Var}(\tilde w)
         =w(1+r_F)+wx^{\mathsf T}\mu-\frac a2w^2x^{\mathsf T}\Sigma x,
     \]
-    其中 $\mu=\bar r-r_F\iota$。预算已代入，直接对 $x$ 求导
+    其中 $\mu=\bar r-r_F\iota$。预算已代入。沿用上一题的分量求导，均值项的梯度为 $w\mu$，方差惩罚项的梯度为 $-aw^2\Sigma x$。最优权重须满足
     \[
         w\mu-aw^{2}\Sigma x=0\qquad\text{（一阶条件）}.
     \]
 
-    Hessian $-aw^2\Sigma$ 负定，解得唯一的最优风险资产权重及投资金额
+    由于 $\Sigma$ 正定，海塞矩阵 $-aw^2\Sigma$ 负定，确定性等价对权重严格凹。由 $aw\Sigma x=\mu$ 解得唯一的最优风险资产权重及投资金额
     \[
         x^*=\frac{\Sigma^{-1}\mu}{aw},\qquad
         wx^*=\frac{\Sigma^{-1}\mu}{a}.
@@ -323,7 +338,15 @@
  \end{aligned}
  \]
 
- 括号内的向量是对冲后的新证券超额收益，与旧证券的协方差为 $C-AA^{-1}C=0$。它的均值和协方差分别为
+ 令 $L=C^{\mathsf T}A^{-1}$。括号内的向量是对冲后的新证券超额收益 $\tilde r_1^e-L\tilde r_0^e$。它与旧证券的交叉协方差为 $C-AL^{\mathsf T}=0$。计算自身的协方差时，新证券与对冲头寸各贡献一项方差，还需扣除两个方向的交叉项：
+ \[
+ \begin{aligned}
+ \operatorname{Var}(\tilde r_1^e-L\tilde r_0^e)
+ &=B-LC-C^{\mathsf T}L^{\mathsf T}+LAL^{\mathsf T}\\
+ &=B-C^{\mathsf T}A^{-1}C.
+ \end{aligned}
+ \]
+ 因此，对冲后的均值和协方差分别为
  \[
  \delta=\mu_1-C^{\mathsf T}A^{-1}\mu_0,\qquad
  S=B-C^{\mathsf T}A^{-1}C.
@@ -338,7 +361,12 @@
  x_1^*=\frac1{aw}S^{-1}\delta.
  \]
 
- 此时 $x_1^*\ne0$ 等价于 $\delta\ne0$。将 $x_1^*$ 代回增量式，得 $\delta^{\mathsf T}S^{-1}\delta/(2a)$。该增量在 $\delta\ne0$ 时为正，确定性等价与期望效用都严格提高。
+ 此时 $x_1^*\ne0$ 等价于 $\delta\ne0$。由一阶条件 $\delta=awSx_1^*$，增量目标的线性项等于 $aw^2{x_1^*}^{\mathsf T}Sx_1^*$，恰好是方差惩罚的两倍。两项相减再代入最优权重，得到
+ \[
+ \Delta CE=\frac{aw^2}{2}{x_1^*}^{\mathsf T}Sx_1^*
+ =\frac{1}{2a}\delta^{\mathsf T}S^{-1}\delta.
+ \]
+ 由 $S$ 正定，增量在且仅在 $\delta\ne0$ 时为正，确定性等价与期望效用都严格提高。
 
  原题的不可生成条件仍允许新证券彼此冗余。例如新增两只收益完全相同的证券，收益与旧资产独立且超额收益均值为零。最优的新证券净头寸为零，但一买一卖也能构成含新证券的最优组合，福利不变。
 
@@ -378,7 +406,7 @@
  {aw\bigl(\underbrace{\sigma_{N+1}^2-c^{\mathsf T}A^{-1}c}_{\text{对冲后的方差}}\bigr)}.
  \]
 
- 分子是对冲后的平均超额收益，分母是对冲后的方差乘以 $aw$。在正定条件下分母为正，所以买入还是卖空由分子决定。
+ 在正定条件下分母为正。每增加一单位新证券权重，同时调整旧证券以保持对冲时，确定性等价在零新头寸处的边际变化为 $w(\mu_1-c^{\mathsf T}A^{-1}\mu_0)$。因此买入还是卖空由对冲后的平均超额收益决定。
 
  例如一只旧资产取 $\mu_0=0.10$、方差 $0.04$，新资产取 $\mu_1=0.05$、方差 $0.09$，协方差 $0.04$。协方差矩阵行列式为 $0.002>0$，但对冲后的平均超额收益为 $0.05-(0.04/0.04)0.10=-0.05$，故新资产最优权重为负。若把两个超额收益均值同时反号而保持协方差不变，则新资产的超额收益均值为负，最优权重却为正。
 

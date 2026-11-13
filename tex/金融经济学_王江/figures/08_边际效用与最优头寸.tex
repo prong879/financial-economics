@@ -1,0 +1,33 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：用三个递减的边际效用函数示意定理 8.2。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\renewcommand{\thewjFigure}{\thechapter.S\arabic{wjFigure}}%
+\WJFigureStart{fig:wj-eight-marginal-utility}%
+\begin{tikzpicture}[>=Stealth,font=\small,x=.85cm,y=.84cm]
+ \foreach \offset/\zeroPoint/\panelTitle in {
+   0/-0.62/{负风险溢价},
+   3.5/0/{零风险溢价},
+   7/0.62/{正风险溢价}
+ }{
+  \begin{scope}[xshift=\offset cm]
+   \draw[->] (-1.42,0)--(1.44,0) node[right] {$a$};
+   \draw[->] (0,-1.03)--(0,1.17) node[above] {$F'(a)$};
+   \draw[blue!70!black,thick] ({\zeroPoint-0.73},{.73*1.26})
+       -- ({\zeroPoint+0.73},{-.73*1.26});
+   \fill[red!70!black] (\zeroPoint,0) circle (1.5pt);
+   \draw[blue!70!black,thick] (0,{\zeroPoint*1.26}) circle (2.15pt);
+   \ifdim\zeroPoint pt=0pt
+    \node[below left] at (0,0) {$a^*=0$};
+   \else
+    \node[below] at (\zeroPoint,0) {$a^*$};
+    \node[below right] at (0,0) {$0$};
+   \fi
+   \node at (0,-1.48) {\panelTitle};
+  \end{scope}
+ }
+\end{tikzpicture}
+\WJFigureCaption{零头寸的边际效用与最优风险投资金额。红点为 $F'(a^*)=0$，蓝圈表示 $F'(0)$。}
+\end{minipage}
+\end{center}

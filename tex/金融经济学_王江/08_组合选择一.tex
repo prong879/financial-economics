@@ -39,7 +39,7 @@
 设有 $N$ 只证券和 $\Omega$ 个未来状态。价格 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 与相对初始持仓的\textbf{净购买数量} $\theta=[\theta_1,\ldots,\theta_N]^{\mathsf T}$ 都按支付矩阵 $X$ 的列顺序排列。未来禀赋 $e_1=[e_{11},\ldots,e_{1\Omega}]^{\mathsf T}$ 与未来消费 $c_1=[c_{11},\ldots,c_{1\Omega}]^{\mathsf T}$ 都按 $X$ 的行所对应的状态顺序排列。当期禀赋 $e_0$ 与消费 $c_0$ 各是一个数。状态概率满足 $p_\omega>0$、$\sum_\omega p_\omega=1$，优化问题为
 \begin{equation}
 \begin{aligned}
- \max_\theta\quad &u_0(c_0)+\sum_{\omega=1}^{\Omega}p_\omega u_1(c_{1\omega})\\
+ \max_\theta\quad &U(c)=u_0(c_0)+\sum_{\omega=1}^{\Omega}p_\omega u_1(c_{1\omega})\\
  \text{s.t.}\quad &
  \left\{\begin{aligned}
  c_0&=e_0-S^{\mathsf T}\theta,\\
@@ -75,22 +75,28 @@
  =\underbrace{e_0+\phi^{\mathsf T}e_1}_{\text{禀赋现值 }W}.
 \]
 
-由于消费非负且每个状态价格严格为正，
+为给实际消费计划找一个共同的上界，先考虑可以按 $\phi$ 直接买卖各状态消费的预算集。记 $d$ 为未来消费相对禀赋的增量。每单位状态 $\omega$ 的增量今天花费 $\phi_\omega$，所以相应的预算集为
 \[
- 0\le c_0\le W,\qquad 0\le c_{1\omega}\le W/\phi_\omega.
+ \widehat B(e,\phi)=
+ \left\{c\ge0:\ c=e+
+ \begin{bmatrix}-\phi^{\mathsf T}d\\d\end{bmatrix},
+ \ d\in\mathbb R^\Omega\right\}.
 \]
 
-所以可行消费集合有界。它又是非负正交象限与仿射子空间
-$e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在这个非空有界闭集合上取得最大值，且该消费可由某个组合实现。
+在实际市场中，只有 $d=X\theta$ 能由证券交易实现，故 $B(e,\{X,S\})\subseteq\widehat B(e,\phi)$。$\widehat B$ 中每个计划的消费现值都是 $W$。消费非负且每个状态价格严格为正，因此
+\[
+ 0\le c_0\le W,\qquad 0\le c_{1\omega}\le W/\phi_\omega
+ \quad(\omega=1,\ldots,\Omega).
+\]
+
+这给出了实际可行消费的逐项上界。实际预算集还是非负正交象限与仿射子空间
+\[
+ e+\operatorname{Im}\begin{bmatrix}-S^{\mathsf T}\\X\end{bmatrix}
+\]
+的交集。有限维空间中的仿射子空间是闭集，所以这个交集也闭。连续效用在非空的闭有界预算集上取得最大值，而实际预算集中的每个计划都能由某个证券组合实现。
 \end{solution}
 
-记 $\phi\gg0$ 为无套利下的一组状态价格。证券交易改变了各期各状态的消费，同时保持消费总现值 $W=e_0+\phi^{\mathsf T}e_1$ 不变。如果允许在任意状态按 $\phi$ 买卖消费，记未来消费增量为 $d$，相应的预算集为
-\[
- \widehat B(e,\phi)=\{c\ge0:c=e+[-\phi^{\mathsf T}d;d],\ d\in\mathbb R^\Omega\},
- \qquad B(e,\{X,S\})\subseteq\widehat B(e,\phi).
-\]
-
-在实际市场中，$d$ 必须由证券组合实现，即 $d=X\theta$。完全市场中 $X$ 的列向量张成整个状态支付空间，每个 $d$ 都能由证券交易实现，因此 $B=\widehat B$，与\WJRef{sec:wj-three-budget}{第~}[~节（禀赋财富与预算约束）]的状态商品预算集一致。
+完全市场中 $X$ 的列向量张成整个状态支付空间，每个 $d$ 都能由证券交易实现，因此 $B=\widehat B$，与\WJRef{sec:wj-three-budget}{第~}[~节（禀赋财富与预算约束）]的状态商品预算集一致。
 
 % 教师课件第 4—5 页：用可行消费集解释最优解存在的原因。
 有界是说固定禀赋的现值只能支持有限的消费。闭是说，一列可行消费计划若收敛，其极限仍可行，包括某一项消费恰好为零的边界计划。两者合在一起，使连续效用能在预算集中取到最大值。反过来，如果存在套利，每多买入一份套利组合，就能在不减少任何一项消费的前提下增加至少一项消费。即使效用函数有上界，每个可行计划仍能被严格改进，因而没有最优解。
@@ -98,8 +104,6 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \begin{tcolorbox}[knowledge,title=可行消费与最优解的唯一性]
 无套利使可行消费集合有界。冗余证券的零支付方向允许不同头寸实现同一消费，因此消费集合有界与头寸集合有界是不同的性质。严格凹效用保证最优消费唯一；支付映射无冗余时，实现该消费的组合也唯一。
 \end{tcolorbox}
-
-对数效用的定义域为正消费。消费趋近零时，效用趋于 $-\infty$；在存在正消费可行方案的例子中，这一性质把最优解留在定义域内部。
 
 \subsection{Euler 方程与最优条件}
 把\WJEqRef{eq:wj-8-1}{式~} 的两条预算关系代入效用函数后，只需选择净购买向量 $\theta$。当期禀赋扣除净交易成本后的余额，以及未来各状态的禀赋加上净交易支付后的余额，都必须非负。
@@ -128,6 +132,20 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  -u_0'(c_0)S_n+\sum_\omega p_\omega u_1'(c_{1\omega})x_{\omega,n}=0.
 \]
 
+将逐只证券的一阶条件按证券顺序排成列向量，得
+\[
+ \nabla_\theta F
+ =-u_0'(c_0)S+X^{\mathsf T}
+ \begin{bmatrix}
+  p_1 u_1'(c_{11})\\
+  \vdots\\
+  p_\Omega u_1'(c_{1\Omega})
+ \end{bmatrix}
+ =\mathbf 0.
+\]
+
+右侧的乘积把按状态排列的 $\Omega$ 个概率加权边际效用，换算成按证券排列的 $N$ 个期望边际效用。取第 $n$ 个分量，便可比较增持一单位证券 $n$ 的边际成本和收益。
+
 \begin{tcolorbox}[knowledge,title=Euler 方程]
 将式中的当期效用损失移到左边，得到
 \begin{equation}
@@ -143,7 +161,7 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \end{equation}
 \end{tcolorbox}
 
-对正价证券，除以 $S_n$ 把一份证券的未来支付换算为每投入一元的未来支付。再除以当期消费的边际效用 $u_0'(c_0)$，就能以当期消费为基准比较两种用法。在最优处，这个相对边际效用等于 $1$。
+对正价证券，除以 $S_n$ 把一份证券的未来支付换算为每投入一元的未来支付。再除以当期消费的边际效用 $u_0'(c_0)$，就能以当期消费为基准比较两种用法。在最优处，这个相对边际效用等于 $1$。如果改问一单位特定状态的未来消费在今天值多少，就要把该状态的边际效用比再乘上状态概率。
 
 \hypertarget{wj-stochastic-discount-factor}{}
 \begin{tcolorbox}[knowledge,title=随机贴现因子与状态价格]
@@ -162,7 +180,7 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 \]
 \end{tcolorbox}
 
-沿用第六讲的\WJEqRef{eq:wj-six-4}{共同单期效用形式~}时，$u_0=u$、$u_1=\rho u$，时间权重 $\rho$ 已包含在 $u_1'$ 中，因此得到\WJEqRef{eq:wj-six-sdf}{随机折现因子~}。这里的边际效用给出一组能为所有交易证券定价的状态价格。完全市场中这组价格唯一，不完全市场中不同参与者的边际效用可以给出不同的定价向量，它们对可复制支付给出相同价格。
+沿用第六讲的\WJEqRef{eq:wj-six-4}{共同单期效用形式~}时，$u_0=u$、$u_1=\rho u$，时间权重 $\rho$ 已包含在 $u_1'$ 中，因此得到\WJEqRef{eq:wj-six-sdf}{第六讲的贴现因子公式~}。这里的边际效用给出一组能为所有交易证券定价的状态价格。完全市场中这组价格唯一，不完全市场中不同参与者的边际效用可以给出不同的定价向量，它们对可复制支付给出相同价格。
 
 完全市场中，\WJEqRef{eq:wj-10-16}{代表性参与者的贴现因子~}记为 $\widetilde\pi$。不完全市场中，\WJEqRef{eq:wj-11-3}{参与者 $k$ 的个人贴现因子~}记为 $\widetilde\pi_k$。本讲的 $m$ 与后者都由个人消费的边际效用比构造。
 
@@ -181,7 +199,15 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 若未来消费本身也确定，期望才可直接写成 $u_1'(c_1)$，于是 $u_1'(c_1)/u_0'(c_0)=1/(1+r_F)$。投资风险证券时，每投入一元带来的支付 $\widetilde X_n/S_n$ 随状态而变，应先在每个状态把支付乘以 $m_\omega$，再按实际概率求期望。\WJEqRef{eq:wj-8-3}{式~} 要求这个贴现后的期望恰好等于今天投入的一元。若一只证券在消费低、$m_\omega$ 高的状态支付较多，这些支付在定价时就有更大的权重。
 
 \subsubsection{凹性与边界解}
-设 $u_0,u_1$ 都是二阶可微的凹函数。沿头寸变动 $h$ 将 $\theta$ 写成 $\theta+th$。两期消费随 $t$ 分别以 $-S^{\mathsf T}h$ 与 $Xh$ 的速率变化，再用链式法则求两次导数，得到
+判断内点一阶条件能否给出全局最优，需要看同时调整多只证券时目标函数的曲率。以两只证券为例，记 $H_{ij}=\partial^2F/(\partial\theta_i\partial\theta_j)$。当二阶偏导连续时，$H_{12}=H_{21}$，沿调整方向 $h=[h_1,h_2]^{\mathsf T}$ 的二阶导数是
+\[
+ h^{\mathsf T}Hh
+ =H_{11}h_1^2+2H_{12}h_1h_2+H_{22}h_2^2.
+\]
+
+只动一只证券时，交叉项为零。两只证券一起调整时，还要考虑这个交叉项。这里用到的海塞矩阵是由二阶偏导组成的矩阵，\WJRef{chap:wj-twelve}{第}[讲（均值方差偏好）]会用同一方法判断均值方差问题的曲率。
+
+一般地，设 $u_0,u_1$ 都是二阶连续可微的凹函数。沿任意头寸变动 $h$ 将 $\theta$ 写成 $\theta+th$。两期消费随 $t$ 分别以 $-S^{\mathsf T}h$ 与 $Xh$ 的速率变化，再用链式法则求两次导数，得到
 \[
  u_0''(c_0)(S^{\mathsf T}h)^2+
  \sum_\omega p_\omega u_1''(c_{1\omega})(Xh)_\omega^2\le0.
@@ -192,7 +218,14 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  S_n^2u_0''(c_0)+\mathrm E[u_1''(\tilde c_1)\widetilde X_n^2]\le0.\label{eq:wj-8-4}
 \end{equation}
 
-\WJEqRef{eq:wj-8-4}{式~} 给出只调整一只证券时的曲率。多只证券可以同时调整，因此上面的充分性用到了任意方向的二阶导数。消费非负约束在最优点取等号时，可按\WJRef{thm:wj-three-kkt}{定理~}[（库恩--塔克条件）]在证券头寸空间列出最优条件。$\eta_0$ 与 $\eta_1=(\eta_{1\omega})_\omega$ 分别为当期消费和各状态未来消费的非负约束乘子，其中 $\eta_1$ 是按状态排列的列向量。由于 $\nabla_\theta c_0=-S$、$D_\theta c_1=X$，在目标函数可微时，驻点和互补松弛条件为
+\WJEqRef{eq:wj-8-4}{式~} 给出只调整一只证券时的曲率。多只证券可以同时调整，因此上面的充分性用到了任意方向的二阶导数。消费非负约束在最优点取等号时，可按\WJRef{thm:wj-three-kkt}{定理~}[（库恩--塔克条件）]在证券头寸空间列出最优条件。设 $F$ 在该点的邻域内可微。记 $\eta_0$ 与 $\eta_1=[\eta_{11},\ldots,\eta_{1\Omega}]^{\mathsf T}$ 分别为当期消费与未来各状态消费的非负约束乘子。由于约束是仿射的，在头寸空间写出拉格朗日函数
+\[
+ \mathcal L(\theta,\eta_0,\eta_1)
+ =F(\theta)+\eta_0(e_0-S^{\mathsf T}\theta)
+ +\eta_1^{\mathsf T}(e_1+X\theta).
+\]
+
+当期约束项的梯度为 $-\eta_0S$，未来约束项的梯度为 $X^{\mathsf T}\eta_1$。逐项相加，得到驻点和互补松弛条件
 \[
  \begin{gathered}
  \nabla_\theta F(\theta)-\eta_0 S+X^{\mathsf T}\eta_1=0,\\
@@ -218,7 +251,7 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 求最优证券持有量、相应消费及最优处的边际效用。
 \end{question}
 \begin{solution}[blank-type=manual,blank-vsep=6\baselineskip]
-持有 $\theta$ 单位证券时，$c_0=w_0-S\theta$、$c_{1a}=\theta x$、$c_{1b}=\theta$，所以
+两状态的证券支付都为正，无套利要求 $S>0$。持有 $\theta$ 单位证券时，$c_0=w_0-S\theta$、$c_{1a}=\theta x$、$c_{1b}=\theta$。对数效用要求三项消费严格为正，由此得到可行区间和目标函数
 \[
  \begin{aligned}
  F(\theta)&=\log(w_0-S\theta)+\frac{\rho}{2}
@@ -306,13 +339,22 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
  \end{aligned}\label{eq:wj-8-7}
 \end{equation}
 
-一旦求出 $v_1(w)$，剩下的消费与储蓄选择只涉及一个变量 $w$。若 $v_1$ 可微且最优储蓄在可行区间内部，则外层的一阶条件是 $u_0'(e_0-w)=v_1'(w)$。也就是少消费一元所损失的当期边际效用，恰好等于把这一元交给最优组合后增加的未来期望效用。下面着重讨论如何求出内层的最优组合。
+给定一个可行的 $w$，\WJEqRef{eq:wj-8-6}{式~} 求出的 $v_1(w)$ 给出了这个储蓄水平下所能达到的最高未来期望效用。求得外层最优储蓄 $w^*$ 后，再取实现 $v_1(w^*)$ 的证券组合，就还原了联合问题的最优消费与投资。任何其他可行组合的效用都不会超过它对应的外层目标值。
+
+外层的消费与储蓄选择只涉及一个变量 $w$。若 $v_1$ 可微且最优储蓄在可行区间内部，则外层的一阶条件是 $u_0'(e_0-w)=v_1'(w)$。也就是少消费一元所损失的当期边际效用，恰好等于把这一元交给最优组合后增加的未来期望效用。若内层最优持仓 $\theta^*(w)$ 可微且各状态消费为正，设 $\lambda$ 是预算项 $\lambda(w-S^{\mathsf T}\theta)$ 的乘子。内层一阶条件使目标对 $\theta$ 的梯度等于 $\lambda S$，而预算等式的导数给出 $S^{\mathsf T}d\theta^*/dw=1$，所以
+\[
+ v_1'(w)=(\lambda S)^{\mathsf T}\frac{d\theta^*}{dw}=\lambda.
+\]
+
+预算乘子衡量多一元可投资资金带来的边际效用。下面着重讨论如何求出内层的最优组合。
 
 若参与者的初始持仓为 $h^0$，记直接未来禀赋为 $e_1^{\mathrm{direct}}$，则总未来禀赋为 $e_1=e_1^{\mathrm{direct}}+Xh^0$。以 $h=h^0+\theta$ 表示最终持仓，即在\WJEqRef{eq:wj-8-1}{式~} 的两期预算中代入 $\theta=h-h^0$，得到
 \[
  \begin{aligned}
- c_0&=e_0-S^{\mathsf T}(h-h^0)=e_0+S^{\mathsf T}h^0-S^{\mathsf T}h,\\
- c_1&=e_1^{\mathrm{direct}}+Xh^0+X(h-h^0)=e_1^{\mathrm{direct}}+Xh.
+ c_0&=e_0-S^{\mathsf T}(h-h^0)\\
+    &=\underbrace{e_0+S^{\mathsf T}h^0}_{\text{计入初始证券市值后的当期财富}}-S^{\mathsf T}h,\\
+ c_1&=e_1^{\mathrm{direct}}+Xh^0+X(h-h^0)\\
+    &=e_1^{\mathrm{direct}}+Xh.
  \end{aligned}
 \]
 
@@ -378,7 +420,14 @@ $a_n$ 是投资\textbf{金额}，$\theta_n$ 是证券\textbf{数量}；$w\ne0$ �
 \end{equation}
 \end{tcolorbox}
 
-每一元从无风险证券转投风险证券，期末财富改变 $\tilde r_n-r_F$：风险证券的收益扣除了原本可获得的无风险收益。将各笔投资的这一变化相加，就得到超额收益金额。
+例如市场只有一只股票和一只无风险债券。固定总投资额 $w$，从债券转 $\Delta a$ 元到股票，股票的期末支付增加 $\Delta a(1+\tilde r_1)$，债券的期末支付减少 $\Delta a(1+r_F)$。合起来，期末财富增加
+\[
+ \Delta\tilde w
+ =\Delta a(1+\tilde r_1)-\Delta a(1+r_F)
+ =\Delta a(\tilde r_1-r_F).
+\]
+
+因此每转投一元，期末财富改变 $\tilde r_1-r_F$。有多只风险证券时，将每只证券相对于无风险投资的支付差相加，就得到\WJEqRef{eq:wj-8-11}{式~} 中的超额收益金额。
 
 \begin{tcolorbox}[knowledge,title=超额收益率与风险溢价]
 $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-r_F$ 是本章的\textbf{风险溢价}。
@@ -406,7 +455,7 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
  \qquad n=1,\ldots,N-1.\label{eq:wj-8-13}
 \end{equation}
 
-这 $N-1$ 个方程对应 $N-1$ 个风险投资金额。每个方程都表示在该风险证券与无风险证券之间再转移一元，期望边际效用的净变化为零。
+将这 $N-1$ 个方程排成列向量，就是 $\mathrm E[u'(\tilde w)(\tilde r-r_F\iota)]=\mathbf 0$。每个分量对应一个风险投资金额。每个方程都表示在该风险证券与无风险证券之间再转移一元，期望边际效用的净变化为零。
 \end{tcolorbox}
 
 \section{最优组合的性质}\label{sec:wj-eight-3}
@@ -456,7 +505,9 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 若 $F'(0)=0$，唯一的根就是 $a^*=0$。若 $F'(0)>0$，须向右移动才能使递减的 $F'$ 降到零，故 $a^*>0$；若 $F'(0)<0$，须向左移动，故 $a^*<0$。
 \end{solution}
 
-正风险溢价使参与者愿意从零开始买入，零风险溢价时没有承担额外风险的收益补偿，负风险溢价时则从零开始卖空。在内点最优处，继续增加同方向的头寸已经无法提高期望效用。
+\WJRef{fig:wj-eight-marginal-utility}{图~} 把定理 8.2 的三种情形并排展示。先在纵轴上读出全投无风险证券时的边际效用 $F'(0)$，再沿递减的边际效用曲线找横轴上的零点 $a^*$。纵轴交点在横轴上方、原点或下方，分别对应做多、零头寸和卖空。
+
+\WJInputFigure{08_边际效用与最优头寸}
 
 % 教师课件第 23—24 页：分别展开期望财富的效用与离散程度造成的效用损失。
 \begin{tcolorbox}[knowledge,title=小额投资的收益与风险成本]
@@ -467,28 +518,45 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
    +\underbrace{a(\widetilde z-\mu)}_{\text{均值为零的风险}}.
 \]
 
-记 $\bar w=b+a\mu$。在 $\bar w$ 处对 $u(\tilde w)$ 作二阶泰勒展开，取期望后，一阶项因 $\mathrm E[\widetilde z-\mu]=0$ 而消失，二阶项留下方差：
+记 $\bar w=b+a\mu$、$\widetilde\epsilon=\widetilde z-\mu$。有限状态下，当 $a$ 足够接近零，可以在 $\bar w$ 处对 $u(\bar w+a\widetilde\epsilon)$ 作二阶泰勒展开。取期望得到
 \[
+ \begin{aligned}
  \mathrm E[u(\tilde w)]
- =u(\bar w)+\tfrac12 u''(\bar w)a^2\sigma^2+o(a^2)
- \qquad(a\to0).
+ &=u(\bar w)+u'(\bar w)a\underbrace{\mathrm E[\widetilde\epsilon]}_{0}
+   +\tfrac12 u''(\bar w)a^2
+    \underbrace{\mathrm E[\widetilde\epsilon^2]}_{\sigma^2}
+   +o(a^2)\\
+ &=u(\bar w)+\tfrac12 u''(\bar w)a^2\sigma^2+o(a^2).
+ \end{aligned}
 \]
+
+因此在相同期望财富 $\bar w$ 下，风险带来的效用损失从二次项开始。
 \end{tcolorbox}
 
 若将这项风险的效用损失换算为财富，令 $u(\bar w-\pi)=\mathrm E[u(\tilde w)]$。利用 $u(\bar w-\pi)\approx u(\bar w)-u'(\bar w)\pi$，得到第七讲的\WJEqRef{eq:wj-seven-2}{Arrow--Pratt 近似式~}
 $\pi\approx \tfrac12 A(\bar w)a^2\sigma^2$。比较两种效应时，期望财富上升带来的效用增益 $u(\bar w)-u(b)=u'(b)a\mu+O(a^2)$，首项与 $a$ 成正比。给定同一期望财富，风险造成的效用损失则从 $a^2$ 项开始。因此当 $\mu>0$ 且 $a$ 为足够小的正数时，增益超过损失。这解释了为什么正风险溢价会使风险厌恶者从零开始买入。
 
 \subsubsection{绝对风险厌恶与投资金额}
-以下设 $\mathrm E[\tilde r]-r_F>0$，所以 $a^*(w)>0$。记\hyperlink{wj-absolute-risk-aversion}{\textcolor{WJReferenceColor}{绝对风险厌恶系数}}
-$A(t)=-u''(t)/u'(t)$，其中 $t$ 是单期效用所评价的财富。改变初始财富 $w$ 时，保持证券收益分布和无风险利率不变，在每个新的 $w$ 下重新解\WJEqRef{eq:wj-8-12}{式~}，得到最优风险投资金额 $a^*(w)$。
+先固定收益的分布和无风险利率，只改变初始财富。设 $\mathrm E[\tilde r]-r_F>0$，所以 $a^*(w)>0$。记\hyperlink{wj-absolute-risk-aversion}{\textcolor{WJReferenceColor}{绝对风险厌恶系数}}
+$A(t)=-u''(t)/u'(t)$，其中 $t$ 是单期效用所评价的财富。在每个新的 $w$ 下重新解\WJEqRef{eq:wj-8-12}{式~}，得到最优风险投资金额 $a^*(w)$。
 \begin{tcolorbox}[knowledge]
-% 教材定理 8.3 的充要表述按所有投资机会解释；固定分布下的严格结论是充分性。
-\WJEightTheorem{thm:wj-eight-3} 设 $I\subset(0,\infty)$ 为财富区间，考虑满足上述内点与比较静态条件、且风险溢价为正的单风险证券模型。在所比较的初始财富范围内，这些条件持续成立，无风险基准财富 $w(1+r_F)$ 与各状态的最优期末财富均属于 $I$。$A$ 在 $I$ 上非递增，当且仅当对于所有这样的投资机会，最优风险投资金额随初始财富非递减。将两处“非递增／非递减”同时反向，也成立；$A$ 恒定当且仅当所有这些模型中的投资金额均不随财富变化。
+% 教材定理 8.3（印刷第 118 页）以点导数写出双向关系；下文给出固定机会的充分性及对所有机会的逆向结论。
+\WJEightTheorem{thm:wj-eight-3} 考虑正风险溢价的单风险证券模型。设无风险基准财富和所有状态的最优期末财富都落在同一正财富区间 $I$，且最优解在所比较的财富范围内持续满足内点与可微条件。若 $A$ 在 $I$ 上严格递减、恒定或严格递增，则分别有 $(a^*)'(w)>0$、$=0$ 或 $<0$，即最优风险投资金额随财富上升、保持不变或下降。弱单调性给出对应的弱不等式。
 
-对给定投资机会，若 $A'<0$、$A'=0$ 或 $A'>0$ 在相关区间处处成立，则分别有 $(a^*)'(w)>0$、$=0$ 或 $<0$，即 DARA、CARA、IARA 的三种金额效应。
+对 $I$ 内所有符合这些条件的投资机会，若 $a^*(w)$ 都随财富非递减，则 $A$ 在 $I$ 上非递增。将两处单调方向同时反向，结论也成立。因此，$A$ 恒定当且仅当所有这些投资机会下的最优风险投资金额都不随财富变化。
 \end{tcolorbox}
 
-逆向判断用到的是所有这类投资机会下的金额变化。一项投资机会下观察到的金额变化，只反映该机会的财富效应。下面先固定收益分布推导金额的变化，再构造不同的投资机会证明逆向结论。
+固定一个投资机会时，财富效应取决于各状态的期末财富及其概率。要从投资行为反推 $A$ 在整个区间上的形状，就需要能比较区间内任意两个财富点。下文先推导固定机会的财富效应，再与定理 8.4 一起证明逆向结论。
+
+% 参见 MIT OCW 18.022《Implicit functions》，https://ocw.mit.edu/courses/18-022-calculus-of-several-variables-fall-2010/resources/mit18_022f10_l_13/
+\begin{tcolorbox}[knowledge,title=隐函数定理与最优头寸]
+若 $G(w_0,a_0)=0$，$G$ 在该点附近连续可微，且 $G_a(w_0,a_0)\ne0$，则附近的解可以写成可微函数 $a=a(w)$。沿解对 $G(w,a(w))=0$ 求导，得到
+\[
+ G_w+G_a a'(w)=0,\qquad a'(w)=-G_w/G_a.
+\]
+
+在本节，$G$ 是关于风险投资金额的一阶条件。$G_a$ 是期望效用对投资金额的二阶导数。它严格为负，所以在内点附近，即使求不出 $a^*(w)$ 的显式公式，也可以直接从一阶条件求出它对财富的导数。
+\end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
 由\WJEqRef{eq:wj-8-13}{组合一阶条件~}[（在风险证券与无风险证券之间转移资金时，期望边际效用的净变化为零）]，在单只风险证券的情形下，将最优期末财富完整代入，得到
@@ -502,7 +570,7 @@ $A(t)=-u''(t)/u'(t)$，其中 $t$ 是单期效用所评价的财富。改变初�
 \[
  G_a(w,a^*(w))=\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]<0.
 \]
-因此，由隐函数定理，内点解在所比较的财富附近是 $w$ 的可微函数，且 $da^*/dw=-G_w/G_a$。下面从 $G(w,a^*(w))=0$ 出发，先对完整的期末财富表达式求导。
+由隐函数定理，$G_a<0$ 使内点解可以写成 $w$ 的可微函数。为看出财富变化的两条途径，先对完整的期末财富表达式求导。
 \[
  \frac{d\tilde w^*}{dw}
  =\frac{d}{dw}\left[w(1+r_F)+a^*(w)(\tilde r-r_F)\right]
@@ -536,7 +604,7 @@ $A(t)=-u''(t)/u'(t)$，其中 $t$ 是单期效用所评价的财富。改变初�
       {\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]}.
 \]
 
-分母严格为负，且式首有负号，所以导数与分子 $\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]$ 同号。令 $b=w(1+r_F)$ 为全投无风险证券时的期末财富。为逐状态比较，把 $A(\tilde w^*)$ 写成相对于 $A(b)$ 的变化。由一阶条件，乘有 $A(b)$ 的那部分期望为零，因此
+分母严格为负，且式首有负号，所以导数与分子 $\mathrm E[u''(\tilde w^*)(\tilde r-r_F)]$ 同号。令 $b=w(1+r_F)$ 为全投无风险证券时的期末财富。直接比较 $\mathrm E[A(\tilde w^*)u'(\tilde w^*)(\tilde r-r_F)]$ 的符号有困难，因为超额收益有正有负。无风险基准 $b$ 介于超额收益为正与为负的状态的财富之间，用 $A(\tilde w^*)-A(b)$ 就能逐状态判断它和超额收益的乘积。$A(b)$ 是常数，乘上一阶条件左边后为零，故减去这一项不改变待判断的期望。于是
 \[
 \begin{aligned}
  \mathrm E[u''(\tilde w^*)(\tilde r-r_F)]
@@ -594,13 +662,13 @@ $\Delta a^*/a^*\approx e(w)\,\Delta w/w$ 估算。金额和比例按下表变化
 \Needspace{11\baselineskip}
 \begin{tcolorbox}[knowledge]
 % 教材定理 8.4；正财富、正风险溢价，充要关系采用全体投资机会的量词。
-\WJEightTheorem{thm:wj-eight-4} 沿用\WJRef{thm:wj-eight-3}{定理~}[（风险投资金额的财富效应）] 的区间、投资机会及财富比较条件，\hyperlink{wj-relative-risk-aversion}{\textcolor{WJReferenceColor}{相对风险厌恶系数}}为 $R(t)=tA(t)$。$R$ 在 $I$ 上非递增，当且仅当对于所有这些投资机会，最优风险投资比例 $\alpha^*=a^*/w$ 随财富非递减。将单调方向同时反向，也成立；$R$ 恒定当且仅当所有这些模型的风险投资比例均不随财富变化。
+\WJEightTheorem{thm:wj-eight-4} 沿用\WJRef{thm:wj-eight-3}{定理~}[（风险投资金额的财富效应）] 的区间、投资机会及财富比较条件，\hyperlink{wj-relative-risk-aversion}{\textcolor{WJReferenceColor}{相对风险厌恶系数}}为 $R(t)=tA(t)$。若 $R$ 在 $I$ 上严格递减、恒定或严格递增，则分别有 $e>1$、$e=1$ 或 $e<1$，风险投资比例 $\alpha^*=a^*/w$ 相应上升、不变或下降。弱单调性给出对应的弱不等式。
 
-对给定投资机会，若 $R'<0$、$R'=0$ 或 $R'>0$ 在相关区间处处成立，则分别有 $e>1$、$=1$ 或 $<1$，即 DRRA、CRRA、IRRA 的三种比例效应。
+对 $I$ 内所有符合这些条件的投资机会，若 $\alpha^*(w)$ 都随财富非递减，则 $R$ 在 $I$ 上非递增。将两处单调方向同时反向，结论也成立。因此，$R$ 恒定当且仅当所有这些投资机会下的风险投资比例都不随财富变化。
 \end{tcolorbox}
 \begin{solution}[label-content={证明},blank-type=none]
-将前面得到的 $da^*/dw$ 代入弹性，并利用
-$\tilde w^*=w(1+r_F)+a^*(w)(\tilde r-r_F)$，得到
+比例的变化由 $e-1$ 决定，所以将金额的财富导数代入弹性后，接着减去 $1$。通分时，$-1$ 在分子中贡献
+$-a^*\mathrm E[u''(\tilde w^*)(\tilde r-r_F)^2]$。把一个超额收益率留在括号外，括号内就出现无风险终值与风险投资的超额收益金额之和，即 $\tilde w^*$。这使分子可以用 $\tilde w^*u''(\tilde w^*)=-R(\tilde w^*)u'(\tilde w^*)$ 改写。计算为
 \[
 \begin{aligned}
  e-1
@@ -624,17 +692,20 @@ $\tilde w^*=w(1+r_F)+a^*(w)(\tilde r-r_F)$，得到
 DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-R(b)<0$；$\tilde r-r_F<0$ 的状态有 $\tilde w^*<b$，因而 $R(\tilde w^*)-R(b)>0$。两种状态下，风险厌恶之差与超额收益率的乘积均为负，乘以 $u'(\tilde w^*)>0$ 后仍为负。超额收益率非零的状态有正概率，故分子严格为负。分母也为负，所以 $e-1>0$。CRRA 时各状态的风险厌恶之差为零，IRRA 时各状态的乘积反号。若 $R$ 仅弱单调，逐状态比较给出对应的弱不等式。
 \end{solution}
 
+为从投资行为反推 $A$ 或 $R$ 的单调性，下面先指定两个期末财富，再选择状态概率，让这两个财富恰好由最优头寸产生。这样，财富效应的符号就能用于比较这两点的风险厌恶系数。
+
 \begin{solution}[label-content={证明},blank-type=none]
-\textbf{\WJRef{thm:wj-eight-3}{定理~}[（风险投资金额的财富效应）] 与\WJRef{thm:wj-eight-4}{定理~}[（风险投资比例的财富效应）] 的必要性。}任取相关财富区间内的 $t_-<t_+$，令 $b=(t_-+t_+)/2$。构造 $r_F=0$、初始财富 $w=b$ 的两状态模型。取任意 $0<d<1$，让风险证券的净收益率为 $\pm d$，使两个状态的总收益率 $1\pm d$ 均为正。取
+\textbf{\WJRef{thm:wj-eight-3}{定理~}[（风险投资金额的财富效应）] 与\WJRef{thm:wj-eight-4}{定理~}[（风险投资比例的财富效应）] 的必要性。}任取 $I$ 内部的两个财富点 $t_-<t_+$，令 $b=(t_-+t_+)/2$。构造 $r_F=0$、初始财富 $w=b$ 的两状态模型。取任意 $0<d<1$，让风险证券的净收益率为 $\pm d$，使两个状态的总收益率 $1\pm d$ 均为正。要使给定头寸最优，正收益状态的边际效用增益与负收益状态的边际效用损失应满足 $p\,u'(t_+)d=(1-p)u'(t_-)d$。解出正收益状态的概率
 \[
- p=\frac{u'(t_-)}{u'(t_-)+u'(t_+)}
+ p=\frac{u'(t_-)}{u'(t_-)+u'(t_+)}.
 \]
-为正收益状态的概率。因为 $u'(t_-)>u'(t_+)$，$p>1/2$，风险溢价为正。取风险投资额 $a_0=(t_+-t_-)/(2d)$，则 $b-a_0d=t_-$、$b+a_0d=t_+$。将这两个财富值代入\WJEqRef{eq:wj-8-13}{式~}，其左边为
+
+因为 $u'(t_-)>u'(t_+)$，$p>1/2$，风险溢价为正。取风险投资额 $a_0=(t_+-t_-)/(2d)$，则 $b-a_0d=t_-$、$b+a_0d=t_+$。将这两个财富值代入\WJEqRef{eq:wj-8-13}{式~}，其左边为
 \[
  p\,u'(t_+)d-(1-p)u'(t_-)d=0.
 \]
 
-严格凹性保证 $a^*=a_0$ 为内点最优解。令 $C=p\,u'(t_+)d=(1-p)u'(t_-)d>0$，则
+严格凹性保证 $a^*=a_0$ 为内点最优解。两个期末财富点都在 $I$ 的内部，故由隐函数定理，初始财富小幅变动时，内点解及这两个期末财富仍在所需的范围内。令 $C=p\,u'(t_+)d=(1-p)u'(t_-)d>0$，则
 \[
  \mathrm E[u''(\tilde w^*)\tilde r]
  =C[A(t_-)-A(t_+)],
@@ -644,7 +715,7 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
  =C[R(t_+)-R(t_-)].
 \]
 
-前式与 $da^*/dw$ 同号，后式与 $e-1$ 异号。因此，若所有这样的模型都有 $da^*/dw\ge0$，就有任意 $t_-<t_+$ 下 $A(t_-)\ge A(t_+)$，即 $A$ 非递增；反向符号给出 $A$ 非递减。若所有模型均为零，则 $A$ 在区间上恒定。同样，所有正财富模型中 $e-1\ge0$ 等价于 $R(t_-)\ge R(t_+)$，反向符号和恒等情形分别给出 $R$ 非递减和恒定。结合前面的充分性，两个方向均成立。
+前式与 $da^*/dw$ 同号，后式与 $e-1$ 异号。因此，若所有这样的模型都有 $da^*/dw\ge0$，就有任意 $t_-<t_+$ 下 $A(t_-)\ge A(t_+)$，即 $A$ 非递增；反向符号给出 $A$ 非递减。若所有模型的财富导数均为零，则 $A$ 恒定。同样，若所有符合条件的投资机会均有 $e-1\ge0$，对这两个财富点构造的模型就有 $R(t_-)\ge R(t_+)$。反向符号和恒等情形分别给出 $R$ 非递减和恒定。$I$ 若包含端点，由 $A$ 和 $R$ 的连续性延伸到端点。结合前面的充分性，两个方向均成立。
 \end{solution}
 
 \WJRef{fig:wj-investment-amount-share}{图~} 用 CARA 与 CRRA 对照上述结论：常金额对应投资比例下降，常比例对应投资金额随财富同比增长。
@@ -686,7 +757,7 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
 而 $a=0$ 恰好达到 $u(w(1+r_F))$，故最优。
 \end{solution}
 
-完全抵消的风险头寸可使多个投资金额向量实现同一期末财富；严格凹性保证最优消费唯一。
+严格凹性下，Jensen 取等号要求期末财富在各状态相同。因此在零风险溢价的情形，任何最优头寸都必须复制全投无风险证券的期末财富。若风险证券的超额收益向量没有非零的线性组合在各状态恒为零，只有 $a=0$ 能复制这笔财富，头寸也唯一。若存在这样的组合，加上它会改变头寸而保持期末财富不变。
 
 \begin{tcolorbox}[knowledge]
 \WJEightTheorem{thm:wj-eight-6} 最优组合的期望收益率不低于无风险收益率。若至少一只证券风险溢价非零，且允许在零头寸附近自由调整、最优解存在，则最优组合的期望收益率严格更高。
@@ -715,7 +786,28 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
 若每只风险证券的风险溢价都为正，上式的分子是这些溢价与相应投资金额的乘积之和。由于总和严格为正，至少有一只风险证券的投资金额为正。个别证券仍可能被卖空，因为卖空它可以降低\textbf{整个组合的风险}，而减少风险带来的效用改善可能超过放弃其预期超额收益的损失。
 \end{tcolorbox}
 
-\textbf{例。}设两只证券的超额收益率分别为 $Y+Z$ 与 $Y+2Z$，其中 $Y$ 的期望为正，$Z$ 是独立于 $Y$、均值为零的非退化风险。两只证券都有正风险溢价。投资金额分别为 $a_1,a_2$ 时，组合承担的风险为 $(a_1+a_2)Y+(a_1+2a_2)Z$。若投资者希望保留 $t>0$ 单位的 $Y$ 敞口，可以令 $a_1+a_2=t$、$a_1+2a_2=0$，解得 $a_1=2t$、$a_2=-t$。在自由交易下，这样做保持期望收益不变，并消去额外的公平风险 $Z$。给定 $Y$ 取条件期望，严格凹性意味着消去这部分风险会提高期望效用。这就是正溢价证券也可以用来对冲的一个情形。
+\Needspace{8\baselineskip}
+\begin{tcolorbox}[example,title=两只正溢价证券的最优多空组合]
+\begin{question}
+设初始财富为 $10$，无风险净收益率为零，效用为 $u(t)=\log t$。两只风险证券的超额收益率分别为 $Y+Z$ 和 $Y+2Z$。$Y$ 取 $0.10$ 或 $-0.10$，概率分别为 $0.6$ 和 $0.4$；$Z$ 独立于 $Y$，以相同概率取 $0.05$ 或 $-0.05$。允许借贷和卖空，要求每个状态的期末财富为正。求最优投资金额。
+\end{question}
+\begin{solution}[blank-type=manual,blank-vsep=8\baselineskip]
+记 $t=a_1+a_2$、$s=a_1+2a_2$，期末财富为 $10+tY+sZ$。两只证券的风险溢价均为 $\mathrm E[Y]=0.02$。给定 $t$，投资者已经确定了组合的期望收益，接下来可以调整 $s$ 来管理额外的风险。因为 $\mathrm E[Z\mid Y]=0$，对 $Z$ 取条件期望并用 Jensen 不等式，得
+\[
+ \mathrm E[\log(10+tY+sZ)\mid Y]\le\log(10+tY).
+\]
+
+对任何原本可行的 $(t,s)$，条件均值 $10+tY$ 仍为正，且 $s=0$ 时达到等号。严格凹性和 $Z$ 非退化使最优 $s$ 为零。接下来只需选 $t$。可行区间是 $-100<t<100$，一阶条件为
+\[
+ \frac{0.6(0.10)}{10+0.10t}-\frac{0.4(0.10)}{10-0.10t}=0
+ \quad\Longrightarrow\quad
+ 0.6(10-0.10t)=0.4(10+0.10t)
+ \quad\Longrightarrow\quad t^*=20.
+\]
+
+目标函数严格凹，故这个内点给出唯一最优敞口。将 $a_1+a_2=20$ 与 $a_1+2a_2=0$ 联立，得 $a_1^*=40$、$a_2^*=-20$，无风险头寸为 $10-40+20=-10$。最优期末财富在两种 $Y$ 状态分别为 $12$ 和 $8$，均为正。卖空第二只证券抵消了第一只证券带来的 $Z$ 风险，同时保留 $20$ 单位的 $Y$ 敞口。
+\end{solution}
+\end{tcolorbox}
 
 \Needspace{13\baselineskip}
 \WJChapterSummary
