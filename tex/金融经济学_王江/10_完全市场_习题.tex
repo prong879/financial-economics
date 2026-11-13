@@ -99,7 +99,7 @@
  =\pi_a[u''(C_a)-u''(C_b)]<0,
  \]
 
- 因为 $u'''<0$ 使 $u''$ 严格递减。因此 $r_F^*$ 上升。只给出差距 $C_a-C_b$ 增加而不规定均值如何变化，尚未确定一种风险比较。
+ 因为 $u'''<0$ 使 $u''$ 严格递减。因此 $r_F^*$ 上升。这个结论也可直接从债券定价读出：未来边际效用 $u'$ 是凹函数，均值保持扩散降低 $\mathrm E[u'(\widetilde C_1)]$，因而降低债券价格。\WJRef{exer:wj-ten-4}{练习~}的对数效用和\WJRef{exer:wj-ten-7}{练习~}的指数效用都具有凸的边际效用，在同样的比较下会提高债券价格。只给出差距 $C_a-C_b$ 增加而不规定均值如何变化，尚未确定一种风险比较。
 \end{enumerate}
 \end{solution}
 
@@ -215,11 +215,13 @@
  c_{k,b}=\frac{\rho(1-\pi)w_k}{(1+\rho)\phi_b}.
  \]
 
- 这组消费严格为正，严格凹性保证它是唯一最优消费。令 $h_{k,B},h_{k,S}$ 为交易后的债券和股票持仓。两状态消费由证券支付提供，因而
+ 这组消费严格为正，严格凹性保证它是唯一最优消费。初始持仓为 $\bar\theta_k=[0,s_k]^{\mathsf T}$。以 $\theta_k=[\theta_{k,B},\theta_{k,S}]^{\mathsf T}$ 表示净购买量，则交易后持仓为 $\bar\theta_k+\theta_k$。由 $X(\bar\theta_k+\theta_k)=[c_{k,a},c_{k,b}]^{\mathsf T}$ 得
  \[
- h_{k,B}+uCh_{k,S}=c_{k,a},\qquad h_{k,B}+dCh_{k,S}=c_{k,b}.
+ \theta_{k,B}+uC(s_k+\theta_{k,S})=c_{k,a},\qquad
+ \theta_{k,B}+dC(s_k+\theta_{k,S})=c_{k,b}.
  \]
- 两式相减解出股票持仓，再代回求出债券持仓。分别减去初始持仓 $0,s_k$，得到净购买量
+
+ 两式相减得到 $(u-d)C(s_k+\theta_{k,S})=c_{k,a}-c_{k,b}$。先解出股票净购买量，再代回任一状态的支付式解出债券净购买量：
  \[
  \theta_{k,B}=\frac{u c_{k,b}-d c_{k,a}}{u-d},\qquad
  \theta_{k,S}=\frac{c_{k,a}-c_{k,b}}{C(u-d)}-s_k.
@@ -323,7 +325,7 @@
 
  比较均值与方差时固定状态概率。由 $\operatorname{Var}(\widetilde G)=\pi(1-\pi)(u-d)^2$，固定方差即固定两状态的差 $u-d$。因此提高均值要将 $u,d$ 同时上移相同的幅度，使 $\mathrm E[1/\widetilde G]$ 下降、$r_F^*$ 上升；风险溢价式的分母增大，故溢价下降。
 
- 固定均值而提高方差，则在保持 $\pi u+(1-\pi)d$ 不变的同时提高 $u$、降低 $d$，构成均值保持扩散。函数 $1/G$ 严格凸，故债券价格上升、无风险利率下降。此时股票现价 $\rho C$ 与期望支付 $C\mathrm E[\widetilde G]$ 均不变，所以风险溢价的上升来自无风险利率下降。
+ 固定均值而提高方差，则在保持 $\pi u+(1-\pi)d$ 不变的同时提高 $u$、降低 $d$，构成均值保持扩散。函数 $1/G$ 严格凸，故债券价格上升、无风险利率下降。此时股票现价 $\rho C$ 与期望支付 $C\mathrm E[\widetilde G]$ 均不变，所以风险溢价的上升来自无风险利率下降。这里的溢价 $p$ 是期望净收益率与无风险利率之差；\WJRef{exer:wj-ten-7}{练习~}使用每股的绝对超额收益。
 
  令 $\tilde g=\widetilde G-1$。在各状态的增长率都较小时，用 $(1+\tilde g)^{-1}\approx1-\tilde g+\tilde g^2$，得到 $\mathrm E[1/\widetilde G]\approx1-\bar g+\mathrm E[\tilde g^2]$。其中 $\mathrm E[\tilde g^2]=\operatorname{Var}(\tilde g)+\bar g^2$。代入债券价格并取倒数，得到总收益率的近似式。再对倒数展开到二阶，$\bar g^2$ 与倒数展开产生的二次项相消，得到 $1/\mathrm E[1/\widetilde G]\approx1+\bar g-\operatorname{Var}(\tilde g)$。因此
  \[
@@ -586,14 +588,23 @@
 
  它等于实际概率与风险中性概率之差乘以状态支付差。
 
- \item \textbf{解答}\quad 给定未来\textbf{增长率分布}，令 $\tilde g=\widetilde C_1/C_0-1$、$\ell=aC_0$。当 $|\ell\tilde g|$ 一致较小时，
+ \item \textbf{解答}\quad 令 $\tilde g=\widetilde C_1/C_0-1$、$\ell=aC_0=\alpha C_0/K$。增长率改变未来消费，因而指数中的变量是 $\ell\tilde g$。当 $\delta=\max_\omega|\ell g_\omega|$ 足够小时，先将指数展开到二阶，再逐状态取期望：
  \[
- B^*\approx\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)],
- \quad
- r_F^*\approx\frac1{\rho[1-\ell\bar g+\tfrac12\ell^2(\operatorname{Var}(\tilde g)+\bar g^2)]}-1.
+ \begin{aligned}
+ e^{-\ell\tilde g}&=1-\ell\tilde g+\tfrac12\ell^2\tilde g^2+O(\delta^3),\\
+ \frac{B^*}{\rho}&=1-\ell\bar g+
+    \tfrac12\ell^2\bigl(\operatorname{Var}(\tilde g)+\bar g^2\bigr)+O(\delta^3).
+ \end{aligned}
  \]
 
- 展开变量为 $\alpha C_0\tilde g/K$，人均消费增大也会放大边际效用的变化。
+ 把 $B^*/\rho$ 写成 $1+y$。用 $(1+y)^{-1}=1-y+y^2+O(y^3)$ 取倒数。由于 $y$ 的一阶项为 $-\ell\bar g$，$y^2$ 的二阶项就是 $\ell^2\bar g^2$。合并后得到
+ \[
+ r_F^*=\frac{1}{\rho}-1+\frac{\ell}{\rho}\bar g
+     +\frac{\ell^2}{2\rho}\bigl(\bar g^2-\operatorname{Var}(\tilde g)\bigr)
+     +O(\delta^3).
+ \]
+
+ 在这条近似式中，给定 $C_0$ 和增长率均值，方差增加会降低实利率。下面直接用债券价格和每股绝对风险溢价的精确式进行比较。
 
  $\rho$ 增大使债券价格上升、无风险利率下降；绝对风险溢价中 $\rho$ 相消。固定 $C_0$ 和状态概率，此时 $\operatorname{Var}(\widetilde C_1/C_0)=\pi(1-\pi)(\Delta/C_0)^2$。保持方差不变而提高增长率均值，会使两个未来消费水平一起上移，债券价格下降、利率上升，而绝对风险溢价只取决于 $\Delta$，因此不变。固定均值而提高方差时，$\Delta$ 扩大，指数函数的凸性使债券价格上升、利率下降。式 (e) 中 $\pi-\phi_a^*/B^*$ 也随 $\Delta$ 增加，故风险溢价严格增加。
 
