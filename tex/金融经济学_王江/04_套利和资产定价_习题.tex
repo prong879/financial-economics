@@ -42,7 +42,7 @@
       =\begin{bmatrix}1&0&0&0\\2&1&0&0\\3&2&1&0\\4&3&2&1\end{bmatrix}.
     \]
 
-    $Y$ 是对角元均为 $1$ 的下三角矩阵，故 $\det Y=1$，四列线性无关。状态数为 $4$，所以 $\operatorname{rank}(X)=4$。由行满秩判据\ifdefined\WJHandoutKnowledge（见\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，市场完全。虽然证券 $1,2,3$ 的支付满足 $X_2=X_1+X_3$，证券 $2,3,4,5$ 已足以生成全部状态支付。
+    $Y$ 是对角元均为 $1$ 的下三角矩阵，故 $\lvert Y\rvert=1$，四列线性无关。状态数为 $4$，所以 $\operatorname{rank}(X)=4$。由行满秩判据\ifdefined\WJHandoutKnowledge（见\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，市场完全。虽然证券 $1,2,3$ 的支付满足 $X_2=X_1+X_3$，证券 $2,3,4,5$ 已足以生成全部状态支付。
 
     \item \textbf{证明与解答。}设 $S$ 为证券的 0 期价格向量。先求满足 $X^{\mathsf T}\phi=S$ 的候选向量。由 (a)，$Y$ 可逆，所以证券 $2,3,4,5$ 的四个定价方程已唯一确定 $\phi$。
 
