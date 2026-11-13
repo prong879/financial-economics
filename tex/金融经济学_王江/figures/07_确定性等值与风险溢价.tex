@@ -1,0 +1,22 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学补图：沿用正文中的平方根效用和等概率财富 1、5。
+\begin{tikzpicture}[x=1.35cm,y=1.35cm,>=stealth,font=\small]
+ \draw[->] (0,0)--(5.7,0) node[right]{财富};
+ \draw[->] (0,0)--(0,2.65) node[above]{效用};
+ \draw[thick,blue,domain=.25:5.3,samples=70] plot (\x,{sqrt(\x)});
+ \node[blue] at (5.25,2.52) {$u$};
+ \draw (1,1)--(5,2.2361);
+ \draw[dashed] (1,0)--(1,1) (5,0)--(5,2.2361);
+ \draw[dashed] (0,1.618)--(3,1.618) (2.618,0)--(2.618,1.618);
+ \draw[dashed] (3,0)--(3,1.7321)--(0,1.7321);
+ \fill (1,1) circle (1.4pt) (5,2.2361) circle (1.4pt)
+       (3,1.618) circle (1.4pt) (2.618,1.618) circle (1.4pt);
+ \node[left] at (0,1.618) {$\mathrm E[u(\widetilde W)]$};
+ \node[above left] at (0,1.7321) {$u(w)$};
+ \fill[blue] (3,1.7321) circle(1.4pt);
+ \node[below] at (1,0) {$w-\delta$};
+ \node[below left] at (2.618,0) {$CE$};
+ \node[below right] at (3,0) {$w$};
+ \node[below] at (5,0) {$w+\delta$};
+ \draw[<->] (2.618,-.55)--(3,-.55) node[midway,below] {$\pi$};
+\end{tikzpicture}
