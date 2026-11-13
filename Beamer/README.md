@@ -38,8 +38,8 @@
 
     latexmk -xelatex -interaction=nonstopmode -halt-on-error 第12—14讲_均值方差偏好_CAPM与APT.tex
 
-编译前由 Python 3 读取第 12 讲的讲义正文与习题 TeX，在 build/ 生成课件帧。第 12 讲正文、公式、图源、注释性脚注、习题题面及解答以讲义为准。
+编译前由 Python 3 读取第 12—14 讲的讲义正文与习题 TeX，在 build/ 生成课件帧。各讲正文、公式、图源、注释性脚注、习题题面及解答以讲义为准。
 
 从项目根目录核对讲义与生成帧的内容差异：
 
-    python3 Beamer/sync-chapter12.py --check
+    python3 Beamer/sync-handout.py --check
