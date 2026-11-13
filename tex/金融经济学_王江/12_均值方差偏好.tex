@@ -13,6 +13,13 @@
 \label{chap:wj-twelve}
 \begingroup
 \raggedbottom
+\ifdefined\WJExercisesOnly\else
+  \input{tex/_shared/wj-ch12-team.tex}
+  \begin{tcolorbox}[summary,breakable=false,before upper={}]
+    \noindent\WJTwelveTeamLead\par
+    \noindent\WJTwelveTeamMembers
+  \end{tcolorbox}
+\fi
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \ctexset{section={number=\thesection,aftername=\quad},subsection={number=\thesubsection,aftername=\quad}}

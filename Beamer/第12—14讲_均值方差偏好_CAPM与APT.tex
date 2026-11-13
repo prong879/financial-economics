@@ -183,7 +183,8 @@
 }{}
 \makeatother
 
-\newcommand{\LectureCover}{%
+\input{tex/_shared/wj-ch12-team.tex}
+\newcommand{\LectureCover}[1][]{%
 \begin{frame}[plain]
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=south west,inner sep=0pt] at (current page.south west)
@@ -198,6 +199,11 @@
 \node[anchor=north west,text=accent,font=\songti\large]
  at ([xshift=.065\paperwidth,yshift=-.465\paperheight]current page.north west)
  {\insertsubtitle};
+\ifblank{#1}{}{%
+  \node[anchor=north west,text=accent,font=\songti\normalsize,align=left]
+   at ([xshift=.065\paperwidth,yshift=-.67\paperheight]current page.north west)
+   {#1};%
+}
 \node[anchor=south west,text=accent,font=\songti\normalsize]
  at ([xshift=.065\paperwidth,yshift=.115\paperheight]current page.south west)
  {\insertauthor};
@@ -215,7 +221,7 @@
   \shortstack[l]{在均值--方差偏好下的\\[-1pt]投资组合选择}}
 \subtitle{前沿组合、基金分离与切点组合}
 \date{第 12 讲}
-\LectureCover
+\LectureCover[{\WJTwelveTeamLead\\[.35em]\WJTwelveTeamMembers}]
 
 \begin{frame}[t]{本讲内容}
 均值--方差偏好使参与者根据未来财富的均值和方差选择投资组合。本章先说明这种表示成立的条件，再求解最小方差问题，研究基金分离、有效前沿及证券与前沿组合之间的收益关系。
