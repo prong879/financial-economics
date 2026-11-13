@@ -137,6 +137,9 @@
   label-content/.store in=\wjSlideSolutionLabel,
   .unknown/.code={}
 }
+\ifdefined\WJStudentBlank
+  \input{tex/_shared/wj-solution-blank.tex}
+\fi
 \makeatletter
 \newenvironment{WJFullChapterSlides}{%
   % Preserve starred references when amsmath writes a custom equation tag.
@@ -156,13 +159,17 @@
   % Inline notes stay with the paragraph on continued frames.
   \RenewDocumentCommand{\footnote}{m}{\space{\footnotesize（注：##1）}}%
   \renewcommand{\qedhere}{}%
-  \DeclareDocumentEnvironment{solution}{O{}}{%
-    \par\smallskip
-    \pgfkeys{/wj slide solution/.cd,label-content={解答},##1}%
-    \ifx\wjSlideSolutionLabel\empty\else
-      \noindent\textbf{\wjSlideSolutionLabel}\quad
-    \fi
-  }{\par\smallskip}%
+  \ifdefined\WJStudentBlank
+    \DeclareDocumentEnvironment{solution}{O{} +b}{\WJSolutionBlank{##1}}{}%
+  \else
+    \DeclareDocumentEnvironment{solution}{O{}}{%
+      \par\smallskip
+      \pgfkeys{/wj slide solution/.cd,label-content={解答},##1}%
+      \ifx\wjSlideSolutionLabel\empty\else
+        \noindent\textbf{\wjSlideSolutionLabel}\quad
+      \fi
+    }{\par\smallskip}%
+  \fi
   \let\wjSlideEnumerate\enumerate
   \let\wjSlideEndEnumerate\endenumerate
   \RenewDocumentEnvironment{enumerate}{o}{%

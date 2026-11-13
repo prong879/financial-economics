@@ -70,6 +70,14 @@ tools/latex/build-dual.sh 金融经济学_王江_讲义及习题.tex output buil
 tools/latex/build-dual.sh 金融经济学_熊和平_习题.tex output build/金融经济学_熊和平_习题
 ```
 
+王江讲义和单章双版预览的学生版使用 `_student.pdf` 后缀。每个 `solution` 显示“证明”或“解答”等标题，标题和书写区的总高度按 `blank-vsep` 设置，缺省为 `5\baselineskip`。
+
+只构建王江学生留白版：
+
+```sh
+tools/latex/build-dual.sh --student-blank 金融经济学_王江_讲义及习题.tex output build/金融经济学_王江_讲义及习题
+```
+
 王江仅习题版：
 
 ```sh

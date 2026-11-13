@@ -1,0 +1,19 @@
+% Keep the solution heading above the writing space in the student edition.
+\pgfkeys{
+  /wj solution blank/.cd,
+  blank-vsep/.store in=\WJSolutionBlankHeight,
+  label-content/.store in=\WJSolutionBlankLabel,
+  .unknown/.code={}
+}
+\newcommand{\WJSolutionBlank}[1]{%
+  \pgfkeys{/wj solution blank/.cd,blank-vsep=5\baselineskip,label-content={解答},#1}%
+  \par
+  \ifx\WJSolutionBlankLabel\empty
+    \vspace*{\WJSolutionBlankHeight}%
+  \else
+    \noindent\textbf{\WJSolutionBlankLabel}\par\nobreak
+    \ifdim\dimexpr\WJSolutionBlankHeight\relax>\baselineskip
+      \vspace*{\dimexpr\WJSolutionBlankHeight-\baselineskip\relax}%
+    \fi
+  \fi
+}

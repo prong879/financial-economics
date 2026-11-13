@@ -40,6 +40,12 @@
 
 编译前由 Python 3 读取第 12—14 讲的讲义正文与习题 TeX，在 `build/Beamer/<课件名>/frames/` 生成课件帧。各讲正文、公式、图源、注释性脚注、习题题面及解答以讲义为准。
 
+用 `build-dual.sh --parallel` 可同时构建教师版和学生留白版。只构建学生留白版：
+
+    tools/latex/build-dual.sh --student-blank Beamer/第12—14讲_均值方差偏好_CAPM与APT.tex output/Beamer build/Beamer/第12—14讲_均值方差偏好_CAPM与APT
+
+学生版以 `_student.pdf` 结尾，显示“证明”或“解答”等标题，标题和书写区的总高度沿用讲义的 `blank-vsep`，未指定时留 `5\baselineskip`。
+
 从项目根目录核对讲义与生成帧的内容差异：
 
     python3 tools/latex/sync-handout.py --check

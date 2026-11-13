@@ -29,6 +29,11 @@
   \SetupFourThreeOneDocument{金融经济学·王江·讲义及习题}
 \fi
 
+\ifdefined\WJStudentBlank
+  \input{tex/_shared/wj-solution-blank.tex}
+  \RenewDocumentEnvironment{solution}{O{} +b}{\WJSolutionBlank{#1}}{}
+\fi
+
 \title{金融经济学}
 \ifdefined\WJExercisesOnly
   \subject{王江《金融经济学》课后习题}
