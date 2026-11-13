@@ -74,6 +74,8 @@
 \WJThirteenTheorem{thm:wj-thirteen-1} 在上述均值--方差经济中，市场达到均衡时，市场组合就是切点组合：$z_M=z_T$。
 \end{tcolorbox}
 
+要证明市场组合与切点组合相同，先把各人的风险需求按金额加总，再用市场出清把总需求换成市场总市值。
+
 \begin{solution}[label-content={证明},blank-type=none]
 由于各人的风险需求只有金额 $A_k$ 不同，可以把共同权重 $z_T$ 提到求和号外：
 \[
@@ -85,9 +87,8 @@
 \]
 
 代回风险证券的出清式，得到 $v_Mz_T=v_Mz_M$。由于 $v_M>0$，两边除以 $v_M$，得到 $z_T=z_M$。
-\end{solution}
-
 也可直接从风险证券的出清式求风险投资总额。两边左乘 $\iota^{\mathsf T}$，用两组权重的和都为 $1$，便得到 $\sum_k A_k=v_M$，从而同样推出 $z_T=z_M$。无风险证券的零净供给进一步给出了 $\sum_k w_k=v_M$。
+\end{solution}
 
 \subsection{市场组合的有效性}
 由\WJRef{thm:wj-twelve-12}{定理~}[（切点组合的有效性）]，在 $r_F<\bar r_{\mathrm{MVP}}$ 下，$T$ 位于纯风险证券的有效前沿。均衡中 $M=T$，所以市场组合也在这条前沿上。把 $z_T=z_M$ 代入\WJEqRef{eq:wj-12-8}{式~}，个人最优配置就是以 $1-\alpha_k$ 投入无风险证券、以 $\alpha_k$ 投入市场组合。这些有效配置位于第十二讲的\hyperlink{wj-capital-market-line}{\textcolor{WJReferenceColor}{资本市场线}}上\footnote{在允许按同一无风险利率借贷且切点组合的期望超额收益为正时，有效组合来自对切点组合的非负配置。若配置比例为 $\alpha\ge0$，其期望超额收益是 $\alpha(\bar r_T-r_F)$，标准差是 $\alpha\sigma_T$，所以这条射线从 $(0,r_F)$ 出发，斜率为切点组合的 Sharpe 比 $(\bar r_T-r_F)/\sigma_T$。}。原本需要估计最优风险权重的问题，在均衡中转化为观察各证券的市场价值权重；这也为持有广泛市场组合的指数投资提供了理论依据。
@@ -104,6 +105,8 @@
  \label{eq:wj-13-3}
 \end{equation}
 \end{tcolorbox}
+
+先对只持有证券 $n$ 的组合应用\WJEqRef{eq:wj-12-10}{以切点为基准的贝塔关系~}，再用市场出清把切点换成市场组合。
 
 \begin{solution}[label-content={证明},blank-type=none]
 在\WJEqRef{eq:wj-12-10}{式~}[（以切点组合为基准的贝塔关系）]中，取 $q$ 为全部资金投在证券 $n$ 上的组合，得到 $\bar r_n-r_F=\beta_{n,T}(\bar r_T-r_F)$。由\WJRef{thm:wj-thirteen-1}{定理~}，均衡中 $z_T=z_M$，所以 $\widetilde r_T=\widetilde r_M$，从而
@@ -172,6 +175,8 @@
 用 $\mathrm E[UV]$ 作内积时，这是把 $Y$ 投影到由 $1,X$ 张成的空间。残差对 $1$ 正交给出零均值，对 $X$ 正交给出零协方差。斜率为 $\operatorname{Cov}(X,Y)/\operatorname{Var}(X)$，截距为 $\mathrm E[Y]-\beta\mathrm E[X]$。
 \end{tcolorbox}
 
+先对总体最小二乘的截距和斜率求一阶条件，确定残差的正交性质。再对市场回归式取方差，看交叉项为何消失。
+
 \begin{solution}[label-content={证明（总体回归与方差分解）},blank-type=none]
 令 $X=\widetilde r_M-r_F$、$Y=\widetilde r_n-r_F$，并记 $\widetilde\varepsilon_n=Y-\alpha-\beta X$。对框中的最小二乘目标分别就截距和斜率求导，得到
 \[
@@ -197,21 +202,22 @@
 \]
 \end{solution}
 
-\WJEqRef{eq:wj-13-4}{式~}的回归分解来自最小二乘。CAPM 进一步用\WJEqRef{eq:wj-13-3}{期望收益关系~}限制总体截距为 $\alpha_n=0$，即期望超额收益全部由市场贝塔项解释。
+\WJEqRef{eq:wj-13-4}{市场回归式~}的分解来自最小二乘。CAPM 进一步用\WJEqRef{eq:wj-13-3}{期望收益关系~}限制总体截距为 $\alpha_n=0$，即期望超额收益全部由市场贝塔项解释。
 
 \begin{tcolorbox}[knowledge]
 对\WJEqRef{eq:wj-13-4}{式~} 取方差。由于市场收益与残差的协方差为零，资产收益的总风险可分为\textbf{系统风险}和\textbf{剩余风险}（非系统风险）：
-\[
+\begin{equation*}
  \sigma_n^2=\underbrace{\beta_{n,M}^2\sigma_M^2}_{\text{系统风险方差}}
  +\underbrace{\sigma_{\varepsilon_n}^2}_{\text{剩余风险方差}}.
-\]
+ \tag{13.I}\label{eq:wj-13-market-variance}
+\end{equation*}
 当 $\sigma_n^2>0$ 时，市场回归的决定系数为
 \[
  R_n^2=\frac{\beta_{n,M}^2\sigma_M^2}{\sigma_n^2}.
 \]
 \end{tcolorbox}
 
-方差分解使用贝塔的平方，反映系统风险在总方差中的比重。CAPM 的风险溢价只补偿市场风险，并保留贝塔的符号。正贝塔资产与市场的协方差为正，负贝塔资产与市场负相关，具有对冲作用。不同证券的剩余收益仍可能彼此相关，剩余风险能分散多少取决于这些相关性。
+\WJEqRef{eq:wj-13-market-variance}{市场回归的方差分解~}使用贝塔的平方，反映系统风险在总方差中的比重。CAPM 的风险溢价只补偿市场风险，并保留贝塔的符号。正贝塔资产与市场的协方差为正，负贝塔资产与市场负相关，具有对冲作用。不同证券的剩余收益仍可能彼此相关，剩余风险能分散多少取决于这些相关性。
 
 \subsubsection{从单只证券到投资组合}
 设 $w=[w_1,\ldots,w_N]^{\mathsf T}$ 为风险证券的完全投资权重，$\iota^{\mathsf T}w=1$。令 $\beta_M$ 和 $\widetilde\varepsilon$ 分别为按证券顺序排列的市场贝塔和剩余收益列向量，$\Sigma_\varepsilon=\operatorname{Cov}(\widetilde\varepsilon)$。将\WJEqRef{eq:wj-13-4}{市场回归式~}按 $w_n$ 加总，得到组合贝塔与组合剩余方差：
@@ -220,6 +226,8 @@
  \operatorname{Var}(w^{\mathsf T}\widetilde\varepsilon)=w^{\mathsf T}\Sigma_\varepsilon w.
 \]
 特别地，对市场组合有 $z_M^{\mathsf T}\beta_M=1$，且 $z_M^{\mathsf T}\widetilde\varepsilon=0$。
+
+按投资权重加总\WJEqRef{eq:wj-13-4}{各证券的市场回归式~}，就能读出组合贝塔与组合剩余项。对后者取方差时要保留证券间的残差协方差。
 
 \begin{solution}[label-content={证明（组合的市场贝塔与剩余风险）},blank-type=none]
 记 $\alpha$ 为各证券总体回归截距的列向量。按 $w_n$ 加总各式，利用权重和为 $1$，得到
@@ -248,7 +256,7 @@
 
 \end{question}
 \begin{solution}
-市场风险溢价为 $12\%-4\%=8\%$。分别代入CAPM，得到
+市场风险溢价为 $12\%-4\%=8\%$。分别代入\WJEqRef{eq:wj-13-3}{CAPM 定价式~}。再用\WJEqRef{eq:wj-13-market-variance}{系统风险方差~}除以总方差计算 $R^2$，得到
 \begin{center}
 \begin{tabular}{ccccc}
 \toprule
@@ -273,6 +281,11 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \subsection{市场组合的前沿性质}
 无风险资产缺席时，个人可以选不同的风险组合。市场出清要把这些组合按投资财富加总，因此先要说明加总后的市场组合为什么仍在前沿。第十二讲的前沿权重是一条仿射直线，财富权重为正且和为 $1$，所以它们的加权平均仍在这条直线上。
 
+\begin{tcolorbox}[knowledge]
+\textbf{没有无风险证券时的市场组合}\quad 在共同信念、相同交易机会和上述均值--方差偏好下，若允许卖空、$\Sigma$ 正定，且各人的投资财富为正、最优解存在，市场组合位于共同的有效前沿。若 $d=0$，市场组合就是 MVP。
+\end{tcolorbox}
+
+\begin{solution}[label-content={证明},blank-type=none]
 先考虑 $\Sigma\succ0$、$d>0$ 的情形。在共同信念、允许卖空且具有相同交易机会、个人最优解存在的条件下，各人选择同一条均值--方差前沿上的组合。由\WJEqRef{eq:wj-12-4}{式~}[（前沿权重关于目标均值的仿射表示）]，参与者 $k$ 的最优组合可写成 $z_k=z_0+\bar r_k(z_1-z_0)$\footnote{第十二讲在仅有风险证券、协方差矩阵正定、允许卖空且证券期望收益不全相同（$d>0$）时，求出了每个目标均值对应的唯一最小方差权重。其中 $z_0,z_1$ 是目标均值为 $0,1$ 的两个前沿组合。同均值下严格偏好较低风险的人，其最优组合若存在，就必须具有这一形式。共同信念和相同的交易机会使各人采用同一组 $z_0,z_1$。}。令 $w_k>0$ 为其投资财富，市场出清要求
 \[
  \sum_kw_k[z_0+\bar r_k(z_1-z_0)]=v_Mz_M,\qquad \sum_kw_k=v_M.
@@ -287,13 +300,14 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \[
  \bar r_M=\sum_k\frac{w_k}{v_M}\bar r_k.
 \]
-因此上面的仿射式正是\WJEqRef{eq:wj-12-4}{式~} 在目标均值 $\bar r_M$ 处的写法，市场组合仍在共同的最小方差前沿上。这里用到了同一条仿射直线和财富权重之和为 $1$。
+因此上面的仿射式正是\WJEqRef{eq:wj-12-4}{两基金权重公式~} 在目标均值 $\bar r_M$ 处的写法，市场组合仍在共同的最小方差前沿上。这里用到了同一条仿射直线和财富权重之和为 $1$。
 
 进一步判断市场组合是否有效。在共同信念与相同交易机会下，各人选择有效组合，故 $\bar r_k\ge\bar r_{\mathrm{MVP}}$。由于 $w_k/v_M>0$ 且权重之和为 $1$，市场组合的均值也不低于 $\bar r_{\mathrm{MVP}}$，因此它位于有效上半支。若 $d=0$，所有完全投资组合的期望收益率相同。每个人都选择同一个最小方差组合（MVP），市场出清也就给出 $M=\mathrm{MVP}$。
+\end{solution}
 
 \Needspace{12\baselineskip}
 \subsection{零贝塔CAPM}
-沿用 $\Sigma\succ0$、$d>0$。当市场组合非MVP时，\WJRef{thm:wj-twelve-9}{定理~}[（非 MVP 前沿组合的零协方差伙伴存在且唯一）]给出唯一的前沿组合 $zcm$，与市场收益的协方差为零。在第十二讲\WJEqRef{eq:wj-12-frontier-covariance}{两个前沿组合的协方差公式~}中，取第一个组合为市场组合，第二个组合为所求的零贝塔组合，得到
+沿用 $\Sigma\succ0$、$d>0$。当市场组合非MVP时，\WJRef{thm:wj-twelve-9}{定理~}[（非 MVP 前沿组合的零协方差伙伴存在且唯一）]给出唯一的前沿组合 $zcm$，与市场收益的协方差为零。在第十二讲\WJEqRef{eq:wj-12-zero-covariance-mean}{零协方差组合的均值公式~}中取 $p=M$。用\WJEqRef{eq:wj-12-frontier-covariance}{两个前沿组合的协方差公式~}可直接看出这个代换
 \[
  \underbrace{\operatorname{Cov}(\widetilde r_M,\widetilde r_{zcm})}_{0}
  =\frac1c+\frac cd\left(\bar r_M-\frac ac\right)
@@ -317,6 +331,8 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
  \label{eq:wj-13-5}
 \end{equation}
 \end{tcolorbox}
+
+市场出清已经说明 $M$ 在共同前沿上。将 $M$ 取作\WJEqRef{eq:wj-12-6}{纯风险前沿的零贝塔关系~}中的参照组合，就能读出市场贝塔和零贝塔基准。
 
 \begin{solution}[label-content={证明},blank-type=none]
 上一小节已证明 $M$ 是前沿组合。由于 $M$ 非 MVP，可在\WJRef{thm:wj-twelve-10}{定理~} 的\WJEqRef{eq:wj-12-6}{式~} 中取 $p=M$。该式左侧为 $\bar r_q-\bar r_{zcp}$，右侧为 $\beta_{q,p}(\bar r_p-\bar r_{zcp})$。代入 $p=M$ 后，$p$ 的零协方差伙伴 $zcp$ 变为 $zcm$，$\bar r_p$ 变为 $\bar r_M$，而
@@ -361,6 +377,8 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 用 $t$ 表示这笔零成本交易的规模。它使未来消费变为 $\widetilde c_{k,1}+t(\widetilde r_q-r_F)$，当期消费固定，因此 $u_{k,0}(c_{k,0})$ 对 $t$ 的导数为零。内点处可在 $t=0$ 附近双向调整。因此只需考察 $\mathrm E[u_{k,1}(\widetilde c_{k,1}+t(\widetilde r_q-r_F))]$ 在 $t=0$ 附近的变化。
 
+要从个人最优得到市场定价关系，先用零成本交易写出个人 Euler 方程，再利用二次边际效用可以加总的性质，把个人消费换成市场组合支付。
+
 \begin{solution}[label-content={证明（二次效用下的均衡定价）},blank-type=none]
 对这一期望效用关于 $t$ 求导，在 $t=0$ 处令导数为零，得到 Euler 方程
 \[
@@ -404,7 +422,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \begin{equation*}
  \widetilde\pi_Q
  =\frac{\bar C-\widetilde C_1}{(1+r_F)(\bar C-\mathrm E[\widetilde C_1])}.
- \tag{13.I}\label{eq:wj-13-quadratic-kernel}
+ \tag{13.II}\label{eq:wj-13-quadratic-kernel}
 \end{equation*}
 
 加总后的 Euler 方程使 $\mathrm E[\widetilde\pi_Q(\widetilde r_q-r_F)]=0$，而归一化给出 $\mathrm E[\widetilde\pi_Q](1+r_F)=1$。将两式相加得到 $\mathrm E[\widetilde\pi_Q(1+\widetilde r_q)]=1$，说明它按每元投资的到期支付定价。再代入 $\widetilde C_1=v_M(1+\widetilde r_M)$，分子变为 $(\bar C-v_M)-v_M\widetilde r_M$。定价核因而是市场收益的仿射函数，总消费与资产超额收益的协方差给出\WJEqRef{eq:wj-13-3}{精确定价关系~}。
@@ -445,6 +463,8 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 把 $W$ 写成与 $\mu+sZ$ 同分布，再对标准正态密度的指数配方，即可得到这个公式。$s=0$ 时，$W=\mu$ 几乎处处，公式仍成立。取 $t=-a_k$ 就可以计算本节的期望效用。
 \end{tcolorbox}
 
+把期末财富写成均值加标准差乘以标准正态变量，再对指数配方，可以算出确定性等价中的方差折减项。
+
 \begin{solution}[label-content={证明（CARA 效用的确定性等价）},blank-type=none]
 标准正态密度乘以 $e^{tZ}$ 后，将指数 $tZ-Z^2/2$ 配方为 $-(Z-t)^2/2+t^2/2$，积分得到 $\mathrm E[e^{tZ}]=e^{t^2/2}$。代入 $t=-a_k\sqrt{\operatorname{Var}(\widetilde w_k)}$，得
 \[
@@ -456,7 +476,13 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 把指数中的 $-a_k$ 提出来，右侧即为确定性等价对应的效用。
 \end{solution}
 
-因此，期末财富的期望效用等于 $-e^{-a_k\mathrm{CE}_k}$，其中 $\mathrm{CE}_k=\mathrm E[\widetilde w_k]-(a_k/2)\operatorname{Var}(\widetilde w_k)$ 是确定性等价。由于指数效用随确定性等价严格递增，最大化期望效用等价于求解
+因此，期末财富的期望效用等于 $-e^{-a_k\mathrm{CE}_k}$，其中确定性等价为
+\begin{equation*}
+ \mathrm{CE}_k=\mathrm E[\widetilde w_k]-\frac{a_k}{2}\operatorname{Var}(\widetilde w_k).
+ \tag{13.III}\label{eq:wj-13-normal-ce}
+\end{equation*}
+
+由于指数效用随确定性等价严格递增，最大化期望效用等价于求解
 \[
  \max_{\theta_k\in\mathbb R^N}\quad
  Rw_k+\theta_k^{\mathsf T}(\bar v-RS)
@@ -466,8 +492,10 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 唯一的最优风险证券需求为
 \begin{equation*}
  \theta_k=\frac1{a_k}\Sigma^{-1}(\bar v-RS).
- \tag{13.II}\label{eq:wj-13-normal-demand}
+ \tag{13.IV}\label{eq:wj-13-normal-demand}
 \end{equation*}
+
+对\WJEqRef{eq:wj-13-normal-ce}{正态财富的确定性等价~}求梯度，得到风险证券需求的候选解，再用协方差矩阵的正定性验证唯一性。
 
 \begin{solution}[label-content={证明（个人证券需求）},blank-type=none]
 对 $\theta_k$ 求梯度，线性项给出 $\bar v-RS$，对称的二次型给出 $-a_k\Sigma\theta_k$：
@@ -478,7 +506,25 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \end{solution}
 
 \subsubsection{均衡价格与收益率关系}
-将\WJEqRef{eq:wj-13-normal-demand}{个人需求式~}对参与者加总，再用市场出清 $\sum_k\theta_k=\theta_M$。令 $a$ 为总风险容忍度的倒数，即 $1/a=\sum_k1/a_k$，得到
+令 $a$ 为总风险容忍度的倒数，即 $1/a=\sum_k1/a_k$。
+
+\begin{tcolorbox}[knowledge]
+\textbf{CARA--正态均衡价格}\quad 给定无风险总收益率 $R$，风险证券的均衡价格满足
+\begin{equation*}
+ \bar v-RS=a\Sigma\theta_M.
+ \tag{\ensuremath{*}}\label{eq:wj-13-normal-price}
+\end{equation*}
+
+\begin{equation*}
+ S=\frac{\bar v-a\Sigma\theta_M}{R}.
+ \tag{13.V}\label{eq:wj-13-normal-equilibrium-price}
+\end{equation*}
+\end{tcolorbox}
+
+把\WJEqRef{eq:wj-13-normal-demand}{个人证券需求~}对所有参与者加总，再用风险证券市场出清，就能直接解出价格向量。
+
+\begin{solution}[label-content={证明},blank-type=none]
+将\WJEqRef{eq:wj-13-normal-demand}{个人需求式~}对参与者加总，再用市场出清 $\sum_k\theta_k=\theta_M$，得到
 \[
  \left(\sum_k\frac1{a_k}\right)\Sigma^{-1}(\bar v-RS)=\theta_M.
 \]
@@ -487,33 +533,47 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \[
  \boxed{S=\frac{\bar v-a\Sigma\theta_M}{R}}.
 \]
+\end{solution}
 
-将 $\bar v-RS=a\Sigma\theta_M$ 代回\WJEqRef{eq:wj-13-normal-demand}{个人需求式~}，得到
+将\WJEqRef{eq:wj-13-normal-price}{支付单位的均衡定价式~}代回\WJEqRef{eq:wj-13-normal-demand}{个人需求式~}，得到
 \[
  \theta_k^*=\frac{1/a_k}{\sum_j1/a_j}\,\theta_M.
 \]
 
 所有人的风险持仓都是市场组合的同方向倍数，各人持有的份额等于自己的风险容忍度占总风险容忍度的比例。上式的价格关系以均衡无风险利率为给定。若要确定整个两期均衡，还需给定当期效用和禀赋，由跨期消费最优条件与无风险证券出清共同确定 $R$。
 
-为把价格关系改写成收益率关系，先用 $\theta_M^{\mathsf T}$ 左乘均衡价格向量 $S$，得到市场总市值
+为把价格关系改写成收益率关系，先用 $\theta_M^{\mathsf T}$ 左乘\WJEqRef{eq:wj-13-normal-equilibrium-price}{均衡价格向量~}，得到市场总市值
 \[
  v_M=\theta_M^{\mathsf T}S
  =\frac{\theta_M^{\mathsf T}\bar v-a\theta_M^{\mathsf T}\Sigma\theta_M}{R}.
 \]
 
-设 $\theta_M\ne0$、$v_M>0$。记市场总支付为 $\widetilde X_M=\theta_M^{\mathsf T}\widetilde v$，于是 $\widetilde r_M=\widetilde X_M/v_M-1$。对价格 $S_n\ne0$ 的证券，$\widetilde r_n=\widetilde v_n/S_n-1$。下面从同一个均衡价格关系分别求出个股和市场的风险溢价。先把价格式写回支付单位：
-\begin{equation*}
- \bar v-RS=a\Sigma\theta_M.
- \tag{$*$}\label{eq:wj-13-normal-price}
-\end{equation*}
+设 $\theta_M\ne0$、$v_M>0$。记市场总支付为 $\widetilde X_M=\theta_M^{\mathsf T}\widetilde v$，于是 $\widetilde r_M=\widetilde X_M/v_M-1$。对价格 $S_n\ne0$ 的证券，$\widetilde r_n=\widetilde v_n/S_n-1$。下面从同一个均衡价格关系分别求出个股和市场的风险溢价。
 
-取\WJEqRef{eq:wj-13-normal-price}{式~} 的第 $n$ 个分量，再除以 $S_n$，得到
+取\WJEqRef{eq:wj-13-normal-price}{支付单位的均衡定价式~}的第 $n$ 个分量，再除以 $S_n$，得到
 \begin{equation*}
  \bar r_n-r_F=\frac{\bar v_n-RS_n}{S_n}
  =\frac{a}{S_n}(\Sigma\theta_M)_n.
- \tag{$**$}\label{eq:wj-13-normal-premium}
+ \tag{\ensuremath{**}}\label{eq:wj-13-normal-premium}
 \end{equation*}
 
+\begin{tcolorbox}[knowledge]
+\textbf{CARA--正态经济的市场贝塔与风险溢价}\quad 当 $\theta_M\ne0$、$v_M>0$ 且 $S_n\ne0$ 时，市场贝塔和市场风险溢价分别为
+\begin{equation*}
+ \beta_{n,M}=\frac{v_M(\Sigma\theta_M)_n}{S_n\theta_M^{\mathsf T}\Sigma\theta_M}.
+ \tag{13.VI}\label{eq:wj-13-normal-market-beta}
+\end{equation*}
+
+\begin{equation*}
+ \bar r_M-r_F=\frac{a\theta_M^{\mathsf T}\Sigma\theta_M}{v_M}.
+ \tag{13.VII}\label{eq:wj-13-normal-market-premium}
+\end{equation*}
+两者相乘得到\WJEqRef{eq:wj-13-normal-premium}{个股风险溢价~}，从而得到\WJEqRef{eq:wj-13-3}{CAPM 定价式~}。
+\end{tcolorbox}
+
+先把支付协方差按各自的初始市值换算成收益率协方差，求出市场贝塔。再用市场总持仓对\WJEqRef{eq:wj-13-normal-price}{均衡定价式~}加总，求出市场风险溢价。
+
+\begin{solution}[label-content={证明},blank-type=none]
 由 $\Sigma$ 的第 $n$ 行乘市场持仓列向量，
 \[
  (\Sigma\theta_M)_n
@@ -547,14 +607,15 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
  \mathrm E[\widetilde X_M]-Rv_M=a\theta_M^{\mathsf T}\Sigma\theta_M,\qquad
  \bar r_M-r_F=\frac{a\theta_M^{\mathsf T}\Sigma\theta_M}{v_M}.
 \]
-第二式是第一式两边除以 $v_M$ 的结果，因为 $\mathrm E[\widetilde X_M]/v_M-R=\bar r_M-r_F$。把所得的市场溢价与贝塔相乘，消去 $v_M$ 和 $\theta_M^{\mathsf T}\Sigma\theta_M$：
+第二式是第一式两边除以 $v_M$ 的结果，因为 $\mathrm E[\widetilde X_M]/v_M-R=\bar r_M-r_F$。将\WJEqRef{eq:wj-13-normal-market-premium}{市场风险溢价~}与\WJEqRef{eq:wj-13-normal-market-beta}{市场贝塔~}相乘，消去 $v_M$ 和 $\theta_M^{\mathsf T}\Sigma\theta_M$：
 \[
  \beta_{n,M}(\bar r_M-r_F)
  =\frac{v_M(\Sigma\theta_M)_n}{S_n\theta_M^{\mathsf T}\Sigma\theta_M}
    \frac{a\theta_M^{\mathsf T}\Sigma\theta_M}{v_M}
  =\frac{a}{S_n}(\Sigma\theta_M)_n.
 \]
-最后一项正是\WJEqRef{eq:wj-13-normal-premium}{式~} 给出的个股风险溢价，因此得到 \WJEqRef{eq:wj-13-3}{CAPM 定价式~}。
+最后一项正是\WJEqRef{eq:wj-13-normal-premium}{个股风险溢价公式~}给出的结果，因此得到 \WJEqRef{eq:wj-13-3}{CAPM 定价式~}。
+\end{solution}
 
 二次效用和 CARA 效用配合正态支付，分别给出了从个人最优和市场出清推出 CAPM 的充分条件。两种推导都把市场组合的风险溢价写成由投资者偏好与市场总风险决定的均衡结果。
 
@@ -567,16 +628,16 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \]
 每只证券供给一单位，总风险容忍度的倒数为 $a=1/2$，无风险总收益率 $R=1$。求均衡价格、市场期望净收益率、各证券的市场贝塔，并验证 CAPM。
 \begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
-市场持仓为 $\theta_M=[1,1]^{\mathsf T}$，所以 $\Sigma\theta_M=[1,4]^{\mathsf T}$、$\theta_M^{\mathsf T}\Sigma\theta_M=5$。由均衡价格式，
+市场持仓为 $\theta_M=[1,1]^{\mathsf T}$，所以 $\Sigma\theta_M=[1,4]^{\mathsf T}$、$\theta_M^{\mathsf T}\Sigma\theta_M=5$。由\WJEqRef{eq:wj-13-normal-equilibrium-price}{CARA--正态均衡价格~}，
 \[
  S=\bar v-a\Sigma\theta_M
  =\begin{bmatrix}7/2\\6\end{bmatrix},\qquad
  v_M=\frac{19}{2}.
 \]
 
-无风险利率为零。用各自的期望支付除以价格再减去 $1$，得两只证券的期望净收益率分别为 $1/7$、$1/3$，市场期望净收益率为 $\bar r_M=5/19$。
+无风险利率为零。用各自的期望支付除以价格再减去 $1$，得两只证券的期望净收益率分别为 $1/7$、$1/3$。由\WJEqRef{eq:wj-13-normal-market-premium}{市场风险溢价公式~}，市场期望净收益率为 $\bar r_M=5/19$。
 
-市场收益率的方差为 $5/v_M^2$，两只证券与市场收益率的协方差分别为 $1/(S_1v_M)$、$4/(S_2v_M)$。用各自的协方差除以市场方差，得到
+市场收益率的方差为 $5/v_M^2$，两只证券与市场收益率的协方差分别为 $1/(S_1v_M)$、$4/(S_2v_M)$。代入\WJEqRef{eq:wj-13-normal-market-beta}{市场贝塔公式~}，得到
 \[
  \beta_{1,M}=\frac{v_M}{5S_1}=\frac{19}{35},\qquad
  \beta_{2,M}=\frac{4v_M}{5S_2}=\frac{19}{15}.
@@ -622,6 +683,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \bottomrule
 \end{tabular}
 \end{center}
+
 \fi
 
 \WJChapterExercises
