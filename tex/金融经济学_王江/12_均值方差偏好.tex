@@ -667,7 +667,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  =(\lambda_r\bar r^{\mathsf T}+\lambda_1\iota^{\mathsf T})\Sigma^{-1}.
 \]
 
-将 $z^{\mathsf T}$ 分别代入后两行的 $z^{\mathsf T}\bar r=\bar r_p$ 和 $z^{\mathsf T}\iota=1$，再展开乘积，得到
+一阶条件的后两行对应原问题的两条约束。$z^{\mathsf T}\bar r=\bar r_p$ 是目标期望收益率约束，要求组合的期望收益率达到给定值；$z^{\mathsf T}\iota=1$ 是预算约束，要求各证券的权重之和为 $1$。将上式求得的 $z^{\mathsf T}$ 代入这两条约束，再展开乘积，得到
 \[
  \begin{aligned}
  \bar r_p=z^{\mathsf T}\bar r
@@ -708,7 +708,9 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  d=\begin{vmatrix}b&a\\a&c\end{vmatrix}=bc-a^2.
 \]
 
-两个乘数能否唯一求出，取决于 $d$ 是否为零。为判断 $d=bc-a^2$ 的符号和取零条件，下面先用谱分解把 $a,b,c$ 写成内积和平方长度，再用正交投影解释这三个量之间的关系。
+要求出权重，需要先判断乘数方程能否唯一求解，也就是 $d$ 是否为零。两条约束是否独立，取决于期望收益率向量 $\bar r$ 是否与预算向量 $\iota$ 成比例。若两者成比例，权重之和一旦固定，组合的期望收益率也就固定了。下面用正交投影找出期望收益率方向中垂直于预算方向的分量，并把它与 $d$ 联系起来。
+
+系数 $a,b,c$ 都是通过 $\Sigma^{-1}$ 加权的内积。为了用普通的长度和直角来解释它们，可以把 $\Sigma^{-1}$ 拆成两个相同的对称因子，让每个向量各乘一次。谱分解把这个矩阵开平方的问题变成对各个特征值分别开平方。
 
 % 参见 MIT OCW 18.06SC《Symmetric matrices and positive definiteness》。
 \begin{tcolorbox}[knowledge,title=实对称矩阵的谱分解]
@@ -734,7 +736,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \qquad \Lambda^{-1/2}=\operatorname{diag}(\lambda_1^{-1/2},\ldots,\lambda_N^{-1/2}).
 \]
 
-换回原坐标时，利用 $Q^{\mathsf T}Q=I$，把两个对角因子分别放回原基底下：
+换回原坐标时，利用 $Q^{\mathsf T}Q=I$，把两个对角因子分别放回原基底下，得到
 \[
  \begin{aligned}
  \Sigma^{-1}
@@ -744,7 +746,14 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \end{aligned}
 \]
 
-其中 $\Sigma^{-1/2}=Q\Lambda^{-1/2}Q^{\mathsf T}$ 是对称、可逆的矩阵。先看交叉系数 $a=\iota^{\mathsf T}\Sigma^{-1}\bar r$，其中 $\Sigma^{-1}$ 位于 $\iota^{\mathsf T}$ 和 $\bar r$ 之间。把它拆成两个 $\Sigma^{-1/2}$ 后，左边的因子与 $\iota^{\mathsf T}$ 相乘，右边的因子作用于 $\bar r$。这就给出了两个变换后的向量
+其中 $\Sigma^{-1/2}=Q\Lambda^{-1/2}Q^{\mathsf T}$ 对称且可逆。由对称性，左侧的因子可以并入左边向量的转置。对任意两个向量 $u,v$，都有
+\[
+ u^{\mathsf T}\Sigma^{-1}v
+ =u^{\mathsf T}\Sigma^{-1/2}\Sigma^{-1/2}v
+ =(\Sigma^{-1/2}u)^{\mathsf T}(\Sigma^{-1/2}v).
+\]
+
+因此，原来按 $\Sigma^{-1}$ 衡量的内积，可以在变换后用普通内积来计算。原来的加权正交关系也就对应图上的直角。对期望收益率向量和预算向量作这一变换，记
 \[
  \left\{
  \begin{aligned}
@@ -754,7 +763,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \right.
 \]
 
-由于 $\Sigma^{-1/2}$ 对称，左边的乘积 $\iota^{\mathsf T}\Sigma^{-1/2}$ 可以写成 $(\Sigma^{-1/2}\iota)^{\mathsf T}$。于是 $a$ 是 $y$ 与 $x$ 的内积。对 $b,c$ 作同样的拆分，分别得到 $x,y$ 与自身的内积。
+于是，交叉系数 $a$ 是两个变换后向量的内积，$b,c$ 分别是这两个向量的平方长度。
 \[
  \begin{aligned}
  a&=\iota^{\mathsf T}\Sigma^{-1}\bar r
@@ -773,19 +782,13 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 内积 $a$ 可以为正、零或负。由于 $\Sigma^{-1/2}$ 可逆，$b=0$ 当且仅当 $\bar r=0$。预算向量 $\iota\ne0$，所以 $y\ne0$，从而 $c>0$。
 
 % 参照朱思博完整修订版第 6—7 页与教材印刷第 183 页。改为投影到预算方向，以涵盖 b=0。
-我们要判断 $d=bc-a^2$ 是否非负，以及何时等于零。由于 $c>0$，除以 $c$ 后符号和取零条件都相同，因此可以考察 $d/c=b-a^2/c$。在\WJRef{fig:wj-twelve-projection}{图~}[（正交投影）]中，$x$ 和 $y$ 分别来自期望收益率向量 $\bar r$ 和预算向量 $\iota$：
+预算方向 $y$ 始终非零，即使 $x=0$，也可以把 $x$ 投影到 $y$ 所在的直线上。由于 $c>0$，考察 $d/c=b-a^2/c$ 就能判断 $d$ 的符号和取零条件。这里 $b$ 是整个 $x$ 的平方长度，减去的 $a^2/c$ 则是投影向量的平方长度。为看出后一项的来历，设投影向量为 $ty$，则剩下的向量 $x-ty$ 与 $y$ 垂直，因此
 \[
- x=\Sigma^{-1/2}\bar r,\qquad y=\Sigma^{-1/2}\iota,\qquad
- a=y^{\mathsf T}x,\quad b=\lVert x\rVert^2,\quad c=\lVert y\rVert^2.
+ y^{\mathsf T}(x-ty)=a-tc=0,
+ \qquad t=\frac ac.
 \]
 
-其中 $b$ 是 $x$ 的平方长度。要理解减去的 $a^2/c$，把 $x$ 分成沿 $y$ 的分量和垂直于 $y$ 的分量。设沿 $y$ 的投影向量为 $\lambda y$，则剩下的向量 $x-\lambda y$ 与 $y$ 垂直，因此
-\[
- y^{\mathsf T}(x-\lambda y)=a-\lambda c=0,
- \qquad \lambda=\frac ac.
-\]
-
-因此，$x$ 在 $y$ 所在直线上的投影向量为 $\frac{a}{c}y$，其平方长度为 $\lVert(a/c)y\rVert^2=(a/c)^2c=a^2/c$。由勾股定理，从 $x$ 的平方长度 $b$ 减去投影向量的平方长度 $a^2/c$，就得到垂直分量 $x-(a/c)y$ 的平方长度。
+因此，$x$ 在 $y$ 所在直线上的投影向量为 $\frac{a}{c}y$，其平方长度为 $\lVert(a/c)y\rVert^2=(a/c)^2c=a^2/c$。如\WJRef{fig:wj-twelve-projection}{图~}[（正交投影）]所示，投影和垂直分量构成直角三角形的两条直角边。由勾股定理，从 $x$ 的平方长度 $b$ 中减去投影的平方长度，得到垂直分量的平方长度。
 
 \noindent\begin{minipage}{\linewidth}
 \[
@@ -799,9 +802,18 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \WJFigureCaption{正交投影与行列式（取 $a>0$、$d>0$）}
 \end{minipage}
 
-由\WJRef{fig:wj-twelve-projection}{图~}[中的正交投影分解]，$d/c$ 等于垂直分量 $x-(a/c)y$ 的平方长度，所以 $d/c\ge0$。再由 $c>0$，得 $d=c(d/c)\ge0$。
+平方长度非负，且 $c>0$，\textbf{所以 $d\ge0$}。垂直分量是否为零，决定了两条约束是否独立。
 
-\textbf{$d=0$ 时，所有完全投资组合的均值相同。} 此时垂直分量为零，即 $x=(a/c)y$。由于 $\Sigma^{-1/2}$ 可逆，这等价于 $\bar r=(a/c)\iota$，即各证券的期望收益率都等于 $a/c$。任何满足预算约束的组合都有 $\bar r^{\mathsf T}z=(a/c)\iota^{\mathsf T}z=a/c$。目标均值取 $a/c$ 时，预算约束已保证收益率约束成立。目标均值取其他值时，没有可行组合。因此最小方差前沿和有效前沿都只包含全局最小方差组合（MVP）这一个点，见\WJRef{exer:wj-twelve-7}{练习~}。
+\textbf{$d=0$ 当且仅当期望收益率向量 $\bar r$ 与预算向量 $\iota$ 成比例。} 因为 $c>0$，所以 $d=0$ 当且仅当 $d/c=0$。由上式，$d/c$ 是垂直分量 $x-\frac ac y$ 的平方长度。平方长度为零当且仅当这个向量为零，此时 $x$ 与它在 $y$ 所在直线上的投影重合。再由 $\Sigma^{-1/2}$ 可逆，得到
+\[
+ d=0
+ \quad\Longleftrightarrow\quad x=\frac ac y
+ \quad\Longleftrightarrow\quad \bar r=\frac ac\iota.
+\]
+
+预算向量 $\iota$ 的每个分量都是 $1$，所以各证券的期望收益率都等于 $a/c$。任何满足预算约束的组合都有 $\bar r^{\mathsf T}z=(a/c)\iota^{\mathsf T}z=a/c$。因此，唯一可行的目标均值是 $a/c$。在这个均值下，所有满足预算约束的权重都可行，改变权重可以改变方差。
+
+最小方差前沿在每个可行的目标均值下只取方差最小的组合。由于所有满足预算约束的组合都具有同一均值，在该均值下使方差最小，就等于在所有满足预算约束的组合中使方差最小。由 $\Sigma$ 正定，方差对权重严格凸，因此这个组合是唯一的全局最小方差组合（MVP），见\WJRef{exer:wj-twelve-7}{练习~}。在均值--标准差平面上，可行组合都位于同一水平线上，MVP 是最左端的点。其余组合的均值相同、风险更高，所以有效前沿也只包含 MVP。
 
 \textbf{$d>0$ 时，可以改变组合的目标均值。} 此时垂直分量非零，各证券的期望收益率不全相同。允许卖空时，任选两只期望收益率不同的证券，就可以用权重和为 $1$ 的配置达到任意实数目标均值。
 
@@ -818,7 +830,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 \end{minipage}
 \end{center}
 
-下面讨论 $d>0$ 的情形。此时系数矩阵可逆，可以用克莱默法则解出唯一的一组乘数。
+回到乘数方程。各证券的期望收益率不全相同时，$d>0$，系数矩阵可逆。下面用克莱默法则求出唯一的一组乘数，再代回权重表达式。
 
 % 参见 Johns Hopkins University 线性代数讲义第 22 讲（https://math.jhu.edu/~lindblad/201/l22.pdf）
 % 和 MIT OCW 18.02《Matrices and Linear Algebra》第 3 节。
@@ -837,6 +849,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \begin{bmatrix}\lambda_r\\\lambda_1\end{bmatrix}
  =\begin{bmatrix}\bar r_p\\1\end{bmatrix}.
 \]
+
 系数矩阵的第一列 $[b,a]^{\mathsf T}$ 对应 $\lambda_r$，第二列 $[a,c]^{\mathsf T}$ 对应 $\lambda_1$。求哪个乘数，就用右端列向量 $[\bar r_p,1]^{\mathsf T}$ 替换对应的一列。两式的分母都是原系数矩阵的行列式 $d$。因此
 \[
  \lambda_r=\frac{1}{d}
@@ -852,7 +865,8 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  z=\Sigma^{-1}(\lambda_r\bar r+\lambda_1\iota)
   =\lambda_r\Sigma^{-1}\bar r+\lambda_1\Sigma^{-1}\iota.
 \]
-将刚求出的 $\lambda_r$ 和 $\lambda_1$ 代入，再提取公因子，得到给定目标收益率 $\bar r_p$ 的前沿权重
+
+将刚求出的 $\lambda_r$ 和 $\lambda_1$ 代入，再提取公因子，得到给定目标收益率 $\bar r_p$ 时的候选权重
 \begin{equation}
  \begin{aligned}
  z_p
@@ -870,14 +884,16 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  =\Sigma\bigl(\lambda_r\Sigma^{-1}\bar r+\lambda_1\Sigma^{-1}\iota\bigr)
  =\lambda_r\bar r+\lambda_1\iota.
 \]
+
 这就是\WJEqRef{eq:wj-12-frontier-foc}{权重的一阶条件~}在 $z_p$ 处的等式。
 
-为验证方差最小，任取一个满足同样约束的组合 $z$，记权重差为 $g=z-z_p$。将两组权重的收益率约束和预算约束分别相减，得到
+现在 $z_p$ 满足两条约束和一阶条件。要验证它是否使方差最小，可以从 $z_p$ 出发，在保持预算和目标收益率不变的条件下调整权重，比较调整前后的方差。任取一个满足同样约束的组合 $z$，记权重差为 $g=z-z_p$。将两组权重的收益率约束和预算约束分别相减，得到
 \[
  g^{\mathsf T}\bar r=z^{\mathsf T}\bar r-z_p^{\mathsf T}\bar r
  =\bar r_p-\bar r_p=0,\qquad
  g^{\mathsf T}\iota=z^{\mathsf T}\iota-z_p^{\mathsf T}\iota=1-1=0.
 \]
+
 比较 $z=z_p+g$ 与 $z_p$ 的方差时，展开 $z^{\mathsf T}\Sigma z$ 会产生交叉项 $2g^{\mathsf T}\Sigma z_p$。为计算这一项，将 $z_p$ 满足的一阶条件两边左乘 $g^{\mathsf T}$，再代入刚得到的两个零值
 \[
  g^{\mathsf T}\Sigma z_p
@@ -919,6 +935,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
   \bar r_p=1 &\quad\Longrightarrow\quad z_p=z_0+1h=z_0+h=:z_1.
  \end{aligned}
 \]
+
 因此，$z_0$ 和 $z_1$ 分别是目标均值为 $0$ 和 $1$ 时的最小方差组合的权重。收益率用小数表示，所以这里的 $1$ 对应 $100\%$。
 
 这两个前沿组合的权重之差为 $h=z_1-z_0$。代回 $z_p=z_0+\bar r_ph$，就能用 $z_0$ 和 $z_1$ 表示任意目标均值对应的前沿权重
@@ -1860,7 +1877,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \end{tcolorbox}
 
 % 参照杨云雯第12章批注（批注版第264页）的独立副本证明。
-\begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false]
+\begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false,label-punct={}]
 \begin{tcolorbox}[knowledge,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (2) 项的证明（方法二）}]
 因为 $\mathrm E[Z]=0$，所以 $v_2=\operatorname{Cov}(u'(\widetilde w),Z)$。当 $\sigma_w>0$ 时，$Z$ 越大，边际效用越低。令 $g(s)=u'(\bar w+\sigma_w s)$，取 $Z$ 的两个独立同分布副本 $Z_1,Z_2$，记 $g_i=g(Z_i)$。展开后，同一下标的两项具有相同的期望 $\mathrm E[g(Z)Z]$。两个交叉项的因子相互独立，故其期望均为 $\mathrm E[g(Z)]\mathrm E[Z]$。于是
 \[
@@ -1877,7 +1894,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \end{tcolorbox}
 \end{solution}
 
-\begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false]
+\begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false,label-punct={}]
 \begin{tcolorbox}[knowledge,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (5) 项的证明（方法二）}]
 对两组参数 $x_i=(\bar w_i,\sigma_{w,i})$，用同一个 $Z$ 构造 $\widetilde w_i=\bar w_i+\sigma_{w,i} Z$，$i=1,2$。计算 $v(x_i)$ 只需要 $\widetilde w_i$ 各自的分布，因此可以这样构造。实际合并两个证券组合时，合并后的标准差还取决于两个组合收益之间的协方差。
 
