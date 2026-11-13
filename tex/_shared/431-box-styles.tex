@@ -1,0 +1,54 @@
+% 讲义与 Beamer 共用的知识、例题和小结等内容框。
+\tcbset{
+    four three one box/.style={
+        enhanced,
+        breakable,
+        parbox=false,
+        boxrule=0.4pt,
+        leftrule=1.4pt,
+        arc=2pt,
+        left=7pt,
+        right=7pt,
+        top=5pt,
+        bottom=5pt,
+        before skip=.5em plus .2em minus .1em,
+        after skip=.5em plus .2em minus .1em,
+        before upper=\indent,
+        fonttitle=\bfseries
+    },
+    knowledge/.style={
+        four three one box,
+        colback=blue!2!white,
+        colframe=blue!55!black,
+        colbacktitle=blue!8!white,
+        coltitle=blue!60!black
+    },
+    warning/.style={
+        four three one box,
+        colback=red!2!white,
+        colframe=red!60!black,
+        colbacktitle=red!8!white,
+        coltitle=red!65!black
+    },
+    example/.style={
+        four three one box,
+        colback=teal!2!white,
+        colframe=teal!55!black,
+        colbacktitle=teal!8!white,
+        coltitle=teal!60!black
+    },
+    practice/.style={
+        four three one box,
+        colback=violet!2!white,
+        colframe=violet!55!black,
+        colbacktitle=violet!8!white,
+        coltitle=violet!60!black
+    },
+    summary/.style={
+        four three one box,
+        colback=black!1!white,
+        colframe=black!45,
+        colbacktitle=black!7!white,
+        coltitle=black!70
+    }
+}
