@@ -31,3 +31,15 @@
 正文采用六项固定导航，依据页面内容高亮。第 9 页高亮“中国”，第 10—11 页回到“实证”。书目编号与原 PPT 及逐页文案一致。讲述提示保存在源文件的 Beamer 备注中。
 
 字体的实际版本、SHA256、版权与嵌入许可记录在 `fonts/font-manifest.json`，来源说明见 `fonts/SOURCES.txt`，对应完整许可证随字体保留在 `fonts/LICENSE-*.txt`。这些是模板实际加载的相对路径依赖，不能单独忽略 fonts/；本轮没有更改字体二进制。
+
+## 金融经济学第 12—14 讲
+
+在 Beamer 目录编译：
+
+    latexmk -xelatex -interaction=nonstopmode -halt-on-error 第12—14讲_均值方差偏好_CAPM与APT.tex
+
+编译前由 Python 3 读取第 12 讲的讲义正文与习题 TeX，在 build/ 生成课件帧。第 12 讲正文、公式、图源、注释性脚注、习题题面及解答以讲义为准。
+
+从项目根目录核对讲义与生成帧的内容差异：
+
+    python3 Beamer/sync-chapter12.py --check
