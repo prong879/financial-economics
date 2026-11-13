@@ -103,7 +103,7 @@
  z=\frac{\sigma_2}{\sigma_2-\sigma_1}
 \]
 
-即可使波动率为零。例如 $\sigma_1=1,\sigma_2=2$ 时，权重 $(2,-1)$ 的风险为零。因此原题(c)的结论对应非负配置权重。
+即可使波动率为零。例如 $\sigma_1=1,\sigma_2=2$ 时，权重 $[2,-1]$ 的风险为零。因此原题(c)的结论对应非负配置权重。
 
 \item \textbf{证明}\quad 若 $\sigma_1=\sigma_2=\sigma$，则
 \[
@@ -129,7 +129,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{证明}\quad 记 $z=(z_1,\ldots,z_N)^{\mathsf T}$ 为组合的权重列向量，满足 $\sum_i z_i=1$。用 $\sum_{i\ne j}z_i z_j=(\sum_i z_i)^2-\sum_i z_i^2=1-\sum_i z_i^2$ 合并协方差项，组合方差为
+\item \textbf{证明}\quad 记 $z=[z_1,\ldots,z_N]^{\mathsf T}$ 为组合的权重列向量，满足 $\sum_i z_i=1$。用 $\sum_{i\ne j}z_i z_j=(\sum_i z_i)^2-\sum_i z_i^2=1-\sum_i z_i^2$ 合并协方差项，组合方差为
 \[
  \sigma_p^2=(\sigma^2-c)\sum_i z_i^2+c.
 \]
@@ -165,7 +165,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=7\baselineskip]
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{解答}\quad 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。本题用标量 $z$ 表示第一只证券的权重，因此组合权重列向量为 $(z,1-z)^{\mathsf T}$。先设 $\bar r_1\ne\bar r_2$。由 $z\bar r_1+(1-z)\bar r_2=\bar r_p$，得到
+\item \textbf{解答}\quad 按本章允许卖空的设定，先求给定均值的最小方差前沿（MVF），再从中找有效前沿（MVE）。本题用标量 $z$ 表示第一只证券的权重，因此组合权重列向量为 $[z,1-z]^{\mathsf T}$。先设 $\bar r_1\ne\bar r_2$。由 $z\bar r_1+(1-z)\bar r_2=\bar r_p$，得到
 \[
  z=\frac{\bar r_p-\bar r_2}{\bar r_1-\bar r_2},\qquad1-z=\frac{\bar r_1-\bar r_p}{\bar r_1-\bar r_2}.
 \]
@@ -330,7 +330,7 @@
 \]
 $L$ 的像是有限维线性子空间，因而是闭集。所以存在 $z$ 使 $Lz=(1,m,y)$，即这个 $z$ 满足预算，均值为 $m$，标准差为 $\|y\|=s$。因此半正定时 $A$ 仍是闭集。
 
-\item \textbf{反例}\quad 原命题不成立。取两证券均值 $\bar r=(0,1)^{\mathsf T}$、协方差矩阵 $\Sigma=I$。两个单证券组合给出点 $(0,1)$、$(1,1)$。二者中点为 $(1/2,1)$；但均值为 $1/2$ 唯一要求权重 $(1/2,1/2)$，其标准差为 $1/\sqrt2$，故中点不属于 $A$。因此 $A$ 不是凸集。
+\item \textbf{反例}\quad 原命题不成立。取两证券均值 $\bar r=[0,1]^{\mathsf T}$、协方差矩阵 $\Sigma=I$。两个单证券组合给出点 $(0,1)$、$(1,1)$。二者中点为 $(1/2,1)$；但均值为 $1/2$ 唯一要求权重 $[1/2,1/2]$，其标准差为 $1/\sqrt2$，故中点不属于 $A$。因此 $A$ 不是凸集。
 
 在这个例子里，分别投入一半资金得到的是 $(1/2,1/\sqrt2)$，而连接两个单证券点所得的几何中点是 $(1/2,1)$。组合权重的平均给出均值的平均，标准差则还取决于协方差。
 

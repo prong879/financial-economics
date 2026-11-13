@@ -483,10 +483,10 @@ $f''(x)\le 0$ &
 \end{tcolorbox}
 
 \subsection{证券组合}
-记 $S=(S_1,\ldots,S_N)^{\mathsf T}$ 为 $0$ 期的证券价格列向量，其中 $S_n$ 是第 $n$ 只证券每份的价格。价格与持仓均按支付矩阵 $X$ 的列序排列。
+记 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 为 $0$ 期的证券价格列向量，其中 $S_n$ 是第 $n$ 只证券每份的价格。价格与持仓均按支付矩阵 $X$ 的列序排列。
 
 \begin{tcolorbox}[knowledge,title=证券组合与市场组合,breakable=false]
-对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则组合由向量 $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$ 表示。在状态 $\omega$，先用每份证券的支付乘以持有数量，再把各证券的支付加起来。对每个状态都做一次，就得到组合的支付向量 $X\theta$：
+对每只证券的持有数量构成\textbf{证券组合}（security portfolio），简称\textbf{组合}（portfolio）。若 $\theta_n$ 为证券 $n$ 的持有数量，则组合由向量 $\theta=[\theta_1,\ldots,\theta_N]^{\mathsf T}$ 表示。在状态 $\omega$，先用每份证券的支付乘以持有数量，再把各证券的支付加起来。对每个状态都做一次，就得到组合的支付向量 $X\theta$：
     \[
         (X\theta)_\omega=X_{\omega,\cdot}\theta
         =\sum_{n=1}^N x_{\omega,n}\theta_n.
@@ -611,7 +611,7 @@ e_{k,1}=X\bar{\theta}_k
 若引入与这些收入相联系、且支付无法由现有证券组合复制的新证券，就能扩大市场化支付集合，为收入转移和风险分担提供更多选择。
 \end{tcolorbox}
 
-\WJRef{fig:wj-marketed-endowments}{图~} 以第 1 期三个状态的支付为坐标，两只证券张成 $x_aOx_b$ 平面 $M$。各持有一份证券，即取持仓列向量 $(1,1)^{\mathsf T}$，得到支付 $X_1+X_2=e_{1,1}$，所以该禀赋可市场化。$e_{2,1}$ 位于平面外，无法复制，因此该示例不满足证券市场经济的定义。
+\WJRef{fig:wj-marketed-endowments}{图~} 以第 1 期三个状态的支付为坐标，两只证券张成 $x_aOx_b$ 平面 $M$。各持有一份证券，即取持仓列向量 $[1,1]^{\mathsf T}$，得到支付 $X_1+X_2=e_{1,1}$，所以该禀赋可市场化。$e_{2,1}$ 位于平面外，无法复制，因此该示例不满足证券市场经济的定义。
 
 \WJInputFigure{02_市场化与禀赋}
 

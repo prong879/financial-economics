@@ -211,7 +211,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 
 因此国家冲击 $\widetilde z_a,\widetilde z_b$ 的协方差分别为 $A-D,B-D$。由于 $\widetilde v_k=\widetilde w+\widetilde z_k$ 且两项独立，$\widetilde z_k$ 的特征函数等于两个正态特征函数之商，仍为正态特征函数。三个独立正态向量 $\widetilde w,\widetilde z_a,\widetilde z_b$ 的线性变换给出联合正态支付 $(\widetilde v_a,\widetilde v_b)$。以下取联合协方差
 \[
- \Gamma=\begin{pmatrix}A&C\\C^{\mathsf T}&B\end{pmatrix}
+ \Gamma=\begin{bmatrix}A&C\\C^{\mathsf T}&B\end{bmatrix}
 \]
 
 正定，使给定价格下的投资目标严格凹。记 $L=K_a+K_b$、$R=1+r_F>0$，$\ell_a=\bar v-Rp_a$、$\ell_b=\bar v-Rp_b$ 为超额期望支付。
@@ -220,14 +220,14 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \[
  \theta_a^{\mathsf T}\ell_a+\theta_b^{\mathsf T}\ell_b
  -\frac\alpha2
- \begin{pmatrix}\theta_a\\\theta_b\end{pmatrix}^{\mathsf T}
- \Gamma\begin{pmatrix}\theta_a\\\theta_b\end{pmatrix}.
+ \begin{bmatrix}\theta_a\\\theta_b\end{bmatrix}^{\mathsf T}
+ \Gamma\begin{bmatrix}\theta_a\\\theta_b\end{bmatrix}.
 \]
 
 把两国股票的总持仓堆叠成列向量。对该向量求导并令梯度为零，一阶条件是 $\alpha\Gamma$ 乘以持仓向量等于超额期望支付向量。严格凹性给出唯一需求
 \[
- \boxed{\begin{pmatrix}\theta_a\\\theta_b\end{pmatrix}
- =\frac1\alpha\Gamma^{-1}\begin{pmatrix}\ell_a\\\ell_b\end{pmatrix}}.
+ \boxed{\begin{bmatrix}\theta_a\\\theta_b\end{bmatrix}
+ =\frac1\alpha\Gamma^{-1}\begin{bmatrix}\ell_a\\\ell_b\end{bmatrix}}.
 \]
 
 该需求与国籍及初始财富无关。
@@ -265,7 +265,7 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 
 相乘即得 $\bar r_{a,i}-r_F=\beta_{a,i;W}(\bar r_W-r_F)$。将 $A+C$ 换为 $B+C^{\mathsf T}$，得到国家 $b$ 的同一结论。
 
-若把原题的“等权”理解为各国各投一半资金，则对应持仓 $g=(\iota/(2V_a),\,\iota/(2V_b))$（按两国堆叠为列向量）。用该组合给所有股票做 CAPM 定价，要求超额期望支付向量与 $\Gamma g$ 成比例。由 (b)，该向量与 $\Gamma(\iota,\iota)^{\mathsf T}$ 成比例。由于 $\Gamma$ 可逆，这要求 $V_a=V_b$，而题目并未保证两国市值相同。\qedhere
+若把原题的“等权”理解为各国各投一半资金，则对应持仓 $g=(\iota/(2V_a),\,\iota/(2V_b))$（按两国堆叠为列向量）。用该组合给所有股票做 CAPM 定价，要求超额期望支付向量与 $\Gamma g$ 成比例。由 (b)，该向量与 $\Gamma[\iota,\iota]^{\mathsf T}$ 成比例。由于 $\Gamma$ 可逆，这要求 $V_a=V_b$，而题目并未保证两国市值相同。\qedhere
 \end{enumerate}
 \end{solution}
 
@@ -289,8 +289,8 @@ $\tau^2=0$ 表示劳动收入冲击可由股票支付与常数完全复制。回
 \begin{enumerate}[label=(\alph*)]
 \item 对一位国家 $a$ 的投资者，记 $x,y\in\mathbb R^N$ 分别为他对 $a$ 国、$b$ 国股票的总持仓列向量。需求为
 \[
- \begin{pmatrix}x\\y\end{pmatrix}
- =\frac1\alpha\Gamma^{-1}\begin{pmatrix}\ell_a\\\ell_b\end{pmatrix}.
+ \begin{bmatrix}x\\y\end{bmatrix}
+ =\frac1\alpha\Gamma^{-1}\begin{bmatrix}\ell_a\\\ell_b\end{bmatrix}.
 \]
 
 对一位国家 $b$ 的投资者，记 $t\in\mathbb R^N$ 为他对本国股票的总持仓列向量，需求为 $t=B^{-1}\ell_b/\alpha$。一阶条件与市场出清组成

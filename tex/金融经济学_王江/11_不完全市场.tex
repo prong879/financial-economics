@@ -40,7 +40,7 @@
 
 当 $N<\Omega$ 时，$M$ 是整个支付空间的真子空间，市场不完全。
 
-沿用\WJRef{sec:wj-ten-1}{第~}[~节（完全市场中的均衡）]的净交易口径，禀赋 $e_k$ 包括初始证券的支付。价格 $S=(S_1,\ldots,S_N)^{\mathsf T}$ 与净买入数量 $\theta_k=(\theta_{k,1},\ldots,\theta_{k,N})^{\mathsf T}$ 都是按证券排列的列向量。未来禀赋 $e_{k,1}$、消费 $c_{k,1}$ 和净交易支付 $X\theta_k$ 则是按状态排列的 $\Omega$ 维列向量。预算关系为
+沿用\WJRef{sec:wj-ten-1}{第~}[~节（完全市场中的均衡）]的净交易口径，禀赋 $e_k$ 包括初始证券的支付。价格 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 与净买入数量 $\theta_k=[\theta_{k,1},\ldots,\theta_{k,N}]^{\mathsf T}$ 都是按证券排列的列向量。未来禀赋 $e_{k,1}$、消费 $c_{k,1}$ 和净交易支付 $X\theta_k$ 则是按状态排列的 $\Omega$ 维列向量。预算关系为
 \[
  c_{k,0}=e_{k,0}-S^{\mathsf T}\theta_k,\qquad
  c_{k,1}=e_{k,1}+X\theta_k.
@@ -53,7 +53,7 @@
 \[
  \WJEventTree[stem]{2,1}.
 \]
-参与者的未来禀赋为 $(e_a,e_b)^{\mathsf T}$。求净买入 $\theta$ 单位证券后的消费，并说明未来消费为什么只能沿一条直线变化。
+参与者的未来禀赋为 $[e_a,e_b]^{\mathsf T}$。求净买入 $\theta$ 单位证券后的消费，并说明未来消费为什么只能沿一条直线变化。
 \begin{solution}[blank-type=manual]
 将净购买带来的支付加到禀赋上，得到
 \[
@@ -137,7 +137,7 @@
  \mathrm E[(\widetilde\pi_k-\widetilde\pi_j)\widetilde X_n]=0,\qquad\forall k,j,n.
 \]
 
-将概率并入个人定价核，得到状态价格 $\phi_{k,\omega}=p_\omega\pi_{k,\omega}>0$。按 $X$ 的行序排列，得到 $\Omega$ 维状态价格列向量 $\phi_k=(\phi_{k,1},\ldots,\phi_{k,\Omega})^{\mathsf T}$。将第 $n$ 只证券的期望展开，再把所有证券的等式合写为
+将概率并入个人定价核，得到状态价格 $\phi_{k,\omega}=p_\omega\pi_{k,\omega}>0$。按 $X$ 的行序排列，得到 $\Omega$ 维状态价格列向量 $\phi_k=[\phi_{k,1},\ldots,\phi_{k,\Omega}]^{\mathsf T}$。将第 $n$ 只证券的期望展开，再把所有证券的等式合写为
 \[
  S_n=\sum_\omega p_\omega\pi_{k,\omega}X_{\omega,n}
      =\sum_\omega\phi_{k,\omega}X_{\omega,n},\qquad
@@ -147,9 +147,9 @@
 各人的状态价格向量为同一组证券定价，所以 $X^{\mathsf T}(\phi_k-\phi_j)=0$。完全市场中，这个条件使各人的状态价格及定价核逐状态相同。不完全市场中，个人定价核可以相同，也可以不同。若 $\phi\gg0$ 能为现有证券定价，取一个非零向量 $v$ 使 $X^{\mathsf T}v=0$。则 $\phi+tv$ 仍给出相同的报价，且当 $|t|$ 足够小时，各分量仍为正。
 
 % 教材练习 11.1(a)，印刷第 175--176 页。用已求得的债券与股票价格说明状态价格的不唯一性。
-例如，债券支付为 $(1,1,1)^{\mathsf T}$，股票支付为 $(1,1,2)^{\mathsf T}$。若债券价格为 $5/6$、股票价格为 $1$，下列每个向量都能为这两只证券定价：
+例如，债券支付为 $[1,1,1]^{\mathsf T}$，股票支付为 $[1,1,2]^{\mathsf T}$。若债券价格为 $5/6$、股票价格为 $1$，下列每个向量都能为这两只证券定价：
 \[
- \phi(t)=\bigl(\tfrac13+t,\;\tfrac13-t,\;\tfrac16\bigr)^{\mathsf T},
+ \phi(t)=\bigl[\tfrac13+t,\;\tfrac13-t,\;\tfrac16\bigr]^{\mathsf T},
  \qquad |t|<\tfrac13.
 \]
 
@@ -189,7 +189,7 @@
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-记均衡价格为 $S$，均衡消费为 $c_k$。由无套利，存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$，将 $S^{\mathsf T}\theta_k=\phi^{\mathsf T}X\theta_k$ 代入证券预算，得到
+记均衡价格为 $S$，均衡消费为 $c_k$。由无套利，存在 $\phi\gg0$ 使 $S=X^{\mathsf T}\phi$。令 $\widehat\phi=[1,\phi^{\mathsf T}]^{\mathsf T}$，将 $S^{\mathsf T}\theta_k=\phi^{\mathsf T}X\theta_k$ 代入证券预算，得到
 \[
  \begin{aligned}
  \widehat\phi^{\mathsf T}c_k
@@ -286,13 +286,13 @@
 
 现在构造能在各个总禀赋水平上匹配 $f_k$ 的证券组合。先取 $z_1>0$。若 $N_d=1$，只需用市场组合在唯一的取值上匹配支付。若 $N_d\ge2$，以总禀赋水平为行，以市场组合和按执行价从低到高排列的看涨期权为列，支付矩阵为
 \[
- \begin{pmatrix}
+ \begin{bmatrix}
  z_1&0&0&\cdots&0\\
  z_2&z_2-z_1&0&\cdots&0\\
  z_3&z_3-z_1&z_3-z_2&\cdots&0\\
  \vdots&\vdots&\vdots&\ddots&\vdots\\
  z_{N_d}&z_{N_d}-z_1&z_{N_d}-z_2&\cdots&z_{N_d}-z_{N_d-1}
- \end{pmatrix}.
+ \end{bmatrix}.
 \]
 
 它是对角元严格为正的下三角矩阵，因而可逆。给定目标支付 $f(z_i)$，记 $h_0$ 为市场组合的头寸，$h_i$ 为执行价 $z_i$ 的期权头寸。第一行只有市场组合支付，故 $h_0=f(z_1)/z_1$。若有至少两个不同取值，第二行给出

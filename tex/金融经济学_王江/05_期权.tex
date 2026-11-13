@@ -414,7 +414,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 股票与债券的支付线性无关，两个状态下的任意支付均可复制，市场完全。
 
 \subsection{求解状态价格}
-按上涨、下跌的顺序，状态价格列向量为 $\phi=(\phi_u,\phi_d)^{\mathsf T}$。股票和债券的定价方程为
+按上涨、下跌的顺序，状态价格列向量为 $\phi=[\phi_u,\phi_d]^{\mathsf T}$。股票和债券的定价方程为
 \[
  S=\phi_u uS+\phi_d dS,\qquad \phi_u+\phi_d=\frac1R.
 \]
@@ -425,14 +425,14 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
  \phi_d=\frac1R\frac{u-R}{u-d}.
 \]
 
-两分量严格为正恰好对应 $d<R<u$。记 $c_1=\tilde c$ 为看涨期权的随机到期支付。它在上涨和下跌状态分别取标量值 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$，两项按状态排成支付列向量 $(c_u,c_d)^{\mathsf T}$。用 $\phi$ 的相应分量加权，得到当期价格 $c$：
+两分量严格为正恰好对应 $d<R<u$。记 $c_1=\tilde c$ 为看涨期权的随机到期支付。它在上涨和下跌状态分别取标量值 $c_u=[uS-K]_+$、$c_d=[dS-K]_+$，两项按状态排成支付列向量 $[c_u,c_d]^{\mathsf T}$。用 $\phi$ 的相应分量加权，得到当期价格 $c$：
 \begin{equation}
  c=\phi_u c_u+\phi_d c_d.
  \label{eq:wj-five-5}
 \end{equation}
 
 \subsection{复制组合与对冲比}
-按股票、债券的顺序，把持仓记为 $(\theta_S,\theta_B)^{\mathsf T}$，其中 $\theta_S$ 是股数，$\theta_B$ 是单位债券的份数。用支付矩阵 $A$ 乘以持仓列向量，逐状态匹配期权支付：
+按股票、债券的顺序，把持仓记为 $[\theta_S,\theta_B]^{\mathsf T}$，其中 $\theta_S$ 是股数，$\theta_B$ 是单位债券的份数。用支付矩阵 $A$ 乘以持仓列向量，逐状态匹配期权支付：
 \[
  \theta_SuS+\theta_B=c_u,\qquad \theta_SdS+\theta_B=c_d.
 \]
@@ -574,7 +574,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 \end{tcolorbox}
 假设指数证券的支付非负，并且下述相同到期日、相应执行价的欧式看涨期权均可交易。以 $\tilde X$ 表示指数证券的随机支付，$X_i$ 是它在状态 $i$ 的取值。执行价为 $X_\omega$ 的看涨期权在状态 $i$ 支付 $[X_i-X_\omega]_+$。按状态顺序排列，得到支付列向量
 \[
- \bigl([X_1-X_\omega]_+,\ldots,[X_\Omega-X_\omega]_+\bigr)^{\mathsf T}.
+ \bigl[[X_1-X_\omega]_+,\ldots,[X_\Omega-X_\omega]_+\bigr]^{\mathsf T}.
 \]
 
 该向量的前 $\omega$ 项为零，其余各项为 $X_i-X_\omega$。当 $X_1\ne0$ 时，选取指数证券及执行价为 $X_1,\ldots,X_{\Omega-1}$ 的看涨，将这些支付向量依次作为列，得到支付矩阵
@@ -621,7 +621,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 % 来源：教师 PPT 第 34 页。
 \begin{tcolorbox}[example,title=课堂例题：在三个状态中复制第二个状态]
 \begin{question}
-标的支付为 $(10,20,30)^{\mathsf T}$，可交易看涨的执行价为 $0,10,20$。构造只在第二个状态支付 $1$ 的组合。
+标的支付为 $[10,20,30]^{\mathsf T}$，可交易看涨的执行价为 $0,10,20$。构造只在第二个状态支付 $1$ 的组合。
 \end{question}
 \begin{solution}
 三只期权的支付矩阵为
@@ -631,8 +631,8 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 
 买入 $1/10$ 份执行价 $10$ 的看涨，卖出 $2/10$ 份执行价 $20$ 的看涨，得到
 \[
- \tfrac1{10}(0,10,20)^{\mathsf T}
- -\tfrac2{10}(0,0,10)^{\mathsf T}=(0,1,0)^{\mathsf T}.
+ \tfrac1{10}[0,10,20]^{\mathsf T}
+ -\tfrac2{10}[0,0,10]^{\mathsf T}=[0,1,0]^{\mathsf T}.
 \]
 
 这等价于中心执行价 $20$、间距 $10$ 的蝴蝶组合除以 $10$；执行价 $30$ 的看涨到期支付恒为零。

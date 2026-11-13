@@ -19,10 +19,10 @@
 \item 以 $\theta_{kB},\theta_{kS}$ 表示债券、股票的净购买量，出清要求两者分别加总为零。两人的禀赋分别占总禀赋的 $\lambda_1=0.4$、$\lambda_2=0.6$。考虑零净交易配置，此时
 \[
  c_{k,0}^*=\lambda_k,\qquad
- c_{k,1}^*=\lambda_k(1,1,2)^{\mathsf T}.
+ c_{k,1}^*=\lambda_k[1,1,2]^{\mathsf T}.
 \]
 
-按证券的 Euler 方程\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-11-2}{式~}）\fi，证券价格等于个人定价核与该证券支付的乘积取期望。对数效用下，个人定价核在状态 $\omega_j$ 的取值为 $\pi_{k,\omega_j}=c_{k,0}^*/c_{k,1\omega_j}^*$。代入上述消费，两人都得到 $(1,1,1/2)^{\mathsf T}$，所以
+按证券的 Euler 方程\ifdefined\WJHandoutKnowledge（\WJEqRef{eq:wj-11-2}{式~}）\fi，证券价格等于个人定价核与该证券支付的乘积取期望。对数效用下，个人定价核在状态 $\omega_j$ 的取值为 $\pi_{k,\omega_j}=c_{k,0}^*/c_{k,1\omega_j}^*$。代入上述消费，两人都得到 $[1,1,1/2]^{\mathsf T}$，所以
 \[
  B^*=\frac13\left(1+1+\frac12\right)=\frac56,
  \qquad S^*=\frac13(1+1+1)=1,
@@ -112,7 +112,7 @@
 \[
  \mathrm E[\widetilde X]-R_FP^*=\frac1T\Sigma\mathbf1,
  \qquad
- \Sigma=\begin{pmatrix}64&52.8\\52.8&121\end{pmatrix}.
+ \Sigma=\begin{bmatrix}64&52.8\\52.8&121\end{bmatrix}.
 \]
 
 由于每家企业的供给都为 1，市场组合的总支付为 $\widetilde X_1+\widetilde X_2$。$\Sigma\mathbf 1$ 的第 $i$ 项就是 $\operatorname{Cov}(\widetilde X_i,\widetilde X_1+\widetilde X_2)$，分别为 $64+52.8=116.8$ 和 $52.8+121=173.8$。因此两家企业的预期超额支付除以各自的协方差，所得比值都等于 $1/T$，即

@@ -36,7 +36,7 @@
 沿用\WJRef{chap:wj-two}{第}[章（基本框架）]的个人选择问题，参与者在给定价格下通过证券净交易选择消费计划。将其中的一般效用换成\WJEqRef{eq:wj-six-3}{式~}[（时间可加的期望效用）]，并省略参与者下标，就得到以下问题\footnote{第二讲用净交易决定预算：买入的成本从当期禀赋中扣除，未来各状态收到的净支付加到该状态的禀赋上。第六讲在状态独立、时间可加时，用同一个 $u_1$ 评价各未来状态的消费，再按状态概率加权，与当期效用 $u_0(c_0)$ 相加；$u_0$ 与 $u_1$ 可以不同。}。
 
 \begin{tcolorbox}[knowledge,title=消费与投资的联合选择,breakable=false]
-设有 $N$ 只证券和 $\Omega$ 个未来状态。价格 $S=(S_1,\ldots,S_N)^{\mathsf T}$ 与相对初始持仓的\textbf{净购买数量} $\theta=(\theta_1,\ldots,\theta_N)^{\mathsf T}$ 都按支付矩阵 $X$ 的列顺序排列。未来禀赋 $e_1=(e_{11},\ldots,e_{1\Omega})^{\mathsf T}$ 与未来消费 $c_1=(c_{11},\ldots,c_{1\Omega})^{\mathsf T}$ 都按 $X$ 的行所对应的状态顺序排列。当期禀赋 $e_0$ 与消费 $c_0$ 各是一个数。状态概率满足 $p_\omega>0$、$\sum_\omega p_\omega=1$，优化问题为
+设有 $N$ 只证券和 $\Omega$ 个未来状态。价格 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 与相对初始持仓的\textbf{净购买数量} $\theta=[\theta_1,\ldots,\theta_N]^{\mathsf T}$ 都按支付矩阵 $X$ 的列顺序排列。未来禀赋 $e_1=[e_{11},\ldots,e_{1\Omega}]^{\mathsf T}$ 与未来消费 $c_1=[c_{11},\ldots,c_{1\Omega}]^{\mathsf T}$ 都按 $X$ 的行所对应的状态顺序排列。当期禀赋 $e_0$ 与消费 $c_0$ 各是一个数。状态概率满足 $p_\omega>0$、$\sum_\omega p_\omega=1$，优化问题为
 \begin{equation}
 \begin{aligned}
  \max_\theta\quad &u_0(c_0)+\sum_{\omega=1}^{\Omega}p_\omega u_1(c_{1\omega})\\
@@ -386,7 +386,7 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 
 这里用收益率衡量补偿；第七讲的\hyperlink{wj-certainty-equivalent-risk-premium}{\textcolor{WJReferenceColor}{货币风险溢价 $\mathrm E[\widetilde W]-CE$}} 则用财富金额衡量补偿\footnote{$CE$ 是确定性等值，即满足 $u(CE)=\mathrm E[u(\widetilde W)]$ 的确定财富。若 $u$ 连续、严格递增，且期望效用有限并落在 $u$ 的值域内，这个财富金额唯一。用平均财富减去它，得到投资者为消除这项风险愿意放弃的财富金额。}。
 
-将风险证券的投资金额和净收益率分别记为列向量 $a=(a_1,\ldots,a_{N-1})^{\mathsf T}$ 与 $\tilde r=(\tilde r_1,\ldots,\tilde r_{N-1})^{\mathsf T}$，$\iota$ 为同维的全 1 列向量，组合问题变成
+将风险证券的投资金额和净收益率分别记为列向量 $a=[a_1,\ldots,a_{N-1}]^{\mathsf T}$ 与 $\tilde r=[\tilde r_1,\ldots,\tilde r_{N-1}]^{\mathsf T}$，$\iota$ 为同维的全 1 列向量，组合问题变成
 \begin{equation}
  \begin{aligned}
  \max_a\quad &\mathrm E\bigl[u(w(1+r_F)+a^{\mathsf T}(\tilde r-r_F\iota))\bigr]\\

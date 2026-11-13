@@ -124,7 +124,7 @@
 
 沿用 $R=1+r_F$，令 $B=1/R$。
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{证明。}两证券的支付矩阵为 $\left(\begin{smallmatrix}1&\lambda_a\\1&\lambda_b\end{smallmatrix}\right)$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，任意两状态支付都可复制，市场完全\footnote{第三讲的判据要求持仓可取任意实数。支付矩阵的行秩等于状态数时，它的列向量张成整个状态支付空间。本题行列式非零，所以对任意给定的两状态支付 $y$，都能解出复制头寸 $\theta=X^{-1}y$。}。
+\item \textbf{证明。}两证券的支付矩阵为 $\begin{bmatrix}1&\lambda_a\\1&\lambda_b\end{bmatrix}$，行列式为 $\lambda_b-\lambda_a\ne0$。由行满秩判据\ifdefined\WJHandoutKnowledge（\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]）\fi，任意两状态支付都可复制，市场完全\footnote{第三讲的判据要求持仓可取任意实数。支付矩阵的行秩等于状态数时，它的列向量张成整个状态支付空间。本题行列式非零，所以对任意给定的两状态支付 $y$，都能解出复制头寸 $\theta=X^{-1}y$。}。
 \item 状态价格由 $\phi_a+\phi_b=B$、$\lambda_a\phi_a+\lambda_b\phi_b=S$ 决定：
 \[
  \phi_a=\frac{RS-\lambda_b}{R(\lambda_a-\lambda_b)},\qquad

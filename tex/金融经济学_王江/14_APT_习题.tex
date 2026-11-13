@@ -71,7 +71,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}[blank-type=manual,blank-vsep=9\baselineskip]
 
-令 $a=(a_A,a_B,a_C)^{\mathsf T}$，$B$ 的三行为各资产的两因子载荷，$\iota$ 为全 1 列向量，$R=1+r_F>0$。在允许自由卖空和借贷时，任取风险资产投资金额向量 $z$，用无风险证券承接 $-\iota^{\mathsf T}z$，使组合初始成本为零。风险资产的终期支付为 $z^{\mathsf T}(\iota+a+B\widetilde f)$，无风险头寸的支付为 $-R\iota^{\mathsf T}z$。相加后得到
+令 $a=[a_A,a_B,a_C]^{\mathsf T}$，$B$ 的三行为各资产的两因子载荷，$\iota$ 为全 1 列向量，$R=1+r_F>0$。在允许自由卖空和借贷时，任取风险资产投资金额向量 $z$，用无风险证券承接 $-\iota^{\mathsf T}z$，使组合初始成本为零。风险资产的终期支付为 $z^{\mathsf T}(\iota+a+B\widetilde f)$，无风险头寸的支付为 $-R\iota^{\mathsf T}z$。相加后得到
 \[
  z^{\mathsf T}(a-r_F\iota)+(B^{\mathsf T}z)^{\mathsf T}\widetilde f.
 \]
@@ -92,7 +92,7 @@
 \end{align*}
 若 $\ell_1=\ell_2=0$ 有解，对每个这样的解，第一行的常数项都必须等于 $r_F$，否则可与无风险证券互作多空来套利。若这两条方程无解，三只风险资产单独无法构成成本为 1 的零载荷组合。上面的无风险融资推导仍适用，因为它直接检查任意成本的风险资产头寸，包括成本为零的头寸。
 
-线性条件排除了因子暴露为零的套利。有因子暴露的零成本头寸能否套利，还取决于因子可能取到哪些值。例如两个因子独立地以相同概率取 $1$ 和 $-1$，取 $r_F=0$、$a=(1,0,0)^{\mathsf T}$，令三项资产的载荷分别为 $(1,0)$、$(0,1)$、$(0,0)$。线性关系以 $\lambda=(1,0)^{\mathsf T}$ 成立，但买入资产 $A$ 并以无风险证券融资，支付为 $1+\widetilde f_1$，恒非负且以一半概率为正。
+线性条件排除了因子暴露为零的套利。有因子暴露的零成本头寸能否套利，还取决于因子可能取到哪些值。例如两个因子独立地以相同概率取 $1$ 和 $-1$，取 $r_F=0$、$a=[1,0,0]^{\mathsf T}$，令三项资产的载荷分别为 $(1,0)$、$(0,1)$、$(0,0)$。线性关系以 $\lambda=[1,0]^{\mathsf T}$ 成立，但买入资产 $A$ 并以无风险证券融资，支付为 $1+\widetilde f_1$，恒非负且以一半概率为正。
 
 若 $\widetilde f$ 在 $\mathbb R^2$ 上有完全支持，线性关系也充分。代入 $a-r_F\iota=B\lambda$，零成本支付化为 $(B^{\mathsf T}z)^{\mathsf T}(\lambda+\widetilde f)$。若 $B^{\mathsf T}z=0$，支付恒为零；否则这个线性表达式在两个开放区域分别为正、为负，完全支持保证两种结果均有正概率，因而没有套利。
 
@@ -147,7 +147,7 @@
 所以应取 $b'_n=Ab_n$。同时 $\mathrm E[\widetilde f']=A\mathrm E[\widetilde f]=0$，$\mathrm E[\widetilde f'\widetilde u_n]=A\mathrm E[\widetilde f\widetilde u_n]=0$。这样的变换保留标准化条件，而且每只证券在每个状态下的因子收益都保持相同，整个收益及其协方差也保持相同。
 \item 当 $K\ge2$ 时，可以在前两个坐标上使用旋转矩阵
 \[
- \begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix},
+ \begin{bmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{bmatrix},
  \qquad 0\le\alpha<2\pi,
 \]
 其余坐标保持原样。这就给出无穷多个标准化的等价表述。$K=1$ 时，标准化表述有正、负两个方向。若允许改变因子协方差，也可任取可逆阵 $T$，令 $\widetilde g=T\widetilde f$、$d_n=T^{-\mathsf T}b_n$，此时 $d_n^{\mathsf T}\widetilde g=b_n^{\mathsf T}T^{-1}T\widetilde f=b_n^{\mathsf T}\widetilde f$，因子协方差变为 $TT^{\mathsf T}$。\qedhere
@@ -167,7 +167,7 @@
 \Needspace{5\baselineskip}
 \begin{solution}[label-content={证明},blank-type=manual,blank-vsep=9\baselineskip]
 
-沿用上一题的正交换坐标。若 $\lambda=0$，取 $\widetilde f^*=\widetilde f$、$b_n^*=b_n$、$\lambda^*=0$，此时所有因子溢价均为零。若 $\lambda\ne0$，把溢价向量的方向选为第一条坐标轴，令 $q_1=\lambda/\|\lambda\|$。将其补成一组正交单位基，组成正交阵 $Q=(q_1,\ldots,q_K)$。
+沿用上一题的正交换坐标。若 $\lambda=0$，取 $\widetilde f^*=\widetilde f$、$b_n^*=b_n$、$\lambda^*=0$，此时所有因子溢价均为零。若 $\lambda\ne0$，把溢价向量的方向选为第一条坐标轴，令 $q_1=\lambda/\|\lambda\|$。将其补成一组正交单位基，组成正交阵 $Q=[q_1\ \cdots\ q_K]$。
 
 定义 $\widetilde f^*=Q^{\mathsf T}\widetilde f$、$b_n^*=Q^{\mathsf T}b_n$、$\lambda^*=Q^{\mathsf T}\lambda$。由 $QQ^{\mathsf T}=I$，
 \[
@@ -176,7 +176,7 @@
 \]
 又因 $q_1^{\mathsf T}\lambda=\lambda^{\mathsf T}\lambda/\|\lambda\|=\|\lambda\|$，而对 $j\ge2$ 有 $q_j^{\mathsf T}\lambda=\|\lambda\|q_j^{\mathsf T}q_1=0$，所以
 \[
- \boxed{\lambda^*=(\|\lambda\|,0,\ldots,0)^{\mathsf T}},\qquad
+ \boxed{\lambda^*=[\|\lambda\|,0,\ldots,0]^{\mathsf T}},\qquad
  \bar r_n-r_F=\lambda^{*\mathsf T}b_n^*=\|\lambda\|b_{n,1}^* .
 \]
 

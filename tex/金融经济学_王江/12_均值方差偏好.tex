@@ -180,10 +180,10 @@
 对梯度的第 $i$ 个分量 $f_i$ 再关于 $x_j$ 求偏导，得到\textbf{海塞矩阵}的第 $(i,j)$ 项 $f_{ij}$。
 \[
  H(x)=\nabla^2 f(x)=
- \begin{pmatrix}
+ \begin{bmatrix}
   f_{11}(x)&f_{12}(x)\\
   f_{21}(x)&f_{22}(x)
- \end{pmatrix},
+ \end{bmatrix},
  \qquad f_{ij}=\frac{\partial f_i}{\partial x_j}.
 \]
 二阶偏导连续时，$f_{12}=f_{21}$，因此海塞矩阵是对称矩阵。
@@ -261,9 +261,9 @@
 由对称性，$v_{21}=v_{12}=0$。将这些二阶偏导代入海塞矩阵，得
 \[
  \nabla^2v=
- \begin{pmatrix}v_{11}&v_{12}\\v_{21}&v_{22}\end{pmatrix}
+ \begin{bmatrix}v_{11}&v_{12}\\v_{21}&v_{22}\end{bmatrix}
  =
- \begin{pmatrix}-a&0\\0&-a\end{pmatrix},
+ \begin{bmatrix}-a&0\\0&-a\end{bmatrix},
  \qquad \lvert\nabla^2v\rvert=(-a)(-a)-0^2=a^2.
 \]
 
@@ -297,7 +297,7 @@
 \end{center}
 
 \subsection{联合正态支付与效用性质}
-二次效用通过限制 $u$ 的形式（例如 $u(y)=y-ay^2/2$，其中 $a>0$）得到\WJEqRef{eq:wj-12-1}{式~} 的精确表示。另一种途径是限制证券支付的联合分布。前文的 $X$ 把各状态下的证券支付排成矩阵。状态实现时，取对应的一行，得到随机支付行向量 $\widetilde X=(\widetilde X_1,\ldots,\widetilde X_N)$。它的联合分布描述各只证券的支付如何同时取值，并决定给定持仓 $q$ 时期末财富 $\widetilde Xq$ 的分布。
+二次效用通过限制 $u$ 的形式（例如 $u(y)=y-ay^2/2$，其中 $a>0$）得到\WJEqRef{eq:wj-12-1}{式~} 的精确表示。另一种途径是限制证券支付的联合分布。前文的 $X$ 把各状态下的证券支付排成矩阵。状态实现时，取对应的一行，得到随机支付行向量 $\widetilde X=[\widetilde X_1,\ldots,\widetilde X_N]$。它的联合分布描述各只证券的支付如何同时取值，并决定给定持仓 $q$ 时期末财富 $\widetilde Xq$ 的分布。
 
 这里的联合正态要求任意固定系数下的支付线性组合服从正态分布，允许方差为零时退化为常数。仅知道各只证券的支付分别服从正态分布，还不足以推出联合正态\footnote{联合正态向量的两个分量协方差为零时相互独立。非退化情形（在协方差为零的前提下，即两个分量的方差都大于零）下，对角协方差矩阵使它们的二维正态密度分解为两个边际密度的乘积。}。
 \begin{tcolorbox}[knowledge,breakable=false]
@@ -446,7 +446,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
  \item 由于 $u''(\widetilde w)<0$ ，且 $Z^2>0$ 几乎处处成立，乘积 $u''(\widetilde w)Z^2$ 的期望 $v_{22}=\mathrm E[u''(\widetilde w)Z^2]$ 严格为负。
  \item 将二阶偏导排成 Hessian 矩阵，
  \[
-  \nabla^2 v=\begin{pmatrix}v_{11}&v_{12}\\v_{12}&v_{22}\end{pmatrix}.
+  \nabla^2 v=\begin{bmatrix}v_{11}&v_{12}\\v_{12}&v_{22}\end{bmatrix}.
  \]
 
  令 $h=-u''(\widetilde w)>0$。对 $\sqrt h$ 与 $Z\sqrt h$ 应用 Cauchy--Schwarz 不等式，得到
@@ -700,17 +700,17 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 % 参见 MIT OCW 18.06SC《Symmetric matrices and positive definiteness》。
 \begin{tcolorbox}[knowledge,breakable=false,title=实对称矩阵的谱分解]
-设 $A$ 为 $n$ 阶实对称矩阵，即 $A^{\mathsf T}=A$。谱定理表明，$A$ 的特征值都是实数，且可以选取一组标准正交的特征向量 $q_1,\ldots,q_n$ 作为基底。记 $Aq_j=\lambda_jq_j$，将特征向量按列排成 $Q=(q_1,\ldots,q_n)$，则 $Q^{-1}=Q^{\mathsf T}$，矩阵 $A$ 的谱分解为
+设 $A$ 为 $n$ 阶实对称矩阵，即 $A^{\mathsf T}=A$。谱定理表明，$A$ 的特征值都是实数，且可以选取一组标准正交的特征向量 $q_1,\ldots,q_n$ 作为基底。记 $Aq_j=\lambda_jq_j$，将特征向量按列排成 $Q=[q_1\ \cdots\ q_n]$，则 $Q^{-1}=Q^{\mathsf T}$，矩阵 $A$ 的谱分解为
 \[
  A=Q\Lambda Q^{\mathsf T},\qquad
  \Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
  =
- \begin{pmatrix}
+ \begin{bmatrix}
  \lambda_1 & 0 & \cdots & 0\\
  0 & \lambda_2 & \cdots & 0\\
  \vdots & \vdots & \ddots & \vdots\\
  0 & 0 & \cdots & \lambda_n
- \end{pmatrix}.
+ \end{bmatrix}.
 \]
 
 在这组基底下，$A$ 沿第 $j$ 个方向把坐标乘以 $\lambda_j$。实对称矩阵正定当且仅当它的特征值全为正。
@@ -1136,7 +1136,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 两只风险证券的净收益率用百分点计，协方差矩阵的元素用百分点的平方计：
 \[
  \bar r=\begin{bmatrix}1\\2\end{bmatrix},\qquad
- \Sigma=\begin{pmatrix}1&0\\0&4\end{pmatrix}.
+ \Sigma=\begin{bmatrix}1&0\\0&4\end{bmatrix}.
 \]
 允许卖空。求最小方差组合，以及期望收益率为 $1.5$ 个百分点的前沿组合。
 \begin{solution}[blank-type=manual,blank-vsep=3\baselineskip]

@@ -35,7 +35,7 @@
 先从确定情形想起。若未来只有一种可能，两期消费都已确定，直接用 $u(c_0,c_1)$ 评价这条路径。若未来有几个互斥的状态，最终只会实现其中一条路径，可以先评价每条路径，再按其发生的概率取平均。
 
 \begin{tcolorbox}[knowledge,title=消费计划、消费路径与真实概率,breakable=false]
-沿用前文的两期模型，消费计划为 $c=(c_0,c_{11},\ldots,c_{1\Omega})^{\mathsf T}$。状态 $\omega$ 的消费路径是 $(c_0,c_{1\omega})$，路径效用记为 $u_\omega(c_0,c_{1\omega})$。只列正概率状态，记其真实概率为 $p_\omega>0$、$\sum_\omega p_\omega=1$。
+沿用前文的两期模型，消费计划为 $c=[c_0,c_{11},\ldots,c_{1\Omega}]^{\mathsf T}$。状态 $\omega$ 的消费路径是 $(c_0,c_{1\omega})$，路径效用记为 $u_\omega(c_0,c_{1\omega})$。只列正概率状态，记其真实概率为 $p_\omega>0$、$\sum_\omega p_\omega=1$。
 \end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=期望效用表示,breakable=false]
 以各状态概率为权重，对消费路径的效用求平均：
@@ -365,7 +365,7 @@ $C$ 确定得到 $1.5$；$D$ 以相同概率得到 $1$ 或 $2$。分别用线性
 在状态 $\omega$ 略微增加未来消费时，每增加一单位的边际效用增益为 $\rho p_\omega u'(c_{1\omega})$。按预算约束，每增加一单位未来消费，要放弃 $\phi_\omega$ 单位当期消费，对应的边际效用损失为 $u'(c_0)\phi_\omega$。内点最优时，两者相等。将第一式的 $\lambda=u'(c_0)$ 代入第二式，再除以 $u'(c_0)$，就把未来边际效用换算成了以当期消费品计量的状态价格。
 
 \begin{tcolorbox}[knowledge,title=随机折现因子与证券定价,breakable=false]
-把状态价格写成真实概率 $p_\omega$ 与折现权重 $m_\omega$ 的乘积。记 $m(\omega)=m_\omega$，则 $m$ 称为\textbf{随机折现因子}（stochastic discount factor）。沿用第四讲的记号，$\tilde x_n$ 是证券 $n$ 的到期支付，在状态 $\omega$ 取值 $x_{\omega n}$。\WJEqRef{eq:wj-four-6}{状态价格定价式~}给出证券价格列向量 $S=(S_1,\ldots,S_N)^{\mathsf T}$。状态价格列向量 $\phi=(\phi_1,\ldots,\phi_\Omega)^{\mathsf T}$ 按 $X$ 的行排列，$S$ 则按 $X$ 的列排列。$S_n$ 等于第 $n$ 列的各状态支付按状态价格加总：
+把状态价格写成真实概率 $p_\omega$ 与折现权重 $m_\omega$ 的乘积。记 $m(\omega)=m_\omega$，则 $m$ 称为\textbf{随机折现因子}（stochastic discount factor）。沿用第四讲的记号，$\tilde x_n$ 是证券 $n$ 的到期支付，在状态 $\omega$ 取值 $x_{\omega n}$。\WJEqRef{eq:wj-four-6}{状态价格定价式~}给出证券价格列向量 $S=[S_1,\ldots,S_N]^{\mathsf T}$。状态价格列向量 $\phi=[\phi_1,\ldots,\phi_\Omega]^{\mathsf T}$ 按 $X$ 的行排列，$S$ 则按 $X$ 的列排列。$S_n$ 等于第 $n$ 列的各状态支付按状态价格加总：
 \[
  S=X^{\mathsf T}\phi,
  \qquad

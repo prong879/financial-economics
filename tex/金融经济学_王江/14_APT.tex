@@ -49,7 +49,7 @@ CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，�
 
 共同因子描述跨资产的系统风险，剩余项描述各资产的特殊风险。将\WJEqRef{eq:wj-14-1}{式~} 与第 $k$ 个因子取协方差，只有第 $k$ 项保留下来。因子方差为 $1$，所以 $b_{n,k}=\operatorname{Cov}(\widetilde r_n,\widetilde f_k)$。
 
-将各资产的收益率、期望收益率和剩余项按资产顺序排成 $N$ 维列向量 $\widetilde r,\bar r,\widetilde\varepsilon$，将共同因子排成 $F$ 维列向量 $\widetilde f=(\widetilde f_1,\ldots,\widetilde f_F)^{\mathsf T}$。第 $n$ 只资产的载荷列向量为 $b_n=(b_{n,1},\ldots,b_{n,F})^{\mathsf T}$，其转置是 $N\times F$ 载荷矩阵 $B$ 的第 $n$ 行。记 $\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
+将各资产的收益率、期望收益率和剩余项按资产顺序排成 $N$ 维列向量 $\widetilde r,\bar r,\widetilde\varepsilon$，将共同因子排成 $F$ 维列向量 $\widetilde f=[\widetilde f_1,\ldots,\widetilde f_F]^{\mathsf T}$。第 $n$ 只资产的载荷列向量为 $b_n=[b_{n,1},\ldots,b_{n,F}]^{\mathsf T}$，其转置是 $N\times F$ 载荷矩阵 $B$ 的第 $n$ 行。记 $\Sigma_\varepsilon$ 为剩余项协方差矩阵，则
 \begin{equation}
  \widetilde r=\bar r+B\widetilde f+\widetilde\varepsilon,
  \qquad \operatorname{Cov}(\widetilde r)=BB^{\mathsf T}+\Sigma_\varepsilon.
@@ -139,7 +139,7 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 \subsection{精确F因子模型}
 令 $\iota$ 为 $N$ 维全 $1$ 列向量。以 $z\in\mathbb R^N$ 记录各资产的投资金额，$z_n$ 以当期货币计量，组合的初始净成本为 $z^{\mathsf T}\iota$。终期支付对各因子的载荷为 $B^{\mathsf T}z$。
 \begin{tcolorbox}[knowledge,breakable=false]
-\WJFourteenTheorem{thm:wj-fourteen-2} 精确 $F$ 因子模型中，无套利要求存在标量截距 $\lambda_0$ 和 $F$ 维因子风险溢价列向量 $\lambda=(\lambda_1,\ldots,\lambda_F)^{\mathsf T}$，使
+\WJFourteenTheorem{thm:wj-fourteen-2} 精确 $F$ 因子模型中，无套利要求存在标量截距 $\lambda_0$ 和 $F$ 维因子风险溢价列向量 $\lambda=[\lambda_1,\ldots,\lambda_F]^{\mathsf T}$，使
 \begin{equation}
  \bar r=\lambda_0\iota+B\lambda.\label{eq:wj-14-6}
 \end{equation}
@@ -237,9 +237,9 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-记 $a_i=(1,b_i^{\mathsf T})^{\mathsf T}$，$\beta_n=(\lambda_0^{(n)},\lambda^{(n)\mathsf T})^{\mathsf T}$，并从全部 $a_i$ 中选取一组基 $a_{i_1},\ldots,a_{i_d}$。把 $\beta_n$ 投影到该基张成的空间，不改变任何预测值 $a_i^{\mathsf T}\beta_n$。当 $n\ge\max_j i_j$ 时，\WJRef{thm:wj-fourteen-3}{定理~} 给出 $|a_{i_j}^{\mathsf T}\beta_n|\le|\bar r_{i_j}|+\sqrt A$。
+记 $a_i=[1,b_i^{\mathsf T}]^{\mathsf T}$，$\beta_n=[\lambda_0^{(n)},\lambda^{(n)\mathsf T}]^{\mathsf T}$，并从全部 $a_i$ 中选取一组基 $a_{i_1},\ldots,a_{i_d}$。把 $\beta_n$ 投影到该基张成的空间，不改变任何预测值 $a_i^{\mathsf T}\beta_n$。当 $n\ge\max_j i_j$ 时，\WJRef{thm:wj-fourteen-3}{定理~} 给出 $|a_{i_j}^{\mathsf T}\beta_n|\le|\bar r_{i_j}|+\sqrt A$。
 
-令 $D=[a_{i_1}\ \cdots\ a_{i_d}]$。投影后的系数可写成 $\beta_n=D\gamma_n$，而有界的基上预测向量为 $D^{\mathsf T}\beta_n=(D^{\mathsf T}D)\gamma_n$。$D^{\mathsf T}D$ 是固定的可逆矩阵，所以 $\gamma_n$ 有界，进而 $\beta_n$ 有界。取收敛子列 $\beta_{n_j}\to\beta=(\lambda_0,\lambda^{\mathsf T})^{\mathsf T}$。
+令 $D=[a_{i_1}\ \cdots\ a_{i_d}]$。投影后的系数可写成 $\beta_n=D\gamma_n$，而有界的基上预测向量为 $D^{\mathsf T}\beta_n=(D^{\mathsf T}D)\gamma_n$。$D^{\mathsf T}D$ 是固定的可逆矩阵，所以 $\gamma_n$ 有界，进而 $\beta_n$ 有界。取收敛子列 $\beta_{n_j}\to\beta=[\lambda_0,\lambda^{\mathsf T}]^{\mathsf T}$。
 
 固定 $m$，对所有满足 $n_j\ge m$ 的子列项，前 $m$ 项的误差平方和不超过 $A$。逐项取极限得
 \[

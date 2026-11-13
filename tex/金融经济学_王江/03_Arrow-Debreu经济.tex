@@ -61,12 +61,12 @@
 \section{状态价格}
 \label{sec:wj-three-prices}
 \begin{tcolorbox}[knowledge,title=状态价格]
-状态 $\omega$ 的阿罗证券在 0 期的价格记为 $\phi_\omega$，以 0 期消费品计量，称为\textbf{状态价格}（state price）。状态价格向量为 $\phi=(\phi_1,\ldots,\phi_\Omega)^{\mathsf T}$。
+状态 $\omega$ 的阿罗证券在 0 期的价格记为 $\phi_\omega$，以 0 期消费品计量，称为\textbf{状态价格}（state price）。状态价格向量为 $\phi=[\phi_1,\ldots,\phi_\Omega]^{\mathsf T}$。
 \end{tcolorbox}
 
 % 来源：教师 PPT 第 3 页的台风状态证券情境。
 \begin{tcolorbox}[example,title=课堂例题：只在台风状态支付的证券]
-设明天有晴天、下雨、台风、地震四个互斥且穷尽的可能状态，按此顺序排列。某证券只在台风发生时支付 $1$ 单位消费品，其他状态支付为零，其支付向量为 $(0,0,1,0)^{\mathsf T}$。今天购买一份该证券所需支付的消费品数量，就是台风状态的状态价格。
+设明天有晴天、下雨、台风、地震四个互斥且穷尽的可能状态，按此顺序排列。某证券只在台风发生时支付 $1$ 单位消费品，其他状态支付为零，其支付向量为 $[0,0,1,0]^{\mathsf T}$。今天购买一份该证券所需支付的消费品数量，就是台风状态的状态价格。
 \end{tcolorbox}
 一般证券的支付可能含有负值，价格也可能为负。状态证券的支付为非负，并在对应状态支付一单位消费品，因此有以下结论。
 
@@ -82,7 +82,7 @@
 
 \section{市场的完全性}
 \subsection{消费计划的复制与完全市场}
-在 Arrow-Debreu 市场中，给定有限的未来消费向量 $c_1=(c_{11},\ldots,c_{1\Omega})^{\mathsf T}$，令 $h_\omega$ 为状态 $\omega$ 的阿罗证券的持有份数。该证券每份只在状态 $\omega$ 支付一单位，所以令 $h_\omega=c_{1\omega}$ 就能匹配该状态的目标消费。各状态采用同一排列顺序，因而可取总持仓列向量 $h=c_1$：
+在 Arrow-Debreu 市场中，给定有限的未来消费向量 $c_1=[c_{11},\ldots,c_{1\Omega}]^{\mathsf T}$，令 $h_\omega$ 为状态 $\omega$ 的阿罗证券的持有份数。该证券每份只在状态 $\omega$ 支付一单位，所以令 $h_\omega=c_{1\omega}$ 就能匹配该状态的目标消费。各状态采用同一排列顺序，因而可取总持仓列向量 $h=c_1$：
 \[
  \underbrace{X^{A\text{-}D}h}_{\text{组合支付}}=I_\Omega c_1
  =\underbrace{c_1}_{\text{目标消费}},\qquad
@@ -95,7 +95,7 @@
 
 \begin{tcolorbox}[example]
 \begin{question}
-\WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $(1,1)^{\mathsf T}$ 的无风险债券。能否复制消费 $(2,1)^{\mathsf T}$？市场是否完全？
+\WJThreeExample{ex:wj-three-2}在两状态 Lucas 树经济中，市场上只有支付为 $[1,1]^{\mathsf T}$ 的无风险债券。能否复制消费 $[2,1]^{\mathsf T}$？市场是否完全？
 \end{question}
 \begin{solution}
 债券持仓 $h$ 必须同时满足 $h=2$ 与 $h=1$，无解。因此市场不完全。若改为交易\WJRef{ex:wj-three-1}{例~} 的两只状态证券，则
@@ -133,7 +133,7 @@
 \]
 \end{question}
 \begin{solution}
-记 $\lvert X_i\rvert$ 为方阵 $X_i$ 的行列式。$\lvert X_1\rvert=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的两倍，秩为 $1<2$，故第二个市场不完全。$\lvert X_3\rvert=-1\ne0$，故第三个市场完全；其中虽未直接列出全部阿罗证券，也能通过组合复制它们。例如，第三组持仓 $(0,-1,1)^{\mathsf T}$ 复制第一状态证券：
+记 $\lvert X_i\rvert$ 为方阵 $X_i$ 的行列式。$\lvert X_1\rvert=-2\ne0$，故第一个市场完全。$X_2$ 的第二列是第一列的两倍，秩为 $1<2$，故第二个市场不完全。$\lvert X_3\rvert=-1\ne0$，故第三个市场完全；其中虽未直接列出全部阿罗证券，也能通过组合复制它们。例如，第三组持仓 $[0,-1,1]^{\mathsf T}$ 复制第一状态证券：
 \[
  X_3\begin{bmatrix}0\\-1\\1\end{bmatrix}
  =\begin{bmatrix}1\\0\\0\end{bmatrix}.
@@ -174,7 +174,7 @@
 \subsection{禀赋财富与预算约束}
 \label{sec:wj-three-budget}
 \begin{tcolorbox}[knowledge,title=初始持仓、总持仓与净交易,breakable=false]
-给定状态价格 $\phi\gg0$，参与者的禀赋为 $e=(e_0,e_1^{\mathsf T})^{\mathsf T}$。在阿罗证券中，复制未来禀赋的初始持仓为 $\bar\theta=e_1$。记交易后总持仓为 $h$，净买入量为 $\theta=h-\bar\theta$，则
+给定状态价格 $\phi\gg0$，参与者的禀赋为 $e=[e_0,e_1^{\mathsf T}]^{\mathsf T}$。在阿罗证券中，复制未来禀赋的初始持仓为 $\bar\theta=e_1$。记交易后总持仓为 $h$，净买入量为 $\theta=h-\bar\theta$，则
 \[
  c_1=e_1+\theta=h.
 \]
@@ -263,7 +263,7 @@
 设 $U$ 在消费集的邻域上连续可微，且各项边际效用严格为正：
 \begin{equation}
  DU(c)\gg0,\qquad
- DU(c)=(\partial_0U(c),\ldots,\partial_\Omega U(c))^{\mathsf T}.\label{eq:wj-three-marginal-utility}
+ DU(c)=[\partial_0U(c),\ldots,\partial_\Omega U(c)]^{\mathsf T}.\label{eq:wj-three-marginal-utility}
 \end{equation}
 
 其中 $\partial_0U=\partial U/\partial c_0$ 是当期消费的边际效用，$\partial_\omega U=\partial U/\partial c_{1\omega}$ 是未来状态 $\omega$ 消费的边际效用。
@@ -563,7 +563,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \subsection{均衡中的跨期边际替代率}
 \subsubsection{共同的跨期边际替代率与互利交易}
 \begin{tcolorbox}[knowledge,title=均衡中的共同跨期边际替代率,breakable=false]
-记 $c_k=(c_{k,0},c_{k,1}^{\mathsf T})^{\mathsf T}$ 为参与者 $k$ 的整个消费计划向量，包含当期消费和未来各状态的消费。
+记 $c_k=[c_{k,0},c_{k,1}^{\mathsf T}]^{\mathsf T}$ 为参与者 $k$ 的整个消费计划向量，包含当期消费和未来各状态的消费。
 
 在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足\WJEqRef{eq:wj-three-mrs}{式~}[（跨期边际替代率等于状态价格）]，因而
 \begin{equation}
@@ -640,7 +640,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 求均衡状态价格、消费配置和证券净交易量。
 \end{question}
 \begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
-两只状态证券分别在状态 $a$ 和 $b$ 支付一单位消费品。以 0 期消费品为计价单位，状态价格为 $\phi=(\phi_a,\phi_b)^{\mathsf T}$，禀赋 $e$ 的现值为 $w=\hat\phi^{\mathsf T}e$，其中 $\hat\phi=(1,\phi_a,\phi_b)^{\mathsf T}$。效用随消费增加，最优计划会用尽这笔财富。对数效用还要求三个消费量都严格为正。
+两只状态证券分别在状态 $a$ 和 $b$ 支付一单位消费品。以 0 期消费品为计价单位，状态价格为 $\phi=[\phi_a,\phi_b]^{\mathsf T}$，禀赋 $e$ 的现值为 $w=\hat\phi^{\mathsf T}e$，其中 $\hat\phi=[1,\phi_a,\phi_b]^{\mathsf T}$。效用随消费增加，最优计划会用尽这笔财富。对数效用还要求三个消费量都严格为正。
 \[
     \begin{aligned}
         \max_{c}\ &\log c_{0}+\tfrac12(\log c_{a}+\log c_{b})\\
@@ -715,7 +715,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 在状态 $a$，两人的跨期边际替代率都是 $1/4$。在状态 $b$，两人都是 $1$。这样便验证了\WJEqRef{eq:wj-three-common-mrs}{式~} 中对同一状态的比较。
 
-初始状态证券持仓分别为 $(0,0)^{\mathsf T}$ 与 $(200,50)^{\mathsf T}$，因此
+初始状态证券持仓分别为 $[0,0]^{\mathsf T}$ 与 $[200,50]^{\mathsf T}$，因此
 \[
  \theta_1^*=\begin{bmatrix}100\\25\end{bmatrix},\qquad
  \theta_2^*=\begin{bmatrix}-100\\-25\end{bmatrix},\qquad
@@ -738,14 +738,14 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \[
  -S_n\partial_0U_k+\sum_{\omega=1}^{\Omega}x_{\omega n}\partial_\omega U_k
  =\partial_0U_k\bigl(x_n^{\mathsf T}m_k-S_n\bigr),
- \qquad m_k=(m_{k,1},\ldots,m_{k,\Omega})^{\mathsf T}.
+ \qquad m_k=[m_{k,1},\ldots,m_{k,\Omega}]^{\mathsf T}.
 \]
 
 在无价差、消费为内点且持仓可自由调整时，净买入量可以略增或略减。最优时上述导数为零。由于 $\partial_0U_k>0$，每只证券都满足 $x_n^{\mathsf T}m_k=S_n$，合起来就是 $X^{\mathsf T}m_k=S$。因此，两位参与者的估值差满足 $X^{\mathsf T}(m_k-m_{k'})=0$，即他们对每只可交易证券及其组合的支付估值都相同。
 
 由\WJRef{sec:wj-three-rank}{第~}[~节（完全性的判别）]的行满秩判据，若 $X$ 行满秩，每个状态的单位支付 $\mathbf e_\omega$ 都能由某个证券组合 $h$ 复制，即 $Xh=\mathbf e_\omega$。两人对该组合的估值相同，就意味着 $\mathbf e_\omega^{\mathsf T}(m_k-m_{k'})=0$，也就是对状态 $\omega$ 的消费估值相同。
 
-例如，若只有一只在两个状态都支付 $1$ 的债券，且价格为 $1$，两人的跨期边际替代率可以分别是 $(0.4,0.6)^{\mathsf T}$ 和 $(0.6,0.4)^{\mathsf T}$。两人对这只债券的估值都是 $1$，但对各状态单独消费的估值不同。交易这只债券只会同时改变两个状态的消费，因而这项交易工具无法消除逐状态的估值差异。
+例如，若只有一只在两个状态都支付 $1$ 的债券，且价格为 $1$，两人的跨期边际替代率可以分别是 $[0.4,0.6]^{\mathsf T}$ 和 $[0.6,0.4]^{\mathsf T}$。两人对这只债券的估值都是 $1$，但对各状态单独消费的估值不同。交易这只债券只会同时改变两个状态的消费，因而这项交易工具无法消除逐状态的估值差异。
 
 \textbf{交易成本与无交易区间。}即使某状态证券可以交易，买卖价差也会改变上述条件。设买入一份须付 $\phi_\omega^{\mathrm{ask}}$，卖出一份只能得到 $\phi_\omega^{\mathrm{bid}}$，且
 \[
@@ -775,7 +775,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 % 来源：教师 PPT 第 28 页、教材第 42 页式 (3.9) 及第 56—57 页的一价定律与定价公式。
 \subsubsection{状态价格与证券定价}
-记 $S_n$ 为第 $n$ 只证券每份在第 0 期的价格，以当期消费品计量。它在未来各状态的支付组成向量 $x_n=(x_{1n},\ldots,x_{\Omega n})^{\mathsf T}$。
+记 $S_n$ 为第 $n$ 只证券每份在第 0 期的价格，以当期消费品计量。它在未来各状态的支付组成向量 $x_n=[x_{1n},\ldots,x_{\Omega n}]^{\mathsf T}$。
 
 在完全的状态证券市场中，对每个状态 $\omega$ 持有 $x_{\omega n}$ 份相应的阿罗证券，就能复制该证券在所有状态的支付。这 $x_{\omega n}$ 份阿罗证券的当期成本为 $\phi_\omega x_{\omega n}$。在无摩擦市场中，由一价定律，相同的未来支付具有相同的当期价格，因此
 \[
@@ -810,7 +810,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 \Needspace{6\baselineskip}
 \textbf{至少一样好的计划，成本至少为原预算。}任取一位参与者 $k$。假设新计划 $a_k$ 至少和 $c_k$ 一样好，而且成本低于 $w_k$，就会剩下 $b=w_k-\hat\phi^{\mathsf T}a_k>0$。用其中一半在每个日期、每个状态都增加相同数量的消费，可以取
 \[
- d=\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}(1,\ldots,1)^{\mathsf T}\gg0,
+ d=\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}[1,\ldots,1]^{\mathsf T}\gg0,
  \qquad
  \hat\phi^{\mathsf T}d
  =\frac{b}{2\sum_{i=0}^{\Omega}\phi_i}\sum_{i=0}^{\Omega}\phi_i

@@ -76,7 +76,7 @@
  \end{aligned}
 \]
 
-反过来，给定满足价值预算的消费计划，先找一个证券组合复制 $c_{k,1}-e_{k,1}$。完全性保证该组合存在。其成本恰为 $\phi^{\mathsf T}(c_{k,1}-e_{k,1})$，因此扣除成本后剩下的当期禀赋正好是 $c_{k,0}$。将当期消费放在第一项，再按状态排列未来消费，得到完整消费列向量 $c_k=(c_{k,0},c_{k,1}^{\mathsf T})^{\mathsf T}$。完整禀赋 $e_k=(e_{k,0},e_{k,1}^{\mathsf T})^{\mathsf T}$ 与扩展价格 $\widehat\phi=(1,\phi^{\mathsf T})^{\mathsf T}$ 采用同一顺序，预算就是 $\widehat\phi^{\mathsf T}c_k=\widehat\phi^{\mathsf T}e_k=w_k$，与\WJRef{sec:wj-three-budget}{第~}[~节]的状态证券价值预算相同。
+反过来，给定满足价值预算的消费计划，先找一个证券组合复制 $c_{k,1}-e_{k,1}$。完全性保证该组合存在。其成本恰为 $\phi^{\mathsf T}(c_{k,1}-e_{k,1})$，因此扣除成本后剩下的当期禀赋正好是 $c_{k,0}$。将当期消费放在第一项，再按状态排列未来消费，得到完整消费列向量 $c_k=[c_{k,0},c_{k,1}^{\mathsf T}]^{\mathsf T}$。完整禀赋 $e_k=[e_{k,0},e_{k,1}^{\mathsf T}]^{\mathsf T}$ 与扩展价格 $\widehat\phi=[1,\phi^{\mathsf T}]^{\mathsf T}$ 采用同一顺序，预算就是 $\widehat\phi^{\mathsf T}c_k=\widehat\phi^{\mathsf T}e_k=w_k$，与\WJRef{sec:wj-three-budget}{第~}[~节]的状态证券价值预算相同。
 
 \begin{tcolorbox}[knowledge,breakable=false]
 \WJTenTheorem{thm:wj-ten-1}{} 设完全证券市场与 Arrow--Debreu 市场的偏好、状态概率和逐期逐状态总资源相同。给定其中一个市场的一组均衡 $(\phi^*,c^*)$，若在 $\phi^*$ 下每个人的禀赋现值在两个市场中相等，则 $(\phi^*,c^*)$ 也是另一个市场的均衡。证券价格由 $S^*=X^{\mathsf T}\phi^*$ 恢复。
@@ -291,7 +291,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \begin{question}
 \WJTenExample{ex:wj-ten-1} 经济有两期，第 1 期的状态 $a,b$ 各以 $1/2$ 的概率发生。市场交易一只无风险债券和一只股票，价格分别为 $B$ 和 $S$。每单位债券在两个状态各支付 $1$，每股股票在状态 $a$ 支付 $2$，在状态 $b$ 支付 $1$。以状态为行、债券和股票为列，支付矩阵为
 \[
- X=\begin{pmatrix}1&2\\1&1\end{pmatrix}.
+ X=\begin{bmatrix}1&2\\1&1\end{bmatrix}.
 \]
 
 参与者 1 只有 $1$ 单位当期商品，参与者 2 只有 $1$ 股初始股票。把证券支付计入未来禀赋，两人的完整禀赋分别为 $(1,0,0)$ 和 $(0,2,1)$，三个分量依次对应当期、状态 $a$ 和状态 $b$。两人的期望效用为
@@ -384,23 +384,23 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 将这组价格代回 $A=1+1/(4\phi_a)+1/(4\phi_b)$，得到 $A=(5+\sqrt{17})/4=2S$，所以先前用于求根的当期出清条件 $S/A=1/2$ 确实成立。再代回需求，两人的均衡消费计划分别为
 \[
- c_1^*=\left(\tfrac12,\tfrac{\sqrt{17}-1}{4},\tfrac12\right)^{\mathsf T},
+ c_1^*=\left[\tfrac12,\tfrac{\sqrt{17}-1}{4},\tfrac12\right]^{\mathsf T},
  \qquad
- c_2^*=\left(\tfrac12,\tfrac{9-\sqrt{17}}4,\tfrac12\right)^{\mathsf T}.
+ c_2^*=\left[\tfrac12,\tfrac{9-\sqrt{17}}4,\tfrac12\right]^{\mathsf T}.
 \]
 
-\textbf{由消费反推证券净交易。}按债券、股票的顺序，初始持仓为 $\bar\theta_1=(0,0)^{\mathsf T}$、$\bar\theta_2=(0,1)^{\mathsf T}$。证券净交易的支付等于未来消费相对禀赋的变化，即
+\textbf{由消费反推证券净交易。}按债券、股票的顺序，初始持仓为 $\bar\theta_1=[0,0]^{\mathsf T}$、$\bar\theta_2=[0,1]^{\mathsf T}$。证券净交易的支付等于未来消费相对禀赋的变化，即
 \[
- X\theta_k^*=(c_{k,a}^*,c_{k,b}^*)^{\mathsf T}-X\bar\theta_k.
+ X\theta_k^*=[c_{k,a}^*,c_{k,b}^*]^{\mathsf T}-X\bar\theta_k.
 \]
 
 参与者 1 的未来禀赋为零。将状态 $a$ 与 $b$ 的消费相减得到股票净购买量，再用状态 $b$ 的消费减去股票净购买量，得到债券净购买量。两人的未来消费变化逐状态相抵，而 $X$ 可逆，所以第二人的净购买向量是第一人的相反数：
 \[
- \theta_1^*=\left(\tfrac{5-\sqrt{17}}4,\tfrac{\sqrt{17}-3}4\right)^{\mathsf T},
+ \theta_1^*=\left[\tfrac{5-\sqrt{17}}4,\tfrac{\sqrt{17}-3}4\right]^{\mathsf T},
  \qquad \theta_2^*=-\theta_1^*.
 \]
 
-总持仓之和为 $(0,1)^{\mathsf T}$，等于初始证券总供给。净交易量之和为零。参与者 1 买入债券和股票，净支出 $B\theta_{1,B}^*+S\theta_{1,S}^*=1/2$，正好是其当期禀赋减去当期消费。
+总持仓之和为 $[0,1]^{\mathsf T}$，等于初始证券总供给。净交易量之和为零。参与者 1 买入债券和股票，净支出 $B\theta_{1,B}^*+S\theta_{1,S}^*=1/2$，正好是其当期禀赋减去当期消费。
 \end{solution}
 \end{tcolorbox}
 
@@ -867,9 +867,9 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 于是 $c_1(1)=1/2$。代入 $1=c_1(1)+\mu^2c_1(1)^2$ 得 $\mu^2=2$，即 $\mu=\sqrt{2}$。由分享规则得 $c_1(2)=(\sqrt{17}-1)/4$。第二人在每一处消费剩余资源，所以两人的均衡消费计划为
 \[
- c_1^*=\left(\tfrac12,\tfrac{\sqrt{17}-1}{4},\tfrac12\right)^{\mathsf T},
+ c_1^*=\left[\tfrac12,\tfrac{\sqrt{17}-1}{4},\tfrac12\right]^{\mathsf T},
  \qquad
- c_2^*=\left(\tfrac12,\tfrac{9-\sqrt{17}}4,\tfrac12\right)^{\mathsf T}.
+ c_2^*=\left[\tfrac12,\tfrac{9-\sqrt{17}}4,\tfrac12\right]^{\mathsf T}.
 \]
 
 总消费现值为 $1+2\phi_a+\phi_b$。扣除第一人的消费现值 $1$，第二人的消费现值正好等于其初始股票的价值 $2\phi_a+\phi_b$。因此两份个人预算均满足。代回定价式并用证券支付恢复价格：
@@ -1268,7 +1268,7 @@ $\widetilde\pi$ 为随机贴现因子，也称定价核。其状态取值 $\pi_\
 
 为了把\WJEqRef{eq:wj-10-risk-growth-star}{式~} 写成收益率之间的关系，构造一个支付等于未来总消费 $\widetilde C_1$ 的组合 $m$。完全市场保证这种支付可以复制。若未来总禀赋全部来自证券的支付，按证券总供给持有的市场组合 $\theta_M$ 就满足 $X\theta_M=C_1$，从而可以作为组合 $m$。
 
-若改用 Arrow--Debreu 状态证券，支付矩阵是 $\Omega$ 阶单位矩阵。第 $\omega$ 只状态证券每份只在状态 $\omega$ 支付 $1$，所以要复制支付列向量 $C_1=(C_{11},\ldots,C_{1\Omega})^{\mathsf T}$，就在第 $\omega$ 只状态证券上持有 $C_{1\omega}$ 份。以状态证券为坐标的持仓为 $\theta_m=C_1$，价格为 $v_m=\phi^{\mathsf T}\theta_m=\phi^{\mathsf T}C_1$。用上一节的定义 $\widetilde C_1=C_0(1+\tilde g)$ 代入净收益率公式，
+若改用 Arrow--Debreu 状态证券，支付矩阵是 $\Omega$ 阶单位矩阵。第 $\omega$ 只状态证券每份只在状态 $\omega$ 支付 $1$，所以要复制支付列向量 $C_1=[C_{11},\ldots,C_{1\Omega}]^{\mathsf T}$，就在第 $\omega$ 只状态证券上持有 $C_{1\omega}$ 份。以状态证券为坐标的持仓为 $\theta_m=C_1$，价格为 $v_m=\phi^{\mathsf T}\theta_m=\phi^{\mathsf T}C_1$。用上一节的定义 $\widetilde C_1=C_0(1+\tilde g)$ 代入净收益率公式，
 \[
  \tilde r_m=\frac{\widetilde C_1-v_m}{v_m}
  =\frac{C_0(1+\tilde g)-v_m}{v_m}.
@@ -1310,7 +1310,7 @@ $\widetilde\pi$ 为随机贴现因子，也称定价核。其状态取值 $\pi_\
 \WJEqRef{eq:wj-10-risk-market-beta}{式~} 用组合 $m$ 的收益率近似定价核的变化。要写出精确关系，可在完全市场中构造组合 $q$，使它在每个状态的支付恰好等于该状态的定价核。由\WJEqRef{eq:wj-10-16}{式~}[（定价核的定义）]，每份状态证券只在对应状态支付 $1$，因此持有第 $\omega$ 只状态证券 $\pi_\omega$ 份即可复制该状态的目标支付。组合 $q$ 的逐状态支付与按状态证券排列的持仓为
 \[
  X_{q,\omega}=\pi_\omega=\frac{u'_1(C_{1\omega})}{u'_0(C_0)},\qquad
- \theta_q=(\pi_1,\ldots,\pi_\Omega)^{\mathsf T}.
+ \theta_q=[\pi_1,\ldots,\pi_\Omega]^{\mathsf T}.
 \]
 
 按状态价格为这组持仓定价，并用 $\phi_\omega=p_\omega\pi_\omega$，得到

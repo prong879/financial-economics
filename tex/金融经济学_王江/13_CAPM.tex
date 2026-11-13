@@ -32,9 +32,9 @@
 
 \section{市场组合}\label{sec:wj-thirteen-1}
 \subsection{总持仓与市场价值权重}
-证券 $n$ 的总供给为 $\bar\theta_n$，价格为 $P_n$。将 $N$ 只风险证券的价格按证券顺序排成列向量 $P=(P_1,\ldots,P_N)^{\mathsf T}$。全部风险证券的总供给构成\textbf{市场组合}，其总持仓按相同顺序写成列向量
+证券 $n$ 的总供给为 $\bar\theta_n$，价格为 $P_n$。将 $N$ 只风险证券的价格按证券顺序排成列向量 $P=[P_1,\ldots,P_N]^{\mathsf T}$。全部风险证券的总供给构成\textbf{市场组合}，其总持仓按相同顺序写成列向量
 \begin{equation}
- \theta_M=(\bar\theta_1,\ldots,\bar\theta_N)^{\mathsf T}.
+ \theta_M=[\bar\theta_1,\ldots,\bar\theta_N]^{\mathsf T}.
  \label{eq:wj-13-1}
 \end{equation}
 
@@ -43,7 +43,7 @@
 令 $v_n=P_n\bar\theta_n$ 为证券 $n$ 的市场价值，$v_M=P^{\mathsf T}\theta_M=\sum_n v_n>0$ 为全部风险证券的总市值，则市场组合的权重为
 \begin{equation}
  z_{n,M}=\frac{P_n\bar\theta_n}{v_M},\qquad
- z_M=(z_{1,M},\ldots,z_{N,M})^{\mathsf T},\quad\iota^{\mathsf T}z_M=1.
+ z_M=[z_{1,M},\ldots,z_{N,M}]^{\mathsf T},\quad\iota^{\mathsf T}z_M=1.
  \label{eq:wj-13-2}
 \end{equation}
 \end{tcolorbox}
@@ -380,15 +380,15 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \begin{tcolorbox}[example,title=补充算例：从均衡价格验证CAPM]
 两只风险证券的支付均值和协方差为
 \[
- \bar v=\begin{pmatrix}4\\8\end{pmatrix},\qquad
- \Sigma=\begin{pmatrix}1&0\\0&4\end{pmatrix}.
+ \bar v=\begin{bmatrix}4\\8\end{bmatrix},\qquad
+ \Sigma=\begin{bmatrix}1&0\\0&4\end{bmatrix}.
 \]
 每只证券供给一单位，总风险容忍度的倒数为 $a=1/2$，无风险总收益率 $R=1$。求均衡价格、市场收益率、各证券的市场贝塔，并验证CAPM。
 \begin{solution}[blank-type=manual,blank-vsep=5\baselineskip]
-市场持仓为 $\theta_M=(1,1)^{\mathsf T}$，所以 $\Sigma\theta_M=(1,4)^{\mathsf T}$、$\theta_M^{\mathsf T}\Sigma\theta_M=5$。由均衡价格式，
+市场持仓为 $\theta_M=[1,1]^{\mathsf T}$，所以 $\Sigma\theta_M=[1,4]^{\mathsf T}$、$\theta_M^{\mathsf T}\Sigma\theta_M=5$。由均衡价格式，
 \[
  S=\bar v-a\Sigma\theta_M
- =\begin{pmatrix}7/2\\6\end{pmatrix},\qquad
+ =\begin{bmatrix}7/2\\6\end{bmatrix},\qquad
  v_M=\frac{19}{2}.
 \]
 

@@ -39,7 +39,7 @@
 \section{一般市场结构}\label{sec:wj-four-market}
 \subsection{复合证券与支付矩阵}
 \begin{tcolorbox}[knowledge,title=复合证券]
-在多个状态下有非零支付的证券称为\textbf{复合证券}。在两状态市场里，支付 $(2,1)^{\mathsf T}$ 的一份证券可以看成两份第一状态阿罗证券和一份第二状态阿罗证券合在一起。复合证券把多个状态的支付打包成一份合约。
+在多个状态下有非零支付的证券称为\textbf{复合证券}。在两状态市场里，支付 $[2,1]^{\mathsf T}$ 的一份证券可以看成两份第一状态阿罗证券和一份第二状态阿罗证券合在一起。复合证券把多个状态的支付打包成一份合约。
 \end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=支付矩阵与行列约定,breakable=false]
 设 1 期有 $\Omega$ 个状态，市场上有 $N$ 只证券（$n=1,\dots,N$），第 $n$ 只证券的支付向量为 $X_n=\begin{bmatrix}x_{1,n} \\ \vdots \\ x_{\Omega,n}\end{bmatrix}$，\textbf{支付矩阵}以状态为行、证券为列：
@@ -151,7 +151,7 @@
  X^{-1}=\frac1{13}\begin{bmatrix}-1&3\\5&-2\end{bmatrix}.
 \]
 
-求复制两只阿罗证券及支付 $y=(5,2)^{\mathsf T}$ 的组合与成本。
+求复制两只阿罗证券及支付 $y=[5,2]^{\mathsf T}$ 的组合与成本。
 \end{question}
 \begin{solution}
 由 $X^{-1}$ 的两列，$\theta_1=[-1,5]^{\mathsf T}/13$、$\theta_2=[3,-2]^{\mathsf T}/13$ 分别复制 $[1,0]^{\mathsf T}$、$[0,1]^{\mathsf T}$。要复制支付 $y=[5,2]^{\mathsf T}$，先把它写成五份第一状态阿罗证券加两份第二状态阿罗证券，再换成可交易证券：
@@ -287,7 +287,7 @@ $x$ 列出各个未来状态下的支付金额，$s$ 则是为整笔支付给出
 
 若 $x=X\theta$，则 $S^{\mathsf T}\theta$ 是组合 $\theta$ 复制支付 $x$ 的当期成本。用复制成本定义 $V(x)$ 的前提是，所有复制 $x$ 的组合成本都相同。
 
-\WJRef{ex:wj-four-1}{例~} 中，两份证券 $A$ 与证券 $B,C$ 各一份都产生支付 $(2,2,2)^{\mathsf T}$，当期成本却分别为 $2$ 和 $3$。在这组报价下，同一笔支付的复制成本会随所选组合而变。
+\WJRef{ex:wj-four-1}{例~} 中，两份证券 $A$ 与证券 $B,C$ 各一份都产生支付 $[2,2,2]^{\mathsf T}$，当期成本却分别为 $2$ 和 $3$。在这组报价下，同一笔支付的复制成本会随所选组合而变。
 
 \begin{tcolorbox}[knowledge]
 \WJFourTheorem{thm:wj-four-3}\textbf{（一价定律）}在无套利市场中，具有相同支付的两个证券（或证券组合）的价格相同。即
@@ -349,7 +349,7 @@ $x$ 列出各个未来状态下的支付金额，$s$ 则是为整笔支付给出
 \begin{solution}[label-content={证明},blank-type=none]
 分别复制 $x$、$y$，再持有 $a$ 倍与 $b$ 倍组合，得到支付 $ax+by$，成本为 $aV(x)+bV(y)$；一价定律要求它等于 $V(ax+by)$。允许负系数用到了卖空不受限的无摩擦假设。
 
-\textbf{向量表示。}在 $\mathcal M$ 中取一组基 $b_1,\ldots,b_r$，令 $B=[b_1,\ldots,b_r]$、$v=(V(b_1),\ldots,V(b_r))^{\mathsf T}$。要用状态权重 $\phi$ 给每个基支付定价，就要同时满足 $b_j^{\mathsf T}\phi=V(b_j)$，合起来是 $B^{\mathsf T}\phi=v$。$B$ 的 $r$ 列线性无关，所以 $B^{\mathsf T}$ 的 $r$ 行线性无关，方程可解。任意可达支付 $x=Ba$ 都是这些基支付的线性组合，由线性定价可得
+\textbf{向量表示。}在 $\mathcal M$ 中取一组基 $b_1,\ldots,b_r$，令 $B=[b_1,\ldots,b_r]$、$v=[V(b_1),\ldots,V(b_r)]^{\mathsf T}$。要用状态权重 $\phi$ 给每个基支付定价，就要同时满足 $b_j^{\mathsf T}\phi=V(b_j)$，合起来是 $B^{\mathsf T}\phi=v$。$B$ 的 $r$ 列线性无关，所以 $B^{\mathsf T}$ 的 $r$ 行线性无关，方程可解。任意可达支付 $x=Ba$ 都是这些基支付的线性组合，由线性定价可得
 \[
  V(x)=v^{\mathsf T}a=\phi^{\mathsf T}Ba=\phi^{\mathsf T}x.
 \]
@@ -380,7 +380,7 @@ $x$ 列出各个未来状态下的支付金额，$s$ 则是为整笔支付给出
 
 证券 $n$ 在状态 $\omega$ 支付 $x_{\omega,n}$ 单位，按每单位 $\phi_\omega$ 计价，这笔支付的现值是 $x_{\omega,n}\phi_\omega$。加总各状态的现值，得到证券 $n$ 的价格 $S_n=\sum_{\omega=1}^{\Omega}x_{\omega,n}\phi_\omega=X_{\cdot,n}^{\mathsf T}\phi$。
 
-$X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同一个 $\phi$ 与 $X^{\mathsf T}$ 的各行相乘，就依次得到全部 $N$ 只证券的价格，组成列向量 $S=(S_1,\ldots,S_N)^{\mathsf T}$。
+$X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同一个 $\phi$ 与 $X^{\mathsf T}$ 的各行相乘，就依次得到全部 $N$ 只证券的价格，组成列向量 $S=[S_1,\ldots,S_N]^{\mathsf T}$。
 % 教材式 (4.6) 写作 S=(phi^T X)^T，与本式等价。
 \end{tcolorbox}
 
@@ -513,7 +513,7 @@ $X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同
     \Phi_A\cap\Phi_B=\{\phi\gg 0:\phi_1=\tfrac12,\;\phi_2+\phi_3=\tfrac12\},
 \]
 
-交集中包含 $(1/2,1/4,1/4)^{\mathsf T}\gg0$，所以 $A$、$B$ 的价格无套利；令 $\phi_2=t$、$\phi_3=1/2-t$，其中 $0<t<1/2$，还可得到多支严格正解。
+交集中包含 $[1/2,1/4,1/4]^{\mathsf T}\gg0$，所以 $A$、$B$ 的价格无套利；令 $\phi_2=t$、$\phi_3=1/2-t$，其中 $0<t<1/2$，还可得到多支严格正解。
 
 再加入证券 $C$，价格为 $2$，支付为 $[2;\,0;\,0]$。条件变成 $\phi_1=1$，
 \[
@@ -538,7 +538,7 @@ $X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同
 \section{风险中性定价和鞅}\label{sec:wj-four-risk-neutral}
 \subsection{无风险利率与贴现}
 % 教材印刷第 59—60 页、教师 PPT 第 25—27 页：同一笔确定支付的两种定价写法。
-沿用前文的记号，$S_n$ 表示第 $n$ 只证券的 0 期价格。本节将一只无风险债券编号为 $1$，其 0 期价格为 $S_1$。该债券在 1 期的每个状态都支付 $1$ 单位，故其支付向量是按状态排列的 $\Omega$ 维全 $1$ 列向量 $\iota=(1,\ldots,1)^{\mathsf T}$。
+沿用前文的记号，$S_n$ 表示第 $n$ 只证券的 0 期价格。本节将一只无风险债券编号为 $1$，其 0 期价格为 $S_1$。该债券在 1 期的每个状态都支付 $1$ 单位，故其支付向量是按状态排列的 $\Omega$ 维全 $1$ 列向量 $\iota=[1,\ldots,1]^{\mathsf T}$。
 
 若市场无套利，由\WJRef{thm:wj-four-7}{定理~}[（资产定价基本定理）]，存在一组严格为正的状态价格 $\phi$，能为所有交易证券定价。用这组状态价格给债券定价，得到 $S_1=\phi^{\mathsf T}\iota>0$。
 
@@ -562,7 +562,7 @@ $X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同
 % 来源：教师 PPT 第 27 页。
 \begin{tcolorbox}[example,title=课堂例题：从状态价格读出利率]
 \begin{question}
-设晴、雨两状态价格为 $\phi=(0.3,0.5)^{\mathsf T}$。求单位无风险债券的价格与无风险利率。
+设晴、雨两状态价格为 $\phi=[0.3,0.5]^{\mathsf T}$。求单位无风险债券的价格与无风险利率。
 \end{question}
 \begin{solution}
 债券在两种状态下都支付 $1$，故 $S_1=0.3\times1+0.5\times1=0.8$。今天支付 $0.8$，到期确定收到 $1$，所以 $r_F=(1-0.8)/0.8=25\%$，折现因子为 $0.8$。
@@ -636,7 +636,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 
 风险溢价取决于证券在哪些状态支付，以及真实概率 $p_\omega$ 与定价权重 $q_\omega$ 在这些状态上相差多少。确定支付在各状态都相同，两种权重给出的期望支付相同，因此风险溢价为零。
 
-\WJRef{sec:wj-three-equilibrium}{第~}[~节（均衡的定义与市场出清）]讨论证券报价如何在市场均衡中形成，投资者的风险偏好与禀赋会影响这些报价\footnote{第三章的竞争均衡要求两件事同时成立。给定状态价格，每个人在自己的预算内选择最优消费计划。所有人的选择加总后，当期和未来各状态的总需求分别等于该处的总资源。状态价格由这些条件共同确定，证券报价再由各状态支付按相应状态价格加权得到。}。这里把已有证券的报价 $S$ 和支付矩阵 $X$ 作为已知条件，反过来求能复现这些报价的风险中性权重。令 $q=(q_1,\ldots,q_\Omega)^{\mathsf T}$，将 $\phi=S_1q$ 代入\WJEqRef{eq:wj-four-6}{式~}，得到
+\WJRef{sec:wj-three-equilibrium}{第~}[~节（均衡的定义与市场出清）]讨论证券报价如何在市场均衡中形成，投资者的风险偏好与禀赋会影响这些报价\footnote{第三章的竞争均衡要求两件事同时成立。给定状态价格，每个人在自己的预算内选择最优消费计划。所有人的选择加总后，当期和未来各状态的总需求分别等于该处的总资源。状态价格由这些条件共同确定，证券报价再由各状态支付按相应状态价格加权得到。}。这里把已有证券的报价 $S$ 和支付矩阵 $X$ 作为已知条件，反过来求能复现这些报价的风险中性权重。令 $q=[q_1,\ldots,q_\Omega]^{\mathsf T}$，将 $\phi=S_1q$ 代入\WJEqRef{eq:wj-four-6}{式~}，得到
 \[
  X^{\mathsf T}q=\frac{S}{S_1}=(1+r_F)S,
  \qquad q_\omega>0\ (\omega=1,\ldots,\Omega),\qquad

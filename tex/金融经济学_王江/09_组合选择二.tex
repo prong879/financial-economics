@@ -301,7 +301,7 @@ $A$ 在坏状态低于 $B$，故不逐状态占优。其分布却满足
 随机占优可以排序给定的组合，前面的例子也表明，引入其他风险证券会改变这种排序。现在换一个问题，考察收益分布或偏好具有什么共同结构时，参与者可以用同一组基金构造各自的最优组合。
 
 \subsection{共同基金分离}
-令 $w>0$ 为总投资额，$a_n$ 为第 $n$ 只证券的投资金额。组合用\textbf{权重列向量} $z=(z_1,\ldots,z_N)^{\mathsf T}$ 表示，其中 $z_n=a_n/w$。按同一证券顺序记总收益率列向量 $\tilde x=(\tilde x_1,\ldots,\tilde x_N)^{\mathsf T}$，并令 $\iota$ 为 $N$ 维全 $1$ 列向量。组合权重之和为 $1$，组合总收益率与期末财富分别为
+令 $w>0$ 为总投资额，$a_n$ 为第 $n$ 只证券的投资金额。组合用\textbf{权重列向量} $z=[z_1,\ldots,z_N]^{\mathsf T}$ 表示，其中 $z_n=a_n/w$。按同一证券顺序记总收益率列向量 $\tilde x=[\tilde x_1,\ldots,\tilde x_N]^{\mathsf T}$，并令 $\iota$ 为 $N$ 维全 $1$ 列向量。组合权重之和为 $1$，组合总收益率与期末财富分别为
 \[
  z^{\mathsf T}\iota=1,\qquad
  \tilde x_z=z^{\mathsf T}\tilde x=\sum_{n=1}^N z_n\tilde x_n,\qquad
@@ -347,11 +347,11 @@ $z_{f_i}$ 的各分量是基金 $i$ 投在原证券上的权重，$\lambda_{ki}$
 \textbf{必要性（有限状态）。}若存在对上述投资者共同适用的风险基金，各状态概率为正、该基金的期望超额收益非零，且有一种光滑的收益率效用 $v_0$ 具有非零的内点最优风险头寸，并在相关区间上满足 $v_0'>0$、$v_0''<0$，则可以反推出这三条因子条件。
 \end{tcolorbox}
 
-\textbf{符号说明：}这里 $x_F=1+r_F$ 是无风险总收益率，$w_n$ 是风险基金在第 $n$ 只风险证券上的权重。用 $w=(w_1,\ldots,w_{N-1},0)^{\mathsf T}$ 表示风险基金的权重向量，用 $F=(0,\ldots,0,1)^{\mathsf T}$ 表示无风险基金；本段的 $w$ 是向量，初始财富另记为 $W$。无风险证券作为分离基金之一，故这里也属于\WJRef{def:wj-nine-5}{定义~}[（基金货币分离）] 的两基金货币分离。
+\textbf{符号说明：}这里 $x_F=1+r_F$ 是无风险总收益率，$w_n$ 是风险基金在第 $n$ 只风险证券上的权重。用 $w=[w_1,\ldots,w_{N-1},0]^{\mathsf T}$ 表示风险基金的权重向量，用 $F=[0,\ldots,0,1]^{\mathsf T}$ 表示无风险基金；本段的 $w$ 是向量，初始财富另记为 $W$。无风险证券作为分离基金之一，故这里也属于\WJRef{def:wj-nine-5}{定义~}[（基金货币分离）] 的两基金货币分离。
 
 \textbf{条件含义：}共同因子产生\textbf{共同风险}，残差产生\textbf{特殊风险}。条件均值为零约束残差在每个因子取值上的平均值；第 3 条要求可交易风险基金\textbf{完全消除}残差。基金的非零因子载荷使任意组合的共同风险都可由该基金匹配。
 
-例如，两只证券相对无风险证券的超额收益分别为 $\tilde y+\tilde e$ 和 $\tilde y-\tilde e$，且 $\mathrm E[\tilde e\mid\tilde y]=0$。取 $w=(1/2,1/2)$、$\beta=(1,1)$，则 $\beta_w=1$，各投一半所得基金的超额收益恰为 $\tilde y$。任意权重 $(\theta,1-\theta)$ 的超额收益为
+例如，两只证券相对无风险证券的超额收益分别为 $\tilde y+\tilde e$ 和 $\tilde y-\tilde e$，且 $\mathrm E[\tilde e\mid\tilde y]=0$。取 $w=[1/2,1/2]$、$\beta=[1,1]$，则 $\beta_w=1$，各投一半所得基金的超额收益恰为 $\tilde y$。任意权重 $[\theta,1-\theta]$ 的超额收益为
 \[
  \underbrace{\tilde y}_{\text{共同因子}}
  +\underbrace{(2\theta-1)\tilde e}_{\text{剩余风险}}.
@@ -448,12 +448,12 @@ $z_{f_i}$ 的各分量是基金 $i$ 投在原证券上的权重，$\lambda_{ki}$
 
 \begin{solution}[label-content={证明},blank-type=none]
 \textbf{第一步：将各证券的收益写成向量形式。}
-令 $\iota=(1,\ldots,1)^{\mathsf T}$，并设
+令 $\iota=[1,\ldots,1]^{\mathsf T}$，并设
 \[
 \begin{gathered}
- \tilde x=(\tilde x_1,\ldots,\tilde x_{N-1},x_F)^{\mathsf T},\\
- \beta=(\beta_1,\ldots,\beta_{N-1},0)^{\mathsf T},\qquad
- \tilde e=(\tilde e_1,\ldots,\tilde e_{N-1},0)^{\mathsf T}.
+ \tilde x=[\tilde x_1,\ldots,\tilde x_{N-1},x_F]^{\mathsf T},\\
+ \beta=[\beta_1,\ldots,\beta_{N-1},0]^{\mathsf T},\qquad
+ \tilde e=[\tilde e_1,\ldots,\tilde e_{N-1},0]^{\mathsf T}.
 \end{gathered}
 \]
 
@@ -695,7 +695,7 @@ $z_{f_i}$ 的各分量是基金 $i$ 投在原证券上的权重，$\lambda_{ki}$
 关键是所有人的风险容忍度对财富具有\textbf{相同斜率}，截距可以不同。对数效用、幂效用、二次效用及负指数效用的相应形式或极限均与这一族有关；正的仿射变换不影响组合选择。
 
 \begin{solution}[label-content={证明},blank-type=none]
-假设共同信念、自由交易、全投无风险证券时的财富位于效用定义域内，且存在内点最优解。令 $\tilde x_R=(\tilde x_1,\ldots,\tilde x_{N-1})^{\mathsf T}$ 为风险证券的总收益率列向量，此处 $\iota$ 是同维的全 $1$ 列向量。于是 $\tilde q=\tilde x_R-x_F\iota$ 的第 $n$ 项是第 $n$ 只风险证券的超额收益率。令 $a_k$ 为按同一顺序排列的风险证券投资\textbf{金额}列向量。期末财富为
+假设共同信念、自由交易、全投无风险证券时的财富位于效用定义域内，且存在内点最优解。令 $\tilde x_R=[\tilde x_1,\ldots,\tilde x_{N-1}]^{\mathsf T}$ 为风险证券的总收益率列向量，此处 $\iota$ 是同维的全 $1$ 列向量。于是 $\tilde q=\tilde x_R-x_F\iota$ 的第 $n$ 项是第 $n$ 只风险证券的超额收益率。令 $a_k$ 为按同一顺序排列的风险证券投资\textbf{金额}列向量。期末财富为
 \[
  \tilde w_k=w_kx_F+a_k^{\mathsf T}\tilde q.
 \]
