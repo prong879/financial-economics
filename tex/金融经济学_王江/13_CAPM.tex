@@ -41,7 +41,7 @@
 \end{equation}
 
 在\WJLink{def:wj-two-6}{证券市场经济}中，个人未来禀赋来自初始证券持仓。当市场没有无风险证券，或无风险证券的净供给为零时，未来总禀赋就等于风险证券市场组合的支付。市场组合可用证券数量表示，也可用投资价值权重表示。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 令 $v_n=P_n\bar\theta_n$ 为证券 $n$ 的市场价值，$v_M=P^{\mathsf T}\theta_M=\sum_n v_n>0$ 为全部风险证券的总市值，则市场组合的权重为
 \begin{equation}
  z_{n,M}=\frac{P_n\bar\theta_n}{v_M},\qquad
@@ -70,7 +70,7 @@
  \underbrace{\sum_k(w_k-A_k)=0}_{\text{无风险证券按金额出清}}.
 \]
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJThirteenTheorem{thm:wj-thirteen-1} 在上述均值--方差经济中，市场达到均衡时，市场组合就是切点组合：$z_M=z_T$。
 \end{tcolorbox}
 
@@ -89,7 +89,7 @@
 
 \section{CAPM给出的资产定价关系}\label{sec:wj-thirteen-3}
 \subsection{市场贝塔与证券市场线}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJThirteenTheorem{thm:wj-thirteen-2} 若市场组合方差 $\sigma_M^2>0$，则对价格非零的任意证券 $n$，CAPM均衡满足
 \begin{equation}
  \bar r_n-r_F
@@ -186,7 +186,7 @@
 
 \WJEqRef{eq:wj-13-4}{式~}的回归分解来自最小二乘。CAPM 进一步用\WJEqRef{eq:wj-13-3}{期望收益关系~}限制总体截距为 $\alpha_n=0$，即期望超额收益全部由市场贝塔项解释。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 对\WJEqRef{eq:wj-13-4}{式~} 取方差。由于市场收益与残差的协方差为零，资产收益的总风险可分为\textbf{系统风险}和\textbf{剩余风险}（非系统风险）：
 \[
  \sigma_n^2=\underbrace{\beta_{n,M}^2\sigma_M^2}_{\text{系统风险方差}}
@@ -294,7 +294,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 即使 $d>0$，市场组合也可能恰为 MVP。此时，\WJRef{thm:wj-twelve-8}{定理~} 给出任意完全投资组合与它的协方差都等于其方差 $1/c$。因此这些组合的市场贝塔都等于 $1$，无法选出零贝塔组合用作定价基准。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJThirteenTheorem{thm:wj-thirteen-3} 不存在无风险证券时，对非MVP的市场组合 $M$，任意组合 $q$ 满足
 \begin{equation}
  \bar r_q-\bar r_{zcm}

@@ -35,7 +35,7 @@
 \subsection{消费与投资的联合选择及解的存在性}
 沿用\WJRef{chap:wj-two}{第}[章（基本框架）]的个人选择问题，参与者在给定价格下通过证券净交易选择消费计划。将其中的一般效用换成\WJEqRef{eq:wj-six-3}{式~}[（时间可加的期望效用）]，并省略参与者下标，就得到以下问题\footnote{第二讲用净交易决定预算：买入的成本从当期禀赋中扣除，未来各状态收到的净支付加到该状态的禀赋上。第六讲在状态独立、时间可加时，用同一个 $u_1$ 评价各未来状态的消费，再按状态概率加权，与当期效用 $u_0(c_0)$ 相加；$u_0$ 与 $u_1$ 可以不同。}。
 
-\begin{tcolorbox}[knowledge,title=消费与投资的联合选择,breakable=false]
+\begin{tcolorbox}[knowledge,title=消费与投资的联合选择]
 设有 $N$ 只证券和 $\Omega$ 个未来状态。价格 $S=[S_1,\ldots,S_N]^{\mathsf T}$ 与相对初始持仓的\textbf{净购买数量} $\theta=[\theta_1,\ldots,\theta_N]^{\mathsf T}$ 都按支付矩阵 $X$ 的列顺序排列。未来禀赋 $e_1=[e_{11},\ldots,e_{1\Omega}]^{\mathsf T}$ 与未来消费 $c_1=[c_{11},\ldots,c_{1\Omega}]^{\mathsf T}$ 都按 $X$ 的行所对应的状态顺序排列。当期禀赋 $e_0$ 与消费 $c_0$ 各是一个数。状态概率满足 $p_\omega>0$、$\sum_\omega p_\omega=1$，优化问题为
 \begin{equation}
 \begin{aligned}
@@ -56,7 +56,7 @@
 
 下面的存在性论证只用到效用的连续性和对各项消费的严格单调性，所以也适用于第二讲的一般效用函数。推导 Euler 方程时，再用本章的时间可加形式计算边际效用。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJEightTheorem{thm:wj-eight-1} 在有限状态、无摩擦且允许自由交易的模型中，若可行消费集合非空、效用连续并对每个时期及状态的消费严格递增，则消费与组合选择问题有最优解，当且仅当市场\WJLink{def:wj-four-2}{无套利}。
 \end{tcolorbox}
 
@@ -95,7 +95,7 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 % 教师课件第 4—5 页：用可行消费集解释最优解存在的原因。
 有界是说固定禀赋的现值只能支持有限的消费。闭是说，一列可行消费计划若收敛，其极限仍可行，包括某一项消费恰好为零的边界计划。两者合在一起，使连续效用能在预算集中取到最大值。反过来，如果存在套利，每多买入一份套利组合，就能在不减少任何一项消费的前提下增加至少一项消费。即使效用函数有上界，每个可行计划仍能被严格改进，因而没有最优解。
 
-\begin{tcolorbox}[knowledge,title=可行消费与最优解的唯一性,breakable=false]
+\begin{tcolorbox}[knowledge,title=可行消费与最优解的唯一性]
 无套利使可行消费集合有界。冗余证券的零支付方向允许不同头寸实现同一消费，因此消费集合有界与头寸集合有界是不同的性质。严格凹效用保证最优消费唯一；支付映射无冗余时，实现该消费的组合也唯一。
 \end{tcolorbox}
 
@@ -146,7 +146,7 @@ $e+\operatorname{Im}[-S^{\mathsf T};X]$ 的交集，因而闭。连续效用在�
 对正价证券，除以 $S_n$ 把一份证券的未来支付换算为每投入一元的未来支付。再除以当期消费的边际效用 $u_0'(c_0)$，就能以当期消费为基准比较两种用法。在最优处，这个相对边际效用等于 $1$。
 
 \hypertarget{wj-stochastic-discount-factor}{}
-\begin{tcolorbox}[knowledge,title=随机贴现因子与状态价格,breakable=false]
+\begin{tcolorbox}[knowledge,title=随机贴现因子与状态价格]
 边际效用之比给出\textbf{随机贴现因子}，证券价格可写为
 \[
  S_n=\mathrm E\!\left[
@@ -370,7 +370,7 @@ $a_n$ 是投资\textbf{金额}，$\theta_n$ 是证券\textbf{数量}；$w\ne0$ �
 \end{aligned}
 \]
 
-\begin{tcolorbox}[knowledge,title=期末财富的分解,breakable=false]
+\begin{tcolorbox}[knowledge,title=期末财富的分解]
 \begin{equation}
  \tilde w=\underbrace{w(1+r_F)}_{\text{全部财富的无风险终值}}
  +\underbrace{\sum_{n=1}^{N-1}a_n(\tilde r_n-r_F)}_{\text{风险投资的超额收益金额}}.
@@ -380,7 +380,7 @@ $a_n$ 是投资\textbf{金额}，$\theta_n$ 是证券\textbf{数量}；$w\ne0$ �
 
 每一元从无风险证券转投风险证券，期末财富改变 $\tilde r_n-r_F$：风险证券的收益扣除了原本可获得的无风险收益。将各笔投资的这一变化相加，就得到超额收益金额。
 
-\begin{tcolorbox}[knowledge,title=超额收益率与风险溢价,breakable=false]
+\begin{tcolorbox}[knowledge,title=超额收益率与风险溢价]
 $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-r_F$ 是本章的\textbf{风险溢价}。
 \end{tcolorbox}
 
@@ -437,7 +437,7 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 \end{aligned}
 \]
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJEightTheorem{thm:wj-eight-2} 最优风险投资额 $a^*$ 与风险溢价同号：
 \[
  \begin{array}{c|ccc}
@@ -459,7 +459,7 @@ $\tilde r_n-r_F$ 是\textbf{超额收益率}，其期望 $\mathrm E[\tilde r_n]-
 正风险溢价使参与者愿意从零开始买入，零风险溢价时没有承担额外风险的收益补偿，负风险溢价时则从零开始卖空。在内点最优处，继续增加同方向的头寸已经无法提高期望效用。
 
 % 教师课件第 23—24 页：分别展开期望财富的效用与离散程度造成的效用损失。
-\begin{tcolorbox}[knowledge,title=小额投资的收益与风险成本,breakable=false]
+\begin{tcolorbox}[knowledge,title=小额投资的收益与风险成本]
 从全部投资无风险证券出发，记确定的期末财富为 $b=w(1+r_F)$，风险证券的超额收益率为 $\widetilde z=\tilde r-r_F$，均值为 $\mu$、方差为 $\sigma^2$。从无风险证券拨出 $a$ 投到风险证券，期末财富变为
 \[
  \tilde w=b+a\widetilde z
@@ -556,7 +556,7 @@ DARA 下，$\tilde r-r_F>0$ 时 $\tilde w^*>w(1+r_F)$、$A(\tilde w^*)<A(w(1+r_F
 逆向的普遍性证明将在\WJRef{thm:wj-eight-4}{定理~}[（相对风险厌恶与风险投资比例的财富效应）]后一并给出。
 
 \subsubsection{相对风险厌恶与投资比例}
-\begin{tcolorbox}[knowledge,title=投资比例与财富弹性,breakable=false]
+\begin{tcolorbox}[knowledge,title=投资比例与财富弹性]
 设 $w>0$、期末财富为正，定义
 \[
  \alpha^*(w)=\frac{a^*(w)}{w},\qquad
@@ -577,7 +577,7 @@ $e$ 衡量初始财富增加 $1\%$ 时，最优风险投资金额变化的百分
 在正风险溢价下，$a^*>0$，所以投资比例的变化方向由 $e(w)-1$ 决定。例如 $e(w)>1$ 时，初始财富增加约 $1\%$，最优风险投资金额增加超过 $1\%$，其占财富的比例也随之上升。
 
 % 教师课件第 27 页。点弹性用于近似有限的 1% 变动。
-\begin{tcolorbox}[example,title=课堂算例：财富增加一万元后的股票配置,breakable=false]
+\begin{tcolorbox}[example,title=课堂算例：财富增加一万元后的股票配置]
 初始财富为 $100$ 万元，其中 $40$ 万元投资股票。财富增加到 $101$ 万元时，用
 $\Delta a^*/a^*\approx e(w)\,\Delta w/w$ 估算。金额和比例按下表变化：
 \begin{center}
@@ -592,7 +592,7 @@ $\Delta a^*/a^*\approx e(w)\,\Delta w/w$ 估算。金额和比例按下表变化
 \end{tcolorbox}
 
 \Needspace{11\baselineskip}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 % 教材定理 8.4；正财富、正风险溢价，充要关系采用全体投资机会的量词。
 \WJEightTheorem{thm:wj-eight-4} 沿用\WJRef{thm:wj-eight-3}{定理~}[（风险投资金额的财富效应）] 的区间、投资机会及财富比较条件，\hyperlink{wj-relative-risk-aversion}{\textcolor{WJReferenceColor}{相对风险厌恶系数}}为 $R(t)=tA(t)$。$R$ 在 $I$ 上非递增，当且仅当对于所有这些投资机会，最优风险投资比例 $\alpha^*=a^*/w$ 随财富非递减。将单调方向同时反向，也成立；$R$ 恒定当且仅当所有这些模型的风险投资比例均不随财富变化。
 
@@ -667,7 +667,7 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
 \Needspace{6\baselineskip}
 \subsection{多只风险证券}\label{sec:wj-eight-multiple}
 本节沿用 $u'>0$、$u''<0$、$w>0$ 和自由交易条件，假定最优解存在，零风险头寸的邻域可行。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJEightTheorem{thm:wj-eight-5} 全投无风险证券（$a=0$）最优，当且仅当所有风险证券的风险溢价均为零。
 \end{tcolorbox}
 \begin{solution}[label-content={证明},blank-type=none]
@@ -688,7 +688,7 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
 
 完全抵消的风险头寸可使多个投资金额向量实现同一期末财富；严格凹性保证最优消费唯一。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJEightTheorem{thm:wj-eight-6} 最优组合的期望收益率不低于无风险收益率。若至少一只证券风险溢价非零，且允许在零头寸附近自由调整、最优解存在，则最优组合的期望收益率严格更高。
 \end{tcolorbox}
 \begin{solution}[label-content={证明},blank-type=none]
@@ -719,7 +719,7 @@ DRRA 下，$\tilde r-r_F>0$ 的状态有 $\tilde w^*>b$，因而 $R(\tilde w^*)-
 
 \Needspace{13\baselineskip}
 \WJChapterSummary
-\begin{tcolorbox}[summary,breakable=false]
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 在\WJRef{thm:wj-eight-1}{定理~}[（最优解存在与无套利）] 的条件下，最优消费存在当且仅当市场无套利。无套利使非空可行消费集闭且有界，套利则使每个消费计划都可以进一步改善。存在冗余证券时，同一最优消费可由不同头寸实现。
  \item 内点 Euler 方程令今天投资的边际效用损失等于未来的期望边际效用收益。用随机贴现因子写成 $\mathrm E[m\widetilde X_n/S_n]=1$（$S_n\ne0$），无风险债券给出 $\mathrm E[m]=1/(1+r_F)$。目标函数凹时，内点一阶条件也足以判定最优。

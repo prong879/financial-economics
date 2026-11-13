@@ -59,7 +59,7 @@
 美式期权的买方可以选择是否行权以及何时行权，因此实际支付的金额和时间都可能随行权决策而变。若一直持有到到期日，届时的支付与相应欧式期权相同。
 
 \subsection{内在价值与投资损益}
-\begin{tcolorbox}[knowledge,title=内在价值与实值、平值、虚值,breakable=false]
+\begin{tcolorbox}[knowledge,title=内在价值与实值、平值、虚值]
 期权的\textbf{内在价值}是按当前标的价格立即行权的非负所得：看涨为 $[S-K]_+$，看跌为 $[K-S]_+$。看涨按 $S>K$、$S=K$、$S<K$ 分为\textbf{实值}、\textbf{平值}、\textbf{虚值}；看跌的方向相反。欧式期权的内在价值是衡量实虚值的指标，其实际执行时间由合同规定。
 \end{tcolorbox}
 % 教材第 68 页将未取正部的 S-K、K-S 称为内在价值；此处将其与非负行权所得区分。
@@ -85,7 +85,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \begin{tcolorbox}[knowledge,title=衍生证券]
 本章将净供给为零、支付由其他证券的价格或支付决定的合约称为\textbf{衍生证券}（derivative security）。期权是其中的一类。
 \end{tcolorbox}
-\begin{tcolorbox}[knowledge,title=期权价格记号,breakable=false]
+\begin{tcolorbox}[knowledge,title=期权价格记号]
 固定到期日，采用下列价格记号：
 \begin{center}
 \begin{tabular}{c|cc}
@@ -256,7 +256,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 这就是\WJEqRef{eq:wj-five-3}{看涨—看跌平价式~}。
 \end{solution}
 
-\begin{tcolorbox}[knowledge,title=欧式看跌的价格界,breakable=false]
+\begin{tcolorbox}[knowledge,title=欧式看跌的价格界]
 由平价与看涨的界，还可得看跌的界
 \[
  \left[\frac K R-S\right]_+\le p(S,K)\le\frac K R.
@@ -267,7 +267,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 
 \section{美式期权以及提前执行}\label{sec:wj-five-early}
 \subsection{执行机会与期权价值}
-\begin{tcolorbox}[knowledge,title=两时点模型的最优执行,breakable=false]
+\begin{tcolorbox}[knowledge,title=两时点模型的最优执行]
 本节只有两个可行权时点，即 0 期和 1 期。若 0 期继续持有，下一次行权机会就是到期日，因此继续持有价值等于相应欧式期权的价格。将它与立即行权价值比较，得到
 \[
  C(S,K)=\max\{[S-K]_+,c(S,K)\},\qquad
@@ -330,7 +330,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 
 \subsection{股利与含息、除息价格}
 \subsubsection{当前分红与行权选择}
-\begin{tcolorbox}[knowledge,title=含息价格与除息价格,breakable=false]
+\begin{tcolorbox}[knowledge,title=含息价格与除息价格]
 设股票在 0 期执行决定之后立即支付确定股利 $D$，随后至到期不再分红。记含息价格为 $S^-$，除息价格为 $S^+$，有 $S^-=S^++D$。欧式期权以除息后股票的未来支付为标的。
 \end{tcolorbox}
 \begin{tcolorbox}[knowledge,title=当前分红下的美式期权]
@@ -377,7 +377,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \subsection{状态价格定价}
 设市场完全且无套利，单位无风险债券到期支付 $1$、价格为 $B=1/R$，其中 $R=1+r_F>0$。由\WJRef{thm:wj-four-8}{定理~}[（无套利完全市场中状态价格的唯一性）]，状态价格 $\phi\gg0$ 唯一。将其规范化为 $q_\omega=R\phi_\omega$，得到风险中性测度 $Q$\footnote{第四章由无套利得到一组严格正的状态价格。市场完全时，每个状态的单位支付都能复制，其复制成本就是该状态价格，因此整组价格唯一。无风险债券在每个状态支付 $1$，所以 $\sum_\omega\phi_\omega=B$。除以 $B$ 后，各权重为正且加总为 $1$。}。
 
-\begin{tcolorbox}[knowledge,title=完全市场中的期权定价,breakable=false]
+\begin{tcolorbox}[knowledge,title=完全市场中的期权定价]
 若标的在状态 $\omega$ 的支付为 $X_\omega$，则
 \[
  \begin{aligned}
@@ -436,7 +436,7 @@ ETF 的初始价格为每份 $3.00$ 元。一张看涨期权的执行价为 $3.0
 \[
  \theta_SuS+\theta_B=c_u,\qquad \theta_SdS+\theta_B=c_d.
 \]
-\begin{tcolorbox}[knowledge,title=复制组合与对冲比,breakable=false]
+\begin{tcolorbox}[knowledge,title=复制组合与对冲比]
 两式相减后回代，得
 \[
  \theta_S=\frac{c_u-c_d}{(u-d)S},\qquad
@@ -455,7 +455,7 @@ $\theta_S$ 称为\textbf{对冲比}（hedge ratio，也记作期权的 $\delta$�
 它与\WJEqRef{eq:wj-five-5}{式~}[（按状态价格加权的期权价格）]相同。一价定律使期权价格等于复制成本；报价偏高时卖出期权、买入复制组合，偏低时反向交易，均可得到未来净支付为零的当期正收入。
 
 \subsection{风险中性概率与鞅}
-\begin{tcolorbox}[knowledge,title=二叉树的风险中性概率与定价,breakable=false]
+\begin{tcolorbox}[knowledge,title=二叉树的风险中性概率与定价]
 将状态价格按其总和 $B=1/R$ 规范化，得到\WJLink{sec:wj-four-risk-neutral-probability}{风险中性概率}
 \begin{equation}
  q=\frac{\phi_u}{B}=\frac{R-d}{u-d},\qquad
@@ -507,7 +507,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
  \theta_{S,t}=\frac{V_{t+1}^{u}-V_{t+1}^{d}}{(u-d)S_t},\qquad
  \theta_{B,t}=\frac{uV_{t+1}^{d}-dV_{t+1}^{u}}{u-d}.
 \]
-\begin{tcolorbox}[knowledge,title=自融资复制,breakable=false]
+\begin{tcolorbox}[knowledge,title=自融资复制]
 组合成本为 $\theta_{S,t}S_t+\theta_{B,t}/R=H_t=V_t^{\mathrm E}$。下一期原组合价值恰好等于该节点继续复制所需的资金，可用原有财富调整持仓，整个过程无需追加资金。这就是\textbf{自融资复制}，也是逐节点倒推的交易依据。
 \end{tcolorbox}
 
@@ -641,7 +641,7 @@ $q\in(0,1)$。将 $\phi_u=q/R$、$\phi_d=(1-q)/R$ 代入股票的定价式，并
 
 \subsection{从期权价格恢复状态价格}
 \subsubsection{离散状态价格与二阶差分}
-\begin{tcolorbox}[knowledge,title=离散状态价格与期权价格差分,breakable=false]
+\begin{tcolorbox}[knowledge,title=离散状态价格与期权价格差分]
 固定标的、到期日及市场价格，简记看涨价格为 $c(K)$。令 $K_i=i\delta$，由上一小节的单位阿罗证券复制组合，一价定律给出
 \begin{equation}
  \phi_i=\frac{c(K_{i-1})-2c(K_i)+c(K_{i+1})}{\delta}.
@@ -673,7 +673,7 @@ $\phi_i$ 是状态 $i$ 支付一单位消费品的价格。将它分摊到宽度
 \[
  c(K)=\int_K^\infty(x-K)\varphi(x)\,\mathrm dx.
 \]
-\begin{tcolorbox}[knowledge,title=状态价格密度与 Breeden--Litzenberger 公式,breakable=false]
+\begin{tcolorbox}[knowledge,title=状态价格密度与 Breeden--Litzenberger 公式]
 提高执行价 $K$ 会缩小实值状态的范围，并降低这些状态的行权所得。对积分按 $K$ 求导时，移动下限产生的边界项在 $x=K$ 处为零，所以
 \[
  \begin{aligned}
@@ -700,7 +700,7 @@ $-c'(K)$ 是一笔只在标的到期值超过 $K$ 时支付一单位的合约的
 \[
  B=\int_0^\infty c''(K)\,\mathrm dK=\frac1R.
 \]
-\begin{tcolorbox}[knowledge,title=风险中性密度与定价,breakable=false]
+\begin{tcolorbox}[knowledge,title=风险中性密度与定价]
 将状态价格密度除以债券价格 $B$，使密度的积分等于 $1$，得到风险中性概率密度
 \begin{equation}
  \underbrace{c''(K)}_{\text{状态价格密度}}
@@ -721,7 +721,7 @@ $-c'(K)$ 是一笔只在标的到期值超过 $K$ 时支付一单位的合约的
 
 \Needspace{17\baselineskip}
 \WJChapterSummary
-\begin{tcolorbox}[summary,breakable=false]
+\begin{tcolorbox}[summary]
 \begin{enumerate}
  \item 欧式期权在到期日执行，美式期权允许提前执行；看涨与看跌的到期支付分别为 $[\tilde X-K]_+$ 和 $[K-\tilde X]_+$。
  \item 无套利使期权价格非负，对执行价格具有相应的单调性与凸性，并给出 $[S-K/R]_+\le c\le S$、$[K/R-S]_+\le p\le K/R$。

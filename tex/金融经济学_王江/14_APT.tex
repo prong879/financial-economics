@@ -38,7 +38,7 @@
 CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，先研究精确复制下的套利定价，再通过分散剩余风险得到大市场中的近似定价，最后讨论这些关系的均衡基础。
 
 \section{资产收益风险的因子模型}\label{sec:wj-fourteen-1}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 设 $N$ 只资产有 $F<N$ 个共同因子，收益满足
 \begin{equation}
  \widetilde r_n=\bar r_n+\sum_{k=1}^F b_{n,k}\widetilde f_k+\widetilde\varepsilon_n,
@@ -78,7 +78,7 @@ CAPM的\WJLink{eq:wj-13-4}{市场回归}以市场收益为共同因子，剩余�
 \end{equation}
 
 允许自由多空交易，且有两只资产 $i,j$ 满足 $b_i\ne b_j$。由它们构造成本为1的组合，权重为 $\omega,1-\omega$，其载荷为 $\omega b_i+(1-\omega)b_j$。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenLemma{lem:wj-fourteen-1} 存在因子载荷为零的无风险组合 $p_0$。
 
 \WJFourteenLemma{lem:wj-fourteen-2} 存在因子载荷为1的因子组合 $p_1$。
@@ -110,7 +110,7 @@ CAPM的\WJLink{eq:wj-13-4}{市场回归}以市场收益为共同因子，剩余�
 
 $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相对无风险组合 $p_0$ 的期望收益差 $\lambda=\bar r_{p_1}-r_F$ 称为\textbf{因子风险溢价}，表示承担一单位因子暴露获得的期望超额收益。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenTheorem{thm:wj-fourteen-1} 精确单因子模型中，\WJLink{def:wj-four-2}{无套利}要求
 \begin{equation}
  \bar r_n=r_F+b_n\lambda,\qquad\forall n.\label{eq:wj-14-5}
@@ -138,7 +138,7 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 
 \subsection{精确F因子模型}
 令 $\iota$ 为 $N$ 维全 $1$ 列向量。以 $z\in\mathbb R^N$ 记录各资产的投资金额，$z_n$ 以当期货币计量，组合的初始净成本为 $z^{\mathsf T}\iota$。终期支付对各因子的载荷为 $B^{\mathsf T}z$。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenTheorem{thm:wj-fourteen-2} 精确 $F$ 因子模型中，无套利要求存在标量截距 $\lambda_0$ 和 $F$ 维因子风险溢价列向量 $\lambda=[\lambda_1,\ldots,\lambda_F]^{\mathsf T}$，使
 \begin{equation}
  \bar r=\lambda_0\iota+B\lambda.\label{eq:wj-14-6}
@@ -164,7 +164,7 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 带有剩余项时，零因子载荷组合的支付仍含 $z^{\mathsf T}\widetilde\varepsilon$。当资产数增加，充分分散的组合可以压低这部分方差，从而形成近似复制。
 
 只交易前 $n$ 只资产时，记 $z^{(n)}$ 为这 $n$ 只资产的投资金额向量，$\widetilde r^{(n)}$ 为净收益率向量，$\bar r^{(n)}=\mathrm E[\widetilde r^{(n)}]$。组合的期末支付是 $z^{(n)\mathsf T}(\iota+\widetilde r^{(n)})$。若初始净成本 $\iota^{\mathsf T}z^{(n)}=0$，本金项相互抵消，期末支付便是 $z^{(n)\mathsf T}\widetilde r^{(n)}$。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenDefinition{def:wj-fourteen-1} 对前 $n$ 只资产，若存在组合序列 $z^{(n)}$，满足
 \[
  \iota^{\mathsf T}z^{(n)}=0,\qquad
@@ -189,7 +189,7 @@ $p_1$ 是成本为 $1$、因子载荷为 $1$ 的\textbf{因子组合}。它相�
 
 \subsection{有限市场的近似定价}
 固定共同因子数 $F$，逐步增加资产。沿用\WJRef{sec:wj-fourteen-1}{第~}[~节]的剩余项假设。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenTheorem{thm:wj-fourteen-3} 若不存在极限套利，则对每个 $n$，存在 $\lambda_0^{(n)},\lambda^{(n)}$，且存在与 $n$ 无关的常数 $A$，使
 \[
  \sum_{i=1}^n\left(\bar r_i-\lambda_0^{(n)}-b_i^{\mathsf T}\lambda^{(n)}\right)^2\le A.
@@ -229,7 +229,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \end{solution}
 
 \subsection{统一系数与定价误差}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenTheorem{thm:wj-fourteen-4} 对同一无限资产序列，在上述条件下，存在一组固定系数 $\lambda_0,\lambda$，使
 \[
  \sum_{i=1}^\infty(\bar r_i-\lambda_0-b_i^{\mathsf T}\lambda)^2<\infty.
@@ -350,7 +350,7 @@ $\eta^{(n)}$ 衡量各资产的期望收益偏离拟合值多少，$\widetilde\v
 \end{subequations}
 
 沿用 $\mathrm E[\widetilde f]=0$，所以 $\bar x=\mathrm E[\widetilde x]$。对任意使乘积可积的因子函数 $g$，迭代期望给出 $\mathrm E[g(\widetilde f)\widetilde\varepsilon]=\mathrm E[g(\widetilde f)\mathrm E[\widetilde\varepsilon\mid\widetilde f]]=0$。因此，剩余支付也与由因子决定的边际效用正交。\WJRef{sec:wj-fourteen-1}{第~}[~节]的二阶矩条件只要求它与各因子不相关。记 $\mathcal M$ 为可交易支付的线性空间，$\mathcal F=\operatorname{span}\{1,\widetilde f_1,\ldots,\widetilde f_F\}$，$\mathcal E=\operatorname{span}\{\widetilde\varepsilon_n\}$。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourteenTheorem{thm:wj-fourteen-5} 假设：
 \begin{enumerate}
  \item 证券支付满足\WJEqRef{eq:wj-14-7}{式~}，且含无风险证券；

@@ -45,7 +45,7 @@
  x_b=\begin{bmatrix}0\\1\end{bmatrix}.
 \]
 \end{tcolorbox}
-\begin{tcolorbox}[knowledge,title=Arrow-Debreu 市场与单位支付矩阵,breakable=false]
+\begin{tcolorbox}[knowledge,title=Arrow-Debreu 市场与单位支付矩阵]
 每个可能状态对应一只状态证券，共有 $\Omega$ 只。由它们的完全集合构成的市场称为 \textbf{Arrow-Debreu 证券市场}。例如，把上面两只证券的支付向量按列并排，得到
 \[
  \begin{bmatrix}x_a & x_b\end{bmatrix}
@@ -70,7 +70,7 @@
 \end{tcolorbox}
 一般证券的支付可能含有负值，价格也可能为负。状态证券的支付为非负，并在对应状态支付一单位消费品，因此有以下结论。
 
-\begin{tcolorbox}[knowledge,title=状态价格的正性,breakable=false]
+\begin{tcolorbox}[knowledge,title=状态价格的正性]
 只考虑正概率状态。在无摩擦、允许自由买卖且无套利时，
 \begin{equation}
  \phi\gg0.\label{eq:wj-three-positive-price}
@@ -108,7 +108,7 @@
 
 \subsection{完全性的判别}
 \label{sec:wj-three-rank}
-\begin{tcolorbox}[knowledge,title=完全市场的行满秩判据,breakable=false]
+\begin{tcolorbox}[knowledge,title=完全市场的行满秩判据]
 设支付矩阵 $X\in\mathrm R^{\Omega\times N}$，允许任意实数持仓。证券市场是完全的，当且仅当 $X$ 行满秩，即
 \[
  \operatorname{rank}(X)=\Omega.
@@ -147,7 +147,7 @@
 \subsection{市场不完全与金融创新}
 \label{sec:wj-three-insurance}
 % 来源：教师 PPT 第 10、23 页；将金融创新归入完全性主题。
-\begin{tcolorbox}[knowledge,title=道德风险与逆向选择,breakable=false]
+\begin{tcolorbox}[knowledge,title=道德风险与逆向选择]
 投保后，保障改变了投保人的行为激励，而这些行为难以观察，可能产生\textbf{道德风险}。投保前，保险人难以识别风险类型，不同类型的人又有不同的投保意愿，可能产生\textbf{逆向选择}。
 \tcbline
 投保后自担损失减少，可能削弱防范动力、推高预期赔付。保险人可以设置免赔额，让投保人继续承担部分损失，也可能缩小保障范围。
@@ -173,14 +173,14 @@
 \section{参与者的优化}
 \subsection{禀赋财富与预算约束}
 \label{sec:wj-three-budget}
-\begin{tcolorbox}[knowledge,title=初始持仓、总持仓与净交易,breakable=false]
+\begin{tcolorbox}[knowledge,title=初始持仓、总持仓与净交易]
 给定状态价格 $\phi\gg0$，参与者的禀赋为 $e=[e_0,e_1^{\mathsf T}]^{\mathsf T}$。在阿罗证券中，复制未来禀赋的初始持仓为 $\bar\theta=e_1$。记交易后总持仓为 $h$，净买入量为 $\theta=h-\bar\theta$，则
 \[
  c_1=e_1+\theta=h.
 \]
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=禀赋的市场财富,breakable=false]
+\begin{tcolorbox}[knowledge,title=禀赋的市场财富]
 禀赋在当期的市场价值为
 \begin{equation}
  w=\underbrace{e_0}_{\text{当期禀赋}}
@@ -190,7 +190,7 @@
 这称为总财富或禀赋的市场财富。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=价值预算约束,breakable=false]
+\begin{tcolorbox}[knowledge,title=价值预算约束]
 由 $\theta=c_1-e_1$，同一个预算约束可写成两种形式：
 \begin{equation}
  \begin{aligned}
@@ -205,7 +205,7 @@
 
 在 Arrow-Debreu 市场中，选定未来消费 $c_1$ 后，所需的证券净交易就由 $\theta=c_1-e_1$ 确定。因此，参与者可以直接在\WJEqRef{eq:wj-three-budget}{预算约束~}所给出的范围内，选择使效用最大的消费计划。
 
-\begin{tcolorbox}[knowledge,title=扩展价格与消费优化,breakable=false]
+\begin{tcolorbox}[knowledge,title=扩展价格与消费优化]
 以当期消费品为计价单位，其价格为 $\phi_0=1$。把这个价格放在状态价格向量 $\phi$ 前面，得到扩展价格向量 $\hat\phi$。整个消费计划的当期价值为
 \[
  \hat\phi=\begin{bmatrix}1\\\phi\end{bmatrix},
@@ -259,7 +259,7 @@
 对数效用的定义域为严格正消费集；\WJRef{ex:wj-three-3}{例~}[（Lucas 树经济中的最优消费）]将结合其边界行为构造唯一最优解。
 
 \subsection{最优消费的一阶条件}
-\begin{tcolorbox}[knowledge,title=边际效用向量,breakable=false]
+\begin{tcolorbox}[knowledge,title=边际效用向量]
 设 $U$ 在消费集的邻域上连续可微，且各项边际效用严格为正：
 \begin{equation}
  DU(c)\gg0,\qquad
@@ -342,12 +342,12 @@
 在 $c^*$ 处令该导数为零，就得到\WJEqRef{eq:wj-three-kkt-stationarity}{式~}。$\lambda$ 是预算约束的影子价格，表示多一单位预算在最优消费处的边际价值。
 
 % 来源：教材印刷第 40 页；相对于非负消费集区分内点与边界。
-\begin{tcolorbox}[knowledge,title=内点解与角点解,breakable=false]
+\begin{tcolorbox}[knowledge,title=内点解与角点解]
 若最优消费的所有分量都严格为正，称为\textbf{内点解}（interior solution）；若至少一个分量为零，则位于非负消费集的边界，通常称为\textbf{角点解}（corner solution）。
 \end{tcolorbox}
 
 % 讲义补例，源自提交 eeff1f0 中用于核对式 (3.6a) 乘子符号的角点算例。
-\begin{tcolorbox}[example,title=课堂例题：角点消费与互补松弛,breakable=false]
+\begin{tcolorbox}[example,title=课堂例题：角点消费与互补松弛]
 \begin{question}
 设一位参与者选择当期消费 $c_0$ 和未来唯一状态下的消费 $c_1$。两项消费的当期价格均为 $1$，总财富为 $1$，效用函数为 $U(c_0,c_1)=2c_0+c_1$。
 
@@ -389,7 +389,7 @@
 \end{tcolorbox}
 
 \subsection{内点解与跨期边际替代率}
-\begin{tcolorbox}[knowledge,title=内点最优与跨期边际替代率,breakable=false]
+\begin{tcolorbox}[knowledge,title=内点最优与跨期边际替代率]
 由\WJRef{thm:wj-three-kkt}{定理~}[（库恩--塔克条件）]，最优消费满足\WJEqRef{eq:wj-three-kkt-complementarity}{互补松弛条件~}，即 $\mu_{ki}c_{ki}=0$。若最优消费 $c_k\gg0$，每一项消费都严格为正，因此对应的非负约束乘子 $\mu_{ki}$ 都为零。代入\WJEqRef{eq:wj-three-kkt-stationarity}{一阶条件~}，再用 $\phi_0=1$，得到
 \begin{equation}
  DU_k(c_k)=\lambda_k\hat\phi,\qquad
@@ -507,7 +507,7 @@
 \section{市场均衡}
 \subsection{均衡的定义与市场出清}
 \label{sec:wj-three-equilibrium}
-\begin{tcolorbox}[knowledge,title=Arrow-Debreu 均衡,breakable=false]
+\begin{tcolorbox}[knowledge,title=Arrow-Debreu 均衡]
 均衡由一组状态价格 $\phi$ 和消费配置 $\{c_k\}_{k=1}^K$ 构成，满足：
 \begin{enumerate}
  \item 每个参与者为价格接受者，在自己的预算集中选择最优消费：
@@ -532,7 +532,7 @@
 
 右侧为零表示该状态的商品市场出清，左侧为零表示该状态证券的净买入与净卖出相抵。两种出清写法等价。
 
-\begin{tcolorbox}[knowledge,title=Walras 法则,breakable=false]
+\begin{tcolorbox}[knowledge,title=Walras 法则]
 在不满足性下，各参与者花光预算。令 $z=\sum_k(c_k-e_k)$，加总预算等式即得 \textbf{Walras 法则}：
 \[
  \hat\phi^{\mathsf T}z=\sum_k\hat\phi^{\mathsf T}(c_k-e_k)=0.
@@ -562,7 +562,7 @@ $z$ 的各分量是各期、各状态商品的总超额需求。按当期价格�
 
 \subsection{均衡中的跨期边际替代率}
 \subsubsection{共同的跨期边际替代率与互利交易}
-\begin{tcolorbox}[knowledge,title=均衡中的共同跨期边际替代率,breakable=false]
+\begin{tcolorbox}[knowledge,title=均衡中的共同跨期边际替代率]
 记 $c_k=[c_{k,0},c_{k,1}^{\mathsf T}]^{\mathsf T}$ 为参与者 $k$ 的整个消费计划向量，包含当期消费和未来各状态的消费。
 
 在效用可微、边际效用严格为正且均衡消费均为内点时，每个人都满足\WJEqRef{eq:wj-three-mrs}{式~}[（跨期边际替代率等于状态价格）]，因而

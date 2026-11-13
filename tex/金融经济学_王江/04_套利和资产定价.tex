@@ -41,7 +41,7 @@
 \begin{tcolorbox}[knowledge,title=复合证券]
 在多个状态下有非零支付的证券称为\textbf{复合证券}。在两状态市场里，支付 $[2,1]^{\mathsf T}$ 的一份证券可以看成两份第一状态阿罗证券和一份第二状态阿罗证券合在一起。复合证券把多个状态的支付打包成一份合约。
 \end{tcolorbox}
-\begin{tcolorbox}[knowledge,title=支付矩阵与行列约定,breakable=false]
+\begin{tcolorbox}[knowledge,title=支付矩阵与行列约定]
 设 1 期有 $\Omega$ 个状态，市场上有 $N$ 只证券（$n=1,\dots,N$），第 $n$ 只证券的支付向量为 $X_n=\begin{bmatrix}x_{1,n} \\ \vdots \\ x_{\Omega,n}\end{bmatrix}$，\textbf{支付矩阵}以状态为行、证券为列：
 \[
     X=[X_{\cdot,1},\,\cdots,\,X_{\cdot,N}]=
@@ -102,7 +102,7 @@
 \subsection{证券市场的等价描述}
 上一小节用复制组合替换了一只冗余证券。删去冗余证券后，还可以用原证券的若干组合来描述同一个市场。例如，留下 $A,B$ 后，也可以改用 $A$ 和 $C=2A+B$，因为用 $C-2A$ 就能换回 $B$。
 
-\begin{tcolorbox}[knowledge,title=证券市场的等价基底,breakable=false]
+\begin{tcolorbox}[knowledge,title=证券市场的等价基底]
 删去冗余证券后，设原支付矩阵 $X$ 有 $N$ 个独立列，原证券的 0 期价格向量为 $S$。用原证券构造 $N$ 个线性无关的组合 $h_1,\ldots,h_N$。每组持仓有 $N$ 个分量，按列排成 $N\times N$ 矩阵 $H=[h_1,\ldots,h_N]$，列线性无关使 $H$ 可逆。把这 $N$ 个组合当作新证券，就能以同样的成本实现原市场的每一种支付，反过来也成立。
 \end{tcolorbox}
 
@@ -168,11 +168,11 @@
 
 \section{套利}\label{sec:wj-four-arbitrage}
 \subsection{组合成本与套利的定义}
-\begin{tcolorbox}[knowledge,title=组合成本、支付与有限责任,breakable=false]
+\begin{tcolorbox}[knowledge,title=组合成本、支付与有限责任]
 记交易证券的 0 期价格向量为 $S=\begin{bmatrix}S_1 \\ \vdots \\ S_N\end{bmatrix}$。组合 $\theta=\begin{bmatrix}\theta_1 \\ \vdots \\ \theta_N\end{bmatrix}$ 的 0 期成本为 $S^{\mathsf T}\theta$，1 期支付为 $X\theta$。从支付 $X$ 到价格 $S$ 的映射称为\textbf{资产定价关系}（资产定价模型）。若 $X\theta\ge 0$，称该组合在 1 期满足\textbf{有限责任}。
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,title=向量不等号与净现金流,breakable=false]
+\begin{tcolorbox}[knowledge,title=向量不等号与净现金流]
 对列向量 $z$，$z\ge0$ 指各分量非负，$z>0$ 指 $z\ge0$ 且 $z\ne0$（至少一个分量为正），$z\gg0$ 才指每个分量都严格为正。套利的净现金流在各时点、各状态均非负，且至少一项严格为正。
 \end{tcolorbox}
 
@@ -193,7 +193,7 @@
 \end{tcolorbox}
 
 \subsection{三类套利与融资方式}
-\begin{tcolorbox}[knowledge,title=三类套利,breakable=false]
+\begin{tcolorbox}[knowledge,title=三类套利]
 按 0 期净收入和 1 期各状态支付，套利机会分为三类。
 \begin{itemize}
     \item \textbf{第 1 类套利}满足 $S^{\mathsf T}\theta<0$ 且 $X\theta=0$。0 期有净收入，1 期支付恒为零。\mbox{即“当期白捡钱”。}
@@ -272,7 +272,7 @@
 
 % 教材印刷第 56—57 页及手写批注、教师 PPT 第 21 页：由未来支付映射到当期价格。
 % 原书式 (4.1) 用标量 S 表示单只证券价格，此处用 s 与价格向量 S 区分。
-\begin{tcolorbox}[knowledge,title=定价算子,breakable=false]
+\begin{tcolorbox}[knowledge,title=定价算子]
 \textbf{定价算子}（估值算子）$V$ 把一笔可复制的未来支付 $x$ 映射为它的 0 期价格 $s$，即
 \begin{equation}
     s=V(x).
@@ -542,7 +542,7 @@ $X^{\mathsf T}$ 的第 $n$ 行正是 $X_{\cdot,n}^{\mathsf T}$。因此，用同
 
 若市场无套利，由\WJRef{thm:wj-four-7}{定理~}[（资产定价基本定理）]，存在一组严格为正的状态价格 $\phi$，能为所有交易证券定价。用这组状态价格给债券定价，得到 $S_1=\phi^{\mathsf T}\iota>0$。
 
-\begin{tcolorbox}[knowledge,title=无风险利率与折现因子,breakable=false]
+\begin{tcolorbox}[knowledge,title=无风险利率与折现因子]
 买入一份 1 号债券，0 期支付 $S_1$，1 期确定收到 $1$ 单位。将净收益 $1-S_1$ 除以买入成本 $S_1$，得到\textbf{无风险利率} $r_F$
 \[
     r_F=\frac{1-S_1}{S_1},\qquad S_1(1+r_F)=1.
@@ -698,7 +698,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
  =\mathrm E^Q\!\left[\frac{\tilde x_n}{\tilde x_1}\right].
 \]
 
-\begin{tcolorbox}[knowledge,title=债券计价与价格的鞅关系,breakable=false]
+\begin{tcolorbox}[knowledge,title=债券计价与价格的鞅关系]
 记证券 $n$ 在 $t$ 期以当期消费品计的价值为 $S_{n,t}$，以债券计的价值为 $\hat S_{n,t}=S_{n,t}/S_{1,t}$。0 期的证券价值是买入价格，1 期的证券价值是到期支付，因此
 \[
  \hat S_{n,0}=\frac{S_{n,0}}{S_{1,0}}=\frac{S_n}{S_1},
@@ -715,7 +715,7 @@ $\phi_\omega$ 是只在状态 $\omega$ 收到一单位的现值，$S_1$ 是在 1
 
 把各期以债券计价的证券价值按时间排列，得到随机过程 $(\hat S_{n,t})$。\WJEqRef{eq:wj-four-10}{债券计价鞅条件~}说明它的 0 期值等于 $Q$ 下的 1 期期望值。鞅定义把这一关系写成给定当期信息时的条件期望。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJFourDefinition{def:wj-four-3}设 $\mathcal F_t$ 表示截至 $t$ 期已知的信息。若随机过程 $z_t$ 的每期取值都由当期信息确定（即适应于 $(\mathcal F_t)$），各期均满足 $\mathrm E^Q|z_t|<\infty$，且在每个有下一期的时点满足
 \[
  z_t=\mathrm E^Q[z_{t+1}\mid\mathcal F_t],

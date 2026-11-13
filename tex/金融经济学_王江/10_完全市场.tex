@@ -31,7 +31,7 @@
 % 教材印刷第 143--145 页：从支付矩阵和状态证券回到个人预算及消费选择。
 沿用第 2 章的两期设定。$0$ 期交易和消费，$1$ 期实现一个状态 $\omega$，证券按该状态支付。支付矩阵 $X$ 的第 $n$ 列是证券 $n$ 在各状态的支付，第 $\omega$ 行是该状态下各证券的支付。组合 $\theta$ 是按 $X$ 的列顺序排列的持仓列向量，$\theta_n$ 为第 $n$ 只证券的持有数量。$\sum_n X_{\omega,n}\theta_n$ 是状态 $\omega$ 的组合支付，所有状态的支付按 $X$ 的行顺序排列成 $X\theta$。
 
-\begin{tcolorbox}[knowledge,title=完全性与状态价格,breakable=false]
+\begin{tcolorbox}[knowledge,title=完全性与状态价格]
 设未来有 $\Omega$ 个状态，公共概率为 $p_\omega>0$。证券支付矩阵 $X$ 为 $\Omega\times N$，价格列向量为 $S$。\WJLink{def:wj-three-complete}{完全性}要求 $\operatorname{rank}(X)=\Omega$，因而任意支付 $y$ 都可由某个组合复制：$X\theta=y$。\WJLink{thm:wj-four-7}{无套利}使状态价格 $\phi\gg0$ 满足
 \[
  S=X^{\mathsf T}\phi,\qquad V(y)=S^{\mathsf T}\theta=\phi^{\mathsf T}y.
@@ -78,7 +78,7 @@
 
 反过来，给定满足价值预算的消费计划，先找一个证券组合复制 $c_{k,1}-e_{k,1}$。完全性保证该组合存在。其成本恰为 $\phi^{\mathsf T}(c_{k,1}-e_{k,1})$，因此扣除成本后剩下的当期禀赋正好是 $c_{k,0}$。将当期消费放在第一项，再按状态排列未来消费，得到完整消费列向量 $c_k=[c_{k,0},c_{k,1}^{\mathsf T}]^{\mathsf T}$。完整禀赋 $e_k=[e_{k,0},e_{k,1}^{\mathsf T}]^{\mathsf T}$ 与扩展价格 $\widehat\phi=[1,\phi^{\mathsf T}]^{\mathsf T}$ 采用同一顺序，预算就是 $\widehat\phi^{\mathsf T}c_k=\widehat\phi^{\mathsf T}e_k=w_k$，与\WJRef{sec:wj-three-budget}{第~}[~节]的状态证券价值预算相同。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-1}{} 设完全证券市场与 Arrow--Debreu 市场的偏好、状态概率和逐期逐状态总资源相同。给定其中一个市场的一组均衡 $(\phi^*,c^*)$，若在 $\phi^*$ 下每个人的禀赋现值在两个市场中相等，则 $(\phi^*,c^*)$ 也是另一个市场的均衡。证券价格由 $S^*=X^{\mathsf T}\phi^*$ 恢复。
 \end{tcolorbox}
 
@@ -149,7 +149,7 @@ $\lambda_k$ 表示在给定价格下增加一单位当期财富所带来的边�
 
 左边是候选消费计划的总支出。$\lambda_k$ 越高，两期要求的边际效用越高，相应消费与支出越少。求出使支出恰等于 $w_k$ 的乘子，再代回\WJEqRef{eq:wj-10-4}{式~}，就能确定各期各状态的最优消费。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-2}{} 在完全市场中，设参与者的效用具有\WJEqRef{eq:wj-10-1}{式~} 的时间可加期望效用形式，单期效用严格递增且严格凹，最优消费为内点。则对每位参与者 $k$ 和任意未来状态 $\omega,\omega'\in\Omega$，
 \[
  c_{k,1\omega}<c_{k,1\omega'}
@@ -201,7 +201,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 证券存在冗余时，先用净交易向量 $\theta_k$ 复制每个人的未来消费变化 $c_{k,1}-e_{k,1}$。记这些向量的和为 $\Theta=\sum_k\theta_k$。商品出清给出 $X\Theta=0$，而 $S^{\mathsf T}\Theta=\phi^{\mathsf T}X\Theta=0$。从任一参与者的净交易向量中减去 $\Theta$，既保留该人的各状态支付与当期支出，也使证券净交易量之和为零。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-3}{（均衡存在性）} 若偏好连续、凸且严格单调，每人的禀赋向量严格为正，则完全证券市场存在竞争均衡。给定严格正的价格和个人财富，严格凹效用使个人最优消费唯一。
 \end{tcolorbox}
 
@@ -407,7 +407,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \section{最优配置和风险分担}\label{sec:wj-ten-2}
 \subsection{最优性与规划者问题}
 由\WJRef{thm:wj-ten-1}{定理~}[（两种市场的均衡等价）]，以相同的逐期逐状态禀赋构造 Arrow--Debreu 经济，可以得到同一均衡消费配置。该经济的偏好满足不满足性，故由\WJRef{thm:wj-three-welfare}{定理~}[（第一福利定理）]，这个配置是帕累托最优的\footnote{第三讲在无摩擦、完全的状态证券市场中，用不满足性排除帕累托改进：不存在另一种资源可行的分配，让每个人都至少一样好，并让至少一个人严格变好。这里两种市场的均衡消费和逐期逐状态的总资源相同，所以这一结论也适用于原证券市场。}。下面考虑政府作为社会规划者的优化问题：在总资源约束下选择各人的消费，使加权社会效用最大。这个问题提供了构造帕累托最优配置的方法。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-4}{} 若一组可行配置解出某个正权重 $\mu_k>0$ 的规划问题，则该配置是帕累托最优的：
 \begin{equation}
  \begin{aligned}
@@ -476,7 +476,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 将个人的一阶条件乘以 $\mu_k$，就得到规划者的一阶条件，其中 $\phi'_\omega=\phi'_0\phi_\omega$。均衡的市场出清同时保证配置满足规划者的资源约束，因此这组权重可以复现该均衡的消费配置。若从规划者问题反求均衡，还要用个人预算确定哪组权重与给定的初始财富相符。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-5}{（第二福利定理）} 在凹偏好及内点的可微模型中，帕累托最优配置可通过适当的初始财富再分配，由完全市场竞争均衡实现。
 \end{tcolorbox}
 
@@ -512,7 +512,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 右侧对 $q_\omega$ 严格递减，故可反解 $q_\omega=g(C_{1\omega};\mu)$。把这个乘子代回个人的一阶条件，就得到未来期的分享函数 $f_{k,1}(C;\mu)=(u'_{k,1})^{-1}(g(C;\mu)/\mu_k)$。各状态使用同一组权重和同一组未来期效用函数，因此都用这条分享规则，只需代入各自的总消费。对当期资源约束作同样的反解，就得到 $f_{k,0}$。
 
-\begin{tcolorbox}[knowledge,title=最优分享规则,breakable=false]
+\begin{tcolorbox}[knowledge,title=最优分享规则]
 给定规划权重，个人消费可写成总消费的函数：
 \begin{equation}
  \begin{aligned}
@@ -532,7 +532,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \end{tcolorbox}
 
 \Needspace{8\baselineskip}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-6}{} 在上述正权重、严格凹且内点的最优分配下，若 $C_{1\omega}>C_{1\omega'}$，则每位参与者都有 $c_{k,1\omega}>c_{k,1\omega'}$；总消费相同的状态，个人消费也相同。
 \end{tcolorbox}
 
@@ -572,7 +572,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 \subsection{线性分享规则}
 前面的单调性说明总消费增加时每个人都分到更多。若分享规则是仿射函数，每个人在新增消费中所占的份额就是一个常数。下面找出使这种线性分享成立的偏好条件。为简化记号，本节略去时间下标，并令 $T_k(c)=-u_k'(c)/u_k''(c)$ 为\hyperlink{wj-risk-tolerance}{\textcolor{WJReferenceColor}{绝对风险容忍度}}。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-7}{（线性分享规则）} 设至少有两位参与者，各人的消费域为开区间，$u_k'>0,u_k''<0$，风险容忍度可微。对任意一组正的规划权重，分享规则在所有可实现的内点总消费水平上均为仿射函数，当且仅当
 \[
  T_k(c)=d_k+a c>0
@@ -678,7 +678,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \subsection{聚合效用的构造与性质}
 规划者问题中，每个日期和状态各有一条资源约束。时间可加的期望效用允许我们把分配问题逐项求解。先求给定资源能带来的最大加权效用，再把各期各状态的最优值按原来的方式加总。
 
-\begin{tcolorbox}[knowledge,title=代表性参与者,breakable=false]
+\begin{tcolorbox}[knowledge,title=代表性参与者]
 沿用\WJEqRef{eq:wj-10-7}{式~} 的资源与非负约束，分别求当期和任一未来状态的最大加权效用。每个人的消费还须落在相应效用函数的定义域内。
 \begin{equation}
  \begin{aligned}
@@ -697,7 +697,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \end{equation}
 \end{tcolorbox}
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-8}{} 设每人的可行消费域为非负实数中的区间，个人效用在各自区间上严格递增、严格凹，规划权重均为正。若在所讨论的总消费区间内，\WJEqRef{eq:wj-10-12}{每个总量下的分配问题~} 均有可行解且能达到最大值，则聚合效用在该区间上严格递增、严格凹。
 \end{tcolorbox}
 
@@ -888,7 +888,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 \section{加总}\label{sec:wj-ten-4}
 \subsection{简单加总与财富分布}
 一般情况下，个人的效用函数即使具有相同形式，加权最优值也可能变成另一种形式。初始财富分布改变时，支持均衡的规划权重可能随之改变，聚合效用和价格也可能改变。若聚合效用仍属于个人效用所在的简单函数族，且权重只影响可归一化的尺度，就称为\textbf{简单加总}。下面用平移幂效用说明何时能够从总资源直接求价格。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTenTheorem{thm:wj-ten-9}{} 若
 \[
  u_k(c)=\frac{(d_k+c)^{1-\gamma}}{1-\gamma},\qquad
@@ -1041,7 +1041,7 @@ $\phi_\omega/p_\omega$ 称为\textbf{状态价格密度}，即每单位概率对
 
 \WJEqRef{eq:wj-10-3}{式~} 的第一个等式是状态证券的欧拉方程。在内点最优时，买入一单位状态 $\omega$ 的消费所增加的期望边际效用，恰好等于为此减少当期消费所损失的边际效用。用\WJEqRef{eq:wj-10-15}{式~} 换成代表性参与者的边际效用比后，$\pi_\omega$ 衡量该状态下一单位未来消费相对于一单位当期消费的边际价值，证券价格便是按实际概率计算的贴现支付期望。
 
-\begin{tcolorbox}[knowledge,title=消费定价公式,breakable=false]
+\begin{tcolorbox}[knowledge,title=消费定价公式]
 状态价格满足 $\phi_\omega=p_\omega \pi_\omega$，其中 $\pi_\omega$ 是\hyperlink{wj-stochastic-discount-factor}{\textcolor{WJReferenceColor}{随机贴现因子}}在状态 $\omega$ 的取值。对支付为 $\widetilde X_n$ 的证券，
 \begin{equation}
  S_n=\mathrm E\!\left[
@@ -1159,7 +1159,7 @@ $\widetilde\pi$ 为随机贴现因子，也称定价核。其状态取值 $\pi_\
 \]
 
 用\WJEqRef{eq:wj-10-17}{式~} 代入定价核的期望，再移项得到
-\begin{tcolorbox}[knowledge,title=精确风险溢价关系,breakable=false]
+\begin{tcolorbox}[knowledge,title=精确风险溢价关系]
 \begin{equation}
  \mathrm E[\tilde r_n]-r_F=-(1+r_F)\operatorname{Cov}(\widetilde\pi,\tilde r_n).
  \label{eq:wj-10-21}
@@ -1335,7 +1335,7 @@ $\widetilde\pi$ 为随机贴现因子，也称定价核。其状态取值 $\pi_\
 \]
 
 令 $n=q$，协方差变为 $\sigma_q^2=\operatorname{Var}(\tilde r_q)$，所以 $\bar r_q-r_F=-(1+r_F)v_q\sigma_q^2$。当 $\sigma_q^2>0$ 时，在任意资产的溢价式中写成 $\sigma_{n,q}=\beta_{n,q}\sigma_q^2$，再把 $-(1+r_F)v_q\sigma_q^2$ 换成组合 $q$ 的风险溢价，得到
-\begin{tcolorbox}[knowledge,title=精确贝塔定价,breakable=false]
+\begin{tcolorbox}[knowledge,title=精确贝塔定价]
 \begin{equation}
  \bar r_n-r_F=
  \underbrace{\beta_{n,q}}_{\text{贝塔暴露}}\,

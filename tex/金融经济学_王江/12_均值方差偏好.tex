@@ -15,7 +15,7 @@
 \raggedbottom
 \ifdefined\WJExercisesOnly\else
   \input{tex/_shared/wj-ch12-team.tex}
-  \begin{tcolorbox}[summary,breakable=false,before upper={}]
+  \begin{tcolorbox}[summary,before upper={}]
     \noindent\WJTwelveTeamLead\par
     \noindent\WJTwelveTeamMembers
   \end{tcolorbox}
@@ -116,7 +116,7 @@
 其中 $u^{(n)}$ 表示 $u$ 的第 $n$ 阶导数，$\mathrm E[(\widetilde w-\bar w)^n]$ 是财富的第 $n$ 阶中心矩。上式的前两项由期末财富的均值和方差确定\footnote{在小风险下，保留到方差项可得到期望效用的二阶近似。}，求和项还涉及三阶及以上的中心矩。均值和方差相同时，高阶中心矩的差异仍可能影响期望效用。先看二次效用的情形。此时三阶及以上的导数都为零，求和项随之消失。
 
 \Needspace{5\baselineskip}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-1} 若效用函数 $u$ 为二次函数，且期末财富 $\widetilde w$ 有有限二阶矩，则偏好具有均值--方差表述，即 $\mathrm E[u(\widetilde w)]=v(\bar w,\sigma_w)$。
 \end{tcolorbox}
 
@@ -309,7 +309,7 @@
 二次效用通过限制 $u$ 的形式（例如 $u(y)=y-ay^2/2$，其中 $a>0$）得到\WJEqRef{eq:wj-12-1}{式~} 的精确表示。另一种途径是限制证券支付的联合分布。前文的 $X$ 把各状态下的证券支付排成矩阵。状态实现时，取对应的一行，得到随机支付行向量 $\widetilde X=[\widetilde X_1,\ldots,\widetilde X_N]$。它的联合分布描述各只证券的支付如何同时取值，并决定给定持仓 $q$ 时期末财富 $\widetilde Xq$ 的分布。
 
 这里的联合正态要求任意固定系数下的支付线性组合服从正态分布，允许方差为零时退化为常数。仅知道各只证券的支付分别服从正态分布，还不足以推出联合正态\footnote{联合正态向量的两个分量协方差为零时相互独立。非退化情形（在协方差为零的前提下，即两个分量的方差都大于零）下，对角协方差矩阵使它们的二维正态密度分解为两个边际密度的乘积。}。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-2} 若随机支付列向量 $\widetilde X^{\mathsf T}$ 服从联合正态分布，则对任意使期望效用有限（即 $\mathrm E[|u(\widetilde w)|]<\infty$）的组合，参与者的偏好具有均值--方差表述。
 取 $Z\sim N(0,1)$，则 $\widetilde w$ 与 $\bar w+\sigma_w Z$ 同分布，因此
 \[
@@ -354,7 +354,7 @@
 非退化的正态财富可能取负值，本节的正态模型采用实数财富域，允许期末财富为负。
 
 有了均值--方差表述，接下来要看提高均值或改变波动会怎样影响效用。稍后的前沿分析将用到均值和标准差的一阶性质。
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-3} 设证券支付联合正态，效用函数 $u(y)$ 对每个财富水平 $y\in\mathbb R$ 都满足 $u'(y)>0$、$u''(y)<0$，且相关期望有限，允许在期望号下求一阶及二阶导数。则均值--方差效用 $v$ 具有以下性质。
 \begin{enumerate}[label=(\arabic*)]
  \item $v_1>0$。
@@ -556,7 +556,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 令 $\iota=[1,\ldots,1]^{\mathsf T}$ 为 $N$ 维全 $1$ 列向量，$\iota^{\mathsf T}z=1$ 表示全部投资额都配置到证券上。本节允许卖空，因此在满足这一预算约束的所有实数权重上求前沿。若另外要求各状态的期末财富非负，就要在加入该约束后的可行集上求前沿。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 达到给定期望收益率 $\bar r_p$ 而方差最小的组合称为\textbf{均值--方差前沿组合}（MVF组合），由下列问题确定：
 \begin{equation}
  \begin{aligned}
@@ -711,7 +711,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 两个乘数能否唯一求出，取决于 $d$ 是否为零。为判断 $d=bc-a^2$ 的符号和取零条件，下面先用谱分解把 $a,b,c$ 写成内积和平方长度，再用正交投影解释这三个量之间的关系。
 
 % 参见 MIT OCW 18.06SC《Symmetric matrices and positive definiteness》。
-\begin{tcolorbox}[knowledge,breakable=false,title=实对称矩阵的谱分解]
+\begin{tcolorbox}[knowledge,title=实对称矩阵的谱分解]
 设 $A$ 为 $n$ 阶实对称矩阵，即 $A^{\mathsf T}=A$。谱定理表明，$A$ 的特征值都是实数，且可以选取一组标准正交的特征向量 $q_1,\ldots,q_n$ 作为基底。记 $Aq_j=\lambda_jq_j$，将特征向量按列排成 $Q=[q_1\ \cdots\ q_n]$，则 $Q^{-1}=Q^{\mathsf T}$，矩阵 $A$ 的谱分解为
 \[
  A=Q\Lambda Q^{\mathsf T},\qquad
@@ -822,7 +822,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 % 参见 Johns Hopkins University 线性代数讲义第 22 讲（https://math.jhu.edu/~lindblad/201/l22.pdf）
 % 和 MIT OCW 18.02《Matrices and Linear Algebra》第 3 节。
-\begin{tcolorbox}[knowledge,breakable=false,title=克莱默法则（Cramer's rule）]
+\begin{tcolorbox}[knowledge,title=克莱默法则（Cramer's rule）]
 对线性方程组 $A\mathbf{x}=\mathbf{b}$，若系数矩阵 $A$ 是 $n$ 阶方阵且 $\lvert A\rvert\ne0$，方程组有唯一解。将 $A$ 的第 $i$ 列换成右端列向量 $\mathbf{b}$，得到矩阵 $A_i$，则第 $i$ 个未知量为
 \[
  x_i=\frac{\lvert A_i\rvert}{\lvert A\rvert},\qquad i=1,\ldots,n.
@@ -895,7 +895,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 因此，\textbf{$z_p$ 是给定目标收益率 $\bar r_p$ 时唯一的最小方差组合。}让目标收益率变化，所有这些组合就构成了均值--方差前沿。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-4} 对具有均值--方差偏好的参与者，若在期望收益率相同的组合中严格偏好较低的标准差，则其最优投资组合若存在，必为 MVF 组合。
 \end{tcolorbox}
 
@@ -977,7 +977,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 由 $z_1=z_0+h$，它的权重和为 $1+0=1$，期望收益率为 $0+1=1$。于是沿 $h=z_1-z_0$ 调仓，就相当于在 $z_0$ 和 $z_1$ 两只前沿基金之间转移配置。两只基金的持仓确定后，只需按目标收益率选择基金的配置比例，就能得到该收益率下的最小方差组合。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-5} 任意 MVF 组合均可由 $z_0,z_1$ 两个 MVF 组合形成。若其期望收益率为 $\bar r_p$，权重为 $z_p=(1-\bar r_p)z_0+\bar r_pz_1$。
 \end{tcolorbox}
 
@@ -985,7 +985,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 \WJEqRef{eq:wj-12-4}{式~} 已给出两只基金的权重 $1-\bar r_p$ 和 $\bar r_p$，其和为 1。目标均值在 0 与 1 之外时，其中一个权重为负。允许卖空使这一配置同样可行，因此两只基金可以生成整条前沿。
 \end{solution}
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveCorollary{cor:wj-twelve-1} 任意两个不同的MVF组合均可生成整条均值--方差前沿。
 \end{tcolorbox}
 
@@ -1005,7 +1005,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 \end{equation*}
 \end{solution}
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveCorollary{cor:wj-twelve-2} 设各基金的权重向量 $z_j$ 都对应 MVF 组合。若基金配置比例满足 $\sum_jt_j=1$，则合成权重 $\sum_jt_jz_j$ 仍对应 MVF 组合。
 \end{tcolorbox}
 
@@ -1022,7 +1022,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 \Needspace{6\baselineskip}
 由\WJRef{cor:wj-twelve-1}{推论~}，同一对前沿基金可以配出整条前沿。若参与者面对同一条前沿，且各自的最优组合按\WJRef{thm:wj-twelve-4}{定理~}落在前沿上，就可以共用这对基金，由每个人选择自己的配置比例。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-6} 设所有参与者共享收益均值、协方差矩阵和本节的可行组合集合。若各人的偏好均满足\WJRef{thm:wj-twelve-4}{定理~} 的条件，且最优组合存在，则\WJLink{def:wj-nine-4}{两基金分离}成立。取共同前沿上任意两个不同的基金 $z_A,z_B$，参与者 $k$ 可按自己的配置比例 $t_k$ 得到最优权重
 \[
  z_k=(1-t_k)z_A+t_k z_B.
@@ -1042,7 +1042,7 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 第九讲\WJRef{thm:wj-nine-6}{定理~}[（二次效用下的两基金分离）]是这里的一个应用\footnote{第九讲的结论是：在参与者共享收益均值、协方差矩阵和可行组合集合且允许自由交易的设定下，如果每个人的效用在相关财富区间上是严格递增、严格凹的二次函数，并且最优组合存在，就可以用同两只基金配出每个人的最优组合。}。二次效用给出均值--方差表述。对严格凹的二次效用，在相关财富区间内边际效用为正时，参与者偏好更高的均值和更低的标准差。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-7} MVF 组合的权重向量在 $\mathbb R^N$ 中构成一条直线 $\{z_0+t h:t\in\mathbb R\}$，经过 $z_0$，方向为 $h=z_1-z_0$。
 \end{tcolorbox}
 
@@ -1093,13 +1093,13 @@ $u(y)$ 中的 $y$ 表示任意一个确定的期末财富水平，$u'(y)$ 是在
 
 \WJRef{fig:wj-twelve-1}{图~} 中，沿水平箭头从可行组合 $F$ 到前沿组合 $E$，均值相同，$E$ 的标准差更小。这说明为什么先在每个目标均值下找最小方差组合。$F$ 示意 $N\ge3$ 时前沿右侧的可行组合。沿竖直箭头从下半支的 $D$ 到上半支的 $E$，标准差相同，$E$ 的均值更高。这说明找到最小方差前沿后，还要比较它的上下两支。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 若可行组合 $q$ 满足 $\bar r_q\ge\bar r_p$、$\sigma_q\le\sigma_p$，且至少一项严格，则称 $q$ 在均值--方差意义下\textbf{支配} $p$。不被任何可行组合支配的组合称为\textbf{均值--方差有效组合}（MVE）。
 \end{tcolorbox}
 
 包含 MVP 的上半支正是有效前沿。具有本章所设偏好的参与者，如果存在最优组合，就会在这一支上选择。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 在所有权重和为 $1$ 的组合中，方差最小的组合称为\textbf{全局最小方差组合}（MVP）。当协方差矩阵 $\Sigma$ 正定时，MVP 唯一，其权重、期望收益率和方差分别为
 \[
  \begin{aligned}
@@ -1369,7 +1369,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 先看以 MVP 为参照的情形。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-8} 任意完全投资组合 $q$ 与MVP的协方差均等于MVP的方差：
 \[
  \operatorname{Cov}(\widetilde r_q,\widetilde r_{\mathrm{MVP}})=\sigma_{\mathrm{MVP}}^2.
@@ -1428,7 +1428,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 取 $q=p$，上式就回到\WJEqRef{eq:wj-12-5}{前沿方差公式~}。现在固定一个非 MVP 的前沿组合 $p$，让 $q$ 沿前沿变化，找出与 $p$ 的协方差为零的组合。它的期望收益率将作为下文贝塔为零时的收益基准。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-9} 对任意非 MVP 的前沿组合 $p$，存在唯一的前沿组合 $zcp$，满足
 \[
  \operatorname{Cov}(\widetilde r_p,\widetilde r_{zcp})=0.
@@ -1484,7 +1484,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \]
 取 $q=p$ 时，分子就是 $\sigma_p^2$，所以 $\beta_{p,p}=1$。取 $q=zcp$ 时，分子为零，所以 $\beta_{zcp,p}=0$。下面的收益关系以 $\bar r_{zcp}$ 为贝塔等于零时的收益基准，并用 $\bar r_p-\bar r_{zcp}$ 表示贝塔每增加一单位对应的收益差。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-10} 若 $p$ 是非MVP的前沿组合，则任意组合 $q$ 满足
 \begin{equation}
  \bar r_q-\bar r_{zcp}
@@ -1626,7 +1626,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  \label{eq:wj-12-8}
 \end{equation}
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-11} 当切点组合存在时，有无风险证券的 MVF 组合均由无风险证券和切点组合生成。若切点组合的配置比例为 $a_p$，风险证券的权重为 $z_p=a_pz_T$，无风险证券的权重为 $1-a_p$。
 \end{tcolorbox}
 
@@ -1689,7 +1689,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
  =\frac{bc-a^2}{cH}=\frac{d}{cH}.
 \]
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-12} 若 $r_F<\bar r_{\mathrm{MVP}}$，则切点组合 $T$ 为风险证券集合中的 MVE 组合。当 $d>0$ 时，$T$ 位于风险证券前沿的上半支，满足 $\bar r_T>\bar r_{\mathrm{MVP}}$。当 $d=0$ 时，$T$ 就是 MVP。
 \end{tcolorbox}
 
@@ -1784,7 +1784,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 上一节用与参照组合协方差为零的前沿组合确定收益基准。现在无风险证券的收益率恒为 $r_F$，与参照组合的协方差为零，因而它给出了贝塔为零时的收益基准。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJTwelveTheorem{thm:wj-twelve-13} 存在无风险证券时，若 $p$ 是方差为正的 MVE 组合，则对任意组合 $q$，有
 \begin{equation}
  \bar r_q-r_F=\beta_{q,p}(\bar r_p-r_F),\qquad
@@ -1861,7 +1861,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 
 % 参照杨云雯第12章批注（批注版第264页）的独立副本证明。
 \begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false]
-\begin{tcolorbox}[knowledge,breakable=false,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (2) 项的证明（方法二）}]
+\begin{tcolorbox}[knowledge,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (2) 项的证明（方法二）}]
 因为 $\mathrm E[Z]=0$，所以 $v_2=\operatorname{Cov}(u'(\widetilde w),Z)$。当 $\sigma_w>0$ 时，$Z$ 越大，边际效用越低。令 $g(s)=u'(\bar w+\sigma_w s)$，取 $Z$ 的两个独立同分布副本 $Z_1,Z_2$，记 $g_i=g(Z_i)$。展开后，同一下标的两项具有相同的期望 $\mathrm E[g(Z)Z]$。两个交叉项的因子相互独立，故其期望均为 $\mathrm E[g(Z)]\mathrm E[Z]$。于是
 \[
  \begin{aligned}
@@ -1878,7 +1878,7 @@ MVP 在所有可行组合中方差最小，在目标均值为 $a/c$ 的组合中
 \end{solution}
 
 \begin{solution}[label-content={},label-indentation=false,blank-type=none,show-qed=false]
-\begin{tcolorbox}[knowledge,breakable=false,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (5) 项的证明（方法二）}]
+\begin{tcolorbox}[knowledge,title={\WJRef{thm:wj-twelve-3}{定理~} 第 (5) 项的证明（方法二）}]
 对两组参数 $x_i=(\bar w_i,\sigma_{w,i})$，用同一个 $Z$ 构造 $\widetilde w_i=\bar w_i+\sigma_{w,i} Z$，$i=1,2$。计算 $v(x_i)$ 只需要 $\widetilde w_i$ 各自的分布，因此可以这样构造。实际合并两个证券组合时，合并后的标准差还取决于两个组合收益之间的协方差。
 
 由于两组财富使用同一个 $Z$，对任意 $t\in[0,1]$，有

@@ -48,7 +48,7 @@
 
 因此，参与者的未来消费限于仿射空间 $e_{k,1}+M$，并须满足效用定义域等消费条件。
 
-\begin{tcolorbox}[example,breakable=false]
+\begin{tcolorbox}[example]
 \WJElevenExample{example:wj-eleven-1} 1期有两个状态 $a,b$，市场只有一只证券，其支付为
 \[
  \WJEventTree[stem]{2,1}.
@@ -160,7 +160,7 @@
 \section{约束下的最优配置}\label{sec:wj-eleven-2}
 总资源允许的消费调整，有哪些能通过现有证券交易实现？为了判断均衡在给定市场结构下是否还有改进空间，先界定现有证券能实现的配置。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenDefinition{def:wj-eleven-attainable} 给定个人禀赋 $\{e_k\}$，若配置 $\{c_k\}$ 满足
 \[
  c_{k,1}-e_{k,1}\in M,\qquad\forall k,
@@ -172,7 +172,7 @@
 
 可行性要求第 0 期及未来各状态的总消费等于总禀赋。以上述债券和股票为例，从一个可行且可获得的配置出发，若甲只在第一个状态把一部分消费转给乙，两人的消费增减相抵，新配置仍然可行。任何证券组合在前两个状态的支付都相同，因此无法实现这笔只改变第一个状态消费的转移。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenDefinition{def:wj-eleven-constrained} 若不存在另一可获得配置 $\{c'_k\}$，使得
 \begin{equation}
  \sum_k c'_k=\sum_k c_k
@@ -184,7 +184,7 @@
 \WJEqRef{eq:wj-11-4}{式~} 对第 0 期和未来每个状态分别成立。约束最优只在现有证券能实现的可行配置中寻找改善，\WJLink{def:wj-two-9}{帕累托最优}则考察所有可行配置。完全市场中，两者考察的配置集合相同。
 
 \Needspace{7\baselineskip}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenTheorem{thm:wj-eleven-1} 在固定证券支付结构 $X$ 下，无交易限制、效用严格递增且无套利的竞争均衡配置是约束最优的。
 \end{tcolorbox}
 
@@ -226,7 +226,7 @@
 
 \section{实质完全市场}\label{sec:wj-eleven-3}
 \subsection{实质完全性与帕累托最优}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenDefinition{def:wj-eleven-effective} 给定个人禀赋和偏好，若通过证券市场 $X$ 可以获得所有帕累托最优配置，则称市场是\textbf{实质完全的}。
 \end{tcolorbox}
 
@@ -239,7 +239,7 @@
 
 每个这样的集合都包含其基准配置。若集合紧致且效用连续，效用之和便在其中取到最大值。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenTheorem{thm:wj-eleven-2} 沿用\WJRef{thm:wj-eleven-1}{定理~} 的均衡条件，设效用连续且上述共同效用上等值集合紧致。若证券市场是实质完全的，则均衡配置是帕累托最优的。
 \end{tcolorbox}
 
@@ -270,7 +270,7 @@
 
 \WJRef{sec:wj-five-completion}{第~}[~节（期权与市场完全化）]用状态指数证券区分全部 $\Omega$ 个状态。这里市场组合只区分 $N_d$ 个总禀赋水平，$N_d$ 可能小于 $\Omega$。复制的目标也随之改变。这里要生成的是总禀赋的函数，同一总禀赋水平下的各个状态对应同一个支付值。
 
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenTheorem{thm:wj-eleven-3} 在上述证券市场经济中，若市场包括以市场组合为标的、执行价格齐备的期权，即这 $N_d-1$ 只看涨期权均可交易，则市场实质完全。
 \end{tcolorbox}
 
@@ -314,7 +314,7 @@
 
 \Needspace{22\baselineskip}
 \subsection{HARA效用函数}
-\begin{tcolorbox}[knowledge,breakable=false]
+\begin{tcolorbox}[knowledge]
 \WJElevenTheorem{thm:wj-eleven-4} 在证券市场经济中，若存在无风险证券，且所有参与者的1期边际效用具有共同指数的\WJLink{sec:wj-seven-hara}{HARA}形式
 \[
  u'_{k,1}(c)=\rho_k(d_k+c/\gamma)^{-\gamma}>0,
