@@ -52,7 +52,7 @@ tools/latex/build-dual.sh --parallel 金融经济学_王江_讲义及习题.tex 
 
 以上两条命令共用教师版缓存，并按辅助目录互斥。前一轮完成后，后续构建才由 latexmk 判断是否需要重编。并行模式分别保留两版日志和辅助文件，两版都成功时才报告双版构建成功。默认串行调用仍可用。定稿验收前确认磁盘源码与交付范围一致。有并行编辑或只验证拟提交改动时，使用相应源码快照及独立的输出和辅助目录。涉及仅习题模式时，按项目 README 的命令另验。
 
-本地工作区的 `.vscode/settings.json` 将 LaTeX Workshop 的输出目录设为 `%DIR%/output`、辅助目录设为 `%DIR%/build/%DOCFILE%`。教师版和手动选择的「师生双版」recipe 都把 `%DOCFILE_EXT%`、`%OUTDIR%` 和 `%AUXDIR%` 传给上述脚本，与终端共用缓存及构建锁。学生版使用独立缓存。
+项目的 `.vscode/settings.json` 按入口相对于仓库根目录的位置设置 LaTeX Workshop 的输出和辅助目录。讲义仍使用 `output/` 和 `build/<主文档名>/`，Beamer 使用 `output/Beamer/` 和 `build/Beamer/<课件名>/`。XeLaTeX recipe 从仓库根目录运行构建脚本，与终端使用相同路径。讲义学生版使用独立缓存。
 
 ## 图源与缓存
 

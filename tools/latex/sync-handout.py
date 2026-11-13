@@ -5,10 +5,12 @@ from difflib import unified_diff
 from pathlib import Path
 import re
 import sys
+from tempfile import NamedTemporaryFile
 
 
-BEAMER = Path(__file__).resolve().parent
-HANDOUT = BEAMER.parent / "tex" / "金融经济学_王江"
+PROJECT = Path(__file__).resolve().parents[2]
+HANDOUT = PROJECT / "tex" / "金融经济学_王江"
+FRAMES = PROJECT / "build" / "Beamer" / "第12—14讲_均值方差偏好_CAPM与APT" / "frames"
 
 
 @dataclass(frozen=True)
@@ -47,7 +49,7 @@ class Chapter:
 
     @property
     def output(self):
-        return BEAMER / "build" / f"chapter{self.number}-full.tex"
+        return FRAMES / f"chapter{self.number}-full.tex"
 
 
 CHAPTERS = (
@@ -116,8 +118,8 @@ FIGURE_SLIDES = {
         r"\WJTwelveFigureStart{fig:wj-twelve-1}",
         r"\begin{center}",
         r"\end{center}",
-        "两种空间中的均值--方差前沿",
-        "有效前沿与可行区域",
+        "收益率--标准差平面中的均值--方差前沿",
+        "前沿几何与最小方差组合",
     ),
 }
 
@@ -202,15 +204,23 @@ def slide(title, lines):
     if title == "极限套利和均衡":
         yield r"\tcbset{break at=.72\textheight/.72\textheight/.72\textheight/.72\textheight}"
     for index, line in enumerate(lines):
-        if line == r"\begin{center}" and (
-            r"\WJFigureStart{fig:wj-twelve-quadratic-marginals}%" in lines[index:index + 5]
+        if line == r"\begin{center}" and any(
+            candidate.startswith((
+                r"\WJFigureStart{fig:wj-twelve-quadratic-marginals}",
+                r"\WJFigureStart{fig:wj-twelve-weight-frontier}",
+                r"\WJFigureStart{fig:wj-twelve-feasible-by-count}",
+                r"\WJThirteenFigureStart{fig:wj-thirteen-1}",
+                r"\WJFigureStart{fig:wj-thirteen-lines}",
+                r"\WJFigureStart{fig:wj-thirteen-zero-beta}",
+            ))
+            for candidate in lines[index + 1:index + 5]
         ):
             yield r"\framebreak"
         if title == "联合正态支付与效用性质" and line.startswith(
             ("再求一次偏导时", "有了这些偏导，便可逐项判断")
         ):
             yield r"\framebreak"
-        if line in {r"\WJInputFigure{13_CML与SML}", r"\WJInputFigure{14_风险分散}"}:
+        if line == r"\WJInputFigure{14_风险分散}":
             yield r"\framebreak"
         if title == "练习 13.5 解答" and line.startswith(("记 $\\widetilde q$", "由两只基金的定义")):
             yield r"\framebreak"
@@ -285,9 +295,15 @@ def main():
                 print(f"第 {chapter.number} 讲 Beamer 生成稿与当前讲义同步")
         elif current != expected:
             output.parent.mkdir(parents=True, exist_ok=True)
-            temporary = output.with_suffix(".tmp")
-            temporary.write_text(expected)
-            temporary.replace(output)
+            with NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=output.parent, delete=False
+            ) as stream:
+                temporary = Path(stream.name)
+                stream.write(expected)
+            try:
+                temporary.replace(output)
+            finally:
+                temporary.unlink(missing_ok=True)
     return int(failed)
 
 

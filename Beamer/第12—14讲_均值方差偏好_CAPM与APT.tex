@@ -1,13 +1,13 @@
 % !TeX program = xelatex
-% 正文来源：../tex/金融经济学_王江/12_均值方差偏好.tex、13_CAPM.tex、14_APT.tex。
+% 正文来源：tex/金融经济学_王江/12_均值方差偏好.tex、13_CAPM.tex、14_APT.tex。
 % 版式来源：同目录 ESG与碳风险定价_文献综述汇报.tex。
-% 在本目录运行 latexmk -xelatex 第12—14讲_均值方差偏好_CAPM与APT.tex。
+% 在项目根目录运行 latexmk -xelatex Beamer/第12—14讲_均值方差偏好_CAPM与APT.tex。
 
 \documentclass[UTF8,fontset=none,aspectratio=169,10pt]{ctexbeamer}
 \DeclareFontShape{OT1}{cmr}{m}{n}{%
   <-6>cmr5 <6-7>cmr6 <7-8>cmr7 <8-9>cmr8 <9-10>cmr9
   <10-12>cmr10 <12-17>cmr12 <17->cmr17}{}
-\usepackage{njust_beamer}
+\usepackage{Beamer/njust_beamer}
 \AtBeginSection[]{}
 \usepackage{amsmath,amssymb,booktabs,tabularx,array,graphicx,adjustbox,extarrows}
 \usetikzlibrary{arrows.meta,positioning,calc}
@@ -61,7 +61,7 @@
 \newcommand{\bodygap}{\par\vspace{.20cm}}
 
 % 内容框沿用讲义的边框、底色和标题样式。
-\input{../tex/_shared/431-box-styles.tex}
+\input{tex/_shared/431-box-styles.tex}
 
 % 本讲内部编号沿用讲义。跨讲及课后习题引用保留讲义中的编号。
 \renewcommand{\theequation}{\lecturechapter.\arabic{equation}}
@@ -74,13 +74,13 @@
 \newcommand{\WJInputFigure}[2][.46\textheight]{%
   \ifnum\lecturechapter=12\relax
     \begin{adjustbox}{max width=\linewidth,max height=#1}%
-      \input{../tex/金融经济学_王江/figures/#2.tex}%
+      \input{tex/金融经济学_王江/figures/#2.tex}%
     \end{adjustbox}%
   \else
     \par\noindent
     \begin{adjustbox}{max width=\linewidth,max totalheight=.59\textheight}%
       \begin{minipage}{\linewidth}%
-        \input{../tex/金融经济学_王江/figures/#2.tex}%
+        \input{tex/金融经济学_王江/figures/#2.tex}%
       \end{minipage}%
     \end{adjustbox}\par
   \fi
@@ -180,7 +180,7 @@
 \begin{frame}[plain]
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=south west,inner sep=0pt] at (current page.south west)
- {\includegraphics[width=\paperwidth,height=\paperheight]{cover_background.png}};
+ {\includegraphics[width=\paperwidth,height=\paperheight]{Beamer/cover_background.png}};
 \node[anchor=north west,text=accent,font=\songti\bfseries\large]
  at ([xshift=.065\paperwidth,yshift=-.065\paperheight]current page.north west) {\insertshortauthor\quad\insertdate};
 \node[anchor=north west,text=accent,font=\songti\bfseries]
@@ -227,7 +227,7 @@
 \end{frame}
 
 \begin{WJFullChapterSlides}
-\input{build/chapter12-full.tex}
+\input{build/Beamer/第12—14讲_均值方差偏好_CAPM与APT/frames/chapter12-full.tex}
 \end{WJFullChapterSlides}
 
 \renewcommand{\lecturechapter}{13}
@@ -257,7 +257,7 @@
 \end{frame}
 
 \begin{WJFullChapterSlides}
-\input{build/chapter13-full.tex}
+\input{build/Beamer/第12—14讲_均值方差偏好_CAPM与APT/frames/chapter13-full.tex}
 \end{WJFullChapterSlides}
 
 \renewcommand{\lecturechapter}{14}
@@ -287,14 +287,14 @@ CAPM以市场收益衡量系统风险。本章从收益的因子结构出发，�
 \end{frame}
 
 \begin{WJFullChapterSlides}
-\input{build/chapter14-full.tex}
+\input{build/Beamer/第12—14讲_均值方差偏好_CAPM与APT/frames/chapter14-full.tex}
 \end{WJFullChapterSlides}
 
 % 结束页
 \begin{frame}[plain]
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=south west,inner sep=0pt] at (current page.south west)
- {\includegraphics[width=\paperwidth,height=\paperheight]{cover_background.png}};
+ {\includegraphics[width=\paperwidth,height=\paperheight]{Beamer/cover_background.png}};
 \node[anchor=north west,text=accent,font=\songti\bfseries]
  at ([xshift=.065\paperwidth,yshift=-.24\paperheight]current page.north west)
  {\fontsize{29}{36}\selectfont 谢谢};

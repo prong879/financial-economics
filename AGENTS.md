@@ -1,9 +1,9 @@
 # 金融经济学项目协作约定
 
-- 根目录两个 `.tex` 文件是正式编译入口；正文和习题按教材、章节放在 `tex/`。
+- 根目录两个 `.tex` 文件是正式讲义入口，课件入口位于 `Beamer/`。正文和习题按教材、章节放在 `tex/`。
 - 本仓库只跟踪 LaTeX 源码、必要字体、定制运行时、构建工具和项目说明。原始教材 PDF、扫描图片、勘误 Word、生成 PDF 和编译缓存仅在本地保留。
 - 编辑章节前确认 `% !TeX root`，保留原始来源、题号与待核验说明。
-- 在项目根目录运行 `latexmk -xelatex <主文档.tex>`；`.latexmkrc` 将成品写入 `output/`，辅助文件写入 `build/`。
+- 在项目根目录运行 `latexmk -xelatex <主文档.tex>`；`.latexmkrc` 将成品写入 `output/`，辅助文件写入 `build/`。Beamer 对应使用 `output/Beamer/` 和 `build/Beamer/<课件名>/`。
 - 教师版和学生版使用 `tools/latex/build-dual.sh <主文档.tex> output build/<主文档名>`。
 - 优先加载本项目 `texmf/` 中的 exam-zh；不得依赖原 431 目录、绝对源码路径或软链接。
 - 保留用户已有修改，迁移或整理不得顺带重写题目与答案。

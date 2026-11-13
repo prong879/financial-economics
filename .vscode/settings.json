@@ -1,0 +1,107 @@
+{
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/output/%RELATIVE_DIR%",
+    "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/build/%RELATIVE_DIR%/%DOCFILE%",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-pdf",
+            "command": "/Library/TeX/texbin/latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk-xelatex",
+            "command": "/bin/zsh",
+            "args": [
+                "%WORKSPACE_FOLDER%/tools/latex/build-dual.sh",
+                "--teacher",
+                "%RELATIVE_DOC%.tex",
+                "%OUTDIR%",
+                "%AUXDIR%"
+            ],
+            "cwd": "%WORKSPACE_FOLDER%"
+        },
+        {
+            "name": "latexmk-xelatex-dual",
+            "command": "/bin/zsh",
+            "args": [
+                "%WORKSPACE_FOLDER%/tools/latex/build-dual.sh",
+                "--parallel",
+                "%RELATIVE_DOC%.tex",
+                "%OUTDIR%",
+                "%AUXDIR%"
+            ],
+            "cwd": "%WORKSPACE_FOLDER%"
+        },
+        {
+            "name": "pdflatex",
+            "command": "/Library/TeX/texbin/pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "command": "/Library/TeX/texbin/xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "/Library/TeX/texbin/bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "latexmk-xelatex"
+            ]
+        },
+        {
+            "name": "latexmk (xelatex，师生双版)",
+            "tools": [
+                "latexmk-xelatex-dual"
+            ]
+        },
+        {
+            "name": "latexmk (pdflatex)",
+            "tools": [
+                "latexmk-pdf"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "xelatex -> bibtex -> xelatex * 2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)"
+}

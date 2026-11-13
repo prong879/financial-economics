@@ -1,4 +1,5 @@
 use Cwd qw(abs_path);
+use File::Spec;
 use File::Basename qw(basename dirname);
 use File::Path qw(make_path);
 use File::Compare qw(compare);
@@ -13,11 +14,26 @@ my $project_texmf = "$project_dir/texmf//";
 my $existing_texinputs = $ENV{'TEXINPUTS'} // '';
 $ENV{'TEXINPUTS'} = "$project_texmf:$existing_texinputs";
 
-# 普通 latexmk 构建也必须保持项目根目录整洁：成品进入 output/，
-# 中间文件进入 build/。命令行显式传入的 -outdir/-auxdir 仍可覆盖这里，
-# 供 tools/latex/build-dual.sh 和临时校验构建使用。
+# 按入口设置默认输出位置。显式 -outdir / -auxdir 仍可覆盖。
 $out_dir = "$project_dir/output";
 $aux_dir = "$project_dir/build";
+my $course_slides = encode_utf8('第12—14讲_均值方差偏好_CAPM与APT.tex');
+my @sources = grep { !/^-/ && /\.tex\z/ } @ARGV;
+if (@sources == 1) {
+    my $source = File::Spec->rel2abs($sources[0]);
+    my $name = basename($source);
+    $name =~ s/\.tex\z//;
+    if (dirname($source) eq "$project_dir/Beamer") {
+        $out_dir .= "/Beamer";
+        $aux_dir .= "/Beamer/$name";
+        if (basename($source) eq $course_slides) {
+            system('python3', "$project_dir/tools/latex/sync-handout.py") == 0
+                or die "Beamer frame generation failed\n";
+        }
+    } else {
+        $aux_dir .= "/$name";
+    }
+}
 make_path($out_dir, $aux_dir);
 
 # 记录独立图的共用样式与字体。图面代码由 Memoize 自己校验。

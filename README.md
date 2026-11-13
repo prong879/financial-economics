@@ -61,7 +61,7 @@ latexmk -xelatex 金融经济学_王江_讲义及习题.tex
 latexmk -xelatex 金融经济学_熊和平_习题.tex
 ```
 
-PDF 写入 `output/`，中间文件写入 `build/`。
+讲义 PDF 写入 `output/`，中间文件写入 `build/<主文档名>/`。从根目录编译 `Beamer/` 的课件时，PDF 写入 `output/Beamer/`，中间文件写入 `build/Beamer/<课件名>/`。课件入口见 [Beamer 构建说明](Beamer/README.md)。
 
 教师版和学生版（脚本需要 zsh，并使用 macOS 上的 `/Library/TeX/texbin/latexmk`）：
 
