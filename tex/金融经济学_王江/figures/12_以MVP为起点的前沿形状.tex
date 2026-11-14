@@ -1,0 +1,29 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 示意双曲线 x=.85 sqrt(1+t^2), y=2.15+.64t，虚线斜率为 ±.64/.85。
+\begin{tikzpicture}[
+ >=Stealth,x=1.55cm,y=.92cm,font=\small,
+ frontier/.style={blue!70!black},
+ guide/.style={gray,densely dotted},
+ asymptote/.style={gray!80!black,dashed}]
+ \coordinate (MVP) at (.85,2.15);
+ \coordinate (Pplus) at ({.85*sqrt(1+1.5^2)},3.11);
+ \coordinate (Pminus) at ({.85*sqrt(1+1.5^2)},1.19);
+ \coordinate (sigmaDelta) at ({.85*sqrt(1+1.5^2)},0);
+ \draw[->] (0,0)--(3.85,0) node[right] {$\sigma$};
+ \draw[->] (0,0)--(0,4.35) node[above] {$\bar r$};
+ \draw[guide] (0,2.15) node[left,black] {$a/c$}--(MVP)
+   --(.85,0) node[below,black] {$1/\sqrt c$};
+ \draw[guide] (0,3.11) node[left,black] {$a/c+\Delta$}--(Pplus);
+ \draw[guide] (0,1.19) node[left,black] {$a/c-\Delta$}--(Pminus);
+ \draw[guide] (Pplus)--(sigmaDelta) node[below,black] {$\sigma_\Delta$};
+ \draw[asymptote] (0,2.15)--(2.48,{2.15+.64/.85*2.48})
+   node[right=2pt] {$\bar r=a/c+\sqrt{d/c}\,\sigma$};
+ \draw[asymptote] (0,2.15)--(2.48,{2.15-.64/.85*2.48})
+   node[right=2pt] {$\bar r=a/c-\sqrt{d/c}\,\sigma$};
+ \draw[frontier,very thick,domain=-2.65:2.65,samples=91,variable=\t]
+   plot ({.85*sqrt(1+\t*\t)},{2.15+.64*\t});
+ \fill[red!70!black] (MVP) circle (2pt) node[right=3pt] {MVP};
+ \fill[frontier] (Pplus) circle (1.9pt) node[right=3pt] {$P_+$};
+ \fill[frontier] (Pminus) circle (1.9pt) node[right=3pt] {$P_-$};
+ \node[frontier] at (3.05,2.15) {$\displaystyle \sigma_\Delta=\sqrt{\frac1c+\frac cd\,\Delta^2}$};
+\end{tikzpicture}

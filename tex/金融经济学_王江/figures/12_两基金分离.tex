@@ -1,0 +1,34 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 示意前沿 sigma=.7 sqrt(1+s^2), r=.9+s。
+% 参照 431 计算讲义的曲线簇画法。这里用效用 r-kappa_k(sigma/.7)^4，
+% 其中 kappa_k=1/[4s_k(1+s_k^2)]，在前沿上恰好于 s=s_k 取最大值。
+\begin{tikzpicture}[
+ >=Stealth,font=\small,
+ frontier/.style={blue!70!black},
+ first/.style={teal!65!black},
+ second/.style={red!68!black}]
+ \begin{scope}[x=2.15cm,y=1.05cm]
+  \draw[->] (0,0)--(2.30,0) node[right] {$\sigma$};
+  \draw[->] (0,0)--(0,4.23) node[above] {$\bar r$};
+  \foreach \shift in {-.44,-.22,.22,.44} {
+   \draw[teal!45!white,dashed,domain=.24:1.02,samples=36,variable=\x]
+     plot (\x,{.9+.65+((\x/.7)^4-(1+.65^2)^2)/(4*.65*(1+.65^2))+\shift});
+   \draw[red!45!white,dashed,domain=1.09:1.90,samples=36,variable=\x]
+     plot (\x,{.9+1.75+((\x/.7)^4-(1+1.75^2)^2)/(4*1.75*(1+1.75^2))+\shift});
+  }
+  \draw[first,thick,domain=.24:1.02,samples=36,variable=\x]
+    plot (\x,{.9+.65+((\x/.7)^4-(1+.65^2)^2)/(4*.65*(1+.65^2))});
+  \draw[second,thick,domain=1.09:1.90,samples=36,variable=\x]
+    plot (\x,{.9+1.75+((\x/.7)^4-(1+1.75^2)^2)/(4*1.75*(1+1.75^2))});
+  \draw[frontier,very thick,domain=-.70:2.45,samples=81,variable=\s]
+    plot ({.7*sqrt(1+\s*\s)},{.9+\s});
+  \fill[frontier] ({.7*sqrt(1+.25*.25)},1.15) circle (1.7pt)
+    node[right=3pt,fill=white,inner sep=1pt] {$A$};
+  \fill[frontier] ({.7*sqrt(1+2.25*2.25)},3.15) circle (1.7pt)
+    node[right=4pt,fill=white,inner sep=1pt] {$B$};
+  \fill[first] ({.7*sqrt(1+.65*.65)},1.55) circle (2pt)
+    node[above left=2pt,fill=white,inner sep=1pt] {$P_1$};
+  \fill[second] ({.7*sqrt(1+1.75*1.75)},2.65) circle (2pt)
+    node[below right=3pt,fill=white,inner sep=1pt] {$P_2$};
+ \end{scope}
+\end{tikzpicture}

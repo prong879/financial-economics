@@ -1,0 +1,30 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 用双曲线右支示意图 12.1 中固定两个均值的水平比较。阴影对应 N>=3。
+\begin{tikzpicture}[
+ >=Stealth,x=1.75cm,y=1.05cm,font=\small,
+ frontier/.style={blue!70!black},
+ comparison/.style={->,thick,teal!65!black}]
+ % 示意前沿满足 (x/0.68)^2-(y-1.8)^2=1，且 x>0。
+ \def\vertexx{0.68}
+ \fill[blue!5] plot[domain=-1.55:1.55,samples=81,variable=\t]
+   ({\vertexx*sqrt(1+\t*\t)},{1.8+\t})--(3.72,3.35)--(3.72,.25)--cycle;
+ \draw[->] (0,0)--(3.95,0) node[right] {$\sigma$（标准差）};
+ \draw[->] (0,0)--(0,3.53) node[above] {$\bar r$（期望收益率）};
+ \draw[frontier,very thick,domain=-1.55:1.55,samples=81,variable=\t]
+   plot ({\vertexx*sqrt(1+\t*\t)},{1.8+\t});
+ \coordinate (A) at ({\vertexx*sqrt(1+.8*.8)},1.0);
+ \coordinate (B) at ({\vertexx*sqrt(1+1.1*1.1)},2.9);
+ \coordinate (MVP) at (\vertexx,1.8);
+ \draw[densely dotted,gray] (0,1.0) node[left,black] {$\bar r_A$}--(A);
+ \draw[densely dotted,gray] (0,2.9) node[left,black] {$\bar r_B$}--(B);
+ \draw[comparison,shorten >=3pt] (3.40,1.0)--(A);
+ \draw[comparison,shorten >=3pt] (3.40,2.9)--(B);
+ \node[teal!65!black,below=2pt] at (2.45,1.0) {固定 $\bar r_A$，标准差减小};
+ \node[teal!65!black,above=2pt] at (2.45,2.9) {固定 $\bar r_B$，标准差减小};
+ \fill[frontier] (A) circle (2pt) node[below left=3pt,xshift=-5pt] {$A$};
+ \fill[frontier] (B) circle (2pt) node[above left=2pt] {$B$};
+ \draw[densely dotted,gray] (0,1.8) node[left,black] {$a/c$}
+   --(MVP)--(\vertexx,0) node[below,black] {$1/\sqrt c$};
+ \fill[red!70!black] (MVP) circle (2.1pt) node[right=3pt] {全局 MVP};
+ \node[frontier,align=center] at (2.88,1.95) {可行区域\\（$N\ge3$）};
+\end{tikzpicture}

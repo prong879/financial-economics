@@ -1,0 +1,42 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 左图沿用图 12.S15 的双曲线和效用形式，坐标按版面缩放。
+\begin{tikzpicture}[
+ >=Stealth,x=1.25cm,y=1.12cm,font=\small,
+ frontier/.style={blue!70!black,very thick},
+ guide/.style={gray,densely dotted},
+ choice/.style={teal!60!black}]
+ \draw[->] (0,0)--(3.55,0) node[right] {$\sigma$};
+ \draw[->] (0,0)--(0,2.9) node[above] {$\bar r$};
+ \def\optimalS{1.05}
+ \coordinate (A) at ({1.34*sqrt(1+.48^2)},{.72*(.9-.48)});
+ \coordinate (P) at ({1.34*sqrt(1+\optimalS^2)},{.72*(.9+\optimalS)});
+ \coordinate (B) at ({1.34*sqrt(1+2.08^2)},{.72*(.9+2.08)});
+ \draw[guide] (0,.3024) node[left,black] {$\bar r_A$}--(A);
+ \draw[guide] (0,2.1456) node[left,black] {$\bar r_B$}--(B);
+ \pgfmathdeclarefunction{wjindifference}{1}{%
+  \pgfmathparse{.72*(.9+\optimalS+((#1/1.34)^4-(1+\optimalS^2)^2)/(4*\optimalS*(1+\optimalS^2)))}}
+ \foreach \offset in {-.44,-.22,.22,.44} {
+  \draw[teal!45!white,dashed] plot[domain=.84:2.62,samples=41,variable=\s]
+   (\s,{wjindifference(\s)+\offset});
+ }
+ \draw[choice,thick] plot[domain=.84:2.62,samples=41,variable=\s]
+  (\s,{wjindifference(\s)});
+ \draw[frontier] plot[domain=-.7:2.34,samples=81,variable=\t]
+  ({1.34*sqrt(1+\t*\t)},{.72*(.9+\t)});
+ \fill[blue!70!black] (A) circle (2pt) node[right=3pt,black] {$A$};
+ \fill[blue!70!black] (B) circle (2pt) node[right=3pt,black] {$B$};
+ \fill[choice] (P) circle (2pt) node[below right=2pt] {$P_k$};
+ \node at (1.68,-.72) {(a) 证券期望收益率不全相同};
+
+ \begin{scope}[xshift=6.05cm]
+  \draw[->] (0,0)--(3.55,0) node[right] {$\sigma$};
+  \draw[->] (0,0)--(0,2.9) node[above] {$\bar r$};
+  \draw[guide] (0,1.32) node[left,black] {$a/c$}--(.78,1.32)--(.78,0)
+   node[below,black] {$1/\sqrt c$};
+  \draw[gray!80,thick,<-] (.78,1.32)--(3.3,1.32)
+   node[pos=.63,below=4pt,black] {同均值的可行组合};
+  \fill[choice] (.78,1.32) circle (2.3pt)
+   node[above right=4pt,align=left] {$P_1=P_2=\mathrm{MVP}$\\唯一的前沿点};
+  \node at (1.68,-.72) {(b) 证券期望收益率相同};
+ \end{scope}
+\end{tikzpicture}
