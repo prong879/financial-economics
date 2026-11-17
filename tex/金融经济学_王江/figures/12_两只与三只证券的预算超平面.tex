@@ -1,0 +1,38 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[
+ >=Stealth,font=\small,
+ sectionline/.style={blue!65!black,thick,<->},
+ sampleline/.style={teal!65!black,thick,dashed},
+ point/.style={circle,fill=blue!65!black,inner sep=1.6pt}]
+ \begin{scope}[x=2.22cm,y=2.22cm]
+  \draw[->] (-.27,0)--(1.53,0) node[right] {$z^{(1)}$};
+  \draw[->] (0,-.29)--(0,1.52) node[above] {$z^{(2)}$};
+  \draw[sectionline] (-.22,1.22)--(1.28,-.28);
+  \node[point,label=left:{$(0,1)$}] at (0,1) {};
+  \node[point,label=above right:{$(1,0)$}] at (1,0) {};
+  \node[blue!65!black] at (1.03,1.15) {$z^{(1)}+z^{(2)}=1$};
+  \node at (.65,-.67) {(a) 两只证券：一维预算直线};
+ \end{scope}
+ \begin{scope}[xshift=8.25cm,x={(-1.65cm,-.61cm)},y={(2.0cm,-.42cm)},z={(0cm,2.45cm)}]
+  % 视野边界取预算平面内的四点，浅蓝区域示意向外延伸的整张平面。
+  \fill[blue!6]
+   (1.46,-.26,-.20)--(-.26,1.46,-.20)--(-.99,.73,1.26)--(.73,-.99,1.26)--cycle;
+  \fill[blue!16] (1,0,0)--(0,1,0)--(0,0,1)--cycle;
+  % 在固定 z^(3) 的平面内，只画从第三轴到预算三角形截线的部分。
+  \filldraw[fill=blue!9,draw=blue!45] (0,0,0)--(1,0,0)--(0,1,0)--cycle;
+  \filldraw[fill=teal!16,draw=teal!55] (0,0,.2)--(.8,0,.2)--(0,.8,.2)--cycle;
+  \draw[blue!40] (1,0,0)--(0,0,1)--(0,1,0);
+  \draw[->] (0,0,0)--(1.56,0,0) node[below left] {$z^{(1)}$};
+  \draw[->] (0,0,0)--(0,1.44,0) node[right] {$z^{(2)}$};
+  \draw[->] (0,0,0)--(0,0,1.38) node[above] {$z^{(3)}$};
+  \draw[blue!65!black,thick] (1,0,0)--(0,1,0);
+  \draw[sampleline] (.8,0,.2)--(0,.8,.2);
+  \draw[blue!65!black] (0,0,0) ++(-2pt,0pt) node[below left,inner sep=1pt] {$0$} -- ++(4pt,0pt);
+  \draw[teal!65!black] (0,0,.2) ++(-2pt,0pt) node[left,inner sep=1pt] {$0.2$} -- ++(4pt,0pt);
+  \node[point,label=below:{$(1,0,0)$}] at (1,0,0) {};
+  \node[point,label=below:{$(0,1,0)$}] at (0,1,0) {};
+  \node[point,label=left:{$(0,0,1)$}] at (0,0,1) {};
+  \node[blue!65!black] at (-.37,.39,.98) {预算平面 $\iota^{\mathsf T}z=1$};
+  \node at (0,0,-.61) {(b) 三只证券：二维预算平面};
+ \end{scope}
+\end{tikzpicture}

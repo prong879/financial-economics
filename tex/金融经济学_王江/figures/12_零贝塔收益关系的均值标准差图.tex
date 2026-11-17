@@ -1,0 +1,23 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 沿用图12.S15的前沿。p、zcp的均值相对MVP的偏差为1.25、-.8。
+\begin{tikzpicture}[
+ >=Stealth,x=1.55cm,y=.90cm,font=\small,
+ frontier/.style={blue!70!black},
+ zero/.style={teal!65!black},
+ guide/.style={gray,densely dotted}]
+ \coordinate (P) at ({sqrt(1+1.25^2)},3.25);
+ \coordinate (ZCP) at ({sqrt(1+.8^2)},1.20);
+ \coordinate (Q) at (2.67,2.38);
+ \fill[blue!5] plot[domain=-1.42:1.67,samples=81,variable=\t]
+   ({sqrt(1+\t*\t)},{2+\t})--(4.35,3.67)--(4.35,.58)--cycle;
+ \draw[->] (0,.43)--(4.63,.43) node[right] {$\sigma$};
+ \draw[->] (0,.43)--(0,3.88) node[above] {$\bar r$};
+ \draw[guide] (0,3.25) node[left,black] {$\bar r_p$}--(P);
+ \draw[guide] (0,2.38) node[left,black] {$\bar r_q$}--(Q);
+ \draw[guide] (0,1.20) node[left,black] {$\bar r_{zcp}$}--(ZCP);
+ \draw[frontier,very thick,domain=-1.42:1.67,samples=81,variable=\t]
+   plot ({sqrt(1+\t*\t)},{2+\t});
+ \fill[frontier] (P) circle (1.9pt) node[right=3pt] {$p\;(\beta_{p,p}=1)$};
+ \fill[zero] (ZCP) circle (1.9pt) node[right=3pt] {$zcp\;(\beta_{zcp,p}=0)$};
+ \fill[black] (Q) circle (1.9pt) node[right=3pt] {$q\;(0<\beta_{q,p}<1)$};
+\end{tikzpicture}

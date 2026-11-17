@@ -1,5 +1,5 @@
 % !TeX root = ../../../金融经济学_王江_讲义及习题.tex
-% 左图沿用图 12.S15 的双曲线和效用形式，坐标按版面缩放。
+% 左图沿用两基金分离示意图的双曲线和效用形式，坐标按版面缩放。
 \begin{tikzpicture}[
  >=Stealth,x=1.25cm,y=1.12cm,font=\small,
  frontier/.style={blue!70!black,very thick},
@@ -33,10 +33,18 @@
   \draw[->] (0,0)--(0,2.9) node[above] {$\bar r$};
   \draw[guide] (0,1.32) node[left,black] {$a/c$}--(.78,1.32)--(.78,0)
    node[below,black] {$1/\sqrt c$};
+  % 实线经过 MVP。上方的等效用曲线与可行射线没有交点。
+  \foreach \offset in {-.44,-.22,.22,.44} {
+   \draw[teal!45!white,dashed] plot[domain=.30:2.13,samples=41,variable=\s]
+    (\s,{1.32+.25*(\s^2-.78^2)+\offset});
+  }
+  \draw[choice,thick] plot[domain=.30:2.13,samples=61,variable=\s]
+   (\s,{1.32+.25*(\s^2-.78^2)});
   \draw[gray!80,thick,<-] (.78,1.32)--(3.3,1.32)
-   node[pos=.63,below=4pt,black] {同均值的可行组合};
+   node[pos=.71,below=4pt,black] {同均值的可行组合};
   \fill[choice] (.78,1.32) circle (2.3pt)
-   node[above right=4pt,align=left] {$P_1=P_2=\mathrm{MVP}$\\唯一的前沿点};
+   node[above right=4pt,align=left,fill=white,inner sep=2pt]
+    {$P_1=P_2=\mathrm{MVP}$\\共同的效用最大点};
   \node at (1.68,-.72) {(b) 证券期望收益率相同};
  \end{scope}
 \end{tikzpicture}

@@ -1,0 +1,32 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 两图共用收益率刻度。纵轴以各自 q=p 的值作为同一示意高度。
+\begin{tikzpicture}[
+ >=Stealth,x=1.20cm,y=.90cm,font=\small,
+ relation/.style={blue!70!black},
+ zero/.style={teal!65!black},
+ guide/.style={gray,densely dotted}]
+ \foreach \offset/\axisLabel/\pValue in {
+   0/{\operatorname{Cov}(\widetilde r_q,\widetilde r_p)}/{\sigma_p^2},
+   6.95/{\beta_{q,p}}/{1}
+ } {
+   \begin{scope}[xshift=\offset cm]
+     \draw[->] (0,.35)--(3.88,.35) node[right] {$\bar r_q$};
+     \draw[->] (0,-.10)--(0,2.58) node[above right=-1pt] {$\axisLabel$};
+     \node[left] at (0,.35) {$0$};
+     \draw[guide] (0,1.75) node[left,black] {$\pValue$}
+       --(2.65,1.75)--(2.65,.35) node[below,black] {$\bar r_p$};
+     \draw[relation,very thick] (.10,-.035)--(3.45,2.31);
+     \fill[black] (2.65,1.75) circle (1.8pt) node[above left=1pt] {$q=p$};
+     \fill[zero] (.65,.35) circle (1.9pt) node[below right=1pt] {$\bar r_{zcp}$};
+   \end{scope}
+ }
+ \node[relation] at (1.94,3.40)
+   {$\operatorname{Cov}(\widetilde r_q,\widetilde r_p)
+      =\lambda_r(\bar r_q-\bar r_{zcp})$};
+ \node[relation] at ({1.94+6.95/1.20},3.40)
+   {$\displaystyle\beta_{q,p}=\frac{\bar r_q-\bar r_{zcp}}{\bar r_p-\bar r_{zcp}}$};
+ \draw[gray!75!black,->] (4.35,1.53)--(5.42,1.53)
+   node[midway,above=2pt] {$\div\sigma_p^2$};
+ \node at (1.94,-.53) {(a) 协方差随 $q$ 的均值变化};
+ \node at ({1.94+6.95/1.20},-.53) {(b) 贝塔随 $q$ 的均值变化};
+\end{tikzpicture}

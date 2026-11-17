@@ -31,6 +31,12 @@
   \draw[guide] (0,1.75) node[left,black] {$1/c$}--(mvpCov)--(1.25,.75)
     node[below,black] {$a/c$};
   \draw[frontier,very thick] (.10,.3125)--(2.02,2.7125);
+  \node[frontier,anchor=west,inner sep=0pt] at (2.10,2.48)
+    {$\begin{aligned}
+      \operatorname{Cov}(\widetilde r_p,\widetilde r_q)
+        &=\frac{b-a\bar r_p}{d}+\frac{c\bar r_p-a}{d}\,\bar r_q\\
+        &=\frac{c\bar r_p-a}{d}\,(\bar r_q-\bar r_{zcp}).
+    \end{aligned}$};
   \fill[black] (mvpCov) circle (1.8pt);
   \fill[zero] (root) circle (2pt) node[below right=2pt] {$\bar r_{zcp}$};
   \node at (1.55,{-.32*.96/1.34}) {(b) 协方差随 $q$ 的均值变化};

@@ -1,0 +1,20 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+\begin{tikzpicture}[
+ >=Stealth,x=1.12cm,y=.85cm,font=\small,
+ dominance/.style={blue!62!black}]
+ \coordinate (p) at (3.35,1.05);
+ \coordinate (q) at (1.6,1.96);
+ \coordinate (meanP) at (0,1.05);
+ \coordinate (riskP) at (3.35,0);
+
+ \fill[blue!8] (meanP) rectangle (3.35,2.85);
+ \draw[->] (0,0)--(5.2,0) node[right] {$\sigma$（标准差）};
+ \draw[->] (0,0)--(0,3.05) node[above] {$\bar r$（期望收益率）};
+ \draw[gray,densely dotted] (p)--(riskP) node[below,black] {$\sigma_p$};
+ \draw[dominance,thick] (meanP) node[left,black] {$\bar r_p$}--(p)
+   node[midway,below=2pt] {等均值};
+ \draw[dominance,thick,->] (p)--(3.35,2.85)
+   node[midway,right=3pt] {等标准差};
+ \fill (p) circle (1.9pt) node[right=3pt] {$p$};
+ \fill[dominance] (q) circle (1.9pt) node[above right] {$q$};
+\end{tikzpicture}

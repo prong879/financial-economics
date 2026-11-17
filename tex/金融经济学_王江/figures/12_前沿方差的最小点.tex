@@ -1,0 +1,15 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 用示意坐标绘出以 (a/c,1/c) 为顶点的前沿方差抛物线。
+\begin{tikzpicture}[x=1.10cm,y=.88cm,>=Stealth,font=\small]
+ \coordinate (MVP) at (0,.7);
+ \draw[black,->] (-2.75,0)--(2.70,0) node[right] {$\bar r_p$};
+ \draw[black,->] (-2.55,0)--(-2.55,2.85) node[above] {$\sigma_p^2$};
+ \draw[gray,densely dotted] (-2.55,.7) node[left,black] {$1/c$}
+   --(MVP)--(0,0) node[below,black] {$a/c$};
+ \draw[blue!70!black,thick,domain=-2.10:2.10,samples=61,variable=\t]
+   plot (\t,{.7+.39*\t*\t});
+ \node[blue!70!black] at (-1.15,2.15) {导数 $<0$};
+ \node[blue!70!black] at (1.15,2.15) {导数 $>0$};
+ \fill[red!70!black] (MVP) circle (1.9pt)
+   node[above=4pt] {MVP};
+\end{tikzpicture}
