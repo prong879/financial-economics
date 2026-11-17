@@ -139,7 +139,7 @@ def chapter_frames(chapter, body):
         elif line == r"\WJChapterSummary":
             yield title, lines
             title, lines = "本讲小结", [chapter.review_section]
-        elif line == r"\begin{tcolorbox}[knowledge,title={参考文献与本章贡献}]":
+        elif line == r"\begin{tcolorbox}[knowledge,breakable=false,title={参考文献与本章贡献}]":
             yield title, lines
             title, lines = "本讲参考文献", [line]
         elif line.startswith(r"\begin{solution}[label-content={},label-indentation=false"):
