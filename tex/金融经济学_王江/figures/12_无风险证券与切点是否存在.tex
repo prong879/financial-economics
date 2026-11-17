@@ -1,6 +1,6 @@
 % !TeX root = ../../../金融经济学_王江_讲义及习题.tex
 % 同一纯风险前沿：\sigma^2=1+((\bar r-3.2)/.7)^2，故 c=1。
-% 左图 r_F=3.2，K=.49。右图 r_F=2.65，H=.55，K=.49+.55^2。
+% 左图 r_F=3.2，上支斜率为 .7。右图 r_F=2.65，上支斜率为 sqrt(.49+.55^2)。
 \begin{tikzpicture}[
  >=Stealth,font=\small,x=1.48cm,y=.66cm,
  risky/.style={red!65!black,thick},
@@ -12,7 +12,7 @@
  \pgfmathsetmacro{\MeanT}{2.65+(.49+.55^2)/.55}
 
  \foreach \Shift/\RiskFree/\Slope/\Panel in
-   {0/3.2/.7/{(a) $H=0$：无切点},6.4/2.65/\SlopeT/{(b) $H>0$：在上支相切}} {
+   {0/3.2/.7/{(a) $r_F=\bar r_{\mathrm{MVP}}$，$H=0$},6.4/2.65/\SlopeT/{(b) $r_F<\bar r_{\mathrm{MVP}}$，$H>0$}} {
    \begin{scope}[xshift=\Shift cm]
      \draw[->] (0,-.35)--(3.35,-.35) node[right] {$\sigma_p$};
      \draw[->] (0,-.35)--(0,6.03) node[above] {$\bar r_p$};
@@ -33,6 +33,8 @@
  \end{scope}
 
  \draw[risky] (.05,-1.65)--(.43,-1.65) node[right=2pt,black] {纯风险前沿};
- \draw[upper] (2.35,-1.65)--(2.73,-1.65) node[right=2pt,black] {含无风险证券：上支};
- \draw[lower] (5.6,-1.65)--(5.98,-1.65) node[right=2pt,black] {下支};
+ \draw[upper] (2.35,-1.65)--(2.73,-1.65)
+   node[right=2pt,black] {上支 $\bar r_p=r_F+\sqrt K\,\sigma_p$};
+ \draw[lower] (5.83,-1.65)--(6.21,-1.65)
+   node[right=2pt,black] {下支 $\bar r_p=r_F-\sqrt K\,\sigma_p$};
 \end{tikzpicture}

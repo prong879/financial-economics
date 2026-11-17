@@ -1,0 +1,42 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 两只风险证券，取 z_T=(.68,.32)，图中 P 对应 a_p=.55。
+\begin{tikzpicture}[
+ >=Stealth,font=\small,
+ x={(-3.05cm,-.9cm)},y={(3.45cm,-.62cm)},z={(0cm,2.9cm)},
+ frontier/.style={blue!65!black,very thick,<->},
+ projection/.style={gray!80,dashed,thick,<->},
+ guide/.style={gray,densely dotted}]
+ \coordinate (O) at (0,0,0);
+ \coordinate (F) at (0,0,1);
+ \coordinate (T) at (.68,.32,0);
+ \coordinate (P) at (.374,.176,.45);
+ \coordinate (Pprojection) at (.374,.176,0);
+
+ \filldraw[fill=blue!6,draw=gray!55]
+   (1.45,-.17,-.28)--(-.15,1.43,-.28)
+   --(-.62,.36,1.26)--(.34,-.60,1.26)--cycle;
+ \filldraw[fill=blue!16,draw=blue!35]
+   (1,0,0)--(0,1,0)--(F)--cycle;
+
+ \draw[->] (O)--(1.32,0,0) node[below left] {$z_1$};
+ \draw[->] (O)--(0,1.24,0) node[right] {$z_2$};
+ \draw[->] (O)--(0,0,1.46) node[above] {$z_F$};
+
+ % 分别取 a_p=-.24 和 1.24；完整权重中 z_F=1-a_p。
+ \draw[projection] (-.1632,-.0768,0)--(.8432,.3968,0);
+ \draw[guide] (P)--(Pprojection);
+ \draw[frontier] (-.1632,-.0768,1.24)--(.8432,.3968,-.24);
+ \fill (O) circle (1.6pt) node[above right,xshift=2pt] {$O$};
+ \fill[gray!80] (Pprojection) circle (1.6pt) node[right=3pt] {$P'$};
+ \fill[blue!65!black] (F) circle (1.8pt) node[right=3pt] {$F=(0,0,1)$};
+ \fill[blue!65!black] (T) circle (1.8pt) node[below left=3pt] {$T=(z_{T,1},z_{T,2},0)$};
+ \fill[blue!65!black] (P) circle (1.8pt) node[right=3pt] {$P$};
+ \node[blue!65!black,anchor=east,font=\footnotesize]
+   at (canvas cs:x=3.52cm,y=2.17cm)
+   {预算平面 $z_1+z_2+z_F=1$};
+
+ \draw[blue!65!black,very thick] (canvas cs:x=-3.2cm,y=-2.35cm)
+   -- ++(canvas cs:x=.48cm,y=0cm) node[right=3pt,black] {完整权重的前沿直线};
+ \draw[gray!80,dashed,thick] (canvas cs:x=.25cm,y=-2.35cm)
+   -- ++(canvas cs:x=.48cm,y=0cm) node[right=3pt,black] {在风险权重平面上的投影};
+\end{tikzpicture}
