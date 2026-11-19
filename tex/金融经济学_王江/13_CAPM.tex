@@ -28,70 +28,115 @@
 \newcommand{\WJThirteenFigureCaption}[1]{\par\smallskip 图\thewjThirteenFigure\quad #1}
 
 \ifdefined\WJHandoutKnowledge
-上一讲求的是给定收益和风险时，每个人愿意怎样配置资产。本章要问的是，怎样的收益与风险关系能使这些需求加总后恰好等于市场供给。两基金分离使这个问题变得简单：如果所有人买入的风险证券比例相同，那么即使各人投入的金额不同，加总之后仍是同一比例。均衡时，这组比例就能从市场上每只证券的供给及其价格读出。
+上一讲在给定证券期望收益与协方差的条件下，研究每个人怎样选择最优组合。本章进一步问：怎样的价格及其对应的收益与风险关系，能使所有人的证券需求加总后恰好等于市场供给？由个人最优选择和市场出清共同确定的定价关系，就是本章要研究的资本资产定价模型（CAPM）。第十讲曾从消费定价得到\WJEqRef{eq:wj-10-risk-market-beta}{近似的 CAPM 关系~}；本章将在均值--方差偏好的条件下，推导精确的均衡关系。
 
-加入无风险证券时，这个共同的风险组合就是切点组合。没有无风险证券时，个人组合可以不同，但仍在同一条前沿上。两种情形都可以利用第十二讲的贝塔关系得到资本资产定价模型（CAPM）。本章最后回到个人效用和市场出清，说明什么样的经济可以产生这一关系。
+从个人选择走向市场均衡，关键是怎样处理不同参与者的需求。设想一家食品店要为肉类、蔬菜和粮食定价：若每位顾客的购买比例各不相同，就需要分别了解他们的需求；若大家都按相同比例购买，只有购买总量不同，就能先把购买量加总，再按共同的比例计算各类食品的总需求。证券组合的需求加总也有类似的简化。
+
+在共同的收益预期、风险判断和交易机会下，均值--方差偏好使每个人都选择有效组合。两基金分离意味着，即使个人选择的组合不同，也都能由同样的两只固定前沿基金构成。因此，把个人需求按投资金额加总后，总需求仍可由这两只基金表示。存在无风险证券且切点组合有效时，这两只基金可取为无风险证券与切点组合：各人投入风险证券的金额可以不同，风险投资内部的证券比例却相同。市场出清便把这个共同的风险组合与市场上全部风险证券的组合联系起来。
+
+本章先定义市场组合，再利用市场出清说明它为什么就是切点组合，从而把第十二讲的切点贝塔关系转化为 CAPM。随后考察没有无风险证券的情形：个人组合虽不同，加总后的市场组合仍在共同的有效前沿上，由此得到零贝塔 CAPM。最后从具体效用和支付分布出发，说明哪些经济条件能够产生这些定价关系。
 
 \section{市场组合}\label{sec:wj-thirteen-1}
 \subsection{总持仓与市场价值权重}
-证券 $n$ 的总供给为 $\bar\theta_n$，价格为 $P_n$。将 $N$ 只风险证券的价格按证券顺序排成列向量 $P=[P_1,\ldots,P_N]^{\mathsf T}$。全部风险证券的总供给构成\textbf{市场组合}，其总持仓按相同顺序写成列向量
+第十二讲研究参与者对资产的需求，现在转向资产的供给。把市场上交易的证券，包括公司发行的股票、债券等，按各自的发行总量汇集起来，就得到证券的总供给。这些证券合在一起，本身就是一个组合，称为\textbf{市场组合}。
+
+在\WJLink{def:wj-two-6}{证券市场经济}中，个人未来禀赋来自初始证券持仓，因而全部证券的支付加总，也就是经济体未来总禀赋。本章将无风险证券单独处理，以全部可交易风险证券构成的市场组合为研究对象；当没有无风险证券，或其净供给为零时，这一风险证券组合的支付就等于未来总禀赋。
+
+要描述市场组合，首先可以逐项列出各证券的供给数量。令 $\bar\theta_n$ 为证券 $n$ 的发行总量或总股数（$n=1,\ldots,N$），则市场组合的总持仓为
 \begin{equation}
- \theta_M=[\bar\theta_1,\ldots,\bar\theta_N]^{\mathsf T}.
+ \theta_M=\begin{bmatrix}\bar\theta_1\\\vdots\\\bar\theta_N\end{bmatrix}.
  \label{eq:wj-13-1}
 \end{equation}
 
-在\WJLink{def:wj-two-6}{证券市场经济}中，个人未来禀赋来自初始证券持仓。当市场没有无风险证券，或无风险证券的净供给为零时，未来总禀赋就等于风险证券市场组合的支付。市场组合可用证券数量表示，也可用投资价值权重表示。
+\WJEqRef{eq:wj-13-1}{式~}回答了市场组合中各有多少单位的证券。若要进一步描述各证券在组合中占多大价值比例，就需要先把数量换算成市值，再除以组合的总市值。令 $P_n$ 为证券 $n$ 的单位价格，价格列向量为
+\[
+ P=\begin{bmatrix}P_1\\\vdots\\P_N\end{bmatrix}.
+\]
+
+% 来源：教材13.1，印刷页198—199；价格向量沿用本讲义的列向量约定。
 \begin{tcolorbox}[knowledge]
-令 $v_n=P_n\bar\theta_n$ 为证券 $n$ 的市场价值，$v_M=P^{\mathsf T}\theta_M=\sum_n v_n>0$ 为全部风险证券的总市值，则市场组合的权重为
+用单位价格乘以发行总量，得到证券 $n$ 的总价值
+\[
+ v_n=P_n\bar\theta_n.
+\]
+
+这一总价值称为证券 $n$ 的\textbf{市场价值}或\textbf{市值}（market value），也称\textbf{市场资本化}（market capitalization）。将各证券的市值加总，得到市场组合的总市值
+\[
+ v_M=P^{\mathsf T}\theta_M=\sum_{n=1}^N v_n>0.
+\]
+
+再将每只证券的市值除以总市值，就得到它在市场组合中的\textbf{相对市值权重}：
+\[
+ z_{n,M}=\frac{v_n}{v_M}=\frac{P_n\bar\theta_n}{v_M}.
+\]
+
+把这些权重按证券顺序排成列向量，便得到市场组合的价值权重表示
 \begin{equation}
- z_{n,M}=\frac{P_n\bar\theta_n}{v_M},\qquad
- z_M=[z_{1,M},\ldots,z_{N,M}]^{\mathsf T},\quad\iota^{\mathsf T}z_M=1.
+ z_M=\begin{bmatrix}
+ \dfrac{P_1\bar\theta_1}{v_M}\\[4pt]
+ \vdots\\[2pt]
+ \dfrac{P_N\bar\theta_N}{v_M}
+ \end{bmatrix},\qquad \iota^{\mathsf T}z_M=1.
  \label{eq:wj-13-2}
 \end{equation}
 \end{tcolorbox}
 
-其中 $\iota$ 为元素全为 $1$ 的列向量。总持仓 $\theta_M$ 描述证券的供给数量，价值权重 $z_M$ 描述每单位市场投资分配到各证券的比例。记 $\widetilde X$ 为风险证券的单位到期支付列向量。在各证券价格非零时，令 $\widetilde r_n=\widetilde X_n/P_n-1$，则市场组合的净收益率可写成
+其中 $\iota$ 为元素全为 $1$ 的列向量，$\iota^{\mathsf T}z_M=1$ 表示全部证券的市值占比之和为 $1$。总持仓 $\theta_M$ 着眼于证券数量，价值权重 $z_M$ 着眼于市值比例，\textbf{两种表示描述的是同一个市场组合}，可根据计算需要选用。给定价格，由持仓数量可以算出市值权重；给定总市值且各证券价格非零，又可由 $\bar\theta_n=v_Mz_{n,M}/P_n$ 还原持仓数量。
+
+这两种表示也对应着计算市场组合收益率的两种方式：按持仓数量，可以先求市场总支付，再除以总市值并减去 $1$；按市值权重，则可以直接加权各证券的收益率。下面从前一种算法出发，推导出后一种算法。
+
+记 $\widetilde X$ 为风险证券的单位到期支付列向量，各证券价格非零，其净收益率为 $\widetilde r_n=\widetilde X_n/P_n-1$。市场总支付为 $\theta_M^{\mathsf T}\widetilde X=\sum_n\bar\theta_n\widetilde X_n$。将总支付按证券展开，并利用 $\sum_n P_n\bar\theta_n/v_M=1$ 把减去 $1$ 改写为减去市值权重之和，便有
 \[
- \widetilde r_M=\frac{\theta_M^{\mathsf T}\widetilde X}{v_M}-1
- =\sum_n \underbrace{\frac{P_n\bar\theta_n}{v_M}}_{z_{n,M}}
+ \begin{aligned}
+ \widetilde r_M
+ &=\frac{\theta_M^{\mathsf T}\widetilde X}{v_M}-1
+ =\sum_n\frac{P_n\bar\theta_n}{v_M}\frac{\widetilde X_n}{P_n}
+  -\sum_n\frac{P_n\bar\theta_n}{v_M}\\
+ &=\sum_n \underbrace{\frac{P_n\bar\theta_n}{v_M}}_{z_{n,M}}
    \left(\underbrace{\frac{\widetilde X_n}{P_n}-1}_{\widetilde r_n}\right)
  =\sum_n z_{n,M}\widetilde r_n.
+ \end{aligned}
 \]
 
-第一种写法从市场总支付和总市值出发，第二种按市值权重加总各证券的净收益率。接下来做市场出清时，要先把个人权重乘上各自的投资财富，才能与每只证券的供给市值比较。市场组合覆盖模型中的全部可交易风险证券，指数基金对它的近似程度取决于指数的资产覆盖与权重。
+因此，由总持仓计算的市场收益率，恰好等于各证券收益率的市值加权平均。后文研究市场收益率的期望、方差以及各证券的市场贝塔时，就可以使用这一权重表示。
+
+至此，市场组合给出了证券总供给的数量表示及市值权重表示。下一节将把个人最优需求加总，与这一总供给比较，考察市场出清。为使两边采用相同的金额口径，需要先把个人权重乘上各自的投资财富，再与各证券的供给市值比较。
 
 \section{市场均衡}\label{sec:wj-thirteen-2}
-\subsection{切点组合需求与市场出清}
-先考虑存在无风险证券的情形。沿用\WJRef{sec:wj-twelve-4}{第~}[~节（存在无风险资产的情形）]的均值--方差偏好，假定风险证券的收益协方差矩阵正定，允许卖空和按同一无风险利率借贷，且个人最优解存在。本节取 $r_F<\bar r_{\mathrm{MVP}}$。第十二讲\WJEqRef{eq:wj-12-tangency-normalizer}{切点组合的归一化条件~}给出 $\iota^{\mathsf T}\Sigma^{-1}\bar\eta=c(\bar r_{\mathrm{MVP}}-r_F)>0$。因此共同风险方向可以归一化为净权重为 $1$ 的纯风险基金，且有效配置持有该基金的比例为非负。由\WJRef{thm:wj-twelve-12}{定理~}[（切点组合的有效性）]，这时切点组合 $T$ 存在、有效，且期望超额收益为正。参与者对证券收益的期望与协方差有共同判断，因而采用同一个 $z_T$。
+% 来源：教材 13.2，印刷页 199—200。
+给定个人的最优需求和上一节所描述的证券总供给，就可以考察市场均衡。先考虑存在无风险证券的情形。沿用\WJRef{sec:wj-twelve-4}{第~}[~节（存在无风险资产的情形）]的均值--方差模型，假定收益协方差矩阵正定，投资者可以卖空并按同一无风险利率借贷，且个人最优解存在。投资者对风险证券的预期收益和收益协方差有共同判断，并且 $r_F<\bar r_{\mathrm{MVP}}$，使切点组合存在且有效。
 
-由\WJEqRef{eq:wj-12-8}{式~}[（两基金表示）]，参与者 $k$ 把比例 $\alpha_k\ge0$ 投入切点组合，其余 $1-\alpha_k$ 配置于无风险证券。设参与者的投资财富 $w_k>0$，风险投资金额就是 $A_k=w_k\alpha_k$，各只风险证券的需求金额组成向量 $A_kz_T$。设无风险证券净供给为零，两类证券分别满足
-\[
- \underbrace{\sum_k A_kz_T=v_Mz_M}_{\text{各风险证券按市场价值出清}},\qquad
- \underbrace{\sum_k(w_k-A_k)=0}_{\text{无风险证券按金额出清}}.
-\]
+由\WJEqRef{eq:wj-12-8}{两基金表示~}，每位投资者都按同一个切点组合的权重配置其风险投资。各人投入风险证券的金额可以不同，但每一元都按相同的权重分配。因此，加总各人的风险证券需求后，总需求仍按切点组合的权重分布。供给端，各只风险证券的供给市值占总市值的比例，就是市场组合的权重。均衡时，每只风险证券的需求金额等于其供给市值，因此需求端的切点权重与供给端的市场权重逐项相等。
 
 \begin{tcolorbox}[knowledge]
 \WJThirteenTheorem{thm:wj-thirteen-1} 在上述均值--方差经济中，市场达到均衡时，市场组合就是切点组合：$z_M=z_T$。
 \end{tcolorbox}
 
-要证明市场组合与切点组合相同，先把各人的风险需求按金额加总，再用市场出清把总需求换成市场总市值。
-
 \begin{solution}[label-content={证明},blank-type=none]
-由于各人的风险需求只有金额 $A_k$ 不同，可以把共同权重 $z_T$ 提到求和号外：
+设投资者 $k$ 的投资财富为 $w_k$，投入切点组合的比例为 $\alpha_k$，则其风险投资金额为 $A_k=w_k\alpha_k$，各只风险证券的需求金额组成向量 $A_kz_T$，其无风险证券头寸为 $w_k-A_k$。风险证券市场出清要求
 \[
  \sum_k A_kz_T=\left(\sum_k A_k\right)z_T=v_Mz_M.
 \]
-无风险证券的净供给为零，所以各人的借贷金额加总为零。再用全市场投资财富等于风险证券总市值，得到
+
+在无风险证券净供给为零的设定下，无风险证券市场出清要求借款和贷款在全市场相抵，即
+\[
+ \sum_k(w_k-A_k)=0.
+\]
+
+全市场的投资财富等于证券总供给的市值。无风险证券的净供给为零，故这一市值就是风险证券的总市值 $v_M$。因此
 \[
  \sum_k A_k=\sum_k w_k=v_M.
 \]
 
-代回风险证券的出清式，得到 $v_Mz_T=v_Mz_M$。由于 $v_M>0$，两边除以 $v_M$，得到 $z_T=z_M$。
-也可直接从风险证券的出清式求风险投资总额。两边左乘 $\iota^{\mathsf T}$，用两组权重的和都为 $1$，便得到 $\sum_k A_k=v_M$，从而同样推出 $z_T=z_M$。无风险证券的零净供给进一步给出了 $\sum_k w_k=v_M$。
+代入风险证券的出清式，两边除以 $v_M>0$，得到 $z_T=z_M$。
 \end{solution}
 
-\subsection{市场组合的有效性}
-由\WJRef{thm:wj-twelve-12}{定理~}[（切点组合的有效性）]，在 $r_F<\bar r_{\mathrm{MVP}}$ 下，$T$ 位于纯风险证券的有效前沿。均衡中 $M=T$，所以市场组合也在这条前沿上。把 $z_T=z_M$ 代入\WJEqRef{eq:wj-12-8}{式~}，个人最优配置就是以 $1-\alpha_k$ 投入无风险证券、以 $\alpha_k$ 投入市场组合。这些有效配置位于第十二讲的\hyperlink{wj-capital-market-line}{\textcolor{WJReferenceColor}{资本市场线}}上\footnote{在允许按同一无风险利率借贷且切点组合的期望超额收益为正时，有效组合来自对切点组合的非负配置。若配置比例为 $\alpha\ge0$，其期望超额收益是 $\alpha(\bar r_T-r_F)$，标准差是 $\alpha\sigma_T$，所以这条射线从 $(0,r_F)$ 出发，斜率为切点组合的 Sharpe 比 $(\bar r_T-r_F)/\sigma_T$。}。原本需要估计最优风险权重的问题，在均衡中转化为观察各证券的市场价值权重；这也为持有广泛市场组合的指数投资提供了理论依据。
+定理给出三条推论。
+\begin{enumerate}
+ \item \textbf{市场组合是权重可观测的均值--方差有效组合。} 由\WJRef{thm:wj-twelve-12}{定理~}[（切点组合的有效性）]，切点组合位于纯风险证券的有效前沿，因而均衡中的市场组合也在这条前沿上。根据\WJEqRef{eq:wj-13-2}{市场组合的市值权重公式~}，用各只风险证券的市值就能确定这个有效组合的权重，无须估计预期收益率和协方差矩阵。
+ \item \textbf{个人最优配置由无风险证券和市场组合构成。} 将两基金表示中的切点组合换成市场组合，投资者 $k$ 在市场组合上的配置比例为 $\alpha_k$，在无风险证券上的配置比例为 $1-\alpha_k$。各人可以根据自己的偏好决定两者的配置比例。这为投资代表市场组合的指数基金提供了理论依据。
+ \item \textbf{市场组合成为资产定价的基准。} 均衡中，可以用市场组合代替第十二讲\WJEqRef{eq:wj-12-10}{切点贝塔关系~}中的切点组合。下一节据此说明证券的风险溢价如何由市场贝塔决定。
+\end{enumerate}
 
 \section{CAPM给出的资产定价关系}\label{sec:wj-thirteen-3}
 \subsection{市场贝塔与证券市场线}
@@ -106,10 +151,10 @@
 \end{equation}
 \end{tcolorbox}
 
-先对只持有证券 $n$ 的组合应用\WJEqRef{eq:wj-12-10}{以切点为基准的贝塔关系~}，再用市场出清把切点换成市场组合。
+先对只持有证券 $n$ 的组合应用切点贝塔关系，再用市场出清把切点换成市场组合。
 
 \begin{solution}[label-content={证明},blank-type=none]
-在\WJEqRef{eq:wj-12-10}{式~}[（以切点组合为基准的贝塔关系）]中，取 $q$ 为全部资金投在证券 $n$ 上的组合，得到 $\bar r_n-r_F=\beta_{n,T}(\bar r_T-r_F)$。由\WJRef{thm:wj-thirteen-1}{定理~}，均衡中 $z_T=z_M$，所以 $\widetilde r_T=\widetilde r_M$，从而
+在\WJEqRef{eq:wj-12-10}{以切点为参照的贝塔关系~}（$\bar r_q-r_F=\beta_{q,T}(\bar r_T-r_F)$）中，取 $q$ 为全部资金投在证券 $n$ 上的组合，得到 $\bar r_n-r_F=\beta_{n,T}(\bar r_T-r_F)$。由\WJRef{thm:wj-thirteen-1}{定理~}，均衡中 $z_T=z_M$，所以 $\widetilde r_T=\widetilde r_M$，从而
 \[
  \bar r_T=\bar r_M,\qquad
  \beta_{n,T}=\frac{\operatorname{Cov}(\widetilde r_n,\widetilde r_T)}{\sigma_T^2}
@@ -146,7 +191,7 @@
 \end{minipage}
 \end{center}
 
-第十二讲在\WJEqRef{eq:wj-12-10}{式~}之后考察了借款小幅增持证券时的方差变化。将其中的切点组合换成市场组合，若以无风险借款增持证券 $n$，增持比例为 $t$，则
+第十二讲在给出\WJEqRef{eq:wj-12-10}{以切点为参照的贝塔关系~}（$\bar r_q-r_F=\beta_{q,T}(\bar r_T-r_F)$）后，考察了借款小幅增持证券时的方差变化。将其中的切点组合换成市场组合，若以无风险借款增持证券 $n$，增持比例为 $t$，则
 \[
  \left.\frac{\mathrm d}{\mathrm dt}
  \operatorname{Var}[\widetilde r_M+t(\widetilde r_n-r_F)]
@@ -286,7 +331,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \end{tcolorbox}
 
 \begin{solution}[label-content={证明},blank-type=none]
-先考虑 $\Sigma\succ0$、$d>0$ 的情形。在共同信念、允许卖空且具有相同交易机会、个人最优解存在的条件下，各人选择同一条均值--方差前沿上的组合。由\WJEqRef{eq:wj-12-4}{式~}[（前沿权重关于目标均值的仿射表示）]，参与者 $k$ 的最优组合可写成 $z_k=z_0+\bar r_k(z_1-z_0)$\footnote{第十二讲在仅有风险证券、协方差矩阵正定、允许卖空且证券期望收益不全相同（$d>0$）时，求出了每个目标均值对应的唯一最小方差权重。其中 $z_0,z_1$ 是目标均值为 $0,1$ 的两个前沿组合。同均值下严格偏好较低风险的人，其最优组合若存在，就必须具有这一形式。共同信念和相同的交易机会使各人采用同一组 $z_0,z_1$。}。令 $w_k>0$ 为其投资财富，市场出清要求
+先考虑 $\Sigma\succ0$、$d>0$ 的情形。在共同信念、允许卖空且具有相同交易机会、个人最优解存在的条件下，各人选择同一条均值--方差前沿上的组合。由\WJEqRef{eq:wj-12-4}{前沿权重关于目标均值的仿射表示~}，参与者 $k$ 的最优组合可写成 $z_k=z_0+\bar r_k(z_1-z_0)$\footnote{第十二讲在仅有风险证券、协方差矩阵正定、允许卖空且证券期望收益不全相同（$d>0$）时，求出了每个目标均值对应的唯一最小方差权重。其中 $z_0,z_1$ 是目标均值为 $0,1$ 的两个前沿组合。同均值下严格偏好较低风险的人，其最优组合若存在，就必须具有这一形式。共同信念和相同的交易机会使各人采用同一组 $z_0,z_1$。}。令 $w_k>0$ 为其投资财富，市场出清要求
 \[
  \sum_kw_k[z_0+\bar r_k(z_1-z_0)]=v_Mz_M,\qquad \sum_kw_k=v_M.
 \]
@@ -300,14 +345,14 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \[
  \bar r_M=\sum_k\frac{w_k}{v_M}\bar r_k.
 \]
-因此上面的仿射式正是\WJEqRef{eq:wj-12-4}{前沿权重表示~} 在目标均值 $\bar r_M$ 处的写法，市场组合仍在共同的最小方差前沿上。这里用到了同一条仿射直线和财富权重之和为 $1$。
+因此上面的仿射式正是\WJEqRef{eq:wj-12-4}{前沿权重表示~}（$z_p=z_0+\bar r_p(z_1-z_0)$）在目标均值 $\bar r_M$ 处的写法，市场组合仍在共同的最小方差前沿上。这里用到了同一条仿射直线和财富权重之和为 $1$。
 
 进一步判断市场组合是否有效。在共同信念与相同交易机会下，各人选择有效组合，故 $\bar r_k\ge\bar r_{\mathrm{MVP}}$。由于 $w_k/v_M>0$ 且权重之和为 $1$，市场组合的均值也不低于 $\bar r_{\mathrm{MVP}}$，因此它位于有效上半支。若 $d=0$，所有完全投资组合的期望收益率相同。每个人都选择同一个最小方差组合（MVP），市场出清也就给出 $M=\mathrm{MVP}$。
 \end{solution}
 
 \Needspace{12\baselineskip}
 \subsection{零贝塔CAPM}
-沿用 $\Sigma\succ0$、$d>0$。当市场组合非MVP时，\WJRef{thm:wj-twelve-9}{定理~}[（非 MVP 前沿组合的零协方差伙伴存在且唯一）]给出唯一的前沿组合 $zcm$，与市场收益的协方差为零。在第十二讲\WJEqRef{eq:wj-12-zero-covariance-mean}{零协方差组合的均值公式~}中取 $p=M$。将 $M$ 和 $zcm$ 代入两个前沿组合的协方差展开，也可得到同一结果
+沿用 $\Sigma\succ0$、$d>0$。当市场组合非MVP时，\WJRef{thm:wj-twelve-9}{定理~}[（非 MVP 前沿组合的零协方差伙伴存在且唯一）]给出唯一的前沿组合 $zcm$，与市场收益的协方差为零。在第十二讲\WJEqRef{eq:wj-12-zero-covariance-mean}{零协方差组合的均值公式~}（$\bar r_{zcp}=a/c-d/[c^2(\bar r_p-a/c)]$）中取 $p=M$。将 $M$ 和 $zcm$ 代入\WJEqRef{eq:wj-12-frontier-covariance}{两个前沿组合的协方差公式~}，也可得到同一结果
 \[
  \underbrace{\operatorname{Cov}(\widetilde r_M,\widetilde r_{zcm})}_{0}
  =\frac1c+\frac cd\left(\bar r_M-\frac ac\right)
@@ -332,16 +377,16 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 \end{equation}
 \end{tcolorbox}
 
-市场出清已经说明 $M$ 在共同前沿上。将 $M$ 取作\WJEqRef{eq:wj-12-6}{纯风险前沿的零贝塔关系~}中的参照组合，就能读出市场贝塔和零贝塔基准。
+市场出清已经说明 $M$ 在共同前沿上。将 $M$ 取作纯风险前沿零贝塔关系中的参照组合，就能读出市场贝塔和零贝塔基准。
 
 \begin{solution}[label-content={证明},blank-type=none]
-上一小节已证明 $M$ 是前沿组合。由于 $M$ 非 MVP，可在\WJRef{thm:wj-twelve-10}{定理~} 的\WJEqRef{eq:wj-12-6}{式~} 中取 $p=M$。该式左侧为 $\bar r_q-\bar r_{zcp}$，右侧为 $\beta_{q,p}(\bar r_p-\bar r_{zcp})$。代入 $p=M$ 后，$p$ 的零协方差伙伴 $zcp$ 变为 $zcm$，$\bar r_p$ 变为 $\bar r_M$，而
+上一小节已证明 $M$ 是前沿组合。由于 $M$ 非 MVP，可在\WJEqRef{eq:wj-12-6}{纯风险前沿的零贝塔关系~}（$\bar r_q-\bar r_{zcp}=\beta_{q,p}(\bar r_p-\bar r_{zcp})$）中取 $p=M$。代入 $p=M$ 后，$p$ 的零协方差伙伴 $zcp$ 变为 $zcm$，$\bar r_p$ 变为 $\bar r_M$，而
 \[
  \beta_{q,p}=\frac{\operatorname{Cov}(\widetilde r_q,\widetilde r_p)}{\sigma_p^2}
  \quad\text{在 }p=M\text{ 时等于}\quad
  \frac{\operatorname{Cov}(\widetilde r_q,\widetilde r_M)}{\sigma_M^2}=\beta_{q,M}.
 \]
-将这些量代回\WJEqRef{eq:wj-12-6}{式~}，得到\WJEqRef{eq:wj-13-5}{式~}。
+将这些量代回前沿的零贝塔关系，得到\WJEqRef{eq:wj-13-5}{零贝塔 CAPM 收益关系~}（$\bar r_q-\bar r_{zcm}=\beta_{q,M}(\bar r_M-\bar r_{zcm})$）。
 \end{solution}
 
 零贝塔组合的市场协方差为零，自身仍有波动。它的期望收益 $\bar r_{zcm}$ 是\WJEqRef{eq:wj-13-5}{式~} 中市场贝塔为零时的定价基准。对任一与市场零协方差的完全投资组合，\WJEqRef{eq:wj-13-5}{式~}给出相同的期望收益 $\bar r_{zcm}$。前沿伙伴恰好是在这个期望收益下方差最小的组合，因此可用它代表零贝塔定价基准。在标准 CAPM 中，无风险证券的市场贝塔为零、收益率为 $r_F$，因此\WJEqRef{eq:wj-13-3}{式~} 以 $r_F$ 为基准。
@@ -429,7 +474,7 @@ $C$&$-1.5$&$-12\%$&$-8\%$&$0.36$\\
 
 \subsection{正态分布的支付}
 \subsubsection{经济设定与个人证券需求}
-设风险证券支付列向量为 $\widetilde v\sim N(\bar v,\Sigma)$，其支付协方差矩阵 $\Sigma=\operatorname{Cov}(\widetilde v)$ 正定，无风险证券净供给为零。这里 $\Sigma$ 按每股支付计算。第十二讲的收益率协方差还需按各证券价格换算。参与者 $k$ 的初始禀赋由当期消费品 $e_{k,0}$ 和风险证券持仓 $\bar\theta_k$ 构成，风险证券总供给为 $\theta_M=\sum_k\bar\theta_k$。个人一期效用为 $-e^{-a_kc}$，其中 $a_k=-u''_{k,1}(c)/u'_{k,1}(c)>0$ 与消费水平无关，这就是第七讲的\WJLink{sec:wj-seven-cara}{常数绝对风险厌恶}（CARA）。后面改用收益率计算贝塔时，要先把证券支付除以各自价格，把市场总支付除以市场总市值。
+设风险证券支付列向量为 $\widetilde v\sim N(\bar v,\Sigma)$，其支付协方差矩阵 $\Sigma=\operatorname{Cov}(\widetilde v)$ 正定，无风险证券净供给为零。这里 $\Sigma$ 按每股支付计算。第十二讲的收益率协方差还需按各证券价格换算。参与者 $k$ 的初始禀赋由当期消费品 $e_{k,0}$ 和风险证券持仓 $\bar\theta_k$ 构成，风险证券总供给为 $\theta_M=\sum_k\bar\theta_k$。个人一期效用为 $-e^{-a_kc}$，其中 $a_k=-u''_{k,1}(c)/u'_{k,1}(c)>0$ 与消费水平无关，这就是第七讲的\mbox{\WJLink{sec:wj-seven-cara}{常数绝对风险厌恶}}（CARA）。后面改用收益率计算贝塔时，要先把证券支付除以各自价格，把市场总支付除以市场总市值。
 
 沿用\WJRef{sec:wj-twelve-1}{第~}[~节（均值--方差偏好）]的正态模型，一期消费取实数值。非退化的正态期末财富有正概率为负，CARA 效用在整个实数域上都有定义。允许卖空，并允许按同一无风险利率自由借贷。
 
