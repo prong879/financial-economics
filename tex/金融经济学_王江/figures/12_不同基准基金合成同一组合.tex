@@ -1,0 +1,31 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 同一目标(0.6,0.4)的两种分解；不另画证券权重坐标轴。
+\begin{tikzpicture}[
+ >=Stealth,font=\small,x=5cm,y=4.2cm,
+ orth/.style={blue!70!black},
+ oblique/.style={orange!80!black},
+ target/.style={teal!65!black}]
+ % 四个基准组合的端点均在同一前沿直线上。
+ \draw[gray!80,thick,<->] (-.08,1.08)--(1.1,-.1);
+ \node[text=gray!80!black] at (.83,.92) {MVF 权重直线};
+ % 正交基准的分解平行四边形。
+ \draw[orth,densely dotted,thick] (.6,0)--(.6,.4)--(0,.4);
+ \draw[orth,thick,->] (0,0)--(1,0);
+ \draw[orth,thick,->] (0,0)--(0,1);
+ \draw[orth] (.055,0)--(.055,.055)--(0,.055);
+ \fill[orth] (1,0) circle (1.8pt);
+ \node[orth,anchor=north] at (.94,-.1) {$z_0$};
+ \fill[orth] (0,1) circle (1.8pt) node[left=6pt] {$z_1$};
+ % 锐角基准的分解平行四边形。
+ \draw[oblique,densely dashed,thick] (.36,.04)--(.6,.4)--(.24,.36);
+ \draw[oblique,thick,->] (0,0)--(.9,.1);
+ \draw[oblique,thick,->] (0,0)--(.4,.6);
+ \fill[oblique] (.9,.1) circle (1.8pt) node[right=4pt] {$z_A$};
+ \fill[oblique] (.4,.6) circle (1.8pt) node[above right=3pt] {$z_B$};
+ \fill[oblique] (.36,.04) circle (1.2pt);
+ \fill[oblique] (.24,.36) circle (1.2pt);
+ % 两种分解共用同一个目标向量。
+ \draw[target,very thick,->] (0,0)--(.6,.4);
+ \fill[target] (.6,.4) circle (2.2pt) node[above right=3pt] {$z_p$};
+ \fill (0,0) circle (1.4pt) node[below left=3pt] {$O$};
+\end{tikzpicture}

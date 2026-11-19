@@ -1,5 +1,5 @@
 % !TeX root = ../../../金融经济学_王江_讲义及习题.tex
-% 来源：教材图12.2；参考431计算讲义最大Sharpe比的候选射线布局。
+% 教学补充：资本市场线方程、切点坐标与前沿上下支。
 % 解析前沿sigma=sqrt(1+t^2), r=1.8+.7t，rF=.9。
 % 切点t=7/9，sigmaT=sqrt(130)/9，rT=211/90；切线斜率sqrt(1.3)。
 \begin{tikzpicture}[>=Stealth,x=1.65cm,y=1.1cm,font=\small]
@@ -9,10 +9,6 @@
    plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
  \draw[red!70!black,very thick,domain=0:3.1,samples=75,variable=\t]
    plot ({sqrt(1+\t*\t)},{1.8+.7*\t});
- \draw[gray!70,densely dashed] (0,.9)--(3.6,4.32);
- \draw[gray!70,densely dashed] (0,.9)--(1.85,3.5825);
- \node[gray!80,above left] at (1.85,3.5825) {过高斜率：不可达};
- \node[gray!80,right] at (3.4,4.13) {较低斜率};
  \draw[blue!70!black,very thick] (0,.9)--(3,4.32053);
  \node[blue!70!black,above] at (2.7,4.31) {CML $\bar r=r_F+\operatorname{SR}_T\,\sigma$};
  \draw[blue!70!black,densely dashed,thick,->] (0,.9)--(.73,.06767);

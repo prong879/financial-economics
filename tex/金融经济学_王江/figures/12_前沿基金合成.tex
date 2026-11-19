@@ -1,5 +1,5 @@
 % !TeX root = ../../../金融经济学_王江_讲义及习题.tex
-% 左图在权重空间中取中点，右图比较实际风险与端点标准差的算术平均。
+% 左图在权重空间中取中点；右图的C位于前沿上，其均值是A、B均值的平均。
 \begin{tikzpicture}[
  >=Stealth,font=\small,
  frontier/.style={blue!70!black,thick},
@@ -19,22 +19,18 @@
  \begin{scope}[xshift=6.25cm,x=1.60cm,y=.90cm]
   \draw[->] (0,0)--(2.70,0) node[right] {$\sigma$};
   \draw[->] (0,0)--(0,3.58) node[above] {$\bar r$};
-  % 示意双曲线 x^2-(y-1.45)^2=1；三个点的纵坐标依次为 .55、1.75、2.95。
-  \coordinate (A) at ({sqrt(1+.9*.9)},.55);
-  \coordinate (B) at ({sqrt(1+1.5*1.5)},2.95);
-  \coordinate (C) at ({sqrt(1+.3*.3)},1.75);
-  \coordinate (chordmid) at ({(sqrt(1+.9*.9)+sqrt(1+1.5*1.5))/2},1.75);
-  \draw[guide] (0,.55) node[left,black] {$\bar r_A$}--(A);
-  \draw[guide] (0,2.95) node[left,black] {$\bar r_B$}--(B);
-  \draw[guide] (0,1.75) node[left,black] {$\bar r_C$}--(chordmid);
-  \draw[gray,dashed] (A)--(B);
-  \draw[frontier,domain=-1.20:1.80,samples=81,variable=\t]
+  % 示意双曲线 x^2-(y-1.45)^2=1；C的纵坐标为A、B纵坐标的平均，且远离顶点。
+  \coordinate (A) at ({sqrt(1+.1*.1)},1.35);
+  \coordinate (B) at ({sqrt(1+1.9*1.9)},3.35);
+  \coordinate (C) at ({sqrt(1+.9*.9)},2.35);
+  \draw[guide] (0,1.35) node[left,black] {$\bar r_A$}--(A);
+  \draw[guide] (0,3.35) node[left,black] {$\bar r_B$}--(B);
+  \draw[guide] (0,2.35) node[left,black] {$\bar r_C$}--(C);
+  \draw[frontier,domain=-1.20:2.02,samples=81,variable=\t]
    plot ({sqrt(1+\t*\t)},{1.45+\t});
   \fill[blue!70!black] (A) circle (1.8pt) node[right=2pt] {$A$};
   \fill[blue!70!black] (B) circle (1.8pt) node[right=2pt] {$B$};
-  \fill[mix] (C) circle (2pt) node[above left=1pt] {$C$};
-  \draw[gray,fill=white] (chordmid) circle (1.8pt)
-   node[right=2pt,align=left] {标准差\\取平均};
+  \fill[mix] (C) circle (2pt) node[left=5pt,yshift=5pt] {$C$};
   \node at (1.38,-.44) {(b) 均值--标准差平面};
  \end{scope}
 \end{tikzpicture}

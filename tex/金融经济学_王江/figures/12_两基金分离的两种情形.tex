@@ -4,28 +4,35 @@
  >=Stealth,x=1.25cm,y=1.12cm,font=\small,
  frontier/.style={blue!70!black,very thick},
  guide/.style={gray,densely dotted},
- choice/.style={teal!60!black}]
+ choice/.style={teal!65!black},
+ second/.style={red!68!black}]
  \draw[->] (0,0)--(3.55,0) node[right] {$\sigma$};
  \draw[->] (0,0)--(0,2.9) node[above] {$\bar r$};
- \def\optimalS{1.05}
  \coordinate (A) at ({1.34*sqrt(1+.48^2)},{.72*(.9-.48)});
- \coordinate (P) at ({1.34*sqrt(1+\optimalS^2)},{.72*(.9+\optimalS)});
+ \coordinate (Pone) at ({1.34*sqrt(1+.65^2)},{.72*(.9+.65)});
+ \coordinate (Ptwo) at ({1.34*sqrt(1+1.75^2)},{.72*(.9+1.75)});
  \coordinate (B) at ({1.34*sqrt(1+2.08^2)},{.72*(.9+2.08)});
  \draw[guide] (0,.3024) node[left,black] {$\bar r_A$}--(A);
  \draw[guide] (0,2.1456) node[left,black] {$\bar r_B$}--(B);
- \pgfmathdeclarefunction{wjindifference}{1}{%
-  \pgfmathparse{.72*(.9+\optimalS+((#1/1.34)^4-(1+\optimalS^2)^2)/(4*\optimalS*(1+\optimalS^2)))}}
- \foreach \offset in {-.44,-.22,.22,.44} {
-  \draw[teal!45!white,dashed] plot[domain=.84:2.62,samples=41,variable=\s]
-   (\s,{wjindifference(\s)+\offset});
+ % 复用章末两基金图的四次效用曲线，按本图坐标缩放。
+ \pgfmathdeclarefunction{wjindifference}{2}{%
+  \pgfmathparse{.72*(.9+#2+((#1/1.34)^4-(1+#2^2)^2)/(4*#2*(1+#2^2)))}}
+ \foreach \offset in {-.28,-.14,.14,.28} {
+  \draw[teal!45!white,dashed] plot[domain=.84:1.96,samples=41,variable=\s]
+   (\s,{wjindifference(\s,.65)+\offset});
+  \draw[red!45!white,dashed] plot[domain=1.83:3.12,samples=41,variable=\s]
+   (\s,{wjindifference(\s,1.75)+\offset});
  }
- \draw[choice,thick] plot[domain=.84:2.62,samples=41,variable=\s]
-  (\s,{wjindifference(\s)});
+ \draw[choice,thick] plot[domain=.84:1.96,samples=41,variable=\s]
+  (\s,{wjindifference(\s,.65)});
+ \draw[second,thick] plot[domain=1.83:3.12,samples=41,variable=\s]
+  (\s,{wjindifference(\s,1.75)});
  \draw[frontier] plot[domain=-.7:2.34,samples=81,variable=\t]
   ({1.34*sqrt(1+\t*\t)},{.72*(.9+\t)});
  \fill[blue!70!black] (A) circle (2pt) node[right=3pt,black] {$A$};
- \fill[blue!70!black] (B) circle (2pt) node[right=3pt,black] {$B$};
- \fill[choice] (P) circle (2pt) node[below right=2pt] {$P_k$};
+ \fill[blue!70!black] (B) circle (2pt) node[above right=3pt,black] {$B$};
+ \fill[choice] (Pone) circle (2pt) node[above left=2pt,fill=white,inner sep=1pt] {$P_1$};
+ \fill[second] (Ptwo) circle (2pt) node[below left=2pt,fill=white,inner sep=1pt] {$P_2$};
  \node at (1.68,-.72) {(a) 证券期望收益率不全相同};
 
  \begin{scope}[xshift=6.05cm]
@@ -33,18 +40,23 @@
   \draw[->] (0,0)--(0,2.9) node[above] {$\bar r$};
   \draw[guide] (0,1.32) node[left,black] {$a/c$}--(.78,1.32)--(.78,0)
    node[below,black] {$1/\sqrt c$};
-  % 实线经过 MVP。上方的等效用曲线与可行射线没有交点。
-  \foreach \offset in {-.44,-.22,.22,.44} {
-   \draw[teal!45!white,dashed] plot[domain=.30:2.13,samples=41,variable=\s]
+  % 两人的最高可达无差异曲线都经过 MVP，斜率不同。
+  \foreach \offset in {-.28,-.14,.14,.28} {
+   \draw[teal!45!white,dashed] plot[domain=.30:2.30,samples=41,variable=\s]
     (\s,{1.32+.25*(\s^2-.78^2)+\offset});
+   \draw[red!45!white,dashed] plot[domain=.30:1.60,samples=41,variable=\s]
+    (\s,{1.32+.65*(\s^2-.78^2)+\offset});
   }
-  \draw[choice,thick] plot[domain=.30:2.13,samples=61,variable=\s]
+  \draw[choice,thick] plot[domain=.30:2.30,samples=61,variable=\s]
    (\s,{1.32+.25*(\s^2-.78^2)});
+  \draw[second,thick] plot[domain=.30:1.60,samples=61,variable=\s]
+   (\s,{1.32+.65*(\s^2-.78^2)});
   \draw[gray!80,thick,<-] (.78,1.32)--(3.3,1.32)
-   node[pos=.71,below=4pt,black] {同均值的可行组合};
-  \fill[choice] (.78,1.32) circle (2.3pt)
-   node[above right=4pt,align=left,fill=white,inner sep=2pt]
-    {$P_1=P_2=\mathrm{MVP}$\\共同的效用最大点};
+   node[pos=.70,below=4pt,black] {同均值的可行组合};
+  \fill[black] (.78,1.32) circle (2.3pt);
+  \node[align=center] (common) at (2.12,.48)
+    {$P_1=P_2=\mathrm{MVP}$};
+  \draw[gray!80,->] (common.north west)--(.83,1.27);
   \node at (1.68,-.72) {(b) 证券期望收益率相同};
  \end{scope}
 \end{tikzpicture}

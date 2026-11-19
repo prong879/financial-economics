@@ -4,7 +4,7 @@
  >=Stealth,font=\small,
  x={(-3.05cm,-.9cm)},y={(3.45cm,-.62cm)},z={(0cm,2.9cm)},
  frontier/.style={blue!65!black,very thick,<->},
- projection/.style={gray!80,dashed,thick,<->},
+ projection/.style={gray!85!black,dashed,thick,<->},
  guide/.style={gray,densely dotted}]
  \coordinate (O) at (0,0,0);
  \coordinate (F) at (0,0,1);
@@ -22,14 +22,19 @@
  \draw[->] (O)--(0,1.24,0) node[right] {$z_2$};
  \draw[->] (O)--(0,0,1.46) node[above] {$z_F$};
 
- % 分别取 a_p=-.24 和 1.24；完整权重中 z_F=1-a_p。
- \draw[projection] (-.1632,-.0768,0)--(.8432,.3968,0);
+ % 投影虚线取 a_p=-.24 至 1.55，越过 T 的一端留出可见长度。
+ \draw[projection] (-.1632,-.0768,0)--(1.054,.496,0);
  \draw[guide] (P)--(Pprojection);
- \draw[frontier] (-.1632,-.0768,1.24)--(.8432,.3968,-.24);
+ % 完整权重直线取 a_p=-.24 至 1.24，且 z_F=1-a_p。
+ \draw[frontier]
+   (-.1632,-.0768,1.24) node[right=5pt,yshift=-5pt,blue!65!black] {$a_p<0$}
+   --(.8432,.3968,-.24) node[right=5pt,yshift=5pt,blue!65!black] {$a_p>0$};
  \fill (O) circle (1.6pt) node[above right,xshift=2pt] {$O$};
- \fill[gray!80] (Pprojection) circle (1.6pt) node[right=3pt] {$P'$};
+ \fill[gray!85!black] (Pprojection) circle (1.6pt)
+   node[right=3pt] {$P'\colon z_p=a_pz_T$};
  \fill[blue!65!black] (F) circle (1.8pt) node[right=3pt] {$F=(0,0,1)$};
- \fill[blue!65!black] (T) circle (1.8pt) node[below left=3pt] {$T=(z_{T,1},z_{T,2},0)$};
+ \fill[blue!65!black] (T) circle (1.8pt)
+   node[right=5pt,yshift=-5pt] {$T=(z_T,0)$};
  \fill[blue!65!black] (P) circle (1.8pt) node[right=3pt] {$P$};
  \node[blue!65!black,anchor=east,font=\footnotesize]
    at (canvas cs:x=3.52cm,y=2.17cm)
@@ -37,6 +42,6 @@
 
  \draw[blue!65!black,very thick] (canvas cs:x=-3.2cm,y=-2.35cm)
    -- ++(canvas cs:x=.48cm,y=0cm) node[right=3pt,black] {完整权重的前沿直线};
- \draw[gray!80,dashed,thick] (canvas cs:x=.25cm,y=-2.35cm)
-   -- ++(canvas cs:x=.48cm,y=0cm) node[right=3pt,black] {在风险权重平面上的投影};
+ \draw[gray!85!black,dashed,thick] (canvas cs:x=.25cm,y=-2.35cm)
+   -- ++(canvas cs:x=.48cm,y=0cm) node[right=3pt,black] {风险权重前沿（$z_F=0$ 平面）};
 \end{tikzpicture}

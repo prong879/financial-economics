@@ -1,0 +1,35 @@
+% !TeX root = ../../../金融经济学_王江_讲义及习题.tex
+% 教学示意：同一标准差下比较上下支，取 r_F<r_MVP。
+% 纯风险前沿 sigma=sqrt(1+t^2), r=2.27+.36t，r_F=2。
+% 切点 t=4/3，sigma_T=5/3，r_T=2.75，切线斜率 .45=sqrt K。
+\begin{tikzpicture}[>=Stealth,x=1.4cm,y=.9cm,font=\small]
+ \coordinate (F) at (0,2);
+ \coordinate (A) at (3.25,3.4625);
+ \coordinate (B) at (3.25,.5375);
+ \draw[->] (0,0)--(4.5,0) node[right] {$\sigma_p$};
+ \draw[->] (0,0)--(0,4.2) node[above] {$\bar r_p$};
+ \draw[red!70!black,densely dotted] (0,2.27)--(1,2.27);
+ \draw[red!70!black] (-.06,2.27)--(0,2.27)
+   node[above left=2pt] {$\bar r_{\mathrm{MVP}}$};
+ \draw[gray!65,densely dotted] (0,3.4625)--(A);
+ \draw[gray!65,densely dotted] (3.25,0) node[below] {$\sigma_0$}--(A);
+ \draw[red!70!black,thick,domain=-3.65:3.65,samples=100,variable=\t]
+   plot ({sqrt(1+\t*\t)},{2.27+.36*\t});
+ \draw[blue!70!black,very thick,->] (F)--(4,3.8)
+   node[right,align=left] {有效前沿\\$\bar r_p=r_F+\sqrt K\,\sigma_p$};
+ \draw[gray!80,dashed,thick,->] (F)--(4,.2)
+   node[above right=3pt] {$\bar r_p=r_F-\sqrt K\,\sigma_p$};
+ \draw[->,blue!70!black,thick,shorten <=5pt,shorten >=5pt] (B)--(A);
+ \node[right=5pt,align=left,font=\footnotesize] at (3.25,2)
+   {相同标准差\\$A$ 的期望收益率更高};
+ \fill[blue!70!black] (F) circle (1.8pt)
+   node[left=3pt,yshift=-6pt] {$F=(0,r_F)$};
+ \fill[blue!70!black] (A) circle (1.8pt) node[above left=2pt] {$A$};
+ \fill[gray!80] (B) circle (1.8pt) node[below left=2pt] {$B$};
+ \fill[red!70!black] (1,2.27) circle (1.8pt)
+   node[right=3pt,yshift=-5pt,font=\footnotesize] {纯风险 MVP};
+ \fill[blue!70!black] (1.66667,2.75) circle (2pt)
+   node[above left=3pt] {$T$};
+ \draw[red!70!black,thin] (1.2,.95)--(1.5,1.86751);
+ \node[red!70!black,below,font=\footnotesize] at (1.2,.95) {纯风险前沿};
+\end{tikzpicture}
